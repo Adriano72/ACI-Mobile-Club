@@ -1,5 +1,42 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
+	<Window class="container" onOpen="doopen">
+		<Toolbar class="toolbar" platform="ios">
+			<Items>
+				<FlexSpace/>
+				<Label id="windowtitle"/>
+				<FlexSpace/>
+			</Items>
+		</Toolbar>
+		<ScrollableView id="scrollableView">
+			<View id="view1">
+				<Label>View 1</Label>
+			</View>
+			<View id="view2" backgroundColor="#246">
+				<Label>View 2</Label>
+			</View>
+			<View id="view3" backgroundColor="#48b">
+				<Label>View 3</Label>
+			</View>
+		</ScrollableView>
+		<View id="menuView" onSwipe="swipeAction">
+			<View class="buttonsContainer">
+				<View class="rowWrapper">
+					<View id="puntiAci" class="menuButton first"></View>
+					<View id="vantaggiSoci" class="menuButton last"></View>
+				</View>
+				<View class="rowWrapper">
+					<View id="mobilita" class="menuButton first"></View>
+					<View id="tessera" class="menuButton last"></View>
+				</View>
+				<View class="rowWrapper">
+					<View id="puntiAci" class="menuButton first"></View>
+					<View id="vantaggiSoci" class="menuButton last"></View>
+				</View>
+				<View class="rowWrapper">
+					<View id="mobilita" class="menuButton first"></View>
+					<View id="tessera" class="menuButton last"></View>
+				</View>
+			</View>
+		</View>
 	</Window>
 </Alloy>

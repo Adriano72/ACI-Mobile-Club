@@ -1,15 +1,120 @@
-".container": {
-	backgroundColor:"white"
+// container for iOS
+".container[platform=ios]": {
+	backgroundColor:"#DEDDD7",
+	top:"20",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT,Ti.UI.UPSIDE_PORTRAIT]
 }
 
-"Label": {
-	width: Ti.UI.SIZE,
+// container for Android
+".container[platform=android]": {
+	backgroundColor:"white",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: true
+}
+
+".toolbar":{
+	top:0,
+	borderTop:"true",
+	borderBottom:"true"
+}
+
+"#scrollableView[platform=ios]": {
+	width: "98%",
+	height: "60%",
+	overlayEnabled: true,
+	top: 45,
+	pagingControlAlpha: 0.6
+}
+
+"#scrollableView[platform=android]": {
+	width: "98%",
+	height: "48%",
+	top: 3,
+	showPagingContro: false
+}
+
+"#view1": {
+	backgroundImage: "/images/banner1.png"
+	//backgroundColor:"#256"
+}
+
+"#view2": {
+	//backgroundImage: "images/banner1.png"
+}
+
+"#view3": {
+	//backgroundImage: "images/banner1.png"
+}
+
+"#menuView": {
+	width: "100%",
+	height: "100%",
+	//top: 305,
+	backgroundColor:"#FFF"
+	
+}
+
+".buttonsContainer": {
 	height: Ti.UI.SIZE,
-	color: "#000"
+	top: 0,
+	width: "98%",
+	layout: "vertical"
 }
 
-"#label": {
-	font: {
-		fontSize: 12
-	}
+".rowWrapper": {
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	top: 3
 }
+
+".menuButton": {
+	height: Alloy.Globals.menuButtonsHeight,
+	width: Alloy.Globals.menuButtonsWidth
+}
+
+".first": {
+	left: 0
+}
+
+".last": {
+	right: 0
+}
+
+"#puntiAci": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#69A3CE', offset: 0.0}, { color: '#89B9DB', offset: 1.0 }],
+    }
+}
+
+"#vantaggiSoci": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#61C6ED', offset: 0.0}, { color: '#34B6E5', offset: 1.0 }],
+    }
+}
+
+"#mobilita": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#5292C7', offset: 0.0}, { color: '#3676B2', offset: 1.0 }],
+    }
+}
+
+"#tessera": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#34B5E7', offset: 0.0}, { color: '#2B9DD5', offset: 1.0 }],
+    }
+}
+
+
