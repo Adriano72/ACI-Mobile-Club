@@ -1,0 +1,25 @@
+".buttonImage": {
+	top: 25
+}
+
+".buttonText[platform=ios]":{
+    color: '#fff',
+    top: 15,
+    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    backgroundColor: 'transparent',
+    font: {
+        fontFamily:'PTSans-NarrowBold',
+        fontSize: '12dp'
+    }	
+}
+
+".buttonText[platform=android]":{
+    color: '#fff',
+    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    backgroundColor: 'transparent',
+    font: {
+        fontFamily:'PT_Sans-Narrow-Web-Bold',
+        fontSize: '12dp'
+    }	
+}
+

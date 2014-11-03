@@ -29,7 +29,7 @@
 
 "#scrollableView[platform=android]": {
 	width: "98%",
-	height: "48%",
+	height: "50%",
 	top: 3,
 	showPagingContro: false
 }
@@ -65,12 +65,13 @@
 ".rowWrapper": {
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
-	top: 3
+	top: 2
 }
 
 ".menuButton": {
 	height: Alloy.Globals.menuButtonsHeight,
-	width: Alloy.Globals.menuButtonsWidth
+	width: Alloy.Globals.menuButtonsWidth,
+	layout: 'vertical'
 }
 
 ".first": {
@@ -86,7 +87,7 @@
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
         endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#69A3CE', offset: 0.0}, { color: '#89B9DB', offset: 1.0 }],
+        colors: [ { color: '#295F95', offset: 0.0}, { color: '#23477D', offset: 1.0 }],
     }
 }
 
@@ -95,7 +96,7 @@
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
         endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#61C6ED', offset: 0.0}, { color: '#34B6E5', offset: 1.0 }],
+        colors: [ { color: '#0099CD', offset: 0.0}, { color: '#007AB4', offset: 1.0 }],
     }
 }
 
@@ -104,7 +105,7 @@
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
         endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#5292C7', offset: 0.0}, { color: '#3676B2', offset: 1.0 }],
+        colors: [ { color: '#2B3F68', offset: 0.0}, { color: '#181D3D', offset: 1.0 }],
     }
 }
 
@@ -113,8 +114,63 @@
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
         endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#34B5E7', offset: 0.0}, { color: '#2B9DD5', offset: 1.0 }],
+        colors: [ { color: '#007BB1', offset: 0.0}, { color: '#00609F', offset: 1.0 }],
     }
 }
+
+"#diventaSocio": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#295F95', offset: 0.0}, { color: '#23477D', offset: 1.0 }],
+    }
+}
+
+"#guidare": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#0099CD', offset: 0.0}, { color: '#007AB4', offset: 1.0 }],
+    }
+}
+
+"#sport": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#2B3F68', offset: 0.0}, { color: '#181D3D', offset: 1.0 }],
+    }
+}
+
+"#serviziOnline": {
+	backgroundGradient: {
+        type: 'linear',
+        startPoint: { x: '50%', y: '0%' },
+        endPoint: { x: '50%', y: '100%' },
+        colors: [ { color: '#007BB1', offset: 0.0}, { color: '#00609F', offset: 1.0 }],
+    }
+}
+
+"#imgPuntiACI": {
+	image: "/images/ic_ico_punti_servizio.png",
+	height: 50
+}
+
+"#imgVantaggiSoci": {
+	image: "/images/ic_ico_vantaggi.png",
+	height: 50
+}
+"#imgMobilita": {
+	image: "/images/ic_ico_mobilita.png",
+	height: 50
+}
+"#imgTessera": {
+	image: "/images/ic_ico_tessera.png",
+	height: 50
+}
+
 
 

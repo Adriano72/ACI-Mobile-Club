@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" onOpen="doopen">
+	<Window class="container" onPostlayout="triggerScroll" onOpen="doopen">
 		<Toolbar class="toolbar" platform="ios">
 			<Items>
 				<FlexSpace/>
@@ -7,6 +7,7 @@
 				<FlexSpace/>
 			</Items>
 		</Toolbar>
+		<!--
 		<ScrollableView id="scrollableView">
 			<View id="view1">
 				<Label>View 1</Label>
@@ -18,24 +19,39 @@
 				<Label>View 3</Label>
 			</View>
 		</ScrollableView>
-		<View id="menuView" onSwipe="swipeAction">
+		-->
+		<View id="menuView">
 			<View class="buttonsContainer">
 				<View class="rowWrapper">
-					<View id="puntiAci" class="menuButton first"></View>
-					<View id="vantaggiSoci" class="menuButton last"></View>
+					<View id="puntiAci" class="menuButton first">
+						<ImageView id="imgPuntiACI" class="buttonImage"/>
+						<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+					</View>
+					<View id="vantaggiSoci" class="menuButton last">
+						<ImageView id="imgVantaggiSoci" class="buttonImage"/>
+						<Label id="txtVantaggiSoci" class="buttonText">VANTAGGI PER I SOCI</Label>
+					</View>
 				</View>
 				<View class="rowWrapper">
-					<View id="mobilita" class="menuButton first"></View>
-					<View id="tessera" class="menuButton last"></View>
+					<View id="mobilita" class="menuButton first">
+						<ImageView id="imgMobilita" class="buttonImage"/>
+						<Label id="txtMobilita" class="buttonText">MOBILITÀ</Label>
+					</View>
+					<View id="tessera" class="menuButton last">
+						<ImageView id="imgTessera" class="buttonImage"/>
+						<Label id="txtTessera" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+					</View>
+				</View>
+				<!--
+				<View class="rowWrapper">
+					<View id="diventaSocio" class="menuButton first"></View>
+					<View id="guidare" class="menuButton last"></View>
 				</View>
 				<View class="rowWrapper">
-					<View id="puntiAci" class="menuButton first"></View>
-					<View id="vantaggiSoci" class="menuButton last"></View>
+					<View id="sport" class="menuButton first"></View>
+					<View id="serviziOnline" class="menuButton last"></View>
 				</View>
-				<View class="rowWrapper">
-					<View id="mobilita" class="menuButton first"></View>
-					<View id="tessera" class="menuButton last"></View>
-				</View>
+				-->
 			</View>
 		</View>
 	</Window>
