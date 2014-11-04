@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" onPostlayout="triggerScroll" onOpen="doopen">
+	<Window class="container" onPostlayout="scrollHack" onOpen="doopen">
 		<Toolbar class="toolbar" platform="ios">
 			<Items>
 				<FlexSpace/>
@@ -39,7 +39,7 @@
 					</View>
 					<View id="tessera" class="menuButton last">
 						<ImageView id="imgTessera" class="buttonImage"/>
-						<Label id="txtTessera" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+						<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
 					</View>
 				</View>
 				<!--

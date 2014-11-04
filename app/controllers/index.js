@@ -29,8 +29,8 @@ var view3 = Ti.UI.createView({
 
 var Banner = ViewScrollr.create({
     width: "98%",
-	height: (OS_ANDROID)?"48.5%":"53%",
-	top: 3,
+	height: (OS_ANDROID)?"48.5%":"45%",
+	top: (OS_ANDROID)?3:45,
     auto: true,
     delay: 3000,
     navigation : {
@@ -45,8 +45,12 @@ var Banner = ViewScrollr.create({
     ]
 });
 
+var scrollHack = _.once(triggerScroll);
+
+
+
 function triggerScroll(){
-	Ti.API.info("**** FIRE EVENT *****");
+	//Ti.API.info("**** FIRE EVENT *****");
 	if (OS_ANDROID) Ti.App.fireEvent('initialScrollHack');
 }
 

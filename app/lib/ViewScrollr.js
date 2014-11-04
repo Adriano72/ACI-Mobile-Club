@@ -55,7 +55,7 @@ exports.create = function(options){
 			}
 		},
 		setAutoScroll = function(){
-			Ti.API.info("SET AUTO SCROLL");
+			//Ti.API.info("SET AUTO SCROLL");
 			autoScrollTimeout && clearTimeout(autoScrollTimeout);
 			autoScrollTimeout = setTimeout(autoScroll, options.delay || scrollDelay);
 		},
@@ -128,14 +128,14 @@ exports.create = function(options){
 	);
 	
 	Ti.App.addEventListener("initialScrollHack", function(){
-		Ti.API.info("**** SCROLL HACK TRIGGERED!! *****");
+		//Ti.API.info("**** SCROLL HACK TRIGGERED!! *****");
 		scrollableView.fireEvent("scrollEnd");
 	});
 
 	scrollableView.addEventListener(
 		"scroll",
 		function(e){
-			Ti.API.info("**** SCROLL *****");
+			//Ti.API.info("**** SCROLL *****");
 			if(currentPage!=e.currentPage && options.navigation){
 				navigationPageControls[currentPage].backgroundColor = options.navigation.color;
 				navigationPageControls[e.currentPage].backgroundColor = options.navigation.selectedColor;
@@ -174,7 +174,7 @@ exports.create = function(options){
 	setTimeout(
 		function(){
 			
-			Ti.API.info("OPTIONS AUTO: "+options.auto+" NOT IS SCROLLING: "+!isScrolling);
+			//Ti.API.info("OPTIONS AUTO: "+options.auto+" NOT IS SCROLLING: "+!isScrolling);
 			
 			if(options.auto && !isScrolling) setAutoScroll();
 		},
