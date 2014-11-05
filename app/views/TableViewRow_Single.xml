@@ -1,0 +1,12 @@
+<Alloy>
+
+	<TableViewRow id="riga" class="row">
+
+		<View class="rowSingleContainer">
+			<ImageView class="simpleRowLeftIcon" id="leftIcon"/>
+			<Label class="simpleRowText" id="rowText"/>
+		</View>
+
+	</TableViewRow>
+
+</Alloy>

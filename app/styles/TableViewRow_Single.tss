@@ -1,0 +1,16 @@
+".row[platform=ios]":{
+	height: "100",
+	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
+}
+
+".row[platform=android]":{
+	height: "100"
+}
+
+".simpleRowLeftIcon": {
+	left: 0
+}
+
+".simpleRowText": {
+	
+}

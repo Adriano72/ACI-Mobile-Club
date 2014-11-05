@@ -2,28 +2,24 @@
 	<Window class="container" onPostlayout="scrollHack" onOpen="doopen">
 		<Toolbar class="toolbar" platform="ios">
 			<Items>
+				<!--<ImageView class="toolbarIconLeft" image="/ico_hamburger_sort_celeste.png"/>-->
 				<FlexSpace/>
-				<Label id="windowtitle"/>
+				<ImageView id="headerLogo" image="logoAci2.png"/>
 				<FlexSpace/>
+				<ImageView class="toolbarIconRight" image="/ico_rotella_celeste.png"/>
 			</Items>
 		</Toolbar>
-		<!--
-		<ScrollableView id="scrollableView">
-			<View id="view1">
-				<Label>View 1</Label>
-			</View>
-			<View id="view2" backgroundColor="#246">
-				<Label>View 2</Label>
-			</View>
-			<View id="view3" backgroundColor="#48b">
-				<Label>View 3</Label>
-			</View>
-		</ScrollableView>
-		-->
+		<Menu id="menu" platform="android">
+
+			<!-- Cannot specify node text.  Use attributes only. -->
+			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+			<MenuItem id="mn_settings" title="Impostazioni"/>
+
+		</Menu>
 		<View id="menuView">
 			<View class="buttonsContainer">
 				<View class="rowWrapper">
-					<View id="puntiAci" class="menuButton first">
+					<View id="puntiAci" class="menuButton first" onClick="openPuntiACI">
 						<ImageView id="imgPuntiACI" class="buttonImage"/>
 						<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
 					</View>
@@ -42,16 +38,6 @@
 						<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
 					</View>
 				</View>
-				<!--
-				<View class="rowWrapper">
-					<View id="diventaSocio" class="menuButton first"></View>
-					<View id="guidare" class="menuButton last"></View>
-				</View>
-				<View class="rowWrapper">
-					<View id="sport" class="menuButton first"></View>
-					<View id="serviziOnline" class="menuButton last"></View>
-				</View>
-				-->
 			</View>
 		</View>
 	</Window>

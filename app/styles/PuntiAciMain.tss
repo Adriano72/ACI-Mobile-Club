@@ -1,0 +1,47 @@
+// container for iOS
+".container[platform=ios]": {
+	backgroundColor: "#DEDDD7",
+	top: "20",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: []
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: "white",
+	tintColor: "red",
+	orientationModes: [],
+	exitOnClose: true
+}
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "logo_aci.png"
+}
+
+"#mn_settings": {
+	icon: "/ico_rotella_celeste.png"
+}
+
+".toolbar":{
+	top: 0,
+	borderTop: "true",
+	borderBottom: "true"
+}
+
+"#headerLogo": {
+	height: 23
+}
+
+".table[platform=ios]":{
+	separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+}
+
+
+
+
+
+

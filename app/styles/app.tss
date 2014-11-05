@@ -2,6 +2,19 @@
 	top: 25
 }
 
+".aciFontRegular[platform=ios]": {
+	font: {
+        fontFamily:'ACIType',
+        fontSize: '14dp'
+    }
+}
+
+".aciFontBold[platform=ios]": {
+	font: {
+        fontFamily:'ACIType-Bold'
+   }
+}
+
 ".buttonText[platform=ios]":{
     color: '#fff',
     top: 15,

@@ -1,0 +1,21 @@
+<Alloy>
+	<Window class="container" onOpen="doopen">
+		<Toolbar class="toolbar" platform="ios">
+			<Items>
+				<FlexSpace/>
+				<ImageView id="headerLogo" image="logoAci2.png"/>
+				<FlexSpace/>
+			</Items>
+		</Toolbar>
+		<Menu id="menu" platform="android">
+
+			<!-- Cannot specify node text.  Use attributes only. -->
+			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+			<MenuItem id="mn_settings" title="Impostazioni"/>
+
+		</Menu>
+		<Alloy>
+			<TableView id="puntiAciMain_Table" class="table"/>
+		</Alloy>
+	</Window>
+</Alloy>
