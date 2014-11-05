@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" onOpen="doopen">
+	<Window id="win" class="container" onOpen="doopen">
 		<Toolbar class="toolbar" platform="ios">
 			<Items>
 				<FlexSpace/>
@@ -7,15 +7,16 @@
 				<FlexSpace/>
 			</Items>
 		</Toolbar>
-		<Menu id="menu" platform="android">
+		<Menu id="menu" platform="android" displayHomeAsUp="true" onHomeIconItemSelected="homeIconSelected">
 
 			<!-- Cannot specify node text.  Use attributes only. -->
 			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
 			<MenuItem id="mn_settings" title="Impostazioni"/>
 
 		</Menu>
-		<Alloy>
-			<TableView id="puntiAciMain_Table" class="table"/>
-		</Alloy>
+		<TableView id="puntiAciMain_Table" class="table"/>
+		<View class="bottomBannerContainer">
+			<ImageView class="bottomBanner"/>
+		</View>
 	</Window>
 </Alloy>

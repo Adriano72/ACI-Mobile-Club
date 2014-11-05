@@ -15,6 +15,19 @@
    }
 }
 
+".aciFontRegular[platform=android]": {
+	font: {
+        fontFamily:'ACI Type Regular',
+        fontSize: '14dp'
+    }
+}
+
+".aciFontBold[platform=android]": {
+	font: {
+        fontFamily:'ACI Type Bold'
+   }
+}
+
 ".buttonText[platform=ios]":{
     color: '#fff',
     top: 15,
@@ -32,6 +45,26 @@
     backgroundColor: 'transparent',
     font: {
         fontFamily:'PT_Sans-Narrow-Web-Bold',
+        fontSize: '12dp'
+    }	
+}
+
+".PTSansRegular[platform=ios]":{
+   
+    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    backgroundColor: 'transparent',
+    font: {
+        fontFamily:'PTSans-Regular',
+        fontSize: '12dp'
+    }	
+}
+
+".PTSansBold[platform=ios]":{
+
+    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+    backgroundColor: 'transparent',
+    font: {
+        fontFamily:'PTSans-Bold',
         fontSize: '12dp'
     }	
 }

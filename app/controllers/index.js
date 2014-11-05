@@ -78,7 +78,7 @@ function swipeAction(e) {
 };
 
 function openPuntiACI(){
-	var puntiAciMain = Alloy.createController("PuntiAciMain").getView().open();
+	Alloy.createController("PuntiAciMain").getView().open();
 }
 
 $.index.open();

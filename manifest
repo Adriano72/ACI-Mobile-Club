@@ -1,8 +1,8 @@
-#appname: ACI-Mobile-Club
-#publisher: adrianomassi
-#url: http://
-#image: appicon.png
-#appid: it.aci.acimobileclub
-#desc: undefined
-#type: ipad
-#guid: 26b70d59-d61d-4962-9c28-67e4e86805a0
+#appname:ACI-Mobile-Club
+#publisher:adrianomassi
+#url:http://
+#image:appicon.png
+#appid:it.aci.acimobileclub
+#desc:undefined
+#type:mobile
+#guid:26b70d59-d61d-4962-9c28-67e4e86805a0

@@ -1,15 +1,15 @@
 var args = arguments[0] || {};
 
-var ViewScrollr = require("ViewScrollr");
-if (OS_ANDROID)
+if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
+};
 
 function doopen(evt) {
 	if (OS_ANDROID) {
 		abx.displayHomeAsUp = true;
 		abx.title = "Punti di servizio ACI";
 		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = "#4A678C";
+		abx.titleColor = "#003772";
 
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
@@ -19,46 +19,29 @@ function doopen(evt) {
 	//updateScreen();
 }
 
+function homeIconSelected() {
+	$.win.close({
+		animate : true
+	});
+}
+
+
+var rowData = require('tabulatedData').puntiAciMain();
+
 var rows = [];
 
-var itemsObj = [{
-	img : "Punti di servizio ACI",
-	text : "Punti di servizio ACI"
+_.each(rowData, function(value) {
+	Ti.API.info("DATA: " + value.img);
+	var riga = Alloy.createController('TableViewRow_Single', {
 
-}, {
-	img : "Punti di servizio ACI",
-	text : "Vantaggi per i soci"
+		immagine : value.img,
+		testo : value.text
 
-}, {
-	img : "Punti di servizio ACI",
-	text : "Mobilita"
+	}).getView();
+	rows.push(riga);
+});
 
-}, {
-	img : "Punti di servizio ACI",
-	text : "La tua tessera"
+$.puntiAciMain_Table.setData(rows);
 
-}, {
-	img : "Punti di servizio ACI",
-	text : "Diventa socio ACI"
 
-}, {
-	img : "Punti di servizio ACI",
-	text : "Guidare"
 
-}, {
-	img : "Punti di servizio ACI",
-	text : "Sport"
-
-}, {
-	img : "Punti di servizio ACI",
-	text : "Servizi online"
-
-}];
-
-var riga = Alloy.createController('TableViewRow_Single', {
-
-	immagine : args.description,
-	testo : "ciao"
-
-}).getView();
-rows.push(riga);

@@ -1,16 +1,27 @@
 ".row[platform=ios]":{
-	height: "100",
+	height: "40",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
 ".row[platform=android]":{
-	height: "100"
+	height: "40"
+}
+
+".rowSingleContainer": {
+	
 }
 
 ".simpleRowLeftIcon": {
-	left: 0
+	left: 10,
+	width: 30
 }
 
 ".simpleRowText": {
-	
+	left: 50,
+	color:"#003772"
+}
+
+".hasDetail": {
+	image: "/x_freccia_grigio.png",
+	right: 10
 }
