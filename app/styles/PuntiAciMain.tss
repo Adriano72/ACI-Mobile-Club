@@ -1,7 +1,8 @@
 // container for iOS
 ".container[platform=ios]": {
-	backgroundColor: "#DEDDD7",
-	top: "20",
+	backgroundColor: "#f2f2f2",
+	backButtonTitle: "",
+	barColor: "#f2f2f2",
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT],
 	
@@ -10,17 +11,30 @@
 // container for Android
 ".container[platform=android]": {
 	backgroundColor: "#f2f2f2",
+	top:20,
 	tintColor: "red",
 	orientationModes: [Ti.UI.PORTRAIT],
 	exitOnClose: false
 }
+
+".titleControl[platform=ios]": {
+	backgroundImage: "logoPuntiACI.png",
+	width: 120,
+	height: 20
+}
+
+".rightNavImg[platform=ios]": {
+	image: "ico_rotella_celeste.png",
+	height: 15
+}
+
 
 "MenuItem": {
 	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 }
 
 "#menu": {
-	icon: "logo_aci.png"
+	icon: "ico_punti_servizio_01.png"
 }
 
 "#mn_settings": {
@@ -39,7 +53,8 @@
 
 ".table[platform=ios]":{
 	top: 0,
-	separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+	height: Ti.UI.SIZE
+	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
 }
 
 ".table[platform=android]":{

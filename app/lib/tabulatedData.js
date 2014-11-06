@@ -2,30 +2,38 @@ exports.puntiAciMain = function() {
 
 	var itemsObj = [{
 		img : "ico_aci_blu.png",
-		text : "Automobile Club"
+		text : "Automobile Club",
+		id_code : "AC"
 
 	}, {
 		img : "ico_delegazioni_blu.png",
-		text : "Delegazioni"
+		text : "Delegazioni",
+		id_code : "DEL"
 
 	}, {
 		img : "ico_uffici_blu.png",
-		text : "Uffici PRA"
+		text : "Uffici PRA",
+		id_code : "PRA"
 
 	}, {
 		img : "ico_uffici_pubblico_blu.png",
-		text : "Uffici Relazione con il Pubblico"
+		text : "Uffici Relazione con il Pubblico",
+		id_code : "URP"
+
 	}, {
 		img : "ico_sara_blu.png",
-		text : "ACI Point SARA"
+		text : "ACI Point SARA",
+		id_code : "SARA"
 
 	}, {
 		img : "ico_assistenza_tasse_blu.png",
-		text : "Assistenza tasse automobilistiche"
+		text : "Assistenza tasse automobilistiche",
+		id_code : "TASSE"
 
 	}, {
 		img : "ico_demolitori_blu.png",
-		text : "Demolitori"
+		text : "Demolitori",
+		id_code : "DEM"
 
 	}];
 

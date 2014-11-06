@@ -1,7 +1,8 @@
 // container for iOS
 ".container[platform=ios]": {
 	backgroundColor:"#DEDDD7",
-	top:"20",	
+	//top:"20",	
+	barColor: "#f2f2f2",	
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT]
 }
@@ -9,18 +10,19 @@
 // container for Android
 ".container[platform=android]": {
 	backgroundColor:"white",
-	tintColor: "red",
 	orientationModes: [Ti.UI.PORTRAIT],
 	exitOnClose: true
 }
 
-"#drawerMenu": {
-	width: "80%",
-	backgroundColor: "olive",
-	height: 500,
-	top: 45,
-	visible: false
-	
+".titleControl[platform=ios]": {
+	backgroundImage: "logoAci2.png",
+	width: 120,
+	height: 28
+}
+
+".rightNavImg[platform=ios]": {
+	image: "ico_rotella_celeste.png",
+	height: 15
 }
 
 "MenuItem": {
@@ -66,9 +68,9 @@
 
 "#scrollableView[platform=ios]": {
 	width: "98%",
-	height: "60%",
+	height: "40%",
 	overlayEnabled: true,
-	top: 45,
+	top: 0,
 	pagingControlAlpha: 0.6
 }
 

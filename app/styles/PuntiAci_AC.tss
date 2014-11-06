@@ -1,0 +1,16 @@
+".container[platform=ios]": {
+	backgroundColor: "#f2f2f2",
+	barColor: "#f2f2f2",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: "#f2f2f2",
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}

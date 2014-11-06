@@ -1,44 +1,44 @@
 <Alloy>
-	<Window class="container" onPostlayout="scrollHack" onOpen="doopen">
-		<Toolbar class="toolbar" platform="ios">
-			<Items>
-				<!--<ImageView class="toolbarIconLeft" image="/ico_hamburger_sort_celeste.png"/>-->
-				<FlexSpace/>
-				<ImageView id="headerLogo" image="logoAci2.png"/>
-				<FlexSpace/>
-				<ImageView class="toolbarIconRight" image="/ico_rotella_celeste.png"/>
-			</Items>
-		</Toolbar>
-		<Menu id="menu" platform="android">
+	<!-- VERSIONE iOS (CON NAVIGATION WINDOW) -->
+	<NavigationWindow id="navWin" module="xp.ui">
+		<Window id="index" class="container" onPostlayout="scrollHack" onOpen="doopen">
+			<TitleControl platform="ios">
+				<View class="titleControl"></View>
+			</TitleControl>
+			<RightNavButton platform="ios">
+				<ImageView class="rightNavImg"/>
+			</RightNavButton>
+			<Menu id="menu" platform="android">
 
-			<!-- Cannot specify node text.  Use attributes only. -->
-			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
-			<MenuItem id="mn_settings" title="Impostazioni"/>
+				<!-- Cannot specify node text.  Use attributes only. -->
+				<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+				<MenuItem id="mn_settings" title="Impostazioni"/>
 
-		</Menu>
-		<View id="menuView">
-			<View class="buttonsContainer">
-				<View class="rowWrapper">
-					<View id="puntiAci" class="menuButton first" onClick="openPuntiACI">
-						<ImageView id="imgPuntiACI" class="buttonImage"/>
-						<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+			</Menu>
+			<View id="menuView">
+				<View class="buttonsContainer">
+					<View class="rowWrapper">
+						<View id="puntiAci" class="menuButton first" onClick="openPuntiACI">
+							<ImageView id="imgPuntiACI" class="buttonImage"/>
+							<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+						</View>
+						<View id="vantaggiSoci" class="menuButton last">
+							<ImageView id="imgVantaggiSoci" class="buttonImage"/>
+							<Label id="txtVantaggiSoci" class="buttonText">VANTAGGI PER I SOCI</Label>
+						</View>
 					</View>
-					<View id="vantaggiSoci" class="menuButton last">
-						<ImageView id="imgVantaggiSoci" class="buttonImage"/>
-						<Label id="txtVantaggiSoci" class="buttonText">VANTAGGI PER I SOCI</Label>
-					</View>
-				</View>
-				<View class="rowWrapper">
-					<View id="mobilita" class="menuButton first">
-						<ImageView id="imgMobilita" class="buttonImage"/>
-						<Label id="txtMobilita" class="buttonText">MOBILITÀ</Label>
-					</View>
-					<View id="tessera" class="menuButton last">
-						<ImageView id="imgTessera" class="buttonImage"/>
-						<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
+					<View class="rowWrapper">
+						<View id="mobilita" class="menuButton first">
+							<ImageView id="imgMobilita" class="buttonImage"/>
+							<Label id="txtMobilita" class="buttonText">MOBILITÀ</Label>
+						</View>
+						<View id="tessera" class="menuButton last">
+							<ImageView id="imgTessera" class="buttonImage"/>
+							<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
+						</View>
 					</View>
 				</View>
 			</View>
-		</View>
-	</Window>
+		</Window>
+	</NavigationWindow>
 </Alloy>

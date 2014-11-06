@@ -21,7 +21,14 @@
 	color:"#003772"
 }
 
-".hasDetail": {
+".hasDetail[platform=android]": {
 	image: "/x_freccia_grigio.png",
 	right: 10
+}
+
+
+".hasDetail[platform=ios]": {
+	image: "/x_freccia_grigio.png",
+	right: 10,
+	height: 15
 }

@@ -19,13 +19,6 @@ function doopen(evt) {
 	//updateScreen();
 }
 
-function homeIconSelected() {
-	$.win.close({
-		animate : true
-	});
-}
-
-
 var rowData = require('tabulatedData').puntiAciMain();
 
 var rows = [];
@@ -35,13 +28,24 @@ _.each(rowData, function(value) {
 	var riga = Alloy.createController('TableViewRow_Single', {
 
 		immagine : value.img,
-		testo : value.text
+		testo : value.text,
+		id_code : value.id_code
 
 	}).getView();
 	rows.push(riga);
 });
 
+function selectionDetail(e) {
+	Ti.API.info("CLICKED DATA: " + e.row.id_code);
+	
+	switch(e.row.id_code) {
+		
+	case "AC":
+		var winAC = Alloy.createController('PuntiAci_AC').getView();
+		Alloy.Globals.navMenu.openWindow(winAC);
+	default:
+		
+	}
+};
+
 $.puntiAciMain_Table.setData(rows);
-
-
-

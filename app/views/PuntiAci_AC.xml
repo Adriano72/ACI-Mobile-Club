@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="doopen">
+	<Window id="win" class="container">
 		<TitleControl platform="ios">
 			<View class="titleControl"></View>
 		</TitleControl>
@@ -13,9 +13,6 @@
 			<MenuItem id="mn_settings" title="Impostazioni"/>
 
 		</Menu>
-		<TableView id="puntiAciMain_Table" class="table" onClick="selectionDetail"/>
-		<View class="bottomBannerContainer">
-			<ImageView class="bottomBanner"/>
-		</View>
+		<Label>CIAOO</Label>
 	</Window>
 </Alloy>

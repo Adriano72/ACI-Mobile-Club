@@ -1,8 +1,8 @@
-
 var ViewScrollr = require("ViewScrollr");
-if (OS_ANDROID) var abx = require('com.alcoapps.actionbarextras');
+if (OS_ANDROID)
+	var abx = require('com.alcoapps.actionbarextras');
 //var menuTop = (OS_ANDROID)?PixelsToDPUnits((Titanium.Platform.displayCaps.platformHeight/2))-40:(Titanium.Platform.displayCaps.platformHeight/2)-15;
-var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals.deviceHeightHalf + 10;
+var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals.deviceHeightHalf - 30;
 $.menuView.top = menuTop;
 
 function doopen(evt) {
@@ -10,9 +10,8 @@ function doopen(evt) {
 		abx.title = "ACI Mobile Club";
 		abx.titleFont = "ACI Type Regular.otf";
 		abx.titleColor = "#4A678C";
-		
-		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
+		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
 	} else {
 		//$.windowtitle.text = winTitle;
@@ -34,8 +33,8 @@ var view3 = Ti.UI.createView({
 
 var Banner = ViewScrollr.create({
 	width : "98%",
-	height : (OS_ANDROID) ? "48.5%" : "45%",
-	top : (OS_ANDROID) ? 3 : 45,
+	height : (OS_ANDROID) ? "48.5%" : "50%",
+	top : (OS_ANDROID) ? 3 : 2,
 	auto : true,
 	delay : 3000,
 	navigation : {
@@ -77,8 +76,11 @@ function swipeAction(e) {
 
 };
 
-function openPuntiACI(){
-	Alloy.createController("PuntiAciMain").getView().open();
+function openPuntiACI() {
+	var winPAci = Alloy.createController('PuntiAciMain').getView();
+	$.navWin.openWindow(winPAci);
+	Alloy.Globals.navMenu = $.navWin;
 }
 
-$.index.open();
+$.navWin.open();
+
