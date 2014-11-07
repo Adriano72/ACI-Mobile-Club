@@ -20,12 +20,7 @@ exports.puntiAciMain = function() {
 		text : "Uffici Relazione con il Pubblico",
 		id_code : "URP"
 
-	}, {
-		img : "ico_sara_blu.png",
-		text : "ACI Point SARA",
-		id_code : "SARA"
-
-	}, {
+	},{
 		img : "ico_assistenza_tasse_blu.png",
 		text : "Assistenza tasse automobilistiche",
 		id_code : "TASSE"

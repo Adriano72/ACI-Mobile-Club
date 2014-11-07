@@ -1,17 +1,22 @@
 // container for iOS
 ".container[platform=ios]": {
-	backgroundColor:"#DEDDD7",
+	backgroundColor:"#fff",
 	//top:"20",	
-	barColor: "#f2f2f2",	
+	barColor: "#fff",	
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT]
 }
 
 // container for Android
 ".container[platform=android]": {
-	backgroundColor:"white",
+	backgroundColor:"#fff",
 	orientationModes: [Ti.UI.PORTRAIT],
 	exitOnClose: true
+}
+
+"#navWin": {
+	backgroundColor:"#fff",
+	top: 20
 }
 
 ".titleControl[platform=ios]": {

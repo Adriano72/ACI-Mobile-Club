@@ -15,5 +15,12 @@ Alloy.Globals.deviceWidthHalf = Alloy.Globals.deviceWidth / 2;
 Alloy.Globals.deviceHeight = parseInt(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
 Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
-Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf-5;
-Alloy.Globals.menuButtonsHeight = (OS_ANDROID)?(Alloy.Globals.deviceHeight/4)-22:(Alloy.Globals.deviceHeight/4)-20;
+Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
+Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
+
+if (OS_IOS) {
+	var userLoc = require('locationServices').getUserLocation();
+	
+	
+	
+}

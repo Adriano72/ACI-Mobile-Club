@@ -35,6 +35,10 @@
                 <false/>
                 <key>UIStatusBarStyle</key>
                 <string>UIStatusBarStyleDefault</string>
+                <key>NSLocationWhenInUseUsageDescription</key>
+                <string>
+                    Fornire dati rilevanti la posizione dell'utente
+                </string>
             </dict>
         </plist>
     </ios>
