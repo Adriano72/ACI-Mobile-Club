@@ -17,10 +17,48 @@ Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
+Alloy.Globals.baseURL = "http://10.64.4.199:9900";
 
-if (OS_IOS) {
-	var userLoc = require('locationServices').getUserLocation();
-	
-	
-	
+
+
+	require('locationServices').getUserLocation(loadData);
+
+
+
+
+
+Alloy.Collections.automobileClub = Alloy.createCollection("automobileClub");
+
+Alloy.Collections.automobileClub.deleteAll();
+
+
+function loadData() {
+
+	require("network").getPuntiAci("aacc", function(p_data) {
+
+		Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+
+		_.each(p_data, function(value) {
+
+			var automobileClub = Alloy.createModel('automobileClub', {
+				name : value.name,
+				indirizzo : value.address.street,
+				cap : value.address.postalCode,
+				citta : value.address.locality.longName,
+				latitudine : value.address.location[1],
+				longitudine : value.address.location[0],
+				telefono : JSON.stringify(value.contacts.tel),
+				fax : JSON.stringify(value.contacts.fax),
+				sito_web : JSON.stringify(value.contacts.web),
+				email : JSON.stringify(value.contacts.email)
+			});
+			// Since set or save(attribute) is not being called, we can call isValid to validate the model object
+			automobileClub.save();
+
+		});
+		
+		Alloy.Collections.automobileClub.fetch();
+		Ti.API.info("COLLECTION LENGTH: "+Alloy.Collections.automobileClub.length);
+
+	});
 }

@@ -24,7 +24,7 @@ var rowData = require('tabulatedData').puntiAciMain();
 var rows = [];
 
 _.each(rowData, function(value) {
-	Ti.API.info("DATA: " + value.img);
+	//Ti.API.info("DATA: " + value.img);
 	var riga = Alloy.createController('TableViewRow_Single', {
 
 		immagine : value.img,
