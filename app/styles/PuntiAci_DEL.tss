@@ -17,9 +17,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "AutomobileClub.png",
+	backgroundImage: "logoDelegazioni.png",
 	width: 120,
-	height: 23
+	height: 30
 }
 
 
@@ -47,13 +47,13 @@
 }
 
 ".row[platform=ios]":{
-	height: 85,
+	height: "80",
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
 ".row[platform=android]":{
-	height: 90,
+	height: Ti.UI.SIZE,
 	className: "riga"
 }
 

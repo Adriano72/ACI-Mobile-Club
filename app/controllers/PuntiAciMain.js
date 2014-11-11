@@ -37,14 +37,19 @@ _.each(rowData, function(value) {
 
 function selectionDetail(e) {
 	Ti.API.info("CLICKED DATA: " + e.row.id_code);
-	
+
 	switch(e.row.id_code) {
-		
+
 	case "AC":
 		var winAC = Alloy.createController('PuntiAci_AC').getView();
 		Alloy.Globals.navMenu.openWindow(winAC);
+		break;
+	case "DEL":
+		var winAC = Alloy.createController('PuntiAci_DEL').getView();
+		Alloy.Globals.navMenu.openWindow(winAC);
+		break;
 	default:
-		
+
 	}
 };
 

@@ -14,8 +14,8 @@ exports.getUserLocation = function(_callback) {
 			} else {
 				
 				var position = {
-					latitude : e.coords.longitude,
-					longitude : e.coords.latitude
+					latitude : e.coords.latitude,
+					longitude : e.coords.longitude
 				};
 				
 				Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));

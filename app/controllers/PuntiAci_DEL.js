@@ -9,7 +9,7 @@ function loadData() {
 	//Alloy.Collections.automobileClub.fetch();
 	if (OS_ANDROID) {
 		abx.displayHomeAsUp = true;
-		abx.title = "Automobile Club";
+		abx.title = "Delegazioni";
 		abx.titleFont = "ACI Type Regular.otf";
 		abx.titleColor = "#003772";
 
@@ -38,26 +38,21 @@ function dataTransform(model) {
 function openNavigation(e) {
 
 	require('locationServices').getUserLocation(function(userLoc) {
-		var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';
-		Ti.API.info("NAVIGATION DATA: " + e.source.lat + " " + e.source.lon + " " + userLoc.latitude + " " + userLoc.longitude);
-		Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + ',' + userLoc.longitude + '&daddr=' + e.source.lat + ',' + e.source.lon);
+		var mapsServiceURL = (OS_ANDROID)?'http://maps.google.com/maps?t=m&saddr=':'http://maps.apple.com/maps?t=m&saddr=';
+		Ti.API.info("NAVIGATION DATA: " + e.source.lat+" "+e.source.lon+" "+userLoc.latitude+" "+userLoc.longitude);
+		Ti.Platform.openURL(mapsServiceURL+userLoc.latitude+','+userLoc.longitude + '&daddr=' +e.source.lat+','+e.source.lon);
 	});
 
+}
+
+
+function doPhoneCall(e){
+	Titanium.Platform.openURL(e.source.telNumber);
 };
 
-function doPhoneCall(e) {
-	var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
-	Ti.API.info("TEL: "+trimmedPhone);
-	Titanium.Platform.openURL('tel:'+trimmedPhone);
-	//Titanium.Platform.openURL("tel:"+e.source.telNumber);
-};
-
-function doSendEmail(e) {
-	Ti.API.info("EMAIL: "+e.source.indirizzoEmail);
-	var recipients = [];
-	recipients.push((e.source.indirizzoEmail != "")?e.source.indirizzoEmail:"test@email.com");
+function doSendEmail(e){
 	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = recipients;
+	emailDialog.toRecipients = (e.source.email != "")?e.source.email:"test@email.com";
 	emailDialog.open();
 };
 

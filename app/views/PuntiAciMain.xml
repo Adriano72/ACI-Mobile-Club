@@ -13,7 +13,7 @@
 			<MenuItem id="mn_settings" title="Impostazioni"/>
 
 		</Menu>
-		<TableView id="puntiAciMain_Table" class="table" onClick="selectionDetail"/>
+		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
 		<View class="bottomBannerContainer">
 			<ImageView class="bottomBanner"/>
 		</View>

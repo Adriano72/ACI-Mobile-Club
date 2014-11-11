@@ -15,7 +15,7 @@
 
 		</Menu>
 		
-		<TableView id="puntiAci_AACC_Table" class="table" dataCollection="automobileClub" dataTransform="dataTransform" dataFunction="updateUI" >
+		<TableView id="puntiAci_Table" class="table" dataCollection="delegazioni" dataTransform="dataTransform" dataFunction="updateUI" >
 			<SearchBar id="searchBar"/>
 			<TableViewRow id="riga" class="row" title="{name}">
 				<View class="rowContainer">
