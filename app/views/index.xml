@@ -18,11 +18,11 @@
 			<View id="menuView">
 				<View class="buttonsContainer">
 					<View class="rowWrapper">
-						<View id="puntiAci" class="menuButton first" onClick="openPuntiACI">
+						<View id="puntiAci" class="menuButton first" onSingletap="openPuntiACI">
 							<ImageView id="imgPuntiACI" class="buttonImage"/>
 							<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
 						</View>
-						<View id="vantaggiSoci" class="menuButton last">
+						<View id="vantaggiSoci" class="menuButton last" onSingletap="openVantaggiSoci">
 							<ImageView id="imgVantaggiSoci" class="buttonImage"/>
 							<Label id="txtVantaggiSoci" class="buttonText">VANTAGGI PER I SOCI</Label>
 						</View>

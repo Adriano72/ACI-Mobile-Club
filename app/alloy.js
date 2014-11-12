@@ -22,9 +22,12 @@ Alloy.Globals.baseURL = "http://10.64.4.199:9900";
 
 require('locationServices').getUserLocation(loadData);
 
-
+// PUNTI ACI
 Alloy.Collections.instance("automobileClub");
 Alloy.Collections.instance("delegazioni");
+
+//SYC
+Alloy.Collections.instance("dormireMangiare");
 
 function loadData() {
 
@@ -41,6 +44,14 @@ function loadData() {
 		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
 		Alloy.Collections.delegazioni.reset(p_data);
 		Ti.API.info("DEL COLLECTION LENGTH: "+Alloy.Collections.delegazioni.length);
+
+	});
+	
+	require("network").getVantaggiSoci("dormire_mangiare", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.dormireMangiare.reset(p_data);
+		Ti.API.info("SYC DORMIRE MANGIARE COLLECTION LENGTH: "+Alloy.Collections.dormireMangiare.length);
 
 	});
 }

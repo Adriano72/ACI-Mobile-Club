@@ -82,5 +82,11 @@ function openPuntiACI() {
 	Alloy.Globals.navMenu = $.navWin;
 }
 
+function openVantaggiSoci() {
+	var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
+	$.navWin.openWindow(winVantaggiSoci);
+	Alloy.Globals.navMenu = $.navWin;
+}
+
 $.navWin.open();
 
