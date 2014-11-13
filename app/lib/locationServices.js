@@ -7,7 +7,7 @@ exports.getUserLocation = function(_callback) {
 		Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
 		
 		
-
+		/*
 		Titanium.Geolocation.getCurrentPosition(function(e) {
 			if (e.error) {
 				alert('Error: ' + e.error);
@@ -25,8 +25,20 @@ exports.getUserLocation = function(_callback) {
 				
 			}
 		});
+		*/
+		
 	} else {
 		alert('Abilitare i servizi di localizzazione per usufruire del servizio');
 	}
+	
+	var position = {
+					latitude : 42.41,
+					longitude : 12.43
+				};
+				
+				Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
+				Alloy.Globals.userPosition = position;
+				
+				_callback(position);
 
 };

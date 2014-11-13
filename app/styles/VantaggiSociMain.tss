@@ -23,22 +23,12 @@
 	height: 28
 }
 
-".rightNavImg[platform=ios]": {
-	image: "ico_rotella_celeste.png",
-	height: 15
-}
-
-
 "MenuItem": {
 	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 }
 
 "#menu": {
-	icon: "ico_punti_servizio_01.png"
-}
-
-"#mn_settings": {
-	icon: "/ico_rotella_celeste.png"
+	icon: "ico_vantaggi_01.png"
 }
 
 ".toolbar":{

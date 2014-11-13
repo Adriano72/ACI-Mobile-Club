@@ -8,20 +8,17 @@ if (OS_ANDROID) {
 function loadData() {
 	//Alloy.Collections.automobileClub.fetch();
 	if (OS_ANDROID) {
-	
 		abx.displayHomeAsUp = true;
 		abx.title = "Dormire&Mangiare";
 		abx.titleFont = "ACI Type Regular.otf";
 		abx.titleColor = "#003772";
-		//abx.icon = "ico_puntatore_celeste.png";
+
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
-	
 	updateUI();
-	$.searchBar.blur();
 
 }
 
@@ -33,6 +30,7 @@ function dataTransform(model) {
 	attrs.latitude = attrs.address.location[1];
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
+	attrs.title = attrs.name;
 	attrs.email = attrs.contacts.email[0];
 	attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/"+attrs.agreement_id.logo);
 	Ti.API.info("URL IMMAGINE:" +attrs.immagine);
@@ -47,20 +45,6 @@ function openNavigation(e) {
 		Ti.Platform.openURL(mapsServiceURL+userLoc.latitude+','+userLoc.longitude + '&daddr=' +e.source.lat+','+e.source.lon);
 	});
 
-};
-
-function mostraMappa(){
-	
-	var mapWin = Alloy.createController('mapView').getView();
-	Alloy.Globals.navMenu.openWindow(mapWin);
-};
-
-function togglePreferiti(e){
-	
-};
-
-function openDettagli(e){
-	
 };
 
 $.win.addEventListener('close', function() {

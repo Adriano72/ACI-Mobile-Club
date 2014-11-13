@@ -16,6 +16,7 @@ function doopen(evt) {
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
+	
 	//updateScreen();
 }
 

@@ -1,34 +1,39 @@
 <Alloy>
-	
 	<Window id="win" class="container" onOpen="loadData">
 		<TitleControl platform="ios">
 			<View class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<ImageView class="rightNavImg"/>
+			<ImageView onClick="mostraMappa" class="rightNavImg"/>
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 
 			<!-- Cannot specify node text.  Use attributes only. -->
 			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
-			<MenuItem id="mn_settings" title="Impostazioni"/>
+			<MenuItem id="mn_settings" onClick="mostraMappa"/>
 
 		</Menu>
-		
 		<TableView id="puntiAci_Table" class="table" dataCollection="dormireMangiare" dataTransform="dataTransform" dataFunction="updateUI" >
 			<SearchBar id="searchBar"/>
 			<TableViewRow id="riga" class="row" title="{name}">
-				<View class="rowContainer">
-					
-					<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>
-					<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo}"/>
-					<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo2}"/>
-					<View class="bottomRowContainer">
-						<Label class="indicazioniStradali PTSansBold" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation"/>
-						<ImageView class="bt_chiama" telNumber = "{tel}" onSingletap="doPhoneCall"/>
-						<ImageView class="bt_email" indirizzoEmail = "{email}" onSingletap="doSendEmail"/>
+				<View class="blockContainer">
+					<View class="iconContainer">
+						<ImageView class="logoConvenzione" image="{immagine}"/>
 					</View>
-					
+					<View class="centerContainer">
+						<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>
+						<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo}"/>
+						<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo2}"/>
+						<Label class="indicazioniStradali PTSansBold" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation"/>
+
+					</View>
+					<View class="rightContainer">
+						<Label class="simpleRowText PTSansBold" id="distanza"/>
+						<Label class="simpleRowText PTSansRegular" id="sconto"/>
+						<ImageView class="preferiti" id="preferiti" onSingletap="togglePreferiti"/>
+						<Label class="dettagli PTSansBold" onSingletap="openDettagli"/>
+
+					</View>
 				</View>
 			</TableViewRow>
 		</TableView>

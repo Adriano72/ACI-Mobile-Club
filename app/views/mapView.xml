@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="doopen">
+	<Window id="win" class="container" onOpen="loadData">
 		<TitleControl platform="ios">
 			<View class="titleControl"></View>
 		</TitleControl>
@@ -10,12 +10,12 @@
 
 			<!-- Cannot specify node text.  Use attributes only. -->
 			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
-			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
+			<!--<MenuItem id="mn_settings" title="Mappa"/>-->
 
 		</Menu>
-		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
-		<View class="bottomBannerContainer">
-			<ImageView class="bottomBanner"/>
-		</View>
+		<Module id="map" module="ti.map" method="createView" dataFunction="updateUI" dataTransform="dataTransform" dataCollection="dormireMangiare">
+			<Annotation title="XML Annotation" latitude="37.39" longitude="-122.051" />
+		</Module>
+		
 	</Window>
 </Alloy>

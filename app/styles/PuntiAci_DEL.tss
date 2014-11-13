@@ -22,6 +22,16 @@
 	height: 30
 }
 
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "/ico_delegazioni_blu.png"
+}
+
+
+
 
 ".table[platform=ios]":{
 	top: 0,
@@ -41,6 +51,7 @@
 "#searchBar": {
 	//barColor: "#fff",
 	//backgroundColor: "#8A9092",
+	hintText:"Cerca",
 	showCancel:"false",
 	height: 43,
 	top: 0
