@@ -30,6 +30,12 @@
 	icon: "logo_aci.png"
 }
 
+"#mn_settings": {
+	
+	icon: "ico_puntatore_celeste.png",
+	title: "Mappa"
+}
+
 ".table[platform=ios]":{
 	top: 0,
 	height: Ti.UI.FILL

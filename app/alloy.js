@@ -26,6 +26,8 @@ require('locationServices').getUserLocation(loadData);
 Alloy.Collections.instance("automobileClub");
 Alloy.Collections.instance("delegazioni");
 
+Alloy.Collections.tempCollection = new Backbone.Collection();
+
 //SYC
 Alloy.Collections.instance("dormireMangiare");
 

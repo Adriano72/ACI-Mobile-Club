@@ -8,11 +8,8 @@ if (OS_ANDROID) {
 function loadData() {
 	//Alloy.Collections.automobileClub.fetch();
 	if (OS_ANDROID) {
-		abx.displayHomeAsUp = true;
-		abx.title = "Automobile Club";
-		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = "#003772";
-
+		
+		init1();
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
 	} else {
@@ -21,6 +18,18 @@ function loadData() {
 	updateUI();
 	$.searchBar.blur();
 
+}
+
+function init1() {
+	abx.displayHomeAsUp = true;
+	abx.title = "Automobile Club";
+	abx.titleFont = "ACI Type Regular.otf";
+	abx.titleColor = "#003772";
+	_.defer(init2);
+}
+
+function init2() {
+	$.win.activity.invalidateOptionsMenu();
 }
 
 function dataTransform(model) {
@@ -45,17 +54,27 @@ function openNavigation(e) {
 
 };
 
+function mostraMappa() {
+
+	var mapWin = Alloy.createController('mapView', {
+		collection : Alloy.Collections.automobileClub.toJSON(),
+		pin : "pin_AutomobileClub.png"
+	}).getView();
+	Alloy.Globals.navMenu.openWindow(mapWin);
+};
+
+
 function doPhoneCall(e) {
 	var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
-	Ti.API.info("TEL: "+trimmedPhone);
-	Titanium.Platform.openURL('tel:'+trimmedPhone);
+	Ti.API.info("TEL: " + trimmedPhone);
+	Titanium.Platform.openURL('tel:' + trimmedPhone);
 	//Titanium.Platform.openURL("tel:"+e.source.telNumber);
 };
 
 function doSendEmail(e) {
-	Ti.API.info("EMAIL: "+e.source.indirizzoEmail);
+	Ti.API.info("EMAIL: " + e.source.indirizzoEmail);
 	var recipients = [];
-	recipients.push((e.source.indirizzoEmail != "")?e.source.indirizzoEmail:"test@email.com");
+	recipients.push((e.source.indirizzoEmail != "") ? e.source.indirizzoEmail : "test@email.com");
 	var emailDialog = Ti.UI.createEmailDialog();
 	emailDialog.toRecipients = recipients;
 	emailDialog.open();

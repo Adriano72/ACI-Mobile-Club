@@ -27,10 +27,14 @@
 }
 
 "#menu": {
-	icon: "/ico_delegazioni_blu.png"
+	icon: "ico_delegazioni_blu.png"
 }
 
-
+"#mn_settings": {
+	
+	icon: "ico_puntatore_celeste.png",
+	title: "Mappa"
+}
 
 
 ".table[platform=ios]":{

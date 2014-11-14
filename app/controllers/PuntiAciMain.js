@@ -6,18 +6,26 @@ if (OS_ANDROID) {
 
 function doopen(evt) {
 	if (OS_ANDROID) {
-		abx.displayHomeAsUp = true;
-		abx.title = "Punti di servizio ACI";
-		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = "#003772";
 
-		//actionBarHelper.setIcon('/drawericonw@2x.png');
-
+		init1();
+		
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
-	
+
 	//updateScreen();
+}
+
+function init1() {
+	abx.displayHomeAsUp = true;
+	abx.title = "Punti di servizio ACI";
+	abx.titleFont = "ACI Type Regular.otf";
+	abx.titleColor = "#003772";
+	_.defer(init2);
+}
+
+function init2() {
+	$.win.activity.invalidateOptionsMenu();
 }
 
 var rowData = require('tabulatedData').puntiAciMain();

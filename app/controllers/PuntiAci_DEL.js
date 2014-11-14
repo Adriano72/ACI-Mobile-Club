@@ -8,10 +8,8 @@ if (OS_ANDROID) {
 function loadData() {
 	//Alloy.Collections.automobileClub.fetch();
 	if (OS_ANDROID) {
-		abx.displayHomeAsUp = true;
-		abx.title = "Delegazioni";
-		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = "#003772";
+
+		init1();
 
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
@@ -21,6 +19,18 @@ function loadData() {
 	updateUI();
 	$.searchBar.blur();
 
+}
+
+function init1() {
+	abx.displayHomeAsUp = true;
+	abx.title = "Delegazioni";
+	abx.titleFont = "ACI Type Regular.otf";
+	abx.titleColor = "#003772";
+	_.defer(init2);
+}
+
+function init2() {
+	$.win.activity.invalidateOptionsMenu();
 }
 
 function dataTransform(model) {
@@ -38,21 +48,20 @@ function dataTransform(model) {
 function openNavigation(e) {
 
 	require('locationServices').getUserLocation(function(userLoc) {
-		var mapsServiceURL = (OS_ANDROID)?'http://maps.google.com/maps?t=m&saddr=':'http://maps.apple.com/maps?t=m&saddr=';
-		Ti.API.info("NAVIGATION DATA: " + e.source.lat+" "+e.source.lon+" "+userLoc.latitude+" "+userLoc.longitude);
-		Ti.Platform.openURL(mapsServiceURL+userLoc.latitude+','+userLoc.longitude + '&daddr=' +e.source.lat+','+e.source.lon);
+		var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';
+		Ti.API.info("NAVIGATION DATA: " + e.source.lat + " " + e.source.lon + " " + userLoc.latitude + " " + userLoc.longitude);
+		Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + ',' + userLoc.longitude + '&daddr=' + e.source.lat + ',' + e.source.lon);
 	});
 
 }
 
-
-function doPhoneCall(e){
+function doPhoneCall(e) {
 	Titanium.Platform.openURL(e.source.telNumber);
 };
 
-function doSendEmail(e){
+function doSendEmail(e) {
 	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = (e.source.email != "")?e.source.email:"test@email.com";
+	emailDialog.toRecipients = (e.source.email != "") ? e.source.email : "test@email.com";
 	emailDialog.open();
 };
 

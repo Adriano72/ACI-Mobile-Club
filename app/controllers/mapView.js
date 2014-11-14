@@ -1,5 +1,16 @@
 var args = arguments[0] || {};
 
+var tmpCollection = Alloy.Collections.tempCollection;
+
+tmpCollection.reset(args.collection);
+
+//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(tmpCollection));
+
+
+//var p_collection = Alloy.createCollection("p_collection", Alloy.Collections.dormireMangiare);
+
+
+
 //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
@@ -18,7 +29,9 @@ function loadData() {
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
-	updateUI();
+	
+	$.map.region = { latitude: Alloy.Globals.userPosition.latitude, latitudeDelta: 0.25, longitude: Alloy.Globals.userPosition.longitude, longitudeDelta: 0.25 };
+	//updateUI();
 
 }
 
@@ -30,10 +43,11 @@ function dataTransform(model) {
 	attrs.latitude = attrs.address.location[1];
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
+	attrs.image = args.pin;
 	attrs.title = attrs.name;
 	attrs.email = attrs.contacts.email[0];
-	attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/"+attrs.agreement_id.logo);
-	Ti.API.info("URL IMMAGINE:" +attrs.immagine);
+	//attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/"+attrs.agreement_id.logo);
+	
 	return attrs;
 };
 
@@ -46,6 +60,8 @@ function openNavigation(e) {
 	});
 
 };
+
+//tempCollection.trigger("change");
 
 $.win.addEventListener('close', function() {
 	$.destroy();

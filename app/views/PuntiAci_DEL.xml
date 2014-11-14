@@ -7,7 +7,7 @@
 		<RightNavButton platform="ios">
 			<ImageView class="rightNavImg"/>
 		</RightNavButton>
-		<Menu id="menu" platform="android">
+		<Menu id="menu"  platform="android">
 
 			<!-- Cannot specify node text.  Use attributes only. -->
 			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->

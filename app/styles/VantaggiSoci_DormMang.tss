@@ -32,12 +32,13 @@
 }
 
 "#menu": {
-	icon: "/ico_dormiremangiare_blu.png"
+	icon: "ico_dormiremangiare_blu.png"
 }
 
 "#mn_settings": {
 	
-	icon: "/ico_puntatore_celeste.png"
+	icon: "ico_puntatore_celeste.png",
+	title: "Mappa"
 }
 
 
