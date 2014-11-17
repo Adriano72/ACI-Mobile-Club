@@ -17,7 +17,7 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoDormireMangiare.png",
+	//backgroundImage: "logoDormireMangiare.png",
 	width: 120,
 	height: 24
 }
@@ -27,7 +27,7 @@
 }
 
 "#menu": {
-	icon: "/ico_dormiremangiare_blu.png"
+	icon: "/pin_celeste.png"
 }
 
 "#mn_settings": {

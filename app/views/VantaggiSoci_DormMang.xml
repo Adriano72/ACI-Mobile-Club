@@ -1,7 +1,7 @@
 <Alloy>
 	<Window id="win" class="container" onOpen="openWin">
 		<TitleControl platform="ios">
-			<View class="titleControl"></View>
+			<View id="titleControl" class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
 			<ImageView onClick="mostraMappa" class="rightNavImg"/>

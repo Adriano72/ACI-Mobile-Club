@@ -22,6 +22,11 @@
 	height: 30
 }
 
+".rightNavImg[platform=ios]": {
+	image: "ico_puntatore_celeste.png",
+	height: 15
+}
+
 "MenuItem": {
 	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 }

@@ -2,10 +2,10 @@
 	
 	<Window id="win" class="container" onOpen="loadData">
 		<TitleControl platform="ios">
-			<View class="titleControl"></View>
+			<View id="titleControl" class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<ImageView class="rightNavImg"/>
+			<ImageView onClick="mostraMappa" class="rightNavImg"/>
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 

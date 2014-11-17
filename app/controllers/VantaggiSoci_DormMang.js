@@ -58,7 +58,10 @@ function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
 		collection : Alloy.Collections.dormireMangiare.toJSON(),
-		pin : "pin_DormireMangiare.png"
+		pin : "pin_DormireMangiare.png",
+		titolo: (OS_ANDROID)?"Dormire & Mangiare":$.titleControl.backgroundImage,
+		homeIcon: "ico_aci_blu.png"
+		
 	}).getView();
 	Alloy.Globals.navMenu.openWindow(mapWin);
 };

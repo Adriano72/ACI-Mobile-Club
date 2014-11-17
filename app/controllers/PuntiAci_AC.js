@@ -58,7 +58,10 @@ function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
 		collection : Alloy.Collections.automobileClub.toJSON(),
-		pin : "pin_AutomobileClub.png"
+		pin : "pin_AutomobileClub.png",
+		titolo: (OS_ANDROID)?"Automobile club":$.titleControl.backgroundImage,
+		homeIcon: "ico_aci_blu.png"
+		
 	}).getView();
 	Alloy.Globals.navMenu.openWindow(mapWin);
 };

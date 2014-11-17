@@ -4,7 +4,7 @@ var tmpCollection = Alloy.Collections.tempCollection;
 
 tmpCollection.reset(args.collection);
 
-//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(tmpCollection));
+Ti.API.info("TITOLO: "+args.titolo);
 
 
 //var p_collection = Alloy.createCollection("p_collection", Alloy.Collections.dormireMangiare);
@@ -19,15 +19,17 @@ if (OS_ANDROID) {
 function loadData() {
 	//Alloy.Collections.automobileClub.fetch();
 	if (OS_ANDROID) {
+		//abx.homeAsUpIcon = "/ico_dormiremangiare_blu.png";
 		abx.displayHomeAsUp = true;
-		abx.title = "Dormire&Mangiare";
+		abx.title = args.titolo;
 		abx.titleFont = "ACI Type Regular.otf";
 		abx.titleColor = "#003772";
+		
 
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 
 	} else {
-		//$.windowtitle.text = winTitle;
+		$.titleControl.backgroundImage = args.titolo;
 	}
 	
 	$.map.region = { latitude: Alloy.Globals.userPosition.latitude, latitudeDelta: 0.25, longitude: Alloy.Globals.userPosition.longitude, longitudeDelta: 0.25 };
@@ -43,7 +45,7 @@ function dataTransform(model) {
 	attrs.latitude = attrs.address.location[1];
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
-	attrs.image = args.pin;
+	attrs.image =  (OS_ANDROID)?args.pin:"images/"+args.pin;
 	attrs.title = attrs.name;
 	attrs.email = attrs.contacts.email[0];
 	//attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/"+attrs.agreement_id.logo);

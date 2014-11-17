@@ -42,6 +42,9 @@ function dataTransform(model) {
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
 	attrs.email = attrs.contacts.email[0];
+	attrs.id = model.cid;
+	
+	//Ti.API.info("MODEL CID: "+attrs.id);
 	return attrs;
 };
 
@@ -54,6 +57,17 @@ function openNavigation(e) {
 	});
 
 }
+
+function mostraMappa() {
+
+	var mapWin = Alloy.createController('mapView', {
+		collection : Alloy.Collections.delegazioni.toJSON(),
+		pin : "pin_Delegazioni.png",
+		titolo: (OS_ANDROID)?"Delegazioni":$.titleControl.backgroundImage,
+		homeIcon: "ico_delegazioni_blu.png"
+	}).getView();
+	Alloy.Globals.navMenu.openWindow(mapWin);
+};
 
 function doPhoneCall(e) {
 	Titanium.Platform.openURL(e.source.telNumber);
