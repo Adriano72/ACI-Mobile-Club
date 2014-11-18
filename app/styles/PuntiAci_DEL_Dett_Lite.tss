@@ -18,9 +18,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoPuntiACI.png",
+	backgroundImage: "logoDelegazioni.png",
 	width: 120,
-	height: 20
+	height: 30
 }
 
 ".rightNavImg[platform=ios]": {
@@ -41,38 +41,93 @@
 	icon: "/ico_rotella_celeste.png"
 }
 
-".toolbar":{
+".separator": {
+	width: Ti.UI.FILL,
+	height: 1,
+	backgroundColor: "#CCCCCC"
+}
+
+".scrollableContainer": {
+	width: Ti.UI.FILL,
+	layout: "vertical",
+	backgroundColor: "#fff"
+}
+
+"#headerView": {
+	height: 50,
+	backgroundColor: "#FFFFFF",
+	top:0
+}
+
+"#headerText": {
+	color: "#003772"
+}
+
+"#contattiView": {
+	height: 100,
+	backgroundColor: "#EEEEEE",
+	top:0,
+	layout: "vertical"
+}
+
+".contatti": {
 	top: 0,
-	borderTop: "true",
-	borderBottom: "true"
+	color:"#888",
+	font: {
+        
+        fontSize: '8dp'
+    }
 }
 
-"#headerLogo": {
-	height: 23
+".first": {
+	top: 20
 }
 
-".table[platform=ios]":{
-	top: 0,
-	height: Ti.UI.SIZE
-	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+".rowSingleContainer": {
+	height: 40,
+	top:0
 }
 
-".table[platform=android]":{
-	top: 0
+".simpleRowLeftIcon": {
+	left: 10,
+	width: 20,
+	touchEnabled: false
 }
 
-".bottomBannerContainer": {
-	bottom: 0,
-	height: "30%"
+".simpleRowText": {
+	left: 50,
+	color:"#003772",
+	touchEnabled: false
 }
 
-".bottomBanner": {
-	image: "/banner_sotto.png",
-	width: "90%"
+"#serviziIcon": {
+	image: "x_abaco_blu.png"
+}
+
+"#orariIcon": {
+	image: "x_orario_blu.png"
+}
+
+"#chiamaIcon": {
+	image: "x_telefono_blu.png"
+}
+
+"#emailIcon": {
+	image: "mail_celeste.png"
+}
+
+".hasDetail[platform=android]": {
+	image: "/x_freccia_grigio.png",
+	right: 10,
+	touchEnabled: false
 }
 
 
-
-
+".hasDetail[platform=ios]": {
+	image: "/x_freccia_grigio.png",
+	right: 10,
+	height: 15,
+	touchEnabled: false
+}
 
 

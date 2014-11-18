@@ -43,7 +43,7 @@ function dataTransform(model) {
 	attrs.tel = attrs.contacts.tel[0];
 	attrs.email = attrs.contacts.email[0];
 	attrs.id = model.cid;
-	
+
 	//Ti.API.info("MODEL CID: "+attrs.id);
 	return attrs;
 };
@@ -63,17 +63,26 @@ function mostraMappa() {
 	var mapWin = Alloy.createController('mapView', {
 		collection : Alloy.Collections.delegazioni.toJSON(),
 		pin : "pin_Delegazioni.png",
-		titolo: (OS_ANDROID)?"Delegazioni":$.titleControl.backgroundImage,
-		homeIcon: "ico_delegazioni_blu.png"
+		titolo : (OS_ANDROID) ? "Delegazioni" : $.titleControl.backgroundImage,
+		homeIcon : "ico_delegazioni_blu.png"
 	}).getView();
 	Alloy.Globals.navMenu.openWindow(mapWin);
 };
 
+function dettaglioDelegazione(e) {
+	var selectedDel = Alloy.Collections.delegazioni.getByCid(e.rowData.modelId);
+
+	var dettDelegazione = Alloy.createController('PuntiAci_DEL_Dett_Lite', {data: selectedDel}).getView();
+	Alloy.Globals.navMenu.openWindow(dettDelegazione);
+}
+
 function doPhoneCall(e) {
+	e.cancelBubble = true;
 	Titanium.Platform.openURL(e.source.telNumber);
 };
 
 function doSendEmail(e) {
+	e.cancelBubble = true;
 	var emailDialog = Ti.UI.createEmailDialog();
 	emailDialog.toRecipients = (e.source.email != "") ? e.source.email : "test@email.com";
 	emailDialog.open();

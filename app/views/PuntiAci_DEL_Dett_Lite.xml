@@ -1,5 +1,6 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="doopen">
+	<Model src="delegazioni" instance="true" id="delegazione"/>
+	<Window id="win" class="container" model="$.delegazione" onOpen="doopen">
 		<TitleControl platform="ios">
 			<View class="titleControl"></View>
 		</TitleControl>
@@ -13,9 +14,44 @@
 			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
 
 		</Menu>
-		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
-		<View class="bottomBannerContainer">
-			<ImageView class="bottomBanner"/>
-		</View>
+		<ScrollView class="scrollableContainer">
+			<View id="headerView">
+				<Label class="PTSansBold" id="headerText" text="{$.delegazione.name}"/>
+			</View>
+			<View class="separator"/>
+			<View id="contattiView">
+				
+				<Label class="PTSansRegular contatti first" id="indirizzo" text="{$.delegazione.formattedAddress}"/>
+				<Label class="PTSansRegular contatti" id="telefono" text="{$.delegazione.tel}"/>
+				<Label class="PTSansRegular contatti" id="fax" text="{$.delegazione.fax}"/>
+				<Label class="PTSansRegular contatti" id="web" text="{$.delegazione.web}"/>
+				
+			</View>
+			<View class="separator"/>
+			<View id="rowServizi" class="rowSingleContainer">
+				<ImageView class="simpleRowLeftIcon" id="serviziIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="serviziText" text="Servizi"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowOrari" class="rowSingleContainer">
+				<ImageView class="simpleRowLeftIcon" id="orariIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="orariText" text="Orario di servizio"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowChiama" class="rowSingleContainer">
+				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="chiamaText" text="Chiama"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowEmail" class="rowSingleContainer">
+				<ImageView class="simpleRowLeftIcon" id="emailIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="emailText" text="Invia e-mail"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+		</ScrollView>
 	</Window>
 </Alloy>

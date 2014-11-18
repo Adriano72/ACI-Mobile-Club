@@ -15,9 +15,9 @@
 
 		</Menu>
 		
-		<TableView id="puntiAci_Table" class="table" dataCollection="delegazioni" dataTransform="dataTransform" dataFunction="updateUI" >
+		<TableView id="puntiAci_Table" class="table" dataCollection="delegazioni" onSingletap="dettaglioDelegazione" dataTransform="dataTransform" dataFunction="updateUI" >
 			<SearchBar id="searchBar"/>
-			<TableViewRow id="riga" class="row" title="{name}">
+			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
 				<View class="rowContainer">
 					
 					<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>

@@ -41,16 +41,6 @@
 	icon: "/ico_rotella_celeste.png"
 }
 
-".toolbar":{
-	top: 0,
-	borderTop: "true",
-	borderBottom: "true"
-}
-
-"#headerLogo": {
-	height: 23
-}
-
 ".table[platform=ios]":{
 	top: 0,
 	height: Ti.UI.SIZE
