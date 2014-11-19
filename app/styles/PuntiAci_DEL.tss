@@ -73,7 +73,7 @@
 }
 
 ".row[platform=android]":{
-	height: Ti.UI.SIZE,
+	height: 80,
 	className: "riga"
 }
 
@@ -95,6 +95,12 @@
 	left: 10,
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
+}
+
+"#nome": {
+	width: "80%",
+	wordWrap: false,
+	ellipsize: true
 }
 
 ".indirizzo": {

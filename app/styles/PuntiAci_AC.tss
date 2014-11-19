@@ -73,7 +73,7 @@
 }
 
 ".row[platform=android]":{
-	height: 90,
+	height: 80,
 	className: "riga"
 }
 

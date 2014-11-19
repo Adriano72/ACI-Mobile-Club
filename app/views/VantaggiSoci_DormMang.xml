@@ -13,9 +13,9 @@
 			<MenuItem id="mn_settings" onClick="mostraMappa"/>
 
 		</Menu>
-		<TableView id="puntiAci_Table" class="table" dataCollection="dormireMangiare" dataTransform="dataTransform" dataFunction="updateUI" >
+		<TableView id="puntiAci_Table" class="table" onSingletap="dettaglioConvenzione" dataCollection="dormireMangiare" dataTransform="dataTransform" dataFunction="updateUI" >
 			<SearchBar id="searchBar"/>
-			<TableViewRow id="riga" class="row" title="{name}">
+			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
 				<View class="blockContainer">
 					<View class="iconContainer">
 						<ImageView class="logoConvenzione" image="{immagine}"/>

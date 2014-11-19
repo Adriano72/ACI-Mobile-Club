@@ -49,7 +49,7 @@ function dataTransform(model) {
 };
 
 function openNavigation(e) {
-
+	e.cancelBubble = true;
 	require('locationServices').getUserLocation(function(userLoc) {
 		var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';
 		Ti.API.info("NAVIGATION DATA: " + e.source.lat + " " + e.source.lon + " " + userLoc.latitude + " " + userLoc.longitude);

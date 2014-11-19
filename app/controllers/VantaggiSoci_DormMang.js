@@ -40,9 +40,17 @@ function dataTransform(model) {
 	attrs.tel = attrs.contacts.tel[0];
 	attrs.email = attrs.contacts.email[0];
 	attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + attrs.agreement_id.logo);
-	Ti.API.info("URL IMMAGINE:" + attrs.immagine);
+	attrs.id = model.cid;
 	return attrs;
 };
+
+function dettaglioConvenzione(e) {
+	var selectedConv = Alloy.Collections.dormireMangiare.getByCid(e.rowData.modelId);
+
+	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv}).getView();
+	Alloy.Globals.navMenu.openWindow(dettConvenzione);
+}
+
 
 function openNavigation(e) {
 

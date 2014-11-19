@@ -102,20 +102,16 @@
 	touchEnabled: false
 }
 
-"#serviziIcon": {
-	image: "/x_abaco_blu.png"
+"#descrizioneIcon": {
+	image: "/x_descrizione_blu.png"
 }
 
-"#orariIcon": {
-	image: "/x_orario_blu.png"
+"#vantaggioIcon": {
+	image: "/x_vantaggi_blu.png"
 }
 
 "#chiamaIcon": {
 	image: "/x_telefono_blu.png"
-}
-
-"#emailIcon": {
-	image: "/mail_celeste.png"
 }
 
 ".hasDetail[platform=android]": {
@@ -136,12 +132,12 @@
 	color:"#888"
 }
 
-"#dettaglioServizi": {
+"#dettaglioDescrizione": {
 	height: 0,
 	backgroundColor: "#EEEEEE"
 }
 
-"#dettaglioOrari": {
+"#dettaglioVantaggio": {
 	height: 0,
 	backgroundColor: "#EEEEEE"
 }

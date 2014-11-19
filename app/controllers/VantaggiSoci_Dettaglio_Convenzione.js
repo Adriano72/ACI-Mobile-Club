@@ -2,6 +2,8 @@ var args = arguments[0] || {};
 
 var modelGot = args.data.attributes;
 
+Ti.API.info("MODELLO: " + JSON.stringify(args.data.attributes));
+
 modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];
 modelGot.fax = modelGot.contacts.fax[0];
@@ -11,7 +13,7 @@ modelGot.orari = modelGot.schedule.timetable.toString();
 
 $.delegazione.set(modelGot);
 
-Ti.API.info("MODELLO: " + JSON.stringify(args.data.attributes));
+
 
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
@@ -41,28 +43,29 @@ function init2() {
 	$.win.activity.invalidateOptionsMenu();
 }
 
-function toggleDettaglioServizi(e) {
+function toggleDettaglioDescrizione(e) {
 	
 	e.cancelBubble = true;
-	if ($.dettaglioServizi.visible) {
-		$.dettaglioServizi.visible = false;
-		$.serviziIcon.image = "/x_abaco_blu.png";
-		$.serviziText.color = "#003772";
-		$.rowServizi.backgroundColor = "#fff";
-		$.dettaglioServizi.height = 0;
+	if ($.dettaglioDescrizione.visible) {
+		
+		$.dettaglioDescrizione.visible = false;
+		$.descrizioneIcon.image = "/x_abaco_blu.png";
+		$.descrizioneText.color = "#003772";
+		$.rowDescrizione.backgroundColor = "#fff";
+		$.dettaglioDescrizione.height = 0;
 
 	} else {
-		$.dettaglioServizi.height = 80;
-		$.serviziIcon.image = "/x_abaco_bianco.png";
-		$.serviziText.color = "#fff";
-		$.rowServizi.backgroundColor = "#003772";
-		$.dettaglioServizi.visible = true;
+		$.dettaglioDescrizione.height = 80;
+		$.descrizioneIcon.image = "/x_abaco_bianco.png";
+		$.descrizioneText.color = "#fff";
+		$.rowDescrizione.backgroundColor = "#003772";
+		$.dettaglioDescrizione.visible = true;
 
 	}
 
 };
 
-function toggleDettaglioOrari(e) {
+function toggleDettaglioVantaggio(e) {
 	
 	if ($.dettaglioOrari.visible) {
 		$.dettaglioOrari.visible = false;

@@ -1,0 +1,57 @@
+<Alloy>
+	<Model src="delegazioni" instance="true" id="dormireMangiare"/>
+	<Window id="win" class="container" model="$.dormireMangiare" onOpen="doopen">
+		<TitleControl platform="ios">
+			<View class="titleControl"></View>
+		</TitleControl>
+		<RightNavButton platform="ios">
+			<ImageView class="rightNavImg" onClick="openNavigation"/>
+		</RightNavButton>
+		<Menu id="menu" platform="android">
+
+			<!-- Cannot specify node text.  Use attributes only. -->
+			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+			<MenuItem id="mn_navigazione" title="Navigatore" onClick="openNavigation"/>
+
+		</Menu>
+		<ScrollView class="scrollableContainer">
+			<View id="headerView">
+				<Label class="PTSansBold" id="headerText" text="{$.dormireMangiare.name}"/>
+			</View>
+			<View class="separator"/>
+			<View id="contattiView">
+
+				<Label class="PTSansRegular contatti first" id="indirizzo" text="{$.dormireMangiare.formattedAddress}"/>
+				<Label class="PTSansRegular contatti" id="telefono" text="{$.dormireMangiare.tel}"/>
+				<Label class="PTSansRegular contatti" id="fax" text="{$.dormireMangiare.fax}"/>
+				<Label class="PTSansRegular contatti" id="web" text="{$.dormireMangiare.web}"/>
+
+			</View>
+			<View class="separator"/>
+			<View id="rowDescrizione" class="rowSingleContainer" onSingletap="toggleDettaglioDescrizione">
+				<ImageView class="simpleRowLeftIcon" id="descrizioneIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="descrizioneText" text="Descrizione"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioDescrizione" visible="false">
+				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioDescrizione" text="{$.dormireMangiare.servizi}"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowVantaggio" class="rowSingleContainer" onSingletap="toggleDettaglioVantaggio">
+				<ImageView class="simpleRowLeftIcon" id="vantaggioIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="vantaggioText" text="Vantaggio per i soci"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioVantaggio" visible="false">
+				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioOrari" text="{$.dormireMangiare.orari}"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowChiama" class="rowSingleContainer" onSingletap="doPhoneCall">
+				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="chiamaText" text="Chiama"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+		</ScrollView>
+	</Window>
+</Alloy>
