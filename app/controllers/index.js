@@ -55,13 +55,16 @@ var scrollHack = _.once(triggerScroll);
 
 function triggerScroll() {
 	//Ti.API.info("**** FIRE EVENT *****");
-	if (OS_ANDROID)
+	if (OS_ANDROID) {
 		Ti.App.fireEvent('initialScrollHack');
+	};
 }
 
 $.index.add(Banner);
 
-function swipeAction(e) {
+
+
+function swipeAction(e) {// NON USATA AL MOMENTO
 	if (e.direction == "up") {
 		$.menuView.animate({
 			top : (OS_ANDROID) ? 0 : 45

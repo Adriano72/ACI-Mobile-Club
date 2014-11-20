@@ -1,5 +1,7 @@
 var args = arguments[0] || {};
 
+var encoder = require('encoder');
+
 var modelGot = args.data.attributes;
 
 Ti.API.info("MODELLO: " + JSON.stringify(args.data.attributes));
@@ -8,12 +10,11 @@ modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];
 modelGot.fax = modelGot.contacts.fax[0];
 modelGot.web = modelGot.contacts.web[0];
-modelGot.servizi = modelGot.services.toString();
-modelGot.orari = modelGot.schedule.timetable.toString();
+modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc);
+modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc);
+modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.logo);
 
-$.delegazione.set(modelGot);
-
-
+$.dormireMangiare.set(modelGot);
 
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
@@ -46,17 +47,19 @@ function init2() {
 function toggleDettaglioDescrizione(e) {
 	
 	e.cancelBubble = true;
-	if ($.dettaglioDescrizione.visible) {
-		
+
+	if ($.dettaglioDescrizione.visible == true) {
+
 		$.dettaglioDescrizione.visible = false;
-		$.descrizioneIcon.image = "/x_abaco_blu.png";
+		$.descrizioneIcon.image = "/x_descrizione_blu.png";
 		$.descrizioneText.color = "#003772";
 		$.rowDescrizione.backgroundColor = "#fff";
 		$.dettaglioDescrizione.height = 0;
 
 	} else {
-		$.dettaglioDescrizione.height = 80;
-		$.descrizioneIcon.image = "/x_abaco_bianco.png";
+
+		$.dettaglioDescrizione.height = Ti.UI.SIZE;
+		$.descrizioneIcon.image = "/x_descrizione_bianco.png";
 		$.descrizioneText.color = "#fff";
 		$.rowDescrizione.backgroundColor = "#003772";
 		$.dettaglioDescrizione.visible = true;
@@ -67,19 +70,21 @@ function toggleDettaglioDescrizione(e) {
 
 function toggleDettaglioVantaggio(e) {
 	
-	if ($.dettaglioOrari.visible) {
-		$.dettaglioOrari.visible = false;
-		$.orariIcon.image = "/x_orario_blu.png";
-		$.orariText.color = "#003772";
-		$.rowOrari.backgroundColor = "#fff";
-		$.dettaglioOrari.height = 0;
+	e.cancelBubble = true;
+
+	if ($.dettaglioVantaggio.visible == true) {
+		$.dettaglioVantaggio.visible = false;
+		$.vantaggioIcon.image = "/x_vantaggi_blu.png";
+		$.vantaggioText.color = "#003772";
+		$.rowVantaggio.backgroundColor = "#fff";
+		$.dettaglioVantaggio.height = 0;
 
 	} else {
-		$.dettaglioOrari.height = 80;
-		$.orariIcon.image = "/x_orario_bianco.png";
-		$.orariText.color = "#fff";
-		$.rowOrari.backgroundColor = "#003772";
-		$.dettaglioOrari.visible = true;
+		$.dettaglioVantaggio.height = Ti.UI.SIZE;
+		$.vantaggioIcon.image = "/x_vantaggi_bianco.png";
+		$.vantaggioText.color = "#fff";
+		$.rowVantaggio.backgroundColor = "#003772";
+		$.dettaglioVantaggio.visible = true;
 
 	}
 

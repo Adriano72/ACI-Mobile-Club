@@ -32,7 +32,9 @@ Alloy.Collections.tempCollection = new Backbone.Collection();
 Alloy.Collections.instance("dormireMangiare");
 
 function loadData() {
-
+	
+	Ti.API.info("LOAD DATA FUNC");
+	
 	require("network").getPuntiAci("aacc", function(p_data) {
 
 		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
@@ -56,4 +58,5 @@ function loadData() {
 		Ti.API.info("SYC DORMIRE MANGIARE COLLECTION LENGTH: "+Alloy.Collections.dormireMangiare.length);
 
 	});
+	
 }

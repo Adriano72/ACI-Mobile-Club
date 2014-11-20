@@ -44,7 +44,7 @@ function init2() {
 function toggleDettaglioServizi(e) {
 	
 	e.cancelBubble = true;
-	if ($.dettaglioServizi.visible) {
+	if ($.dettaglioServizi.visible == true) {
 		$.dettaglioServizi.visible = false;
 		$.serviziIcon.image = "/x_abaco_blu.png";
 		$.serviziText.color = "#003772";
@@ -64,7 +64,9 @@ function toggleDettaglioServizi(e) {
 
 function toggleDettaglioOrari(e) {
 	
-	if ($.dettaglioOrari.visible) {
+	e.cancelBubble = true;
+	
+	if ($.dettaglioOrari.visible == true) {
 		$.dettaglioOrari.visible = false;
 		$.orariIcon.image = "/x_orario_blu.png";
 		$.orariText.color = "#003772";

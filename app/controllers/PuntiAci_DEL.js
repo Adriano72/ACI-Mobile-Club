@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 
-//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
+//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.delegazioni));
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
 };

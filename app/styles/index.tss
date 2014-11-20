@@ -224,5 +224,11 @@
 	height: 50
 }
 
+".sideMenu": {
+	width:0,
+	height: "100%",
+	backgroundColor:"pink",
+	left:Alloy.Globals.deviceWidth
+}
 
 

@@ -53,6 +53,18 @@
 	backgroundColor: "#fff"
 }
 
+".iconContainer": {
+	left: 5,
+	top: 5,
+	height: 90
+}
+
+".logoConvenzione": {
+	
+	height: 60
+}
+
+
 "#headerView": {
 	height: 50,
 	backgroundColor: "#FFFFFF",
@@ -129,6 +141,8 @@
 }
 
 ".testoDettagli": {
+	top: 5,
+	width: "90%",
 	color:"#888"
 }
 
