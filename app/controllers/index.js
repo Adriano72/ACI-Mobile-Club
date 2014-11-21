@@ -1,4 +1,6 @@
 var ViewScrollr = require("ViewScrollr");
+var settingsMenu = require('settingsMenu');
+
 if (OS_ANDROID)
 	var abx = require('com.alcoapps.actionbarextras');
 //var menuTop = (OS_ANDROID)?PixelsToDPUnits((Titanium.Platform.displayCaps.platformHeight/2))-40:(Titanium.Platform.displayCaps.platformHeight/2)-15;
@@ -6,6 +8,8 @@ var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals
 $.menuView.top = menuTop;
 
 function doopen(evt) {
+	
+	Alloy.Globals.navMenu = $.navWin;
 	if (OS_ANDROID) {
 		abx.title = "ACI Mobile Club";
 		abx.titleFont = "ACI Type Regular.otf";
@@ -63,6 +67,17 @@ function triggerScroll() {
 $.index.add(Banner);
 
 
+var rightSettingsMenu = settingsMenu.openSideMenu();
+
+$.index.add(rightSettingsMenu);
+
+
+function toggleSideMenu() {
+
+	settingsMenu.toggleMenu(rightSettingsMenu);
+}
+
+
 
 function swipeAction(e) {// NON USATA AL MOMENTO
 	if (e.direction == "up") {
@@ -81,14 +96,14 @@ function swipeAction(e) {// NON USATA AL MOMENTO
 
 function openPuntiACI() {
 	var winPAci = Alloy.createController('PuntiAciMain').getView();
-	$.navWin.openWindow(winPAci);
-	Alloy.Globals.navMenu = $.navWin;
+	Alloy.Globals.navMenu.openWindow(winPAci);
+	
 }
 
 function openVantaggiSoci() {
 	var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
-	$.navWin.openWindow(winVantaggiSoci);
-	Alloy.Globals.navMenu = $.navWin;
+	Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
+	
 }
 
 $.navWin.open();
