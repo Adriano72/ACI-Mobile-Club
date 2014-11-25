@@ -1,0 +1,158 @@
+// container for iOS
+".container[platform=ios]": {
+	backgroundColor: "#f2f2f2",
+	backButtonTitle: "",
+	barColor: "#f2f2f2",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: "#fff",
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	backgroundImage: "logoDelegazioni.png",
+	width: 120,
+	height: 30
+}
+
+".rightNavImg[platform=ios]": {
+	image: "x_menu_gps_blu.png",
+	height: 15
+}
+
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "ico_punti_servizio_01.png"
+}
+
+"#mn_navigazione": {
+	icon: "/x_menu_gps_blu.png"
+}
+
+".separator": {
+	width: Ti.UI.FILL,
+	height: 1,
+	backgroundColor: "#CCCCCC"
+}
+
+".scrollableContainer": {
+	width: Ti.UI.FILL,
+	layout: "vertical",
+	backgroundColor: "#fff"
+}
+
+".iconContainer": {
+	left: 5,
+	top: 5,
+	height: 90
+}
+
+".logoConvenzione": {
+	
+	height: 60
+}
+
+
+"#headerView": {
+	height: 50,
+	backgroundColor: "#FFFFFF",
+	top:0
+}
+
+"#headerText": {
+	color: "#003772"
+}
+
+"#contattiView": {
+	height: 100,
+	backgroundColor: "#EEEEEE",
+	top:0,
+	layout: "vertical"
+}
+
+".contatti": {
+	top: 0,
+	color:"#888",
+	font: {
+        
+        fontSize: '8dp'
+    }
+}
+
+".first": {
+	top: 20
+}
+
+".rowSingleContainer": {
+	height: 40,
+	top:0
+}
+
+".simpleRowLeftIcon": {
+	touchEnabled: false,
+	left: 10,
+	width: 20,
+	touchEnabled: false
+}
+
+".simpleRowText": {
+	touchEnabled: false,
+	left: 50,
+	color:"#003772",
+	touchEnabled: false
+}
+
+"#descrizioneIcon": {
+	image: "/x_descrizione_blu.png"
+}
+
+"#vantaggioIcon": {
+	image: "/x_vantaggi_blu.png"
+}
+
+"#chiamaIcon": {
+	image: "/x_telefono_blu.png"
+}
+
+".hasDetail[platform=android]": {
+	image: "/x_freccia_grigio.png",
+	right: 10,
+	touchEnabled: false
+}
+
+
+".hasDetail[platform=ios]": {
+	image: "/x_freccia_grigio.png",
+	right: 10,
+	height: 15,
+	touchEnabled: false
+}
+
+".testoDettagli": {
+	top: 5,
+	width: "90%",
+	color:"#888"
+}
+
+"#dettaglioDescrizione": {
+	height: 0,
+	backgroundColor: "#EEEEEE"
+}
+
+"#dettaglioVantaggio": {
+	height: 0,
+	backgroundColor: "#EEEEEE"
+}
+

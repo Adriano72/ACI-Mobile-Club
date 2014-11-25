@@ -13,22 +13,26 @@
 
 ".simpleRowLeftIcon": {
 	left: 10,
-	width: 30
+	width: 30,
+	touchEnabled: false
 }
 
 ".simpleRowText": {
 	left: 50,
-	color:"#003772"
+	color:"#003772",
+	touchEnabled: false
 }
 
 ".hasDetail[platform=android]": {
 	image: "/x_freccia_grigio.png",
-	right: 10
+	right: 10,
+	touchEnabled: false
 }
 
 
 ".hasDetail[platform=ios]": {
 	image: "/x_freccia_grigio.png",
 	right: 10,
-	height: 15
+	height: 15,
+	touchEnabled: false
 }

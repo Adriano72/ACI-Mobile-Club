@@ -17,10 +17,46 @@ Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
+Alloy.Globals.baseURL = "http://10.64.4.199:9900";
 
-if (OS_IOS) {
-	var userLoc = require('locationServices').getUserLocation();
+
+require('locationServices').getUserLocation(loadData);
+
+// PUNTI ACI
+Alloy.Collections.instance("automobileClub");
+Alloy.Collections.instance("delegazioni");
+
+Alloy.Collections.tempCollection = new Backbone.Collection();
+
+//SYC
+Alloy.Collections.instance("dormireMangiare");
+
+function loadData() {
 	
+	Ti.API.info("LOAD DATA FUNC");
 	
+	require("network").getPuntiAci("aacc", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.automobileClub.reset(p_data);
+		Ti.API.info("AACC COLLECTION LENGTH: "+Alloy.Collections.automobileClub.length);
+
+	});
+	
+	require("network").getPuntiAci("del", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.delegazioni.reset(p_data);
+		Ti.API.info("DEL COLLECTION LENGTH: "+Alloy.Collections.delegazioni.length);
+
+	});
+	
+	require("network").getVantaggiSoci("dormire_mangiare", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.dormireMangiare.reset(p_data);
+		Ti.API.info("SYC DORMIRE MANGIARE COLLECTION LENGTH: "+Alloy.Collections.dormireMangiare.length);
+
+	});
 	
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <id>it.aci.acimobileclub</id>
+    <id>it.aci.informatica.AciMobileClub</id>
+    <!--<id>it.aci.informatica.AciMobileClub</id>-->
     <name>ACI-Mobile-Club</name>
     <version>1.0</version>
     <publisher>adrianomassi</publisher>
@@ -44,7 +45,7 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest android:installLocation="preferExternal"
-            android:versionCode="1" android:versionName="1.0.0" package="it.aci.acimobileclub">
+            android:versionCode="1" android:versionName="1.0.0" package="it.aci.informatica.AciMobileClub">
             <!--<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>-->
             <uses-sdk android:targetSdkVersion="19"/>
             <supports-screens android:anyDensity="true"/>
@@ -61,16 +62,16 @@
             <!-- Specify OpenGL ES 2.0 as a requirement -->
             <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
             <!-- Replace <com.domain.appid> with your application ID -->
-            <uses-permission android:name="it.aci.acimobileclub.permission.MAPS_RECEIVE"/>
+            <uses-permission android:name="it.aci.informatica.AciMobileClub.permission.MAPS_RECEIVE"/>
             <permission
-                android:name="it.aci.acimobileclub.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+                android:name="it.aci.informatica.AciMobileClub.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
             <application android:theme="@style/Theme.Acimobileclub">
                 <!-- <application android:theme="@style/Theme.ZiriZiriTheme">-->
                 <!--<application android:theme="@style/Light">-->
                 <!--<activity android:name="org.appcelerator.titanium.TiTranslucentActivity"/>-->
                 <!--<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />-->
                 <meta-data
-                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBy40Xya43EQmG6j-kIu5Q76IW3CE_53Yc"/>
+                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAwoWnifl7P0mIhHsR6S-w4mYDtMGw8V1Q"/>
             </application>
         </manifest>
     </android>
@@ -84,6 +85,8 @@
     </mobileweb>
     <modules>
         <module platform="android">com.alcoapps.actionbarextras</module>
+        <module platform="iphone">ti.map</module>
+        <module platform="android">ti.map</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>
@@ -92,7 +95,7 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>3.4.0.GA</sdk-version>
+    <sdk-version>3.4.1.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
