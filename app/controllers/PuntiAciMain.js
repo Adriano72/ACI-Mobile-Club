@@ -11,7 +11,7 @@ function doopen(evt) {
 		abx.titleFont = "ACI Type Regular.otf";
 		abx.titleColor = "#003772";
 
-		//actionBarHelper.setIcon('/drawericonw@2x.png');
+		//actionBarHelper.setIu k098  -m,.ooooocon('/drawericonw@2x.png');
 
 	} else {
 		//$.windowtitle.text = winTitle;
