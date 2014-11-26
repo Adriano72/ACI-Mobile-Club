@@ -94,6 +94,11 @@ function swipeAction(e) {// NON USATA AL MOMENTO
 
 };
 
+function doPhoneCall(e) {
+	e.cancelBubble = true;
+	Titanium.Platform.openURL('tel:803116');
+};
+
 function openPuntiACI() {
 	var winPAci = Alloy.createController('PuntiAciMain').getView();
 	Alloy.Globals.navMenu.openWindow(winPAci);

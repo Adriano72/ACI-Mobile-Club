@@ -12,7 +12,7 @@ modelGot.fax = modelGot.contacts.fax[0];
 modelGot.web = modelGot.contacts.web[0];
 modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc);
 modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc);
-modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.logo);
+modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.images.logo);
 
 $.dormireMangiare.set(modelGot);
 

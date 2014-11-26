@@ -39,7 +39,7 @@ function dataTransform(model) {
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
 	attrs.email = attrs.contacts.email[0];
-	attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + attrs.agreement_id.logo);
+	attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + attrs.agreement_id.images.logo);
 	attrs.id = model.cid;
 	return attrs;
 };

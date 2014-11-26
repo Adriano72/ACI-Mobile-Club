@@ -78,7 +78,12 @@ function dettaglioDelegazione(e) {
 
 function doPhoneCall(e) {
 	e.cancelBubble = true;
-	Titanium.Platform.openURL(e.source.telNumber);
+	
+	var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
+	Ti.API.info("TEL: " + trimmedPhone);
+	Titanium.Platform.openURL('tel:' + trimmedPhone);
+	
+	
 };
 
 function doSendEmail(e) {
