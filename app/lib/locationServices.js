@@ -1,5 +1,7 @@
 exports.getUserLocation = function(_callback) {
 	
+	/*
+	
 	if (Ti.Geolocation.locationServicesEnabled) {
 		Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
 		Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
@@ -30,18 +32,19 @@ exports.getUserLocation = function(_callback) {
 		alert('Abilitare i servizi di localizzazione per usufruire del servizio');
 	}
 	
+	*/
 	
-	/*
 	var position = {
 		latitude : 42.41,
 		longitude : 12.43
 	};
 	
+	
 
 	Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
 	Alloy.Globals.userPosition = position;
 
-	_callback(position);*/
+	_callback(position);
 	
 
 };
