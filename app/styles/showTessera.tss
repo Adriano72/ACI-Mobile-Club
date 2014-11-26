@@ -1,0 +1,119 @@
+// container for iOS
+".container[platform=ios]": {
+	backgroundColor: "#f2f2f2",
+	backButtonTitle: "",
+	barColor: "#f2f2f2",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT]
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: "#fff",
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	backgroundImage: "logoLaTuaTessera.png",
+	width: 120,
+	height: 20
+}
+
+".rightNavImg[platform=ios]": {
+	image: "ico_rotella_celeste.png",
+	height: 15
+}
+
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "ico_tessera_01.png"
+}
+
+"#mn_settings": {
+	icon: "/ico_rotella_celeste.png"
+}
+
+".tesseraContainer": {
+	//backgroundColor: "red",
+	height: Ti.UI.SIZE,
+	width: "90%"
+}
+
+".imgTessera": {
+	
+	image: "/tessera_sistema2.jpg"
+}
+
+".datiContainer":{
+	
+	layout: "vertical",
+	//backgroundColor: "olive",
+	width: 220,
+	height: Ti.UI.SIZE
+}
+
+
+".labelTessera":{
+	color:"#FFF",
+	left: 0,
+	top:0,
+	font: {
+        fontSize: '8dp'
+   }
+	
+}
+
+".spacer":{
+	height: 15,
+	top: 0,
+}
+
+".bottomContainer": {
+	layout: "horizontal",
+	top: 0,
+	width: Ti.UI.FILL,
+	height: 40
+}
+
+".datiTessera": {
+	color:"#EEE",
+	top: 0,
+	left: 0,
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
+	//backgroundColor: "red",
+	//top: 355,
+   	//left: 180,
+   	wordWrap: false,
+   	//width: 40,
+   	height: 20,	
+	font: {
+        fontSize: '8dp'
+   }
+}
+
+".leftBlock": {
+	layout: "vertical",
+	width: "50%"
+}
+
+".rightBlock": {
+	layout: "vertical",
+	width: "50%",
+	left: 0
+}
+
+".bottomItems": {
+	top: 0
+}
+
+
+
+

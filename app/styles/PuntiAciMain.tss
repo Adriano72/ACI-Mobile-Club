@@ -4,7 +4,7 @@
 	backButtonTitle: "",
 	barColor: "#f2f2f2",
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT],
+	orientationModes: [Ti.UI.PORTRAIT]
 	
 }
 

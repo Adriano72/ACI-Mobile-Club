@@ -10,7 +10,7 @@ function doopen(evt) {
 	if (OS_ANDROID) {
 
 		init1();
-		
+
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
@@ -30,13 +30,28 @@ function init2() {
 	$.win.activity.invalidateOptionsMenu();
 }
 
-function doLogin(){
-	Ti.API.info("CIAO");
-	if($.username.value !== "" && $.password.value !== ""){
-		Ti.API.info("CIAO");
-		net.getSSOID($.username.value, $.password.value);
-	}else{
+function doLogin() {
+	
+	
+
+	Ti.API.info("CLICK");
+	if ($.username.value !== "" && $.password.value !== "") {
+
+		Ti.API.info("GO");
+
+		net.getSSOID($.username.value, $.password.value, function(ssoid) {
+
+			net.getUserInfo(ssoid, function(user_data) {
+				//Ti.API.info("USER DATA: "+JSON.stringify(user_data));
+				var winTessera = Alloy.createController('showTessera', user_data.data).getView();
+				Alloy.Globals.navMenu.openWindow(winTessera);
+
+			});
+
+		});
+	} else {
 		alert("Inserire nome utente e password!");
 	}
+
 }
 

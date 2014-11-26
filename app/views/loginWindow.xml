@@ -20,8 +20,8 @@
 			<Widget id="ricordami" src="checkbox" value="true"/>
 			<Label class="PTSansRegular ricordamiText">Ricordami</Label>
 		</View>
-		<View id="buttonContainer">
-			<Button id="loginButton" onClick="doLogin">Accedi</Button>
+		<View id="buttonContainer" onClick="doLogin">
+			<Button id="loginButton">Accedi</Button>
 		</View>
 
 	</Window>

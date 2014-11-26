@@ -1,0 +1,40 @@
+<Alloy>
+	<Window id="win" class="container" onOpen="doopen">
+		<TitleControl platform="ios">
+			<View class="titleControl"></View>
+		</TitleControl>
+		<RightNavButton platform="ios">
+			<ImageView class="rightNavImg"/>
+		</RightNavButton>
+		<Menu id="menu" platform="android">
+
+			<!-- Cannot specify node text.  Use attributes only. -->
+			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
+
+		</Menu>
+		<View class="tesseraContainer">
+			<ImageView id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC"/>
+			
+			<View id="rotatedContainer" class="datiContainer">
+				
+				<Label id="LabelTitolare" class="labelTessera">TITOLARE</Label>
+				<Label id="titolare" class="datiTessera"/>
+				<Label class="spacer"/>
+				<View class = "bottomContainer">
+					
+					<View class="leftBlock">
+						<Label id="LabelNumTessera" class="labelTessera bottomItems">N° TESSERA</Label>
+						<Label id="numTessera" class="datiTessera bottomItems"/>
+					</View>
+					<View class="rightBlock">
+						<Label id="LabelValidita" class="labelTessera bottomItems">VALIDITÀ</Label>
+						<Label id="validita" class="datiTessera bottomItems"/>
+					</View>
+
+				</View>
+			</View>
+		</View>
+
+	</Window>
+</Alloy>
