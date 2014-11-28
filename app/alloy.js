@@ -17,7 +17,8 @@ Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
-Alloy.Globals.baseURL = "http://10.64.4.199:9900";
+//Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
+Alloy.Globals.baseURL = "http://www.aci.it/geo/v2";
 
 
 require('locationServices').getUserLocation(loadData);
@@ -25,11 +26,16 @@ require('locationServices').getUserLocation(loadData);
 // PUNTI ACI
 Alloy.Collections.instance("automobileClub");
 Alloy.Collections.instance("delegazioni");
+Alloy.Collections.instance("pra");
+Alloy.Collections.instance("urp");
+Alloy.Collections.instance("tasse");
+Alloy.Collections.instance("demolitori");
 
 Alloy.Collections.tempCollection = new Backbone.Collection();
 
 //SYC
 Alloy.Collections.instance("dormireMangiare");
+Alloy.Collections.instance("tempoLibero");
 
 function loadData() {
 	
@@ -51,11 +57,51 @@ function loadData() {
 
 	});
 	
+	require("network").getPuntiAci("pra", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.pra.reset(p_data);
+		Ti.API.info("PRA COLLECTION LENGTH: "+Alloy.Collections.pra.length);
+
+	});
+	
+	require("network").getPuntiAci("urp", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.urp.reset(p_data);
+		Ti.API.info("URP COLLECTION LENGTH: "+Alloy.Collections.urp.length);
+
+	});
+	
+	require("network").getPuntiAci("tasse", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.tasse.reset(p_data);
+		Ti.API.info("TASSE COLLECTION LENGTH: "+Alloy.Collections.tasse.length);
+
+	});
+	
+	require("network").getDemolitori("dem", function(p_data) {
+
+		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
+		Alloy.Collections.demolitori.reset(p_data);
+		Ti.API.info("DEMOLITORI COLLECTION LENGTH: "+Alloy.Collections.demolitori.length);
+
+	});
+	
 	require("network").getVantaggiSoci("dormire_mangiare", function(p_data) {
 
 		//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
 		Alloy.Collections.dormireMangiare.reset(p_data);
 		Ti.API.info("SYC DORMIRE MANGIARE COLLECTION LENGTH: "+Alloy.Collections.dormireMangiare.length);
+
+	});
+	
+	require("network").getVantaggiSoci("tempo_libero_benessere", function(p_data) {
+
+		Ti.API.info("XHR RESULT TEMPO LIBERO: " + JSON.stringify(p_data));
+		Alloy.Collections.tempoLibero.reset(p_data);
+		Ti.API.info("SYC TEMPO LIBERO BENESSERE COLLECTION LENGTH: "+Alloy.Collections.tempoLibero.length);
 
 	});
 	

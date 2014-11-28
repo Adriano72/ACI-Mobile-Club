@@ -7,9 +7,9 @@ modelGot.telefono = modelGot.contacts.tel[0];
 modelGot.fax = modelGot.contacts.fax[0];
 modelGot.web = modelGot.contacts.web[0];
 modelGot.servizi = modelGot.services.toString();
-modelGot.orari = require('utility').formattaOrari(modelGot.schedule.timetable);
+modelGot.orari = modelGot.schedule.timetable.toString();
 
-$.delegazione.set(modelGot);
+$.pra.set(modelGot);
 
 Ti.API.info("MODELLO: " + JSON.stringify(args.data.attributes));
 
@@ -31,7 +31,7 @@ function doopen(evt) {
 
 function init1() {
 	abx.displayHomeAsUp = true;
-	abx.title = "Delegazioni";
+	abx.title = "Pra";
 	abx.titleFont = "ACI Type Regular.otf";
 	abx.titleColor = "#003772";
 	_.defer(init2);
@@ -52,7 +52,7 @@ function toggleDettaglioServizi(e) {
 		$.dettaglioServizi.height = 0;
 
 	} else {
-		$.dettaglioServizi.height = Ti.UI.SIZE;
+		$.dettaglioServizi.height = 80;
 		$.serviziIcon.image = "/x_abaco_bianco.png";
 		$.serviziText.color = "#fff";
 		$.rowServizi.backgroundColor = "#003772";
@@ -74,7 +74,7 @@ function toggleDettaglioOrari(e) {
 		$.dettaglioOrari.height = 0;
 
 	} else {
-		$.dettaglioOrari.height = Ti.UI.SIZE;
+		$.dettaglioOrari.height = 80;
 		$.orariIcon.image = "/x_orario_bianco.png";
 		$.orariText.color = "#fff";
 		$.rowOrari.backgroundColor = "#003772";

@@ -17,9 +17,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoDelegazioni.png",
-	width: 120,
-	height: 30
+	backgroundImage: "logoTasse.png",
+	width: 104,
+	height: 25
 }
 
 ".rightNavImg[platform=ios]": {
@@ -32,7 +32,7 @@
 }
 
 "#menu": {
-	icon: "ico_delegazioni_blu.png"
+	icon: "ico_assistenza_tasse_blu.png"
 }
 
 "#mn_settings": {
@@ -99,7 +99,6 @@
 
 "#nome": {
 	width: "80%",
-	height: 20,
 	wordWrap: false,
 	ellipsize: true
 }

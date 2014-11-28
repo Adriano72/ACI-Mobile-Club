@@ -44,9 +44,9 @@ function selectionDetail(e) {
 		var winAC = Alloy.createController('VantaggiSoci_DormMang').getView();
 		Alloy.Globals.navMenu.openWindow(winAC);
 		break;
-		/*
+		
 	case "tempo_libero_benessere":
-		var winAC = Alloy.createController('PuntiAci_DEL').getView();
+		var winAC = Alloy.createController('VantaggiSoci_TempoLibero').getView();
 		Alloy.Globals.navMenu.openWindow(winAC);
 		break;
 	case "cultura_spettacoli":
@@ -65,7 +65,7 @@ function selectionDetail(e) {
 		var winAC = Alloy.createController('PuntiAci_DEL').getView();
 		Alloy.Globals.navMenu.openWindow(winAC);
 		break;
-		*/
+		
 	default:
 
 	}

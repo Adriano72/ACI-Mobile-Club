@@ -9,7 +9,7 @@
 
 // container for Android
 ".container[platform=android]": {
-	backgroundColor: "#f2f2f2",
+	backgroundColor: "#fff",
 	top:20,
 	tintColor: "red",
 	orientationModes: [Ti.UI.PORTRAIT],
@@ -17,9 +17,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoDelegazioni.png",
+	backgroundImage: "logoTempoLibero.png",
 	width: 120,
-	height: 30
+	height: 11
 }
 
 ".rightNavImg[platform=ios]": {
@@ -32,7 +32,7 @@
 }
 
 "#menu": {
-	icon: "ico_delegazioni_blu.png"
+	icon: "ico_tempo_libero_blu.png"
 }
 
 "#mn_settings": {
@@ -67,41 +67,46 @@
 }
 
 ".row[platform=ios]":{
-	height: "80",
+	height: "85",
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
 ".row[platform=android]":{
-	height: 80,
+	height: Ti.UI.SIZE,
 	className: "riga"
 }
 
-".rowContainer": {
+".blockContainer": {
+	layout: "horizontal",
+	width: Ti.UI.FILL
+}
+
+".iconContainer": {
+	left: 5,
+	top: 5,
+	height: Ti.UI.FILL,
+	width: "25%"
+}
+
+".logoConvenzione": {
+	
+	height: 60
+}
+
+".centerContainer": {
+	left: 5,
+	width: "50%",
 	layout: "vertical",
 	top: 5
 }
 
 ".simpleRowText": {
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
+	height: 20,
+	width: 160,
 	left: 10,
 	top: 0,
 	color:"#003772"
-}
-
-".bottomRowContainer": {
-	top: 0,
-	left: 10,
-	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL
-}
-
-"#nome": {
-	width: "80%",
-	height: 20,
-	wordWrap: false,
-	ellipsize: true
 }
 
 ".indirizzo": {
@@ -112,7 +117,7 @@
 }
 
 ".indicazioniStradali": {
-	left: 0,
+	left: 10,
 	height: Ti.UI.SIZE,
 	text: "Indicazioni stradali",
 	color: "#006AA3"
@@ -131,4 +136,23 @@
 	right: 5,
 	width: 30,
 	height:20
+}
+
+".rightContainer": {
+	left: 5,
+	width: "19%",
+	layout: "vertical",
+	top: 5
+}
+
+".preferiti": {
+	image: "/x_menu_stella_celeste.png",
+	height: 20
+}
+
+".dettagli": {
+	left: 10,
+	height: Ti.UI.SIZE,
+	text: "Dettagli>",
+	color: "#006AA3"
 }

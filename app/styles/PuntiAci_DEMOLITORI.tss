@@ -17,9 +17,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoDelegazioni.png",
-	width: 120,
-	height: 30
+	backgroundImage: "logoDemolitori.png",
+	width: 156,
+	height: 33
 }
 
 ".rightNavImg[platform=ios]": {
@@ -32,7 +32,7 @@
 }
 
 "#menu": {
-	icon: "ico_delegazioni_blu.png"
+	icon: "ico_demolitori_blu.png"
 }
 
 "#mn_settings": {

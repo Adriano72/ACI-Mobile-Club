@@ -9,7 +9,8 @@ modelGot.web = modelGot.contacts.web[0];
 modelGot.servizi = modelGot.services.toString();
 modelGot.orari = require('utility').formattaOrari(modelGot.schedule.timetable);
 
-$.delegazione.set(modelGot);
+
+$.urp.set(modelGot);
 
 Ti.API.info("MODELLO: " + JSON.stringify(args.data.attributes));
 
@@ -31,7 +32,7 @@ function doopen(evt) {
 
 function init1() {
 	abx.displayHomeAsUp = true;
-	abx.title = "Delegazioni";
+	abx.title = "Pra";
 	abx.titleFont = "ACI Type Regular.otf";
 	abx.titleColor = "#003772";
 	_.defer(init2);
@@ -42,7 +43,7 @@ function init2() {
 }
 
 function toggleDettaglioServizi(e) {
-	
+
 	e.cancelBubble = true;
 	if ($.dettaglioServizi.visible == true) {
 		$.dettaglioServizi.visible = false;
@@ -63,9 +64,9 @@ function toggleDettaglioServizi(e) {
 };
 
 function toggleDettaglioOrari(e) {
-	
+
 	e.cancelBubble = true;
-	
+
 	if ($.dettaglioOrari.visible == true) {
 		$.dettaglioOrari.visible = false;
 		$.orariIcon.image = "/x_orario_blu.png";
@@ -111,3 +112,8 @@ function doSendEmail(e) {
 	emailDialog.toRecipients = recipients;
 	emailDialog.open();
 };
+
+ $.win.addEventListener('close', function() {
+	$.destroy();
+});
+

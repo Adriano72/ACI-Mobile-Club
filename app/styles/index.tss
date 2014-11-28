@@ -16,6 +16,7 @@
 
 "#navWin": {
 	backgroundColor:"#fff",
+	swipeBack: false,
 	top: 20
 }
 

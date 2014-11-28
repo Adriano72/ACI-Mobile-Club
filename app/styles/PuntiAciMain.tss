@@ -8,6 +8,7 @@
 	
 }
 
+
 // container for Android
 ".container[platform=android]": {
 	backgroundColor: "#fff",

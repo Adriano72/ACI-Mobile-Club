@@ -8,7 +8,7 @@ function doopen(evt) {
 	if (OS_ANDROID) {
 
 		init1();
-		
+
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
@@ -45,20 +45,40 @@ _.each(rowData, function(value) {
 });
 
 function selectionDetail(e) {
-	Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
-	switch(e.row.id_code) {
+	if (!_.isUndefined(e.row)) {
 
-	case "AC":
-		var winAC = Alloy.createController('PuntiAci_AC').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-	case "DEL":
-		var winAC = Alloy.createController('PuntiAci_DEL').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-	default:
+		Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
+		switch(e.row.id_code) {
+
+		case "AC":
+			var winAC = Alloy.createController('PuntiAci_AC').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "DEL":
+			var winAC = Alloy.createController('PuntiAci_DEL').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "PRA":
+			var winAC = Alloy.createController('PuntiAci_PRA').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "URP":
+			var winAC = Alloy.createController('PuntiAci_URP').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "TASSE":
+			var winAC = Alloy.createController('PuntiAci_TASSE').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "DEM":
+			var winAC = Alloy.createController('PuntiAci_DEMOLITORI').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		default:
+
+		}
 	}
 };
 
