@@ -55,3 +55,41 @@ exports.formattaOrari = function(obj) {
 	return orari.join("");
 
 };
+
+exports.getTesseraImage = function(codice){
+	
+	var transcode = {
+		
+		'DIP': 'sistema.jpg',
+		'FAM': 'sistema.jpg',
+		'SOC': 'sistema.jpg',
+		'SMA': 'sistema.jpg',
+		'SOG': 'sistema.jpg',		
+		'GDI': 'gold.jpg',
+		'GFA': 'gold.jpg',
+		'GSO': 'gold.jpg',
+		'GMA': 'gold.jpg',		
+		'GIO': 'okkei.jpg',
+		'GIA': 'okkei.jpg',		
+		'UNO': 'one.jpg',
+		'ONG': 'one.jpg',		
+		'CLO': 'club.jpg',
+		'CLU': 'club.jpg',		
+		'VIN': 'vintage.jpg',		
+		'CON': 'driver.jpg',
+		'DRV': 'driver.jpg',		
+		'STA': 'storico.jpg',
+		'STF': 'storico.jpg'		
+		
+	};
+	
+	var imm = _.find(transcode, function(value, key){
+		return key == codice;
+	});
+	
+	Ti.API.info("TESSERA: "+imm);
+	
+	return imm;
+	
+	
+};

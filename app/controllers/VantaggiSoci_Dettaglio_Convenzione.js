@@ -1,10 +1,24 @@
 var args = arguments[0] || {};
 
+Ti.API.info("MODELLO: " + JSON.stringify(args));
+
 var encoder = require('encoder');
 
-var modelGot = args.data.attributes;
+if(_.isUndefined(args.data.annotation)){
+	
+	var modelGot = args.data.attributes;
+	
+}else {
+	
+	var modelGot = args.data.annotation;
+	
+};
 
-Ti.API.info("MODELLO: " + JSON.stringify(args.data.attributes));
+Ti.API.info("DATI: " + JSON.stringify(modelGot));
+
+
+
+
 
 modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];
@@ -16,6 +30,7 @@ modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agr
 
 $.dormireMangiare.set(modelGot);
 
+
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
 };
@@ -26,7 +41,8 @@ function doopen(evt) {
 		init1();
 
 	} else {
-		//$.windowtitle.text = winTitle;
+		$.titleControl.backgroundImage = args.headerImg;
+		
 	}
 
 	//updateScreen();

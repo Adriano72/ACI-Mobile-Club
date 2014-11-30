@@ -30,19 +30,33 @@ function init2() {
 	$.win.activity.invalidateOptionsMenu();
 }
 
+
+$.ricordami.getView().addEventListener('change', function(e) {
+	
+	Alloy.Globals.rememberMe = e.value;
+	//Ti.API.info("Alloy.Globals.rememberMe: "+Alloy.Globals.rememberMe);
+});
+
 function doLogin() {
-	
-	
 
 	Ti.API.info("CLICK");
 	if ($.username.value !== "" && $.password.value !== "") {
 
-		Ti.API.info("GO");
-
 		net.getSSOID($.username.value, $.password.value, function(ssoid) {
 
 			net.getUserInfo(ssoid, function(user_data) {
-				//Ti.API.info("USER DATA: "+JSON.stringify(user_data));
+				
+				//Ti.API.info("CHECKBOX VALUE "+$.ricordami.getView().value);
+				
+				if ($.ricordami.getView().value) {
+					
+					Ti.App.Properties.setBool("utenteAutenticato", true);
+					Ti.App.Properties.setObject("datiUtente", user_data.data);
+					Ti.App.fireEvent("loggedInUser", {loggedUser:true});
+
+				};
+
+				Ti.API.info("USER DATA: " + JSON.stringify(user_data));
 				var winTessera = Alloy.createController('showTessera', user_data.data).getView();
 				Alloy.Globals.navMenu.openWindow(winTessera);
 

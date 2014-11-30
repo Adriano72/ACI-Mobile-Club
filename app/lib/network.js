@@ -72,17 +72,21 @@ exports.getDemolitori = function(type_code, _callback) {
 
 exports.getVantaggiSoci = function(type_code, _callback) {
 
-	Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+	Ti.API.info("**TYPE CODE: " + type_code);
 
 	var xhr = Ti.Network.createHTTPClient();
+	
+	xhr.clearCookies('http://www.aci.it');
 
 	xhr.onload = function() {
 
 		var json = JSON.parse(this.responseText);
 
-		Ti.API.info("RISPOSTA: " + json.message);
+		//Ti.API.info("RISPOSTA: "+type_code+" " + JSON.stringify(json));
 
 		if (json.message == "200 OK") {
+			
+			//Ti.API.info("RISPOSTA: "+type_code+" " + JSON.stringify(json));
 
 			_callback(json.result);
 
@@ -129,7 +133,7 @@ exports.getSSOID = function(p_username, p_password, _callback) {
 			
 
 		} else {
-			alert("Errore nella comunicazione col server.");
+			alert("LOGIN FALLITO - UTENTE NON AUTORIZZATO");
 		};
 
 	};
@@ -164,7 +168,7 @@ exports.getUserInfo = function(p_ssoid, _callback) {
 			//Ti.API.info("USER INFO: " + JSON.stringify(json.data));
 
 		} else {
-			alert("LOGIN FAILED - UNAUTHORIZED");
+			alert("LOGIN FALLITO - UTENTE NON AUTORIZZATO");
 		};
 
 	};

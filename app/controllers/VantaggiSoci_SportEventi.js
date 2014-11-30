@@ -20,7 +20,7 @@ function openWin() {
 
 function init1() {
 	abx.displayHomeAsUp = true;
-	abx.title = "Dormire & Mangiare";
+	abx.title = "Tempo libero & benessere";
 	abx.titleFont = "ACI Type Regular.otf";
 	abx.titleColor = "#003772";
 	_.defer(init2);
@@ -45,9 +45,9 @@ function dataTransform(model) {
 };
 
 function dettaglioConvenzione(e) {
-	var selectedConv = Alloy.Collections.dormireMangiare.getByCid(e.rowData.modelId);
+	var selectedConv = Alloy.Collections.sportEventi.getByCid(e.rowData.modelId);
 
-	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv, headerImg:"logoDormireMangiare.png"}).getView();
+	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv, headerImg:"logoSportEventi.png"}).getView();
 	Alloy.Globals.navMenu.openWindow(dettConvenzione);
 }
 
@@ -65,10 +65,10 @@ function openNavigation(e) {
 function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
-		collection : Alloy.Collections.dormireMangiare.toJSON(),
-		pin : "pin_DormireMangiare.png",
-		titolo: (OS_ANDROID)?"Dormire & Mangiare":$.titleControl.backgroundImage,
-		homeIcon: "ico_dormiremangiare_blu.png"
+		collection : Alloy.Collections.sportEventi.toJSON(),
+		pin : "pin_SportEventi.png",
+		titolo: (OS_ANDROID)?"Sport & Eventi":$.titleControl.backgroundImage,
+		homeIcon: "ico_sport_01.png"
 		
 	}).getView();
 	Alloy.Globals.navMenu.openWindow(mapWin);

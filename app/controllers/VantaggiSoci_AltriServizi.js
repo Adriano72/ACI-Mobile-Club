@@ -20,7 +20,7 @@ function openWin() {
 
 function init1() {
 	abx.displayHomeAsUp = true;
-	abx.title = "Dormire & Mangiare";
+	abx.title = "Altri Servizi";
 	abx.titleFont = "ACI Type Regular.otf";
 	abx.titleColor = "#003772";
 	_.defer(init2);
@@ -66,9 +66,9 @@ function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
 		collection : Alloy.Collections.dormireMangiare.toJSON(),
-		pin : "pin_DormireMangiare.png",
-		titolo: (OS_ANDROID)?"Dormire & Mangiare":$.titleControl.backgroundImage,
-		homeIcon: "ico_dormiremangiare_blu.png"
+		pin : "pin_AltriServizi.png",
+		titolo: (OS_ANDROID)?"Altri Servizi":$.titleControl.backgroundImage,
+		homeIcon: "ico_altri_servizi_blu.png"
 		
 	}).getView();
 	Alloy.Globals.navMenu.openWindow(mapWin);

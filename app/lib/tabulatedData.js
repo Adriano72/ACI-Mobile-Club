@@ -43,7 +43,7 @@ exports.categorieSyc = function() {
 		long_name : "Dormire & Mangiare",
 		short_name : "dormire_mangiare"
 	}, {
-		img : "ico_benessere_blu.png",
+		img : "ico_tempo_libero_blu.png",
 		long_name : "Tempo Libero & Benessere",
 		short_name : "tempo_libero_benessere"
 	}, {

@@ -36,38 +36,41 @@ _.each(rowData, function(value) {
 });
 
 function selectionDetail(e) {
-	Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
-	switch(e.row.id_code) {
+	if (!_.isUndefined(e.row)) {
 
-	case "dormire_mangiare":
-		var winAC = Alloy.createController('VantaggiSoci_DormMang').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-		
-	case "tempo_libero_benessere":
-		var winAC = Alloy.createController('VantaggiSoci_TempoLibero').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-	case "cultura_spettacoli":
-		var winAC = Alloy.createController('PuntiAci_DEL').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-	case "noleggi_trasporti":
-		var winAC = Alloy.createController('PuntiAci_DEL').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-	case "sport_eventi":
-		var winAC = Alloy.createController('PuntiAci_DEL').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-	case "altri_servizi":
-		var winAC = Alloy.createController('PuntiAci_DEL').getView();
-		Alloy.Globals.navMenu.openWindow(winAC);
-		break;
-		
-	default:
+		Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
+		switch(e.row.id_code) {
+
+		case "dormire_mangiare":
+			var winAC = Alloy.createController('VantaggiSoci_DormMang').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "tempo_libero_benessere":
+			var winAC = Alloy.createController('VantaggiSoci_TempoLibero').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "cultura_spettacoli":
+			var winAC = Alloy.createController('VantaggiSoci_CulturaSpettacoli').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "noleggi_trasporti":
+			var winAC = Alloy.createController('VantaggiSoci_NoleggiTrasporti').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "sport_eventi":
+			var winAC = Alloy.createController('VantaggiSoci_SportEventi').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+		case "altri_servizi":
+			var winAC = Alloy.createController('VantaggiSoci_AltriServizi').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
+
+		default:
+
+		}
 	}
 };
 

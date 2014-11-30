@@ -8,7 +8,7 @@ var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals
 $.menuView.top = menuTop;
 
 function doopen(evt) {
-	
+
 	Alloy.Globals.navMenu = $.navWin;
 	if (OS_ANDROID) {
 		abx.title = "ACI Mobile Club";
@@ -66,18 +66,36 @@ function triggerScroll() {
 
 $.index.add(Banner);
 
+function closeSideMenu() {
+	settingsMenu.hideMenu(rightSettingsMenu);
+}
 
 var rightSettingsMenu = settingsMenu.openSideMenu();
 
 $.index.add(rightSettingsMenu);
-
 
 function toggleSideMenu() {
 
 	settingsMenu.toggleMenu(rightSettingsMenu);
 }
 
+function tessera() {
 
+	if (Ti.App.Properties.getBool("utenteAutenticato")) {
+		
+		var winTessera = Alloy.createController('showTessera', Ti.App.Properties.getObject("datiUtente")).getView();
+		Alloy.Globals.navMenu.openWindow(winTessera);
+		
+	} else {
+		
+		var winLogin = Alloy.createController('loginWindow').getView();
+		Alloy.Globals.navMenu.openWindow(winLogin);
+		
+	}
+
+	require("utility").getTesseraImage();
+
+}
 
 function swipeAction(e) {// NON USATA AL MOMENTO
 	if (e.direction == "up") {
@@ -102,13 +120,13 @@ function doPhoneCall(e) {
 function openPuntiACI() {
 	var winPAci = Alloy.createController('PuntiAciMain').getView();
 	Alloy.Globals.navMenu.openWindow(winPAci);
-	
+
 }
 
 function openVantaggiSoci() {
 	var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
 	Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
-	
+
 }
 
 $.navWin.open();

@@ -47,7 +47,7 @@ function dataTransform(model) {
 function dettaglioConvenzione(e) {
 	var selectedConv = Alloy.Collections.tempoLibero.getByCid(e.rowData.modelId);
 
-	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv}).getView();
+	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv, headerImg:"logoTempoLibero.png"}).getView();
 	Alloy.Globals.navMenu.openWindow(dettConvenzione);
 }
 
@@ -68,7 +68,7 @@ function mostraMappa() {
 		collection : Alloy.Collections.tempoLibero.toJSON(),
 		pin : "pin_TempoLibero.png",
 		titolo: (OS_ANDROID)?"Tempo libero & benessere":$.titleControl.backgroundImage,
-		homeIcon: "ico_aci_blu.png"
+		homeIcon: "ico_tempo_libero_blu.png"
 		
 	}).getView();
 	Alloy.Globals.navMenu.openWindow(mapWin);

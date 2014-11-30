@@ -1,21 +1,34 @@
-exports.openSideMenu = function() {
+exports.openSideMenu = function(p_auth) {
 
 	var sideMenu = Ti.UI.createView({
 		width : "60%",
-		top: 0,
+		top : 0,
 		height : Ti.UI.SIZE,
 		backgroundColor : "#EEEEEE",
 		visible : false,
 		layout : "vertical",
 		left : Alloy.Globals.deviceWidthHalf
 	});
+
 	
+	Ti.App.addEventListener("loggedInUser", function(e) {
+
+		Ti.API.info("GLOBAL EVENT: " + JSON.stringify(e.loggedUser));
+
+		if (e.loggedUser = true) {
+			loginLabel.text = "Logout";
+		} else {
+			loginLabel.text = "Login";
+		}
+
+	});
+
 	var separator = Ti.UI.createView({
 		width : Ti.UI.FILL,
 		height : 1,
 		backgroundColor : "#CCCCCC"
 	});
-	
+
 	sideMenu.add(separator);
 
 	var menuHeader = Ti.UI.createLabel({
@@ -32,14 +45,12 @@ exports.openSideMenu = function() {
 	});
 	sideMenu.add(menuHeader);
 
-	
 	sideMenu.add(separator);
-	
 
 	var loginLabel = Ti.UI.createLabel({
-		text : "Login",
-		height: 40,
-		width: Ti.UI.FILL,
+		text : (p_auth) ? "Logout" : "Login",
+		height : 40,
+		width : Ti.UI.FILL,
 		font : {
 			fontFamily : 'PTSans-Regular',
 			fontSize : '12dp'
@@ -49,12 +60,25 @@ exports.openSideMenu = function() {
 	});
 
 	loginLabel.addEventListener("click", function() {
-		var winLogin = Alloy.createController('loginWindow').getView();
-		Alloy.Globals.navMenu.openWindow(winLogin);
+
+		if (Ti.App.Properties.getBool("utenteAutenticato")) {
+			
+			Ti.App.Properties.setBool("utenteAutenticato", false);
+			Ti.App.Properties.setObject("datiUtente", {});
+			loginLabel.text = "Login";
+			alert("UTENTE DISCONNESSO");
+			
+		} else {
+
+			var winLogin = Alloy.createController('loginWindow').getView();
+			Alloy.Globals.navMenu.openWindow(winLogin);
+		}
 	});
 
 	sideMenu.add(loginLabel);
 	sideMenu.add(separator);
+	
+	loginLabel.text = (Ti.App.Properties.getBool("utenteAutenticato") == true) ? "Logout" : "Login";
 
 	return sideMenu;
 };
@@ -66,6 +90,12 @@ exports.toggleMenu = function(p_obj) {
 	} else {
 		p_obj.visible = false;
 	}
+
+};
+
+exports.hideMenu = function(p_obj) {
+
+		p_obj.visible = false;
 
 };
 

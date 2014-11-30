@@ -17,7 +17,7 @@
 		<TextField id="username" class="inputField" hintText=" Nome utente"/>
 		<TextField id="password" class="inputField" hintText=" Password" passwordMask="true"/>
 		<View id="ricordamiContainer">
-			<Widget id="ricordami" src="checkbox" value="true"/>
+			<Widget id="ricordami" src="checkbox" value="false"/>
 			<Label class="PTSansRegular ricordamiText">Ricordami</Label>
 		</View>
 		<View id="buttonContainer" onClick="doLogin">

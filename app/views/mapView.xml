@@ -14,7 +14,7 @@
 			<!--<MenuItem id="mn_settings" title="Mappa"/>-->
 
 		</Menu>
-		<Module id="map" module="ti.map" method="createView" dataFunction="updateUI" dataTransform="dataTransform" dataCollection="tempCollection"/>
+		<Module id="map" module="ti.map" method="createView" onClick="linkToPOI" dataFunction="updateUI" dataTransform="dataTransform" dataCollection="tempCollection"/>
 
 		
 	</Window>

@@ -30,7 +30,7 @@
 
 ".buttonText[platform=ios]":{
     color: '#fff',
-    top: 15,
+    top: 10,
     //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
     backgroundColor: 'transparent',
     font: {

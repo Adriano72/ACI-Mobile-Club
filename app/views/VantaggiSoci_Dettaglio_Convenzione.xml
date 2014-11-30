@@ -2,7 +2,7 @@
 	<Model src="delegazioni" instance="true" id="dormireMangiare"/>
 	<Window id="win" class="container" model="$.dormireMangiare" onOpen="doopen">
 		<TitleControl platform="ios">
-			<View class="titleControl"></View>
+			<View id="titleControl" class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
 			<ImageView class="rightNavImg" onClick="openNavigation"/>

@@ -1,7 +1,7 @@
 <Alloy>
 	<!-- VERSIONE iOS (CON NAVIGATION WINDOW) -->
 	<NavigationWindow id="navWin" module="xp.ui">
-		<Window id="index" class="container" onPostlayout="scrollHack" onOpen="doopen">
+		<Window id="index" class="container" onBlur="closeSideMenu" onPostlayout="scrollHack" onOpen="doopen">
 			
 			<TitleControl platform="ios">
 				<View class="titleControl"></View>
@@ -33,7 +33,7 @@
 							<ImageView id="imgMobilita" class="buttonImage"/>
 							<Label id="txtMobilita" class="buttonText">MOBILITÀ</Label>
 						</View>
-						<View id="tessera" class="menuButton last">
+						<View id="tessera" class="menuButton last" onSingletap="tessera">
 							<ImageView id="imgTessera" class="buttonImage"/>
 							<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
 						</View>

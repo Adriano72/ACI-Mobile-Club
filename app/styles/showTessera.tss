@@ -13,7 +13,7 @@
 	backgroundColor: "#fff",
 	top:20,
 	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
+	orientationModes: [Ti.UI.LANDSCAPE_RIGHT],
 	exitOnClose: false
 }
 
@@ -49,7 +49,7 @@
 
 ".imgTessera": {
 	
-	image: "/tessera_sistema2.jpg"
+	image: "/tessera_sistema.jpg"
 }
 
 ".datiContainer":{
