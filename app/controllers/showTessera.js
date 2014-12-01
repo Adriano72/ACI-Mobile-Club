@@ -8,8 +8,9 @@ if (OS_ANDROID) {
 
 function doopen(evt) {
 	if (OS_ANDROID) {
-
-		init1();
+		
+		$.win.activity.actionBar.hide();
+		
 
 	} else {
 		//$.windowtitle.text = winTitle;
@@ -36,8 +37,8 @@ $.validita.text = "FINO AL "+args["userInfo.dataScadenza"];;
 
 $.rotatedContainer.transform = Ti.UI.create2DMatrix().rotate(-90);
 
-$.rotatedContainer.setBottom("25%");
-$.rotatedContainer.setRight("60%"+110);
+$.rotatedContainer.setBottom("15%");
+$.rotatedContainer.setLeft("50%");
 
 var flag = false;
 

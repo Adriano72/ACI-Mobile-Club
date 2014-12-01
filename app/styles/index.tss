@@ -36,11 +36,11 @@
 }
 
 "#menu": {
-    icon: "logo_aci.png"
+    icon: "/images/logo_aci.png"
 }
 
 "#mn_settings": {
-	icon: "/ico_rotella_celeste.png"
+	icon: "/images/icona_strumenti.png"
 }
 
 ".toolbar":{

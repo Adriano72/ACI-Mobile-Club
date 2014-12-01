@@ -38,7 +38,7 @@
 
 "#mn_settings": {
 	
-	icon: "ico_puntatore_celeste.png",
+	icon: "images/icona_puntatore.png",
 	title: "Mappa"
 }
 

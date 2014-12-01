@@ -57,7 +57,7 @@
 }
 
 ".bottomBanner": {
-	image: "/banner_sotto.png",
+	//image: "/banner_sotto.png",
 	width: "90%"
 }
 

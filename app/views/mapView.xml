@@ -5,13 +5,13 @@
 			<View id="titleControl" class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<ImageView class="rightNavImg"/>
+			<ImageView class="rightNavImg" onClick="toggleSideMenu"/>
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 
 			<!-- Cannot specify node text.  Use attributes only. -->
 			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
-			<!--<MenuItem id="mn_settings" title="Mappa"/>-->
+			<MenuItem id="mn_settings" title="Mappa"/>
 
 		</Menu>
 		<Module id="map" module="ti.map" method="createView" onClick="linkToPOI" dataFunction="updateUI" dataTransform="dataTransform" dataCollection="tempCollection"/>

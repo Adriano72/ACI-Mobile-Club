@@ -17,6 +17,8 @@ function doopen(evt) {
 		//$.windowtitle.text = winTitle;
 	}
 	//updateScreen();
+	
+	$.randomBanner.image = encodeURI(Alloy.Globals.bannerImageURL);
 }
 
 var rowData = require('tabulatedData').categorieSyc();
@@ -73,5 +75,13 @@ function selectionDetail(e) {
 		}
 	}
 };
+
+function displayConvenzioneBanner(){
+	
+	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: Alloy.Globals.convenzioneBanner, headerImg:"", isBanner: true}).getView();
+	Alloy.Globals.navMenu.openWindow(dettConvenzione);
+	
+}
+
 
 $.puntiAciMain_Table.setData(rows);

@@ -4,7 +4,11 @@ Ti.API.info("MODELLO: " + JSON.stringify(args));
 
 var encoder = require('encoder');
 
-if(_.isUndefined(args.data.annotation)){
+if(args.isBanner){
+	
+	var modelGot = args.data;
+	
+}else if(_.isUndefined(args.data.annotation)){
 	
 	var modelGot = args.data.attributes;
 	
@@ -50,7 +54,7 @@ function doopen(evt) {
 
 function init1() {
 	abx.displayHomeAsUp = true;
-	abx.title = "Delegazioni";
+	abx.title = "Dettaglio Convenzione";
 	abx.titleFont = "ACI Type Regular.otf";
 	abx.titleColor = "#003772";
 	_.defer(init2);

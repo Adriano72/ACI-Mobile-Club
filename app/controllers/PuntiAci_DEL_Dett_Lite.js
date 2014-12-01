@@ -1,6 +1,12 @@
 var args = arguments[0] || {};
 
-var modelGot = args.data.attributes;
+if(args.fromMap){
+	var modelGot = args.data;
+}else{
+	var modelGot = args.data.attributes;
+}
+
+
 
 modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];

@@ -5,6 +5,7 @@
 		</TitleControl>
 		<RightNavButton platform="ios">
 			<!--<ImageView class="rightNavImg"/>-->
+			<Label>Soccorso Stradale</Label>
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 
@@ -13,9 +14,11 @@
 			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
 
 		</Menu>
-		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
-		<View class="bottomBannerContainer">
-			<ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/>
+		<View class="wrapper">
+			<View class="subWrapper">
+				<Label class="PTSansRegular soccorsoText">Un unico numero verde per richiedere i servizi ACI, attivo 365 giorni l'anno 24 ore su 24.</Label>
+				<ImageView class="soccorsoImg" onClick="chiamaSoccorso"/>
+			</View>
 		</View>
 	</Window>
 </Alloy>

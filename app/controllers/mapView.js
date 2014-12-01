@@ -1,8 +1,13 @@
 var args = arguments[0] || {};
 
-var tmpCollection = Alloy.Collections.tempCollection;
+var sideMenu = require('mapSideMenu');
 
-tmpCollection.reset(args.collection);
+ var tmpCollection = Alloy.Collections.tempCollection;
+
+ tmpCollection.reset(args.collection);
+ 
+
+
 
 Ti.API.info("TITOLO: " + args.titolo);
 
@@ -66,12 +71,62 @@ function linkToPOI(e) {
 
 	if (clicksource == 'annotation' || clicksource == 'leftButton' || clicksource == 'leftPane' || clicksource == 'infoWindow' || clicksource == 'subtitle') {//leftButton event
 		//alert("leftButton of " + annotation + " has been clicked.");
+		Ti.API.info("TYPE: " + e.annotation._type);
 
-		var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-			data : e,
-			headerImg : "logoNoleggiTrasporti.png"
-		}).getView();
-		Alloy.Globals.navMenu.openWindow(dettConvenzione);
+		if (_.isUndefined(e.annotation.agreement_id)) {
+
+			switch(e.annotation._type) {
+
+			case "aacc":
+				var winAC = Alloy.createController('PuntiAci_AC').getView();
+				Alloy.Globals.navMenu.openWindow(winAC);
+				break;
+			case "del":
+				var dettPuntoACI = Alloy.createController('PuntiAci_DEL_Dett_Lite', {
+					data : e.annotation,
+					fromMap: true
+				}).getView();
+				Alloy.Globals.navMenu.openWindow(dettPuntoACI);
+				break;
+			case "pra":
+				var dettPuntoACI = Alloy.createController('PuntiAci_PRA_Dett', {
+					data : e.annotation,
+					fromMap: true
+				}).getView();
+				Alloy.Globals.navMenu.openWindow(dettPuntoACI);
+				break;
+			case "urp":
+				var dettPuntoACI = Alloy.createController('PuntiAci_URP_Dett', {
+					data : e.annotation,
+					fromMap: true
+				}).getView();
+				Alloy.Globals.navMenu.openWindow(dettPuntoACI);
+				break;
+			case "tasse":
+				var dettPuntoACI = Alloy.createController('PuntiAci_TASSE_Dett', {
+					data : e.annotation,
+					fromMap: true
+				}).getView();
+				Alloy.Globals.navMenu.openWindow(dettPuntoACI);
+				break;
+			case "dem":
+				var dettPuntoACI = Alloy.createController('PuntiAci_Demolitori_Dett', {
+					data : e.annotation,
+					fromMap: true
+				}).getView();
+				Alloy.Globals.navMenu.openWindow(dettPuntoACI);
+				break;
+			default:
+
+			}
+
+		} else {
+			var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+				data : e,
+				headerImg : "logoNoleggiTrasporti.png"
+			}).getView();
+			Alloy.Globals.navMenu.openWindow(dettConvenzione);
+		}
 
 	}
 
@@ -87,6 +142,30 @@ function openNavigation(e) {
 	});
 
 };
+
+var rightSettingsMenu = sideMenu.openMapSideMenu(function() {
+	//Ti.API.info("BEFORE CALLBACK - COLLECTION LENGTH: " + Alloy.Collections.puntiMappa.length);
+	//tmpCollection.reset();
+	//tmpCollection.trigger('change');
+	//$.map.removeAllAnnotations();
+	//_.each($.map.annotations, function(value) {
+		//$.map.removeAnnotation(value);
+	//});
+
+	//Ti.API.info("ANNOTATIONS LENGTH: " + $.map.annotations.length);
+	//Alloy.Collections.puntiMappa.reset(Alloy.Collections.automobileClub.toJSON());
+	//Ti.API.info("ANNOTATIONS LENGTH: " + $.map.annotations.length);
+
+	//updateUI();
+	//Ti.API.info("AFTER CALLBACK - COLLECTION LENGTH: " + Alloy.Collections.puntiMappa.length);
+});
+
+$.win.add(rightSettingsMenu);
+
+function toggleSideMenu() {
+
+	sideMenu.toggleMenu(rightSettingsMenu);
+}
 
 //tempCollection.trigger("change");
 

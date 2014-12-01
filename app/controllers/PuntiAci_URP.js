@@ -61,7 +61,7 @@ function openNavigation(e) {
 function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
-		collection : Alloy.Collections.delegazioni.toJSON(),
+		collection : Alloy.Collections.urp.toJSON(),
 		pin : "pin_Urp.png",
 		titolo : (OS_ANDROID) ? "URP" : $.titleControl.backgroundImage,
 		homeIcon : "ico_uffici_pubblico_blu.png"

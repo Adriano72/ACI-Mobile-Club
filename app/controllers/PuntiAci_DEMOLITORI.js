@@ -61,7 +61,7 @@ function openNavigation(e) {
 function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
-		collection : Alloy.Collections.delegazioni.toJSON(),
+		collection : Alloy.Collections.demolitori.toJSON(),
 		pin : "pin_Demolitori.png",
 		titolo : (OS_ANDROID) ? "Demolitori" : $.titleControl.backgroundImage,
 		homeIcon : "ico_demolitori_blu.png"

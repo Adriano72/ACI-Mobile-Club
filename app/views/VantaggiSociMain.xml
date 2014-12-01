@@ -4,7 +4,7 @@
 			<View class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<ImageView class="rightNavImg"/>
+			<!--<ImageView class="rightNavImg"/>-->
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 
@@ -15,7 +15,7 @@
 		</Menu>
 		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
 		<View class="bottomBannerContainer">
-			<ImageView class="bottomBanner"/>
+			<ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/>
 		</View>
 	</Window>
 </Alloy>

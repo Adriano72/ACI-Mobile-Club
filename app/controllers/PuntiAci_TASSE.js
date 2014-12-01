@@ -61,7 +61,7 @@ function openNavigation(e) {
 function mostraMappa() {
 
 	var mapWin = Alloy.createController('mapView', {
-		collection : Alloy.Collections.delegazioni.toJSON(),
+		collection : Alloy.Collections.tasse.toJSON(),
 		pin : "pin_Tasse.png",
 		titolo : (OS_ANDROID) ? "Tasse" : $.titleControl.backgroundImage,
 		homeIcon : "ico_assistenza_tasse_blu.png"

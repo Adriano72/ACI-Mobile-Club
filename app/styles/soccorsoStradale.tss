@@ -19,7 +19,7 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoPuntiACI.png",
+	
 	width: 120,
 	height: 20
 }
@@ -42,26 +42,31 @@
 	icon: "/ico_rotella_celeste.png"
 }
 
-".table[platform=ios]":{
+".wrapper":{
+	backgroundColor: "#fff",
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL
+}
+
+".subWrapper": {
+	layout: "vertical",
+	top: "30%"
+}
+
+".soccorsoText":{
 	top: 0,
-	height: Ti.UI.SIZE
-	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+	left: 10,
+	right: 10,
+	textAlign: "center",
+	font: {
+        fontSize: '22dp'
+    }
 }
 
-".table[platform=android]":{
-	top: 0
+".soccorsoImg":{
+	top: 10,
+	image: "/soccorsoStradale.png"
 }
-
-".bottomBannerContainer": {
-	bottom: 0,
-	height: "30%"
-}
-
-".bottomBanner": {
-	//image: "/banner_sotto.png",
-	width: "90%"
-}
-
 
 
 

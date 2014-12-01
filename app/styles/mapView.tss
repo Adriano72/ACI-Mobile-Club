@@ -22,6 +22,11 @@
 	height: 24
 }
 
+".rightNavImg[platform=ios]": {
+	image: "ico_altro_blu.png",
+	height: 20
+}
+
 "MenuItem": {
 	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 }
@@ -31,7 +36,7 @@
 }
 
 "#mn_settings": {
-	icon: "/ico_puntatore_celeste.png"
+	icon: "/images/ico_altro_blu.png"
 }
 
 "#map": {

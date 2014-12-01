@@ -4,7 +4,7 @@
 			<View class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<ImageView class="rightNavImg"/>
+			<!--<ImageView class="rightNavImg"/>-->
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 
@@ -14,27 +14,27 @@
 
 		</Menu>
 		<View class="tesseraContainer">
-			<ImageView id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC"/>
-			
-			<View id="rotatedContainer" class="datiContainer">
-				
-				<Label id="LabelTitolare" class="labelTessera">TITOLARE</Label>
-				<Label id="titolare" class="datiTessera"/>
-				<Label class="spacer"/>
-				<View class = "bottomContainer">
-					
-					<View class="leftBlock">
-						<Label id="LabelNumTessera" class="labelTessera bottomItems">N° TESSERA</Label>
-						<Label id="numTessera" class="datiTessera bottomItems"/>
-					</View>
-					<View class="rightBlock">
-						<Label id="LabelValidita" class="labelTessera bottomItems">VALIDITÀ</Label>
-						<Label id="validita" class="datiTessera bottomItems"/>
-					</View>
+			<!--<ImageView id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC"/>-->
+			<View id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC">
+				<View id="rotatedContainer" class="datiContainer">
 
+					<Label id="LabelTitolare" class="labelTessera">TITOLARE</Label>
+					<Label id="titolare" class="datiTessera"/>
+					<Label class="spacer"/>
+					<View class = "bottomContainer">
+
+						<View class="leftBlock">
+							<Label id="LabelNumTessera" class="labelTessera bottomItems">N° TESSERA</Label>
+							<Label id="numTessera" class="datiTessera bottomItems"/>
+						</View>
+						<View class="rightBlock">
+							<Label id="LabelValidita" class="labelTessera bottomItems">VALIDITÀ</Label>
+							<Label id="validita" class="datiTessera bottomItems"/>
+						</View>
+
+					</View>
 				</View>
 			</View>
 		</View>
-
 	</Window>
 </Alloy>

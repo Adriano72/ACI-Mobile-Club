@@ -23,7 +23,7 @@
 }
 
 ".rightNavImg[platform=ios]": {
-	image: "ico_puntatore_celeste.png",
+	image: "icona_puntatore.png",
 	height: 15
 }
 
@@ -37,7 +37,7 @@
 
 "#mn_settings": {
 	
-	icon: "ico_puntatore_celeste.png",
+	icon: "images/icona_puntatore.png",
 	title: "Mappa"
 }
 
