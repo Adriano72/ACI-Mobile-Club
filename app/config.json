@@ -8,6 +8,7 @@
   "os:ios": {},
   "os:mobileweb": {},
   "dependencies": {
-    "checkbox": "*"
+    "checkbox": "*",
+    "nl.fokkezb.loading": "*"
   }
 }

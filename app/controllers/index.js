@@ -132,10 +132,15 @@ function openVantaggiSoci() {
 }
 
 function loadData() {
+	
+	
 
 	uno();
 
 	function uno() {
+		
+		Alloy.Globals.loading.show('Sincronizzazione', false);
+		
 		net.getBanner(function(p_data) {
 
 			//Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
@@ -264,8 +269,12 @@ function loadData() {
 			//Ti.API.info("XHR RESULT NOLEGGI TRASPORTI: " + JSON.stringify(p_data));
 			Alloy.Collections.altriServizi.reset(p_data);
 			Ti.API.info("SYC ALTRI SERVIZI COLLECTION LENGTH: " + Alloy.Collections.altriServizi.length);
-			//_.defer(tredici);
+			_.defer(ultima);
 		});
+	}
+	
+	function ultima() {
+		Alloy.Globals.loading.hide();
 	}
 
 }

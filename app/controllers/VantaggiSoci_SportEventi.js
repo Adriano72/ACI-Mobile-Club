@@ -20,7 +20,7 @@ function openWin() {
 
 function init1() {
 	abx.displayHomeAsUp = true;
-	abx.title = "Tempo libero & benessere";
+	abx.title = "Sport & Eventi";
 	abx.titleFont = "ACI Type Regular.otf";
 	abx.titleColor = "#003772";
 	_.defer(init2);

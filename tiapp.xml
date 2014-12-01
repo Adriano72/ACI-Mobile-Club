@@ -2,11 +2,11 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>it.aci.informatica.AciMobileClub</id>
     <!--<id>it.aci.informatica.AciMobileClub</id>-->
-    <name>ACI-Mobile-Club</name>
+    <name>ACI Mobile Club</name>
     <version>1.0</version>
     <publisher>adrianomassi</publisher>
     <url>http://</url>
-    <description>undefined</description>
+    <description>ACI Mobile Club</description>
     <copyright>2014 by adrianomassi</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>

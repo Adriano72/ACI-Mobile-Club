@@ -5,7 +5,7 @@
 			<View id="titleControl" class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<ImageView class="rightNavImg" onClick="toggleSideMenu"/>
+			<!--<ImageView class="rightNavImg" onClick="toggleSideMenu"/>-->
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 
