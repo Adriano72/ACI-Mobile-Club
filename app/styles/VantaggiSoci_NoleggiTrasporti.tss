@@ -23,7 +23,7 @@
 }
 
 ".rightNavImg[platform=ios]": {
-	image: "icona_puntatore.png",
+	image: "ico_puntatore_celeste.png",
 	height: 15
 }
 
