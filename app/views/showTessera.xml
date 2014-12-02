@@ -15,7 +15,7 @@
 		</Menu>
 		<View class="tesseraContainer">
 			<!--<ImageView id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC"/>-->
-			<View id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC">
+			<View id="tessera" class="imgTessera" onClick="showSYC">
 				<View id="rotatedContainer" class="datiContainer">
 
 					<Label id="LabelTitolare" class="labelTessera">TITOLARE</Label>

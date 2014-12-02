@@ -36,8 +36,8 @@ exports.getUserLocation = function(_callback) {
 	
 	
 	var position = {
-		latitude : 42.41,
-		longitude : 12.43
+		latitude : 41.8089777,
+		longitude : 12.4365196
 	};
 	
 	/*

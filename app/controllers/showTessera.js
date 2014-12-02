@@ -6,6 +6,8 @@ if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
 };
 
+var immagineTessera = require("utility").getTesseraImage(args["userInfo.categoriaTessera"]);
+
 function doopen(evt) {
 	if (OS_ANDROID) {
 		
@@ -15,9 +17,15 @@ function doopen(evt) {
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
+	
+	
 
 	//updateScreen();
 }
+
+$.tessera.backgroundImage = immagineTessera;
+
+Ti.API.info("TESSERA: "+immagineTessera);
 
 function init1() {
 	abx.displayHomeAsUp = true;
@@ -38,14 +46,14 @@ $.validita.text = "FINO AL "+args["userInfo.dataScadenza"];;
 $.rotatedContainer.transform = Ti.UI.create2DMatrix().rotate(-90);
 
 $.rotatedContainer.setBottom("15%");
-$.rotatedContainer.setLeft("50%");
+$.rotatedContainer.setLeft("45%");
 
 var flag = false;
 
 function checkSize(e) {
 
 	e.cancelBubble = true;
-
+	$.tessera.backgroundImage = immagineTessera;
 	Ti.API.info("WIDTH: " + e.source.toImage().width);
 	Ti.API.info("HEIGHT: " + e.source.toImage().height);
 

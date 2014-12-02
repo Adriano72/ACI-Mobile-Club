@@ -39,8 +39,9 @@ $.ricordami.getView().addEventListener('change', function(e) {
 
 function doLogin() {
 
-	Ti.API.info("CLICK");
 	if ($.username.value !== "" && $.password.value !== "") {
+		
+		Alloy.Globals.loading.show('Caricamento dati...', false);
 
 		net.getSSOID($.username.value, $.password.value, function(ssoid) {
 
@@ -55,7 +56,7 @@ function doLogin() {
 					Ti.App.fireEvent("loggedInUser", {loggedUser:true});
 
 				};
-
+				Alloy.Globals.loading.hide();
 				Ti.API.info("USER DATA: " + JSON.stringify(user_data));
 				var winTessera = Alloy.createController('showTessera', user_data.data).getView();
 				Alloy.Globals.navMenu.openWindow(winTessera);

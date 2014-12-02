@@ -58,28 +58,30 @@ exports.formattaOrari = function(obj) {
 
 exports.getTesseraImage = function(codice){
 	
+	Ti.API.info("CODICE: " + codice);
+	
 	var transcode = {
 		
-		'DIP': 'sistema.jpg',
-		'FAM': 'sistema.jpg',
-		'SOC': 'sistema.jpg',
-		'SMA': 'sistema.jpg',
-		'SOG': 'sistema.jpg',		
-		'GDI': 'gold.jpg',
-		'GFA': 'gold.jpg',
-		'GSO': 'gold.jpg',
-		'GMA': 'gold.jpg',		
-		'GIO': 'okkei.jpg',
-		'GIA': 'okkei.jpg',		
-		'UNO': 'one.jpg',
-		'ONG': 'one.jpg',		
-		'CLO': 'club.jpg',
-		'CLU': 'club.jpg',		
-		'VIN': 'vintage.jpg',		
-		'CON': 'driver.jpg',
-		'DRV': 'driver.jpg',		
-		'STA': 'storico.jpg',
-		'STF': 'storico.jpg'		
+		'DIP': 'tessera_sistema.jpg',
+		'FAM': 'tessera_sistema.jpg',
+		'SOC': 'tessera_sistema.jpg',
+		'SMA': 'tessera_sistema.jpg',
+		'SOG': 'tessera_sistema.jpg',		
+		'GDI': 'tessera_gold.jpg',
+		'GFA': 'tessera_gold.jpg',
+		'GSO': 'tessera_gold.jpg',
+		'GMA': 'tessera_gold.jpg',		
+		'GIO': 'tessera_okkei.jpg',
+		'GIA': 'tessera_okkei.jpg',		
+		'UNO': 'tessera_one.jpg',
+		'ONG': 'tessera_one.jpg',		
+		'CLO': 'tessera_club.jpg',
+		'CLU': 'tessera_club.jpg',		
+		'VIN': 'tessera_vintage.jpg',		
+		'CON': 'tessera_driver.jpg',
+		'DRV': 'tessera_driver.jpg',		
+		'STA': 'tessera_storico.jpg',
+		'STF': 'tessera_storico.jpg'		
 		
 	};
 	
@@ -89,7 +91,7 @@ exports.getTesseraImage = function(codice){
 	
 	Ti.API.info("TESSERA: "+imm);
 	
-	return imm;
+	return "/"+imm;
 	
 	
 };
