@@ -54,11 +54,11 @@ exports.categorieSyc = function() {
 		img : "ico_mobilita_01.png",
 		long_name : "Noleggi & Trasporti",
 		short_name : "noleggi_trasporti"
-	}, {
+	}, /*{
 		img : "ico_sport_01.png",
 		long_name : "Sport & Eventi",
 		short_name : "sport_eventi"
-	}, {
+	}, */{
 		img : "ico_altri_servizi_blu.png",
 		long_name : "Altri Servizi",
 		short_name : "altri_servizi"
