@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 
-Ti.API.info("ARGS: "+ JSON.stringify(args));
+Ti.API.info("ARGS: " + JSON.stringify(args));
 
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
@@ -10,22 +10,19 @@ var immagineTessera = require("utility").getTesseraImage(args["userInfo.categori
 
 function doopen(evt) {
 	if (OS_ANDROID) {
-		
+
 		$.win.activity.actionBar.hide();
-		
 
 	} else {
 		//$.windowtitle.text = winTitle;
 	}
-	
-	
 
 	//updateScreen();
 }
 
 $.tessera.backgroundImage = immagineTessera;
 
-Ti.API.info("TESSERA: "+immagineTessera);
+Ti.API.info("TESSERA: " + immagineTessera);
 
 function init1() {
 	abx.displayHomeAsUp = true;
@@ -39,14 +36,20 @@ function init2() {
 	$.win.activity.invalidateOptionsMenu();
 }
 
-$.titolare.text = args["userInfo.name"] +" "+args["userInfo.surname"];
+$.titolare.text = args["userInfo.name"] + " " + args["userInfo.surname"];
 $.numTessera.text = args["userInfo.numeroTessera"];
-$.validita.text = "FINO AL "+args["userInfo.dataScadenza"];;
+$.validita.text = "FINO AL " + args["userInfo.dataScadenza"];
+;
 
 $.rotatedContainer.transform = Ti.UI.create2DMatrix().rotate(-90);
 
-$.rotatedContainer.setBottom("15%");
-$.rotatedContainer.setLeft("45%");
+if (OS_ANDROID) {
+	$.rotatedContainer.setBottom("20%");
+	$.rotatedContainer.setLeft("40%");
+} else {
+	$.rotatedContainer.setBottom("29%");
+	$.rotatedContainer.setLeft("25%");
+}
 
 var flag = false;
 
@@ -71,10 +74,10 @@ function checkSize(e) {
 
 }
 
-function showSYC(){
+function showSYC() {
 	var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
 	Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
-	
+
 };
 
 //$.tessera.transform = Ti.UI.create2DMatrix().rotate(-90);

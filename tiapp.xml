@@ -47,7 +47,7 @@
         <manifest android:installLocation="preferExternal"
             android:versionCode="11" android:versionName="11.0.0" package="it.aci.informatica.AciMobileClub">
             <!--<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>-->
-            <uses-sdk android:targetSdkVersion="19"/>
+            <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
             <supports-screens android:anyDensity="true"/>
             <!-- Allows the API to download data from Google Map servers -->
             <uses-permission android:name="android.permission.INTERNET"/>

@@ -23,8 +23,8 @@
 }
 
 ".rightNavImg[platform=ios]": {
-	image: "ico_puntatore_celeste.png",
-	height: 15
+	image: "images/mappa.png",
+	height: 20
 }
 
 
