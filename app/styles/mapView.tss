@@ -32,7 +32,7 @@
 }
 
 "#menu": {
-	icon: "/pin_celeste.png"
+	icon: "/images/ic_action_puntatore.png"
 }
 
 "#mn_settings": {

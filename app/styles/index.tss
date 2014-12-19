@@ -40,7 +40,7 @@
 }
 
 "#mn_settings": {
-	icon: "/images/icona_strumenti.png"
+	icon: "/images/ic_action_impostazioni.png"
 }
 
 ".toolbar":{

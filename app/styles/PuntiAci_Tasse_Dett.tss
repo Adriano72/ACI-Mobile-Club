@@ -34,7 +34,7 @@
 }
 
 "#menu": {
-	icon: "ico_assistenza_tasse_blu.png"
+	icon: "/images/ic_action_assistenza_tasse.png"
 }
 
 "#mn_navigazione": {
@@ -103,19 +103,19 @@
 }
 
 "#serviziIcon": {
-	image: "/x_abaco_blu.png"
+	image: "/images/ic_action_servizi.png"
 }
 
 "#orariIcon": {
-	image: "/x_orario_blu.png"
+	image: "/images/ic_action_orari.png"
 }
 
 "#chiamaIcon": {
-	image: "/x_telefono_blu.png"
+	image: "/images/ic_action_phone_blu.png"
 }
 
 "#emailIcon": {
-	image: "/mail_celeste.png"
+	image: "/images/ic_action_mail_blu.png"
 }
 
 ".hasDetail[platform=android]": {

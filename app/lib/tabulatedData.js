@@ -1,32 +1,32 @@
 exports.puntiAciMain = function() {
 
 	var itemsObj = [{
-		img : "ico_aci_blu.png",
+		img : "/images/ic_action_aci.png",
 		text : "Automobile Club",
 		id_code : "AC"
 
 	}, {
-		img : "ico_delegazioni_blu.png",
+		img : "/images/ic_action_delegazioni.png",
 		text : "Delegazioni",
 		id_code : "DEL"
 
 	}, {
-		img : "ico_uffici_blu.png",
+		img : "/images/ic_action_uffici_pra.png",
 		text : "Uffici PRA",
 		id_code : "PRA"
 
 	}, {
-		img : "ico_uffici_pubblico_blu.png",
+		img : "/images/ic_action_urp.png",
 		text : "Uffici Relazione con il Pubblico",
 		id_code : "URP"
 
 	}, {
-		img : "ico_assistenza_tasse_blu.png",
+		img : "/images/ic_action_assistenza_tasse.png",
 		text : "Assistenza tasse automobilistiche",
 		id_code : "TASSE"
 
 	}, {
-		img : "ico_demolitori_blu.png",
+		img : "/images/ic_action_demolitori.png",
 		text : "Demolitori",
 		id_code : "DEM"
 

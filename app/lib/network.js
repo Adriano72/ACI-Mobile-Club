@@ -26,7 +26,7 @@ exports.getPuntiAci = function(type_code, _callback) {
 		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
 	};
 
-	Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/aci/pos?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 1 } }&limit=15');
+	Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/aci/pos?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
 
 	xhr.open('GET', Alloy.Globals.baseURL + '/aci/pos?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
 
@@ -64,7 +64,7 @@ exports.getDemolitori = function(type_code, _callback) {
 		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
 	};
 
-	Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 1 } }&limit=15');
+	Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
 
 	xhr.open('GET', Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
 
@@ -106,7 +106,7 @@ exports.getVantaggiSoci = function(type_code, _callback) {
 		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
 	};
 
-	Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"'+type_code+'", "status": "ok", "address.location": { "$near": ['+Alloy.Globals.userPosition.longitude+','+Alloy.Globals.userPosition.latitude+'], "$maxDistance": 1 } }&limit=15');
+	Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"'+type_code+'", "status": "ok", "address.location": { "$near": ['+Alloy.Globals.userPosition.longitude+','+Alloy.Globals.userPosition.latitude+'], "$maxDistance": 0.2 } }&limit=15');
 
 	xhr.open('GET', Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
 

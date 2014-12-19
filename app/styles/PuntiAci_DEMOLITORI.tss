@@ -32,12 +32,12 @@
 }
 
 "#menu": {
-	icon: "ico_demolitori_blu.png"
+	icon: "/images/ic_action_demolitori.png"
 }
 
 "#mn_settings": {
 	
-	icon: "images/icona_puntatore.png",
+	icon: "/images/ic_action_pin.png",
 	title: "Mappa"
 }
 
@@ -119,16 +119,17 @@
 }
 
 ".bt_chiama": {
-	image: "/x_telefono_celeste.png",
-	right: 50,
-	width: 13,
-	height:20
+	image: "/images/ic_action_phone.png",
+	right: 50
+	//width: 13,
+	//height:20
 	
 }
 
 ".bt_email": {
-	image: "/mail_celeste.png",
-	right: 5,
-	width: 30,
-	height:20
+	image: "/images/ic_action_mail.png",
+	right: 5
+	//width: 30,
+	//height:20
 }
+
