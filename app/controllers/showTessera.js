@@ -38,8 +38,18 @@ function init2() {
 
 $.titolare.text = args["userInfo.name"] + " " + args["userInfo.surname"];
 $.numTessera.text = args["userInfo.numeroTessera"];
-$.validita.text = "FINO AL " + args["userInfo.dataScadenza"];
-;
+
+
+var pieces = args["userInfo.dataScadenza"].split('/');
+
+
+//Ti.API.info("SPLITTED: "+pieces);
+pieces.reverse();
+var reversed = pieces.join('/');
+//Ti.API.info("SPLITTED: "+reversed);
+
+$.validita.text = "FINO AL " + reversed;
+
 
 $.rotatedContainer.transform = Ti.UI.create2DMatrix().rotate(-90);
 

@@ -68,19 +68,32 @@ function mostraMappa() {
 
 
 function doPhoneCall(e) {
-	var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
-	Ti.API.info("TEL: " + trimmedPhone);
-	Titanium.Platform.openURL('tel:' + trimmedPhone);
-	//Titanium.Platform.openURL("tel:"+e.source.telNumber);
+	
+	e.cancelBubble = true;
+
+	if (!_.isUndefined(e.source.telNumber)) {
+		var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
+		Ti.API.info("TEL: " + trimmedPhone);
+		Titanium.Platform.openURL('tel:' + trimmedPhone);
+	} else {
+		alert("Numero di telefono non disponibile");
+	}
+
 };
 
 function doSendEmail(e) {
-	Ti.API.info("EMAIL: " + e.source.indirizzoEmail);
-	var recipients = [];
-	recipients.push((e.source.indirizzoEmail != "") ? e.source.indirizzoEmail : "test@email.com");
-	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = recipients;
-	emailDialog.open();
+	e.cancelBubble = true;
+
+	if (e.source.indirizzoEmail !== "") {
+		Ti.API.info("EMAIL: " + e.source.indirizzoEmail);
+		var recipients = [];
+		recipients.push(e.source.indirizzoEmail);
+		var emailDialog = Ti.UI.createEmailDialog();
+		emailDialog.toRecipients = recipients;
+		emailDialog.open();
+	} else {
+		alert("Indirizzo email non disponibile");
+	}
 };
 
 $.win.addEventListener('close', function() {

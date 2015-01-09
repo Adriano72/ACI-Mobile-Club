@@ -4,25 +4,22 @@ Ti.API.info("MODELLO: " + JSON.stringify(args));
 
 var encoder = require('encoder');
 
-if(args.isBanner){
-	
+if (args.isBanner) {
+
 	var modelGot = args.data;
-	
-}else if(_.isUndefined(args.data.annotation)){
-	
+
+} else if (_.isUndefined(args.data.annotation)) {
+
 	var modelGot = args.data.attributes;
-	
-}else {
-	
+
+} else {
+
 	var modelGot = args.data.annotation;
-	
-};
+
+}
+;
 
 Ti.API.info("DATI: " + JSON.stringify(modelGot));
-
-
-
-
 
 modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];
@@ -33,7 +30,6 @@ modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDe
 modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.images.logo);
 
 $.dormireMangiare.set(modelGot);
-
 
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
@@ -46,7 +42,7 @@ function doopen(evt) {
 
 	} else {
 		$.titleControl.backgroundImage = args.headerImg;
-		
+
 	}
 
 	//updateScreen();
@@ -65,7 +61,7 @@ function init2() {
 }
 
 function toggleDettaglioDescrizione(e) {
-	
+
 	e.cancelBubble = true;
 
 	if ($.dettaglioDescrizione.visible == true) {
@@ -89,7 +85,7 @@ function toggleDettaglioDescrizione(e) {
 };
 
 function toggleDettaglioVantaggio(e) {
-	
+
 	e.cancelBubble = true;
 
 	if ($.dettaglioVantaggio.visible == true) {
@@ -122,18 +118,29 @@ function openNavigation(e) {
 
 function doPhoneCall(e) {
 	e.cancelBubble = true;
-	var trimmedPhone = (modelGot.contacts.tel[0]) ? modelGot.contacts.tel[0].replace(/\s+/g, '') : "069998383";
-	Ti.API.info("TEL: " + trimmedPhone);
-	Titanium.Platform.openURL('tel:' + trimmedPhone);
-	//Titanium.Platform.openURL("tel:"+e.source.telNumber);
+
+	if (modelGot.contacts.tel[0]) {
+		var trimmedPhone = modelGot.contacts.tel[0].replace(/\s+/g, '');
+		Ti.API.info("TEL: " + trimmedPhone);
+		Titanium.Platform.openURL('tel:' + trimmedPhone);
+	} else {
+		alert("Numero di telefono non disponibile");
+	}
+
 };
 
 function doSendEmail(e) {
 	e.cancelBubble = true;
-	Ti.API.info("EMAIL: " + modelGot.contacts.email[0]);
-	var recipients = [];
-	recipients.push((modelGot.contacts.email[0] != "") ? modelGot.contacts.email[0] : "test@email.com");
-	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = recipients;
-	emailDialog.open();
+
+	if (modelGot.contacts.email[0] !== "") {
+		Ti.API.info("EMAIL: " + modelGot.contacts.email[0]);
+		var recipients = [];
+		recipients.push(modelGot.contacts.email[0]);
+		var emailDialog = Ti.UI.createEmailDialog();
+		emailDialog.toRecipients = recipients;
+		emailDialog.open();
+	} else {
+		alert("Indirizzo email non disponibile");
+	}
+
 };

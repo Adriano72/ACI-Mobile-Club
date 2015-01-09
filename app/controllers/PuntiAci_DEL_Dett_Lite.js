@@ -1,12 +1,10 @@
 var args = arguments[0] || {};
 
-if(args.fromMap){
+if (args.fromMap) {
 	var modelGot = args.data;
-}else{
+} else {
 	var modelGot = args.data.attributes;
 }
-
-
 
 modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];
@@ -48,7 +46,7 @@ function init2() {
 }
 
 function toggleDettaglioServizi(e) {
-	
+
 	e.cancelBubble = true;
 	if ($.dettaglioServizi.visible == true) {
 		$.dettaglioServizi.visible = false;
@@ -69,9 +67,9 @@ function toggleDettaglioServizi(e) {
 };
 
 function toggleDettaglioOrari(e) {
-	
+
 	e.cancelBubble = true;
-	
+
 	if ($.dettaglioOrari.visible == true) {
 		$.dettaglioOrari.visible = false;
 		$.orariIcon.image = "/x_orario_blu.png";
@@ -102,18 +100,32 @@ function openNavigation(e) {
 
 function doPhoneCall(e) {
 	e.cancelBubble = true;
-	var trimmedPhone = (modelGot.contacts.tel[0]) ? modelGot.contacts.tel[0].replace(/\s+/g, '') : "069998383";
-	Ti.API.info("TEL: " + trimmedPhone);
-	Titanium.Platform.openURL('tel:' + trimmedPhone);
-	//Titanium.Platform.openURL("tel:"+e.source.telNumber);
+
+	if (modelGot.contacts.tel[0]) {
+		var trimmedPhone = modelGot.contacts.tel[0].replace(/\s+/g, '');
+		Ti.API.info("TEL: " + trimmedPhone);
+		Titanium.Platform.openURL('tel:' + trimmedPhone);
+	} else {
+		alert("Numero di telefono non disponibile");
+	}
+
 };
 
 function doSendEmail(e) {
 	e.cancelBubble = true;
-	Ti.API.info("EMAIL: " + modelGot.contacts.email[0]);
-	var recipients = [];
-	recipients.push((modelGot.contacts.email[0] != "") ? modelGot.contacts.email[0] : "test@email.com");
-	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = recipients;
-	emailDialog.open();
+
+	if (modelGot.contacts.email[0] !== "") {
+		Ti.API.info("EMAIL: " + modelGot.contacts.email[0]);
+		var recipients = [];
+		recipients.push(modelGot.contacts.email[0]);
+		var emailDialog = Ti.UI.createEmailDialog();
+		emailDialog.toRecipients = recipients;
+		emailDialog.open();
+	} else {
+		alert("Indirizzo email non disponibile");
+	}
 };
+
+ $.win.addEventListener('close', function() {
+	$.destroy();
+});

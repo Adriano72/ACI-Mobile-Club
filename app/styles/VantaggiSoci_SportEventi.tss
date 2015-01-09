@@ -23,7 +23,7 @@
 }
 
 ".rightNavImg[platform=ios]": {
-	image: "images/mappa.png",
+	image: "images/ic_action_pin.png",
 	height: 25
 }
 

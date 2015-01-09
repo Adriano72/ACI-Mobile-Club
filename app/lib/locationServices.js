@@ -1,61 +1,66 @@
 exports.getUserLocation = function(_callback) {
-	
-	/*
-	
-	if (Ti.Geolocation.locationServicesEnabled) {
-		Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
-		Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
-		Ti.Geolocation.distanceFilter = 10;
-		Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
 
-		
-		 Titanium.Geolocation.getCurrentPosition(function(e) {
-		 if (e.error) {
-		 alert('Error: ' + e.error);
-		 } else {
+	if (!Alloy.Globals.DevMode) {
 
-		 var position = {
-		 latitude : e.coords.latitude,
-		 longitude : e.coords.longitude
-		 };
+		if (Ti.Geolocation.locationServicesEnabled) {
+			Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
+			Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
+			Ti.Geolocation.distanceFilter = 10;
+			Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
 
-		 Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
-		 Alloy.Globals.userPosition = position;
+			Titanium.Geolocation.getCurrentPosition(function(e) {
+				if (e.error) {
+					alert('Error: ' + e.error);
+				} else {
 
-		 _callback(position);
+					var position = {
+						latitude : e.coords.latitude,
+						longitude : e.coords.longitude
+					};
 
-		 }
-		 });
-		 
+					Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
+					Alloy.Globals.userPosition = position;
+
+					_callback(position);
+
+				}
+			});
+
+		} else {
+			alert('Abilitare i servizi di localizzazione per usufruire del servizio');
+		}
 
 	} else {
-		alert('Abilitare i servizi di localizzazione per usufruire del servizio');
+		var position = {
+			latitude : 41.8089777,
+			longitude : 12.4365196
+		};
+		Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
+		Alloy.Globals.userPosition = position;
+
+		_callback(position);
 	}
-	*/
-	
-	
-	
-	
-	var position = {
-		latitude : 41.8089777,
-		longitude : 12.4365196
-	};
-	
+
 	/*
-	var position = {
-		latitude : 41.8,
-		longitude : 16.51
-	};
-	
-	*/
-	
+	 var position = {
+	 latitude : 41.8089777,
+	 longitude : 12.4365196
+	 };
+	 */
 
-	Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
-	Alloy.Globals.userPosition = position;
+	/*
+	 var position = {
+	 latitude : 41.8,
+	 longitude : 16.51
+	 };
 
-	_callback(position);
-	
-	
-	
+	 */
+
+	/*
+	 Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
+	 Alloy.Globals.userPosition = position;
+
+	 _callback(position);
+	 */
 
 };

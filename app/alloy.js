@@ -14,6 +14,8 @@ var net = require("network");
 
 Alloy.Globals.rememberMe = false;
 
+Alloy.Globals.DevMode = true;
+
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
 Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);

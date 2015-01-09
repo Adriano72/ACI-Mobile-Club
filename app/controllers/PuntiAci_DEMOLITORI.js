@@ -77,20 +77,32 @@ function dettaglioDemolitori(e) {
 }
 
 function doPhoneCall(e) {
+	
 	e.cancelBubble = true;
-	
-	var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
-	Ti.API.info("TEL: " + trimmedPhone);
-	Titanium.Platform.openURL('tel:' + trimmedPhone);
-	
-	
+
+	if (!_.isUndefined(e.source.telNumber)) {
+		var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
+		Ti.API.info("TEL: " + trimmedPhone);
+		Titanium.Platform.openURL('tel:' + trimmedPhone);
+	} else {
+		alert("Numero di telefono non disponibile");
+	}
+
 };
 
 function doSendEmail(e) {
 	e.cancelBubble = true;
-	var emailDialog = Ti.UI.createEmailDialog();
-	emailDialog.toRecipients = (e.source.email != "") ? e.source.email : "test@email.com";
-	emailDialog.open();
+
+	if ((e.source.indirizzoEmail !== "") && (!_.isUndefined(e.source.indirizzoEmail))) {
+		Ti.API.info("EMAIL: " + e.source.indirizzoEmail);
+		var recipients = [];
+		recipients.push(e.source.indirizzoEmail);
+		var emailDialog = Ti.UI.createEmailDialog();
+		emailDialog.toRecipients = recipients;
+		emailDialog.open();
+	} else {
+		alert("Indirizzo email non disponibile");
+	}
 };
 
 $.win.addEventListener('close', function() {
