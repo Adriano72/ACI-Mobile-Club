@@ -16,6 +16,8 @@ Alloy.Globals.rememberMe = false;
 
 Alloy.Globals.DevMode = true;
 
+Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <=480)?'11dp':'15dp';
+
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
 Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
@@ -50,5 +52,7 @@ Alloy.Collections.instance("culturaSpettacoli");
 Alloy.Collections.instance("noleggiTrasporti");
 Alloy.Collections.instance("sportEventi");
 Alloy.Collections.instance("altriServizi");
+
+//Ti.API.info("WINDOW HEIGHT:"+Ti.Platform.displayCaps.platformHeight);
 
 

@@ -8,7 +8,7 @@ var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals
 $.menuView.top = menuTop;
 
 function doopen(evt) {
-
+	Alloy.Globals.loading.show('Sincronizzazione', false);
 	Alloy.Globals.navMenu = $.navWin;
 	if (OS_ANDROID) {
 		abx.title = "ACI Mobile Club";
@@ -23,16 +23,22 @@ function doopen(evt) {
 	require('locationServices').getUserLocation(loadData);
 }
 
-var view1 = Ti.UI.createView({
-	backgroundImage : "/images/banner1.png"
+var view1 = Ti.UI.createImageView({
+	image : "http://www.aci.it/fileadmin/syc/acimobileclub/banner1.jpg",
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
 });
 
-var view2 = Ti.UI.createView({
-	backgroundImage : "/images/beach.jpg"
+var view2 = Ti.UI.createImageView({
+	image : "http://www.aci.it/fileadmin/syc/acimobileclub/banner2.jpg",
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
 });
 
-var view3 = Ti.UI.createView({
-	backgroundImage : "/images/lizard.jpg"
+var view3 = Ti.UI.createImageView({
+	image : "http://www.aci.it/fileadmin/syc/acimobileclub/banner3.jpg",
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
 });
 
 var Banner = ViewScrollr.create({
@@ -41,6 +47,7 @@ var Banner = ViewScrollr.create({
 	top : (OS_ANDROID) ? 3 : 2,
 	auto : true,
 	delay : 3000,
+	backgroundColor: "#FFF",
 	navigation : {
 		selectedColor : "#fff",
 		color : "#000",
@@ -137,7 +144,7 @@ function loadData() {
 
 	function uno() {
 
-		Alloy.Globals.loading.show('Sincronizzazione', false);
+		
 
 		net.getBanner(function(p_data) {
 			try {

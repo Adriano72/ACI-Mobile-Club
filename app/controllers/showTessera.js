@@ -57,7 +57,13 @@ if (OS_ANDROID) {
 	$.rotatedContainer.setBottom("20%");
 	$.rotatedContainer.setLeft("40%");
 } else {
-	$.rotatedContainer.setBottom("29%");
+	
+	if(Ti.Platform.displayCaps.platformHeight <= 480){
+		$.rotatedContainer.setBottom("32%");
+	}else{
+		$.rotatedContainer.setBottom("29%");
+	}
+	
 	$.rotatedContainer.setLeft("25%");
 }
 

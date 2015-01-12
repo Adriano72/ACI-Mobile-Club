@@ -87,18 +87,7 @@
 	showPagingContro: false
 }
 
-"#view1": {
-	backgroundImage: "/images/banner1.png"
-	//backgroundColor:"#256"
-}
 
-"#view2": {
-	//backgroundImage: "images/banner1.png"
-}
-
-"#view3": {
-	//backgroundImage: "images/banner1.png"
-}
 
 "#menuView": {
 	width: "100%",
