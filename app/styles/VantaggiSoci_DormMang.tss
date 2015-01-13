@@ -32,12 +32,12 @@
 }
 
 "#menu": {
-	icon: "ico_dormiremangiare_blu.png"
+	icon: "/images/ic_action_dormire_mangiare.png"
 }
 
 "#mn_settings": {
 	
-	icon: "images/icona_puntatore.png",
+	icon: "images/ic_action_pin.png",
 	title: "Mappa"
 }
 
@@ -140,7 +140,7 @@
 
 ".rightContainer": {
 	left: 5,
-	width: "19%",
+	width: "20%",
 	layout: "vertical",
 	top: 5
 }

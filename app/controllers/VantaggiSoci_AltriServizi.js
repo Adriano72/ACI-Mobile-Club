@@ -45,9 +45,9 @@ function dataTransform(model) {
 };
 
 function dettaglioConvenzione(e) {
-	var selectedConv = Alloy.Collections.dormireMangiare.getByCid(e.rowData.modelId);
+	var selectedConv = Alloy.Collections.altriServizi.getByCid(e.rowData.modelId);
 
-	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv, headerImg:"logoDormireMangiare.png"}).getView();
+	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: selectedConv, headerImg:"logoAltriServizi.png"}).getView();
 	Alloy.Globals.navMenu.openWindow(dettConvenzione);
 }
 

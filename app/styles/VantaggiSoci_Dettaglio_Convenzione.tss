@@ -34,11 +34,11 @@
 }
 
 "#menu": {
-	icon: "ico_punti_servizio_01.png"
+	icon: "/images/ic_action_puntatore.png"
 }
 
 "#mn_navigazione": {
-	icon: "/x_menu_gps_blu.png"
+	icon: "/images/ic_action_gps.png"
 }
 
 ".separator": {
@@ -87,7 +87,7 @@
 	color:"#888",
 	font: {
         
-        fontSize: '8dp'
+        fontSize: '10dp'
     }
 }
 

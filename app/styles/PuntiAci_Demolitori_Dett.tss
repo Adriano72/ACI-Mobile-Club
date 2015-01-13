@@ -24,9 +24,9 @@
 }
 
 ".rightNavImg[platform=ios]": {
-	image: "x_menu_gps_blu.png",
-	height: 15
+	image: "/images/ic_action_gps.png"
 }
+
 
 
 "MenuItem": {
@@ -38,7 +38,7 @@
 }
 
 "#mn_navigazione": {
-	icon: "/x_menu_gps_blu.png"
+	icon: "/images/ic_action_gps.png"
 }
 
 ".separator": {

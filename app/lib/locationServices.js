@@ -10,7 +10,8 @@ exports.getUserLocation = function(_callback) {
 
 			Titanium.Geolocation.getCurrentPosition(function(e) {
 				if (e.error) {
-					alert('Error: ' + e.error);
+					Alloy.Globals.loading.hide();
+					alert("Servizi di localizzazione non abilitati sul dispositivo");
 				} else {
 
 					var position = {
@@ -27,6 +28,7 @@ exports.getUserLocation = function(_callback) {
 			});
 
 		} else {
+			Alloy.Globals.loading.hide();
 			alert('Abilitare i servizi di localizzazione per usufruire del servizio');
 		}
 

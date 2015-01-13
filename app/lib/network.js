@@ -222,7 +222,7 @@ exports.getBanner = function(_callback) {
 		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
 	};
 
-	Ti.API.info("CHIAMATA HTTP: "+ 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":['+Alloy.Globals.userPosition.longitude+', '+Alloy.Globals.userPosition.latitude+'],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&sort={"random":1}');
+	Ti.API.info("CHIAMATA HTTP BANNER: "+ 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":['+Alloy.Globals.userPosition.longitude+', '+Alloy.Globals.userPosition.latitude+'],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&sort={"random":1}');
 
 	xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":['+Alloy.Globals.userPosition.longitude+', '+Alloy.Globals.userPosition.latitude+'],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&sort={"random":1}');
 	//'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":['+Alloy.Globals.userPosition.longitude+', '+Alloy.Globals.userPosition.latitude+'],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&sort={"random":1}'

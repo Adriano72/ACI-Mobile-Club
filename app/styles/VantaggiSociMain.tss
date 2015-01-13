@@ -28,7 +28,7 @@
 }
 
 "#menu": {
-	icon: "ico_vantaggi_01.png"
+	icon: "/images/ic_action_puntatore.png"
 }
 
 ".toolbar":{

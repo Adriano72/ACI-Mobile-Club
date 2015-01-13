@@ -14,7 +14,7 @@ var net = require("network");
 
 Alloy.Globals.rememberMe = false;
 
-Alloy.Globals.DevMode = true;
+Alloy.Globals.DevMode = false;
 
 Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <=480)?'11dp':'15dp';
 

@@ -32,12 +32,12 @@
 }
 
 "#menu": {
-	icon: "ico_musei_blu.png"
+	icon: "/images/ic_action_cultura.png"
 }
 
 "#mn_settings": {
 	
-	icon: "images/icona_puntatore.png",
+	icon: "images/ic_action_pin.png",
 	title: "Mappa"
 }
 

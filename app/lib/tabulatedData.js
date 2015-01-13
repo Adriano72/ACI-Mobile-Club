@@ -39,19 +39,19 @@ exports.puntiAciMain = function() {
 exports.categorieSyc = function() {
 
 	var itemsObj = [{
-		img : "ico_dormiremangiare_blu.png",
+		img : "/images/ic_action_dormire_mangiare.png",
 		long_name : "Dormire & Mangiare",
 		short_name : "dormire_mangiare"
 	}, {
-		img : "ico_tempo_libero_blu.png",
+		img : "/images/ic_action_tempo_libero.png",
 		long_name : "Tempo Libero & Benessere",
 		short_name : "tempo_libero_benessere"
 	}, {
-		img : "ico_musei_blu.png",
+		img : "/images/ic_action_cultura.png",
 		long_name : "Cultura & Spettacoli",
 		short_name : "cultura_spettacoli"
 	}, {
-		img : "ico_mobilita_01.png",
+		img : "/images/ic_action_noleggi.png",
 		long_name : "Noleggi & Trasporti",
 		short_name : "noleggi_trasporti"
 	}, /*{
@@ -59,7 +59,7 @@ exports.categorieSyc = function() {
 		long_name : "Sport & Eventi",
 		short_name : "sport_eventi"
 	}, */{
-		img : "ico_altri_servizi_blu.png",
+		img : "/images/ic_action_altri_servizi.png",
 		long_name : "Altri Servizi",
 		short_name : "altri_servizi"
 	}];

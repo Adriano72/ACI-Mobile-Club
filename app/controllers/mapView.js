@@ -54,7 +54,7 @@ function dataTransform(model) {
 	attrs.image = (OS_ANDROID) ? args.pin : "images/" + args.pin;
 	attrs.title = attrs.name;
 	attrs.subtitle = "Tocca per ulteriori informazioni";
-	attrs.leftButton = "annotation-info.png";
+	attrs.leftButton = "/images/annotation-info.png";
 	attrs.email = attrs.contacts.email[0];
 	//attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/"+attrs.agreement_id.logo);
 
@@ -123,7 +123,7 @@ function linkToPOI(e) {
 		} else {
 			var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
 				data : e,
-				headerImg : "logoNoleggiTrasporti.png"
+				headerImg : ""
 			}).getView();
 			Alloy.Globals.navMenu.openWindow(dettConvenzione);
 		}

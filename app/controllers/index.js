@@ -1,8 +1,32 @@
 var ViewScrollr = require("ViewScrollr");
 var settingsMenu = require('settingsMenu');
 
-if (OS_ANDROID)
+var cacheDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, "/");
+cacheDir.deleteDirectory(true);
+
+zapImageCache = function() {
+	var appDataDir,
+	    cacheDir,
+	    dir,
+	    externalRoot;
+	if (Ti.Filesystem.isExternalStoragePresent()) {
+		appDataDir = Ti.Filesystem.getFile('appdata://').nativePath;
+		externalRoot = appDataDir.substring(0, appDataDir.lastIndexOf('/'));
+		cacheDir = "" + externalRoot + "/Android/data/" + Ti.App.id + "/cache/_tmp/remote-cache";
+		dir = Ti.Filesystem.getFile(cacheDir);
+	} else {
+		dir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, '_tmp', 'remote-cache');
+	}
+	if (dir.exists()) {
+		dir.deleteDirectory(true);
+	}
+	return dir.createDirectory();
+};
+
+if (OS_ANDROID) {
+	//zapImageCache();
 	var abx = require('com.alcoapps.actionbarextras');
+}
 //var menuTop = (OS_ANDROID)?PixelsToDPUnits((Titanium.Platform.displayCaps.platformHeight/2))-40:(Titanium.Platform.displayCaps.platformHeight/2)-15;
 var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals.deviceHeightHalf - 30;
 $.menuView.top = menuTop;
@@ -25,20 +49,20 @@ function doopen(evt) {
 
 var view1 = Ti.UI.createImageView({
 	image : "http://www.aci.it/fileadmin/syc/acimobileclub/banner1.jpg",
-	width: Ti.UI.FILL,
-	height: Ti.UI.FILL
+	width : Ti.UI.FILL,
+	height : Ti.UI.FILL
 });
 
 var view2 = Ti.UI.createImageView({
 	image : "http://www.aci.it/fileadmin/syc/acimobileclub/banner2.jpg",
-	width: Ti.UI.FILL,
-	height: Ti.UI.FILL
+	width : Ti.UI.FILL,
+	height : Ti.UI.FILL
 });
 
 var view3 = Ti.UI.createImageView({
 	image : "http://www.aci.it/fileadmin/syc/acimobileclub/banner3.jpg",
-	width: Ti.UI.FILL,
-	height: Ti.UI.FILL
+	width : Ti.UI.FILL,
+	height : Ti.UI.FILL
 });
 
 var Banner = ViewScrollr.create({
@@ -47,7 +71,7 @@ var Banner = ViewScrollr.create({
 	top : (OS_ANDROID) ? 3 : 2,
 	auto : true,
 	delay : 3000,
-	backgroundColor: "#FFF",
+	backgroundColor : "#FFF",
 	navigation : {
 		selectedColor : "#fff",
 		color : "#000",
@@ -100,8 +124,6 @@ function tessera() {
 
 	}
 
-	
-
 }
 
 function swipeAction(e) {// NON USATA AL MOMENTO
@@ -143,8 +165,6 @@ function loadData() {
 	uno();
 
 	function uno() {
-
-		
 
 		net.getBanner(function(p_data) {
 			try {
