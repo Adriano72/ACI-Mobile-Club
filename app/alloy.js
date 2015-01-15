@@ -14,15 +14,16 @@ var net = require("network");
 
 Alloy.Globals.rememberMe = false;
 
-Alloy.Globals.DevMode = false;
+Alloy.Globals.DevMode = true;
 
 Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <=480)?'11dp':'15dp';
 
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
-Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
+var logicalDensityFactor = OS_IOS  ? 1 : Ti.Platform.displayCaps.logicalDensityFactor ;
+Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (logicalDensityFactor || 1), 10);
 Alloy.Globals.deviceWidthHalf = Alloy.Globals.deviceWidth / 2;
-Alloy.Globals.deviceHeight = parseInt(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
+Alloy.Globals.deviceHeight = parseInt(Ti.Platform.displayCaps.platformHeight / (logicalDensityFactor || 1), 10);
 Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
@@ -30,6 +31,11 @@ Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4
 //Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
 Alloy.Globals.baseURL = "http://www.aci.it/geo/v2";
 Alloy.Globals.bannerBaseURL = "http://www.aci.it/fileadmin/syc/banner/";
+
+console.log('platformWidth ', Ti.Platform.displayCaps.platformWidth);
+console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFactor);
+
+Ti.API.info('globals 2: ' + JSON.stringify(Alloy.Globals));
 
 
 
