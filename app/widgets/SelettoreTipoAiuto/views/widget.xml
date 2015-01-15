@@ -1,3 +1,7 @@
 <Alloy>
-	<Label>I'm the default widget</Label>
+	<View id="wrapper">
+		<Require id="casa" src="../widgets/SelettoreTipoAiuto/views/item" ></Require>
+		<Require id="auto" src="widgets/SelettoreTipoAiuto/item" ></Require>
+		<Require id="persona" src="widgets/SelettoreTipoAiuto/item" ></Require>
+	</View>
 </Alloy>
