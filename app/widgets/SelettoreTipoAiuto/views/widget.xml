@@ -1,6 +1,6 @@
 <Alloy>
 	<View id="wrapper">
-		<Require id="casa" src="../widgets/SelettoreTipoAiuto/views/item" ></Require>
+		<Require id="casa" src="/widgets/SelettoreTipoAiuto/views/item" ></Require>
 		<Require id="auto" src="widgets/SelettoreTipoAiuto/item" ></Require>
 		<Require id="persona" src="widgets/SelettoreTipoAiuto/item" ></Require>
 	</View>
