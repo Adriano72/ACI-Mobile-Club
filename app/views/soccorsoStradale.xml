@@ -24,7 +24,10 @@
 	        <View  class="rowContainer">
 
 	        	<View class="rowWrapper" >
-					<Module id="mapview" module="ti.map" method="createView"></Module> 
+	        		<View id="mapWrapper">
+	        			<Module id="mapview" module="ti.map" method="createView"></Module>
+						<ImageView id="pin"></ImageView> 
+	        		</View>
 		        </View>
 
 	        	<View id="tipoWrapper" class="rowWrapper box"  >

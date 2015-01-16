@@ -132,6 +132,10 @@
 "#mapview":{
 	height: 175
 }
+"#mapWrapper":{
+	height: 175
+}
+
 
 "#tipoAiutoWrapper" :{
 	top: 5,
@@ -183,6 +187,11 @@
 
 ".phoneIcon":{
 	image : "/images/ic_action_aiuto_phone_bianco.png"
+}
+
+"#pin":{
+	image: "/pin_selezione.png",
+	width: 25
 }
 
 
