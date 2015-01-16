@@ -20,9 +20,9 @@ Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <=480)?'
 
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
-Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
+Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (1), 10);
 Alloy.Globals.deviceWidthHalf = Alloy.Globals.deviceWidth / 2;
-Alloy.Globals.deviceHeight = parseInt(Ti.Platform.displayCaps.platformHeight / (Ti.Platform.displayCaps.logicalDensityFactor || 1), 10);
+Alloy.Globals.deviceHeight = parseInt(Ti.Platform.displayCaps.platformHeight / (1), 10);
 Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;

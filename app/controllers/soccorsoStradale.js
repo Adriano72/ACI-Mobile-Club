@@ -33,3 +33,8 @@ function chiamaSoccorso(){
 }
 
 
+$.tipoAiuto.addEventListener('change', function(e){
+	console.log('change', e);
+});
+
+
