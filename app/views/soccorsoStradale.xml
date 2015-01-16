@@ -15,40 +15,49 @@
 
 		</Menu>
 		<ScrollView class="wrapper">
+
 			<View class="bar top">
+				<ImageView class="barIcon gpsIcon"></ImageView>
 				<Label class="barLabel" >Invio richiesta con localizzazione</Label>
 			</View> 
 
 	        <View  class="rowContainer">
+
 	        	<View class="rowWrapper" >
 					<Module id="mapview" module="ti.map" method="createView"></Module> 
 		        </View>
+
 	        	<View id="tipoWrapper" class="rowWrapper box"  >
-	        		<Label class="formLabel">Seleziona per cosa hai bisogno di aiuto:</Label>
+	        		<Label class="formLabel first_child">Seleziona per cosa hai bisogno di aiuto:</Label>
 
 	        		<View id="tipoAiutoWrapper">
 	        			<Widget id="tipoAiuto" src="SelettoreTipoAiuto"></Widget>
 	        		</View>
 	        		
 	        	</View>
+
 	        	<View id="socioWrapper" class="rowWrapper box" >
 	        		<Label class="formLabel">Socio ACI</Label>
 	        		<Switch id="socio"></Switch>
 	        	</View>
+
 	        	<View id="telefonoWrapper" class="rowWrapper box" >
-	        		<Label class="formLabel">Inserisci il telefono a cui vuoi essere richiamato</Label>
+	        		<Label class="formLabel first_child">Inserisci il telefono a cui vuoi essere richiamato:</Label>
 	        		<TextField id="telefono"></TextField>
 	        	</View>
+
 	        	<View class="rowWrapper " >
-	        		<Button id="btInvia" class="roundButton">invia richiesta</Button>
+	        		<Button id="btInvia" class="roundButton first_child">invia richiesta</Button>
 	        	</View>
 	        </View>
 
 
 
 			<View class="bar bottom">
+				<ImageView class="barIcon phoneIcon"></ImageView>
 				<Label  class="barLabel" > Chiama direttamente 803116</Label>
 			</View> 
+
 		</ScrollView>
 	</Window>
 </Alloy>

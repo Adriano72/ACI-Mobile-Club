@@ -68,11 +68,11 @@
 	//height: 80,
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
-	top: 4,
 	layout: "vertical"
 }
 
 ".bar" :{
+	width: Ti.UI.FILL,
 	height: 30,
 	backgroundColor: "#ff0000"
 }
@@ -86,8 +86,13 @@
 }
 
 ".box":{
-	width: "90%",
+	top: 5,
+	width: "95%",
 	backgroundColor: "#ffffff"
+}
+
+".first_child":{
+	top: 5
 }
 
 
@@ -102,8 +107,17 @@
 	layout: 'composite'
 }
 
-"TextField":{
-	width: Ti.UI.FILL
+"#telefono":{
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	top: 5,
+	bottom: 5,
+	left: 5,
+	right: 5,
+	font:{
+		fontSize: 12
+	},
+	hintText: "+ (numero di telefono)"
 }
 
 
@@ -111,6 +125,9 @@
 	right: 5
 }
 
+"Switch[platform=android]":{
+	//style: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX
+}
 
 "#mapview":{
 	height: 175
@@ -137,7 +154,7 @@
 }
 
 ".formLabel":{
-	top: 5,
+	//top: 5,
 	color: "#ccc",
 	left: 5,
 	font:{
@@ -154,6 +171,21 @@
 	color: "#ff0000",
 	width: "80%"
 }
+
+".barIcon":{
+	left: 5
+}
+
+".gpsIcon":{
+	image : "/images/ic_action_aiuto_gps_bianco.png"
+}
+
+
+".phoneIcon":{
+	image : "/images/ic_action_aiuto_phone_bianco.png"
+}
+
+
 
 
 
