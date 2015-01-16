@@ -22,12 +22,12 @@
 }
 
 ".imageOn" : {
-	width: 20,
-	height: 20
+	width: 34,
+	height: 34
 }
 ".imageOff" : {
-	width: 20,
-	height: 20
+	width: 34,
+	height: 34
 	
 }
 

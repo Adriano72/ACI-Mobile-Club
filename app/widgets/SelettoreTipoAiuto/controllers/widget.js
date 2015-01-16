@@ -3,44 +3,60 @@ var args = arguments[0] || {};
 //controllo attualmente selezionato
 var current;
 
+//lista di possibili valori
+var values = ['casa', 'auto', 'persone'];
+
 /**
  * Inizializzazioni
  * @return {[type]} [description]
  */
 function init() {
-    $.casaLabel.color = args.color;
-    $.autoLabel.color = args.color;
-    $.personeLabel.color = args.color;
+    for (var i = 0; i < values.length; i++) {
+        initItem(values[i]);
+    };
+}
 
 
-    $.casaImageOn.visible = false;
-    $.autoImageOn.visible = false;
-    $.personeImageOn.visible = false;
-
-    loadImage('casa');
-    loadImage('auto');
-    loadImage('persone');
+/**
+ * Inizializzazioni per il singolo elemento
+ * @param  {[type]} tipo [description]
+ * @return {[type]}      [description]
+ */
+function initItem(tipo) {
+    loadImage(tipo);
+    switchOff(tipo);
 }
 
 /**
  * Routine generica che si occupa di selezionare un elemento
- * @param  {string} next il valore che identifica il prossimo elemento da selezionare
+ * @param  {string|number} next il valore che identifica il prossimo elemento da selezionare. se numerico, esprime l'indice dell'elemento, se stringa esprime il valore da inserire
  */
 function select(next) {
+    console.log('select ', next);
+    var value;
+    if (_.isNumber(next) && values.length >= next) {
+        value = values[next];
+    } else if (_.indexOf(values, next) >= 0) {
+        value = next;
+    } else {
+        console.log('Widget SelettoreTipoAiuto select - valore non trovato: ', next);
+        clear();
+        return;
+    }
 
     //deseleziona il precedente, se esiste
     current && switchOff(current);
 
-    switchOn(next);
+    switchOn(value);
 
 
     fireEvent('change', {
         prev: current,
-        value: next
+        value: value
     });
 
 
-    current = next;
+    current = value;
 
 }
 
@@ -104,9 +120,40 @@ function loadImage(tipo) {
 
 
 /**
- * Esporta come metodo pubblico
+ * deseleziona tutti gli elementi
+ * @return {[type]} [description]
  */
-$.select = select;
+function clear() {
+    current = undefined;
+
+    for (var i = 0; i < values.length; i++) {
+        switchOff(values[i]);
+    };
+
+}
+
+
+/**
+ * Esporta come proprietà pubblica
+ */
+Object.defineProperty($, 'value', {
+    /**
+     * Ritorna il valore dell'elemento selezionato (undefined se nulla è selezionato)
+     * @return {[type]} [description]
+     */
+    get: function() {
+        return current;
+    },
+
+    /**
+     * Imposta il valore e seleziona l'elemento corrispondente
+     * @param {string|number} x se numerico, esprime l'indice dell'elemento, se stringa esprime il valore da inserire
+     */
+    set: function(x) {
+
+        select(x);
+    }
+});
 
 
 /**
