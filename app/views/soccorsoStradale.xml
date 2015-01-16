@@ -56,7 +56,7 @@
 
 
 
-			<View class="bar bottom">
+			<View class="bar bottom" onClick="phoneCall">
 				<ImageView class="barIcon phoneIcon"></ImageView>
 				<Label  class="barLabel" > Chiama direttamente 803116</Label>
 			</View> 

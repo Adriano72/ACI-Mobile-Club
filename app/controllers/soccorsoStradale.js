@@ -6,6 +6,15 @@ if (OS_ANDROID) {
     var abx = require('com.alcoapps.actionbarextras');
 };
 
+/**
+ * apre il telefono e chiama il numero verde
+ * @return {[type]} [description]
+ */
+function phoneCall(){
+	console.log('phone call');
+	Ti.Platform.openURL('tel:+803116');
+}
+
 function doopen(evt) {
     if (OS_ANDROID) {
 
@@ -40,7 +49,7 @@ $.tipoAiuto.addEventListener('change', function(e) {
 });
 
 
-
+//inizializzazione della mappa con la posizione corrente
 $.mapview.addEventListener('complete', function() {
     //la posizione iniziale è quella dell'utente
     locationServices.getUserLocation(function(coo) {
@@ -49,6 +58,7 @@ $.mapview.addEventListener('complete', function() {
 });
 
 
+//logging, solo per test
 $.mapview.addEventListener('regionchanged', function(e){
 	console.log('centro mappa: ', $.mapview.getRegion());
 });
