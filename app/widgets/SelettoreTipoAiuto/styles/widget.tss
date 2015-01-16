@@ -1,0 +1,38 @@
+"#wrapper":{
+	layout: "horizontal",
+	height: Ti.UI.SIZE
+}
+
+"Label" : {
+	left: 5,
+	font:{
+		fontSize: 12
+	}
+}
+
+"ImageView" : {
+	height: 50,
+	left: 0
+}
+
+".itemWrapper" : {
+	width: "33%",
+	height: Ti.UI.SIZE,
+	layout: "horizontal"
+}
+
+".imageOn" : {
+	width: 20,
+	height: 20
+}
+".imageOff" : {
+	width: 20,
+	height: 20
+	
+}
+
+".imageWrapper":{
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	left: 5
+}

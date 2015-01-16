@@ -1,3 +1,8 @@
+/**
+ * NAVIGAZIONE E CONTAINER
+ */
+
+
 // container for iOS
 ".container[platform=ios]": {
 	backgroundColor: "#f2f2f2",
@@ -42,32 +47,113 @@
 	icon: "/ico_rotella_celeste.png"
 }
 
+/**
+ * LAYOUT DI PAGINA
+ */
+
 ".wrapper":{
-	backgroundColor: "#fff",
+	backgroundColor: "#f0f0f0",
 	height: Ti.UI.FILL,
 	width: Ti.UI.FILL
 }
 
-".subWrapper": {
+".rowContainer": {
+	top: 30,
 	layout: "vertical",
-	top: "30%"
+	height: Ti.UI.FILL,
+
 }
 
-".soccorsoText":{
-	top: 0,
-	left: 10,
-	right: 10,
-	textAlign: "center",
-	font: {
-        fontSize: '22dp'
-    }
+".rowWrapper": {
+	//height: 80,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	top: 4,
+	layout: "vertical"
 }
 
-".soccorsoImg":{
-	top: 10,
-	image: "/soccorsoStradale.png"
+".bar" :{
+	height: 30,
+	backgroundColor: "#ff0000"
 }
 
+".top":{
+	top:0
+}
+
+".bottom":{
+	bottom:0
+}
+
+".box":{
+	width: "90%",
+	backgroundColor: "#ffffff"
+}
+
+
+
+
+
+/**
+ * STILE DEGLI ELEMENTI
+ */
+
+"#socioWrapper":{
+	layout: 'composite'
+}
+
+"TextField":{
+	width: Ti.UI.FILL
+}
+
+
+"#socio":{
+	right: 5
+}
+
+
+"#mapview":{
+	height: 175
+}
+
+"#tipoAiutoWrapper" :{
+	top: 5,
+	bottom: 5,
+	highlightColor: "#00ff00",
+	height: Ti.UI.SIZE
+}
+
+"#tipoAiuto" :{
+	highlightColor: "#f00",
+	color: "#ccc"
+}
+
+
+".barLabel":{
+	color: "#ffffff",
+	font:{
+		fontSize: 12
+	}
+}
+
+".formLabel":{
+	top: 5,
+	color: "#ccc",
+	left: 5,
+	font:{
+		fontSize: 12
+	}
+}
+
+
+".roundButton" : {
+	height: 30,
+	borderRadius: 15,
+	borderWidth: 1,
+	borderColor: "#ff0000",
+	color: "#ff0000",
+	width: "80%"
+}
 
 
 
