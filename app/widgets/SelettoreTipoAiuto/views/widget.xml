@@ -1,7 +1,31 @@
 <Alloy>
 	<View id="wrapper">
-		<Require id="casa" src="/widgets/SelettoreTipoAiuto/views/item" ></Require>
-		<Require id="auto" src="/SelettoreTipoAiuto/item" ></Require>
-		<Require id="persona" src="widgets/SelettoreTipoAiuto/item" ></Require>
+	
+		<!-- CASA -->
+		<View id="casaWrapper" class="itemWrapper" >
+			<View class="imageWrapper">
+				<ImageView id="casaImageOn" class="imageOn"></ImageView>
+				<ImageView id="casaImageOff" class="imageOff"></ImageView>
+			</View>
+			<Label id="casaLabel" >casa</Label>
+
+		</View>
+		<!-- AUTO -->
+		<View id="autoWrapper" class="itemWrapper" >
+			<View class="imageWrapper">
+				<ImageView id="autoImageOn" class="imageOn"></ImageView>
+				<ImageView id="autoImageOff" class="imageOff"></ImageView>
+			</View>
+			<Label id="autoLabel" >auto</Label>
+		</View>
+		<!-- PERSONE -->
+		<View id="personeWrapper" class="itemWrapper" >
+			<View class="imageWrapper">
+				<ImageView id="personeImageOn" class="imageOn"></ImageView>
+				<ImageView id="personeImageOff" class="imageOff"></ImageView>
+			</View>
+			<Label id="personeLabel" >persone</Label>
+		</View>
+
 	</View>
 </Alloy>

@@ -1,0 +1,159 @@
+var args = arguments[0] || {};
+
+//controllo attualmente selezionato
+var current;
+
+/**
+ * Inizializzazioni
+ * @return {[type]} [description]
+ */
+function init() {
+    $.casaLabel.color = args.color;
+    $.autoLabel.color = args.color;
+    $.personeLabel.color = args.color;
+
+
+    $.casaImageOn.visible = false;
+    $.autoImageOn.visible = false;
+    $.personeImageOn.visible = false;
+
+    loadImage('casa');
+    loadImage('auto');
+    loadImage('persone');
+}
+
+/**
+ * Routine generica che si occupa di selezionare un elemento
+ * @param  {string} next il valore che identifica il prossimo elemento da selezionare
+ */
+function select(next) {
+
+    //deseleziona il precedente, se esiste
+    current && switchOff(current);
+
+    switchOn(next);
+
+
+    fireEvent('change', {
+        prev: current,
+        value: next
+    });
+
+
+    current = next;
+
+}
+
+
+/**
+ * Wrapper di selezione per l'elemento 'casa'
+ */
+function selectCasa() {
+    select('casa');
+}
+
+/**
+ * Wrapper di selezione per l'elemento 'auto'
+ */
+function selectAuto() {
+    select('auto');
+}
+
+/**
+ * Wrapper di selezione per l'elemento 'persone'
+ */
+function selectPersone() {
+    select('persone');
+}
+
+
+/**
+ * Funzione generica che esegue le modifiche UI dopo che si è selezionato un elemento
+ * @param  {string} next il valore che identifica il prossimo elemento da selezionare
+ */
+function switchOn(tipo) {
+    console.log('on tipo', tipo);
+    $[tipo + 'ImageOn'].visible = true;
+    $[tipo + 'ImageOff'].visible = false;
+    $[tipo + 'Label'].color = args.highlightColor;
+}
+
+
+/**
+ * Funzione generica che esegue le modifiche UI dopo che si è selezionato un altro elemento
+ * @param  {string} next il valore che identifica il prossimo elemento da de-selezionare
+ */
+function switchOff(tipo) {
+    console.log('off tipo', tipo);
+
+    $[tipo + 'ImageOn'].visible = false;
+    $[tipo + 'ImageOff'].visible = true;
+    $[tipo + 'Label'].color = args.color;
+}
+
+/**
+ * Questa routine serve per assegnare le immagini corrette alle imageview
+ * http://docs.appcelerator.com/titanium/3.0/#!/guide/Alloy_Widgets-section-35621514_AlloyWidgets-CreatingWidgets
+ * @param  {[type]} tipo [description]
+ */
+function loadImage(tipo) {
+    $[tipo + 'ImageOn'].image = WPATH(tipo + '_on.png');
+    $[tipo + 'ImageOff'].image = WPATH(tipo + '_off.png');
+
+}
+
+
+/**
+ * Esporta come metodo pubblico
+ */
+$.select = select;
+
+
+/**
+ * UI Event handling
+ */
+$.casaWrapper.addEventListener('click', selectCasa);
+$.autoWrapper.addEventListener('click', selectAuto);
+$.personeWrapper.addEventListener('click', selectPersone);
+
+
+/**
+ * GESTIONE CUSTOM DEGLI EVENTI PER IL WIDGET
+ */
+
+
+/**
+ * Scaffold degli eventi
+ * @type {Object}
+ */
+var eventHandlers = {};
+
+/**
+ * Bridge per gli eventi interni al widget
+ * http://www.slideshare.net/MartinHudson1/ticonfeu
+ * @param {string} eventName    evento da collegaro
+ * @param {Function} eventHandler handler dell'evento
+ */
+exports.addEventListener = function(eventName, eventHandler) {
+    eventHandlers[eventName] = eventHandler;
+};
+
+/**
+ * Custom fire event function
+ * @param  {[type]} name    [description]
+ * @param  {[type]} context [description]
+ * @param  {[type]} params  [description]
+ * @return {[type]}         [description]
+ */
+function fireEvent(name, params) {
+    var c = this;
+    var h = eventHandlers[name];
+    console.log('call: ' + name);
+    if (h) return h.call(this, params);
+    return h;
+}
+
+
+
+//run init
+init();
