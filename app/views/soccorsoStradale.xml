@@ -14,11 +14,41 @@
 			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
 
 		</Menu>
-		<View class="wrapper">
-			<View class="subWrapper">
-				<Label class="PTSansRegular soccorsoText">Un unico numero verde per richiedere i servizi ACI, attivo 365 giorni l'anno 24 ore su 24.</Label>
-				<ImageView class="soccorsoImg" onClick="chiamaSoccorso"/>
-			</View>
-		</View>
+		<ScrollView class="wrapper">
+			<View class="bar top">
+				<Label class="barLabel" >Invio richiesta con localizzazione</Label>
+			</View> 
+
+	        <View  class="rowContainer">
+	        	<View class="rowWrapper" >
+					<Module id="mapview" module="ti.map" method="createView"></Module> 
+		        </View>
+	        	<View id="tipoWrapper" class="rowWrapper box"  >
+	        		<Label class="formLabel">Seleziona per cosa hai bisogno di aiuto:</Label>
+
+	        		<View id="tipoAiutoWrapper">
+	        			<Widget id="tipoAiuto" src="SelettoreTipoAiuto"></Widget>
+	        		</View>
+	        		
+	        	</View>
+	        	<View id="socioWrapper" class="rowWrapper box" >
+	        		<Label class="formLabel">Socio ACI</Label>
+	        		<Switch id="socio"></Switch>
+	        	</View>
+	        	<View id="telefonoWrapper" class="rowWrapper box" >
+	        		<Label class="formLabel">Inserisci il telefono a cui vuoi essere richiamato</Label>
+	        		<TextField id="telefono"></TextField>
+	        	</View>
+	        	<View class="rowWrapper " >
+	        		<Button id="btInvia" class="roundButton">invia richiesta</Button>
+	        	</View>
+	        </View>
+
+
+
+			<View class="bar bottom">
+				<Label  class="barLabel" > Chiama direttamente 803116</Label>
+			</View> 
+		</ScrollView>
 	</Window>
 </Alloy>
