@@ -117,7 +117,8 @@
 	font:{
 		fontSize: 12
 	},
-	hintText: "+ (numero di telefono)"
+	hintText: "+ (numero di telefono)",
+	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD
 }
 
 
@@ -192,6 +193,10 @@
 "#pin":{
 	image: "/pin_selezione.png",
 	width: 25
+}
+
+"#btInvia":{
+	backgroundColor: "transparent"
 }
 
 

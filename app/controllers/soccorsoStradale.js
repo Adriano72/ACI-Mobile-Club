@@ -1,4 +1,6 @@
 var locationServices = require('locationServices');
+var utility = require('utility');
+
 
 var args = arguments[0] || {};
 
@@ -10,9 +12,9 @@ if (OS_ANDROID) {
  * apre il telefono e chiama il numero verde
  * @return {[type]} [description]
  */
-function phoneCall(){
-	console.log('phone call');
-	Ti.Platform.openURL('tel:+803116');
+function phoneCall() {
+    console.log('phone call');
+    Ti.Platform.openURL('tel:+803116');
 }
 
 function doopen(evt) {
@@ -28,7 +30,7 @@ function doopen(evt) {
 }
 
 function init1() {
-    abx.displayHomeAsUp = true;
+    //  abx.displayHomeAsUp = true;
     abx.title = "Soccorso Stradale";
     abx.titleFont = "ACI Type Regular.otf";
     abx.titleColor = "#003772";
@@ -41,6 +43,23 @@ function init2() {
 
 function chiamaSoccorso() {
     Titanium.Platform.openURL('tel:803116');
+}
+
+
+
+//controllo lo stato della login
+var isGuest = !Ti.App.Properties.getBool("utenteAutenticato");
+var user = Ti.App.Properties.getObject("datiUtente");
+if (isGuest) {
+
+    utility.showVertical($.socioWrapper);
+    utility.hideVertical($.lbUser);
+
+} else {
+
+    utility.hideVertical($.socioWrapper);
+    utility.showVertical($.lbUser);
+    $.lbUser.text = ['Ciao', user['userInfo.name'], user['userInfo.surname'], ','].join(' ');
 }
 
 
@@ -59,6 +78,8 @@ $.mapview.addEventListener('complete', function() {
 
 
 //logging, solo per test
-$.mapview.addEventListener('regionchanged', function(e){
-	console.log('centro mappa: ', $.mapview.getRegion());
+$.mapview.addEventListener('regionchanged', function(e) {
+    console.log('centro mappa: ', $.mapview.getRegion());
 });
+
+

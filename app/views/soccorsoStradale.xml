@@ -45,6 +45,7 @@
 	        	</View>
 
 	        	<View id="telefonoWrapper" class="rowWrapper box" >
+	        		<Label id="lbUser" class="formLabel"></Label>
 	        		<Label class="formLabel first_child">Inserisci il telefono a cui vuoi essere richiamato:</Label>
 	        		<TextField id="telefono"></TextField>
 	        	</View>
