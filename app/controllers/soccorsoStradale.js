@@ -83,3 +83,7 @@ $.mapview.addEventListener('regionchanged', function(e) {
 });
 
 
+//serve ad evitare il problema che la tastiera viene visualizzata all'apertura
+$.telefono.once('focus', function(){
+    $.telefono.blur();
+});
