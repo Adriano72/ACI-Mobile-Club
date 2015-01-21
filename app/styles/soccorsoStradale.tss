@@ -118,7 +118,8 @@
 		fontSize: 12
 	},
 	hintText: "+ (numero di telefono)",
-	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD
+	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
+	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS
 }
 
 

@@ -52,15 +52,12 @@ var isGuest = !Ti.App.Properties.getBool("utenteAutenticato");
 var user = Ti.App.Properties.getObject("datiUtente");
 if (isGuest) {
 
-    utility.showVertical($.socioWrapper);
-    utility.hideVertical($.lbUser);
+    utility.hideVertical($.tipoWrapper);
 
 } else {
-
-    utility.hideVertical($.socioWrapper);
-    utility.showVertical($.lbUser);
-    $.lbUser.text = ['Ciao', user['userInfo.name'], user['userInfo.surname'], ','].join(' ');
+    utility.showVertical($.tipoWrapper);
 }
+    $.telefono.text = user['userInfo.mobile'] ||  user['userInfo.mobileTemp'];
 
 
 $.tipoAiuto.addEventListener('change', function(e) {
@@ -73,6 +70,7 @@ $.mapview.addEventListener('complete', function() {
     //la posizione iniziale è quella dell'utente
     locationServices.getUserLocation(function(coo) {
         $.mapview.setLocation(coo);
+        $.mapview.zoom(10);
     });
 });
 

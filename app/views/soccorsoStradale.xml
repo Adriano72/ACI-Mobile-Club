@@ -39,14 +39,13 @@
 	        		
 	        	</View>
 
-	        	<View id="socioWrapper" class="rowWrapper box" >
+	        	<!-- <View id="socioWrapper" class="rowWrapper box" >
 	        		<Label class="formLabel">Socio ACI</Label>
 	        		<Switch id="socio"></Switch>
-	        	</View>
+	        	</View> -->
 
 	        	<View id="telefonoWrapper" class="rowWrapper box" >
-	        		<Label id="lbUser" class="formLabel"></Label>
-	        		<Label class="formLabel first_child">Inserisci il telefono a cui vuoi essere richiamato:</Label>
+	        		
 	        		<TextField id="telefono"></TextField>
 	        	</View>
 
