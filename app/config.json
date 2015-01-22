@@ -1,5 +1,10 @@
 {
-    "global": {},
+    "global": {
+        "AciGlobal_NumeroVerde": "803116",
+        "AciGlobal_ServiceEndpoint": "http://10.64.4.138:10000/api/aciglobal",
+        "AciGlobal_ServiceLogin": "HeERO",
+        "AciGlobal_ServicePassword": "123456"
+    },
     "env:development": {},
     "env:test": {},
     "env:production": {},

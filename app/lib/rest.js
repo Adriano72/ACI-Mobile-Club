@@ -11,13 +11,13 @@
  * @param  {object}   parameters [parametri da allegare alla chiamata]
  * @param  {Function} callback   callback di risposta nel formato function(err, result)
  */
- function call(url, method, parameters, callback) {
+function call(url, method, parameters, callback) {
     Ti.API.debug("webServiceCall " + url);
 
     if (!Titanium.Network.online) {
-        alert(L("noconnectionapp"));
-        if (onError) {
-            onError();
+        //alert(L("noconnectionapp"));
+        if (callback) {
+            callback('noconnection');
         }
         return;
     }
@@ -55,40 +55,58 @@
     xhr.onload = function(e) {
         Ti.API.debug("xhr onSuccess");
 
-        if (onSuccess) {
-            try {
-                var response = this.responseText;
 
-                Ti.API.debug("response\n " + response);
-                var currentObject = JSON.parse(response);
-                Ti.API.debug("parsed as\n " + JSON.stringify(currentObject));
-                if (onSuccess) {
+        try {
+            var response = this.responseText;
 
-                    Ti.API.debug("calling success handler");
-                    if (callback) {
-                        callback(null, currentObject);
-                    }
+            Ti.API.debug("response\n " + response);
+            var currentObject = JSON.parse(response);
+            Ti.API.debug("parsed as\n " + JSON.stringify(currentObject));
+            if (callback) {
 
-                }
-            } catch (ex) {
-                Ti.API.debug("error " + JSON.stringify(ex));
+                Ti.API.debug("calling success handler");
                 if (callback) {
-                    callback(e);
+                    callback(null, currentObject);
                 }
+
+            }
+        } catch (ex) {
+            Ti.API.debug("error " + JSON.stringify(ex));
+            if (callback) {
+                callback(e);
             }
         }
 
 
+
     };
 
-    xhr.open(method, url);
     Ti.API.debug(url);
     Ti.API.debug(parameters);
-    xhr.send(JSON.stringify(parameters));
+    if (method.toUpperCase() == "GET") {
+        url = url + '?' + toQueryString(parameters);
+        Ti.API.debug(url);
+        xhr.open(method, url);
+        xhr.send();
+    } else {
+        xhr.open(method, url);
+        xhr.send(JSON.stringify(parameters));
+
+    }
+
 
 
 
 };
+
+function toQueryString(obj) {
+
+    var params = _.map(obj, function(value, key) {
+        return key + '=' + JSON.stringify(value);
+    });
+
+    return params.join('&');
+}
 
 /**
  * Shorthand di call() per eseguire chiamate GET
@@ -96,8 +114,8 @@
  * @param  {object}   parameters [parametri da allegare alla chiamata]
  * @param  {Function} callback   callback di risposta nel formato function(err, result)
  */
-exports.get = function(url, parameters, callback){
-	call(url, 'GET' , parameters, callback);
+exports.get = function(url, parameters, callback) {
+    call(url, 'GET', parameters, callback);
 };
 
 /**
@@ -106,8 +124,8 @@ exports.get = function(url, parameters, callback){
  * @param  {object}   parameters [parametri da allegare alla chiamata]
  * @param  {Function} callback   callback di risposta nel formato function(err, result)
  */
-exports.post = function(url, parameters, callback){
-	call(url, 'POST' , parameters, callback);
+exports.post = function(url, parameters, callback) {
+    call(url, 'POST', parameters, callback);
 };
 
 /**
@@ -116,6 +134,6 @@ exports.post = function(url, parameters, callback){
  * @param  {object}   parameters [parametri da allegare alla chiamata]
  * @param  {Function} callback   callback di risposta nel formato function(err, result)
  */
-exports.put = function(url, parameters, callback){
-	call(url, 'PUT' , parameters, callback);
+exports.put = function(url, parameters, callback) {
+    call(url, 'PUT', parameters, callback);
 };
