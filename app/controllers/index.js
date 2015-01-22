@@ -143,7 +143,7 @@ function swipeAction(e) {// NON USATA AL MOMENTO
 
 function doPhoneCall(e) {
 	e.cancelBubble = true;
-	var winSoccorso = Alloy.createController('soccorsoStradale').getView();
+	var winSoccorso = Alloy.createController('SoccorsoStradaleMain').getView();
 	Alloy.Globals.navMenu.openWindow(winSoccorso);
 
 };

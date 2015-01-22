@@ -18,7 +18,7 @@
 
 			<View class="bar top">
 				<ImageView class="barIcon gpsIcon"></ImageView>
-				<Label class="barLabel" >Invio richiesta con localizzazione</Label>
+				<Label class="barLabel" >Invia la tua posizione per essere richiamato</Label>
 			</View> 
 
 
@@ -34,9 +34,10 @@
 
 	        	<View id="rowForm" class="rowWrapper">
 	        		
+	        		<Label id="labelMap" class="formLabelDark">Dove ti trovi.</Label>
 
 		        	<View id="tipoWrapper" class="rowWrapper box"  >
-		        		<Label class="formLabel first_child">Seleziona per cosa hai bisogno di aiuto:</Label>
+		        		<Label class="formLabel first_child">Seleziona il servizio:</Label>
 
 		        		<View id="tipoAiutoWrapper">
 		        			<Widget id="tipoAiuto" src="SelettoreTipoAiuto"></Widget>
@@ -53,6 +54,9 @@
 		        		
 		        		<TextField id="telefono"></TextField>
 		        	</View>
+
+	        		<Label id="labelTelefono" class="formLabelDark">Inserisci o modifica</Label>
+
 
 		        	<View id="buttonWrapper" class="rowWrapper " >
 		        		<Button id="btInvia" class="roundButton first_child" onClick="submit	">invia richiesta</Button>
@@ -81,11 +85,6 @@
 	        
 
 
-
-			<View class="bar bottom" onClick="chiamaSoccorso">
-				<ImageView class="barIcon phoneIcon"></ImageView>
-				<Label  class="barLabel" > Chiama direttamente 803116</Label>
-			</View> 
 
 		</ScrollView>
 	</Window>

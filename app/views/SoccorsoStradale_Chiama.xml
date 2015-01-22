@@ -1,0 +1,35 @@
+<Alloy>
+	<Window id="win" class="container" onOpen="doopen">
+		<TitleControl platform="ios">
+			<View class="titleControl"></View>
+		</TitleControl>
+		<RightNavButton platform="ios">
+			<!--<ImageView class="rightNavImg"/>-->
+			<Label>Assistenza</Label>
+		</RightNavButton>
+		<Menu id="menu" platform="android">
+
+			<!-- Cannot specify node text.  Use attributes only. -->
+			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
+			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
+
+		</Menu>
+		<ScrollView id="main">
+			<View class="bar top">
+				<ImageView class="barIcon phoneIcon"></ImageView>
+				<Label class="barLabel" >Chiama l'803.116</Label>
+			</View> 
+
+			<Label class="formLabelDark">Telefona direttamente alla centrale operativa.</Label>
+
+		        
+		   	<Button id="btChiama" class="roundButton" onClick="callPhone">Chiama l'803.116</Button>
+		   
+
+	        
+
+
+
+		</ScrollView>
+	</Window>
+</Alloy>

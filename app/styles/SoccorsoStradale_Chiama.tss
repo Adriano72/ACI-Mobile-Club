@@ -1,0 +1,119 @@
+/**
+ * NAVIGAZIONE E CONTAINER
+ */
+
+
+// container for iOS
+".container[platform=ios]": {
+	backgroundColor: "#f2f2f2",
+	backButtonTitle: "",
+	barColor: "#f2f2f2",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT]
+	
+}
+
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: "#fff",
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	
+	width: 120,
+	height: 20
+}
+
+".rightNavImg[platform=ios]": {
+	image: "ico_rotella_celeste.png",
+	height: 15
+}
+
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "/images/ic_action_puntatore.png"
+}
+
+"#mn_settings": {
+	icon: "/ico_rotella_celeste.png"
+}
+
+/**
+ * LAYOUT DI PAGINA
+ */
+
+"#main":{
+	backgroundColor: "#e8e8e7",
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	layout: "vertical"
+}
+
+
+".bar" :{
+	width: Ti.UI.FILL,
+	height: 40,
+	backgroundColor: "#d91305"
+}
+
+".top":{
+	top:0
+}
+
+/**
+ * STILE DEGLI ELEMENTI
+ */
+
+".formLabelDark":{
+
+	top: 10,
+	color: "#5f5f5f",
+	left: 10,
+	font:{
+		fontSize: 12,
+		fontWeight: "bold"
+	}
+
+}
+
+
+".barLabel":{
+	color: "#ffffff",
+	font:{
+		fontSize: 12
+	}
+}
+
+
+".barIcon":{
+	left: 5
+}
+
+".phoneIcon":{
+	image : "/images/ic_action_aiuto_phone_bianco.png"
+}
+
+
+ ".roundButton" : {
+	top: 20,
+	height: 34,
+	borderRadius: 18,
+	borderWidth: 1,
+	borderColor: "#d91305",
+	backgroundColor: "#d91305",
+	color: "#ffffff",
+	width: "95%",
+	font:{
+		fontSize: 12,
+		fontWeight: "bold"
+	}
+}

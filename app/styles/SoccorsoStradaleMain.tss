@@ -1,0 +1,68 @@
+// container for iOS
+".container[platform=ios]": {
+	backgroundColor: "#f2f2f2",
+	backButtonTitle: "",
+	barColor: "#f2f2f2",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: "#fff",
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	backgroundImage: "logoSoccorsoStradale.png",
+	width: 120,
+	height: 28
+}
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "/images/ic_action_puntatore.png"
+}
+
+".toolbar":{
+	top: 0,
+	borderTop: "true",
+	borderBottom: "true"
+}
+
+"#headerLogo": {
+	height: 23
+}
+
+".table[platform=ios]":{
+	top: 0,
+	height: Ti.UI.SIZE
+	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+}
+
+".table[platform=android]":{
+	top: 0
+}
+
+".bottomBannerContainer": {
+	bottom: 0,
+	height: "30%"
+}
+
+".bottomBanner": {
+	//image: "/banner_sotto.png",
+	width: "90%"
+}
+
+
+
+
+
+
