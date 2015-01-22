@@ -19,7 +19,6 @@ function doopen(evt) {
         //$.windowtitle.text = winTitle;
 
         //salto l'init del menu
-        init3();
     }
 
     //updateScreen();

@@ -21,7 +21,7 @@ function doopen(evt) {
 
     } else {
         //$.windowtitle.text = winTitle;
-        
+
         //salto l'init del menu
         init3();
     }
@@ -44,7 +44,7 @@ function init2() {
 }
 //init3();//
 function init3() {
-    
+
 
     //
     //controllo lo stato della login
@@ -92,8 +92,18 @@ function init3() {
     if (OS_ANDROID) {
         $.telefono.once('focus', function() {
             $.telefono.blur();
+            setScrollOnFocus();
+        });
+    } else {
+        setScrollOnFocus();
+    }
+
+    function setScrollOnFocus() {
+        $.telefono.addEventListener('focus', function() {
+            $.main.scrollToBottom();
         });
     }
+
 
 
     //stato: mostra form
