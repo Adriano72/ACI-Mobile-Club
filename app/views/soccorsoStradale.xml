@@ -21,42 +21,68 @@
 				<Label class="barLabel" >Invio richiesta con localizzazione</Label>
 			</View> 
 
+
+
 	        <View  class="rowContainer">
 
-	        	<View class="rowWrapper" >
-	        		<View id="mapWrapper">
-	        			<Module id="mapview" module="ti.map" method="createView"></Module>
+	        	<View id="rowMap" class="rowWrapper" >
+		        	<View id="mapWrapper">
+		        		<Module id="mapview" module="ti.map" method="createView"></Module>
 						<ImageView id="pin"></ImageView> 
-	        		</View>
+		        	</View>
+			    </View>
+
+	        	<View id="rowForm" class="rowWrapper">
+	        		
+
+		        	<View id="tipoWrapper" class="rowWrapper box"  >
+		        		<Label class="formLabel first_child">Seleziona per cosa hai bisogno di aiuto:</Label>
+
+		        		<View id="tipoAiutoWrapper">
+		        			<Widget id="tipoAiuto" src="SelettoreTipoAiuto"></Widget>
+		        		</View>
+		        		
+		        	</View>
+
+		        	<!-- <View id="socioWrapper" class="rowWrapper box" >
+		        		<Label class="formLabel">Socio ACI</Label>
+		        		<Switch id="socio"></Switch>
+		        	</View> -->
+
+		        	<View id="telefonoWrapper" class="rowWrapper box" >
+		        		
+		        		<TextField id="telefono"></TextField>
+		        	</View>
+
+		        	<View id="buttonWrapper" class="rowWrapper " >
+		        		<Button id="btInvia" class="roundButton first_child" onClick="submit	">invia richiesta</Button>
+		        	</View>
+	        	</View>
+	        	
+
+	        	<View id="rowRichiestaInviata" class="rowWrapper" visible="false">
+		        	<View class="labelWrapper">
+		        		<Label class="formLabel">Richiesta di assistenza inviata alle</Label>
+		        		<Label id="richiestaOrario" class="formLabelRed"></Label>
+		        	</View>
+		        	<View class="labelWrapper">
+		        		<Label class="formLabel">da</Label>
+		        		<Label id="richiestaIndirizzo" class="formLabelRed"></Label>
+		        	</View>	        
+		        	<View class="labelWrapper">
+		        		<Label class="formLabel">Sarai richiamato al numero</Label>
+		        		<Label id="richiestaTelefono" class="formLabelRed"></Label>
+		        	</View>
 		        </View>
 
-	        	<View id="tipoWrapper" class="rowWrapper box"  >
-	        		<Label class="formLabel first_child">Seleziona per cosa hai bisogno di aiuto:</Label>
 
-	        		<View id="tipoAiutoWrapper">
-	        			<Widget id="tipoAiuto" src="SelettoreTipoAiuto"></Widget>
-	        		</View>
-	        		
-	        	</View>
-
-	        	<!-- <View id="socioWrapper" class="rowWrapper box" >
-	        		<Label class="formLabel">Socio ACI</Label>
-	        		<Switch id="socio"></Switch>
-	        	</View> -->
-
-	        	<View id="telefonoWrapper" class="rowWrapper box" >
-	        		
-	        		<TextField id="telefono"></TextField>
-	        	</View>
-
-	        	<View class="rowWrapper " >
-	        		<Button id="btInvia" class="roundButton first_child">invia richiesta</Button>
-	        	</View>
 	        </View>
 
+	        
 
 
-			<View class="bar bottom" onClick="phoneCall">
+
+			<View class="bar bottom" onClick="chiamaSoccorso">
 				<ImageView class="barIcon phoneIcon"></ImageView>
 				<Label  class="barLabel" > Chiama direttamente 803116</Label>
 			</View> 

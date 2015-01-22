@@ -40,7 +40,7 @@
 }
 
 "#menu": {
-	icon: "ico_punti_servizio_01.png"
+	icon: "/images/ic_action_puntatore.png"
 }
 
 "#mn_settings": {
@@ -58,7 +58,7 @@
 }
 
 ".rowContainer": {
-	top: 30,
+	top: 40,
 	layout: "vertical",
 	height: Ti.UI.FILL,
 
@@ -71,9 +71,16 @@
 	layout: "vertical"
 }
 
+".labelWrapper": {
+	//height: 80,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "horizontal"
+}
+
 ".bar" :{
 	width: Ti.UI.FILL,
-	height: 30,
+	height: 40,
 	backgroundColor: "#ff0000"
 }
 
@@ -119,7 +126,8 @@
 	},
 	hintText: "+ (numero di telefono a cui sarai richiamato)",
 	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
-	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS
+	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
+	color: "#999"
 }
 
 
@@ -135,7 +143,12 @@
 	height: 175
 }
 "#mapWrapper":{
-	height: 175
+	height: 175,
+	bottom: 10
+}
+
+"#rowRichiestaInviata":{
+	width: "95%"
 }
 
 
@@ -143,8 +156,11 @@
 	top: 5,
 	bottom: 5,
 	highlightColor: "#00ff00",
+	color: "#999",
 	height: Ti.UI.SIZE
 }
+
+
 
 "#tipoAiuto" :{
 	highlightColor: "#f00",
@@ -159,9 +175,21 @@
 	}
 }
 
+".formLabelRed":{
+
+	//top: 5,
+	color: "#ff0000",
+	left: 5,
+	font:{
+		fontSize: 12,
+		fontWeight: "bold"
+	}
+
+}
+
 ".formLabel":{
 	//top: 5,
-	color: "#ccc",
+	color: "#999",
 	left: 5,
 	font:{
 		fontSize: 12
@@ -197,7 +225,9 @@
 }
 
 "#btInvia":{
-	backgroundColor: "transparent"
+	top: 10,
+	backgroundColor: "#ff0000",
+	color: "#ffffff"
 }
 
 
