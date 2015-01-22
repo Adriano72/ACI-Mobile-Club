@@ -50,14 +50,20 @@ function chiamaSoccorso() {
 //controllo lo stato della login
 var isGuest = !Ti.App.Properties.getBool("utenteAutenticato");
 var user = Ti.App.Properties.getObject("datiUtente");
-if (isGuest) {
 
-    utility.hideVertical($.tipoWrapper);
+console.log('isGuest', isGuest);
+console.log('user', user);
+
+if (!isGuest && user && user != {}) {
+
+    utility.showVertical($.tipoWrapper);
+    $.telefono.value = user['userInfo.mobile'] || user['userInfo.mobileTemp'];
 
 } else {
-    utility.showVertical($.tipoWrapper);
+
+    utility.hideVertical($.tipoWrapper);
+    $.telefono.value = '';
 }
-    $.telefono.text = user['userInfo.mobile'] ||  user['userInfo.mobileTemp'];
 
 
 $.tipoAiuto.addEventListener('change', function(e) {

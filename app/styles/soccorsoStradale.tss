@@ -117,7 +117,7 @@
 	font:{
 		fontSize: 12
 	},
-	hintText: "+ (numero di telefono)",
+	hintText: "+ (numero di telefono a cui sarai richiamato)",
 	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
 	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS
 }
