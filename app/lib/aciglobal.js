@@ -49,3 +49,21 @@ exports.sendRichiestaAssistenza = function(params, callback) {
 };
 
 exports.NumeroVerde = Alloy.CFG.AciGlobal_NumeroVerde;
+exports.RequestLimitMinutes = Alloy.CFG.AciGlobal_RequestLimitMinutes;
+
+/**
+ * Gestisce il limite temporale per inviare richieste ad AciGlobal
+ * @param  {[type]} msg [description]
+ * @return {[type]}     [description]
+ */
+exports.limitRequests = function(msg, cb) {
+    var key = 'AciGlobal:RequestFromDate';
+    var now = new Date();
+    var validFrom = Ti.App.Properties.getObject(key);
+    if (!validFrom || validFrom <= now) {
+        Ti.App.Properties.setObject(key, new Date(now.getTime() + Alloy.CFG.AciGlobal_RequestLimitMinutes * 60000));
+        cb && cb();
+    } else {
+        alert(msg);
+    }
+};

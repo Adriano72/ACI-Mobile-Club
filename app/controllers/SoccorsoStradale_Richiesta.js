@@ -123,12 +123,17 @@ function submit() {
             message: "Confermi l'invio della richiesta?",
             yes: "Sì",
             no: "No",
-            callback: callAciGlobal
+            callback: function() {
+                AciGlobal.limitRequests('La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero ' + AciGlobal.NumeroVerde + '.', callAciGlobal);
+            }
         });
     } else {
         alert("Tutti i dati sono obbligatori");
     }
 }
+
+
+
 
 
 /**
