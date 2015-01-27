@@ -2,12 +2,19 @@
     "global": {
         "AciGlobal_NumeroVerde": "803116",
         "AciGlobal_ServiceEndpoint": "http://10.64.4.138:10000/api/aciglobal",
-        "AciGlobal_ServiceLogin": "HeERO",
-        "AciGlobal_ServicePassword": "123456",
+        "AciGlobal_ServerLogin": "acimobileclub",
+        "AciGlobal_ServerPassword": "Iniziale$01",
+        "AciGlobal_CodiceApplicazione": "ACI03",
+        "AciGlobal_ServiceLogin": "ACI_Mob_App",
+        "AciGlobal_ServicePassword": "aci123456",
         "AciGlobal_RequestLimitMinutes": "10"
     },
-    "env:development": {},
-    "env:test": {},
+    "env:development": {
+        "AciGlobal_RequestLimitMinutes": "0"
+    },
+    "env:test": {
+        "AciGlobal_RequestLimitMinutes": "1"
+    },
     "env:production": {},
     "os:android": {},
     "os:blackberry": {},

@@ -5,6 +5,34 @@ var dialogs = require('alloy/dialogs');
 
 var isGuest, user;
 
+/**
+ * FORMATO UTENTE
+ * {
+    "userInfo.provincia": "RM",
+    "userInfo.numeroTessera": "AC900932465",
+    "userInfo.dataNascita": "1960-12-02",
+    "userInfo.mobile": "3289769508",
+    "userInfo.codiceFiscale": "CHRMSM60T02H501G",
+    "userInfo.emailTemp": "M.CHIERCHINI@INFORMATICA.ACI.IT",
+    "userInfo.surname": "CHIERCHINI",
+    "userInfo.tipoTessera": "I",
+    "userInfo.user": "MCHIERCH",
+    "userInfo.categoriaTessera": "CLO",
+    "userInfo.newsletteraci": "",
+    "userInfo.email": "M.CHIERCHINI@INFORMATICA.ACI.IT",
+    "userInfo.note": "",
+    "userInfo.dataScadenza": "2015/12/31",
+    "userInfo.sesso": "M",
+    "userInfo.newsletter3rdparty": "",
+    "userInfo.name": "MASSIMO",
+    "userInfo.tessera": "AC900932465",
+    "userInfo.mobileTemp": "3289769508",
+    "userInfo.citta": "ROMA"
+}
+
+ * 
+ */
+
 var args = arguments[0] || {};
 
 if (OS_ANDROID) {
@@ -145,11 +173,29 @@ function callAciGlobal() {
 
     Alloy.Globals.loading.show('Richiesta in corso');
 
-    AciGlobal.sendRichiestaAssistenza({}, function(err, result) {
+    var params = {
+        telefono: $.telefono.value,
+        latitude: $.mapview.getRegion().latitude,
+        longitude: $.mapview.getRegion().longitude
+    };
+
+   // console.log('isGuest ', isGuest);
+
+    if (!isGuest) {
+        params = _.extend(params, {
+            nome: user['userInfo.name'],
+            cognome: user['userInfo.surname'],
+            tesseraACI: user['userInfo.numeroTessera']
+        });
+    }
+
+    console.log("params ", params);
+
+    AciGlobal.sendRichiestaAssistenza(params, function(err, result) {
 
         Alloy.Globals.loading.hide();
 
-        if (false && err) {
+        if (err) {
             console.log('callAciGlobal', err);
             alert('si è verificato un errore nella trasmissione della richiesta');
         } else {
