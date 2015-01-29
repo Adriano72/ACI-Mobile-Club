@@ -2,8 +2,9 @@ var locationServices = require('locationServices');
 var utility = require('utility');
 var AciGlobal = require('aciglobal');
 var dialogs = require('alloy/dialogs');
+var user = require('user');
 
-var isGuest, user;
+var isGuest, userData;
 
 /**
  * FORMATO UTENTE
@@ -78,15 +79,15 @@ function init3() {
     //controllo lo stato della login
     //
 
-    user = Ti.App.Properties.getObject("datiUtente");
-    isGuest = Boolean(!(user && user != {}) && !Ti.App.Properties.getBool("utenteAutenticato"));
+    userData = user.getCurrentUser();
+    isGuest = !user.isLogged; //Boolean(!(user && userData != {}) && !Ti.App.Properties.getBool("utenteAutenticato"));
 
     console.log('isGuest', isGuest);
-    console.log('user', user);
+    console.log('user', userData);
     if (!isGuest) {
 
         utility.showVertical($.tipoWrapper);
-        $.telefono.value = user['userInfo.mobile'] || user['userInfo.mobileTemp'];
+        $.telefono.value = userData['userInfo.mobile'] || userData['userInfo.mobileTemp'];
 
     } else {
 
@@ -179,13 +180,13 @@ function callAciGlobal() {
         longitude: $.mapview.getRegion().longitude
     };
 
-   // console.log('isGuest ', isGuest);
+    // console.log('isGuest ', isGuest);
 
     if (!isGuest) {
         params = _.extend(params, {
-            nome: user['userInfo.name'],
-            cognome: user['userInfo.surname'],
-            tesseraACI: user['userInfo.numeroTessera']
+            nome: userData['userInfo.name'],
+            cognome: userData['userInfo.surname'],
+            tesseraACI: userData['userInfo.numeroTessera']
         });
     }
 
