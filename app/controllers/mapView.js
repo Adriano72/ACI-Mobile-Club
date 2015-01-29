@@ -25,7 +25,7 @@ function loadData() {
 		abx.displayHomeAsUp = true;
 		abx.title = args.titolo;
 		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = "#003772";
+		abx.titleColor = Alloy.Globals.palette.blu;
 
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 

@@ -38,7 +38,7 @@ function init1() {
 	abx.displayHomeAsUp = true;
 	abx.title = "Demolitori";
 	abx.titleFont = "ACI Type Regular.otf";
-	abx.titleColor = "#003772";
+	abx.titleColor = Alloy.Globals.palette.blu;
 	_.defer(init2);
 }
 
@@ -52,7 +52,7 @@ function toggleDettaglioServizi(e) {
 	if ($.dettaglioServizi.visible == true) {
 		$.dettaglioServizi.visible = false;
 		$.serviziIcon.image = "/x_abaco_blu.png";
-		$.serviziText.color = "#003772";
+		$.serviziText.color = Alloy.Globals.palette.blu;
 		$.rowServizi.backgroundColor = "#fff";
 		$.dettaglioServizi.height = 0;
 
@@ -60,7 +60,7 @@ function toggleDettaglioServizi(e) {
 		$.dettaglioServizi.height = Ti.UI.SIZE;
 		$.serviziIcon.image = "/x_abaco_bianco.png";
 		$.serviziText.color = "#fff";
-		$.rowServizi.backgroundColor = "#003772";
+		$.rowServizi.backgroundColor = Alloy.Globals.palette.blu;
 		$.dettaglioServizi.visible = true;
 
 	}
@@ -74,7 +74,7 @@ function toggleDettaglioOrari(e) {
 	if ($.dettaglioOrari.visible == true) {
 		$.dettaglioOrari.visible = false;
 		$.orariIcon.image = "/x_orario_blu.png";
-		$.orariText.color = "#003772";
+		$.orariText.color = Alloy.Globals.palette.blu;
 		$.rowOrari.backgroundColor = "#fff";
 		$.dettaglioOrari.height = 0;
 
@@ -82,7 +82,7 @@ function toggleDettaglioOrari(e) {
 		$.dettaglioOrari.height = Ti.UI.SIZE;
 		$.orariIcon.image = "/x_orario_bianco.png";
 		$.orariText.color = "#fff";
-		$.rowOrari.backgroundColor = "#003772";
+		$.rowOrari.backgroundColor = Alloy.Globals.palette.blu;
 		$.dettaglioOrari.visible = true;
 
 	}

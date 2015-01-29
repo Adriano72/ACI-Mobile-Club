@@ -13,7 +13,7 @@ function doopen(evt) {
         abx.displayHomeAsUp = true;
         abx.title = "Assistenza";
         abx.titleFont = "ACI Type Regular.otf";
-        abx.titleColor = "#003772";
+        abx.titleColor = Alloy.Globals.palette.blu;
 
         //actionBarHelper.setIcon('/drawericonw@2x.png');
 
@@ -45,7 +45,7 @@ _.each(rowData, function(value) {
     //Ti.API.info("DATA: " + value.img);
     var riga = Alloy.createController('TableViewRow_Single', value);
     //con questo hack non ho bisogno di creare un nuovo controllo
-    riga.rowText.color = "#d91305";
+    riga.rowText.color = Alloy.Globals.palette.rosso;
     rows.push(riga.getView());
 });
 

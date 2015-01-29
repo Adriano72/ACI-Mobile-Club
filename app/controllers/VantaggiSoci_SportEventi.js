@@ -22,7 +22,7 @@ function init1() {
 	abx.displayHomeAsUp = true;
 	abx.title = "Sport & Eventi";
 	abx.titleFont = "ACI Type Regular.otf";
-	abx.titleColor = "#003772";
+	abx.titleColor = Alloy.Globals.palette.blu;
 	_.defer(init2);
 }
 

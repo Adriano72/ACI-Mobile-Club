@@ -26,7 +26,7 @@ exports.openSideMenu = function(p_auth) {
     var separator = Ti.UI.createView({
         width: Ti.UI.FILL,
         height: 1,
-        backgroundColor: "#CCCCCC"
+        backgroundColor: Alloy.Globals.palette.grigio_chiaro
     });
 
     sideMenu.add(separator);

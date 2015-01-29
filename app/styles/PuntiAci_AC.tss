@@ -1,6 +1,6 @@
 ".container[platform=ios]": {
 	backgroundColor: "#fff",
-	barColor: "#f2f2f2",
+	barColor: Alloy.Globals.palette.bianco_sporco,
 	backButtonTitle: "",
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT],
@@ -9,7 +9,7 @@
 
 // container for Android
 ".container[platform=android]": {
-	backgroundColor: "#f2f2f2",
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
 	top:20,
 	tintColor: "red",
 	orientationModes: [Ti.UI.PORTRAIT],
@@ -87,7 +87,7 @@
 	height: Ti.UI.SIZE,
 	left: 10,
 	top: 0,
-	color:"#003772"
+	color:Alloy.Globals.palette.blu
 }
 
 ".bottomRowContainer": {

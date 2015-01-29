@@ -1,6 +1,6 @@
 ".container[platform=ios]": {
 	backgroundColor: "#fff",
-	barColor: "#f2f2f2",
+	barColor: Alloy.Globals.palette.bianco_sporco,
 	backButtonTitle: "",
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT],

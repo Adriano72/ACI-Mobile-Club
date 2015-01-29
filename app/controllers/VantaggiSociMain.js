@@ -9,7 +9,7 @@ function doopen(evt) {
 		abx.displayHomeAsUp = true;
 		abx.title = "Vantaggi per i soci";
 		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = "#003772";
+		abx.titleColor = Alloy.Globals.palette.blu;
 
 		//actionBarHelper.setIcon('/drawericonw@2x.png');
 

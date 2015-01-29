@@ -1,8 +1,8 @@
 // container for iOS
 ".container[platform=ios]": {
-	backgroundColor: "#f2f2f2",
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
 	backButtonTitle: "",
-	barColor: "#f2f2f2",
+	barColor: Alloy.Globals.palette.bianco_sporco,
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT],
 	
@@ -44,7 +44,7 @@
 ".separator": {
 	width: Ti.UI.FILL,
 	height: 1,
-	backgroundColor: "#CCCCCC"
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro
 }
 
 ".scrollableContainer": {
@@ -60,7 +60,7 @@
 }
 
 "#headerText": {
-	color: "#003772"
+	color: Alloy.Globals.palette.blu
 }
 
 "#contattiView": {
@@ -98,7 +98,7 @@
 ".simpleRowText": {
 	touchEnabled: false,
 	left: 50,
-	color:"#003772",
+	color:Alloy.Globals.palette.blu,
 	touchEnabled: false
 }
 

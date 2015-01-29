@@ -16,11 +16,11 @@ Alloy.Globals.rememberMe = false;
 
 Alloy.Globals.DevMode = true;
 
-Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <=480)?'11dp':'15dp';
+Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <= 480) ? '11dp' : '15dp';
 
 Alloy.Globals.loading = Alloy.createWidget("nl.fokkezb.loading");
 
-var logicalDensityFactor = OS_IOS  ? 1 : Ti.Platform.displayCaps.logicalDensityFactor ;
+var logicalDensityFactor = OS_IOS ? 1 : Ti.Platform.displayCaps.logicalDensityFactor;
 Alloy.Globals.deviceWidth = parseInt(Ti.Platform.displayCaps.platformWidth / (logicalDensityFactor || 1), 10);
 Alloy.Globals.deviceWidthHalf = Alloy.Globals.deviceWidth / 2;
 Alloy.Globals.deviceHeight = parseInt(Ti.Platform.displayCaps.platformHeight / (logicalDensityFactor || 1), 10);
@@ -62,3 +62,13 @@ Alloy.Collections.instance("altriServizi");
 //Ti.API.info("WINDOW HEIGHT:"+Ti.Platform.displayCaps.platformHeight);
 
 
+//palette di colori da utilizzare nell'app
+Alloy.Globals.palette = {
+    blu: "#003772",
+    celeste: "#006db3",
+    grigio_chiaro: "#cccccc", // (separatori orizzontali, freccia menu
+    grigio_scuro: "#888888",
+    rosso: "#e32b00",
+    bianco_sporco: "#f2f2f2",
+    bianco: "#ffffff" //header e contrasto
+};

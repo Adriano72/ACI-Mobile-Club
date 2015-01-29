@@ -1,6 +1,6 @@
 ".container[platform=ios]": {
 	backgroundColor: "#fff",
-	barColor: "#f2f2f2",
+	barColor: Alloy.Globals.palette.bianco_sporco,
 	backButtonTitle: "",
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
 	orientationModes: [Ti.UI.PORTRAIT],
@@ -106,7 +106,7 @@
 	width: 160,
 	left: 10,
 	top: 0,
-	color:"#003772"
+	color:Alloy.Globals.palette.blu
 }
 
 ".indirizzo": {

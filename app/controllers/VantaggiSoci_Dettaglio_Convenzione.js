@@ -52,7 +52,7 @@ function init1() {
 	abx.displayHomeAsUp = true;
 	abx.title = "Dettaglio Convenzione";
 	abx.titleFont = "ACI Type Regular.otf";
-	abx.titleColor = "#003772";
+	abx.titleColor = Alloy.Globals.palette.blu;
 	_.defer(init2);
 }
 
@@ -68,7 +68,7 @@ function toggleDettaglioDescrizione(e) {
 
 		$.dettaglioDescrizione.visible = false;
 		$.descrizioneIcon.image = "/x_descrizione_blu.png";
-		$.descrizioneText.color = "#003772";
+		$.descrizioneText.color = Alloy.Globals.palette.blu;
 		$.rowDescrizione.backgroundColor = "#fff";
 		$.dettaglioDescrizione.height = 0;
 
@@ -77,7 +77,7 @@ function toggleDettaglioDescrizione(e) {
 		$.dettaglioDescrizione.height = Ti.UI.SIZE;
 		$.descrizioneIcon.image = "/x_descrizione_bianco.png";
 		$.descrizioneText.color = "#fff";
-		$.rowDescrizione.backgroundColor = "#003772";
+		$.rowDescrizione.backgroundColor = Alloy.Globals.palette.blu;
 		$.dettaglioDescrizione.visible = true;
 
 	}
@@ -91,7 +91,7 @@ function toggleDettaglioVantaggio(e) {
 	if ($.dettaglioVantaggio.visible == true) {
 		$.dettaglioVantaggio.visible = false;
 		$.vantaggioIcon.image = "/x_vantaggi_blu.png";
-		$.vantaggioText.color = "#003772";
+		$.vantaggioText.color = Alloy.Globals.palette.blu;
 		$.rowVantaggio.backgroundColor = "#fff";
 		$.dettaglioVantaggio.height = 0;
 
@@ -99,7 +99,7 @@ function toggleDettaglioVantaggio(e) {
 		$.dettaglioVantaggio.height = Ti.UI.SIZE;
 		$.vantaggioIcon.image = "/x_vantaggi_bianco.png";
 		$.vantaggioText.color = "#fff";
-		$.rowVantaggio.backgroundColor = "#003772";
+		$.rowVantaggio.backgroundColor = Alloy.Globals.palette.blu;
 		$.dettaglioVantaggio.visible = true;
 
 	}

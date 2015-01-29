@@ -19,7 +19,7 @@
 
 ".simpleRowText": {
 	left: 50,
-	color:"#003772",
+	color:Alloy.Globals.palette.blu,
 	touchEnabled: false
 }
 
