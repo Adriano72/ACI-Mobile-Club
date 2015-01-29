@@ -71,6 +71,11 @@ function doLogin() {
                 var winTessera = Alloy.createController('showTessera', user_data.data).getView();
                 Alloy.Globals.navMenu.openWindow(winTessera);
 
+                //questo hack serve per far si che, se premo back da winTessera, torno direttamente alla home page
+                _.defer(function() {
+                    Alloy.Globals.navMenu.closeWindow($.win);
+                });
+
             });
 
         });
