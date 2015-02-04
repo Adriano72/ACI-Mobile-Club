@@ -51,9 +51,6 @@ _.each(rowData, function(value) {
 
 function selectionDetail(e) {
     console.log('selection', e);
-    console.log('selection', e.row);
-    console.log('selection', e.row.id_coda);
-    console.log('selection', e.rowData);
     if (!_.isUndefined(e.row)) {
 
         Ti.API.info("CLICKED DATA: " + e.row.id_code);

@@ -43,7 +43,17 @@ Object.defineProperty(exports, 'isLogged', {
  * @return {object} hash set con i dati utente
  */
 exports.getCurrentUser = function() {
-    return Ti.App.Properties.getObject("datiUtente");
+
+    var u;
+
+    if (exports.isLogged) {
+        try {
+            u = Ti.App.Properties.getObject("datiUtente");
+        } catch(err) {
+            Ti.API.error('user.getCurrentUser');
+        }
+    }
+    return u;
 };
 
 
