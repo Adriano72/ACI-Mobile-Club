@@ -1,0 +1,147 @@
+".container[platform=ios]": {
+	backgroundColor: "#fff",
+	barColor: Alloy.Globals.palette.bianco_sporco,
+	backButtonTitle: "",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	//backgroundImage: "logoURP.png",
+	width: 90,
+	height: 23
+}
+
+".rightNavImg[platform=ios]": {
+	image: "images/ic_action_pin.png",
+	height: 25
+}
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "/images/ic_action_cerca_per_servizio_blu.png"
+
+}
+
+"#mn_settings": {
+	
+	icon: "/images/ic_action_pin.png",
+	title: "Mappa"
+}
+
+
+
+".table[platform=ios]":{
+	top: 0,
+	height: Ti.UI.FILL
+	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+}
+
+".table[platform=android]":{
+	top: 0,
+	height: Ti.UI.FILL
+}
+
+"#puntiAci_Table": {
+	//search: "searchBar"
+}
+
+"#searchBar": {
+	//barColor: "#fff",
+	//backgroundColor: "#8A9092",
+	hintText:"Cerca",
+	showCancel:"false",
+	height: 43,
+	top: 0
+}
+
+".row[platform=ios]":{
+	height: 85,
+	color: "transparent",
+	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
+}
+
+".row[platform=android]":{
+	height: 80,
+	className: "riga"
+}
+
+
+".row[platform=ios]":{
+	height: "40",
+	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
+}
+
+".row[platform=android]":{
+	height: "40"
+}
+
+".rowContainer": {
+	layout: "vertical",
+	top: 5
+}
+
+".simpleRowText": {
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	left: 10,
+	top: 0,
+	color:Alloy.Globals.palette.blu
+}
+
+".bottomRowContainer": {
+	top: 0,
+	left: 10,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL
+}
+
+"#nome": {
+	width: "80%",
+	height: 20,
+	wordWrap: false,
+	ellipsize: true
+}
+
+".indirizzo": {
+	font: {
+        fontSize: '8dp'
+    },
+    color: "#8A9092"	
+}
+
+".indicazioniStradali": {
+	left: 0,
+	height: Ti.UI.SIZE,
+	text: "Indicazioni stradali",
+	color: "#006AA3"
+}
+
+".bt_chiama": {
+	image: "/images/ic_action_phone.png",
+	right: 50
+	//width: 13,
+	//height:20
+	
+}
+
+".bt_email": {
+	image: "/images/ic_action_mail.png",
+	right: 5
+	//width: 30,
+	//height:20
+}
+

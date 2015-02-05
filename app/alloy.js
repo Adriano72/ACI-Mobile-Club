@@ -38,6 +38,10 @@ console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFacto
 Ti.API.info('globals 2: ' + JSON.stringify(Alloy.Globals));
 
 
+//SERVIZI GIC
+Alloy.Collections.instance("serviziGIC");
+Alloy.Collections.instance("serviziGICpos");
+
 
 // PUNTI ACI
 Alloy.Collections.instance("automobileClub");
@@ -69,6 +73,6 @@ Alloy.Globals.palette = {
     grigio_chiaro: "#cccccc", // (separatori orizzontali, freccia menu
     grigio_scuro: "#888888",
     rosso: "#e32b00",
-    bianco_sporco: "#f2f2f2",
-    bianco: "#ffffff" //header e contrasto
+    bianco_sporco: "#f2f2f2",//header e 
+    bianco: "#ffffff" 
 };

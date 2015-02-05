@@ -1,0 +1,21 @@
+<Alloy>
+	
+	<Window id="win" class="container" onOpen="loadData">
+		<TitleControl platform="ios">
+			<View id="titleControl" class="titleControl"></View>
+		</TitleControl>
+		<Menu id="menu"  platform="android">
+	</Menu>
+		
+		<TableView id="puntiAci_Table" class="table" dataCollection="serviziGIC" onSingletap="listaGIC"  dataFunction="updateUI" >
+		
+			<SearchBar id="searchBar"/>
+			<TableViewRow id="riga" class="row simpleRowText PTSansBold" modelId="{alloy_id}" title="{declinazione}" >
+				<View class="rowContainer">
+					
+				</View>
+				
+			</TableViewRow>
+		</TableView>
+	</Window>
+</Alloy>

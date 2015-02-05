@@ -1,255 +1,376 @@
+/**
+ * funzione che formatta i parametri di querystring in modo da implementare la logica di ordinamento geografico
+ * gestisce il caso provincia o (lat,lon)
+ * https://mail.google.com/mail/u/2/#apps/m.deangelis%40informatica.aci.it/n50/14b35dab0bc4deee
+ * ATTENZIONE! MODIFICA L'OGGETTO PASSATO COME PARAMETRO
+ * @param {object} parametri originali della querystring
+ * @return {object} querystring formattata
+ */
+function useLocationParams(params) {
+    //se ho la provincia, filtro per provincia
+    // altrimenti ordino per posizione
+    var provincia = undefined;
+    if (provincia) {
+        params.query['address.province.shortName'] = provincia;
+    } else {
+        params.query["address.location"] = {
+            "$near": [Alloy.Globals.userPosition.longitude, Alloy.Globals.userPosition.latitude],
+            "$maxDistance": 0.2
+        };
+    }
+
+}
+
+/**
+ * formatta una string aquerystring a partire da un oggetto
+ * @return {[type]} [description]
+ */
+function formatQS(obj) {
+
+    var params = _.map(obj, function(value, key) {
+        return key + '=' + JSON.stringify(value);
+    });
+
+    return params.join('&');
+}
+
+
 exports.getPuntiAci = function(type_code, _callback) {
 
-	Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
 
-	var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
-	xhr.onload = function() {
+    xhr.onload = function() {
 
-		var json = JSON.parse(this.responseText);
+        var json = JSON.parse(this.responseText);
 
-		Ti.API.info("RISPOSTA: " + json.message);
+        Ti.API.info("RISPOSTA: " + json.message);
 
-		if (json.message == "200 OK") {
-			Ti.API.info("RISPOSTA: " + type_code + " " + JSON.stringify(json));
-			_callback(json.result);
+        if (json.message == "200 OK") {
+            Ti.API.debug("RISPOSTA: " + type_code + " " + JSON.stringify(json));
+            _callback(json.result);
 
-		} else {
-			Alloy.Globals.loading.hide();
-			alert("Errore nella comunicazione col server.");
-		};
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
 
-	};
+    };
 
-	xhr.onerror = function() {
-		Alloy.Globals.loading.hide();
-		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-	};
+    xhr.onerror = function() {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+    };
 
-	Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/pos?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
+    //parametri della richiesta
+    var qs = {
+        query: {
+            "_type": type_code,
+            "status": 'ok'
+        },
+        limit: 15
+    }
 
-	xhr.open('GET', Alloy.Globals.baseURL + '/aci/pos?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
+    //aggiunge la parte dedicata all'ordinamento geografico
+    useLocationParams(qs);
 
-	xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    var url = Alloy.Globals.baseURL + '/aci/pos?' + formatQS(qs);
 
-	xhr.send();
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    xhr.open('GET', url);
+
+    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+
+    xhr.send();
 
 };
 
 exports.getDemolitori = function(type_code, _callback) {
 
-	Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
 
-	var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
-	xhr.onload = function() {
+    xhr.onload = function() {
 
-		var json = JSON.parse(this.responseText);
+        var json = JSON.parse(this.responseText);
 
-		Ti.API.info("RISPOSTA: " + json.message);
+        Ti.API.info("RISPOSTA: " + json.message);
 
-		if (json.message == "200 OK") {
+        if (json.message == "200 OK") {
 
-			_callback(json.result);
+            _callback(json.result);
 
-		} else {
-			Alloy.Globals.loading.hide();
-			alert("Errore nella comunicazione col server.");
-		};
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
 
-	};
+    };
 
-	xhr.onerror = function() {
-		Alloy.Globals.loading.hide();
-		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-	};
+    xhr.onerror = function() {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+    };
 
-	Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
+    Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
 
-	xhr.open('GET', Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
+    xhr.open('GET', Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
 
-	xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
 
-	xhr.send();
+    xhr.send();
 
 };
 
 exports.getVantaggiSoci = function(type_code, _callback) {
 
-	Ti.API.info("**TYPE CODE: " + type_code);
+    Ti.API.info("**TYPE CODE: " + type_code);
 
-	var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
-	xhr.clearCookies('http://www.aci.it');
+    xhr.clearCookies('http://www.aci.it');
 
-	xhr.onload = function() {
+    xhr.onload = function() {
 
-		var json = JSON.parse(this.responseText);
+        var json = JSON.parse(this.responseText);
 
-		//Ti.API.info("RISPOSTA: "+type_code+" " + JSON.stringify(json));
+        //Ti.API.info("RISPOSTA: "+type_code+" " + JSON.stringify(json));
 
-		if (json.message == "200 OK") {
+        if (json.message == "200 OK") {
 
-			//Ti.API.info("RISPOSTA: "+type_code+" " + JSON.stringify(json));
+            Ti.API.debug("RISPOSTA: " + type_code + " " + JSON.stringify(json));
 
-			_callback(json.result);
+            _callback(json.result);
 
-		} else {
-			Alloy.Globals.loading.hide();
-			alert("Errore nella comunicazione col server.");
-		};
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
 
-	};
+    };
 
-	xhr.onerror = function() {
-		Alloy.Globals.loading.hide();
-		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-	};
+    xhr.onerror = function() {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+    };
 
-	Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
+    Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
 
-	xhr.open('GET', Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
+    xhr.open('GET', Alloy.Globals.baseURL + '/aci/syc?query={"agreement_id.categories.short_name":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
 
-	xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
 
-	xhr.send();
+    xhr.send();
 
 };
 
 exports.getSSOID = function(p_username, p_password, _callback) {
 
-	Ti.API.info("GET SSOID");
+    Ti.API.info("GET SSOID");
 
-	var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
-	xhr.onload = function() {
+    xhr.onload = function() {
 
-		var json = JSON.parse(this.responseText);
+        var json = JSON.parse(this.responseText);
 
-		Ti.API.info("RISPOSTA: " + json);
+        Ti.API.info("RISPOSTA: " + json);
 
-		if (json[0] == "success") {
+        if (json[0] == "success") {
 
-			Ti.API.info("SUCCESS!");
+            Ti.API.info("SUCCESS!");
 
-			xhr.clearCookies('http://login.aci.it');
+            xhr.clearCookies('http://login.aci.it');
 
-			_callback(json[1]);
+            _callback(json[1]);
 
-		} else {
-			Alloy.Globals.loading.hide();
-			alert("LOGIN FALLITO - UTENTE NON AUTORIZZATO");
-		};
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("LOGIN FALLITO - UTENTE NON AUTORIZZATO");
+        };
 
-	};
+    };
 
-	xhr.onerror = function() {
-		Alloy.Globals.loading.hide();
-		Ti.API.error("LOGIN: ERRORE RISPOSTA SERVER: " + this.message);
-	};
+    xhr.onerror = function() {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("LOGIN: ERRORE RISPOSTA SERVER: " + this.message);
+    };
 
-	//Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/api/aci/pos?query={"agreement_id.categories.short_name":"'+type_code+'", "status": "ok", "address.location": { "$near": ['+Alloy.Globals.userPosition.longitude+','+Alloy.Globals.userPosition.latitude+'], "$maxDistance": 1 } }&limit=15');
+    //Ti.API.info("CHIAMATA HTTP: "+ Alloy.Globals.baseURL + '/api/aci/pos?query={"agreement_id.categories.short_name":"'+type_code+'", "status": "ok", "address.location": { "$near": ['+Alloy.Globals.userPosition.longitude+','+Alloy.Globals.userPosition.latitude+'], "$maxDistance": 1 } }&limit=15');
 
-	xhr.open('GET', 'http://login.aci.it/index.php?do=login&application_key=mobile&id=login&username=' + p_username + '&password=' + p_password + '');
+    xhr.open('GET', 'http://login.aci.it/index.php?do=login&application_key=mobile&id=login&username=' + p_username + '&password=' + p_password + '');
 
-	xhr.send();
+    xhr.send();
 
 };
 
 exports.getUserInfo = function(p_ssoid, _callback) {
 
-	var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
-	xhr.clearCookies('http://login.aci.it');
+    xhr.clearCookies('http://login.aci.it');
 
-	xhr.onload = function() {
+    xhr.onload = function() {
 
-		var json = JSON.parse(this.responseText);
+        var json = JSON.parse(this.responseText);
 
-		Ti.API.info("RISPOSTA: " + JSON.stringify(json));
+        Ti.API.info("RISPOSTA: " + JSON.stringify(json));
 
-		if (json.result == "success") {
-			_callback(json);
-			//Ti.API.info("USER INFO: " + JSON.stringify(json.data));
+        if (json.result == "success") {
+            _callback(json);
+            //Ti.API.info("USER INFO: " + JSON.stringify(json.data));
 
-		} else {
-			Alloy.Globals.loading.hide();
-			alert("LOGIN FALLITO - UTENTE NON AUTORIZZATO");
-		};
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("LOGIN FALLITO - UTENTE NON AUTORIZZATO");
+        };
 
-	};
+    };
 
-	xhr.onerror = function() {
-		Alloy.Globals.loading.hide();
-		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-	};
+    xhr.onerror = function() {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+    };
 
-	Ti.API.info("CHIAMATA HTTP: " + 'https://login.aci.it/index.php?do=getCustomUserInfo&application_key=mobile&keypass=0my6o9t6&sso-id=' + p_ssoid + '');
+    Ti.API.info("CHIAMATA HTTP: " + 'https://login.aci.it/index.php?do=getCustomUserInfo&application_key=mobile&keypass=0my6o9t6&sso-id=' + p_ssoid + '');
 
-	xhr.open('GET', 'http://login.aci.it/index.php?do=getCustomUserInfo&application_key=mobile&keypass=0my6o9t6&sso-id=' + p_ssoid + '');
+    xhr.open('GET', 'http://login.aci.it/index.php?do=getCustomUserInfo&application_key=mobile&keypass=0my6o9t6&sso-id=' + p_ssoid + '');
 
-	xhr.send();
+    xhr.send();
 };
 
 exports.getBanner = function(_callback) {
 
-	var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
-	var _getRandomBanner = function(count, _callback) {
-		var xhr = Ti.Network.createHTTPClient();
+    var _getRandomBanner = function(count, _callback) {
+        var xhr = Ti.Network.createHTTPClient();
 
-		xhr.onload = function() {
-			var json = JSON.parse(this.responseText);
-			Ti.API.info("RISPOSTA: " + json.message);
-			if (json.message === "200 OK") {
-				_callback(json.result);
-			} else {
-				Alloy.Globals.loading.hide();
-				Ti.API.error("Errore nella comunicazione col server.");
-			};
-		};
+        xhr.onload = function() {
+            var json = JSON.parse(this.responseText);
+            Ti.API.info("RISPOSTA: " + json.message);
+            if (json.message === "200 OK") {
+                _callback(json.result);
+            } else {
+                Alloy.Globals.loading.hide();
+                Ti.API.error("Errore nella comunicazione col server.");
+            };
+        };
 
-		xhr.onerror = function() {
-			Alloy.Globals.loading.hide();
-			Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-		};
+        xhr.onerror = function() {
+            Alloy.Globals.loading.hide();
+            Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+        };
 
-		var rand = Math.floor(Math.random() * count);
+        var rand = Math.floor(Math.random() * count);
 
-		Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&skip=' + rand);
+        Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&skip=' + rand);
 
-		xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&skip=' + rand);
-		xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
-		xhr.send();
-	};
-	//Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+        xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&skip=' + rand);
+        xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+        xhr.send();
+    };
+    //Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
 
-	xhr.onload = function() {
-		var json = JSON.parse(this.responseText);
-		Ti.API.info("RISPOSTA: " + json.message);
-		if (json.message === "200 OK") {
-			if (json.result.count > 0) {
-				_getRandomBanner(json.result.count, _callback);
-			} else {
-				_callback([]);
-			}
-		} else {
-			Alloy.Globals.loading.hide();
-			alert("Errore nella comunicazione col server.");
-		};
+    xhr.onload = function() {
+        var json = JSON.parse(this.responseText);
+        Ti.API.info("RISPOSTA: " + json.message);
+        if (json.message === "200 OK") {
+            if (json.result.count > 0) {
+                _getRandomBanner(json.result.count, _callback);
+            } else {
+                _callback([]);
+            }
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
 
-	};
+    };
 
-	xhr.onerror = function() {
-		Alloy.Globals.loading.hide();
-		Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-	};
+    xhr.onerror = function() {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+    };
 
-	Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
+    Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
 
-	xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
-	xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
-	xhr.send();
+    xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + Alloy.Globals.userPosition.longitude + ', ' + Alloy.Globals.userPosition.latitude + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
+    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    xhr.send();
 
 };
 
+
+
+/**
+ * Implmenta la ricerca dei punti aci che offrono il servizio gic
+ * https://mail.google.com/mail/u/2/#inbox/14b53bd6b8974a96
+ * @param  {[type]} gic       denominazione servizio gic
+ * @param  {[type]} _callback
+ */
+exports.getPuntiAciPerServizioGIC = function(gic, _callback) {
+
+    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+
+        var json = JSON.parse(this.responseText);
+
+        Ti.API.info("RISPOSTA: " + json.message);
+
+        if (json.message == "200 OK") {
+            Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
+            _callback(json.result);
+
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
+
+    };
+
+    xhr.onerror = function(e) {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+        console.log(e);
+    };
+
+
+    //parametri della richiesta
+    var qs = {
+        query: {
+             "_type": 'del',
+            "status": 'ok',
+            "services": {
+                "$regex": gic
+            }
+        },
+        limit: 15
+    }
+
+
+    //aggiunge la parte dedicata all'ordinamento geografico
+    console.log("qs", qs);
+    useLocationParams(qs);
+    console.log("qs", qs);
+
+
+    var url = Alloy.Globals.baseURL + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    xhr.open('GET', url);
+
+    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+
+    xhr.send();
+
+};
