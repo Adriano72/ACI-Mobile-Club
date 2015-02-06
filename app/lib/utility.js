@@ -97,6 +97,25 @@ exports.getTesseraImage = function(codice) {
 };
 
 
+exports.formatDistance = function(d){
+    if(_.isUndefined(d) || !_.isNumber(d)){
+        return '';
+    }
+
+    //approssimo i km alla prima cifra decimale
+    var km = Math.round(d * 10) / 10;
+
+    if(km >= 1){
+        return km + ' km';
+    } else {
+        return (km * 1000) + ' m'
+    }
+
+
+
+}
+
+
 
 /**
  * Snippet per nascondere una vista contenuta in un layout=vertical

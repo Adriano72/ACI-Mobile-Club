@@ -22,8 +22,13 @@
 				<View class="rowContainer">
 					
 					<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>
+
+					<Label class="simpleRowText PTSansBold indirizzo" text="{distance}"/>
+					
 					<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo}"/>
 					<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo2}"/>
+
+
 					<View class="bottomRowContainer">
 						<Label class="indicazioniStradali PTSansBold" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation"/>
 						<ImageView class="bt_chiama" telNumber = "{tel}" onSingletap="doPhoneCall"/>

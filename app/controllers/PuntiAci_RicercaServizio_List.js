@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 
 var net = require('network');
+var utility = require('utility');
 
 console.log("data ", args.data);
 console.log("gic ", args.data.gic);
@@ -70,8 +71,10 @@ function dataTransform(model) {
     var attrs = model.toJSON();
     //console.log("attrs", attrs);
     //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
+    attrs.distance = utility.formatDistance(attrs.address.distance);
     attrs.indirizzo = attrs.address.street;
-    attrs.indirizzo2 = attrs.address.postalCode + " " + attrs.address.locality.longName;
+    var ind2 = (attrs.address.postalCode || '') + ' ' + (attrs.address.locality.longName || '');
+    attrs.indirizzo2 = ind2 == 'undefined' ? '' : ind2;
     attrs.latitude = attrs.address.location[1];
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
