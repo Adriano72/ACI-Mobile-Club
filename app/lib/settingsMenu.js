@@ -11,17 +11,6 @@ exports.openSideMenu = function(p_auth) {
     });
 
 
-    Ti.App.addEventListener("loggedInUser", function(e) {
-
-        Ti.API.info("GLOBAL EVENT: " + JSON.stringify(e.loggedUser));
-
-        if (e.loggedUser = true) {
-            loginLabel.text = "Logout";
-        } else {
-            loginLabel.text = "Login";
-        }
-
-    });
 
     var separator = Ti.UI.createView({
         width: Ti.UI.FILL,
@@ -29,7 +18,35 @@ exports.openSideMenu = function(p_auth) {
         backgroundColor: Alloy.Globals.palette.grigio_chiaro
     });
 
-    sideMenu.add(separator);
+
+
+    var user = require('user');
+
+    function createLabel(text, onclick) {
+        var l = Ti.UI.createLabel({
+            text: text,
+            height: 40,
+            width: Ti.UI.FILL,
+            font: {
+                fontFamily: 'PTSans-Regular',
+                fontSize: '12dp'
+            },
+            top: 0,
+            left: 5
+        });
+        if (onclick, _.isFunction(onclick)) {
+            l.addEventListener('click', onclick)
+        }
+
+        return l;
+    }
+
+    function appendLabel(lb) {
+
+        sideMenu.add(lb);
+        sideMenu.add(separator);
+    }
+
 
     var menuHeader = Ti.UI.createLabel({
         text: " IMPOSTAZIONI",
@@ -43,34 +60,10 @@ exports.openSideMenu = function(p_auth) {
         color: '#fff'
 
     });
-    sideMenu.add(menuHeader);
-
-    sideMenu.add(separator);
-
-    var loginLabel = Ti.UI.createLabel({
-        text: (p_auth) ? "Logout" : "Login",
-        height: 40,
-        width: Ti.UI.FILL,
-        font: {
-            fontFamily: 'PTSans-Regular',
-            fontSize: '12dp'
-        },
-        top: 0,
-        left: 5
-    });
-
-    var user = require('user');
 
 
-    loginLabel.addEventListener("click", function() {
-
-
-
-        //if (Ti.App.Properties.getBool("utenteAutenticato")) {
+    var loginLabel = createLabel((user.isLogged == true) ? "Logout" : "Login", function() {
         if (user.isLogged) {
-
-            //Ti.App.Properties.setBool("utenteAutenticato", false);
-            //Ti.App.Properties.setObject("datiUtente", {});
             user.onLogout();
 
             loginLabel.text = "Login";
@@ -83,11 +76,36 @@ exports.openSideMenu = function(p_auth) {
         }
     });
 
-    sideMenu.add(loginLabel);
-    sideMenu.add(separator);
 
-    //loginLabel.text = (Ti.App.Properties.getBool("utenteAutenticato") == true) ? "Logout" : "Login";
-    loginLabel.text = (user.isLogged == true) ? "Logout" : "Login";
+    function notImplemented() {
+        alert('funzionalità non ancora implementata');
+    }
+
+
+    var searchLabel = createLabel('Cambia provincia', notImplemented)
+    var privacyLabel = createLabel('Informativa sulla provacy', notImplemented)
+    var condizioniLabel = createLabel('Condizioni d\'uso', notImplemented)
+
+    _.each([menuHeader, loginLabel, searchLabel, condizioniLabel, privacyLabel], appendLabel);
+
+    /* searchLabel.addEventListener("click", function() {
+        var win = Alloy.createController('Impostazioni_Posizione').getView();
+        Alloy.Globals.navMenu.openWindow(win);
+    }); */
+
+
+    Ti.App.addEventListener("loggedInUser", function(e) {
+
+        Ti.API.info("GLOBAL EVENT: " + JSON.stringify(e.loggedUser));
+
+        if (e.loggedUser = true) {
+            loginLabel.text = "Logout";
+        } else {
+            loginLabel.text = "Login";
+        }
+
+    });
+
 
     return sideMenu;
 };
