@@ -97,7 +97,9 @@ exports.getTesseraImage = function(codice) {
 };
 
 
+
 exports.formatDistance = function(d){
+    console.log("formatDistance ", d);
     if(_.isUndefined(d) || !_.isNumber(d)){
         return '';
     }

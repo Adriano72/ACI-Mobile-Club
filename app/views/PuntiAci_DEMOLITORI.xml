@@ -21,6 +21,7 @@
 				<View class="rowContainer">
 					
 					<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>
+					<Label class="simpleRowText PTSansBold indirizzo" text="{distance}"/>
 					<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo}"/>
 					<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo2}"/>
 					<View class="bottomRowContainer">

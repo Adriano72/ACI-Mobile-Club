@@ -67,7 +67,7 @@
 }
 
 ".row[platform=ios]":{
-	height: 85,
+	height: 100,
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }

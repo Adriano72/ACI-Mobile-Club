@@ -122,9 +122,28 @@ exports.getDemolitori = function(type_code, _callback) {
         Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
     };
 
-    Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
 
-    xhr.open('GET', Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
+    //parametri della richiesta
+    var qs = {
+        query: {
+            "_type": type_code,
+            "status": 'ok'
+        },
+        limit: 15
+    }
+
+    //aggiunge la parte dedicata all'ordinamento geografico
+    useLocationParams(qs);
+
+    var url = Alloy.Globals.baseURL + '/aci/dem?' + formatQS(qs);
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    // Ti.API.info("CHIAMATA HTTP: " + Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=15');
+
+    //   xhr.open('GET', Alloy.Globals.baseURL + '/aci/dem?query={"_type":"' + type_code + '", "status": "ok", "address.location": { "$near": [' + Alloy.Globals.userPosition.longitude + ',' + Alloy.Globals.userPosition.latitude + '], "$maxDistance": 0.2 } }&limit=100');
+
+    xhr.open('GET', url);
 
     xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
 
@@ -365,7 +384,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
         limit: 15
     }
 
-   /* console.log('fuoriGIC', fuoriGIC);
+    /* console.log('fuoriGIC', fuoriGIC);
     console.log('fuoriGIC', Boolean(fuoriGIC));
     console.log('fuoriGIC', fuoriGIC == false);
     console.log('fuoriGIC', fuoriGIC + '' == 'false'); */

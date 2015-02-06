@@ -1,23 +1,32 @@
 exports.definition = {
-	config: {
+    config: {
 
-		adapter: {
-			type: "properties",
-			collection_name: "urp"
-		}
-	},
-	extendModel: function(Model) {
-		_.extend(Model.prototype, {
-			// extended functions and properties go here
-		});
+        adapter: {
+            type: "properties",
+            collection_name: "urp"
+        }
+    },
+    extendModel: function(Model) {
+        _.extend(Model.prototype, {
+            // extended functions and properties go here
+        });
 
-		return Model;
-	},
-	extendCollection: function(Collection) {
-		_.extend(Collection.prototype, {
-			// extended functions and properties go here
-		});
+        return Model;
+    },
+    extendCollection: function(Collection) {
+        _.extend(Collection.prototype, {
+            // extended functions and properties go here
 
-		return Collection;
-	}
+            comparator: function(m) {
+                var j = m.toJSON();
+                if (j.address && j.address.distance) {
+                    return j.address.distance;
+                } else {
+                    return j.name;
+                }
+            }
+        });
+
+        return Collection;
+    }
 };

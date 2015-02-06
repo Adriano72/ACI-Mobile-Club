@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+var utility = require('utility');
 
 //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.delegazioni));
 if (OS_ANDROID) {
@@ -36,6 +37,7 @@ function init2() {
 function dataTransform(model) {
 	var attrs = model.toJSON();
 	//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
+    attrs.distance = utility.formatDistance(attrs.address.distance);
 	attrs.indirizzo = attrs.address.street;
 	attrs.indirizzo2 = attrs.address.postalCode + " " + attrs.address.locality.longName;
 	attrs.latitude = attrs.address.location[1];
