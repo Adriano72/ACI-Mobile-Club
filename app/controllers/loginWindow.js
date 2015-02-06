@@ -38,6 +38,7 @@ $.ricordami.getView().addEventListener('change', function(e) {
     //Ti.API.info("Alloy.Globals.rememberMe: "+Alloy.Globals.rememberMe);
 });
 
+
 function doSignup() {
     console.log("Alloy.CFG.Register_Url", Alloy.CFG.Register_Url);
     Ti.Platform.openURL(Alloy.CFG.Register_Url); 
@@ -48,6 +49,7 @@ function doResetPwd() {
     console.log("Alloy.CFG.ResetPwd_Url", Alloy.CFG.ResetPwd_Url);
     Ti.Platform.openURL(Alloy.CFG.ResetPwd_Url); 
 }
+
 function doLogin() {
 
     //fix: faccio il trim

@@ -5,16 +5,15 @@
 	backButtonTitle: "",
 	barColor: Alloy.Globals.palette.bianco_sporco,
 	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT],
-	
+	orientationModes: []
 }
 
 // container for Android
 ".container[platform=android]": {
 	backgroundImage: "sfondoLogin.jpg",
-	top:20,
+	top: 20,
 	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
+	orientationModes: [],
 	exitOnClose: false
 }
 
@@ -41,7 +40,7 @@
 "#headerView": {
 	height: 50,
 	backgroundColor: "#FFFFFF",
-	top:0
+	top: 0
 }
 
 "#headerText": {
@@ -89,17 +88,19 @@
 
 "#loginButton": {
 	height: 40,
-		color: "#fff",
+	text: "Accedi",
+	color: "#fff",
 	backgroundColor: "transparent"
-	
 }
 
 
-"#signupButton": {
+".signupButton": {
 	height: 40,
+	top: 330,
+	textAlign: "center",
+	text: "Registrati",
 	color: "#fff",
 	backgroundColor: "transparent"
-	
 }
 
 
@@ -110,7 +111,6 @@
 	font:{
 		fontSize: 12
 	}
-	
 }
 
 
@@ -118,14 +118,17 @@
 
 	top: 280
 }
-"#signupWrapper":{
 
-	top: 335
+"#signupWrapper":{
+	top: 330
 }
+
 "#resetWrapper":{
-	
-	top: 320,
+	top: 355
 }
+
+
+
 
 
 
