@@ -40,11 +40,17 @@ $.ricordami.getView().addEventListener('change', function(e) {
 
 function doLogin() {
 
-    if ($.username.value !== "" && $.password.value !== "") {
+    //fix: faccio il trim
+    var username = $.username.value.trim();
+    var password = $.password.value.trim();
+
+    console.log("u/p", username, password);
+
+    if (username !== "" && password !== "") {
 
         Alloy.Globals.loading.show('Caricamento dati...', false);
 
-        net.getSSOID($.username.value, $.password.value, function(ssoid) {
+        net.getSSOID(username, password, function(ssoid) {
 
             net.getUserInfo(ssoid, function(user_data) {
 
