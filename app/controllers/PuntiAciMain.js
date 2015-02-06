@@ -76,6 +76,10 @@ function selectionDetail(e) {
 			var winAC = Alloy.createController('PuntiAci_DEMOLITORI').getView();
 			Alloy.Globals.navMenu.openWindow(winAC);
 			break;
+		case "RIC":
+			var winAC = Alloy.createController('PuntiAci_RicercaServizio').getView();
+			Alloy.Globals.navMenu.openWindow(winAC);
+			break;
 		default:
 
 		}

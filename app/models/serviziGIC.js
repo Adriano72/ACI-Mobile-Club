@@ -2,7 +2,8 @@ exports.definition = {
     config: {
         columns: {
             "gic": "TEXT",
-            "declinazione": "TEXT"
+            "declinazione": "TEXT",
+            "fuoriGIC": "INTEGER"
         },
         adapter: {
             type: "sql",

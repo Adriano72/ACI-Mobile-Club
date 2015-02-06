@@ -35,10 +35,14 @@ function init2() {
     $.win.activity.invalidateOptionsMenu();
 }
 
-_.defer(function() {
+
+
+function init3() {
     Alloy.Collections.serviziGIC.fetch();
     updateUI();
-});
+};
+
+init3();
 
 function dataTransform(model) {
     var attrs = model.toJSON();

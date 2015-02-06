@@ -13,11 +13,17 @@ function useLocationParams(params) {
     if (provincia) {
         params.query['address.province.shortName'] = provincia;
     } else {
-        params.query["address.location"] = {
+        /*params.query["address.location"] = {
             "$near": [Alloy.Globals.userPosition.longitude, Alloy.Globals.userPosition.latitude],
             "$maxDistance": 0.2
+        }; */
+        params.near = {
+            point: [Alloy.Globals.userPosition.longitude, Alloy.Globals.userPosition.latitude],
+            max: 0.2
         };
+        params.populate = 1;
     }
+
 
 }
 
@@ -311,9 +317,10 @@ exports.getBanner = function(_callback) {
  * Implmenta la ricerca dei punti aci che offrono il servizio gic
  * https://mail.google.com/mail/u/2/#inbox/14b53bd6b8974a96
  * @param  {[type]} gic       denominazione servizio gic
+ * @param  {boolean} fuoriGIC       se fa parte dei servizi gic o no
  * @param  {[type]} _callback
  */
-exports.getPuntiAciPerServizioGIC = function(gic, _callback) {
+exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
     Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
 
@@ -326,7 +333,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, _callback) {
         Ti.API.info("RISPOSTA: " + json.message);
 
         if (json.message == "200 OK") {
-            Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
+            // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
             _callback(json.result);
 
         } else {
@@ -346,13 +353,31 @@ exports.getPuntiAciPerServizioGIC = function(gic, _callback) {
     //parametri della richiesta
     var qs = {
         query: {
-             "_type": 'del',
-            "status": 'ok',
-            "services": {
-                "$regex": gic
-            }
+            //metto in or tutti i tipi di punti aci
+            "_type": "del",
+            /* "$or": _.map(['del', 'aacc', 'r2g', 'pra', 'urp', 'tasse'], function(x) {
+                return {
+                    "_type": x
+                };
+            }),*/
+            "status": 'ok'
         },
         limit: 15
+    }
+
+   /* console.log('fuoriGIC', fuoriGIC);
+    console.log('fuoriGIC', Boolean(fuoriGIC));
+    console.log('fuoriGIC', fuoriGIC == false);
+    console.log('fuoriGIC', fuoriGIC + '' == 'false'); */
+
+    //su android fuoriGIC=false è interpretato come stringa
+    var isGIC = OS_ANDROID ? fuoriGIC + '' == 'false' : !fuoriGIC;
+
+    if (isGIC) {
+        qs.query.services = gic;
+    } else {
+        qs.query.customServices = gic;
+
     }
 
 
@@ -363,6 +388,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, _callback) {
 
 
     var url = Alloy.Globals.baseURL + '/aci/pos?' + formatQS(qs);
+    //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
 
 
     Ti.API.info("CHIAMATA HTTP: " + url);

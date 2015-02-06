@@ -17,9 +17,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	//backgroundImage: "logoURP.png",
-	width: 90,
-	height: 23
+	backgroundImage: "tit_ricerca_per_servizio.png",
+	width: 138,
+	height: 22
 }
 
 ".rightNavImg[platform=ios]": {
@@ -74,10 +74,6 @@
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
-".row[platform=android]":{
-	height: 80,
-	className: "riga"
-}
 
 
 ".row[platform=ios]":{
@@ -86,7 +82,8 @@
 }
 
 ".row[platform=android]":{
-	height: "40"
+	height: "40",
+	className: "riga"
 }
 
 ".rowContainer": {

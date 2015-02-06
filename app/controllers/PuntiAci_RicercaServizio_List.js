@@ -5,6 +5,7 @@ var net = require('network');
 console.log("data ", args.data);
 console.log("gic ", args.data.gic);
 var gic = args.data.gic;
+var fuoriGIC = args.data.fuoriGIC;
 
 //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.delegazioni));
 if (OS_ANDROID) {
@@ -26,6 +27,21 @@ function loadData() {
 
 }
 
+
+function filterRows(collection) {
+    console.log('length', collection.models.length);
+    if (collection.models.length === 0) {
+        $.noResults.visible = true;
+        $.puntiAci_Table.visible = false;
+    } else {
+        $.noResults.visible = false;
+        $.puntiAci_Table.visible = true;
+
+    }
+    return collection.models;
+}
+
+
 function init1() {
     abx.displayHomeAsUp = true;
     abx.title = "Ricerca per Servizio";
@@ -42,7 +58,7 @@ function init2() {
 function init3() {
     //leggo i dati dal server e li carico in tabella
     Alloy.Globals.loading.show('Stiamo cercando i Punti ACI');
-    net.getPuntiAciPerServizioGIC(gic, function(result) {
+    net.getPuntiAciPerServizioGIC(gic, fuoriGIC, function(result) {
         Alloy.Collections.serviziGICpos.reset(result);
         updateUI();
         Alloy.Globals.loading.hide();
@@ -52,7 +68,7 @@ function init3() {
 
 function dataTransform(model) {
     var attrs = model.toJSON();
-    console.log("attrs", attrs);
+    //console.log("attrs", attrs);
     //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
     attrs.indirizzo = attrs.address.street;
     attrs.indirizzo2 = attrs.address.postalCode + " " + attrs.address.locality.longName;
@@ -130,14 +146,14 @@ function openDetail(e) {
     //dati dell'elemento selezionato
     //var selected = Alloy.Collections.delegazioni.get(e.rowData.modelId);
     //devo selezionarlo tramite l'id di mongo perchè fa riferimento a collezioni deverse
-    
+
     var selected = Alloy.Collections.delegazioni.where({
-        "_id": e.rowData.mongoId//"54c23de75aed06a61b19e8c5"
+        "_id": e.rowData.mongoId //"54c23de75aed06a61b19e8c5"
     })[0];
     //controller name
     var ctrl = d[t];
     console.log("ctrl", ctrl);
-    console.log("selected", selected.toJSON());
+    // console.log("selected", selected.toJSON());
 
     var w = Alloy.createController(ctrl, {
         data: selected
@@ -154,7 +170,7 @@ function mostraMappa() {
         collection: coll,
         //pin: "pin_Tasse.png",
         titolo: (OS_ANDROID) ? "Tasse" : $.titleControl.backgroundImage,
-      //  homeIcon: "ico_assistenza_tasse_blu.png"
+        //  homeIcon: "ico_assistenza_tasse_blu.png"
     }).getView();
     Alloy.Globals.navMenu.openWindow(mapWin);
 };

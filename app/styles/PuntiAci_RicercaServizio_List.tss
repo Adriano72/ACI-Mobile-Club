@@ -17,9 +17,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	//backgroundImage: "logoURP.png",
-	width: 90,
-	height: 23
+	backgroundImage: "tit_ricerca_per_servizio.png",
+	width: 138,
+	height: 22
 }
 
 ".rightNavImg[platform=ios]": {
