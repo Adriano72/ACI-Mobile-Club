@@ -20,9 +20,18 @@
 			<Widget id="ricordami" src="checkbox" value="false"/>
 			<Label class="PTSansRegular ricordamiText">Ricordami</Label>
 		</View>
-		<View id="buttonContainer" onClick="doLogin">
-			<Button id="loginButton">Accedi</Button>
-		</View>
+		<View id="signupWrapper" class="buttonContainer" onClick="doSignup">
+				<Button id="signupButton">Registrati</Button>
+			</View>
+			<View id="loginWrapper" class="buttonContainer" onClick="doLogin">
+				<Button id="loginButton">Accedi</Button>
+			</View>
+			
+
+			<View id="resetWrapper" >
+				<Label id="resetButton" onClick="doResetPwd">Hai dimenticato la tua Password?</Label>
+			</View>
+			
 
 	</Window>
 </Alloy>

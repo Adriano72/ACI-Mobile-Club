@@ -7,7 +7,9 @@
         "AciGlobal_CodiceApplicazione": "ACI03",
         "AciGlobal_ServiceLogin": "ACI_Mob_App",
         "AciGlobal_ServicePassword": "aci123456",
-        "AciGlobal_RequestLimitMinutes": "10"
+        "AciGlobal_RequestLimitMinutes": "10",
+        "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
+        "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew"
     },
     "env:development": {
         "AciGlobal_RequestLimitMinutes": "0"

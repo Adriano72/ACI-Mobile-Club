@@ -80,21 +80,53 @@
 	color: "#fff"
 }
 
-"#buttonContainer": {
-	top: 260,
+".buttonContainer": {
 	borderRadius: 20,
 	borderColor: "#fff",
 	height: Ti.UI.SIZE,
-	width: "90%",
-	height: 40
+	width: "90%"
 }
 
 "#loginButton": {
-	height: Ti.UI.SIZE,
+	height: 40,
+		color: "#fff",
+	backgroundColor: "transparent"
+	
+}
+
+
+"#signupButton": {
+	height: 40,
 	color: "#fff",
 	backgroundColor: "transparent"
 	
 }
+
+
+"#resetButton": {
+	height: 40,
+	color: "#fff",
+	backgroundColor: "transparent",
+	font:{
+		fontSize: 12
+	}
+	
+}
+
+
+"#loginWrapper":{
+
+	top: 280
+}
+"#signupWrapper":{
+
+	top: 335
+}
+"#resetWrapper":{
+	
+	top: 320,
+}
+
 
 
 
