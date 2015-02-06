@@ -96,18 +96,71 @@ exports.getTesseraImage = function(codice) {
 
 };
 
+/**
+ * elenco dei serivzi disponibili per la tessera
+ * persona, casa, auto
+ * @param  {[type]} codice [description]
+ * @return {[type]}        [description]
+ */
+exports.getTesseraAssitenza = function(codice) {
+
+    Ti.API.info("CODICE: " + codice);
+
+    var a1 = 'auto';
+    var a2 = 'persone';
+    var a3 = 'casa';
+
+    var transcode = {
+
+        //sistema
+        'DIP': [a1, a2],
+        'FAM': [a1, a2],
+        'SOC': [a1, a2],
+        'SMA': [a1, a2],
+        'SOG': [a1, a2],
+        //gold
+        'GDI': [a1, a2, a3],
+        'GFA': [a1, a2, a3],
+        'GSO': [a1, a2, a3],
+        'GMA': [a1, a2, a3],
+        //okkei
+        'GIO': [a1],
+        'GIA': [a1],
+        //one
+        'UNO': [a1],
+        'ONG': [a1],
+        //club
+        'CLO': [a1, a2, a3],
+        'CLU': [a1, a2, a3],
+        //vintage
+        'VIN': [a1, a2],
+        //driver
+        'CON': [],
+        'DRV': [],
+        //storico
+        'STA': [a1, a2],
+        'STF': [a1, a2]
+
+    };
+
+    return transcode[codice];
 
 
-exports.formatDistance = function(d){
+};
+
+
+
+
+exports.formatDistance = function(d) {
     console.log("formatDistance ", d);
-    if(_.isUndefined(d) || !_.isNumber(d)){
+    if (_.isUndefined(d) || !_.isNumber(d)) {
         return '';
     }
 
     //approssimo i km alla prima cifra decimale
     var km = Math.round(d * 10) / 10;
 
-    if(km >= 1){
+    if (km >= 1) {
         return km + ' km';
     } else {
         return (km * 1000) + ' m'

@@ -1,5 +1,11 @@
 var args = arguments[0] || {};
 
+var user = require('user');
+var utility = require('utility');
+
+
+var userInfo = user.getCurrentUser();
+
 //controllo attualmente selezionato
 var current;
 
@@ -17,6 +23,17 @@ function init() {
 }
 
 
+function isEnabled(tipo) {
+
+    var ass = utility.getTesseraAssitenza(userInfo['userInfo.categoriaTessera']);
+    console.log("ass", ass);
+    return _.indexOf(ass, tipo) >= 0;
+}
+
+function onNotEnabled() {
+    alert('la tua tessera non comprende questo tipo si assistenza');
+}
+
 /**
  * Inizializzazioni per il singolo elemento
  * @param  {[type]} tipo [description]
@@ -33,31 +50,36 @@ function initItem(tipo) {
  */
 function select(next) {
     console.log('select ', next);
-    var value;
-    if (_.isNumber(next) && values.length >= next) {
-        value = values[next];
-    } else if (_.indexOf(values, next) >= 0) {
-        value = next;
+
+    if (isEnabled(next)) {
+
+        var value;
+        if (_.isNumber(next) && values.length >= next) {
+            value = values[next];
+        } else if (_.indexOf(values, next) >= 0) {
+            value = next;
+        } else {
+            console.log('Widget SelettoreTipoAiuto select - valore non trovato: ', next);
+            clear();
+            return;
+        }
+
+        //deseleziona il precedente, se esiste
+        current && switchOff(current);
+
+        switchOn(value);
+
+
+        fireEvent('change', {
+            prev: current,
+            value: value
+        });
+
+
+        current = value;
     } else {
-        console.log('Widget SelettoreTipoAiuto select - valore non trovato: ', next);
-        clear();
-        return;
+        onNotEnabled();
     }
-
-    //deseleziona il precedente, se esiste
-    current && switchOff(current);
-
-    switchOn(value);
-
-
-    fireEvent('change', {
-        prev: current,
-        value: value
-    });
-
-
-    current = value;
-
 }
 
 

@@ -74,6 +74,10 @@ function init2() {
 //init3();//
 function init3() {
 
+    //
+    //  default
+    //
+    $.tipoAiuto.value = 'auto';
 
     //
     //controllo lo stato della login
