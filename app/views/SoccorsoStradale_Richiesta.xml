@@ -4,8 +4,6 @@
 			<View class="titleControl"></View>
 		</TitleControl>
 		<RightNavButton platform="ios">
-			<!--<ImageView class="rightNavImg"/>-->
-			<Label>Soccorso Stradale</Label>
 		</RightNavButton>
 		<Menu id="menu" platform="android">
 

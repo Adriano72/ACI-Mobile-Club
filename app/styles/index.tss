@@ -197,20 +197,20 @@
 }
 
 "#imgPuntiACI": {
-	image: "/images/ic_ico_punti_servizio.png",
+	image: "/images/ic_action_home_punti_di_servizio_aci.png",
 	height: 50
 }
 
 "#imgVantaggiSoci": {
-	image: "/images/ic_ico_vantaggi.png",
+	image: "/images/ic_action_home_vantaggi_soci.png",
 	height: 50
 }
 "#imgMobilita": {
-	image: "/images/ic_ico_mobilita.png",
+	image: "/images/ic_action_home_assistenza.png",
 	height: 50
 }
 "#imgTessera": {
-	image: "/images/ic_ico_tessera.png",
+	image: "/images/ic_action_home_tessera.png",
 	height: 50
 }
 

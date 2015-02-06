@@ -18,9 +18,10 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoSoccorsoStradale.png",
-	width: 120,
-	height: 28
+	backgroundImage: "tit_assistenza.png",
+
+	width: 138,
+	height: 22
 }
 
 "MenuItem": {

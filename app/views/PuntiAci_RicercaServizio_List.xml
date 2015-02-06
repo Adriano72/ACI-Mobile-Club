@@ -15,8 +15,9 @@
 
 		</Menu>
 		
-		<TableView id="puntiAci_Table" class="table" dataCollection="serviziGICpos" dataTransform="dataTransform" dataFunction="updateUI" onSingletap="openDetail" >
+		<TableView id="puntiAci_Table" class="table" dataCollection="serviziGICpos" dataTransform="dataTransform" dataFunction="updateUI" onSingletap="openDetail"  dataFilter="filterRows">
 			<SearchBar id="searchBar"/>
+				
 			<TableViewRow id="riga" class="row" modelId="{id}" mongoId="{mongoId}" title="{name}" type="{_type}">
 				<View class="rowContainer">
 					
@@ -32,5 +33,8 @@
 				</View>
 			</TableViewRow>
 		</TableView>
+		<View  visible="false" height="Ti.UI.FILL" id="noResults">
+			<Label width="Ti.UI.FILL" top="50" class="simpleRowText PTSansBold">Nessuno punto ACI trovato</Label>
+	    </View>
 	</Window>
 </Alloy>

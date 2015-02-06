@@ -12,7 +12,7 @@
 			<SearchBar id="searchBar"/>
 			<TableViewRow id="riga" class="row simpleRowText PTSansBold" modelId="{alloy_id}" title="{declinazione}" >
 				<View class="rowContainer">
-					
+					<Label class="simpleRowText PTSansBold" platform="android">{declinazione}</Label>
 				</View>
 				
 			</TableViewRow>

@@ -31,7 +31,7 @@
 					<View class="rowWrapper">
 						<View id="mobilita" class="menuButton first" onSingletap="doPhoneCall">
 							<ImageView id="imgMobilita" class="buttonImage"/>
-							<Label id="txtMobilita" class="buttonText">SOCCORSO STRADALE</Label>
+							<Label id="txtMobilita" class="buttonText">ASSISTENZA</Label>
 						</View>
 						<View id="tessera" class="menuButton last" onSingletap="tessera">
 							<ImageView id="imgTessera" class="buttonImage"/>
