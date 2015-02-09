@@ -13,11 +13,11 @@ function init() {
     index = (settings.ricercaPerProssimita) ? 0 : 1;
     console.log("index", index);
     //genera l'etichetta in base alla provincia
-    var l = settings.provinciaDiRiferimento ? settings.provinciaDiRiferimento.shortName : 'Per Provincia'
-    //imposta il controllo tab
+    var l = settings.provinciaDiRiferimento ? 'Provincia (' + settings.provinciaDiRiferimento.shortName + ')' : 'Provincia'
+        //imposta il controllo tab
     $.tabbedBar.init({
         index: index,
-        labels: ['Per Prossimità', l]
+        labels: ['Prossimità', l]
     });
 
     select(index);
@@ -48,7 +48,7 @@ function select(i) {
         if (provincia && !_.isEmpty(provincia)) {
 
             settings.ricercaPerProssimita = false;
-          //  $.status.text = "Il servizio restituirà i risultati relativi alla provincia di " + utility.capitalize(provincia.longName);
+            //  $.status.text = "Il servizio restituirà i risultati relativi alla provincia di " + utility.capitalize(provincia.longName);
             $.cambiaProvincia.visible = true;
         } else {
             selezionaProvincia();
@@ -60,7 +60,7 @@ function select(i) {
 
 function selezionaProvincia() {
     var win = Alloy.createController('SelettoreProvincia_List').getView();
-    win.addEventListener('close',function(){
+    win.addEventListener('close', function() {
         init();
     });
     Alloy.Globals.navMenu.openWindow(win);
