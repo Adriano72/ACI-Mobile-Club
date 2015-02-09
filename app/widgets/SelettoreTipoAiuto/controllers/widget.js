@@ -5,6 +5,7 @@ var utility = require('utility');
 
 
 var userInfo = user.getCurrentUser();
+var categoriaTessera = userInfo && userInfo['userInfo.categoriaTessera'];
 
 //controllo attualmente selezionato
 var current;
@@ -25,7 +26,7 @@ function init() {
 
 function isEnabled(tipo) {
 
-    var ass = utility.getTesseraAssitenza(userInfo['userInfo.categoriaTessera']);
+    var ass = utility.getTesseraAssitenza(categoriaTessera);
     console.log("ass", ass);
     return _.indexOf(ass, tipo) >= 0;
 }
@@ -50,6 +51,7 @@ function initItem(tipo) {
  */
 function select(next) {
     console.log('select ', next);
+
 
     if (isEnabled(next)) {
 

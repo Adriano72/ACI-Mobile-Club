@@ -74,10 +74,6 @@ function init2() {
 //init3();//
 function init3() {
 
-    //
-    //  default
-    //
-    $.tipoAiuto.value = 'auto';
 
     //
     //controllo lo stato della login
@@ -92,11 +88,13 @@ function init3() {
 
         utility.showVertical($.tipoWrapper);
         $.telefono.value = userData['userInfo.mobile'] || userData['userInfo.mobileTemp'];
+        $.tipoAiuto.value = 'auto';
 
     } else {
 
         utility.hideVertical($.tipoWrapper);
         $.telefono.value = '';
+
     }
 
 
