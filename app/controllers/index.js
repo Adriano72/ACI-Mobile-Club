@@ -179,7 +179,7 @@ function loadData() {
                 _.defer(due);
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server :\n" + error);
+                alert("Problemi di comunicazione con il server 1:\n" + error);
             }
         });
 
@@ -196,7 +196,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 2:\n" + error);
             }
         });
 
@@ -213,7 +213,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 3:\n" + error);
             }
         });
     }
@@ -229,7 +229,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 4:\n" + error);
             }
         });
     }
@@ -245,7 +245,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 5:\n" + error);
             }
         });
     }
@@ -261,7 +261,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 6:\n" + error);
             }
         });
     }
@@ -277,7 +277,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 7:\n" + error);
             }
         });
     }
@@ -293,7 +293,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 8:\n" + error);
             }
         });
     }
@@ -309,7 +309,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 9:\n" + error);
             }
         });
     }
@@ -325,7 +325,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 10:\n" + error);
             }
         });
     }
@@ -341,7 +341,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 11:\n" + error);
             }
         });
     }
@@ -357,7 +357,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 12:\n" + error);
             }
         });
     }
@@ -373,7 +373,7 @@ function loadData() {
 
             } catch (error) {
                 Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server:\n" + error);
+                alert("Problemi di comunicazione con il server 13:\n" + error);
             }
         });
     }

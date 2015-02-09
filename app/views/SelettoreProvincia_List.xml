@@ -1,0 +1,33 @@
+<Alloy>
+	
+	<Window id="win" class="container" onOpen="loadData">
+		<TitleControl platform="ios">
+			<View id="titleControl" class="titleControl"></View>
+		</TitleControl>
+		<RightNavButton platform="ios">
+		</RightNavButton>
+		<Menu id="menu"  platform="android">
+
+			
+
+		</Menu>
+		
+		
+
+		<TableView id="puntiAci_Table" class="table" dataCollection="province" onSingletap="select"  dataTransform="dataTransform" dataFunction="updateUI" >
+		
+			<SearchBar id="searchBar"/>
+			<TableViewRow id="riga" class="row simpleRowText PTSansBold" modelId="{id}" title="{longName}" longName="{longName}" shortName="{shortName}" >
+				<View class="rowContainer">
+					<Label class="simpleRowText PTSansBold" platform="android">{longName}</Label>
+				</View>
+				
+			</TableViewRow>
+		</TableView>
+
+
+		<View  visible="false" height="Ti.UI.FILL" id="noResults">
+			<Label width="Ti.UI.FILL" top="50" class="simpleRowText PTSansBold">Nessuno punto ACI trovato</Label>
+	    </View>
+	</Window>
+</Alloy>

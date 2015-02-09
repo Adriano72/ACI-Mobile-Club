@@ -419,3 +419,64 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
     xhr.send();
 
 };
+
+
+exports.getListaProvince = function(_callback) {
+    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+
+        var json = JSON.parse(this.responseText);
+
+        Ti.API.info("RISPOSTA: " + json.message);
+
+        if (json.message == "200 OK") {
+            // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
+            _callback(json.result);
+
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
+
+    };
+
+    xhr.onerror = function(e) {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+        console.log(e);
+    };
+
+
+    //parametri della richiesta
+    var qs = {
+        query: {
+            "_level": 2,
+            "lft": {
+                "$gt": 1,
+                "$lt": 47772
+            }
+        },
+        select: "_id shortName longName",
+        sort: {
+            "longName": -1
+        },
+        limit: 0
+    }
+
+
+
+    var url = Alloy.Globals.baseURL + '/common/divisions?' + formatQS(qs);
+    //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    xhr.open('GET', url);
+
+    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+
+    xhr.send();
+}

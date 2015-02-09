@@ -1,0 +1,11 @@
+<Alloy>
+	<View class="container">
+		<!--<Label class="labelDark PTSansBold">Modalità di ricerca</Label>-->
+		<Widget id="tabbedBar" type="widget" src="com.imobicloud.tabbed_bar"/> 
+		<Label id="cambiaProvincia" class="labelLink PTSansRegular" onClick="selezionaProvincia">cambia</Label>
+		<!--<View id="statusWrapper">
+			<Label class="labelDark PTSansRegular" id="status"></Label>
+			<Label id="cambiaProvincia" class="labelLink PTSansRegular" onClick="selezionaProvincia">cambia</Label>
+		</View> -->
+	</View>
+</Alloy>

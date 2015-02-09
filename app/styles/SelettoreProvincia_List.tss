@@ -17,7 +17,7 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "tit_ricerca_per_servizio.png",
+	//backgroundImage: "tit_ricerca_per_servizio.png",
 	width: 138,
 	height: 22
 }
@@ -32,7 +32,7 @@
 }
 
 "#menu": {
-	icon: "/images/ic_action_cerca_per_servizio_blu.png"
+	//icon: "/images/ic_action_cerca_per_servizio_blu.png"
 }
 
 "#mn_settings": {
@@ -67,19 +67,21 @@
 }
 
 ".row[platform=ios]":{
-	height: 100,
+	height: 85,
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
-".row[platform=android]":{
-	height: 80,
-	className: "riga"
+
+
+".row[platform=ios]":{
+	height: "40",
+	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
-".rowContainer": {
-	layout: "vertical",
-	top: 5
+".row[platform=android]":{
+	height: "40",
+	className: "riga"
 }
 
 ".simpleRowText": {

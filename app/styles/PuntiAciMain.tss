@@ -1,3 +1,4 @@
+
 // container for iOS
 ".container[platform=ios]": {
 	backgroundColor: Alloy.Globals.palette.bianco_sporco,
@@ -53,8 +54,9 @@
 }
 
 ".bottomBannerContainer": {
-	bottom: 0,
-	height: "30%"
+	bottom: 5,
+	//height: "30%",
+	height: Ti.UI.SIZE
 }
 
 ".bottomBanner": {
@@ -62,6 +64,25 @@
 	width: "90%"
 }
 
+"#contentWrapper":{
+	layout: "vertical"
+}
+
+
+
+"#selProvWrapper":{
+	height: Ti.UI.SIZE,
+	//top:5,bottom:5
+	top:10
+}
+
+
+"#selProvWrapper[platform=android]":{
+
+	backgroundColor: "red",
+	height: 0,
+	visible: false
+}
 
 
 

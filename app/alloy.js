@@ -14,7 +14,7 @@ var net = require("network");
 
 Alloy.Globals.rememberMe = false;
 
-Alloy.Globals.DevMode = false;
+Alloy.Globals.DevMode = ENV_DEV;
 
 Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <= 480) ? '11dp' : '15dp';
 
@@ -41,6 +41,9 @@ Ti.API.info('globals 2: ' + JSON.stringify(Alloy.Globals));
 //SERVIZI GIC
 Alloy.Collections.instance("serviziGIC");
 Alloy.Collections.instance("serviziGICpos");
+
+//province
+Alloy.Collections.instance("province");
 
 
 // PUNTI ACI

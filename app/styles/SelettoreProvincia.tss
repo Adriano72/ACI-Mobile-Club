@@ -1,0 +1,42 @@
+".container":{
+	//layout: "vertical",
+	height: Ti.UI.SIZE,
+	width: "90%"
+
+}
+
+"#statusWrapper":{
+	layout: "horizontal",
+}
+
+"#tabbedBar":{
+	height: 50
+}
+
+"Label":{
+	width: Ti.UI.SIZE
+}
+
+".labelDark":{
+	color: Alloy.Globals.palette.grigio_scuro,
+	font:{
+		fontSize: 12,
+		fontWeight: "bold"
+	}
+
+}
+
+
+".labelLink":{
+
+	color: Alloy.Globals.palette.blu,
+	font:{
+		fontSize: 12,
+		fontWeight: "bold"
+	}
+
+}
+
+"#cambiaProvincia":{
+	right: 0
+}
