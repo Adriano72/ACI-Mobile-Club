@@ -1,30 +1,33 @@
 {
-    "global": {
-        "AciGlobal_NumeroVerde": "803116",
-        "AciGlobal_ServiceEndpoint": "http://10.64.4.138:10000/api/aciglobal",
-        "AciGlobal_ServerLogin": "acimobileclub",
-        "AciGlobal_ServerPassword": "Iniziale$01",
-        "AciGlobal_CodiceApplicazione": "ACI03",
-        "AciGlobal_ServiceLogin": "ACI_Mob_App",
-        "AciGlobal_ServicePassword": "aci123456",
-        "AciGlobal_RequestLimitMinutes": "10",
-        "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
-        "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew"
-    },
-    "env:development": {
-        "AciGlobal_RequestLimitMinutes": "0"
-    },
-    "env:test": {
-        "AciGlobal_RequestLimitMinutes": "1"
-    },
-    "env:production": {},
-    "os:android": {},
-    "os:blackberry": {},
-    "os:ios": {},
-    "os:mobileweb": {},
-    "dependencies": {
-        "checkbox": "*",
-        "nl.fokkezb.loading": "*",
-        "SelettoreTipoAiuto": "1.0"
-    }
+  "global": {
+    "AciGlobal_NumeroVerde": "803116",
+    "AciGlobal_ServiceEndpoint": "http://10.64.4.138:10000/api/aciglobal",
+    "AciGlobal_ServerLogin": "acimobileclub",
+    "AciGlobal_ServerPassword": "Iniziale$01",
+    "AciGlobal_CodiceApplicazione": "ACI03",
+    "AciGlobal_ServiceLogin": "ACI_Mob_App",
+    "AciGlobal_ServicePassword": "aci123456",
+    "AciGlobal_RequestLimitMinutes": "10",
+    "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
+    "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew"
+  },
+  "env:development": {
+    "AciGlobal_RequestLimitMinutes": "0"
+  },
+  "env:test": {
+    "AciGlobal_RequestLimitMinutes": "1"
+  },
+  "env:production": {},
+  "os:android": {},
+  "os:blackberry": {},
+  "os:ios": {},
+  "os:mobileweb": {},
+  "dependencies": {
+    "checkbox": "*",
+    "nl.fokkezb.loading": "*",
+    "SelettoreTipoAiuto": "1.0",
+    "com.imobicloud.tabbed_bar": "1.0"
+   
+
+  }
 }
