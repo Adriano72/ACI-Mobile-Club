@@ -15,11 +15,11 @@
 		</Menu>
 		<View id="contentWrapper">
 
-			<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
-
 			<View id="selProvWrapper">
 				<Require src="SelettoreProvincia" id="selProv"></Require>
 			</View>
+
+			<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
 
 			
 		</View>

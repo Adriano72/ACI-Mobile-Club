@@ -1,6 +1,27 @@
-/*
-".tabbed-bar": {  }
-".tabbed-bar[platform=android]": { width: Ti.UI.SIZE, height: 30, borderWidth: 1, borderColor: '#007aff', borderRadius: 3, layout: 'horizontal' }
-	".tabbed-bar-button": { color: '#007aff', font: { fontSize: 14 }, backgroundColor: 'transparent' }
-	".tabbed-bar-button-active": { backgroundColor: '#007aff', color: '#fff' }
-*/
+
+".tabbed-bar": { 
+	width: Ti.UI.FILL,
+	top:0, bottom:0
+}
+".tabbed-bar[platform=ios]": { 
+	height: 22
+}
+".tabbed-bar[platform=android]": { 
+//	width: Ti.UI.SIZE, 
+	height: 30, 
+	borderWidth: 1, 
+	borderColor: '#007aff', 
+	borderRadius: 3, 
+	layout: 'horizontal' 
+}
+".tabbed-bar-button": { 
+	width: "50%",
+	color: '#007aff', 
+	font: { fontSize: 14 }, 
+	backgroundColor: 'transparent' 
+}
+	
+".tabbed-bar-button-active": { 
+	backgroundColor: '#007aff', 
+	color: '#fff' 
+}

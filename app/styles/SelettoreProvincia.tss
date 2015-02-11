@@ -1,7 +1,9 @@
 ".container":{
-	//layout: "vertical",
+	layout: "vertical",
 	height: Ti.UI.SIZE,
-	width: "90%"
+	//width: "90%"
+	width: "95%",
+	//height: 40
 
 }
 
@@ -10,8 +12,16 @@
 }
 
 "#tabbedBar":{
-	height: 50
+	top:0,
+	bottom: 0
 }
+"#tabbedWrapper":{
+	//width: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	height: 30
+}
+
+
 
 "Label":{
 	width: Ti.UI.SIZE
@@ -28,15 +38,15 @@
 
 
 ".labelLink":{
-
 	color: Alloy.Globals.palette.blu,
 	font:{
-		fontSize: 12,
+		fontSize: 16,
 		fontWeight: "bold"
 	}
 
 }
 
 "#cambiaProvincia":{
-	right: 0
+	top: 0,
+	right: 5
 }

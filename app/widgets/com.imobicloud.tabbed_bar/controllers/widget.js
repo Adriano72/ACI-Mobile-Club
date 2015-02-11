@@ -5,6 +5,9 @@
  	styles: {}
  }
  * */
+
+
+
 exports.init = function(params) {
     if (params.styles) {
         $.tabbedBar.applyProperties(params.styles);
@@ -14,20 +17,41 @@ exports.init = function(params) {
     if (OS_IOS) {
         $.tabbedBar.applyProperties(params);
     } else {
+
+        $.tabbedBar.removeAllChildren();
+
         var labels = params.labels,
             index = params.index;
 
         for (var i = 0, ii = labels.length; i < ii; i++) {
             var classes = 'tabbed-bar-button';
             (i === index) && (classes += ' tabbed-bar-button-active');
-            $.tabbedBar.add($.UI.create('Button', {
+
+            var style = $.createStyle({
+                classes: classes,
+                apiName: 'Button'
+            });
+
+            var button = Ti.UI.createButton({
                 buttonIndex: i,
-                title: '  ' + labels[i] + '  ',
-                classes: classes
-            }));
+                title: '  ' + labels[i] + '  '
+            });
+
+
+            button.applyProperties(style);
+
+            _.each(classes.split(' '), function(c) {
+
+                $.addClass(button, c);
+            });
+
+
+
+            $.tabbedBar.add(button);
         };
 
         $.tabbedBar.lastIndex = index;
+
     }
 };
 
@@ -44,7 +68,8 @@ var tabbedBarClicked;
 
 if (OS_IOS) {
     tabbedBarClicked = function(e) {
-        onChange(e.index);
+        console.log("tabbedBarClicked", e);
+        onChange(e.index.index);
 
     }
 } else if (OS_ANDROID) {
@@ -52,17 +77,19 @@ if (OS_IOS) {
         var button = e.source,
             index = button.buttonIndex,
             lastIndex = $.tabbedBar.lastIndex;
-
+        //   console.log("tabbedBarClicked e", e);
+        //   console.log("tabbedBarClicked ", index, lastIndex);
         if (index != null && index != lastIndex) {
             $.addClass(button, 'tabbed-bar-button-active');
-            $.removeClass($.tabbedBar.children[lastIndex], 'tabbed-bar-button-active');
+            var prev = $.tabbedBar.children[lastIndex];
+            //       console.log("prev", prev);
+            $.removeClass(prev, 'tabbed-bar-button-active');
             $.tabbedBar.lastIndex = index;
             onChange(index);
         }
 
     }
 }
-
 
 
 exports.getIndex = function() {

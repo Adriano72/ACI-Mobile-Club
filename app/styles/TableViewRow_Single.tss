@@ -1,5 +1,5 @@
 ".row[platform=ios]":{
-	height: "40",
+	height: "35",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 

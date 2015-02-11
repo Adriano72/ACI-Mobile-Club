@@ -27,8 +27,15 @@ function init() {
 
 $.tabbedBar.addEventListener('click', function(e) {
     console.log("e", e);
+    console.log("index", index);
     if (e.index != index) {
-        select(e.index.index);
+        if (_.isNumber(e.index)) {
+            select(e.index);
+        } else {
+            select(e.index.index);
+
+        }
+
     }
 })
 
@@ -37,6 +44,8 @@ $.tabbedBar.addEventListener('click', function(e) {
 
 function select(i) {
 
+    console.log("i", i);
+
     if (i == 0) {
         //posizione
         settings.ricercaPerProssimita = true;
@@ -44,10 +53,10 @@ function select(i) {
         $.cambiaProvincia.visible = false;
     } else {
         //provincia
+        settings.ricercaPerProssimita = false;
         var provincia = settings.provinciaDiRiferimento;
         if (provincia && !_.isEmpty(provincia)) {
 
-            settings.ricercaPerProssimita = false;
             //  $.status.text = "Il servizio restituirà i risultati relativi alla provincia di " + utility.capitalize(provincia.longName);
             $.cambiaProvincia.visible = true;
         } else {
@@ -55,6 +64,8 @@ function select(i) {
         }
 
     }
+
+    index = i;
 
 }
 

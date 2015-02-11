@@ -72,16 +72,18 @@
 
 "#selProvWrapper":{
 	height: Ti.UI.SIZE,
-	//top:5,bottom:5
-	top:10
+	top:5,bottom:5
+	//top:10
+}
+
+"#selProvWrapper[platform=ios]":{
+	top:1
 }
 
 
-"#selProvWrapper[platform=android]":{
 
-	backgroundColor: "red",
-	height: 0,
-	visible: false
+"#selProvWrapper[platform=android]":{
+	
 }
 
 

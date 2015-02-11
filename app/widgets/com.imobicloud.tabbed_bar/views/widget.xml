@@ -1,4 +1,5 @@
 <Alloy>
 	<TabbedBar id="tabbedBar" class="tabbed-bar" platform="ios" onClick="onChange"/>
-	<View id="tabbedBar" class="tabbed-bar" platform="android" onClick="tabbedBarClicked"/>
+
+	<View id="tabbedBar" class="tabbed-bar" platform="android" onClick="tabbedBarClicked"></View>   
 </Alloy>
