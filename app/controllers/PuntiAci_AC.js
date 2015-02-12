@@ -38,11 +38,16 @@ function dataTransform(model) {
 	//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
     attrs.distance = utility.formatDistance(attrs.address.distance);
 	attrs.indirizzo = attrs.address.street;
-	attrs.indirizzo2 = attrs.address.postalCode + " " + attrs.address.locality.longName;
+    var ind2 = (attrs.address.postalCode || '') + ' ' + (attrs.address.locality.longName || '');
+
+	attrs.indirizzo2 = ind2.trim() ;// attrs.address.postalCode ;//+ " " + attrs.address.locality.longName;
 	attrs.latitude = attrs.address.location[1];
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
 	attrs.email = attrs.contacts.email[0];
+	attrs.id = model.cid;
+
+	//Ti.API.info("MODEL CID: "+attrs.id);
 	return attrs;
 };
 

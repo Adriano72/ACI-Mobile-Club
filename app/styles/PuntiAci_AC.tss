@@ -73,12 +73,13 @@
 }
 
 ".row[platform=android]":{
-	height: 80,
+	height: 100,
 	className: "riga"
 }
 
 ".rowContainer": {
-	layout: "vertical",
+	//layout: "vertical",
+	height: Ti.UI.FILL,
 	top: 5
 }
 
@@ -91,15 +92,45 @@
 }
 
 ".bottomRowContainer": {
-	top: 0,
+	bottom: 0,
 	left: 10,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	//backgroundColor: "red"
+}
+
+".topRowContainer": {
+	top: 0,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	//backgroundColor: "pink"
+
+}
+".middleRowContainer": {
+	layout: "vertical",
+	
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
 }
 
+"#nome": {
+	width: "80%",
+	height: 20,
+	wordWrap: false,
+	ellipsize: true
+}
+
+".distance": {
+	width: "18%",
+	height: 20,
+	wordWrap: false,
+	ellipsize: true,
+	right:0
+}
+
 ".indirizzo": {
 	font: {
-        fontSize: '8dp'
+        fontSize: 12
     },
     color: "#8A9092"	
 }
@@ -124,4 +155,18 @@
 	right: 5
 	//width: 30,
 	//height:20
+}
+
+
+".bt_email[platform=android]":{
+	width: 30,
+	height:30
+}
+
+
+
+".bt_chiama[platform=android]":{
+	width: 30,
+	
+	height:30
 }
