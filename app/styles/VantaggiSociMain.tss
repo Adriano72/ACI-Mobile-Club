@@ -63,6 +63,30 @@
 
 
 
+"#contentWrapper":{
+	layout: "vertical"
+}
+
+
+
+"#selProvWrapper":{
+	height: Ti.UI.SIZE,
+	top:5,bottom:5
+	//top:10
+}
+
+"#selProvWrapper[platform=ios]":{
+	top:1
+}
+
+
+
+"#selProvWrapper[platform=android]":{
+	
+}
+
+
+
 
 
 

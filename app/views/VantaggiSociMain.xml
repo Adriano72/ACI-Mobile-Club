@@ -13,9 +13,18 @@
 			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
 
 		</Menu>
-		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
+		
+		<View id="contentWrapper">
+			<View id="selProvWrapper">
+				<Require src="SelettoreProvincia" id="selProv"></Require>
+			</View>
+			<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
+		</View>
 		<View class="bottomBannerContainer">
 			<ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/>
 		</View>
+
+		
+		
 	</Window>
 </Alloy>
