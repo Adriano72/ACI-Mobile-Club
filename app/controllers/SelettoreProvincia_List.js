@@ -41,7 +41,7 @@ function filterRows(collection) {
 
 function init1() {
     abx.displayHomeAsUp = true;
-    abx.title = "Ricerca per Servizio";
+    abx.title = "Cambia provincia";
     abx.titleFont = "ACI Type Regular.otf";
     abx.titleColor = Alloy.Globals.palette.blu;
     _.defer(init2);
@@ -61,9 +61,65 @@ function init3() {
             updateUI();
             Alloy.Globals.loading.hide();
             console.log("province", result);
+            // init5();
         });
+    } else {
+        //init5();
     }
 
+
+
+}
+
+//aggiungi la riga della posizione
+function init4() {
+    //aggungo la riga posizione in testa
+
+    var style = $.createStyle({
+        classes: "row simpleRowText PTSansRegular",
+        apiName: 'TableViewRow'
+    });
+    var row = Ti.UI.createTableViewRow({
+        modelId: 0,
+        title: 'La tua posizione',
+        leftImage: '/images/ic_action_gps.png'
+        // leftImage: '/ico_punti_servizio_01.png'
+    });
+    row.applyProperties(style);
+    $.puntiAci_Table.insertRowBefore(0, row);
+
+}
+
+//devo inserire le province a mano
+function init5() {
+    _.each(Alloy.Collections.province.models, function(m) {
+        console.log("m", m);
+        appendRow(m);
+    });
+}
+
+//evidenzia la riga selezionata
+function init6() {
+
+    var sel = settings.provinciaDiRiferimento;
+    if (sel) {
+        highlight(sel.shortName);
+        var i = utility.arrayIndexBy(Alloy.Collections.province.models, {
+            shortName: sel.shortName
+        });
+
+    }
+
+}
+
+function appendRow(r) {
+    var style = $.createStyle({
+        classes: "row simpleRowText PTSansRegular",
+        apiName: 'TableViewRow'
+    });
+    var row = Ti.UI.createTableViewRow(r);
+    row.applyProperties(style);
+    $.puntiAci_Table.insertRowBefore(0, row);
 }
 
 function dataTransform(model) {
@@ -79,26 +135,68 @@ function dataTransform(model) {
 function select(e) {
     console.log("e", e);
 
-
     var selected = {
+        id: e.rowData.modelId,
         shortName: e.rowData.shortName,
         longName: e.rowData.longName
     };
 
     console.log("selected", selected);
 
-    //imposto la preferenza
-    settings.provinciaDiRiferimento = {
-        shortName: selected.shortName,
-        longName: selected.longName
+    if (selected.id == 0) {
+        //caso posizione
+        //settings.provinciaDiRiferimento = undefined;
+        settings.ricercaPerProvincia = false;
+    } else {
+        //la precedente provincia
+        var prev = settings.provinciaDiRiferimento;
+
+
+        //imposto la preferenza provincia
+        settings.provinciaDiRiferimento = {
+            shortName: selected.shortName,
+            longName: selected.longName
+        }
+
+
+        // highlight(selected.shortName, (prev ? prev.shortName : undefined));
+
+        settings.ricercaPerProvincia = true;
     }
-    settings.ricercaPerProvincia = true;
+
+
 
 
     //chiudi la finestra corrente
     _.defer(function() {
         Alloy.Globals.navMenu.closeWindow($.win);
     });
+}
+
+
+function highlight(shortName, shortName_prev) {
+    console.log(shortName);
+    var children = $.puntiAci_Table.getChildren();
+    console.log('data', $.puntiAci_Table.data);
+    var p = _.where(children, {
+        shortName: shortName_prev
+    });
+    var c = _.where(children, {
+        shortName: shortName
+    });
+    console.log('c', c);
+    if (c && c.length) {
+
+        var child = c[0];
+        child.font.fontWeight = "bold";
+
+    }
+
+    if (p && p.length) {
+        var prev = p[0];
+        prev.font.fontWeight = "regular";
+
+    }
 }
 
 

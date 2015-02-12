@@ -4,7 +4,7 @@
 		<View id="tabbedWrapper">
 			<Widget id="tabbedBar" type="widget" src="com.imobicloud.tabbed_bar"/> 
 		</View>
-		<Label id="cambiaProvincia" class="labelLink PTSansRegular" onClick="selezionaProvincia">cambia provincia</Label>
+		<!--<Label id="cambiaProvincia" class="labelLink PTSansRegular" onClick="selezionaProvincia">cambia provincia</Label> -->
 		<!--<View id="statusWrapper">
 			<Label class="labelDark PTSansRegular" id="status"></Label>
 			<Label id="cambiaProvincia" class="labelLink PTSansRegular" onClick="selezionaProvincia">cambia</Label>

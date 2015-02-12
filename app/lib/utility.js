@@ -207,3 +207,35 @@ exports.capitalize = function(s) {
     if (s.length == 1) return s.toUpperCase();
     return s[0].toUpperCase() + s.slice(1).toLowerCase();
 }
+
+/**
+ * @method arrayIndexBy
+ * In un array di oggetti, ritorna l'indice dell'elemento che soddisfa el condizioni
+ * @param  {array} arr  array in cui cercare
+ * @param  {object|function} query può essere o una serie di chiave/valore da testare, o una funzione di ricerca
+ * @return {number}     indice del primo elemento trovato, -1 se nessun elemento trovato
+ */
+exports.arrayIndexBy = function(arr, query) {
+
+    //routine di controllo per cercare l'elemento.
+    //  se query=function, viene sovrascritta
+    //  altrimenti ho una funzione default che fa il controllo con le chiavi dell'oggetto query
+    var check = _.isFunction(query) ? query : function(item) {
+        var keys = _.keys(query);
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
+            if (item[key] != query[key]) {
+                return false;
+            }
+        };
+        return true;
+    };
+
+    for (var i = 0; i < arr.length; i++) {
+        if (check(arr[i])) {
+            return i;
+        }
+    }
+    return -1;
+
+};

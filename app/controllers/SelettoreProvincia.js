@@ -50,7 +50,7 @@ function select(i) {
         //posizione
         settings.ricercaPerProssimita = true;
         //$.status.text = "Il servizio restituirà i punti più vicini alla posizione dell'utente";
-        $.cambiaProvincia.visible = false;
+        // $.cambiaProvincia.visible = false;
     } else {
         //provincia
         settings.ricercaPerProssimita = false;
@@ -58,7 +58,7 @@ function select(i) {
         if (provincia && !_.isEmpty(provincia)) {
 
             //  $.status.text = "Il servizio restituirà i risultati relativi alla provincia di " + utility.capitalize(provincia.longName);
-            $.cambiaProvincia.visible = true;
+            //      $.cambiaProvincia.visible = true;
         } else {
             selezionaProvincia();
         }

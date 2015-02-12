@@ -82,8 +82,11 @@ exports.openSideMenu = function(p_auth) {
     }
 
 
-    var searchLabel = createLabel('Cambia provincia', notImplemented)
-    var privacyLabel = createLabel('Informativa sulla provacy', notImplemented)
+    var searchLabel = createLabel('Cambia provincia', function() {
+        var w = Alloy.createController('SelettoreProvincia_List').getView();
+        Alloy.Globals.navMenu.openWindow(w);
+    })
+    var privacyLabel = createLabel('Informativa sulla privacy', notImplemented)
     var condizioniLabel = createLabel('Condizioni d\'uso', notImplemented)
 
     _.each([menuHeader, loginLabel, searchLabel, condizioniLabel, privacyLabel], appendLabel);

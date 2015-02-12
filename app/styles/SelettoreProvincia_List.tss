@@ -16,6 +16,14 @@
 	exitOnClose: false
 }
 
+
+".titleLabel[platform=ios]":{
+	font:{
+		fontSize: 18
+	},
+	color: Alloy.Globals.palette.blu
+}
+
 ".titleControl[platform=ios]": {
 	//backgroundImage: "tit_ricerca_per_servizio.png",
 	width: 138,
@@ -28,7 +36,7 @@
 }
 
 "MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+	//showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 }
 
 "#menu": {
