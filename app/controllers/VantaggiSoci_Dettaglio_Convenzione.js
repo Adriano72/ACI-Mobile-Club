@@ -26,6 +26,7 @@ modelGot.telefono = modelGot.contacts.tel[0];
 modelGot.fax = modelGot.contacts.fax[0];
 modelGot.web = modelGot.contacts.web[0];
 modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc);
+modelGot.come = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc);
 modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc);
 modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.images.logo);
 
@@ -84,6 +85,8 @@ function toggleDettaglioDescrizione(e) {
 
 };
 
+
+
 function toggleDettaglioVantaggio(e) {
 
 	e.cancelBubble = true;
@@ -101,6 +104,28 @@ function toggleDettaglioVantaggio(e) {
 		$.vantaggioText.color = "#fff";
 		$.rowVantaggio.backgroundColor = Alloy.Globals.palette.blu;
 		$.dettaglioVantaggio.visible = true;
+
+	}
+
+};
+
+function toggleDettaglioComeVantaggio(e) {
+
+	e.cancelBubble = true;
+
+	if ($.dettaglioComeVantaggio.visible == true) {
+		$.dettaglioComeVantaggio.visible = false;
+		$.comeVantaggioIcon.image = "/x_vantaggi_blu.png";
+		$.comeVantaggioText.color = Alloy.Globals.palette.blu;
+		$.rowComeVantaggio.backgroundColor = "#fff";
+		$.dettaglioComeVantaggio.height = 0;
+
+	} else {
+		$.dettaglioComeVantaggio.height = Ti.UI.SIZE;
+		$.comeVantaggioIcon.image = "/x_vantaggi_bianco.png";
+		$.comeVantaggioText.color = "#fff";
+		$.rowComeVantaggio.backgroundColor = Alloy.Globals.palette.blu;
+		$.dettaglioComeVantaggio.visible = true;
 
 	}
 

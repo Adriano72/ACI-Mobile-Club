@@ -121,6 +121,9 @@
 "#vantaggioIcon": {
 	image: "/x_vantaggi_blu.png"
 }
+"#comeVantaggioIcon": {
+	image: "/x_vantaggi_blu.png"
+}
 
 "#chiamaIcon": {
 	image: "/x_telefono_blu.png"
@@ -143,16 +146,21 @@
 ".testoDettagli": {
 	top: 5,
 	width: "90%",
-	color:"#888"
+	color: Alloy.Globals.palette.grigio_scuro
 }
 
 "#dettaglioDescrizione": {
 	height: 0,
-	backgroundColor: "#EEEEEE"
+	backgroundColor:  Alloy.Globals.palette.bianco_sporco
 }
 
 "#dettaglioVantaggio": {
 	height: 0,
-	backgroundColor: "#EEEEEE"
+	backgroundColor: Alloy.Globals.palette.bianco_sporco
+}
+
+"#dettaglioComeVantaggio": {
+	height: 0,
+	backgroundColor: Alloy.Globals.palette.bianco_sporco
 }
 

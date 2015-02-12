@@ -46,8 +46,17 @@
 				<Label class="simpleRowText PTSansRegular" id="vantaggioText" text="Vantaggio per i soci"/>
 				<ImageView class="hasDetail"/>
 			</View>
+
 			<View id="dettaglioVantaggio" visible="false">
 				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioOrari" text="{$.dormireMangiare.vantaggio}"/>
+			</View>
+			<View id="rowComeVantaggio" class="rowSingleContainer" onClick="toggleDettaglioComeVantaggio">
+				<ImageView class="simpleRowLeftIcon" id="comeVantaggioIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="comeVantaggioText" text="Come ottenere lo sconto"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioComeVantaggio" visible="false">
+				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioCome" text="{$.dormireMangiare.come}"/>
 			</View>
 			<View class="separator"/>
 			<View id="rowChiama" class="rowSingleContainer" onSingletap="doPhoneCall">
