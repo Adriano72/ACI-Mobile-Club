@@ -77,19 +77,27 @@
 
 "#contattiView": {
 	height: 100,
-	backgroundColor: "#EEEEEE",
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
 	top:0,
 	layout: "vertical"
 }
 
 ".contatti": {
 	top: 0,
-	color:"#888",
+	color:Alloy.Globals.palette.grigio_scuro,
 	font: {
         
         fontSize: '10dp'
     }
 }
+
+".contatti[platform:android]": {
+	font: {
+        
+        fontSize: 14
+    }
+}
+
 
 ".first": {
 	top: 20
@@ -146,6 +154,7 @@
 ".testoDettagli": {
 	top: 5,
 	width: "90%",
+	bottom: 5,
 	color: Alloy.Globals.palette.grigio_scuro
 }
 

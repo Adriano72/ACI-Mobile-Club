@@ -25,9 +25,9 @@ modelGot.formattedAddress = modelGot.address.formatted;
 modelGot.telefono = modelGot.contacts.tel[0];
 modelGot.fax = modelGot.contacts.fax[0];
 modelGot.web = modelGot.contacts.web[0];
-modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc);
-modelGot.come = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc);
-modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc);
+modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc).trim();
+modelGot.come = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc).trim();
+modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc).trim();
 modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.images.logo);
 
 $.dormireMangiare.set(modelGot);
