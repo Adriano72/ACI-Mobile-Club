@@ -83,10 +83,11 @@ exports.openSideMenu = function(p_auth) {
 
 
     var searchLabel = createLabel('Cambia provincia', function() {
-        var w = Alloy.createController('SelettoreProvincia_List').getView();
-        Alloy.Globals.navMenu.openWindow(w);
+        open('SelettoreProvincia_List');
+    });
+    var privacyLabel = createLabel('Informativa sulla privacy', function() {
+        open('privacy');
     })
-    var privacyLabel = createLabel('Informativa sulla privacy', notImplemented)
     var condizioniLabel = createLabel('Condizioni d\'uso', notImplemented)
 
     _.each([menuHeader, loginLabel, searchLabel, condizioniLabel, privacyLabel], appendLabel);
@@ -95,6 +96,12 @@ exports.openSideMenu = function(p_auth) {
         var win = Alloy.createController('Impostazioni_Posizione').getView();
         Alloy.Globals.navMenu.openWindow(win);
     }); */
+
+
+    function open(name) {
+        var w = Alloy.createController(name).getView();
+        Alloy.Globals.navMenu.openWindow(w);
+    }
 
 
     Ti.App.addEventListener("loggedInUser", function(e) {
