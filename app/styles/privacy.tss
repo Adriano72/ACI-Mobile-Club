@@ -1,0 +1,45 @@
+".container[platform=ios]": {
+	backgroundColor: "#fff",
+	barColor: Alloy.Globals.palette.bianco_sporco,
+	backButtonTitle: "",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	//backgroundImage: "AutomobileClub.png",
+	width: Ti.UI.SIZE,
+	height: 23
+}
+
+
+
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "/images/ic_action_aci.png"
+}
+
+
+"WebView":{
+	width: "90%",
+	top: 5,
+	bottom: 5
+}
+
+"WebView[platform=android]":{
+	enableZoomControls: false
+}

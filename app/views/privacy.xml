@@ -1,0 +1,11 @@
+<Alloy>
+	<Window id="win" class="container" onOpen="loadData">
+		<TitleControl id="titleControl" platform="ios">
+			<Label class="titleControl">Informativa sulla privacy</Label>
+		</TitleControl>
+		<Menu id="menu" platform="android">
+
+		</Menu>
+		<WebView url="/privacy.html" ></WebView>
+	</Window>
+</Alloy>
