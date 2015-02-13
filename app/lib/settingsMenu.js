@@ -90,7 +90,12 @@ exports.openSideMenu = function(p_auth) {
     })
     var condizioniLabel = createLabel('Condizioni d\'uso', notImplemented)
 
-    _.each([menuHeader, loginLabel, searchLabel, condizioniLabel, privacyLabel], appendLabel);
+
+    var tessereLabel = createLabel('Tessere', function() {
+        open('Tessere_List');
+    });
+
+    _.each([menuHeader, loginLabel, searchLabel, condizioniLabel, privacyLabel, tessereLabel], appendLabel);
 
     /* searchLabel.addEventListener("click", function() {
         var win = Alloy.createController('Impostazioni_Posizione').getView();

@@ -1,0 +1,26 @@
+<Alloy>
+	
+	<Window id="win" class="container" onOpen="loadData">
+		<TitleControl platform="ios">
+			<Label id="titleControl" class="titleControl">le tessere ACI</Label>
+		</TitleControl>
+
+		
+		<TableView id="TessereTable" class="table" dataCollection="tessere" dataTransform="dataTransform" dataFunction="updateUI" onSingletap="openDetail" >
+
+			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
+				<View class="rowContainer">
+					<View class="leftRowContainer">
+						<ImageView id="imgTessera" image="{img}"></ImageView>
+					</View>
+					<View class="rightRowContainer">
+						<Label class="simpleRowText PTSansBold" id="name" text="{name}"/>
+
+						<Label class="simpleRowText PTSansBold " id="slogan" text="{slogan}"/>
+						
+					</View>
+				</View>
+			</TableViewRow>
+		</TableView>
+	</Window>
+</Alloy>

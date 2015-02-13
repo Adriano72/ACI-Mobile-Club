@@ -1,0 +1,128 @@
+".container[platform=ios]": {
+	backgroundColor: "#fff",
+	barColor: Alloy.Globals.palette.bianco_sporco,
+	backButtonTitle: "",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	//backgroundImage: "AutomobileClub.png",
+	width: Ti.UI.SIZE,
+	height: 23
+}
+
+
+
+"MenuItem": {
+	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
+}
+
+"#menu": {
+	icon: "/images/ic_action_aci.png"
+}
+
+"#mn_settings": {
+	
+	icon: "/images/ic_action_pin.png",
+	title: "Mappa"
+}
+
+".table[platform=ios]":{
+	top: 0,
+	height: Ti.UI.FILL
+	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+}
+
+".table[platform=android]":{
+	top: 0,
+	height: Ti.UI.FILL
+}
+
+
+".row[platform=ios]":{
+	height: 100,
+	color: "transparent",
+	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
+}
+
+".row[platform=android]":{
+	height: 100,
+	className: "riga"
+}
+
+".rowContainer": {
+	//layout: "vertical",
+	height: Ti.UI.FILL,
+	top: 5
+}
+
+".simpleRowText": {
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	left: 10,
+	top: 0,
+	color:Alloy.Globals.palette.blu
+}
+
+".bottomRowContainer": {
+	bottom: 0,
+	left: 10,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	//backgroundColor: "red"
+}
+
+".rowContainer":{
+}
+
+".rightRowContainer": {
+	width: "64%",
+	layout: "vertical",
+	height: Ti.UI.SIZE,
+	right: 0
+
+}
+
+".leftRowContainer": {
+	width: "35%",
+	height: Ti.UI.SIZE,
+	left: 0
+}
+
+
+"#name": {
+	left: 5,
+	font:{
+		fontSize:18
+	},
+	wordWrap: false,
+	ellipsize: true
+}
+
+
+"#slogan": {
+	color: Alloy.Globals.palette.grigio_scuro,
+	left: 5,
+	top: 2,
+	right: 5,
+	font:{
+		fontSize:12
+	},
+	wordWrap: true,
+	ellipsize: true
+}
+
+"#imgTessera":{
+	left: 10
+}

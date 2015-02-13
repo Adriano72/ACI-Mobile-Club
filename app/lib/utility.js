@@ -56,7 +56,7 @@ exports.formattaOrari = function(obj) {
 
 };
 
-exports.getTesseraImage = function(codice) {
+exports.getTesseraImage = function(codice, horizontal) {
 
     Ti.API.info("CODICE: " + codice);
 
@@ -89,7 +89,15 @@ exports.getTesseraImage = function(codice) {
         return key == codice;
     });
 
+    //così gestisco con una sola funzione i doppi orientamenti
+    if (horizontal) {
+
+        imm = imm.replace('.jpg', '_h.jpg');
+    }
+
     Ti.API.info("TESSERA: " + imm);
+
+
 
     return "/" + imm;
 

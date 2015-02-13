@@ -45,6 +45,8 @@ Alloy.Collections.instance("serviziGICpos");
 //province
 Alloy.Collections.instance("province");
 
+//tessere
+Alloy.Collections.instance("tessere");
 
 // PUNTI ACI
 Alloy.Collections.instance("automobileClub");
