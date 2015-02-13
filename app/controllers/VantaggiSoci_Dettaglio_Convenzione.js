@@ -27,6 +27,7 @@ modelGot.fax = modelGot.contacts.fax[0];
 modelGot.web = modelGot.contacts.web[0];
 modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc).trim();
 modelGot.come = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc).trim();
+console.log("come", modelGot.come);
 modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc).trim();
 modelGot.logo = encodeURI("http://www.aci.it/fileadmin/syc/logo/" + modelGot.agreement_id.images.logo);
 
@@ -115,14 +116,14 @@ function toggleDettaglioComeVantaggio(e) {
 
 	if ($.dettaglioComeVantaggio.visible == true) {
 		$.dettaglioComeVantaggio.visible = false;
-		$.comeVantaggioIcon.image = "/x_vantaggi_blu.png";
+		$.comeVantaggioIcon.image = "/images/ic_action_come_ottenere_vantaggi_blu.png";
 		$.comeVantaggioText.color = Alloy.Globals.palette.blu;
 		$.rowComeVantaggio.backgroundColor = "#fff";
 		$.dettaglioComeVantaggio.height = 0;
 
 	} else {
 		$.dettaglioComeVantaggio.height = Ti.UI.SIZE;
-		$.comeVantaggioIcon.image = "/x_vantaggi_bianco.png";
+		$.comeVantaggioIcon.image = "/images/ic_action_come_ottenere_vantaggi_bianco.png";
 		$.comeVantaggioText.color = "#fff";
 		$.rowComeVantaggio.backgroundColor = Alloy.Globals.palette.blu;
 		$.dettaglioComeVantaggio.visible = true;
