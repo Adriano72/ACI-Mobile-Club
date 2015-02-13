@@ -374,11 +374,11 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
         query: {
             //metto in or tutti i tipi di punti aci
             "_type": "del",
-            /* "$or": _.map(['del', 'aacc', 'r2g', 'pra', 'urp', 'tasse'], function(x) {
+            "$or": _.map(['del', 'aacc', 'r2g', 'pra', 'urp', 'tasse'], function(x) {
                 return {
                     "_type": x
                 };
-            }),*/
+            }),
             "status": 'ok'
         },
         limit: 15
