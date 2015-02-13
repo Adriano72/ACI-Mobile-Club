@@ -148,19 +148,22 @@ function init3() {
  * @return {[type]} [description]
  */
 function submit() {
-    if (validate()) {
-        dialogs.confirm({
-            title: "Conferma richiesta",
-            message: "Confermi l'invio della richiesta?",
-            yes: "Sì",
-            no: "No",
-            callback: function() {
-                AciGlobal.limitRequests('La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero ' + AciGlobal.NumeroVerde + '.', callAciGlobal);
-            }
-        });
-    } else {
-        alert("Tutti i dati sono obbligatori");
-    }
+    validate(function(err) {
+        if (err) {
+            alert(err.join('\n'));
+
+        } else {
+            dialogs.confirm({
+                title: "Conferma richiesta",
+                message: "Confermi l'invio della richiesta?",
+                yes: "Sì",
+                no: "No",
+                callback: function() {
+                    AciGlobal.limitRequests('La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero ' + AciGlobal.NumeroVerde + '.', callAciGlobal);
+                }
+            });
+        }
+    });
 }
 
 
@@ -259,20 +262,34 @@ function renderConferma() {
  * funzione di validazione dei dati prima dell'invio
  * @return {[type]} [description]
  */
-function validate() {
+function validate(cb) {
 
-    var valid = true;
-    if (isGuest) {
+    var err = [];
 
-        valid = $.telefono.value;
+    var telefono = $.telefono.value.trim();
+    var tipo = $.tipoAiuto.value;
 
-    } else {
-        valid = $.tipoAiuto.value && $.telefono.value;
+    function validateTelefono(t) {
+        var r = /^((00|\+)39)*([0-9]{10})$/;
+        return r.test(t);
+    }
+
+
+    if (!telefono || (!isGuest && !tipo)) {
+        err.push('Tutti i campi sono obbligatori');
 
     }
 
 
-    return valid;
+    if (telefono && !validateTelefono(telefono)) {
+        err.push('Formato telefono non valido, tilizzare solo cifre.');
+    }
+
+    if (err.length) {
+        cb && cb(err);
+    } else {
+        cb && cb();
+    }
 
 }
 
