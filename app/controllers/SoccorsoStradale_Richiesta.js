@@ -282,7 +282,7 @@ function validate(cb) {
 
 
     if (telefono && !validateTelefono(telefono)) {
-        err.push('Formato telefono non valido, tilizzare solo cifre.');
+        err.push('Formato telefono non valido, utilizzare solo cifre.');
     }
 
     if (err.length) {
