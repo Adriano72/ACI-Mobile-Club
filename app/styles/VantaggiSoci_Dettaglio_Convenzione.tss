@@ -130,7 +130,7 @@
 	image: "/x_vantaggi_blu.png"
 }
 "#comeVantaggioIcon": {
-	image: "/x_vantaggi_blu.png"
+	image: "/images/ic_action_come_ottenere_vantaggi_blu.png"
 }
 
 "#chiamaIcon": {
@@ -154,6 +154,7 @@
 ".testoDettagli": {
 	top: 5,
 	width: "90%",
+	height: Ti.UI.SIZE,
 	bottom: 5,
 	color: Alloy.Globals.palette.grigio_scuro
 }
