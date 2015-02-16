@@ -53,6 +53,6 @@ function onDetail() {
 }
 
 function onBuy() {
-    Ti.Platform.openURL(modelGot.detailUrl);
+    Ti.Platform.openURL(modelGot.buyUrl);
 
 }
