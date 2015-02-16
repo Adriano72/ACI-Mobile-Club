@@ -114,6 +114,9 @@ function toggleSideMenu() {
 function tessera() {
 
     //if (Ti.App.Properties.getBool("utenteAutenticato")) {
+
+
+
     if (user.isLogged) {
 
         var winTessera = Alloy.createController('showTessera', Ti.App.Properties.getObject("datiUtente")).getView();
@@ -121,8 +124,8 @@ function tessera() {
 
     } else {
 
-        var winLogin = Alloy.createController('loginWindow').getView();
-        Alloy.Globals.navMenu.openWindow(winLogin);
+        var winOpts = Alloy.createController('userOptions').getView();
+        Alloy.Globals.navMenu.openWindow(winOpts);
 
     }
 

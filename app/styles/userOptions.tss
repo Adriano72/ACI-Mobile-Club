@@ -1,0 +1,77 @@
+".container":{
+
+	backgroundImage: "/sfondoLogin.jpg",
+
+}
+
+
+".container[platform=ios]": {
+	backgroundColor: "#fff",
+	barColor: Alloy.Globals.palette.bianco_sporco,
+	backButtonTitle: "",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+".titleControl[platform=ios]": {
+	color: Alloy.Globals.palette.blu,
+	font: {
+		fontFamily: "ACI Type Regular"
+	},
+	width: Ti.UI.SIZE,
+	height: 23
+}
+
+
+
+
+"#wrapper":{
+	layout: "vertical",
+	height: Ti.UI.SIZE
+}
+
+".rounded":{
+
+	height: 40,
+	borderWidth: 1,
+	borderRadius: 20,
+	borderColor: Alloy.Globals.palette.bianco,
+	top: 6,
+	bottom: 10,
+	width: "80%"
+}
+
+".rowContainer":{
+	layout: "horizontal",
+	horizontalWrap: false,
+	width: Ti.UI.SIZE,
+}
+
+".l1":{
+	color: Alloy.Globals.palette.bianco,
+//	width: Ti.UI.SIZE,
+	font: {
+		fontSize: 14
+	}
+}
+
+
+".l2":{
+	left: 3,
+	color: Alloy.Globals.palette.bianco,
+//	width: Ti.UI.SIZE,
+	font: {
+		fontSize: 16,
+		fontWeight: 'bold'
+	}
+}
