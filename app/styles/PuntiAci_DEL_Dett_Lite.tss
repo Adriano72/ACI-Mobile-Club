@@ -64,17 +64,23 @@
 
 "#contattiView": {
 	height: 100,
-	backgroundColor: "#EEEEEE",
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
 	top:0,
 	layout: "vertical"
 }
 
 ".contatti": {
 	top: 0,
-	color:"#888",
+	color:Alloy.Globals.palette.grigio_scuro,
 	font: {
         
-        fontSize: '8dp'
+        fontSize: '10'
+    }
+}
+".contatti[platform:android]": {
+	font: {
+        
+        fontSize: 14
     }
 }
 

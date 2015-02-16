@@ -51,6 +51,18 @@ function dataTransform(model) {
 	return attrs;
 };
 
+
+function dettaglio(e) {
+    if (e && e.rowData) {
+        var selectedDel = Alloy.Collections.automobileClub.getByCid(e.rowData.modelId);
+
+        var dettDelegazione = Alloy.createController('PuntiAci_AC_Dett', {
+            data: selectedDel
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(dettDelegazione);
+    }
+}
+
 function openNavigation(e) {
 
 	require('locationServices').getUserLocation(function(userLoc) {

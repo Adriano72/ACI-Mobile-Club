@@ -18,9 +18,9 @@
 }
 
 ".titleControl[platform=ios]": {
-	backgroundImage: "logoPRA.png",
-	width: 91,
-	height: 34
+	backgroundImage: "AutomobileClub.png",
+	width: 120,
+	height: 23
 }
 
 ".rightNavImg[platform=ios]": {
@@ -28,12 +28,13 @@
 }
 
 
+
 "MenuItem": {
 	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
 }
 
 "#menu": {
-	icon: "/images/ic_action_uffici_pra.png"
+	icon: "/images/ic_action_aci.png"
 }
 
 "#mn_navigazione": {
@@ -138,7 +139,11 @@
 }
 
 ".testoDettagli": {
-	color:"#888"
+	top: 5,
+	width: "90%",
+	height: Ti.UI.SIZE,
+	bottom: 5,
+	color: Alloy.Globals.palette.grigio_scuro
 }
 
 "#dettaglioServizi": {

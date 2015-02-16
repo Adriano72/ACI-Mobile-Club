@@ -32,7 +32,7 @@
 }
 
 "#menu": {
-	icon: "/images/ic_action_delegazioni.png"
+	icon: "/images/ic_action_aci.png"
 }
 
 "#mn_settings": {
