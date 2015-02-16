@@ -103,6 +103,21 @@ exports.getTesseraImage = function(codice, horizontal) {
 
 };
 
+
+exports.getTesseraScadutaImage = function(codice) {
+
+ 
+
+    var imm = exports.getTesseraImage(codice, false);
+    //così gestisco con una sola funzione i doppi orientamenti
+   
+        imm = imm.replace('.jpg', '_scaduta.jpg');
+
+
+    return "/" + imm;
+
+};
+
 /**
  * elenco dei serivzi disponibili per la tessera
  * persona, casa, auto

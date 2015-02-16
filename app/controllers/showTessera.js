@@ -1,23 +1,38 @@
 var args = arguments[0] || {};
+var utility  = require("utility");
 
 Ti.API.info("ARGS: " + JSON.stringify(args));
 
 if (OS_ANDROID) {
-	var abx = require('com.alcoapps.actionbarextras');
+    var abx = require('com.alcoapps.actionbarextras');
 };
 
-var immagineTessera = require("utility").getTesseraImage(args["userInfo.categoriaTessera"]);
+var immagineTessera
+
+//controllo la scadenza
+var scadenza = new Date(args["userInfo.dataScadenza"]);
+console.log('dataScadenza', new Date(args["userInfo.dataScadenza"]));
+console.log('dataScadenza', args["userInfo.dataScadenza"]);
+
+var code = args["userInfo.categoriaTessera"];
+
+if(scadenza >= new Date()){
+	immagineTessera  = utility.getTesseraImage(code);
+} else {
+	immagineTessera  = utility.getTesseraScadutaImage(code);
+
+}
 
 function doopen(evt) {
-	if (OS_ANDROID) {
+    if (OS_ANDROID) {
 
-		$.win.activity.actionBar.hide();
+        $.win.activity.actionBar.hide();
 
-	} else {
-		//$.windowtitle.text = winTitle;
-	}
+    } else {
+        //$.windowtitle.text = winTitle;
+    }
 
-	//updateScreen();
+    //updateScreen();
 }
 
 $.tessera.backgroundImage = immagineTessera;
@@ -25,15 +40,15 @@ $.tessera.backgroundImage = immagineTessera;
 Ti.API.info("TESSERA: " + immagineTessera);
 
 function init1() {
-	abx.displayHomeAsUp = true;
-	abx.title = "La tua tessera";
-	abx.titleFont = "ACI Type Regular.otf";
-	abx.titleColor = Alloy.Globals.palette.blu;
-	_.defer(init2);
+    abx.displayHomeAsUp = true;
+    abx.title = "La tua tessera";
+    abx.titleFont = "ACI Type Regular.otf";
+    abx.titleColor = Alloy.Globals.palette.blu;
+    _.defer(init2);
 }
 
 function init2() {
-	$.win.activity.invalidateOptionsMenu();
+    $.win.activity.invalidateOptionsMenu();
 }
 
 $.titolare.text = args["userInfo.name"] + " " + args["userInfo.surname"];
@@ -54,74 +69,74 @@ $.validita.text = "FINO AL " + reversed;
 $.rotatedContainer.transform = Ti.UI.create2DMatrix().rotate(-90);
 
 if (OS_ANDROID) {
-	$.rotatedContainer.setBottom("20%");
-	$.rotatedContainer.setLeft("40%");
+    $.rotatedContainer.setBottom("20%");
+    $.rotatedContainer.setLeft("40%");
 } else {
-	
-	if(Ti.Platform.displayCaps.platformHeight <= 480){
-		$.rotatedContainer.setBottom("32%");
-	}else{
-		$.rotatedContainer.setBottom("29%");
-	}
-	
-	$.rotatedContainer.setLeft("25%");
+
+    if (Ti.Platform.displayCaps.platformHeight <= 480) {
+        $.rotatedContainer.setBottom("32%");
+    } else {
+        $.rotatedContainer.setBottom("29%");
+    }
+
+    $.rotatedContainer.setLeft("25%");
 }
 
 var flag = false;
 
 function checkSize(e) {
 
-	e.cancelBubble = true;
-	$.tessera.backgroundImage = immagineTessera;
-	Ti.API.info("WIDTH: " + e.source.toImage().width);
-	Ti.API.info("HEIGHT: " + e.source.toImage().height);
+    e.cancelBubble = true;
+    $.tessera.backgroundImage = immagineTessera;
+    Ti.API.info("WIDTH: " + e.source.toImage().width);
+    Ti.API.info("HEIGHT: " + e.source.toImage().height);
 
-	var imgWidth = PixelsToDPUnits(e.source.toImage().width);
-	var imgHeight = PixelsToDPUnits(e.source.toImage().height);
+    var imgWidth = PixelsToDPUnits(e.source.toImage().width);
+    var imgHeight = PixelsToDPUnits(e.source.toImage().height);
 
-	Ti.API.info("WIDTH IN DP: " + $.titolare.height);
+    Ti.API.info("WIDTH IN DP: " + $.titolare.height);
 
-	if (flag == false) {
-		flag = true;
-		//$.titolare.bottom = (imgHeight * 0.0385) + 45;
-		//$.titolare.left = (imgWidth * 0.771);
+    if (flag == false) {
+        flag = true;
+        //$.titolare.bottom = (imgHeight * 0.0385) + 45;
+        //$.titolare.left = (imgWidth * 0.771);
 
-	};
+    };
 
 }
 
 function showSYC() {
-	var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
-	Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
+    var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
+    Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
 
 };
 
 //$.tessera.transform = Ti.UI.create2DMatrix().rotate(-90);
 
 function PixelsToDPUnits(ThePixels) {
-	if (Titanium.Platform.displayCaps.dpi > 160) {
-		if (Ti.Platform.displayCaps.density == 'high' && Ti.Platform.osname == 'iphone') {//retina iPhone
-			return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160)) * 2;
-		}
-		return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
-	} else {
-		if (Ti.Platform.displayCaps.density == 'low') {
-			return (ThePixels * (160 / Titanium.Platform.displayCaps.dpi));
-		}
-		return ThePixels;
-	}
+    if (Titanium.Platform.displayCaps.dpi > 160) {
+        if (Ti.Platform.displayCaps.density == 'high' && Ti.Platform.osname == 'iphone') { //retina iPhone
+            return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160)) * 2;
+        }
+        return (ThePixels / (Titanium.Platform.displayCaps.dpi / 160));
+    } else {
+        if (Ti.Platform.displayCaps.density == 'low') {
+            return (ThePixels * (160 / Titanium.Platform.displayCaps.dpi));
+        }
+        return ThePixels;
+    }
 }
 
 function DPUnitsToPixles(theDPs) {
-	if (Titanium.Platform.displayCaps.dpi > 160) {
-		if (Ti.Platform.displayCaps.density == 'high' && Ti.Platform.osname == 'iphone') {//retina iPhone
-			return (theDPs * (Titanium.Platform.displayCaps.dpi / 160)) / 2;
-		}
-		return (theDPs * (Titanium.Platform.displayCaps.dpi / 160));
-	} else {
-		if (Ti.Platform.displayCaps.density == 'low') {
-			return (theDPs / (160 / Titanium.Platform.displayCaps.dpi));
-		}
-		return theDPs;
-	}
+    if (Titanium.Platform.displayCaps.dpi > 160) {
+        if (Ti.Platform.displayCaps.density == 'high' && Ti.Platform.osname == 'iphone') { //retina iPhone
+            return (theDPs * (Titanium.Platform.displayCaps.dpi / 160)) / 2;
+        }
+        return (theDPs * (Titanium.Platform.displayCaps.dpi / 160));
+    } else {
+        if (Ti.Platform.displayCaps.density == 'low') {
+            return (theDPs / (160 / Titanium.Platform.displayCaps.dpi));
+        }
+        return theDPs;
+    }
 }
