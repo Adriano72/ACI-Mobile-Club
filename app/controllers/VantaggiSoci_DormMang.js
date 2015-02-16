@@ -1,4 +1,5 @@
 var args = arguments[0] || {};
+var utility = require('utility');
 
 if (OS_ANDROID) {
 	var abx = require('com.alcoapps.actionbarextras');
@@ -34,8 +35,10 @@ function dataTransform(model) {
 	var attrs = model.toJSON();
 	//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
 	attrs.indirizzo = attrs.address.street;
-	attrs.indirizzo2 = attrs.address.postalCode + " " + attrs.address.locality.longName;
+	attrs.distance = utility.formatDistance(attrs.address.distance);
+    var ind2 = (attrs.address.postalCode || '') + ' ' + (attrs.address.locality.longName || '');
 	attrs.latitude = attrs.address.location[1];
+    attrs.latitude = attrs.address.location[1];
 	attrs.longitude = attrs.address.location[0];
 	attrs.tel = attrs.contacts.tel[0];
 	attrs.email = attrs.contacts.email[0];

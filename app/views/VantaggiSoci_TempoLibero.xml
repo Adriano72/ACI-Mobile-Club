@@ -28,7 +28,7 @@
 
 					</View>
 					<View class="rightContainer">
-						<Label class="simpleRowText PTSansBold" id="distanza"/>
+						<Label class="simpleRowText PTSansBold" id="distanza" text="{distance}"/>
 						<Label class="simpleRowText PTSansRegular" id="sconto"/>
 						<ImageView class="preferiti" id="preferiti" onSingletap="togglePreferiti"/>
 						<Label class="dettagli PTSansBold" onSingletap="openDettagli"/>
