@@ -9,20 +9,20 @@
 		<View id="wrapper">
 			<View class="rounded">
 				<View class="rowContainer">
-					<Label class="l1">Sei registrato?</Label>
+					<Label class="l1">Sei già registrato?</Label>
 					<Label class="l2" onClick="accedi">Accedi</Label>
 				</View>
 			</View>
 
 			<View class="rounded">
 				<View class="rowContainer">
-					<Label class="l1">Sei socio?</Label>
+					<Label class="l1">Sei socio ACI?</Label>
 					<Label class="l2" onClick="registrati">Registrati</Label>
 				</View>
 			</View>
 			<View class="rounded">
 				<View class="rowContainer">
-					<Label class="l1">Non sei socio?</Label>
+					<Label class="l1">Non sei ancora socio?</Label>
 					<Label class="l2" onClick="associati">Associati</Label>
 				</View>
 			</View>
