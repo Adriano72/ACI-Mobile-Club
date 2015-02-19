@@ -30,7 +30,7 @@ Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
 //Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
 Alloy.Globals.baseURL = "http://www.aci.it/geo/v2";
-Alloy.Globals.bannerBaseURL = "http://www.aci.it/fileadmin/syc/banner/";
+Alloy.Globals.bannerBaseURL = "http://www.aci.it/geo/v2/uploads/syc/";
 
 console.log('platformWidth ', Ti.Platform.displayCaps.platformWidth);
 console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFactor);
@@ -78,6 +78,11 @@ Alloy.Globals.palette = {
     grigio_chiaro: "#cccccc", // (separatori orizzontali, freccia menu
     grigio_scuro: "#888888",
     rosso: "#e32b00",
-    bianco_sporco: "#f2f2f2",//header e 
-    bianco: "#ffffff" 
+    bianco_sporco: "#f2f2f2", //header e 
+    bianco: "#ffffff"
 };
+
+
+
+//inizializza i servizi di location
+_.defer(require('locationServices').init)	;

@@ -1,7 +1,8 @@
+var baseCollection = require('BaseCollection_VantaggiSoci');
 exports.definition = {
 	config: {
-
-		adapter: {
+        type_code: 'altri_servizi',
+        adapter: {
 			type: "properties",
 			collection_name: "altriServizi"
 		}
@@ -14,9 +15,8 @@ exports.definition = {
 		return Model;
 	},
 	extendCollection: function(Collection) {
-		_.extend(Collection.prototype, {
-			// extended functions and properties go here
-		});
+        
+        _.extend(Collection.prototype, baseCollection, {});
 
 		return Collection;
 	}

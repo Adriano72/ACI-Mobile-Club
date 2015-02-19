@@ -1,6 +1,8 @@
+var baseCollection = require('BaseCollection_PuntiAci');
+
 exports.definition = {
     config: {
-
+        type_code: 'pra',
         adapter: {
             type: "properties",
             collection_name: "pra"
@@ -14,19 +16,9 @@ exports.definition = {
         return Model;
     },
     extendCollection: function(Collection) {
-        _.extend(Collection.prototype, {
-            // extended functions and properties go here
-
-            comparator: function(m) {
-                var j = m.toJSON();
-                if (j.address && j.address.distance) {
-                    return j.address.distance;
-                } else {
-                    return j.name;
-                }
-            }
-        });
-
+        
+        _.extend(Collection.prototype, baseCollection, {});
+        
         return Collection;
     }
 };

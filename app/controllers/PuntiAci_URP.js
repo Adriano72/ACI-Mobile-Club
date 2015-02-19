@@ -17,7 +17,13 @@ function loadData() {
     } else {
         //$.windowtitle.text = winTitle;
     }
-    updateUI();
+    //aggiorna i dati solo se non sono più validi
+    Alloy.Globals.loading.show('Stiamo cercando');
+    Alloy.Collections.urp.fetchIfChanged(function(err, cached) {
+        updateUI();
+        Alloy.Globals.loading.hide();
+    });
+
     $.searchBar.blur();
 
 }

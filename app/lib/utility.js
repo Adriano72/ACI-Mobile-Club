@@ -106,12 +106,12 @@ exports.getTesseraImage = function(codice, horizontal) {
 
 exports.getTesseraScadutaImage = function(codice) {
 
- 
+
 
     var imm = exports.getTesseraImage(codice, false);
     //così gestisco con una sola funzione i doppi orientamenti
-   
-        imm = imm.replace('.jpg', '_scaduta.jpg');
+
+    imm = imm.replace('.jpg', '_scaduta.jpg');
 
 
     return "/" + imm;
@@ -262,3 +262,68 @@ exports.arrayIndexBy = function(arr, query) {
     return -1;
 
 };
+
+
+/**
+ * Calcola la differenza tra due date
+ * @param  {Date} d1 prima data
+ * @param  {Date} d2 seconda data
+ * @param  {String} u  unità di misura in cui ci aspettiamo la differenza, valori accettati sono: ms, s, m, h, d. Default: ms
+ * @return {Number}    differenza tra le due date. Se d1>d2 -> diff<0, altrimenti diff>0
+ */
+exports.dateDiff = function(d1, d2, u) {
+    var timeDiff = d2.getTime() - d1.getTime();
+
+    //default
+    if (!u) u = 'ms';
+
+    switch (u) {
+
+        case 'd':
+        case 'days':
+            timeDiff /= 24;
+        case 'h':
+        case 'hours':
+            timeDiff /= 60;
+        case 'm':
+        case 'minutes':
+            timeDiff /= 60;
+        case 's':
+        case 'seconds':
+            timeDiff /= 1000;
+        case 'ms':
+        case 'milliseconds':
+            //do nothing
+            break;
+        default:
+            throw ("invalid date diff format: " + m);
+    };
+
+    return timeDiff;
+
+};
+
+/**
+ * calcola la distanza tra due set di coordinate, in metri
+ * http://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude-points
+ * @param  {Number} lat1 latitudine punto 1
+ * @param  {Number} lon1 longitudine punto 1
+ * @param  {Number} lat2 latitudine punto 2
+ * @param  {Number} lon2 longitudine punto 2
+ * @return {Number}      distanza tra i punti, in metri
+ */
+exports.calculateDistance = function(lat1, lon1, lat2, lon2) {
+    function deg2rad(deg) {
+        return deg * (Math.PI / 180);
+    }
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c * 1000; //distanza in metri 
+    return d;
+}

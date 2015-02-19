@@ -9,7 +9,9 @@
     "AciGlobal_ServicePassword": "aci12eA5s",
     "AciGlobal_RequestLimitMinutes": "10",
     "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
-    "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew"
+    "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew",
+    "AciGeo_CacheDurationHours" : "24",
+    "AciGeo_CacheDistanceRangeMeters" : "1000"
   },
   "env:development": {
     "AciGlobal_RequestLimitMinutes": "1"

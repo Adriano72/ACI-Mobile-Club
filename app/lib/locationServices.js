@@ -1,6 +1,65 @@
+/**
+ * Modulo che gestisce le funzionalità per la posizione dell'utente
+ * Docs: https://wiki.appcelerator.org/display/guides2/Tracking+Position+and+Heading
+ */
+
+
+exports.init = function() {
+   /* var locationAdded = false;
+    var handleLocation = function(e) {
+        if (!e.error) {
+            console.log(e.coords);
+        }
+    };
+    var addHandler = function() {
+        console.log('add handler');
+
+        if (!locationAdded) {
+            Ti.Geolocation.addEventListener('location', handleLocation);
+            locationAdded = true;
+        }
+    };
+    var removeHandler = function() {
+        alert('remove');
+        console.log('remove handler');
+        if (locationAdded) {
+            Ti.Geolocation.removeEventListener('location', handleLocation);
+            locationAdded = false;
+        }
+    };
+
+    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
+    Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
+    if (Ti.Geolocation.locationServicesEnabled) {
+        addHandler();
+
+        if (OS_ANDROID) {
+            var activity = Ti.Android.currentActivity;
+            activity.addEventListener('destroy', removeHandler);
+            activity.addEventListener('pause', removeHandler);
+            activity.addEventListener('resume', addHandler);
+        }
+    } else {
+        alert('Please enable location services');
+    } */
+
+    exports.getUserLocation(function(p){
+        //position salvata
+        console.log('position salvata', p);
+    });
+
+};
+
+
+
+
+
+
 exports.getUserLocation = function(_callback) {
 
-    if (!Alloy.Globals.DevMode) {
+    var fake = OS_ANDROID ? false : Alloy.Globals.DevMode;
+
+    if (!fake) {
 
         if (Ti.Geolocation.locationServicesEnabled) {
             Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
@@ -65,6 +124,14 @@ exports.getUserLocation = function(_callback) {
 	 _callback(position);
 	 */
 
+};
+
+/**
+ * ritorna l'ultima posizione conosciuta dell'utente
+ * @return {[type]} [description]
+ */
+exports.getLastLocation = function() {
+    return Alloy.Globals.userPosition;
 };
 
 

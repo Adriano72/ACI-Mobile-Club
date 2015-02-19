@@ -51,6 +51,13 @@ function select(i) {
         settings.ricercaPerProssimita = true;
         //$.status.text = "Il servizio restituirà i punti più vicini alla posizione dell'utente";
         // $.cambiaProvincia.visible = false;
+        
+        //Per ora (19/2/15) gestiamo il refresh della posizione tramite questo evento
+        // in futuro andrà tolta
+        require('locationServices').getUserLocation(function(p){
+            //do nothing
+        });
+
     } else {
         //provincia
         settings.ricercaPerProssimita = false;

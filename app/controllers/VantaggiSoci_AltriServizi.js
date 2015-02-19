@@ -13,7 +13,12 @@ function openWin() {
         //$.windowtitle.text = winTitle;
     }
 
-    updateUI();
+    //aggiorna i dati solo se non sono più validi
+    Alloy.Globals.loading.show('Stiamo cercando');
+    Alloy.Collections.altriServizi.fetchIfChanged(function(err, cached) {
+        updateUI();
+        Alloy.Globals.loading.hide();
+    });
     $.searchBar.blur();
 
 }
@@ -32,11 +37,11 @@ function init2() {
 
 function dataTransform(model) {
     var attrs = model.toJSON();
-    Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(model));
+    Ti.API.info("END SIDE COLLECTION: " + JSON.stringify(model));
     attrs.indirizzo = attrs.address.street;
     attrs.distance = utility.formatDistance(attrs.address.distance);
     var ind2 = (attrs.address.postalCode || '') + ' ' + (attrs.address.locality.longName || '');
-	attrs.latitude = attrs.address.location[1];
+    attrs.latitude = attrs.address.location[1];
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
     attrs.email = attrs.contacts.email[0];

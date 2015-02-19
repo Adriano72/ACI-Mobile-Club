@@ -18,7 +18,14 @@ function loadData() {
     } else {
         //$.windowtitle.text = winTitle;
     }
-    updateUI();
+
+    //aggiorna i dati solo se non sono più validi
+    Alloy.Globals.loading.show('Stiamo cercando');
+    Alloy.Collections.demolitori.fetchIfChanged(function(err, cached) {
+        updateUI();
+        Alloy.Globals.loading.hide();
+    });
+
     $.searchBar.blur();
 
 }
@@ -42,7 +49,7 @@ function dataTransform(model) {
     attrs.indirizzo = attrs.address.street;
     var ind2 = (attrs.address.postalCode || '') + ' ' + (attrs.address.locality.longName || '');
 
-    attrs.indirizzo2 = ind2.trim() ;// attrs.address.postalCode ;//+ " " + attrs.address.locality.longName;
+    attrs.indirizzo2 = ind2.trim(); // attrs.address.postalCode ;//+ " " + attrs.address.locality.longName;
     attrs.latitude = attrs.address.location[1];
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
