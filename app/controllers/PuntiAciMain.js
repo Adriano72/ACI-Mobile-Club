@@ -90,7 +90,7 @@ function selectionDetail(e) {
 function ricerca() {
 
     var win = Alloy.createController('PuntiAci_RicercaServizio').getView();
-    $.searchField.blur();
+    _.defer($.searchField.blur);
     Alloy.Globals.navMenu.openWindow(win);
     win.addEventListener('close', function() {
         $.searchField.value = '';

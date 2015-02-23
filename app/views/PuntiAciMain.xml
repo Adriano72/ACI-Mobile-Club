@@ -13,11 +13,18 @@
 			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
 
 		</Menu>
-		<View id="contentWrapper">
 
+		
+
+		<View id="contentWrapper">
+			<View id="ricercaServizioWrapper" >
+				<Require src="PuntiAci_RicercaServizio_Lite" id="ricercaServizio" /> 
+				<!--<SearchBar id="searchField" height="25" onFocus="ricerca"  hintText="Ricerca per servizio" /> -->
+			</View> 
 			<View id="selProvWrapper">
 				<Require src="SelettoreProvincia" id="selProv"></Require>
 			</View>
+
 
 			<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
 

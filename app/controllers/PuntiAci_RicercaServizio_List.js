@@ -12,7 +12,6 @@ var fuoriGIC = args.data.fuoriGIC;
 if (OS_ANDROID) {
     var abx = require('com.alcoapps.actionbarextras');
 };
- $.searchBar.focus();
 function loadData() {
     //Alloy.Collections.automobileClub.fetch();
     if (OS_ANDROID) {

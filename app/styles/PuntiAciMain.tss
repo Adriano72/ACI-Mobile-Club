@@ -65,7 +65,8 @@
 }
 
 "#contentWrapper":{
-	layout: "vertical"
+	layout: "vertical",
+	//height: Ti.UI.SIZE,
 }
 
 
@@ -77,7 +78,7 @@
 }
 
 "#selProvWrapper[platform=ios]":{
-	top:1
+	//top:1
 }
 
 
@@ -87,6 +88,13 @@
 }
 
 
+"#win":{
+	//layout: "vertical"
+}
+
+"#ricercaServizioWrapper":{
+	height: Ti.UI.SIZE
+}
 
 
 

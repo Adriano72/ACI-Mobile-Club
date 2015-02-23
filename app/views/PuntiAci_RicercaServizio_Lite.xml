@@ -1,0 +1,18 @@
+<Alloy>
+	
+	<View class="container" >
+		<SearchBar id="searchBar" platform="ios" onBlur="hideResults" onChange="showResults" />
+		<SearchView id="searchBar" ns="Ti.UI.Android" platform="android"  onBlur="hideResults" onChange="showResults" />
+
+		<TableView id="puntiAci_Table" class="table" dataCollection="serviziGIC" onSingletap="listaGIC"  dataFunction="updateUI" >
+		
+			
+			<TableViewRow id="riga" class="row simpleRowText PTSansBold" modelId="{alloy_id}" title="{declinazione}" >
+				<View class="rowContainer">
+					<Label class="simpleRowText PTSansBold" platform="android">{declinazione}</Label>
+				</View>
+				
+			</TableViewRow>
+		</TableView>
+	</View>
+</Alloy>
