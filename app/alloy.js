@@ -29,8 +29,8 @@ Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
 //Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
-Alloy.Globals.baseURL = "http://www.aci.it/geo/v2";
-Alloy.Globals.bannerBaseURL = "http://www.aci.it/geo/v2/uploads/syc/";
+Alloy.Globals.baseURL = Alloy.CFG.AciGeo_BaseUrl;
+Alloy.Globals.bannerBaseURL =  Alloy.CFG.AciGeo_BannerBaseUrl;
 
 console.log('platformWidth ', Ti.Platform.displayCaps.platformWidth);
 console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFactor);

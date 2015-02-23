@@ -11,7 +11,9 @@
     "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
     "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew",
     "AciGeo_CacheDurationHours" : "24",
-    "AciGeo_CacheDistanceRangeMeters" : "1000"
+    "AciGeo_CacheDistanceRangeMeters" : "1000",
+    "AciGeo_BaseUrl" : "http://www.aci.it/geo/v2",
+    "AciGeo_BannerBaseUrl" : "http://www.aci.it/geo/v2/uploads/syc/"
   },
   "env:development": {
     "AciGlobal_RequestLimitMinutes": "1"
