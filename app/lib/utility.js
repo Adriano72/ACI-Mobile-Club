@@ -327,3 +327,38 @@ exports.calculateDistance = function(lat1, lon1, lat2, lon2) {
     var d = R * c * 1000; //distanza in metri 
     return d;
 }
+
+
+/**
+ * Rimpie una stringa con tanti caratteri a sinistra fino a raggiungere una lunghezza predefinita
+ * @param  {String} str    stringa sorgente
+ * @param  {String} filler carattere con cui riempire a sinistra
+ * @param  {Number} count  lunghezza totale della stringa
+ * @return {String}        stringa formattata
+ */
+exports.padLeft = function(str, filler, count) {
+    while (filler.length < count) {
+        filler += filler;
+    }
+
+    return filler.substring(0, count - str.length) + str;
+
+}
+
+
+
+/**
+ * Rimpie una stringa con tanti caratteri a destra fino a raggiungere una lunghezza predefinita
+ * @param  {String} str    stringa sorgente
+ * @param  {String} filler carattere con cui riempire a destra
+ * @param  {Number} count  lunghezza totale della stringa
+ * @return {String}        stringa formattata
+ */
+exports.padRight = function(str, filler, count) {
+    while (filler.length < count) {
+        filler += filler;
+    }
+
+    return str + filler.substring(0, count - str.length);
+
+}
