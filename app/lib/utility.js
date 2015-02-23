@@ -80,8 +80,8 @@ exports.getTesseraImage = function(codice, horizontal) {
         'VIN': 'tessera_vintage.jpg',
         'CON': 'tessera_driver.jpg',
         'DRV': 'tessera_driver.jpg',
-        'STA': 'tessera_storico.jpg',
-        'STF': 'tessera_storico.jpg'
+        'STA': 'tessera_storico1.jpg',
+        'STF': 'tessera_storico2.jpg'
 
     };
 

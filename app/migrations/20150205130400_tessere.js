@@ -39,9 +39,8 @@ migration.up = function(migrator) {
             "name": "TEXT",
             "slogan": "TEXT",
             "abstract": "TEXT",
-            "price": "FLOAT",
-            "code": "TEXT",
-            "name": "TEXT"
+            "price": "REAL",
+            "code": "TEXT"
         }
     });
     for (var i = 0; i < preload_data.length; i++) {

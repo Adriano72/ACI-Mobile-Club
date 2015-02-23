@@ -5,7 +5,9 @@ exports.definition = {
             "slogan": "text",
             "abstract": "text",
             "price": "float",
-            "code": "text"
+            "code": "text",
+            "buyUrl": "text",
+            "detailUrl": "text"
         },
         adapter: {
             type: "sql",
@@ -32,7 +34,11 @@ exports.definition = {
              * @return {string} url del sito aci
              */
             getBuyUrl: function() {
-                return "http://www.aci.it/index.php?id=5311&rich=a&codiceProdotto=I" + this.get('code');
+                var url = this.get('buyUrl');
+                if (!url) {
+                    url = "http://www.aci.it/index.php?id=5311&rich=a&codiceProdotto=I" + this.get('code');
+                }
+                return url;
             },
 
 
@@ -41,8 +47,12 @@ exports.definition = {
              * @return {string} url del sito aci
              */
             getDetailUrl: function() {
-                var strip = this.get('name').replace(' ', '-').toLowerCase();
-                return "http://www.aci.it/il-club/il-club-e-i-suoi-vantaggi/le-tessere-aci/" + strip + ".html"
+                var url = this.get('detailUrl');
+                if (!url) {
+                    var slug = this.get('name').replace(/\s/g, '-').toLowerCase();
+                    url = "http://www.aci.it/il-club/il-club-e-i-suoi-vantaggi/le-tessere-aci/" + slug + ".html"
+                }
+                return url;
             }
         });
 

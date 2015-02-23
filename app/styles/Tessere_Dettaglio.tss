@@ -92,6 +92,7 @@
 
 "#subtitleLabel":{
 	color: Alloy.Globals.palette.grigio_scuro,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	font:{
 		fontSize: 12
 	}
@@ -134,6 +135,10 @@
 		fontWeight: "bold"
 	},
 	width: Ti.UI.SIZE
+}
+
+"TextArea[platform=ios]":{
+	scrollable : false
 }
 
 
