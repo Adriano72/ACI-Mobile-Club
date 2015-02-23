@@ -140,6 +140,44 @@ function init3() {
     //stato: mostra form
     utility.hideVertical($.rowRichiestaInviata);
     utility.showVertical($.rowForm)
+
+    _.defer(init4);
+}
+
+function init4() {
+
+
+    var region = $.mapview.getRegion();
+    console.log('region', region);
+
+    if (region) {
+        locationServices.getAddress(region.latitude, region.longitude, function(err, places) {
+          
+
+            //   console.log('err', err);
+            //   console.log('places', places);
+            if (err) {
+                //todo: gestire errore reverse geocodinge
+            } else {
+                var place = places[0];
+                var address = [place.street, place.zipcode, place.city].join(', ');
+                //     console.log('address', address);
+                $.labelMap.text = address;
+
+            }
+        });
+    } else {
+        //nel caso in cui la mappa non sia pronta
+        $.labelMap.stopLoading();
+
+    }
+
+    var t;
+    $.mapview.addEventListener('regionchanged', function(e) {
+      
+        clearTimeout(t)
+        setTimeout(init4, 2)
+    });
 }
 
 
@@ -224,7 +262,8 @@ function renderConferma() {
 
     //orario
     var now = new Date();
-    $.richiestaOrario.text = [now.getHours(), now.getMinutes()].join(':');
+    //  $.richiestaOrario.text = [now.getHours(), now.getMinutes()].join(':');
+    $.richiestaOrario.text = formatOrario(now);
 
     //telefono
     $.richiestaTelefono.text = $.telefono.value;
@@ -257,6 +296,10 @@ function renderConferma() {
 
 }
 
+
+function formatOrario(d) {
+    return [utility.padLeft(now.getHours(), '0', 2), utility.padLeft(now.getMinutes(), '0', 2)].join(':');
+}
 
 /**
  * funzione di validazione dei dati prima dell'invio
@@ -292,13 +335,3 @@ function validate(cb) {
     }
 
 }
-
-
-
-
-
-
-//logging, solo per test
-/*$.mapview.addEventListener('regionchanged', function(e) {
-    console.log('centro mappa: ', $.mapview.getRegion());
-});*/
