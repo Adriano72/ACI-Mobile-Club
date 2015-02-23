@@ -43,8 +43,9 @@ exports.puntiAciMain = function() {
 
         });
     }
+
     return itemsObj;
-}
+
 
 };
 /*

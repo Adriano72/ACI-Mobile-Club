@@ -103,7 +103,7 @@
 	top: 0
 }
 "#searchBar[platform=ios]":{
-	showCancel:true
+	showCancel:false
 }
 
 "#searchBar[platform=android]":{
