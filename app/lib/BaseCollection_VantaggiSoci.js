@@ -6,10 +6,10 @@
 
 var base = require('BaseCollection_AciGeo');
 
-//sovrascrive il metodo di raccolta dati 
-this.retrieve_method = require('network').getVantaggiSoci;
 
 //raccolta di metodi specifici delle collezioni di tipo vantaggi
-var vantaggi = {};
+var vantaggi = {
+    retrieve_method: require('network').getVantaggiSoci
+};
 
-module.exports = _.extend(base, vantaggi);
+module.exports = _.extend({}, base, vantaggi);

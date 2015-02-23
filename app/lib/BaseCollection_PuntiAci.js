@@ -6,10 +6,11 @@
 
 var base = require('BaseCollection_AciGeo');
 
-//sovrascrive il metodo di raccolta dati 
-this.retrieve_method = require('network').getPuntiAci;
+
 
 //raccolta di metodi specifici delle collezioni di tipo punti aci
-var puntiAci = {};
+var puntiAci = {
+    retrieve_method: require('network').getPuntiAci
+};
 
-module.exports = _.extend(base, puntiAci);
+module.exports = _.extend({}, base, puntiAci);

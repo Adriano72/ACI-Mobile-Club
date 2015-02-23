@@ -23,7 +23,7 @@ var locationServices = require('locationServices');
 var AciGeo = {};
 
 //metodo network che gestisce l'aggiornamento dei punti
-this.retrieve_method = function(type_code, cb) {
+AciGeo.retrieve_method = function(type_code, cb) {
     throw "retrieve_method not implemented";
 };
 
@@ -32,9 +32,10 @@ this.retrieve_method = function(type_code, cb) {
  * Operazione da fare quando viene aggiornata la collezione
  * @param  {Collection} coll collezione da aggiornare
  */
-this.onFetch = function(coll) {
-    coll.lastUpdate = new Date();
-    coll.lastParams = settings.ricercaPerProssimita ? locationServices.getLastLocation() : settings.provinciaDiRiferimento.shortName;
+AciGeo.onFetch = function() {
+    console.log('on fetch');
+    this.lastUpdate = new Date();
+    this.lastParams = settings.ricercaPerProssimita ? locationServices.getLastLocation() : settings.provinciaDiRiferimento.shortName;
 };
 
 
@@ -57,10 +58,10 @@ AciGeo.fetchIfChanged = function(cb) {
 
 
         try {
-            retrieve_method(this.config.type_code, function(result) {
+            this.retrieve_method(this.config.type_code, function(result) {
                 console.log('fetchCached 3');
-                coll.reset(result);
-                this.onFetch(coll);
+                coll.reset(result); 
+                coll.onFetch();
                 cb && cb(null, 0);
             });
         } catch (e) {
