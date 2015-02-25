@@ -12,6 +12,7 @@ var fuoriGIC = args.data.fuoriGIC;
 if (OS_ANDROID) {
     var abx = require('com.alcoapps.actionbarextras');
 };
+
 function loadData() {
     //Alloy.Collections.automobileClub.fetch();
     if (OS_ANDROID) {
@@ -23,7 +24,7 @@ function loadData() {
     } else {
         //$.windowtitle.text = winTitle;
     }
-   
+
 
 }
 
@@ -68,7 +69,7 @@ function init3() {
 
 function dataTransform(model) {
     var attrs = model.toJSON();
-    //console.log("attrs", attrs);
+    console.log("attrs", attrs);
     //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
     attrs.distance = utility.formatDistance(attrs.address.distance);
     attrs.indirizzo = attrs.address.street;
@@ -148,10 +149,10 @@ function openDetail(e) {
     //dati dell'elemento selezionato
     //var selected = Alloy.Collections.delegazioni.get(e.rowData.modelId);
     //devo selezionarlo tramite l'id di mongo perchè fa riferimento a collezioni deverse
-
-    var selected = Alloy.Collections.delegazioni.where({
-        "_id": e.rowData.mongoId //"54c23de75aed06a61b19e8c5"
-    })[0];
+    console.log('mongoId', e.rowData.mongoId);
+    console.log('c',c[t]);
+    var selected =  Alloy.Collections.serviziGICpos.getByCid(e.rowData.modelId);
+    console.log('selected', selected);
     //controller name
     var ctrl = d[t];
     console.log("ctrl", ctrl);
