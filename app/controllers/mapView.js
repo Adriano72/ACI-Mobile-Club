@@ -6,7 +6,9 @@ var tmpCollection = Alloy.Collections.tempCollection;
 
 tmpCollection.reset(args.collection);
 
-
+//se true, centra la mappa in base alla posizione dell'utente
+//se false, centra la mappa in base ai punti 
+var centerOnUser = args.centerOnUser;
 
 
 Ti.API.info("TITOLO: " + args.titolo);
@@ -33,13 +35,26 @@ function loadData() {
         $.titleControl.backgroundImage = args.titolo;
     }
 
-    $.map.region = {
-        latitude: Alloy.Globals.userPosition.latitude,
-        latitudeDelta: 0.25,
-        longitude: Alloy.Globals.userPosition.longitude,
-        longitudeDelta: 0.25
-    };
+    _.defer(centerMap);
+
     //updateUI();
+
+}
+
+
+function centerMap() {
+    console.log('centerOnUser', centerOnUser);
+    if (centerOnUser) {
+        $.map.region = {
+            latitude: Alloy.Globals.userPosition.latitude,
+            latitudeDelta: 0.25,
+            longitude: Alloy.Globals.userPosition.longitude,
+            longitudeDelta: 0.25
+        };
+    } else {
+
+        setMarkersWithCenter($.map);
+    }
 
 }
 
@@ -199,3 +214,86 @@ function toggleSideMenu() {
 $.win.addEventListener('close', function() {
     $.destroy();
 });
+
+
+/**
+ * Imposta il centro della mappa rispetto ai punti
+ * https://gist.github.com/synapse/9953552
+ * @param {[type]} mapView  [description]
+ * @param {[type]} latiarray  [description]
+ * @param {[type]} longiarray [description]
+ */
+function setMarkersWithCenter(mapView) {
+    var annotations = mapView.getAnnotations();
+
+    var latiarray = _.map(annotations, function(a) {
+        return a.latitude;
+    });
+    var longiarray = _.map(annotations, function(a) {
+        return a.longitude;
+    });
+
+    if (latiarray.length != longiarray.length)
+        return;
+
+    var total_locations = latiarray.length;
+    var minLongi = null,
+        minLati = null,
+        maxLongi = null,
+        maxLati = null;
+
+    var totalLongi = 0.0,
+        totalLati = 0.0;
+
+    for (var i = 0; i < total_locations; i++) {
+        if (minLati == null || minLati > latiarray[i]) {
+            minLati = latiarray[i];
+        }
+        if (minLongi == null || minLongi > longiarray[i]) {
+            minLongi = longiarray[i];
+        }
+        if (maxLati == null || maxLati < latiarray[i]) {
+            maxLati = latiarray[i];
+        }
+        if (maxLongi == null || maxLongi < longiarray[i]) {
+            maxLongi = longiarray[i];
+        }
+    }
+
+    Ti.API.debug("minLati", minLati);
+    Ti.API.debug("minLongi", minLongi);
+    Ti.API.debug("maxLati", maxLati);
+    Ti.API.debug("maxLongi", maxLongi);
+
+    var ltDiff = maxLati - minLati;
+    Ti.API.debug("ltDiff", ltDiff);
+    var lgDiff = maxLongi - minLongi;
+    if (lgDiff > 180) {
+        lgDiff = 180
+    }
+    Ti.API.debug("lgDiff", lgDiff);
+    var delta = ltDiff > lgDiff ? ltDiff : lgDiff;
+
+    if (total_locations > 0 && delta > 0) {
+        var latitude = ((maxLati + minLati) / 2);
+        var longitude = ((maxLongi + minLongi) / 2);
+
+        Ti.API.debug(latitude, longitude);
+
+        Ti.API.debug('Center map', {
+            animate: true,
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: delta,
+            longitudeDelta: delta,
+        });
+
+        mapView.setLocation({
+            animate: true,
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: delta,
+            longitudeDelta: delta,
+        });
+    }
+}
