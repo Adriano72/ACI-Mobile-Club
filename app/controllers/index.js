@@ -33,7 +33,7 @@ var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals
 $.menuView.top = menuTop;
 
 function doopen(evt) {
-    Alloy.Globals.loading.show('Sincronizzazione', false);
+   // Alloy.Globals.loading.show('Sincronizzazione', false);
     Alloy.Globals.navMenu = $.navWin;
     if (OS_ANDROID) {
         abx.title = "ACI Mobile Club";
@@ -166,10 +166,15 @@ function openVantaggiSoci() {
 }
 
 function loadData() {
-    //commento questa riga e blocco la catena di init
-    Alloy.Globals.loading.hide();
 
+    //eseguo un primo caricamento dei banner, in modo da avere sempre qualcosa da mostrare
+    Alloy.Collections.banner.fetchRandom();
+
+
+    //commento questa riga e blocco la catena di init
     // uno();
+    //Alloy.Globals.loading.hide();
+
 
     function uno() {
 
