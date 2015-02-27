@@ -1,7 +1,7 @@
 var args = arguments[0] || {};
 var network = require('network');
 
-var banners = Alloy.Collections.banner;
+var banners = [];
 var timer;
 var index;
 
@@ -10,7 +10,11 @@ var index;
 
 function init() {
     showRandom();
-    banners.fetchRandom(showRandom);
+    require('network').getBanner(function(p_data) {
+        Alloy.Collections.banner.reset(p_data);
+        banners = p_data;
+        showRandom();
+    });
 }
 
 $.start = function() {
@@ -24,16 +28,14 @@ $.stop = function() {
 function showRandom() {
     new_index = Math.floor(Math.random() * banners.length);
 
-    var banner = banners.models[new_index];
-    console.log('banners.models', banners.models);
+    var banner = banners[new_index];
     console.log('new_index', new_index);
     if (new_index != index && banner) {
         index = new_index;
         // console.log('banner', banner);
         console.log('banners.length', banners.length);
         console.log('index', index);
-        if (banner && banner.toJSON) {
-            banner = banner.toJSON();
+        if (banner) {
             console.log('banner ', banner);
             console.log('banner.agreement_id ', banner.agreement_id);
             console.log('banner.agreement_id.images ', banner.agreement_id.images);
@@ -48,7 +50,7 @@ function showRandom() {
 function openDetail() {
 
     var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-        data: banners.models[new_index],
+        data: banners[new_index],
         headerImg: "",
         isBanner: true
     }).getView();
