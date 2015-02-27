@@ -168,7 +168,9 @@ function openVantaggiSoci() {
 function loadData() {
 
     //eseguo un primo caricamento dei banner, in modo da avere sempre qualcosa da mostrare
-    Alloy.Collections.banner.fetchRandom();
+    Alloy.Collections.banner.fetchRandom(function(){
+        console.log("banner caricati");
+    });
 
 
     //commento questa riga e blocco la catena di init
