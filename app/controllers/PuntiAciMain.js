@@ -5,6 +5,9 @@ if (OS_ANDROID) {
 };
 
 function doopen(evt) {
+
+    $.banner.start();
+
     if (OS_ANDROID) {
 
         init1();
@@ -12,7 +15,6 @@ function doopen(evt) {
     } else {
         //$.windowtitle.text = winTitle;
     }
-    $.randomBanner.image = encodeURI(Alloy.Globals.bannerImageURL);
     //updateScreen();
 }
 
@@ -110,3 +112,9 @@ function displayConvenzioneBanner() {
 }
 
 $.puntiAciMain_Table.setData(rows);
+
+
+$.win.addEventListener('close', function(){
+    $.banner.stop();
+});
+

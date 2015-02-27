@@ -2,7 +2,10 @@
 	
 	<Window id="win" title="Ciao" class="container" onOpen="loadData">
 		<TitleControl platform="ios">
-			<View id="titleControl" class="titleControl"></View>
+			<View id="titleControl" class="titleControl">
+				<ImageView id="titleIcon"></ImageView>
+				<Label id="titleLabel" class="PTSansBold"></Label>
+			</View>
 		</TitleControl>
 		<RightNavButton platform="ios">
 			<!--<ImageView class="rightNavImg" onClick="toggleSideMenu"/>-->

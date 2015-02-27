@@ -362,3 +362,27 @@ exports.padRight = function(str, filler, count) {
     return str + filler.substring(0, count - str.length);
 
 }
+
+
+/**
+ * Seleziona la collection che si riferisce ad un determinato codice AciGeo
+ * @param  {[type]} id_code [description]
+ * @return {[type]}         [description]
+ */
+exports.getAciGeoCollection = function(id_code) {
+    var coll;
+    console.log('getAciGeoCollection id_code', id_code);
+    _.keys(Alloy.Collections).every(function(k) {
+        var c = Alloy.Collections[k];
+        //  console.log('id_code', id_code);
+        //  console.log('k', k);
+        //  console.log('c.config', c.config);
+        if (c && c.config && c.config.type_code == id_code) {
+            console.log('getAciGeoCollection', id_code, c.config);
+            coll = c;
+            return false;
+        }
+        return true;
+    });
+    return coll;
+}

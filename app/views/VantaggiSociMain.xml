@@ -21,9 +21,11 @@
 			<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
 		</View>
 		<View class="bottomBannerContainer">
-			<ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/>
+			<!-- <ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/> -->
+			<View class="bottomBanner">
+				<Require src="bannerCarousel" id="banner" />
+			</View>
 		</View>
-
 		
 		
 	</Window>

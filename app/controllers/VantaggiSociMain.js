@@ -1,24 +1,26 @@
 var args = arguments[0] || {};
 
 if (OS_ANDROID) {
-	var abx = require('com.alcoapps.actionbarextras');
+    var abx = require('com.alcoapps.actionbarextras');
 };
 
 function doopen(evt) {
-	if (OS_ANDROID) {
-		abx.displayHomeAsUp = true;
-		abx.title = "Vantaggi per i soci";
-		abx.titleFont = "ACI Type Regular.otf";
-		abx.titleColor = Alloy.Globals.palette.blu;
 
-		//actionBarHelper.setIcon('/drawericonw@2x.png');
+    $.banner.start();
 
-	} else {
-		//$.windowtitle.text = winTitle;
-	}
-	//updateScreen();
-	
-	$.randomBanner.image = encodeURI(Alloy.Globals.bannerImageURL);
+
+    if (OS_ANDROID) {
+        abx.displayHomeAsUp = true;
+        abx.title = "Vantaggi per i soci";
+        abx.titleFont = "ACI Type Regular.otf";
+        abx.titleColor = Alloy.Globals.palette.blu;
+
+        //actionBarHelper.setIcon('/drawericonw@2x.png');
+
+    } else {
+        //$.windowtitle.text = winTitle;
+    }
+    //updateScreen();
 }
 
 var rowData = require('tabulatedData').categorieSyc();
@@ -26,23 +28,33 @@ var rowData = require('tabulatedData').categorieSyc();
 var rows = [];
 
 _.each(rowData, function(value) {
-	//Ti.API.info("DATA: " + value.img);
-	var riga = Alloy.createController('TableViewRow_Single', {
+    //Ti.API.info("DATA: " + value.img);
+    var riga = Alloy.createController('TableViewRow_Single', {
 
-		immagine : value.img,
-		testo : value.long_name,
-		id_code : value.short_name
+        immagine: value.img,
+        testo: value.long_name,
+        id_code: value.short_name
 
-	}).getView();
-	rows.push(riga);
+    }).getView();
+    rows.push(riga);
 });
 
 function selectionDetail(e) {
 
-	if (!_.isUndefined(e.row)) {
+    if (!_.isUndefined(e.row)) {
 
-		Ti.API.info("CLICKED DATA: " + e.row.id_code);
+        Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
+
+        var winAC = Alloy.createController('VantaggiSoci_List', {
+
+            icon: e.row.img,
+            title: e.row.testo,
+            id_code: e.row.id_code
+
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(winAC);
+        /*
 		switch(e.row.id_code) {
 
 		case "dormire_mangiare":
@@ -73,15 +85,24 @@ function selectionDetail(e) {
 		default:
 
 		}
-	}
+		*/
+    }
 };
 
-function displayConvenzioneBanner(){
-	
-	var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {data: Alloy.Globals.convenzioneBanner, headerImg:"", isBanner: true}).getView();
-	Alloy.Globals.navMenu.openWindow(dettConvenzione);
-	
+function displayConvenzioneBanner() {
+
+    var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+        data: Alloy.Globals.convenzioneBanner,
+        headerImg: "",
+        isBanner: true
+    }).getView();
+    Alloy.Globals.navMenu.openWindow(dettConvenzione);
+
 }
+
+$.win.addEventListener('close', function(){
+    $.banner.stop();
+});
 
 
 $.puntiAciMain_Table.setData(rows);

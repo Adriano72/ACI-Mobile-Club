@@ -17,6 +17,7 @@ function useLocationParams(params) {
 
         var provincia = settings.provinciaDiRiferimento;
         params.query['address.province.shortName'] = provincia.shortName;
+        params.limit = 0;
     } else {
         /*params.query["address.location"] = {
             "$near": [Alloy.Globals.userPosition.longitude, Alloy.Globals.userPosition.latitude],
@@ -27,6 +28,8 @@ function useLocationParams(params) {
             max: 0.2
         };
         params.populate = 1;
+        params.limit = 15;
+
     }
 
 
@@ -292,10 +295,10 @@ exports.getUserInfo = function(p_ssoid, _callback) {
 
 exports.getBanner = function(_callback) {
 
-    var lat = 40.830774;
-    var lon = 16.548602999999957;
-    //var lat = Alloy.Globals.userPosition.latitude
-    //var lon =  Alloy.Globals.userPosition.longitude;
+    //var lat = 40.830774;
+    //var lon = 16.548602999999957;
+    var lat = Alloy.Globals.userPosition.latitude
+    var lon = Alloy.Globals.userPosition.longitude;
 
     var xhr = Ti.Network.createHTTPClient();
 
@@ -319,15 +322,16 @@ exports.getBanner = function(_callback) {
             Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
         };
 
-        var rand = Math.floor(Math.random() * count);
+        var n = 10;
+        var rand = Math.floor(Math.random() * Math.max(0, count - 10));
 
 
 
-        var url = 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&skip=' + rand;
+        var url = 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand;
 
         Ti.API.info("CHIAMATA HTTP BANNER: " + url);
 
-        xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=1&skip=' + rand);
+        xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand);
         xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
         xhr.send();
     };
@@ -511,4 +515,44 @@ exports.getListaProvince = function(_callback) {
     xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
 
     xhr.send();
+}
+
+
+
+
+/**
+ * Crea e ritorna una lista di header http comuni da inserire nelle richieste
+ * @return {Array} lista chiave-valore di header da inviare
+ */
+function getAciGeoHeaders() {
+    return [{
+        // 'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='
+        'x-acigeo-appid': 'acimobileclub',
+        'x-acigeo-uuid': 'UUIDv4',
+        'x-acigeo-devid': ''
+    }]
+}
+
+/**
+ * Crea un gestore comune delle risposte del server
+ * @param  {[type]} err    [description]
+ * @param  {[type]} result [description]
+ * @return {[type]}        [description]
+ */
+function buildRequestHandler(callback) {
+
+    return function(err, json) {
+
+        if (err || json.status != 200) {
+            //azioni da eseguire in caso di errore
+            console.log('request error', err, json);
+        } else {
+            //azioni comuni da eseguire in caso di successo
+            console.log('request ok', json);
+        }
+
+        callback && callback(err, json.result);
+
+    };
+
 }

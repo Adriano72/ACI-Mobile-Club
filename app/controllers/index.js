@@ -166,8 +166,10 @@ function openVantaggiSoci() {
 }
 
 function loadData() {
+    //commento questa riga e blocco la catena di init
+    Alloy.Globals.loading.hide();
 
-    uno();
+    // uno();
 
     function uno() {
 

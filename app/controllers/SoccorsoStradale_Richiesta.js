@@ -152,7 +152,7 @@ function init4() {
 
     if (region) {
         locationServices.getAddress(region.latitude, region.longitude, function(err, places) {
-          
+
 
             //   console.log('err', err);
             //   console.log('places', places);
@@ -174,7 +174,7 @@ function init4() {
 
     var t;
     $.mapview.addEventListener('regionchanged', function(e) {
-      
+
         clearTimeout(t)
         setTimeout(init4, 2)
     });
@@ -229,7 +229,8 @@ function callAciGlobal() {
         params = _.extend(params, {
             nome: userData['userInfo.name'],
             cognome: userData['userInfo.surname'],
-            tesseraACI: userData['userInfo.numeroTessera']
+            tesseraACI: userData['userInfo.numeroTessera'],
+            note: 'tipo: ' + $.tipoAiuto.value
         });
     }
 

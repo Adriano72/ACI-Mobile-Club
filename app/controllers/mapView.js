@@ -32,7 +32,8 @@ function loadData() {
         //actionBarHelper.setIcon('/drawericonw@2x.png');
 
     } else {
-        $.titleControl.backgroundImage = args.titolo;
+        $.titleLabel.text = args.titolo;
+        $.titleIcon.image = args.homeIcon;
     }
 
     _.defer(centerMap);
@@ -64,10 +65,10 @@ function centerMap() {
  * altrimenti lo ricava man mano dal tipo del poi
  */
 function getPinImage(type) {
-    var i = '';
-    if (OS_IOS) {
+    var i = '/images/';
+    /*if (OS_IOS) {
         i += 'images/'
-    };
+    }; */
 
     if (args.pin) {
         i += args.pin;
@@ -87,13 +88,19 @@ function getPinImage(type) {
 
 function dataTransform(model) {
     var attrs = model.toJSON();
-    Ti.API.info("END SIDE COLLECTION: " + JSON.stringify(Alloy.Collections.automobileClub));
+    Ti.API.info("END SIDE COLLECTION: " + JSON.stringify(args.collection));
     attrs.indirizzo = attrs.address.street;
-    attrs.indirizzo2 = attrs.address.postalCode + " " + attrs.address.locality.longName;
+    attrs.indirizzo2 = (function() {
+        var i = [];
+        i.push((attrs.address.postalCode || ''));
+        i.push(attrs.address.locality && attrs.address.locality.longName ? attrs.address.locality.longName : '');
+        return i.join('');
+
+    })();
     attrs.latitude = attrs.address.location[1];
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
-    attrs.image = getPinImage(attrs._type);
+    attrs.image =  getPinImage(attrs._type);
     attrs.title = attrs.name;
     attrs.subtitle = "Tocca per ulteriori informazioni";
     attrs.leftButton = "/images/annotation-info.png";

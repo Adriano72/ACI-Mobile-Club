@@ -48,6 +48,9 @@ Alloy.Collections.instance("province");
 //tessere
 Alloy.Collections.instance("tessere");
 
+//banner
+Alloy.Collections.instance("banner");
+
 // PUNTI ACI
 Alloy.Collections.instance("automobileClub");
 Alloy.Collections.instance("delegazioni");
@@ -62,9 +65,14 @@ Alloy.Collections.tempCollection = new Backbone.Collection();
 
 //SYC
 Alloy.Collections.instance("dormireMangiare");
+Alloy.Collections.instance("casa");
+Alloy.Collections.instance("auto");
+Alloy.Collections.instance("benessereSalute");
+Alloy.Collections.instance("mobilita");
 Alloy.Collections.instance("tempoLibero");
-Alloy.Collections.instance("culturaSpettacoli");
-Alloy.Collections.instance("noleggiTrasporti");
+Alloy.Collections.instance("shopping");
+Alloy.Collections.instance("culturaSpettacoli"); //da togliere
+Alloy.Collections.instance("noleggiTrasporti"); //da togliere
 Alloy.Collections.instance("sportEventi");
 Alloy.Collections.instance("altriServizi");
 
