@@ -46,6 +46,7 @@ function doopen(evt) {
         //$.windowtitle.text = winTitle;
     }
     require('locationServices').getUserLocation(loadData);
+    
 }
 
 var view1 = Ti.UI.createImageView({
