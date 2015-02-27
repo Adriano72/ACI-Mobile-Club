@@ -19,8 +19,9 @@
 
 ".titleControl[platform=ios]": {
 	//backgroundImage: "logoDelegazioni.png",
-	width: 120,
-	height: 30
+	width: Ti.UI.SIZE,
+	height: 24,
+	layout: "horizontal"
 }
 
 ".rightNavImg[platform=ios]": {

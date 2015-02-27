@@ -13,13 +13,14 @@
     "AciGeo_CacheDurationHours" : "24",
     "AciGeo_CacheDistanceRangeMeters" : "1000",
     "AciGeo_BaseUrl" : "http://www.aci.it/geo/v2",
-    "AciGeo_BannerBaseUrl" : "http://www.aci.it/geo/v2/uploads/syc/"
+    "AciGeo_BannerBaseUrl" : "http://www.aci.it/geo/v2/uploads/syc/",
+    "BannerRotationTime" : "20000",
+    "__AciGeo_BaseUrl" : "http://10.64.4.138:10000/api",
+    "__AciGeo_BannerBaseUrl" : "http://10.64.4.138:10000/api/uploads/syc/"
   },
   "env:development": {
-    "AciGlobal_RequestLimitMinutes": "1"
   },
   "env:test": {
-    "AciGlobal_RequestLimitMinutes": "1"
   },
   "env:production": {},
   "os:android": {},

@@ -18,8 +18,9 @@
 
 ".titleControl[platform=ios]": {
 	//backgroundImage: "logoDormireMangiare.png",
-	width: 120,
-	height: 24
+	width: Ti.UI.SIZE,
+	height: 24,
+	layout: "horizontal",
 }
 
 ".rightNavImg[platform=ios]": {

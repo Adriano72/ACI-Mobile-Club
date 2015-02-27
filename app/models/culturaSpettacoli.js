@@ -2,7 +2,7 @@ var baseCollection = require('BaseCollection_VantaggiSoci');
 
 exports.definition = {
     config: {
-        type_code: 'cultura_spettacoli',
+        type_code: 'cultura',
         adapter: {
             type: "properties",
             collection_name: "culturaSpettacoli"

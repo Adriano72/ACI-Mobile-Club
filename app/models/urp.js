@@ -2,7 +2,7 @@ var baseCollection = require('BaseCollection_PuntiAci');
 
 exports.definition = {
     config: {
-        type_code: 'del',
+        type_code: 'urp',
         adapter: {
             type: "properties",
             collection_name: "urp"

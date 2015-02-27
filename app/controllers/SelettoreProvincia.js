@@ -9,7 +9,15 @@ var index;
 
 function init() {
 
+    init1();
 
+
+    select(index);
+
+
+}
+
+function init1() {
     index = (settings.ricercaPerProssimita) ? 0 : 1;
     console.log("index", index);
     //genera l'etichetta in base alla provincia
@@ -19,10 +27,6 @@ function init() {
         index: index,
         labels: ['Prossimità', l]
     });
-
-    select(index);
-
-
 }
 
 $.tabbedBar.addEventListener('click', function(e) {
@@ -51,12 +55,17 @@ function select(i) {
         settings.ricercaPerProssimita = true;
         //$.status.text = "Il servizio restituirà i punti più vicini alla posizione dell'utente";
         // $.cambiaProvincia.visible = false;
-        
+
         //Per ora (19/2/15) gestiamo il refresh della posizione tramite questo evento
         // in futuro andrà tolta
-        require('locationServices').getUserLocation(function(p){
+        require('locationServices').getUserLocation(function(p) {
             //do nothing
         });
+
+        //CANCELLO LA PROVINCIA
+        settings.provinciaDiRiferimento = null;
+        //questo è il metodo più veloce 
+        init1();
 
     } else {
         //provincia

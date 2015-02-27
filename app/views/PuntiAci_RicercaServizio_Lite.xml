@@ -2,7 +2,7 @@
 	
 	<View class="container" >
 		<SearchBar id="searchBar" platform="ios" onBlur="hideResults" onChange="showResults" />
-		<SearchView id="searchBar" ns="Ti.UI.Android" platform="android"  onBlur="hideResults" onChange="showResults" />
+		<SearchBar id="searchBar"  platform="android"  onBlur="hideResults" onChange="showResults" />
 
 		<TableView id="puntiAci_Table" class="table" dataCollection="serviziGIC" onSingletap="listaGIC"  dataFunction="updateUI" >
 		

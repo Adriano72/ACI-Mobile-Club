@@ -5,7 +5,7 @@
 
 
 exports.init = function() {
-   /* var locationAdded = false;
+    /* var locationAdded = false;
     var handleLocation = function(e) {
         if (!e.error) {
             console.log(e.coords);
@@ -43,7 +43,7 @@ exports.init = function() {
         alert('Please enable location services');
     } */
 
-    exports.getUserLocation(function(p){
+    exports.getUserLocation(function(p) {
         //position salvata
         console.log('position salvata', p);
     });
@@ -69,6 +69,7 @@ exports.getUserLocation = function(_callback) {
 
             Titanium.Geolocation.getCurrentPosition(function(e) {
                 if (e.error) {
+                    console.log('getCurrentPosition  error', e);
                     Alloy.Globals.loading.hide();
                     alert("Servizi di localizzazione non abilitati sul dispositivo");
                 } else {

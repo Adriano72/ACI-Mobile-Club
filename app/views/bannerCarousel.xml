@@ -1,0 +1,4 @@
+<Alloy>
+	<ImageView id="bannerImage" onClick="openDetail">
+	</ImageView>
+</Alloy>

@@ -18,7 +18,7 @@
 		<TableView id="puntiAci_Table" class="table" dataCollection="serviziGICpos" dataTransform="dataTransform" dataFunction="updateUI" onSingletap="openDetail"  dataFilter="filterRows">
 			<SearchBar id="searchBar"/>
 				
-			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
+			<TableViewRow id="riga" class="row" modelId="{id}" mongoId="{mongoId}" title="{name}" type="{_type}">
 				<View class="rowContainer">
 					<View class="topRowContainer">
 						<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>

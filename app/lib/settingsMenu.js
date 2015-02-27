@@ -95,7 +95,7 @@ exports.openSideMenu = function(p_auth) {
         open('Tessere_List');
     }); */
 
-    _.each([menuHeader, loginLabel, searchLabel, condizioniLabel, privacyLabel], appendLabel);
+    _.each([menuHeader, loginLabel, searchLabel, privacyLabel], appendLabel);
 
     /* searchLabel.addEventListener("click", function() {
         var win = Alloy.createController('Impostazioni_Posizione').getView();
