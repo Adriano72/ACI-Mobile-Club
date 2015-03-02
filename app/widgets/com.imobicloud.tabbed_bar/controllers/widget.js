@@ -20,35 +20,61 @@ exports.init = function(params) {
 
         $.tabbedBar.removeAllChildren();
 
+
+
         var labels = params.labels,
             index = params.index;
+        _.defer(function() {
 
-        for (var i = 0, ii = labels.length; i < ii; i++) {
-            var classes = 'tabbed-bar-button';
-            (i === index) && (classes += ' tabbed-bar-button-active');
-
-            var style = $.createStyle({
-                classes: classes,
-                apiName: 'Button'
-            });
-
-            var button = Ti.UI.createButton({
-                buttonIndex: i,
-                title: '  ' + labels[i] + '  '
-            });
+            var itemW = 100 / labels.length;
+            //    alert(itemW);
+            console.log('tabbedBar.width', $.tabbedBar.width);
+            console.log('tabbedBar.rect', $.tabbedBar.rect);
+            console.log('labels.length', labels.length);
+            console.log('itemW', itemW);
 
 
-            button.applyProperties(style);
+            for (var i = 0, ii = labels.length; i < ii; i++) {
+                var classes = 'tabbed-bar-button';
+                (i === index) && (classes += ' tabbed-bar-button-active');
+                (labels.length - 1 === i) && (classes += ' right');
+                (i === 0) && (classes += ' left');
 
-            _.each(classes.split(' '), function(c) {
+                var style = $.createStyle({
+                    classes: classes,
+                    apiName: 'Button'
+                });
 
-                $.addClass(button, c);
-            });
+                var button = Ti.UI.createButton({
+                    buttonIndex: i,
+                    title: '  ' + labels[i] + '  '
+                });
+
+
+                button.applyProperties(style);
+
+                _.each(classes.split(' '), function(c) {
+
+                    $.addClass(button, c);
+                });
 
 
 
-            $.tabbedBar.add(button);
-        };
+
+                $.tabbedBar.add(button);
+                //  button.width = button.rect.width - 1;
+
+                /*_.defer(function(b) {
+                return function() {
+                    console.log('b.width',  b.width);
+                    console.log('b.rect',  b.rect);
+                    b.width = b.rect.width - 1;
+                }
+            }(button));*/
+
+            };
+
+        });
 
         $.tabbedBar.lastIndex = index;
 
