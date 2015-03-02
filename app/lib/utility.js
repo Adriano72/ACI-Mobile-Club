@@ -114,7 +114,7 @@ exports.getTesseraScadutaImage = function(codice) {
     imm = imm.replace('.jpg', '_scaduta.jpg');
 
 
-    return "/" + imm;
+    return imm;
 
 };
 
