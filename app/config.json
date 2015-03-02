@@ -17,12 +17,13 @@
     "BannerRotationTime" : "20000",
     "__AciGeo_BaseUrl" : "http://10.64.4.138:10000/api",
     "__AciGeo_BannerBaseUrl" : "http://10.64.4.138:10000/api/uploads/syc/",
-    "DevMode": "false"
+    "DevMode": false
   },
   "env:development": {
-    "DevMode": "true"
+    "DevMode": true
   },
   "env:test": {
+    "DevMode": false
   },
   "env:production": {},
   "os:android": {},

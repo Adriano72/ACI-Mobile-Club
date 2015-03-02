@@ -15,6 +15,7 @@ var net = require("network");
 Alloy.Globals.rememberMe = false;
 
 Alloy.Globals.DevMode = Boolean(Alloy.CFG.DevMode);
+console.log('Alloy.CFG.DevMode', Alloy.CFG.DevMode);
 console.log('Alloy.Globals.DevMode', Alloy.Globals.DevMode);
 
 Alloy.Globals.tesserafontSize = (Ti.Platform.displayCaps.platformHeight <= 480) ? '11dp' : '15dp';
@@ -31,7 +32,7 @@ Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
 //Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
 Alloy.Globals.baseURL = Alloy.CFG.AciGeo_BaseUrl;
-Alloy.Globals.bannerBaseURL =  Alloy.CFG.AciGeo_BannerBaseUrl;
+Alloy.Globals.bannerBaseURL = Alloy.CFG.AciGeo_BannerBaseUrl;
 
 console.log('platformWidth ', Ti.Platform.displayCaps.platformWidth);
 console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFactor);
@@ -94,4 +95,4 @@ Alloy.Globals.palette = {
 
 
 //inizializza i servizi di location
-_.defer(require('locationServices').init)	;
+_.defer(require('locationServices').init);
