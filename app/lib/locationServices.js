@@ -57,8 +57,8 @@ exports.init = function() {
 
 exports.getUserLocation = function(_callback) {
 
-    var fake = OS_ANDROID ? false : Alloy.Globals.DevMode;
-
+    var fake = Alloy.Globals.DevMode;
+    console.log('fake', fake);
     if (!fake) {
 
         if (Ti.Geolocation.locationServicesEnabled) {
