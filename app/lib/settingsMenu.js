@@ -64,10 +64,20 @@ exports.openSideMenu = function(p_auth) {
 
     var loginLabel = createLabel((user.isLogged == true) ? "Logout" : "Login", function() {
         if (user.isLogged) {
-            user.onLogout();
 
-            loginLabel.text = "Login";
-            alert("UTENTE DISCONNESSO");
+            require('alloy/dialogs').confirm({
+                title: "Logout",
+                message: "Sei sicuro di voler uscire dalla tua area riservata?",
+                yes: "Sì",
+                no: "No",
+                callback: function(e) {
+                    console.log('dialog', e);
+                    user.onLogout();
+
+                    loginLabel.text = "Login";
+                }
+            });
+
 
         } else {
 
@@ -91,7 +101,7 @@ exports.openSideMenu = function(p_auth) {
     var condizioniLabel = createLabel('Condizioni d\'uso', notImplemented)
 
 
- /*   var tessereLabel = createLabel('Tessere', function() {
+    /*   var tessereLabel = createLabel('Tessere', function() {
         open('Tessere_List');
     }); */
 
