@@ -8,6 +8,11 @@ console.log("gic ", args.data.gic);
 var gic = args.data.gic;
 var fuoriGIC = args.data.fuoriGIC;
 
+//intesazione di pagina
+var title = "Ricerca per Servizio";
+var homeIcons;
+
+
 //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.delegazioni));
 if (OS_ANDROID) {
     var abx = require('com.alcoapps.actionbarextras');
@@ -45,7 +50,7 @@ function filterRows(collection) {
 
 function init1() {
     abx.displayHomeAsUp = true;
-    abx.title = "Ricerca per Servizio";
+    abx.title = title;
     abx.titleFont = "ACI Type Regular.otf";
     abx.titleColor = Alloy.Globals.palette.blu;
     _.defer(init2);
@@ -178,7 +183,7 @@ function mostraMappa() {
     var mapWin = Alloy.createController('mapView', {
         collection: coll,
         //pin: "pin_Tasse.png",
-        titolo: (OS_ANDROID) ? "Tasse" : $.titleControl.backgroundImage,
+        titolo: title,
         //  homeIcon: "ico_assistenza_tasse_blu.png"
     }).getView();
     Alloy.Globals.navMenu.openWindow(mapWin);
