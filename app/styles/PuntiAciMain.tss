@@ -53,10 +53,10 @@
 	top: 0
 }
 
+
 ".bottomBannerContainer": {
 	bottom: 0,
-	//height: "30%",
-	height: Ti.UI.SIZE
+	height: "15%"
 }
 
 ".bottomBanner": {
@@ -65,11 +65,13 @@
 	height: Ti.UI.SIZE
 }
 
-"#contentWrapper":{
-	layout: "vertical",
-	//height: Ti.UI.SIZE,
-}
 
+
+"#contentWrapper":{
+	top: 0,
+	layout: "vertical",
+	height: "84%",
+}
 
 
 "#selProvWrapper":{

@@ -53,15 +53,13 @@
 
 ".bottomBannerContainer": {
 	bottom: 0,
-	height: "10%",
+	height: "15%"
 }
 
 ".bottomBanner": {
 	//image: "/banner_sotto.png",
 	width: "90%",
-	//height: Ti.UI.SIZE,,
-	height: Ti.UI.SIZE,
-	bottom: 0,
+	height: Ti.UI.SIZE
 }
 
 
@@ -69,7 +67,7 @@
 "#contentWrapper":{
 	top: 0,
 	layout: "vertical",
-	height: "85%",
+	height: "84%",
 }
 
 
