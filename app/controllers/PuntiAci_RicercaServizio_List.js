@@ -55,13 +55,16 @@ function init2() {
     $.win.activity.invalidateOptionsMenu();
 }
 
+//WORKAROUD per l'errore su ios per cui l'applicazione schianta quando interrogo la collezione
+var data = [];
 
 function init3() {
     //leggo i dati dal server e li carico in tabella
     Alloy.Globals.loading.show('Stiamo cercando i Punti ACI');
     net.getPuntiAciPerServizioGIC(gic, fuoriGIC, function(result) {
         Alloy.Collections.serviziGICpos.reset(result);
-        updateUI();
+        data = result;
+        //  updateUI();
         Alloy.Globals.loading.hide();
         console.log("punto aci", result[0]);
     });
@@ -150,8 +153,11 @@ function openDetail(e) {
     //var selected = Alloy.Collections.delegazioni.get(e.rowData.modelId);
     //devo selezionarlo tramite l'id di mongo perchè fa riferimento a collezioni deverse
     console.log('mongoId', e.rowData.mongoId);
-    console.log('c',c[t]);
-    var selected =  Alloy.Collections.serviziGICpos.getByCid(e.rowData.modelId);
+    console.log('c', c[t]);
+    // var selected =  Alloy.Collections.serviziGICpos.getByCid(e.rowData.modelId);
+    var selected = Alloy.createModel('serviziGICpos', _.findWhere(data, {
+        _id: e.rowData.mongoId
+    }));
     console.log('selected', selected);
     //controller name
     var ctrl = d[t];
