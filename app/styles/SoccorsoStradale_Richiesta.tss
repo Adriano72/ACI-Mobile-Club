@@ -143,6 +143,10 @@
 "#mapview":{
 	height: 175
 }
+
+"#mapview[platform=android]":{
+	enableZoomControls: false	
+}
 "#mapWrapper":{
 	height: 175
 }
@@ -255,6 +259,13 @@
 	bottom: 5
 }
 
+
+".overlay":{
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	backgroundColor: 'transparent',
+	zIndex: 999
+}
 
 
 

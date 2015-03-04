@@ -27,6 +27,8 @@
 		        	<View id="mapWrapper">
 		        		<Module id="mapview" module="ti.map" method="createView"></Module>
 						<ImageView id="pin"></ImageView> 
+						<View class="overlay">
+						</View>
 		        	</View>
 			    </View>
 
