@@ -168,7 +168,7 @@ function init4() {
         });
     } else {
         //nel caso in cui la mappa non sia pronta
-        $.labelMap.stopLoading();
+       
 
     }
 
