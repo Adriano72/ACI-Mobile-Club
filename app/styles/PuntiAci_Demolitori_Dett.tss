@@ -60,7 +60,8 @@
 }
 
 "#headerText": {
-	color: Alloy.Globals.palette.blu
+	color: Alloy.Globals.palette.blu,
+	width: "95%"
 }
 
 "#contattiView": {
