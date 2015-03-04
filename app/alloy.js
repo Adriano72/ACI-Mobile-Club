@@ -84,7 +84,7 @@ Alloy.Collections.instance("altriServizi");
 //palette di colori da utilizzare nell'app
 Alloy.Globals.palette = {
     blu: "#003772",
-    celeste: "#006db3",
+    celeste: "#007aff",
     grigio_chiaro: "#cccccc", // (separatori orizzontali, freccia menu
     grigio_scuro: "#888888",
     rosso: "#e32b00",

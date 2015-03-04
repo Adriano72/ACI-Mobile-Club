@@ -133,6 +133,8 @@ function dataTransform(model) {
 
 
 function select(e) {
+    console.log('select');
+    doHighlight(e);
     console.log("e", e);
 
     var selected = {
@@ -200,6 +202,30 @@ function highlight(shortName, shortName_prev) {
 }
 
 
+
+function doHighlight(e) {
+    console.log('doHighlight');
+    e.row.backgroundColor = Alloy.Globals.palette.celeste;
+    e.row.opacity = 0.5;
+}
+
+function undoHighlight(e) {
+    console.log('undoHighlight');
+    e.row.backgroundColor = 'white';
+
+}
+
+function doClick(e) {
+    console.log('click');
+}
+
+
+
+
+//$.puntiAci_Table.addEventListener('touchstart', select);
+
+//$.puntiAci_Table.addEventListener('touchend', undoHighlight);
+//$.puntiAci_Table.addEventListener('click', select);
 
 
 
