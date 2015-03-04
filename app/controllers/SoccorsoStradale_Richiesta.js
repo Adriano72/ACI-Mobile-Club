@@ -336,3 +336,10 @@ function validate(cb) {
     }
 
 }
+
+function cavasClick(e){
+    console.log(e);
+    if (e.source !== $.telefono) {
+        $.telefono.blur();
+    }
+}

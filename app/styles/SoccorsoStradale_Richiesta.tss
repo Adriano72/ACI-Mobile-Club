@@ -26,7 +26,7 @@
 ".titleControl[platform=ios]": {
 	backgroundImage: "tit_assistenza.png",
 	
-	width: 138,
+	width: 120,
 	height: 22
 }
 
@@ -126,7 +126,7 @@
 		fontSize: 12
 	},
 	hintText: "+ (numero di telefono a cui sarai richiamato)",
-	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
+	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
 	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
 	color:  Alloy.Globals.palette.grigio_scuro
 }
