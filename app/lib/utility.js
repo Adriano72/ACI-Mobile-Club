@@ -1,6 +1,6 @@
 exports.formattaOrari = function(obj) {
 
-    Ti.API.info("CIAO");
+    console.log('formattaOrari', obj);
 
     var orari = [];
 
