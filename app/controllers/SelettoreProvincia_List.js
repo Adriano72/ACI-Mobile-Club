@@ -148,7 +148,7 @@ function select(e) {
     if (selected.id == 0) {
         //caso posizione
         //settings.provinciaDiRiferimento = undefined;
-        settings.ricercaPerProvincia = false;
+        settings.ricercaPerProssimita = true;
     } else {
         //la precedente provincia
         var prev = settings.provinciaDiRiferimento;
@@ -163,7 +163,7 @@ function select(e) {
 
         // highlight(selected.shortName, (prev ? prev.shortName : undefined));
 
-        settings.ricercaPerProvincia = true;
+        settings.ricercaPerProssimita = false;
     }
 
 
