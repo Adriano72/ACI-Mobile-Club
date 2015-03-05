@@ -26,7 +26,7 @@
 ".titleControl[platform=ios]": {
 	backgroundImage: "tit_assistenza.png",
 	
-	width: 138,
+	width: 120,
 	height: 22
 }
 

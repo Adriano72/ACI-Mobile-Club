@@ -168,7 +168,7 @@ function init4() {
         });
     } else {
         //nel caso in cui la mappa non sia pronta
-        $.labelMap.stopLoading();
+       
 
     }
 
@@ -335,4 +335,11 @@ function validate(cb) {
         cb && cb();
     }
 
+}
+
+function cavasClick(e){
+    console.log(e);
+    if (e.source !== $.telefono) {
+        $.telefono.blur();
+    }
 }

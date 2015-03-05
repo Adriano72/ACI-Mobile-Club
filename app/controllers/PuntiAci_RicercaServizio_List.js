@@ -8,6 +8,11 @@ console.log("gic ", args.data.gic);
 var gic = args.data.gic;
 var fuoriGIC = args.data.fuoriGIC;
 
+//intesazione di pagina
+var title = "Ricerca per Servizio";
+var homeIcons;
+
+
 //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.delegazioni));
 if (OS_ANDROID) {
     var abx = require('com.alcoapps.actionbarextras');
@@ -45,7 +50,7 @@ function filterRows(collection) {
 
 function init1() {
     abx.displayHomeAsUp = true;
-    abx.title = "Ricerca per Servizio";
+    abx.title = title;
     abx.titleFont = "ACI Type Regular.otf";
     abx.titleColor = Alloy.Globals.palette.blu;
     _.defer(init2);
@@ -55,13 +60,16 @@ function init2() {
     $.win.activity.invalidateOptionsMenu();
 }
 
+//WORKAROUD per l'errore su ios per cui l'applicazione schianta quando interrogo la collezione
+var data = [];
 
 function init3() {
     //leggo i dati dal server e li carico in tabella
     Alloy.Globals.loading.show('Stiamo cercando i Punti ACI');
     net.getPuntiAciPerServizioGIC(gic, fuoriGIC, function(result) {
         Alloy.Collections.serviziGICpos.reset(result);
-        updateUI();
+        data = result;
+        //  updateUI();
         Alloy.Globals.loading.hide();
         console.log("punto aci", result[0]);
     });
@@ -150,8 +158,11 @@ function openDetail(e) {
     //var selected = Alloy.Collections.delegazioni.get(e.rowData.modelId);
     //devo selezionarlo tramite l'id di mongo perchè fa riferimento a collezioni deverse
     console.log('mongoId', e.rowData.mongoId);
-    console.log('c',c[t]);
-    var selected =  Alloy.Collections.serviziGICpos.getByCid(e.rowData.modelId);
+    console.log('c', c[t]);
+    // var selected =  Alloy.Collections.serviziGICpos.getByCid(e.rowData.modelId);
+    var selected = Alloy.createModel('serviziGICpos', _.findWhere(data, {
+        _id: e.rowData.mongoId
+    }));
     console.log('selected', selected);
     //controller name
     var ctrl = d[t];
@@ -172,7 +183,7 @@ function mostraMappa() {
     var mapWin = Alloy.createController('mapView', {
         collection: coll,
         //pin: "pin_Tasse.png",
-        titolo: (OS_ANDROID) ? "Tasse" : $.titleControl.backgroundImage,
+        titolo: title,
         //  homeIcon: "ico_assistenza_tasse_blu.png"
     }).getView();
     Alloy.Globals.navMenu.openWindow(mapWin);

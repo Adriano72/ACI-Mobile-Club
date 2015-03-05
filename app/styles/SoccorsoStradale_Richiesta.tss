@@ -26,7 +26,7 @@
 ".titleControl[platform=ios]": {
 	backgroundImage: "tit_assistenza.png",
 	
-	width: 138,
+	width: 120,
 	height: 22
 }
 
@@ -126,7 +126,7 @@
 		fontSize: 12
 	},
 	hintText: "+ (numero di telefono a cui sarai richiamato)",
-	keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
+	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
 	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
 	color:  Alloy.Globals.palette.grigio_scuro
 }
@@ -142,6 +142,10 @@
 
 "#mapview":{
 	height: 175
+}
+
+"#mapview[platform=android]":{
+	enableZoomControls: false	
 }
 "#mapWrapper":{
 	height: 175
@@ -255,6 +259,13 @@
 	bottom: 5
 }
 
+
+".overlay":{
+	height: Ti.UI.FILL,
+	width: Ti.UI.FILL,
+	backgroundColor: 'transparent',
+	zIndex: 999
+}
 
 
 

@@ -12,7 +12,7 @@
 	borderWidth: 1, 
 	borderColor: '#007aff', 
 	borderRadius: 3, 
-	layout: 'horizontal' 
+	//layout: 'horizontal' 
 }
 ".tabbed-bar-button": { 
 	width: "50%",
@@ -24,4 +24,13 @@
 ".tabbed-bar-button-active": { 
 	backgroundColor: '#007aff', 
 	color: '#fff' 
+}
+
+".left":{
+	left:0
+}
+
+
+".right":{
+	right:0
 }

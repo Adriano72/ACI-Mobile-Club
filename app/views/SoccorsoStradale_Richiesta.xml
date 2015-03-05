@@ -12,7 +12,7 @@
 			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
 
 		</Menu>
-		<ScrollView id="main">
+		<ScrollView id="main"  onClick="cavasClick">
 
 			<View class="bar top">
 				<ImageView class="barIcon gpsIcon"></ImageView>
@@ -27,6 +27,8 @@
 		        	<View id="mapWrapper">
 		        		<Module id="mapview" module="ti.map" method="createView"></Module>
 						<ImageView id="pin"></ImageView> 
+						<View class="overlay">
+						</View>
 		        	</View>
 			    </View>
 

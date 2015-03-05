@@ -1,6 +1,6 @@
 exports.formattaOrari = function(obj) {
 
-    Ti.API.info("CIAO");
+    console.log('formattaOrari', obj);
 
     var orari = [];
 
@@ -114,7 +114,7 @@ exports.getTesseraScadutaImage = function(codice) {
     imm = imm.replace('.jpg', '_scaduta.jpg');
 
 
-    return "/" + imm;
+    return imm;
 
 };
 

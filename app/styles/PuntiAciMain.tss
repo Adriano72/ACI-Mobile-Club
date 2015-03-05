@@ -53,23 +53,26 @@
 	top: 0
 }
 
+
 ".bottomBannerContainer": {
 	bottom: 0,
-	//height: "30%",
-	height: Ti.UI.SIZE
+	height: "20%"
 }
 
 ".bottomBanner": {
 	//image: "/banner_sotto.png",
 	width: "90%",
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
+	bottom: 0
 }
+
+
 
 "#contentWrapper":{
+	top: 0,
 	layout: "vertical",
-	//height: Ti.UI.SIZE,
+	height: "79%",
 }
-
 
 
 "#selProvWrapper":{
