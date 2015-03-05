@@ -5,6 +5,10 @@ var user = require('user');
 var cacheDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, "/");
 cacheDir.deleteDirectory(true);
 
+//specifica il tempo da assegnare alla funzione _.throttle sugli eventi click dei pulsanti in index.xml
+//http://underscorejs.org/#throttle 
+var THROTTLE_TIME = 5000;
+
 zapImageCache = function() {
     var appDataDir,
         cacheDir,
@@ -33,7 +37,7 @@ var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals
 $.menuView.top = menuTop;
 
 function doopen(evt) {
-   // Alloy.Globals.loading.show('Sincronizzazione', false);
+    // Alloy.Globals.loading.show('Sincronizzazione', false);
     Alloy.Globals.navMenu = $.navWin;
     if (OS_ANDROID) {
         abx.title = "ACI Mobile Club";
@@ -111,10 +115,14 @@ function toggleSideMenu() {
     settingsMenu.toggleMenu(rightSettingsMenu);
 }
 
-function tessera() {
 
-    //if (Ti.App.Properties.getBool("utenteAutenticato")) {
-
+/**
+ * Apre la schermata di visualizzazione della tessera
+ * Se non loggato, porta ad un menu in cui si può scegliere se loggarsi, registrarsi o comprare una tessera
+ * @param  {Object} e argomenti dell'evento click sul pulsante
+ */
+var openTessera = _(function(e) {
+    e.cancelBubble = true;
 
 
     if (user.isLogged) {
@@ -129,270 +137,59 @@ function tessera() {
 
     }
 
-}
+}).throttle(THROTTLE_TIME);
 
-function swipeAction(e) { // NON USATA AL MOMENTO
-    if (e.direction == "up") {
-        $.menuView.animate({
-            top: (OS_ANDROID) ? 0 : 45
-        });
-    }
 
-    if (e.direction == "down") {
-        $.menuView.animate({
-            top: menuTop
-        });
-    }
-
-};
-
-function doPhoneCall(e) {
+/**
+ * Apre la schermata di Assistenza
+ * @param  {Object} e argomenti dell'evento click sul pulsante
+ */
+var openAssistenza = _(function(e) {
     e.cancelBubble = true;
     var winSoccorso = Alloy.createController('SoccorsoStradaleMain').getView();
     Alloy.Globals.navMenu.openWindow(winSoccorso);
 
-};
+}).throttle(THROTTLE_TIME);
 
-function openPuntiACI() {
+
+
+/**
+ * Apre la schermata dei punti aci
+ * @param  {Object} e argomenti dell'evento click sul pulsante
+ */
+var openPuntiACI = _(function(e) {
+    e.cancelBubble = true;
+
     var winPAci = Alloy.createController('PuntiAciMain').getView();
     Alloy.Globals.navMenu.openWindow(winPAci);
 
-}
+}).throttle(THROTTLE_TIME);
 
-function openVantaggiSoci() {
+
+/**
+ * Apre la schermata delle convenzioni
+ * @param  {Object} e argomenti dell'evento click sul pulsante
+ */
+var openVantaggiSoci = _(function(e) {
+    e.cancelBubble = true;
+
     var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
     Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
 
-}
+}).throttle(THROTTLE_TIME);
 
-function loadData() {
+
+/**
+ * Funzione eseguita al caricamento della window
+ * @param  {Object} e argomenti dell'evento click sul pulsante
+ */
+function loadData(e) {
 
     //eseguo un primo caricamento dei banner, in modo da avere sempre qualcosa da mostrare
-    Alloy.Collections.banner.fetchRandom(function(){
+    Alloy.Collections.banner.fetchRandom(function() {
         console.log("banner caricati");
     });
 
-
-    //commento questa riga e blocco la catena di init
-    // uno();
-    //Alloy.Globals.loading.hide();
-
-
-    function uno() {
-
-        net.getBanner(function(p_data) {
-            try {
-
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-
-                Alloy.Globals.bannerImageURL = Alloy.Globals.bannerBaseURL + p_data[0].agreement_id.images.banner;
-                Alloy.Globals.convenzioneBanner = p_data[0];
-                Ti.API.info("BANNER DATA: " + Alloy.Globals.bannerImageURL);
-                _.defer(due);
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 1:\n" + error);
-            }
-        });
-
-    }
-
-    function due() {
-
-        net.getPuntiAci("aacc", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.automobileClub.reset(p_data);
-                Ti.API.info("AACC COLLECTION LENGTH: " + Alloy.Collections.automobileClub.length);
-                _.defer(tre);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 2:\n" + error);
-            }
-        });
-
-    }
-
-    function tre() {
-
-        net.getPuntiAci("del", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.delegazioni.reset(p_data);
-                Ti.API.info("DEL COLLECTION LENGTH: " + Alloy.Collections.delegazioni.length);
-                _.defer(quattro);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 3:\n" + error);
-            }
-        });
-    }
-
-    function quattro() {
-
-        net.getPuntiAci("pra", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.pra.reset(p_data);
-                Ti.API.info("PRA COLLECTION LENGTH: " + Alloy.Collections.pra.length);
-                _.defer(cinque);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 4:\n" + error);
-            }
-        });
-    }
-
-    function cinque() {
-
-        net.getPuntiAci("urp", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.urp.reset(p_data);
-                Ti.API.info("URP COLLECTION LENGTH: " + Alloy.Collections.urp.length);
-                _.defer(sei);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 5:\n" + error);
-            }
-        });
-    }
-
-    function sei() {
-
-        net.getPuntiAci("tasse", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.tasse.reset(p_data);
-                Ti.API.info("TASSE COLLECTION LENGTH: " + Alloy.Collections.tasse.length);
-                _.defer(sette);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 6:\n" + error);
-            }
-        });
-    }
-
-    function sette() {
-
-        net.getDemolitori("dem", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.demolitori.reset(p_data);
-                Ti.API.info("DEMOLITORI COLLECTION LENGTH: " + Alloy.Collections.demolitori.length);
-                _.defer(otto);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 7:\n" + error);
-            }
-        });
-    }
-
-    function otto() {
-
-        net.getVantaggiSoci("dormire_mangiare", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT: " + JSON.stringify(p_data));
-                Alloy.Collections.dormireMangiare.reset(p_data);
-                Ti.API.info("SYC DORMIRE MANGIARE COLLECTION LENGTH: " + Alloy.Collections.dormireMangiare.length);
-                _.defer(nove);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 8:\n" + error);
-            }
-        });
-    }
-
-    function nove() {
-
-        net.getVantaggiSoci("tempo_libero_benessere", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT TEMPO LIBERO: " + JSON.stringify(p_data));
-                Alloy.Collections.tempoLibero.reset(p_data);
-                Ti.API.info("SYC TEMPO LIBERO BENESSERE COLLECTION LENGTH: " + Alloy.Collections.tempoLibero.length);
-                _.defer(dieci);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 9:\n" + error);
-            }
-        });
-    }
-
-    function dieci() {
-
-        net.getVantaggiSoci("cultura_spettacoli", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT CULTURA SPETTACOLI: " + JSON.stringify(p_data));
-                Alloy.Collections.culturaSpettacoli.reset(p_data);
-                Ti.API.info("SYC CULTURA SPETTACOLI COLLECTION LENGTH: " + Alloy.Collections.culturaSpettacoli.length);
-                _.defer(undici);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 10:\n" + error);
-            }
-        });
-    }
-
-    function undici() {
-
-        net.getVantaggiSoci("noleggi_trasporti", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT NOLEGGI TRASPORTI: " + JSON.stringify(p_data));
-                Alloy.Collections.noleggiTrasporti.reset(p_data);
-                Ti.API.info("SYC NOLEGGI TRASPORTI COLLECTION LENGTH: " + Alloy.Collections.noleggiTrasporti.length);
-                _.defer(dodici);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 11:\n" + error);
-            }
-        });
-    }
-
-    function dodici() {
-
-        net.getVantaggiSoci("sport_eventi", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT NOLEGGI TRASPORTI: " + JSON.stringify(p_data));
-                Alloy.Collections.sportEventi.reset(p_data);
-                Ti.API.info("SYC SPORT EVENTI COLLECTION LENGTH: " + Alloy.Collections.sportEventi.length);
-                _.defer(tredici);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 12:\n" + error);
-            }
-        });
-    }
-
-    function tredici() {
-
-        net.getVantaggiSoci("altri_servizi", function(p_data) {
-            try {
-                //Ti.API.info("XHR RESULT NOLEGGI TRASPORTI: " + JSON.stringify(p_data));
-                Alloy.Collections.altriServizi.reset(p_data);
-                Ti.API.info("SYC ALTRI SERVIZI COLLECTION LENGTH: " + Alloy.Collections.altriServizi.length);
-                _.defer(ultima);
-
-            } catch (error) {
-                Alloy.Globals.loading.hide();
-                alert("Problemi di comunicazione con il server 13:\n" + error);
-            }
-        });
-    }
-
-    function ultima() {
-        Alloy.Globals.loading.hide();
-    }
 
 }
 
