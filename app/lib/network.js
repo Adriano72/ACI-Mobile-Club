@@ -96,9 +96,13 @@ exports.getPuntiAci = function(type_code, _callback) {
 
     xhr.open('GET', url);
 
-    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
 
     xhr.send();
+
 
 };
 
@@ -153,7 +157,9 @@ exports.getDemolitori = function(type_code, _callback) {
 
     xhr.open('GET', url);
 
-    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
 
     xhr.send();
 
@@ -211,8 +217,9 @@ exports.getVantaggiSoci = function(type_code, _callback) {
 
     xhr.open('GET', url);
 
-
-    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
 
     xhr.send();
 
@@ -254,6 +261,10 @@ exports.getSSOID = function(p_username, p_password, _callback) {
 
     xhr.open('GET', 'http://login.aci.it/index.php?do=login&application_key=mobile&id=login&username=' + p_username + '&password=' + p_password + '');
 
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
     xhr.send();
 
 };
@@ -289,6 +300,10 @@ exports.getUserInfo = function(p_ssoid, _callback) {
     Ti.API.info("CHIAMATA HTTP: " + 'https://login.aci.it/index.php?do=getCustomUserInfo&application_key=mobile&keypass=0my6o9t6&sso-id=' + p_ssoid + '');
 
     xhr.open('GET', 'http://login.aci.it/index.php?do=getCustomUserInfo&application_key=mobile&keypass=0my6o9t6&sso-id=' + p_ssoid + '');
+
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
 
     xhr.send();
 };
@@ -332,7 +347,11 @@ exports.getBanner = function(_callback) {
         Ti.API.info("CHIAMATA HTTP BANNER: " + url);
 
         xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand);
-        xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+
+        _(getAciGeoHeaders()).each(function(v, k) {
+            xhr.setRequestHeader(k, v);
+        });
+
         xhr.send();
     };
     //Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
@@ -361,7 +380,11 @@ exports.getBanner = function(_callback) {
     Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
 
     xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
-    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
     xhr.send();
 
 };
@@ -450,7 +473,10 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
     xhr.open('GET', url);
 
-    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
 
     xhr.send();
 
@@ -512,7 +538,11 @@ exports.getListaProvince = function(_callback) {
 
     xhr.open('GET', url);
 
-    xhr.setRequestHeader('Authorization', 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==');
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
+
 
     xhr.send();
 }
@@ -525,12 +555,15 @@ exports.getListaProvince = function(_callback) {
  * @return {Array} lista chiave-valore di header da inviare
  */
 function getAciGeoHeaders() {
-    return [{
+
+    var h = {
         // 'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='
-        'x-acigeo-appid': 'acimobileclub',
-        'x-acigeo-uuid': 'UUIDv4',
-        'x-acigeo-devid': ''
-    }]
+        'x-acigeo-appid': 'UA-57956970-2',
+        'x-acigeo-uuid': require('environment').sessionUUID,
+        'x-acigeo-devid': Ti.Platform.id
+    };
+    console.log('headers', h);
+    return h;
 }
 
 /**

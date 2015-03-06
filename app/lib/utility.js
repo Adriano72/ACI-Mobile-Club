@@ -1,3 +1,14 @@
+var uuid = require('utility-uuid');
+
+/**
+ * Esporta l'intero modulo uuid
+ * @type {[type]}
+ */
+exports.uuid = uuid;
+
+
+
+
 exports.formattaOrari = function(obj) {
 
     console.log('formattaOrari', obj);
