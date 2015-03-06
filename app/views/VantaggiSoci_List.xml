@@ -1,6 +1,6 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="openWin">
-		<TitleControl platform="ios">
+	<Window id="win" class="container">
+		<!-- <TitleControl platform="ios">
 			<View id="titleControl" class="titleControl">
 				<ImageView id="titleIcon"></ImageView>
 				<Label id="titleLabel" class="PTSansBold"></Label>
@@ -10,12 +10,9 @@
 			<ImageView onClick="mostraMappa" class="rightNavImg"/>
 		</RightNavButton>
 		<Menu id="menu" platform="android">
-
-			<!-- Cannot specify node text.  Use attributes only. -->
-			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
 			<MenuItem id="mn_settings" onClick="mostraMappa"/>
 
-		</Menu>
+		</Menu> -->
 		
 		<TableView id="puntiAci_Table" class="table" onSingletap="dettaglioConvenzione" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" >
 			<SearchBar id="searchBar"/>
@@ -34,8 +31,8 @@
 					<View class="rightContainer">
 						<Label class="simpleRowText PTSansBold" id="distanza" text="{distance}"/>
 						<Label class="simpleRowText PTSansRegular" id="sconto"/>
-						<ImageView class="preferiti" id="preferiti" onSingletap="togglePreferiti"/>
-						<Label class="dettagli PTSansBold" onSingletap="openDettagli"/>
+						<ImageView class="preferiti" id="preferiti"/>
+						<Label class="dettagli PTSansBold"/>
 
 					</View>
 				</View>

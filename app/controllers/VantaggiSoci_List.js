@@ -1,35 +1,40 @@
 var args = arguments[0] || {};
 var utility = require('utility');
+var commons = require('commons');
 
-/*
-args.id_code
-*/
 
+//selezioni la collection corretta dalla quale prendere i dati
 var collection = utility.getAciGeoCollection(args.id_code);
+//attributi della UI in base al tipo di convenzione
 var itemData = _.findWhere(require('tabulatedData').categorieSyc(), {
     short_name: args.id_code
 });
 
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
-
-function openWin() {
-    if (OS_ANDROID) {
+//Handler per l'apertura del navigatore
+var openNavigation = commons.openNavigation;
 
 
-        console.log('itemData.img', itemData.img);
-        init1();
+//inizializzazioni comuni della Window
+commons.initWindow($.win, itemData.long_name, itemData.img, [{
+    icon: "/images/ic_action_pin.png",
+    onClick: _(commons.openMapWindow).partial(collection, itemData.long_name, itemData.img, itemData.pin)
+}]);
+
+//carica i dati
+loadData();
 
 
 
-    } else {
 
-        $.titleIcon.image = itemData.img;
-        $.titleLabel.text = itemData.long_name;
-    }
 
+
+
+/**
+ * Funzione che carica i dati nella collection collegata alla tabella
+ * @return {[type]} [description]
+ */
+function loadData() {
     //aggiorna i dati solo se non sono più validi
     Alloy.Globals.loading.show('Stiamo cercando');
     try {
@@ -44,34 +49,6 @@ function openWin() {
 
     }
     $.searchBar.blur();
-
-}
-
-function init1() {
-    abx.displayHomeAsUp = false;
-    // abx.disableIcon = false;
-    console.log('itemData.img', itemData.img);
-    //abx.homeAsUpIcon = itemData.img;
-    abx.setDisableIcon(false);
-    abx.setHomeAsUpIcon(itemData.img);
-    abx.title = itemData.long_name,
-    abx.titleFont = "ACI Type Regular.otf";
-    abx.titleColor = Alloy.Globals.palette.blu;
-    _.defer(init2);
-}
-
-function init2() {
-
-    var activity = $.win.activity;
-
-
-    if (activity) {
-        activity.invalidateOptionsMenu();
-        activity.onCreateOptionsMenu = function(e) {
-            activity.actionBar.displayHomeAsUp = true;
-            abx.setHomeAsUpIcon(itemData.img);
-        }
-    }
 }
 
 function dataTransform(model) {
@@ -108,38 +85,6 @@ function dettaglioConvenzione(e) {
     }).getView();
     Alloy.Globals.navMenu.openWindow(dettConvenzione);
 }
-
-
-function openNavigation(e) {
-
-    require('locationServices').getUserLocation(function(userLoc) {
-        var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';
-        Ti.API.info("NAVIGATION DATA: " + e.source.lat + " " + e.source.lon + " " + userLoc.latitude + " " + userLoc.longitude);
-        Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + ',' + userLoc.longitude + '&daddr=' + e.source.lat + ',' + e.source.lon);
-    });
-
-};
-
-function mostraMappa() {
-
-    var mapWin = Alloy.createController('mapView', {
-        collection: Alloy.Collections.tempCollection.toJSON(),
-        // pin: "pin_CulturaSpettacoli.png",
-        titolo: itemData.long_name,
-        homeIcon: itemData.img,
-        pin: itemData.pin
-
-    }).getView();
-    Alloy.Globals.navMenu.openWindow(mapWin);
-};
-
-function togglePreferiti(e) {
-
-};
-
-function openDettagli(e) {
-
-};
 
 
 
