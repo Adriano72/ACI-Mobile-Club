@@ -1,6 +1,6 @@
 <Alloy>
 	
-	<Window id="win" title="Ciao" class="container" onOpen="loadData">
+	<Window id="win" 	 class="container" onOpen="loadData">
 		<TitleControl platform="ios">
 			<View id="titleControl" class="titleControl">
 				<ImageView id="titleIcon"></ImageView>
