@@ -1,0 +1,14 @@
+"#wrapper": {
+	//backgroundImage: "logoAltriServizi.png",
+	width: Ti.UI.SIZE,
+	height: 21,
+	layout: "horizontal"
+}
+
+"#icon":{
+	
+}
+
+
+"#text":{
+}
