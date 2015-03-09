@@ -30,10 +30,10 @@ function init2() {
     $.win.activity.invalidateOptionsMenu();
 }
 
+
+//popolo la tabella dei serivizi
 var rowData = require('tabulatedData').puntiAciMain();
-
 var rows = [];
-
 _.each(rowData, function(value) {
     //Ti.API.info("DATA: " + value.img);
     var riga = Alloy.createController('TableViewRow_Single', {
@@ -45,6 +45,18 @@ _.each(rowData, function(value) {
     }).getView();
     rows.push(riga);
 });
+$.puntiAciMain_Table.setData(rows);
+
+//popolo la tabella della ricerca
+var rows2 = [];
+rows2.push(Alloy.createController('TableViewRow_Single', {
+
+    immagine: "/images/ic_action_cerca_per_servizio_blu.png",
+    testo: "Ricerca per serivizio",
+    id_code: "RIC"
+
+}).getView());
+$.ricercaServizio_Table.setData(rows2);
 
 function selectionDetail(e) {
 
@@ -78,10 +90,10 @@ function selectionDetail(e) {
                 var winAC = Alloy.createController('PuntiAci_DEMOLITORI').getView();
                 Alloy.Globals.navMenu.openWindow(winAC);
                 break;
-            /* case "RIC":
+            case "RIC": //ATTENZIONE: non proviene da tabulatedData.js
                 var winAC = Alloy.createController('PuntiAci_RicercaServizio').getView();
                 Alloy.Globals.navMenu.openWindow(winAC);
-                break; */
+                break;
             default:
 
         }
@@ -108,9 +120,6 @@ function displayConvenzioneBanner() {
     Alloy.Globals.navMenu.openWindow(dettConvenzione);
 
 }
-
-$.puntiAciMain_Table.setData(rows);
-
 
 $.win.addEventListener('close', function() {
     $.banner.stop();
