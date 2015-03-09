@@ -66,39 +66,16 @@ function selectionDetail(e) {
 
         Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
-        switch (e.row.id_code) {
+        var params = {
+            icon: e.row.img,
+            title: e.row.testo,
+            id_code: e.row.id_code
+        };
 
-            case "AC":
-                var winAC = Alloy.createController('PuntiAci_AC').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            case "DEL":
-                var winAC = Alloy.createController('PuntiAci_DEL').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            case "PRA":
-                var winAC = Alloy.createController('PuntiAci_PRA').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            case "URP":
-                var winAC = Alloy.createController('PuntiAci_URP').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            case "TASSE":
-                var winAC = Alloy.createController('PuntiAci_TASSE').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            case "DEM":
-                var winAC = Alloy.createController('PuntiAci_DEMOLITORI').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            case "RIC": //ATTENZIONE: non proviene da tabulatedData.js
-                var winAC = Alloy.createController('PuntiAci_RicercaServizio').getView();
-                Alloy.Globals.navMenu.openWindow(winAC);
-                break;
-            default:
+        console.log('PuntiAciMail params', params);
 
-        }
+        var winAC = Alloy.createController('PuntiAci_List', params).getView();
+        Alloy.Globals.navMenu.openWindow(winAC);
     }
 };
 

@@ -385,10 +385,10 @@ exports.getAciGeoCollection = function(id_code) {
     console.log('getAciGeoCollection id_code', id_code);
     _.keys(Alloy.Collections).every(function(k) {
         var c = Alloy.Collections[k];
-        //  console.log('id_code', id_code);
-        //  console.log('k', k);
-        //  console.log('c.config', c.config);
-        if (c && c.config && c.config.type_code == id_code) {
+        console.log('id_code', id_code);
+        console.log('k', k);
+        console.log('c.config', c.config);
+        if (c && c.config && c.config.type_code && c.config.type_code.toLowerCase() == id_code.toLowerCase()) {
             console.log('getAciGeoCollection', id_code, c.config);
             coll = c;
             return false;

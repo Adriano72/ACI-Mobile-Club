@@ -1,0 +1,62 @@
+<Alloy>
+	<!-- per usare i modelli in pagina occorre specificare un modello (ma poi non lo usa a quanto pare) -->
+	<Model src="delegazioni" instance="true" id="detailModel"/>
+	<Window id="win" class="container" model="$.detailModel" >
+		<!-- <TitleControl platform="ios">
+			<View class="titleControl"></View>
+		</TitleControl>
+		<RightNavButton platform="ios">
+			<ImageView class="rightNavImg" onClick="openNavigation"/>
+		</RightNavButton>
+		<Menu id="menu" platform="android">
+
+				<MenuItem id="mn_navigazione" title="Navigatore" onClick="openNavigation"/>
+
+		</Menu> -->
+		<ScrollView class="scrollableContainer">
+			<View id="headerView">
+				<Label class="PTSansBold" id="headerText" text="{$.detailModel.name}"/>
+			</View>
+			<View class="separator"/>
+			<View id="contattiView">
+
+				<Label class="PTSansRegular contatti first" id="indirizzo" text="{$.detailModel.formattedAddress}"/>
+				<Label class="PTSansRegular contatti" id="telefono" text="{$.detailModel.tel}"/>
+				<Label class="PTSansRegular contatti" id="fax" text="{$.detailModel.fax}"/>
+				<Label class="PTSansRegular contatti" id="web" text="{$.detailModel.web}"/>
+
+			</View>
+			<View class="separator"/>
+			<View id="rowServizi" class="rowSingleContainer" onSingletap="toggleDettaglioServizi">
+				<ImageView class="simpleRowLeftIcon" id="serviziIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="serviziText" text="Servizi"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioServizi" visible="false">
+				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioServizi" text="{$.detailModel.servizi}"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowOrari" class="rowSingleContainer" onSingletap="toggleDettaglioOrari">
+				<ImageView class="simpleRowLeftIcon" id="orariIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="orariText" text="Orario di servizio"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioOrari" visible="false">
+				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioOrari" text="{$.detailModel.orari}"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowChiama" class="rowSingleContainer" onSingletap="doPhoneCall">
+				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="chiamaText" text="Chiama"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+			<View id="rowEmail" class="rowSingleContainer" onSingletap="doSendEmail">
+				<ImageView class="simpleRowLeftIcon" id="emailIcon"/>
+				<Label class="simpleRowText PTSansRegular" id="emailText" text="Invia e-mail"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator"/>
+		</ScrollView>
+	</Window>
+</Alloy>

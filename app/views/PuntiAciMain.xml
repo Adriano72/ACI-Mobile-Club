@@ -22,7 +22,7 @@
 			</View> 
 
 			<View platform="android"  id="ricercaServizioWrapper"  >
-				<TableView id="ricercaServizio_Table" class="table" onSingletap="selectionDetail"/>
+				<TableView id="ricercaServizio_Table" class="table" onSingletap="openRicerca"/>
 			</View> 
 
 

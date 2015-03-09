@@ -183,12 +183,78 @@ exports.openNavigation = function(e) {
  * @param  {String} pin        (opzionale) immagine del pin delle annotations. se non specificato, la mappa prova a determinare il giusto pin in base ai dati del poi
  */
 exports.openMapWindow = function(collection, title, icon, pin) {
-    var mapWin = Alloy.createController('mapView', {
-        collection: _.isFunction(collection.toJSON) ? collection.toJSON() : collection,
-        titolo: title,
-        homeIcon: icon,
-        pin: pin
+    console.log('openMapWindow');
+    try {
+        var mapWin = Alloy.createController('mapView', {
+            collection: _.isFunction(collection.toJSON) ? collection.toJSON() : collection,
+            titolo: title,
+            homeIcon: icon,
+            pin: pin
 
-    }).getView();
-    Alloy.Globals.navMenu.openWindow(mapWin);
-}
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(mapWin);
+    } catch (e) {
+        console.log('errore appertura mappa', e);
+    }
+};
+
+
+
+
+/**
+ * Predispone il telefono per chiamare il numero telefonico
+ * @param  {[type]} e  dati dell'evento click
+ * @return {[type]}   [description]
+ */
+exports.doPhoneCall = function(e) {
+    e.cancelBubble = true;
+
+    if (!_.isUndefined(e.source.telNumber)) {
+        var trimmedPhone = e.source.telNumber.replace(/\s+/g, '');
+        Ti.API.info("TEL: " + trimmedPhone);
+
+        function call() {
+            Titanium.Platform.openURL('tel:' + trimmedPhone);
+        }
+
+        //su ios mettiamo un dialog di conferma perchè la chiamta parte diretta
+        //su android non serve perchè il sistema chiede comunque conferma
+        if (OS_IOS) {
+            require('alloy/dialogs').confirm({
+                title: "Conferma chiamata",
+                message: "Vuoi chiamare " + trimmedPhone + "?",
+                yes: "Sì",
+                no: "No",
+                callback: call
+            });
+        } else {
+            call();
+        }
+
+    } else {
+        alert("Numero di telefono non disponibile");
+    }
+
+};
+
+
+/**
+ * Manda una mail con l'app di sistema
+ * @param  {[type]} e [description]
+ * @return {[type]}   [description]
+ */
+exports.doSendEmail = function(e) {
+    e.cancelBubble = true;
+
+    if (!_.isUndefined(e.source.indirizzoEmail)) {
+        Ti.API.info("EMAIL: " + e.source.indirizzoEmail);
+        var recipients = [];
+        recipients.push(e.source.indirizzoEmail);
+        var emailDialog = Ti.UI.createEmailDialog();
+        emailDialog.toRecipients = recipients;
+        emailDialog.open();
+    } else {
+        alert("Indirizzo email non disponibile");
+    }
+
+};

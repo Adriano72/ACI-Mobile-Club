@@ -2,11 +2,13 @@
 	//backgroundImage: "logoAltriServizi.png",
 	width: Ti.UI.SIZE,
 	height: 21,
-	layout: "horizontal"
+	layout: "horizontal",
+	horizontalWrap: false
 }
 
 "#icon":{
-	
+	height: 21,
+	left: 0
 }
 
 
