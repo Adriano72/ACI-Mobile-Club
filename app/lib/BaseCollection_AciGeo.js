@@ -28,6 +28,21 @@ AciGeo.retrieve_method = function(type_code, cb) {
 };
 
 
+
+/**
+ * Sovrascrive il metodo per l'ordinamento
+ * @param  {Backbone.Model} m modello da ordinare
+ * @return {Object|String|Number}   valore rispetto al quale ordinare
+ */
+AciGeo.comparator = function(m) {
+    var j = m.toJSON();
+    if (j.address && j.address.distance) {
+        return j.address.distance;
+    } else {
+        return j.name;
+    }
+}
+
 /**
  * Operazione da fare quando viene aggiornata la collezione
  * @param  {Collection} coll collezione da aggiornare
@@ -60,7 +75,7 @@ AciGeo.fetchIfChanged = function(cb) {
         try {
             this.retrieve_method(this.config.type_code, function(result) {
                 console.log('fetchCached 3');
-                coll.reset(result); 
+                coll.reset(result);
                 coll.onFetch();
                 cb && cb(null, 0);
             });
