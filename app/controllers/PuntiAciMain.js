@@ -47,16 +47,18 @@ _.each(rowData, function(value) {
 });
 $.puntiAciMain_Table.setData(rows);
 
-//popolo la tabella della ricerca
-var rows2 = [];
-rows2.push(Alloy.createController('TableViewRow_Single', {
+if (OS_ANDROID) {
+    //popolo la tabella della ricerca
+    var rows2 = [];
+    rows2.push(Alloy.createController('TableViewRow_Single', {
 
-    immagine: "/images/ic_action_cerca_per_servizio_blu.png",
-    testo: "Ricerca per serivizio",
-    id_code: "RIC"
+        immagine: "/images/ic_action_cerca_per_servizio_blu.png",
+        testo: "Ricerca per serivizio",
+        id_code: "RIC"
 
-}).getView());
-$.ricercaServizio_Table.setData(rows2);
+    }).getView());
+    $.ricercaServizio_Table.setData(rows2);
+}
 
 function selectionDetail(e) {
 

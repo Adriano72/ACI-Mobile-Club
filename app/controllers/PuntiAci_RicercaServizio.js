@@ -19,7 +19,7 @@ function loadData() {
         //$.windowtitle.text = winTitle;
     }
     updateUI();
-    $.searchBar.blur();
+   // $.searchBar.blur();
 
 }
 
