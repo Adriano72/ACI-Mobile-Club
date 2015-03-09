@@ -34,16 +34,7 @@ exports.puntiAciMain = function() {
 
     ];
 
-    //tengo questa fino a che non risolgo il problema di disaccoppiare ricerca e tabella su android
-    if (OS_ANDROID) {
-        itemsObj.push({
-            img: "/images/ic_action_cerca_per_servizio_blu.png",
-            text: "Ricerca per servizio",
-            id_code: "RIC"
-
-        });
-    }
-
+   
     return itemsObj;
 
 

@@ -78,10 +78,10 @@ function selectionDetail(e) {
                 var winAC = Alloy.createController('PuntiAci_DEMOLITORI').getView();
                 Alloy.Globals.navMenu.openWindow(winAC);
                 break;
-            case "RIC":
+            /* case "RIC":
                 var winAC = Alloy.createController('PuntiAci_RicercaServizio').getView();
                 Alloy.Globals.navMenu.openWindow(winAC);
-                break;
+                break; */
             default:
 
         }
@@ -89,15 +89,13 @@ function selectionDetail(e) {
 };
 
 
-function ricerca() {
 
-    var win = Alloy.createController('PuntiAci_RicercaServizio').getView();
-    _.defer($.searchField.blur);
-    Alloy.Globals.navMenu.openWindow(win);
-    win.addEventListener('close', function() {
-        $.searchField.value = '';
-        $.searchField.blur();
-    });
+
+function openRicerca() {
+
+    var winAC = Alloy.createController('PuntiAci_RicercaServizio').getView();
+    Alloy.Globals.navMenu.openWindow(winAC);
+
 }
 
 function displayConvenzioneBanner() {
@@ -114,7 +112,6 @@ function displayConvenzioneBanner() {
 $.puntiAciMain_Table.setData(rows);
 
 
-$.win.addEventListener('close', function(){
+$.win.addEventListener('close', function() {
     $.banner.stop();
 });
-
