@@ -23,7 +23,7 @@ require('commons').initWindow($.win, headerText, headerImg);
 
 
 function loadData() {
-   
+
     _.defer(centerMap);
 
     //updateUI();
@@ -99,7 +99,6 @@ function dataTransform(model) {
 };
 
 function linkToPOI(e) {
-
     var clicksource = e.clicksource;
 
     var annotation = e.source;
@@ -107,63 +106,22 @@ function linkToPOI(e) {
     var clicksource = e.clicksource;
 
     if (clicksource == 'annotation' || clicksource == 'leftButton' || clicksource == 'leftPane' || clicksource == 'infoWindow' || clicksource == 'subtitle') { //leftButton event
-        //alert("leftButton of " + annotation + " has been clicked.");
-        Ti.API.info("TYPE: " + e.annotation._type);
 
-        if (_.isUndefined(e.annotation.agreement_id)) {
 
-            switch (e.annotation._type) {
+        var id_code = e.annotation._type;
+        var isPuntoAci = _.isUndefined(e.annotation.agreement_id);
 
-                case "aacc":
-                    var winAC = Alloy.createController('PuntiAci_AC').getView();
-                    Alloy.Globals.navMenu.openWindow(winAC);
-                    break;
-                case "del":
-                    var dettPuntoACI = Alloy.createController('PuntiAci_DEL_Dett_Lite', {
-                        data: e.annotation,
-                        fromMap: true
-                    }).getView();
-                    Alloy.Globals.navMenu.openWindow(dettPuntoACI);
-                    break;
-                case "pra":
-                    var dettPuntoACI = Alloy.createController('PuntiAci_PRA_Dett', {
-                        data: e.annotation,
-                        fromMap: true
-                    }).getView();
-                    Alloy.Globals.navMenu.openWindow(dettPuntoACI);
-                    break;
-                case "urp":
-                    var dettPuntoACI = Alloy.createController('PuntiAci_URP_Dett', {
-                        data: e.annotation,
-                        fromMap: true
-                    }).getView();
-                    Alloy.Globals.navMenu.openWindow(dettPuntoACI);
-                    break;
-                case "tasse":
-                    var dettPuntoACI = Alloy.createController('PuntiAci_TASSE_Dett', {
-                        data: e.annotation,
-                        fromMap: true
-                    }).getView();
-                    Alloy.Globals.navMenu.openWindow(dettPuntoACI);
-                    break;
-                case "dem":
-                    var dettPuntoACI = Alloy.createController('PuntiAci_Demolitori_Dett', {
-                        data: e.annotation,
-                        fromMap: true
-                    }).getView();
-                    Alloy.Globals.navMenu.openWindow(dettPuntoACI);
-                    break;
-                default:
+        var ctrl = isPuntoAci ? 'PuntiAci_Detail' : 'VantaggiSoci_Dettaglio_Convenzione';
 
-            }
+        var det = Alloy.createController(ctrl, {
+            data: {
+                attributes: e.annotation
+            },
+            titolo: headerText,
+            headerImg: headerImg
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(det);
 
-        } else {
-            var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-                data: e,
-                headerImg: ""
-            }).getView();
-            Alloy.Globals.navMenu.openWindow(dettConvenzione);
-        }
 
     }
 
