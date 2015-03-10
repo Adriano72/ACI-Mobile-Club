@@ -1,6 +1,9 @@
-".buttonImage": {
-	top: 25
-}
+
+
+/**
+ * FONT
+ */
+
 
 ".aciFontRegular[platform=ios]": {
 	font: {
@@ -69,3 +72,12 @@
     }	
 }
 
+
+/**
+ * COMPONENTI
+ */
+
+
+".buttonImage": {
+    top: 25
+}

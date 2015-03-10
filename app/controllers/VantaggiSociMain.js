@@ -1,27 +1,16 @@
 var args = arguments[0] || {};
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
 
-function doopen(evt) {
-
-    $.banner.start();
+var headerText = "Vantaggi per i soci";
+var headerImg = "/images/ic_action_home_vantaggi_soci_blu.png";
 
 
-    if (OS_ANDROID) {
-        abx.displayHomeAsUp = true;
-        abx.title = "Vantaggi per i soci";
-        abx.titleFont = "ACI Type Regular.otf";
-        abx.titleColor = Alloy.Globals.palette.blu;
+//inizializzazioni comuni della Window
+require('commons').initWindow($.win, headerText, headerImg);
 
-        //actionBarHelper.setIcon('/drawericonw@2x.png');
 
-    } else {
-        //$.windowtitle.text = winTitle;
-    }
-    //updateScreen();
-}
+
+$.banner.start();
 
 var rowData = require('tabulatedData').categorieSyc();
 
@@ -100,7 +89,7 @@ function displayConvenzioneBanner() {
 
 }
 
-$.win.addEventListener('close', function(){
+$.win.addEventListener('close', function() {
     $.banner.stop();
 });
 

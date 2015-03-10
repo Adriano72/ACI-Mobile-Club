@@ -23,31 +23,6 @@
 	exitOnClose: false
 }
 
-".titleControl[platform=ios]": {
-	backgroundImage: "tit_assistenza.png",
-	
-	width: 120,
-	height: 22
-}
-
-".rightNavImg[platform=ios]": {
-	image: "ico_rotella_celeste.png",
-	height: 15
-}
-
-
-"MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
-
-"#menu": {
-	icon: "/images/ic_action_puntatore.png"
-}
-
-"#mn_settings": {
-	icon: "/ico_rotella_celeste.png"
-}
-
 /**
  * LAYOUT DI PAGINA
  */

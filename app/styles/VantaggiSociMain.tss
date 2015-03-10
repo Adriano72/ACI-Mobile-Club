@@ -17,19 +17,6 @@
 	exitOnClose: false
 }
 
-".titleControl[platform=ios]": {
-	backgroundImage: "logoVantaggiSoci.png",
-	width: 120,
-	height: 28
-}
-
-"MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
-
-"#menu": {
-	icon: "/images/ic_action_puntatore.png"
-}
 
 ".toolbar":{
 	top: 0,

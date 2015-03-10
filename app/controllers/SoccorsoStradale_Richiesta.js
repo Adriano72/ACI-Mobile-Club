@@ -1,4 +1,5 @@
 var locationServices = require('locationServices');
+var commons = require('commons');
 var utility = require('utility');
 var AciGlobal = require('aciglobal');
 var dialogs = require('alloy/dialogs');
@@ -36,43 +37,19 @@ var isGuest, userData;
 
 var args = arguments[0] || {};
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
+var headerText = "Assistenza";
+var headerImg = "/images/ic_action_home_assistenza_blu.png";
+
+//inizializzazioni comuni della Window
+commons.initWindow($.win, headerText, headerImg);
+
+
+//carica i dati
+loadData();
 
 
 
-function doopen(evt) {
-    if (OS_ANDROID) {
-
-        init1();
-
-
-    } else {
-        //$.windowtitle.text = winTitle;
-
-        //salto l'init del menu
-        init3();
-    }
-
-    //updateScreen();
-}
-
-function init1() {
-    //  abx.displayHomeAsUp = true;
-    abx.title = "Assistenza";
-    abx.titleFont = "ACI Type Regular.otf";
-    abx.titleColor = Alloy.Globals.palette.blu;
-    _.defer(init2);
-}
-
-function init2() {
-    $.win.activity.invalidateOptionsMenu();
-    _.defer(init3);
-
-}
-//init3();//
-function init3() {
+function loadData() {
 
 
     //
@@ -141,10 +118,10 @@ function init3() {
     utility.hideVertical($.rowRichiestaInviata);
     utility.showVertical($.rowForm)
 
-    _.defer(init4);
+    _.defer(loadMap);
 }
 
-function init4() {
+function loadMap() {
 
 
     var region = $.mapview.getRegion();

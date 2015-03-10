@@ -1,29 +1,15 @@
 var args = arguments[0] || {};
+var commons = require('commons');
 
 var AciGlobal = require('aciglobal');
 
 
+var headerText = "Assistenza";
+var headerImg = "/images/ic_action_home_assistenza_blu.png";
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
+//inizializzazioni comuni della Window
+commons.initWindow($.win, headerText, headerImg);
 
-function doopen(evt) {
-    if (OS_ANDROID) {
-        abx.displayHomeAsUp = true;
-        abx.title = "Assistenza";
-        abx.titleFont = "ACI Type Regular.otf";
-        abx.titleColor = Alloy.Globals.palette.blu;
-
-        //actionBarHelper.setIcon('/drawericonw@2x.png');
-
-    } else {
-        //$.windowtitle.text = winTitle;
-    }
-    //updateScreen();
-
-    // $.randomBanner.image = encodeURI(Alloy.Globals.bannerImageURL);
-}
 
 var rowData = [{
     //richiesta

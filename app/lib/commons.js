@@ -22,7 +22,7 @@ exports.initWindow = function(win, title, icon, menuItems) {
 
     //valori comuni
     // li mettiamo in Alloy.Globals?
-    var font = "ACI Type Regular";
+    var font = OS_ANDROID ? "ACI Type Regular" : "ACIType";
     var color = Alloy.Globals.palette.blu;
 
     /**
@@ -34,6 +34,8 @@ exports.initWindow = function(win, title, icon, menuItems) {
      */
     function createMenuItem(params) {
         var menuItem;
+        console.log('initWin 3');
+
         if (OS_ANDROID) {
             menuItem = {
                 title: params.title,
@@ -52,7 +54,7 @@ exports.initWindow = function(win, title, icon, menuItems) {
         return menuItem;
     }
 
-
+    console.log('initWin 1');
     //se android, utilizzo le estensioni della actionbar
     if (OS_ANDROID) {
         var abx = require('com.alcoapps.actionbarextras');
@@ -61,6 +63,7 @@ exports.initWindow = function(win, title, icon, menuItems) {
 
 
     win.addEventListener('open', function(e) {
+        console.log('initWin 2');
 
         if (OS_ANDROID) {
 
