@@ -8,6 +8,14 @@ exports.uuid = uuid;
 
 
 
+exports.formattaServizi = function(obj) {
+
+    return _(obj).map(function(e) {
+        return '·' + e;
+    }).join('  ');
+
+}
+
 
 exports.formattaOrari = function(obj) {
 

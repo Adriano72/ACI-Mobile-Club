@@ -29,6 +29,7 @@ loadData();
 
 
 function loadData() {
+    var utility = require('utility');
     var modelGot;
     if (args.fromMap) {
         modelGot = args.data;
@@ -39,8 +40,8 @@ function loadData() {
     modelGot.telefono = modelGot.contacts.tel[0];
     modelGot.fax = modelGot.contacts.fax[0];
     modelGot.web = modelGot.contacts.web[0];
-    modelGot.servizi = modelGot.services.toString();
-    modelGot.orari = require('utility').formattaOrari(modelGot.schedule.timetable);
+    modelGot.servizi = utility.formattaServizi(modelGot.services);
+    modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
     $.detailModel.set(modelGot);
 }
 
@@ -56,7 +57,7 @@ function toggleDettaglioServizi(e) {
         $.dettaglioServizi.height = 0;
 
     } else {
-        $.dettaglioServizi.height = 80;
+        $.dettaglioServizi.height = Ti.UI.SIZE;
         $.serviziIcon.image = "/x_abaco_bianco.png";
         $.serviziText.color = "#fff";
         $.rowServizi.backgroundColor = Alloy.Globals.palette.blu;

@@ -155,7 +155,9 @@
 }
 
 ".testoDettagli": {
-	color:"#888"
+	color: Alloy.Globals.palette.grigio_scuro2q,
+	width: "90%",
+	height: Ti.UI.SIZE
 }
 
 "#dettaglioServizi": {
