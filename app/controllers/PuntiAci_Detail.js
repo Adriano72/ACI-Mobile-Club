@@ -12,7 +12,7 @@ var doSendEmail = commons.doSendEmail;
 
 //inizializzazioni comuni della Window
 commons.initWindow($.win, args.titolo, args.headerImg, [{
-    icon: OS_IOS ? "/images/ic_action_gps.png" : "/images/x_menu_gps_blu.png",
+    icon: OS_IOS ? "/images/ic_action_gps.png" : "/images/ic_action_gps.png",
     onClick: function() {
         console.log('	open nav', $.detailModel);
         var location = $.detailModel.get('address').location;
