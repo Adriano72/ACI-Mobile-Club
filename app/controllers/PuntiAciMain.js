@@ -1,34 +1,14 @@
 var args = arguments[0] || {};
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
+var headerText = "Punti di servizio ACI";
+var headerImg = "/images/ic_action_puntatore.png";
 
-function doopen(evt) {
+//inizializzazioni comuni della Window
+require('commons').initWindow($.win, headerText, headerImg);
 
-    $.banner.start();
 
-    if (OS_ANDROID) {
 
-        init1();
-
-    } else {
-        //$.windowtitle.text = winTitle;
-    }
-    //updateScreen();
-}
-
-function init1() {
-    abx.displayHomeAsUp = true;
-    abx.title = "Punti di servizio ACI";
-    abx.titleFont = "ACI Type Regular.otf";
-    abx.titleColor = Alloy.Globals.palette.blu;
-    _.defer(init2);
-}
-
-function init2() {
-    $.win.activity.invalidateOptionsMenu();
-}
+$.banner.start();
 
 
 //popolo la tabella dei serivizi

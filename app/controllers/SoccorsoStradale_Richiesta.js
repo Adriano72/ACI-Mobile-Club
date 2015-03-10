@@ -150,11 +150,11 @@ function loadMap() {
     }
 
     var t;
-    $.mapview.addEventListener('regionchanged', function(e) {
+    /*$.mapview.addEventListener('regionchanged', function(e) {
 
         clearTimeout(t)
-        setTimeout(init4, 2)
-    });
+        setTimeout(loadMap, 2)
+    }); */
 }
 
 

@@ -139,9 +139,11 @@ exports.initWindow = function(win, title, icon, menuItems) {
 
 
             //aggiunge il rightnavbutton
-            var item = menuItems[0];
-            var rightNavButton = createMenuItem(item);
-            win.setRightNavButton(rightNavButton);
+            if (menuItems && menuItems.length) {
+                var item = menuItems[0];
+                var rightNavButton = createMenuItem(item);
+                win.setRightNavButton(rightNavButton);
+            }
         }
 
     });

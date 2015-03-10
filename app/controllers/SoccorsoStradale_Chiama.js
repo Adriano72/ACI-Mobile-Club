@@ -11,10 +11,6 @@ var headerImg = "/images/ic_action_home_assistenza_blu.png";
 commons.initWindow($.win, headerText, headerImg);
 
 
-//carica i dati
-loadData();
-
-
 
 /**
  * Apre il telefono per chiamare il numero verde
