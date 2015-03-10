@@ -23,7 +23,7 @@ var doSendEmail = commons.doSendEmail;
 //inizializzazioni comuni della Window
 commons.initWindow($.win, itemData.text, itemData.img, [{
     icon: "/images/ic_action_pin.png",
-    onClick: _(commons.openMapWindow).partial(collection, itemData.long_name, itemData.img, itemData.pin)
+    onClick: _(commons.openMapWindow).partial(collection, itemData.text, itemData.img, itemData.pin)
 }]);
 
 //carica i dati

@@ -16,29 +16,6 @@
 	exitOnClose: false
 }
 
-".titleControl[platform=ios]": {
-	//backgroundImage: "logoDormireMangiare.png",
-	width: Ti.UI.SIZE,
-	height: 24,
-	layout: "horizontal",
-}
-
-".rightNavImg[platform=ios]": {
-	image: "ico_altro_blu.png",
-	height: 20
-}
-
-"MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
-
-"#menu": {
-	icon: "/images/ic_action_puntatore.png"
-}
-
-"#mn_settings": {
-	icon: "/images/ico_altro_blu.png"
-}
 
 "#map": {
   userLocation: true,

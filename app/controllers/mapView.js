@@ -12,31 +12,18 @@ var centerOnUser = args.centerOnUser;
 
 var default_delta = 0.25;
 
-Ti.API.info("TITOLO: " + args.titolo);
+console.log('mapview', args);
+var headerText = args.titolo; //"Assistenza";
+var headerImg = args.homeIcon; //"/images/ic_action_home_assistenza_blu.png";
 
-//var p_collection = Alloy.createCollection("p_collection", Alloy.Collections.dormireMangiare);
+//inizializzazioni comuni della Window
+require('commons').initWindow($.win, headerText, headerImg);
 
-//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
+
+
 
 function loadData() {
-    //Alloy.Collections.automobileClub.fetch();
-    if (OS_ANDROID) {
-        //abx.homeAsUpIcon = "/ico_dormiremangiare_blu.png";
-        abx.displayHomeAsUp = true;
-        abx.title = args.titolo;
-        abx.titleFont = "ACI Type Regular.otf";
-        abx.titleColor = Alloy.Globals.palette.blu;
-
-        //actionBarHelper.setIcon('/drawericonw@2x.png');
-
-    } else {
-        $.titleLabel.text = args.titolo;
-        $.titleIcon.image = args.homeIcon;
-    }
-
+   
     _.defer(centerMap);
 
     //updateUI();
