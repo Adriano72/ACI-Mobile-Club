@@ -82,14 +82,16 @@ function dataTransform(model) {
 };
 
 function openDetail(e) {
-    var selectedConv = Alloy.Collections.tempCollection.getByCid(e.rowData.modelId);
+    if (e.rowData) {
+        var selectedConv = Alloy.Collections.tempCollection.getByCid(e.rowData.modelId);
 
-    var dettConvenzione = Alloy.createController('PuntiAci_Detail', {
-        data: selectedConv,
-        titolo: itemData.text,
-        headerImg: itemData.img
-    }).getView();
-    Alloy.Globals.navMenu.openWindow(dettConvenzione);
+        var dettConvenzione = Alloy.createController('PuntiAci_Detail', {
+            data: selectedConv,
+            titolo: itemData.text,
+            headerImg: itemData.img
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(dettConvenzione);
+    }
 }
 
 

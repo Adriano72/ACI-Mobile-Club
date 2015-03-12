@@ -76,14 +76,16 @@ function dataTransform(model) {
 };
 
 function dettaglioConvenzione(e) {
-    var selectedConv = Alloy.Collections.tempCollection.getByCid(e.rowData.modelId);
+    if (e.rowData) {
+        var selectedConv = Alloy.Collections.tempCollection.getByCid(e.rowData.modelId);
 
-    var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-        data: selectedConv,
-        titolo: itemData.long_name,
-        headerImg: itemData.img
-    }).getView();
-    Alloy.Globals.navMenu.openWindow(dettConvenzione);
+        var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+            data: selectedConv,
+            titolo: itemData.long_name,
+            headerImg: itemData.img
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(dettConvenzione);
+    }
 }
 
 
