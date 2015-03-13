@@ -137,11 +137,14 @@ exports.create = function(options) {
         function(e) {
             //Ti.API.info("**** SCROLL *****");
             if (currentPage != e.currentPage && options.navigation) {
-                if (navigationPageControls[currentPage]) {
-                    navigationPageControls[currentPage].backgroundColor = options.navigation.color;
+                var curr = navigationPageControls[currentPage];
+                var next = navigationPageControls[e.currentPage];
+                if (curr) {
+                    curr.backgroundColor = options.navigation.color;
                 }
-                if (navigationPageControls[e.currentPage]) {
-                    navigationPageControls[e.currentPage].backgroundColor = options.navigation.selectedColor;
+
+                if (next) {
+                    next.backgroundColor = options.navigation.selectedColor;
                 }
             }
 
@@ -232,4 +235,3 @@ function createNavPage(color, borderColor, showBorder, style) {
         borderRadius: (style === NAV_STYLE.CIRCLE) ? 4 : 0
     });
 }
-f
