@@ -1,0 +1,11 @@
+<Alloy>
+	<Window id="win" class="container">
+		<WebView url="/welcome.html" ></WebView>
+		<View class="separator"></View>
+		<View id="buttonWrapper">
+			<Button id="btCancel" onClick="cancel" >CHIUDI</Button>
+			<View class="v-separator"></View>
+			<Button id="btLogin" onClick="login">ACCEDI</Button>
+		</View>
+	</Window>
+</Alloy>

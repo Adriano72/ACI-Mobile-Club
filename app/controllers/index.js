@@ -1,6 +1,7 @@
 var ViewScrollr = require("ViewScrollr");
 var settingsMenu = require('settingsMenu');
 var user = require('user');
+var env = require('environment');
 
 var cacheDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, "/");
 cacheDir.deleteDirectory(true);
@@ -9,7 +10,18 @@ cacheDir.deleteDirectory(true);
 //http://underscorejs.org/#throttle 
 var THROTTLE_TIME = 5000;
 
-zapImageCache = function() {
+
+/**
+ * da eseguire solo al primo avvio dell'app
+ * @return {[type]} [description]
+ */
+function onFirstRun() {
+    var w = Alloy.createController('welcome').getView();
+    w.open();
+}
+
+
+var zapImageCache = function() {
     var appDataDir,
         cacheDir,
         dir,
@@ -49,8 +61,13 @@ function doopen(evt) {
     } else {
         //$.windowtitle.text = winTitle;
     }
-    require('locationServices').getUserLocation(loadData);
-    
+
+    Alloy.Globals.loading.show('Stiamo calcolando la posizione');
+    require('locationServices').getUserLocation(function() {
+        Alloy.Globals.loading.hide();
+        loadData();
+    });
+
 }
 
 var view1 = Ti.UI.createImageView({
@@ -184,7 +201,7 @@ var openVantaggiSoci = _(function(e) {
  * Funzione eseguita al caricamento della window
  * @param  {Object} e argomenti dell'evento click sul pulsante
  */
-function loadData(e) {
+function loadData() {
 
     //eseguo un primo caricamento dei banner, in modo da avere sempre qualcosa da mostrare
     Alloy.Collections.banner.fetchRandom(function() {
@@ -195,3 +212,10 @@ function loadData(e) {
 }
 
 $.navWin.open();
+
+
+if (env.isFirstRun) {
+
+    onFirstRun();
+    env.isFirstRun = false;
+}

@@ -1,0 +1,50 @@
+".container[platform=ios]": {
+	barColor: Alloy.Globals.palette.bianco_sporco,
+	backButtonTitle: "",
+	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
+	orientationModes: [Ti.UI.PORTRAIT],
+	top: 20
+	
+}
+
+// container for Android
+".container[platform=android]": {
+	top:20,
+	tintColor: "red",
+	orientationModes: [Ti.UI.PORTRAIT],
+	exitOnClose: false
+}
+
+
+
+
+".container" : {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+  layout: "vertical"
+}
+
+"#btCancel":{
+	width: "49%",
+	left: 0,
+	backgroundColor: "transparent",
+}
+
+"#btLogin":{
+	width: "49%",
+	right: 0,
+	backgroundColor: "transparent",
+}
+
+"#buttonWrapper":{
+	height: "10%",
+}
+	
+"WebView":
+{
+	width: Ti.UI.SIZE,
+	height: "90%",
+}
+
+"WebView[platform=android]":{
+	enableZoomControls: false
+}

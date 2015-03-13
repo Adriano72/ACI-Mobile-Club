@@ -1,0 +1,107 @@
+<html>
+  <head>
+  	<meta name="viewport" content="width=device-width" />
+  	<style type="text/css">
+  		body{
+  			margin: 0 auto;
+  		}
+
+  		@media only screen and (min-device-width : 350px) { 
+				body{
+					font-size: 20px;
+				}
+				p, li{
+					font-size: 0.8em;
+				}
+			}
+
+		@media only screen and (max-device-width : 349px) { 
+				body{
+					font-size: 16px;
+				}
+				p, li{
+					font-size: 0.5em;
+				}
+			}
+
+  		article {
+  			width: 90%;
+  			margin: 0.7em auto;
+  		}
+  		h1, h2 {
+  			text-align: center;
+  			margin: 0;
+  			color: #003772;
+  		}
+  		h1 {
+  			font-size: 1.6em;
+  			line-height: 1.2em;
+  		}
+
+  		h2 {
+  			font-size: 1.2em;
+  			line-height: 1em;
+  			margin-top: 10px;
+  		}
+  		#logo{
+  			display: block;
+
+  			width: 50%;
+  			margin: 0 auto;
+
+  		}
+
+  		strong {
+  			color: #003772;
+  		}
+
+  		ul {
+  			list-style: none;
+  			width: 96%;
+  			padding: 0 2%;
+  			margin: 0;
+
+  		}
+
+  		li:before{
+  			content: '✓';
+  			color: #003772;
+  			font-size: 1.2em;
+  		}
+  		li{
+  		}
+  		p{
+  			margin: 0.5em 0 0;
+  		}
+
+  		p:first-child{
+  			background-color: red;
+  			margin-top: 1.2em;
+  		}
+
+  		
+  	</style>
+    </head>
+  <body>
+  	<article>
+  		<img id="logo" src="./logoAci2.png" />
+	    <h2>Benvenuto nell’APP</h2>
+	    <h1>ACI Mobile Club!</h1>
+	    <p>ACI ti offre servizi e informazioni per la tua mobilità:</p>
+	    <ul>
+	    	<li>soccorso stradale con geolocalizzazione del veicolo</li>	
+	    	<li>tessera associativa virtuale</li>	
+	    	<li>esercizi convenzionati</li>	
+	    	<li>punti di servizio ACI</li>	
+	    </ul>
+	    <p>Se sei <strong>SOCIO</strong> clicca su <strong>ACCEDI</strong>, inserisci i tuoi dati e registrati per essere riconosciuto. Tutte le informazioni personali sono trattate conformemente alle correnti norme sulla privacy.</p>
+    </article>
+
+  	<script>
+  /*	setTimeout(function(){
+  	alert(Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
+
+  }, 1500); */
+  	</script>
+  </body>
+</html>
