@@ -70,7 +70,9 @@ function dataTransform(model) {
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
     attrs.email = attrs.contacts.email[0];
-    attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+    if (attrs.agreement_id.images) {
+        attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+    }
     attrs.id = model.cid;
     return attrs;
 };
