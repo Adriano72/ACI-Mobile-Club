@@ -54,7 +54,7 @@ function init2() {
 
 function init3() {
     //Lazy load delle province
-    if (true || Alloy.Collections.province.length == 0) {
+    if (Alloy.Collections.province.length == 0) {
         Alloy.Globals.loading.show('Caricamento');
         net.getListaProvince(function(result) {
             Alloy.Collections.province.reset(result);
@@ -65,6 +65,7 @@ function init3() {
         });
     } else {
         //init5();
+        updateUI();
     }
 
 
@@ -124,8 +125,8 @@ function appendRow(r) {
 
 function dataTransform(model) {
     var attrs = model.toJSON();
-
-    attrs.id = model.cid;
+    attrs.mongoId = attrs._id;
+    attrs.id = model.cid;   
     console.log('attrs', attrs);
     return attrs;
 };
@@ -138,7 +139,7 @@ function select(e) {
     console.log("e", e);
 
     var selected = {
-        id: e.rowData.modelId,
+        id: e.rowData.mongoId,
         shortName: e.rowData.shortName,
         longName: e.rowData.longName
     };
@@ -155,10 +156,7 @@ function select(e) {
 
 
         //imposto la preferenza provincia
-        settings.provinciaDiRiferimento = {
-            shortName: selected.shortName,
-            longName: selected.longName
-        }
+        settings.provinciaDiRiferimento = selected;
 
 
         // highlight(selected.shortName, (prev ? prev.shortName : undefined));

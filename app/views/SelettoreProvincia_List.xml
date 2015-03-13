@@ -19,7 +19,7 @@
 			
 			<SearchBar id="searchBar"/>
 
-				<TableViewRow id="riga" class="row simpleRowText PTSansBold" modelId="{id}" title="{longName}" longName="{longName}" shortName="{shortName}" >
+				<TableViewRow id="riga" class="row simpleRowText PTSansBold" modelId="{id}" mongoId="{mongoId}" title="{longName}" longName="{longName}" shortName="{shortName}" >
 					<View class="rowContainer">
 						<Label class="simpleRowText PTSansRegular" platform="android">{longName}</Label>
 					</View>

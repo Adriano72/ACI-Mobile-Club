@@ -16,7 +16,7 @@ function useLocationParams(params) {
     if (!settings.ricercaPerProssimita) {
 
         var provincia = settings.provinciaDiRiferimento;
-        params.query['address.province.shortName'] = provincia.shortName;
+        params.query['address.province._id'] = provincia.id;
         params.limit = 0;
     } else {
         /*params.query["address.location"] = {
