@@ -276,7 +276,7 @@ function renderConferma() {
 
 
 function formatOrario(d) {
-    return [utility.padLeft(now.getHours(), '0', 2), utility.padLeft(now.getMinutes(), '0', 2)].join(':');
+    return [utility.padLeft(d.getHours(), '0', 2), utility.padLeft(d.getMinutes(), '0', 2)].join(':');
 }
 
 /**
