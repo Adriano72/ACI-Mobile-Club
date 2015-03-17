@@ -41,8 +41,10 @@ function showRandom() {
             console.log('banner.agreement_id.images ', banner.agreement_id.images);
 
             var img = banner.agreement_id.images.banner;
-            console.log('img', img);
-            $.bannerImage.image = Alloy.Globals.bannerBaseURL + img;
+            var url = Alloy.Globals.bannerBaseURL + img;
+            console.log('img', url);
+
+            $.bannerImage.image = encodeURI(url);
         }
     }
 }
