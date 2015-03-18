@@ -168,7 +168,7 @@ exports.openNavigation = function(e) {
     var lon = e.lon;
 
     //Alloy.Globals.loading.show('stiamo calcolando la posizione');
-    require('locationServices').getUserLocation(function(userLoc) {
+    require('locationServices').getUserLocation(function(err, userLoc) {
         //Alloy.Globals.loading.hide();
 
         var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';

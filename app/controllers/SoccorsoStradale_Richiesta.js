@@ -84,7 +84,7 @@ function loadData() {
     //
     $.mapview.addEventListener('complete', function() {
         //la posizione iniziale è quella dell'utente
-        locationServices.getUserLocation(function(coo) {
+        locationServices.getUserLocation(function(err, coo) {
             $.mapview.setRegion({
                 latitude: coo.latitude,
                 longitude: coo.longitude,

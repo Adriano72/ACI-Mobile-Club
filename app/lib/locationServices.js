@@ -4,6 +4,18 @@
  */
 
 
+/**
+ * Numero di tentativi di recuperare la posizione attuale, in caso di fallimento
+ * @type {Number}
+ */
+var MAX_TRIES = 3;
+/**
+ * Millisecondi tra un tentativo e un altro
+ * @type {Number}
+ */
+var TRIES_DELAY = 100;
+
+
 exports.init = function() {
     /* var locationAdded = false;
     var handleLocation = function(e) {
@@ -43,7 +55,7 @@ exports.init = function() {
         alert('Please enable location services');
     } */
 
-    exports.getUserLocation(function(p) {
+    exports.getUserLocation(function(err, p) {
         //position salvata
         console.log('position salvata', p);
     });
@@ -62,16 +74,32 @@ exports.getUserLocation = function(_callback) {
     if (!fake) {
 
         if (Ti.Geolocation.locationServicesEnabled) {
+
             Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
             Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
             Ti.Geolocation.distanceFilter = 10;
             Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
 
-            Titanium.Geolocation.getCurrentPosition(function(e) {
+            var tries = 0;
+
+            /**
+             * callback di risposta alla richiesta di posizione
+             * @param  {[type]} e [description]
+             */
+            var onPosition = function(e) {
                 if (e.error) {
                     console.log('getCurrentPosition  error', e);
-                    Alloy.Globals.loading.hide();
-                    alert("Servizi di localizzazione non abilitati sul dispositivo");
+
+                    if (tries < MAX_TRIES) {
+                        //ritento
+                        tries++;
+                        setTimeout(getCurrentPosition, TRIES_DELAY);
+                    } else {
+                        //genero l'errore
+                        Alloy.Globals.loading.hide();
+
+                        _callback(e);
+                    }
                 } else {
 
                     var position = {
@@ -82,10 +110,17 @@ exports.getUserLocation = function(_callback) {
                     Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
                     Alloy.Globals.userPosition = position;
 
-                    _callback(position);
+                    _callback(null, position);
 
                 }
-            });
+            };
+
+            var getCurrentPosition = function() {
+                Titanium.Geolocation.getCurrentPosition(onPosition);
+            };
+
+
+            getCurrentPosition();
 
         } else {
             Alloy.Globals.loading.hide();

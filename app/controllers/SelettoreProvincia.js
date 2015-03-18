@@ -58,7 +58,7 @@ function select(i) {
 
         //Per ora (19/2/15) gestiamo il refresh della posizione tramite questo evento
         // in futuro andrà tolta
-        require('locationServices').getUserLocation(function(p) {
+        require('locationServices').getUserLocation(function(err, p) {
             //do nothing
         });
 

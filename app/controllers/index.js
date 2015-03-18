@@ -63,8 +63,11 @@ function doopen(evt) {
     }
 
     Alloy.Globals.loading.show('Stiamo calcolando la posizione');
-    require('locationServices').getUserLocation(function() {
+    require('locationServices').getUserLocation(function(err, pos) {
         Alloy.Globals.loading.hide();
+        if(err){
+            //gestire l'errore
+        }
         loadData();
     });
 

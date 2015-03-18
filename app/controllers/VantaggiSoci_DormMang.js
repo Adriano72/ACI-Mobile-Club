@@ -65,7 +65,7 @@ function dettaglioConvenzione(e) {
 
 function openNavigation(e) {
 
-    require('locationServices').getUserLocation(function(userLoc) {
+    require('locationServices').getUserLocation(function(err, userLoc) {
         var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';
         Ti.API.info("NAVIGATION DATA: " + e.source.lat + " " + e.source.lon + " " + userLoc.latitude + " " + userLoc.longitude);
         Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + ',' + userLoc.longitude + '&daddr=' + e.source.lat + ',' + e.source.lon);
