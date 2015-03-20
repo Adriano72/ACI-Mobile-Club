@@ -45,7 +45,7 @@
 				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioOrari" text="{$.detailModel.orari}"/>
 			</View>
 			<View class="separator"/>
-			<View id="rowChiama" class="rowSingleContainer" onSingletap="doPhoneCall">
+			<View id="rowChiama" class="rowSingleContainer" telNumber="{$.detailModel.telefono}" onSingletap="doPhoneCall">
 				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
 				<Label class="simpleRowText PTSansRegular" id="chiamaText" text="Chiama"/>
 				<ImageView class="hasDetail"/>
