@@ -36,7 +36,7 @@
 				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioServizi" text="{$.detailModel.servizi}"/>
 			</View>
 			<View class="separator"/>
-			<View id="rowOrari" class="rowSingleContainer" onSingletap="toggleDettaglioOrari">
+			<View id="rowOrari" class="rowSingleContainer" onSingletap="toggleDettaglioOrari" visible="{$.detailModel.orariVisible}" height="{$.detailModel.orariHeight}">
 				<ImageView class="simpleRowLeftIcon" id="orariIcon"/>
 				<Label class="simpleRowText PTSansRegular" id="orariText" text="Orario di servizio"/>
 				<ImageView class="hasDetail"/>
@@ -45,13 +45,13 @@
 				<Label class="PTSansRegular testoDettagli" id="txt_dettaglioOrari" text="{$.detailModel.orari}"/>
 			</View>
 			<View class="separator"/>
-			<View id="rowChiama" class="rowSingleContainer" telNumber="{$.detailModel.telefono}" onSingletap="doPhoneCall">
+			<View id="rowChiama" class="rowSingleContainer" telNumber="{$.detailModel.telefono}" onSingletap="doPhoneCall"  visible="{$.detailModel.telefonoVisible}" height="{$.detailModel.telefonoHeight}">
 				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
 				<Label class="simpleRowText PTSansRegular" id="chiamaText" text="Chiama"/>
 				<ImageView class="hasDetail"/>
 			</View>
 			<View class="separator"/>
-			<View id="rowEmail" class="rowSingleContainer" onSingletap="doSendEmail">
+			<View id="rowEmail" class="rowSingleContainer" email="{$.detailModel.email}" onSingletap="doSendEmail"  visible="{$.detailModel.emailVisible}" height="{$.detailModel.emailHeight}">
 				<ImageView class="simpleRowLeftIcon" id="emailIcon"/>
 				<Label class="simpleRowText PTSansRegular" id="emailText" text="Invia e-mail"/>
 				<ImageView class="hasDetail"/>

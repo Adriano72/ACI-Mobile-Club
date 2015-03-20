@@ -155,7 +155,7 @@
 }
 
 ".testoDettagli": {
-	color: Alloy.Globals.palette.grigio_scuro2q,
+	color: Alloy.Globals.palette.grigio_scuro,
 	width: "90%",
 	height: Ti.UI.SIZE
 }

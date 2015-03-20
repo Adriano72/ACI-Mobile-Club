@@ -32,12 +32,14 @@ exports.formattaOrari = function(obj) {
         });
         //Ti.API.info("DAY SCHEDULE: " + JSON.stringify(obj));
 
-        if (!_.isUndefined(daySchedule[0])) {
-            /*
+        var isEmpty = _.isUndefined(daySchedule[0]) || _.isEmpty(daySchedule[0].from) || _.isEmpty(daySchedule[0].to);
+
+        if (!isEmpty) {
+            
 			 Ti.API.info("DAY SCHEDULE: " + JSON.stringify(daySchedule));
 			 Ti.API.info("DAY SCHEDULE FROM: " + daySchedule[0].from);
 			 Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);
-			 */
+			 
 
             switch (day) {
 

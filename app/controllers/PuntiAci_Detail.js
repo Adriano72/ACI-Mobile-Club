@@ -42,6 +42,15 @@ function loadData() {
     modelGot.web = modelGot.contacts.web[0];
     modelGot.servizi = utility.formattaServizi(modelGot.services);
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
+
+    //porcate layout
+    modelGot.orariVisible = Boolean(modelGot.orari);
+    modelGot.telefonoVisible = Boolean(modelGot.telefono);
+    modelGot.emailVisible = Boolean(modelGot.email);
+    modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
+    modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
+    modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
+
     $.detailModel.set(modelGot);
 }
 
