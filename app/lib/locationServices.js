@@ -135,7 +135,7 @@ exports.getUserLocation = function(_callback) {
         Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
         Alloy.Globals.userPosition = position;
 
-        _callback(position);
+        _callback(null, position);
     }
 
     /*
