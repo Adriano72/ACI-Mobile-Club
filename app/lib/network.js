@@ -560,7 +560,9 @@ function getAciGeoHeaders() {
         // 'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='
         'x-acigeo-appid': 'UA-57956970-2',
         'x-acigeo-uuid': require('environment').sessionUUID,
-        'x-acigeo-devid': Ti.Platform.id
+        'x-acigeo-devid': Ti.Platform.id,
+        'x-acigeo-appver': Ti.App.version,
+        'x-acigeo-devos': OS_IOS ? 'ios' : 'android'
     };
     console.log('headers', h);
     return h;
