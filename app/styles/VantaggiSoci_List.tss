@@ -1,46 +1,3 @@
-".container[platform=ios]": {
-	backgroundColor: "#fff",
-	barColor: Alloy.Globals.palette.bianco_sporco,
-	backButtonTitle: "",
-	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT],
-	
-}
-
-// container for Android
-".container[platform=android]": {
-	backgroundColor: "#fff",
-	top:20,
-	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
-	exitOnClose: false
-}
-
-".titleControl[platform=ios]": {
-	//backgroundImage: "logoAltriServizi.png",
-	width: Ti.UI.SIZE,
-	height: 21,
-	layout: "horizontal"
-}
-
-".rightNavImg[platform=ios]": {
-	image: "images/ic_action_pin.png",
-	height: 25
-}
-
-"MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
-
-"#menu": {
-	icon: "/images/ic_action_altri_servizi.png"
-}
-
-"#mn_settings": {
-	
-	icon: "images/ic_action_pin.png",
-	title: "Mappa"
-}
 
 
 ".table[platform=ios]":{
@@ -68,7 +25,7 @@
 }
 
 ".row[platform=ios]":{
-	height: "85",
+	height: 85,
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
@@ -103,25 +60,23 @@
 }
 
 ".simpleRowText": {
-	height: 20,
+	height: Ti.UI.SIZE,
 	width: 160,
-	left: 10,
-	top: 0,
-	color:Alloy.Globals.palette.blu
+	left: 5,
+	top: 0
+}
+".simpleRowText[platform=android]":{
+	wordWrap: false
+}
+".simpleRowText[platform=ios]":{
+	minimumFontSize: 14
 }
 
-".indirizzo": {
-	font: {
-        fontSize: '8dp'
-    },
-    color: "#8A9092"	
-}
+
 
 ".indicazioniStradali": {
-	left: 10,
-	height: Ti.UI.SIZE,
-	text: "Indicazioni stradali",
-	color: "#006AA3"
+	left: 5,
+	height: Ti.UI.SIZE
 }
 
 ".bt_chiama": {
@@ -142,7 +97,6 @@
 ".rightContainer": {
 	left: 5,
 	width: "19%",
-	layout: "vertical",
 	top: 5
 }
 
@@ -152,8 +106,14 @@
 }
 
 ".dettagli": {
-	left: 10,
-	height: Ti.UI.SIZE,
-	text: "Dettagli>",
-	color: "#006AA3"
+	left: 5,
+	bottom: 0,
+	height: Ti.UI.SIZE
+}
+
+
+"#distanza": {
+	left: 5,
+	top: 0,
+	height: Ti.UI.SIZE
 }

@@ -14,7 +14,7 @@
 
 		</Menu> -->
 		
-		<TableView id="puntiAci_Table" class="table" onSingletap="dettaglioConvenzione" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" >
+		<TableView id="puntiAci_Table" class="table" onSingletap="dettaglioConvenzione" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" visible="false" >
 			<SearchBar id="searchBar"/>
 			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
 				<View class="blockContainer">
@@ -22,21 +22,24 @@
 						<ImageView class="logoConvenzione" image="{immagine}"/>
 					</View>
 					<View class="centerContainer">
-						<Label class="simpleRowText PTSansBold" id="nome" text="{name}"/>
-						<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo}"/>
-						<Label class="simpleRowText PTSansRegular indirizzo" text="{indirizzo2}"/>
-						<Label class="indicazioniStradali PTSansBold" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation"/>
+						<Label class="simpleRowText h2" id="nome" text="{name}"/>
+						<Label class="simpleRowText h4" text="{indirizzo}"/>
+						<Label class="simpleRowText h4" text="{indirizzo2}"/>
+						<Label class="indicazioniStradali link" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation">Indicazioni stradali ›</Label>
 
 					</View>
 					<View class="rightContainer">
-						<Label class="simpleRowText PTSansBold" id="distanza" text="{distance}"/>
-						<Label class="simpleRowText PTSansRegular" id="sconto"/>
-						<ImageView class="preferiti" id="preferiti"/>
-						<Label class="dettagli PTSansBold"/>
+						<Label class="simpleRowText h2" id="distanza" text="{distance}"/>
+						<!-- <Label class="simpleRowText h2" id="sconto"/>
+						<ImageView class="preferiti" id="preferiti"/> -->
+						<Label class="dettagli link">Dettagli ›</Label>
 
 					</View>
 				</View>
 			</TableViewRow>
 		</TableView>
+
+		<Require src="emptyTableView" id="emptyView"></Require>
+
 	</Window>
 </Alloy>

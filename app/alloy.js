@@ -84,14 +84,25 @@ Alloy.Collections.instance("altriServizi");
 //palette di colori da utilizzare nell'app
 Alloy.Globals.palette = {
     blu: "#003772",
-    celeste: "#007aff",
-    grigio_chiaro: "#cccccc", // (separatori orizzontali, freccia menu
+    celeste: "#006cb2",
+    grigio: "#d1d0d5",
+    grigio_chiaro: "#f1f0f5",
     grigio_scuro: "#888888",
     rosso: "#e32b00",
-    bianco_sporco: "#f2f2f2", //header e 
+    bianco_sporco: "#f9f9f9", //header e 
     bianco: "#ffffff"
 };
 
+//font
+Alloy.Globals.font = {
+	ACIType_Bold : OS_IOS ? 'ACIType-Bold' : 'ACI Type Bold',
+	ACIType : OS_IOS ? 'ACIType' : 'ACI Type Regular',
+	PTSans_NarrowBold : OS_IOS ? 'PTSans-NarrowBold' : 'PT_Sans-Narrow-Web-Bold',
+	PTSans_Narrow : OS_IOS ? 'PTSans-Narrow' : 'PT_Sans-Narrow-Web-Regular',
+	PTSans_Bold : OS_IOS ? 'PTSans-Bold' : 'PT_Sans-Web-Bold',
+	PTSans : OS_IOS ? 'PTSans' : 'PT_Sans-Web-Regular'
+
+};
 
 
 //inizializza i servizi di location

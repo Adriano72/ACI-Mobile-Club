@@ -44,6 +44,10 @@ function loadData() {
     Alloy.Globals.loading.show('Stiamo cercando');
     try {
         collection.fetchIfChanged(function(err, cached) {
+            var isEmpty = Boolean(collection.length);
+            $.puntiAci_Table.visible = isEmpty;
+            $.emptyView.getView().visible = !isEmpty;
+
             Alloy.Collections.tempCollection.reset(collection.models);
             updateUI();
             Alloy.Globals.loading.hide();

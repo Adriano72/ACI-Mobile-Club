@@ -13,4 +13,8 @@
 
 
 "#text":{
+	font:{
+		fontFamily: Alloy.Globals.font.ACIType
+	},
+	color: Alloy.Globals.palette.blu
 }

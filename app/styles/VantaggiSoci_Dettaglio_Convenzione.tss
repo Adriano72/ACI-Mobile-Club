@@ -1,103 +1,49 @@
-// container for iOS
-".container[platform=ios]": {
-	backgroundColor: Alloy.Globals.palette.bianco_sporco,
-	backButtonTitle: "",
-	barColor: Alloy.Globals.palette.bianco_sporco,
-	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT],
-	
-}
-
-// container for Android
-".container[platform=android]": {
-	backgroundColor: "#fff",
-	top:20,
-	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
-	exitOnClose: false
-}
-
-".titleControl[platform=ios]": {
-	//backgroundImage: "logoDelegazioni.png",
-	width: Ti.UI.SIZE,
-	height: 24,
-	layout: "horizontal"
-}
-
-".rightNavImg[platform=ios]": {
-	image: "x_menu_gps_blu.png",
-	height: 15
-}
 
 
-"MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
 
-"#menu": {
-	icon: "/images/ic_action_puntatore.png"
-}
-
-"#mn_navigazione": {
-	icon: "/images/ic_action_gps.png"
-}
-
-".separator": {
-	width: Ti.UI.FILL,
-	height: 1,
-	backgroundColor: Alloy.Globals.palette.grigio_chiaro
-}
 
 ".scrollableContainer": {
 	width: Ti.UI.FILL,
 	layout: "vertical",
-	backgroundColor: "#fff"
+	backgroundColor:  Alloy.Globals.palette.bianco_sporco
 }
 
 ".iconContainer": {
-	left: 5,
-	top: 5,
+		//height: Ti.UI.SIZE,
 	height: 90
 }
 
 ".logoConvenzione": {
-	
+//	width: "100%",
 	height: 60
 }
 
 
 "#headerView": {
-	height: 50,
-	backgroundColor: "#FFFFFF",
+	height: 40,
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
 	top:0
 }
 
-"#headerText": {
-	color: Alloy.Globals.palette.blu
-}
 
 "#contattiView": {
-	height: 100,
-	backgroundColor: Alloy.Globals.palette.bianco_sporco,
-	top:0,
-	layout: "vertical"
+	height: Ti.UI.SIZE,
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro,
+	top:0
+}
+
+
+"#contattiViewInner": {
+	layout: "vertical",
+	height: Ti.UI.SIZE,
+	top:20,
+	bottom: 20
 }
 
 ".contatti": {
-	top: 0,
-	color:Alloy.Globals.palette.grigio_scuro,
-	font: {
-        
-        fontSize: '10dp'
-    }
+	top: 0
 }
 
-".contatti[platform:android]": {
-	font: {
-        
-        fontSize: 14
-    }
-}
 
 
 ".first": {
@@ -109,6 +55,9 @@
 	top:0
 }
 
+
+
+
 ".simpleRowLeftIcon": {
 	touchEnabled: false,
 	left: 10,
@@ -118,7 +67,7 @@
 
 ".simpleRowText": {
 	touchEnabled: false,
-	left: 50,
+	left: 40,
 	color:Alloy.Globals.palette.blu,
 	touchEnabled: false
 }
@@ -135,7 +84,7 @@
 }
 
 "#chiamaIcon": {
-	image: "/x_telefono_blu.png"
+	image: "/images/ic_action_phone_blu.png"
 }
 
 ".hasDetail[platform=android]": {
@@ -160,18 +109,7 @@
 	color: Alloy.Globals.palette.grigio_scuro
 }
 
-"#dettaglioDescrizione": {
+".textBox":{
 	height: 0,
-	backgroundColor:  Alloy.Globals.palette.bianco_sporco
+	backgroundColor:  Alloy.Globals.palette.grigio_chiaro
 }
-
-"#dettaglioVantaggio": {
-	height: 0,
-	backgroundColor: Alloy.Globals.palette.bianco_sporco
-}
-
-"#dettaglioComeVantaggio": {
-	height: 0,
-	backgroundColor: Alloy.Globals.palette.bianco_sporco
-}
-

@@ -14,7 +14,7 @@
 
 		</Menu> -->
 		
-		<TableView id="puntiAci_Table" class="table" onSingletap="openDetail" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" >
+		<TableView id="puntiAci_Table" class="table" onSingletap="openDetail" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" visible="false" >
 			<SearchBar id="searchBar"/>
 			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
 				<View class="rowContainer">
@@ -38,6 +38,7 @@
 			</TableViewRow>
 		</TableView>
 
+		<Require src="emptyTableView" id="emptyView"></Require>
 
 
 	</Window>

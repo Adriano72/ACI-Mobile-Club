@@ -110,10 +110,6 @@ exports.initWindow = function(win, title, icon, menuItems) {
                     image: icon
                 },
                 "#text": {
-                    font: {
-                        fontFamily: font
-                    },
-                    color: color,
                     text: title
                 }
             });

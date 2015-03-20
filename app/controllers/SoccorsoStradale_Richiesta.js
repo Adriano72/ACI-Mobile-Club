@@ -85,13 +85,19 @@ function loadData() {
     $.mapview.addEventListener('complete', function() {
         //la posizione iniziale è quella dell'utente
         locationServices.getUserLocation(function(err, coo) {
-            $.mapview.setRegion({
-                latitude: coo.latitude,
-                longitude: coo.longitude,
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01,
-                zoom: 14
-            });
+            if (err) {
+                console.log('getUserLocation err', err);
+            } else {
+                console.log('getUserLocation coo', coo);
+
+                $.mapview.setRegion({
+                    latitude: coo.latitude,
+                    longitude: coo.longitude,
+                    latitudeDelta: 0.01,
+                    longitudeDelta: 0.01,
+                    zoom: 14
+                });
+            }
         });
     });
 
@@ -123,19 +129,23 @@ function loadData() {
 
 function loadMap() {
 
-
+    console.log('loadMap');
     var region = $.mapview.getRegion();
     console.log('region', region);
 
-    if (region) {
-        locationServices.getAddress(region.latitude, region.longitude, function(err, places) {
+    if (true || region) {
+        var coo = locationServices.getLastLocation();
+        locationServices.getAddress(coo.latitude, coo.longitude, function(err, places) {
 
 
             //   console.log('err', err);
             //   console.log('places', places);
             if (err) {
                 //todo: gestire errore reverse geocodinge
+                console.log('getAddress err', err);
             } else {
+                console.log('getAddress places', places);
+
                 var place = places[0];
                 var address = [place.street, place.zipcode, place.city].join(', ');
                 //     console.log('address', address);
@@ -145,7 +155,7 @@ function loadMap() {
         });
     } else {
         //nel caso in cui la mappa non sia pronta
-       
+
 
     }
 
@@ -314,7 +324,7 @@ function validate(cb) {
 
 }
 
-function cavasClick(e){
+function cavasClick(e) {
     console.log(e);
     if (e.source !== $.telefono) {
         $.telefono.blur();
