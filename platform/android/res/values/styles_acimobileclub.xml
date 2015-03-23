@@ -29,7 +29,7 @@
         <item name="actionModeBackground">@drawable/cab_background_top_acimobileclub</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_acimobileclub</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Acimobileclub</item>
-
+        <item name="android:windowContentOverlay">@null</item>
         
     </style>
 
