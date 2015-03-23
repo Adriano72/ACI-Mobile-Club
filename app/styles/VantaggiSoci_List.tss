@@ -66,7 +66,8 @@
 	top: 0
 }
 ".simpleRowText[platform=android]":{
-	wordWrap: false
+	wordWrap: false,
+	ellipsize: true
 }
 ".simpleRowText[platform=ios]":{
 	minimumFontSize: 14
