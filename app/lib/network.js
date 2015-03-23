@@ -548,6 +548,53 @@ exports.getListaProvince = function(_callback) {
 }
 
 
+exports.registerApp = function(_callback){
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+
+        var json = JSON.parse(this.responseText);
+
+        Ti.API.info("RISPOSTA: " + json.message);
+
+        if (json.message == "200 OK") {
+            // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
+            _callback(json.result);
+
+        } else {
+            Alloy.Globals.loading.hide();
+            alert("Errore nella comunicazione col server.");
+        };
+
+    };
+
+    xhr.onerror = function(e) {
+        Alloy.Globals.loading.hide();
+        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+        console.log(e);
+    };
+
+
+
+
+
+    var url = Alloy.Globals.baseURL + '/common/clients/_register'
+    //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    xhr.open('PUT', url);
+
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
+
+
+    xhr.send();
+};
 
 
 /**
