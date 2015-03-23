@@ -61,7 +61,7 @@
 ".simpleRowLeftIcon": {
 	touchEnabled: false,
 	left: 10,
-	width: 20,
+	width: 22,
 	touchEnabled: false
 }
 
@@ -73,14 +73,14 @@
 }
 
 "#descrizioneIcon": {
-	image: "/x_descrizione_blu.png"
+	image: "/images/ic_action_descrizione_blu.png"
 }
 
 "#vantaggioIcon": {
-	image: "/x_vantaggi_blu.png"
+	image: "/images/ic_action_sconti_blu.png"
 }
 "#comeVantaggioIcon": {
-	image: "/images/ic_action_come_ottenere_vantaggi_blu.png"
+	image: "/images/ic_action_monete_blu.png"
 }
 
 "#chiamaIcon": {

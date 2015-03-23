@@ -85,7 +85,7 @@ function toggleDettaglioDescrizione(e) {
     if ($.dettaglioDescrizione.visible == true) {
 
         $.dettaglioDescrizione.visible = false;
-        $.descrizioneIcon.image = "/x_descrizione_blu.png";
+        $.descrizioneIcon.image = "/images/ic_action_descrizione_blu.png";
         $.descrizioneText.color = Alloy.Globals.palette.blu;
         $.rowDescrizione.backgroundColor = "#fff";
         $.dettaglioDescrizione.height = 0;
@@ -93,7 +93,7 @@ function toggleDettaglioDescrizione(e) {
     } else {
 
         $.dettaglioDescrizione.height = Ti.UI.SIZE;
-        $.descrizioneIcon.image = "/x_descrizione_bianco.png";
+        $.descrizioneIcon.image = "/images/ic_action_descrizione_bianco.png";
         $.descrizioneText.color = "#fff";
         $.rowDescrizione.backgroundColor = Alloy.Globals.palette.blu;
         $.dettaglioDescrizione.visible = true;
@@ -110,14 +110,14 @@ function toggleDettaglioVantaggio(e) {
 
     if ($.dettaglioVantaggio.visible == true) {
         $.dettaglioVantaggio.visible = false;
-        $.vantaggioIcon.image = "/x_vantaggi_blu.png";
+        $.vantaggioIcon.image = "/images/ic_action_sconti_blu.png";
         $.vantaggioText.color = Alloy.Globals.palette.blu;
         $.rowVantaggio.backgroundColor = "#fff";
         $.dettaglioVantaggio.height = 0;
 
     } else {
         $.dettaglioVantaggio.height = Ti.UI.SIZE;
-        $.vantaggioIcon.image = "/x_vantaggi_bianco.png";
+        $.vantaggioIcon.image = "/images/ic_action_sconti_bianco.png";
         $.vantaggioText.color = "#fff";
         $.rowVantaggio.backgroundColor = Alloy.Globals.palette.blu;
         $.dettaglioVantaggio.visible = true;
@@ -132,14 +132,14 @@ function toggleDettaglioComeVantaggio(e) {
 
     if ($.dettaglioComeVantaggio.visible == true) {
         $.dettaglioComeVantaggio.visible = false;
-        $.comeVantaggioIcon.image = "/images/ic_action_come_ottenere_vantaggi_blu.png";
+        $.comeVantaggioIcon.image = "/images/ic_action_monete_blu.png";
         $.comeVantaggioText.color = Alloy.Globals.palette.blu;
         $.rowComeVantaggio.backgroundColor = "#fff";
         $.dettaglioComeVantaggio.height = 0;
 
     } else {
         $.dettaglioComeVantaggio.height = Ti.UI.SIZE;
-        $.comeVantaggioIcon.image = "/images/ic_action_come_ottenere_vantaggi_bianco.png";
+        $.comeVantaggioIcon.image = "/images/ic_action_monete_bianco.png";
         $.comeVantaggioText.color = "#fff";
         $.rowComeVantaggio.backgroundColor = Alloy.Globals.palette.blu;
         $.dettaglioComeVantaggio.visible = true;
