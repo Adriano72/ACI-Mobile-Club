@@ -21,13 +21,43 @@
 
 "Label":{
     font: {
-     //   fontFamily: Alloy.Globals.font.PTSans_Narrow
+        fontFamily: Alloy.Globals.font.PTSans_Narrow
     }
 }
 
 "Button":{
-
+    font: {
+        fontFamily: Alloy.Globals.font.PTSans_NarrowBold
+    }
 }
+
+"TextField":{
+    font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.L
+    }
+}
+
+"TextArea":{
+    font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow
+    }
+}
+
+
+"TableViewRow":{
+    font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow
+    }
+}
+
+"SearchBar":{
+    font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.L
+    }
+}
+
 
 
 /**
@@ -61,26 +91,7 @@
    }
 }
 
-".buttonText[platform=ios]":{
-    color: '#fff',
-    top: 10,
-    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-    backgroundColor: 'transparent',
-    font: {
-        fontFamily:'PTSans-NarrowBold',
-        fontSize: '12dp'
-    }	
-}
 
-".buttonText[platform=android]":{
-    color: '#fff',
-    //textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-    backgroundColor: 'transparent',
-    font: {
-        fontFamily:'PT_Sans-Narrow-Web-Bold',
-        fontSize: '12dp'
-    }	
-}
 
 ".PTSansRegular[platform=ios]":{
    
@@ -109,81 +120,55 @@
 ".h1":{
     font: {
         fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
-        fontSize: '16'
+        fontSize: Alloy.Globals.fontSize.XXL
     },
     color: Alloy.Globals.palette.blu
 }
-".h1[platform=android]":{
-    font: {
-        fontSize: '18'
-    }
-}
+
 
 ".h2":{
     font: {
         fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
-        fontSize: '14'
+        fontSize: Alloy.Globals.fontSize.XL
     },
     color: Alloy.Globals.palette.blu
 }
-".h2[platform=android]":{
-    font: {
-        fontSize: '16'
-    }
-}
+
 
 ".h3":{
     font: {
         fontFamily: Alloy.Globals.font.PTSans_Narrow,
-        fontSize: '14'
+        fontSize: Alloy.Globals.fontSize.L
     },
     color: Alloy.Globals.palette.blu
 }
-".h3[platform=android]":{
-    font: {
-        fontSize: '16'
-    }
-}
+
 
 ".h4":{
     font: {
         fontFamily: Alloy.Globals.font.PTSans_Narrow,
-        fontSize: '14'
+        fontSize: Alloy.Globals.fontSize.L
     },
     color: Alloy.Globals.palette.grigio_scuro
 }
-".h4[platform=android]":{
-    font: {
-        fontSize: '14'
-    }
-}
+
 
 ".text":{
     font: {
         fontFamily: Alloy.Globals.font.PTSans,
-        fontSize: '12'
+        fontSize: Alloy.Globals.fontSize.M
     }, 
     color: Alloy.Globals.palette.grigio_scuro
-}
-
-".text[platform=android]":{
-    font: {
-        fontSize: '14'
-    }
 }
 
 ".link":{
     font: {
         fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
-        fontSize: '14'
+        fontSize: Alloy.Globals.fontSize.L
     },
     color: Alloy.Globals.palette.celeste
 }
-".link[platform=android]":{
-    font: {
-        fontSize: '14'
-    }
-}
+
 
 
 /**
@@ -208,6 +193,3 @@
 }
 
 
-".buttonImage": {
-    top: 25
-}

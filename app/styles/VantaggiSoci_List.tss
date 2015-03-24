@@ -25,7 +25,7 @@
 }
 
 ".row[platform=ios]":{
-	height: 85,
+	height: 87,
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
@@ -45,6 +45,10 @@
 	top: 5,
 	height: Ti.UI.FILL,
 	width: "25%"
+}
+
+".iconContainer[platform=ios]":{
+	//height: 85
 }
 
 ".logoConvenzione": {

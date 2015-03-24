@@ -20,22 +20,30 @@
 				<View class="buttonsContainer">
 					<View class="rowWrapper">
 						<View id="puntiAci" class="menuButton first" onSingletap="openPuntiACI">
-							<ImageView id="imgPuntiACI" class="buttonImage"/>
-							<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+							<View class="menuButtonWrapper">
+								<ImageView id="imgPuntiACI" class="buttonImage"/>
+								<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+							</View>
 						</View>
 						<View id="vantaggiSoci" class="menuButton last" onSingletap="openVantaggiSoci">
-							<ImageView id="imgVantaggiSoci" class="buttonImage"/>
-							<Label id="txtVantaggiSoci" class="buttonText">VANTAGGI PER I SOCI</Label>
+							<View class="menuButtonWrapper">
+								<ImageView id="imgVantaggiSoci" class="buttonImage"/>
+								<Label id="txtVantaggiSoci" class="buttonText">VANTAGGI PER I SOCI</Label>
+							</View>
 						</View>
 					</View>
 					<View class="rowWrapper">
 						<View id="mobilita" class="menuButton first" onSingletap="openAssistenza">
-							<ImageView id="imgMobilita" class="buttonImage"/>
-							<Label id="txtMobilita" class="buttonText">ASSISTENZA</Label>
+							<View class="menuButtonWrapper">
+								<ImageView id="imgMobilita" class="buttonImage"/>
+								<Label id="txtMobilita" class="buttonText">ASSISTENZA</Label>
+							</View>
 						</View>
 						<View id="tessera" class="menuButton last" onSingletap="openTessera">
-							<ImageView id="imgTessera" class="buttonImage"/>
-							<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
+							<View class="menuButtonWrapper">
+								<ImageView id="imgTessera" class="buttonImage"/>
+								<Label id="txtTessera" class="buttonText">LA TUA TESSERA</Label>
+							</View>
 						</View>
 					</View>
 				</View>

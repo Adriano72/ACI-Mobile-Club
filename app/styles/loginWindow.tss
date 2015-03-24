@@ -90,7 +90,11 @@
 	height: 40,
 	text: "Accedi",
 	color: "#fff",
-	backgroundColor: "transparent"
+	backgroundColor: "transparent",
+	font: {
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+	}
 }
 
 
@@ -100,7 +104,11 @@
 	textAlign: "center",
 	text: "Registrati",
 	color: "#fff",
-	backgroundColor: "transparent"
+	backgroundColor: "transparent",
+	font: {
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+	}
 }
 
 
@@ -108,8 +116,9 @@
 	height: 40,
 	color: "#fff",
 	backgroundColor: "transparent",
-	font:{
-		fontSize: 12
+	font: {
+		fontSize: Alloy.Globals.fontSize.M,
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
 	}
 }
 

@@ -4,7 +4,7 @@
 
 		<View class="rowSingleContainer">
 			<ImageView class="simpleRowLeftIcon" id="leftIcon"/>
-			<Label class="simpleRowText PTSansRegular" id="rowText"/>
+			<Label class="simpleRowText h3" id="rowText"/>
 			<ImageView class="hasDetail"/>
 		</View>
 

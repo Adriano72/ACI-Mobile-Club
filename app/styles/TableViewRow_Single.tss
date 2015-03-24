@@ -1,14 +1,17 @@
 ".row[platform=ios]":{
-	height: "35",
+	height: Ti.UI.SIZE,
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
 ".row[platform=android]":{
-	height: "40"
+	height: Ti.UI.SIZE
 }
 
 ".rowSingleContainer": {
-	
+	top: 4,
+	bottom: 4,
+	height: Ti.UI.SIZE
+
 }
 
 ".simpleRowLeftIcon": {
@@ -19,7 +22,6 @@
 
 ".simpleRowText": {
 	left: 50,
-	color:Alloy.Globals.palette.blu,
 	touchEnabled: false
 }
 

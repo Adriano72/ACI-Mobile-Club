@@ -95,13 +95,24 @@ Alloy.Globals.palette = {
 
 //font
 Alloy.Globals.font = {
-	ACIType_Bold : OS_IOS ? 'ACIType-Bold' : 'ACI Type Bold',
-	ACIType : OS_IOS ? 'ACIType' : 'ACI Type Regular',
-	PTSans_NarrowBold : OS_IOS ? 'PTSans-NarrowBold' : 'PT_Sans-Narrow-Web-Bold',
-	PTSans_Narrow : OS_IOS ? 'PTSans-Narrow' : 'PT_Sans-Narrow-Web-Regular',
-	PTSans_Bold : OS_IOS ? 'PTSans-Bold' : 'PT_Sans-Web-Bold',
-	PTSans : OS_IOS ? 'PTSans' : 'PT_Sans-Web-Regular'
+    ACIType_Bold: OS_IOS ? 'ACIType-Bold' : 'ACI Type Bold',
+    ACIType: OS_IOS ? 'ACIType' : 'ACI Type Regular',
+    PTSans_NarrowBold: OS_IOS ? 'PTSans-NarrowBold' : 'PT_Sans-Narrow-Web-Bold',
+    PTSans_Narrow: OS_IOS ? 'PTSans-Narrow' : 'PT_Sans-Narrow-Web-Regular',
+    PTSans_Bold: OS_IOS ? 'PTSans-Bold' : 'PT_Sans-Web-Bold',
+    PTSans: OS_IOS ? 'PTSans' : 'PT_Sans-Web-Regular'
 
+};
+
+var baseFontSize = OS_IOS ? 10 : 12;
+Alloy.Globals.fontSize = {
+    XS: baseFontSize,
+    S: baseFontSize + 2,
+    M: baseFontSize + 3,
+    L: baseFontSize + 5,
+    XL: baseFontSize + 6,
+    XXL: baseFontSize + 7,
+    XXXL: baseFontSize + 9
 };
 
 

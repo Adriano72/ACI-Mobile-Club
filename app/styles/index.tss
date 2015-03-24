@@ -110,11 +110,7 @@
 	top: 2
 }
 
-".menuButton": {
-	height: Alloy.Globals.menuButtonsHeight,
-	width: Alloy.Globals.menuButtonsWidth,
-	layout: 'vertical'
-}
+
 
 ".first": {
 	left: 0
@@ -220,5 +216,31 @@
 	backgroundColor:"pink",
 	left:Alloy.Globals.deviceWidth
 }
+
+".menuButton": {
+	height: Alloy.Globals.menuButtonsHeight,
+	width: Alloy.Globals.menuButtonsWidth,
+	
+}
+
+".menuButtonWrapper": {
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	layout: 'vertical'
+}
+
+".buttonText":{
+	top: 5,
+	font:{
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+		fontSize: Alloy.Globals.fontSize.L
+	},
+	color: Alloy.Globals.palette.bianco
+}
+
+
+".buttonImage": {
+}
+
 
 

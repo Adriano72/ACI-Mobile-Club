@@ -61,7 +61,9 @@
 	color: Alloy.Globals.palette.bianco,
 //	width: Ti.UI.SIZE,
 	font: {
-		fontSize: 14
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSans_Narrow,
+
 	}
 }
 
@@ -71,7 +73,7 @@
 	color: Alloy.Globals.palette.bianco,
 //	width: Ti.UI.SIZE,
 	font: {
-		fontSize: 16,
-		fontWeight: 'bold'
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
 	}
 }

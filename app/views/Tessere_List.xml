@@ -14,9 +14,9 @@
 						<ImageView id="imgTessera" image="{img}"></ImageView>
 					</View>
 					<View class="rightRowContainer">
-						<Label class="simpleRowText PTSansBold" id="name" text="{name}"/>
+						<Label class="simpleRowText h2" id="name" text="{name}"/>
 
-						<Label class="simpleRowText PTSansBold " id="slogan" text="{slogan}"/>
+						<Label class="simpleRowText h4 " id="slogan" text="{slogan}"/>
 						
 					</View>
 				</View>
