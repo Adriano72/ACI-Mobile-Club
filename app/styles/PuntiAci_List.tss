@@ -139,9 +139,7 @@
 ".indicazioniStradali": {
 	top: 5,
 	left: 0,
-	height: Ti.UI.SIZE,
-	text: "Indicazioni stradali",
-	color: "#006AA3"
+	height: Ti.UI.SIZE
 }
 
 ".bt_chiama": {

@@ -36,10 +36,12 @@ function loadData() {
     } else {
         modelGot = args.data.attributes;
     }
-    modelGot.formattedAddress = modelGot.address.formatted;
     modelGot.telefono = modelGot.contacts.tel[0];
     modelGot.fax = modelGot.contacts.fax[0];
     modelGot.web = modelGot.contacts.web[0];
+
+    var addr = formatContacts([modelGot.address.formatted, modelGot.tel, modelGot.fax, modelGot.web]);
+    modelGot.formattedAddress = addr;
     modelGot.servizi = utility.formattaServizi(modelGot.services);
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
 
@@ -54,20 +56,30 @@ function loadData() {
     $.detailModel.set(modelGot);
 }
 
+function formatContacts(cnts) {
+    var r = [];
+    for (var i = 0; i < cnts.length; i++) {
+        var c = cnts[i];
+        if (c) r.push(c);
+    };
+    return r.join('\n');
+}
+
+
 
 function toggleDettaglioServizi(e) {
 
     e.cancelBubble = true;
     if ($.dettaglioServizi.visible == true) {
         $.dettaglioServizi.visible = false;
-        $.serviziIcon.image = "/x_abaco_blu.png";
+        $.serviziIcon.image = "/images/ic_action_servizi_blu.png";
         $.serviziText.color = Alloy.Globals.palette.blu;
         $.rowServizi.backgroundColor = "#fff";
         $.dettaglioServizi.height = 0;
 
     } else {
         $.dettaglioServizi.height = Ti.UI.SIZE;
-        $.serviziIcon.image = "/x_abaco_bianco.png";
+        $.serviziIcon.image = "/images/ic_action_servizi_bianco.png";
         $.serviziText.color = "#fff";
         $.rowServizi.backgroundColor = Alloy.Globals.palette.blu;
         $.dettaglioServizi.visible = true;
@@ -82,14 +94,14 @@ function toggleDettaglioOrari(e) {
 
     if ($.dettaglioOrari.visible == true) {
         $.dettaglioOrari.visible = false;
-        $.orariIcon.image = "/x_orario_blu.png";
+        $.orariIcon.image = "/images/ic_action_orari_blu.png";
         $.orariText.color = Alloy.Globals.palette.blu;
         $.rowOrari.backgroundColor = "#fff";
         $.dettaglioOrari.height = 0;
 
     } else {
-        $.dettaglioOrari.height = 80;
-        $.orariIcon.image = "/x_orario_bianco.png";
+        $.dettaglioOrari.height = Ti.UI.SIZE;
+        $.orariIcon.image = "/images/ic_action_servizi_bianco.png";
         $.orariText.color = "#fff";
         $.rowOrari.backgroundColor = Alloy.Globals.palette.blu;
         $.dettaglioOrari.visible = true;
