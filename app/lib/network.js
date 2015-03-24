@@ -58,10 +58,9 @@ exports.getPuntiAci = function(type_code, _callback) {
     xhr.onload = function() {
 
         var json = JSON.parse(this.responseText);
+        console.log('RISPOSTA: ', json);
 
-        Ti.API.info("RISPOSTA: " + json.message);
-
-        if (json.message == "200 OK") {
+        if (json.status == 200) {
             Ti.API.debug("RISPOSTA: " + type_code + " " + JSON.stringify(json));
             _callback(json.result);
 
@@ -118,7 +117,7 @@ exports.getDemolitori = function(type_code, _callback) {
 
         Ti.API.info("RISPOSTA: " + json.message);
 
-        if (json.message == "200 OK") {
+        if (json.status == 200) {
 
             _callback(json.result);
 
@@ -179,7 +178,7 @@ exports.getVantaggiSoci = function(type_code, _callback) {
 
         //Ti.API.info("RISPOSTA: "+type_code+" " + JSON.stringify(json));
 
-        if (json.message == "200 OK") {
+        if (json.status == 200) {
 
             Ti.API.debug("RISPOSTA: " + type_code + " " + JSON.stringify(json));
 
@@ -324,7 +323,7 @@ exports.getBanner = function(_callback) {
         xhr.onload = function() {
             var json = JSON.parse(this.responseText);
             Ti.API.info("RISPOSTA: " + json.message);
-            if (json.message === "200 OK") {
+            if (json.status == 200) {
                 _callback(json.result);
             } else {
                 Alloy.Globals.loading.hide();
@@ -342,11 +341,11 @@ exports.getBanner = function(_callback) {
 
 
 
-        var url = 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand;
+        var url = Alloy.Globals.baseURL + '/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand;
 
         Ti.API.info("CHIAMATA HTTP BANNER: " + url);
 
-        xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand);
+        xhr.open('GET', url);
 
         _(getAciGeoHeaders()).each(function(v, k) {
             xhr.setRequestHeader(k, v);
@@ -359,7 +358,7 @@ exports.getBanner = function(_callback) {
     xhr.onload = function() {
         var json = JSON.parse(this.responseText);
         Ti.API.info("RISPOSTA: " + json.message);
-        if (json.message === "200 OK") {
+        if (json.status == 200) {
             if (json.result.count > 0) {
                 _getRandomBanner(json.result.count, _callback);
             } else {
@@ -379,7 +378,9 @@ exports.getBanner = function(_callback) {
 
     Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
 
-    xhr.open('GET', 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
+    var url = Alloy.Globals.baseURL + '/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}'
+
+    xhr.open('GET', url);
 
     _(getAciGeoHeaders()).each(function(v, k) {
         xhr.setRequestHeader(k, v);
@@ -410,7 +411,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
         Ti.API.info("RISPOSTA: " + json.message);
 
-        if (json.message == "200 OK") {
+        if (json.status == 200) {
             // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
             _callback(json.result);
 
@@ -494,7 +495,7 @@ exports.getListaProvince = function(_callback) {
 
         Ti.API.info("RISPOSTA: " + json.message);
 
-        if (json.message == "200 OK") {
+        if (json.status == 200) {
             // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
             _callback(json.result);
 
@@ -548,7 +549,7 @@ exports.getListaProvince = function(_callback) {
 }
 
 
-exports.registerApp = function(_callback){
+exports.registerApp = function(_callback) {
 
     var xhr = Ti.Network.createHTTPClient();
 
@@ -558,7 +559,7 @@ exports.registerApp = function(_callback){
 
         Ti.API.info("RISPOSTA: " + json.message);
 
-        if (json.message == "200 OK") {
+        if (json.status == 200) {
             // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
             _callback(json.result);
 
@@ -571,8 +572,7 @@ exports.registerApp = function(_callback){
 
     xhr.onerror = function(e) {
         Alloy.Globals.loading.hide();
-        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-        console.log(e);
+        console.log("ERRORE RISPOSTA SERVER: ", e, url );
     };
 
 
@@ -580,7 +580,7 @@ exports.registerApp = function(_callback){
 
 
     var url = Alloy.Globals.baseURL + '/common/clients/_register'
-    //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+        //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
 
 
     Ti.API.info("CHIAMATA HTTP: " + url);
