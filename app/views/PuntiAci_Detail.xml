@@ -15,9 +15,12 @@
 		</Menu> -->
 		<ScrollView class="scrollableContainer">
 			<View id="headerView">
-				<Label class="h1" id="headerText" text="{$.detailModel.name}"/>
+				<Label class="h1" id="headerText" text="{$.detailModel.title}"/>
 			</View>
 			<View class="separator"/>
+			<!--<View class="logoContainer">
+				<ImageView class="logo" image="{$.detailModel.logo}"/>
+			</View> -->
 			<View id="contattiView">
 				<View id="contattiViewInner">
 					<Label class="h4" id="indirizzo" text="{$.detailModel.formattedAddress}"/>
@@ -49,7 +52,7 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View class="separator-inner" visible="{$.detailModel.emailVisible}"/>
-			<View id="rowEmail" class="rowSingleContainer" email="{$.detailModel.email}" onSingletap="doSendEmail"  visible="{$.detailModel.emailVisible}" height="{$.detailModel.emailHeight}">
+			<View id="rowEmail" class="rowSingleContainer" indirizzoEmail="{$.detailModel.email}" onSingletap="doSendEmail"  visible="{$.detailModel.emailVisible}" height="{$.detailModel.emailHeight}">
 				<ImageView class="simpleRowLeftIcon" id="emailIcon"/>
 				<Label class="simpleRowText h3" id="emailText" text="Invia e-mail"/>
 				<ImageView class="hasDetail"/>

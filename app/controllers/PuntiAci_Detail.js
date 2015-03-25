@@ -36,11 +36,22 @@ function loadData() {
     } else {
         modelGot = args.data.attributes;
     }
+    modelGot.email = modelGot.contacts.email[0];
     modelGot.telefono = modelGot.contacts.tel[0];
     modelGot.fax = modelGot.contacts.fax[0];
     modelGot.web = modelGot.contacts.web[0];
 
-    var addr = formatContacts([modelGot.address.formatted, modelGot.tel, modelGot.fax, modelGot.web]);
+    if (modelGot._type == 'del') {
+        modelGot.title = modelGot.customName;
+        var addr = formatContacts([modelGot.name, modelGot.address.formatted]);
+
+    } else {
+        var addr = modelGot.address.formatted;
+        modelGot.title = modelGot.name;
+
+    }
+
+
     modelGot.formattedAddress = addr;
     modelGot.servizi = utility.formattaServizi(modelGot.services);
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);

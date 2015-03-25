@@ -61,14 +61,22 @@ function loadData() {
     $.searchBar.blur();
 }
 
-var xx = 0;
-
 function dataTransform(model) {
     var attrs = model.toJSON();
-    //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
+
+    if (attrs._type == 'del') {
+        var name = attrs.name;
+        attrs.title = attrs.customName;
+        attrs.subtitle = attrs.name;
+        attrs.subtitleHeight = Ti.UI.SIZE;
+    } else {
+        attrs.subtitleHeight = 0;
+
+        attrs.title = attrs.name;
+    }
 
     attrs.distance = utility.formatDistance(attrs.address.distance);
-    attrs.indirizzo = attrs.address.street;
+    attrs.indirizzo = [attrs.address.street, attrs.address.streetNo].join(', ');
     var ind2 = (attrs.address.postalCode || '') + ' ' + (attrs.address.locality.longName || '');
 
     attrs.indirizzo2 = ind2.trim(); // attrs.address.postalCode ;//+ " " + attrs.address.locality.longName;
@@ -77,11 +85,9 @@ function dataTransform(model) {
     attrs.tel = attrs.contacts.tel[0];
     attrs.email = attrs.contacts.email[0];
     attrs.id = model.cid;
-    console.log('dt');
+    console.log('dt  ', attrs._type);
 
-    //Ti.API.info("MODEL CID: "+attrs.id);
-    //console.log('dataTransform', attrs);
-    console.log('dataTransform', xx++);
+
     return attrs;
 };
 

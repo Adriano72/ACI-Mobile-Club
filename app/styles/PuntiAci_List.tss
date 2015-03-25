@@ -24,21 +24,23 @@
 	top: 0
 }
 
+".row":{
+	height: Ti.UI.SIZE
+}
+
 ".row[platform=ios]":{
-	height: 90,
 	color: "transparent",
 	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 }
 
 ".row[platform=android]":{
-	height: 100,
 	className: "riga"
 }
 
 ".rowContainer": {
-	//layout: "vertical",
+	layout: "vertical",
 	top: 5,
-	height: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 }
 
 ".simpleRowText": {

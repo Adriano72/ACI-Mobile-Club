@@ -18,16 +18,22 @@
 			<SearchBar id="searchBar"/>
 			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
 				<View class="rowContainer">
+
 					<View class="topRowContainer">
-						<Label class="simpleRowText h2" id="nome" text="{name}"/>
+						<Label class="simpleRowText h2" id="nome" text="{title}"/>
 
 						<Label class="h2 distance"  text="{distance}"/>
 					</View>
 
 					 <View class="middleRowContainer">
+						
+						<Label class="simpleRowText h4" text="{subtitle}" height="{subtitleHeight}"/>
 						<Label class="simpleRowText h4" text="{indirizzo}"/>
 						<Label class="simpleRowText h4" text="{indirizzo2}"/>
+
+					 	
 					</View>
+
 					<View class="bottomRowContainer">
 						<Label class="indicazioniStradali link" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation">Indicazioni stradali ›</Label>
 						<ImageView class="bt_chiama" telNumber = "{tel}" onSingletap="doPhoneCall"/>
