@@ -4,7 +4,7 @@
 	top:0, bottom:0
 }
 ".tabbed-bar[platform=ios]": { 
-	height: 22
+	//height: 22
 }
 ".tabbed-bar[platform=android]": { 
 //	width: Ti.UI.SIZE, 
