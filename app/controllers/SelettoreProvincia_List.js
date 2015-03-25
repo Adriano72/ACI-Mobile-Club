@@ -4,21 +4,33 @@ var net = require('network');
 var utility = require('utility');
 var settings = require('settings');
 
-//Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.delegazioni));
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
+
+var headerText = "Cambia Provincia";
+var headerImg = "/images/ic_action_puntatore.png";
+
+//inizializzazioni comuni della Window
+require('commons').initWindow($.win, headerText, headerImg);
+
+
+//carica i dati
+loadData();
+
+
 
 function loadData() {
-    //Alloy.Collections.automobileClub.fetch();
-    if (OS_ANDROID) {
-
-        init1();
-
-        //actionBarHelper.setIcon('/drawericonw@2x.png');
-
+    //Lazy load delle province
+    if (Alloy.Collections.province.length == 0) {
+        Alloy.Globals.loading.show('Caricamento');
+        net.getListaProvince(function(result) {
+            Alloy.Collections.province.reset(result);
+            updateUI();
+            Alloy.Globals.loading.hide();
+            console.log("province", result);
+            // init5();
+        });
     } else {
-        //$.windowtitle.text = winTitle;
+        //init5();
+        updateUI();
     }
     $.searchBar.blur();
 
@@ -38,40 +50,7 @@ function filterRows(collection) {
     return collection.models;
 }
 
-
-function init1() {
-    abx.displayHomeAsUp = true;
-    abx.title = "Cambia provincia";
-    abx.titleFont = "ACI Type Regular.otf";
-    abx.titleColor = Alloy.Globals.palette.blu;
-    _.defer(init2);
-}
-
-function init2() {
-    $.win.activity.invalidateOptionsMenu();
-}
-
-
-function init3() {
-    //Lazy load delle province
-    if (Alloy.Collections.province.length == 0) {
-        Alloy.Globals.loading.show('Caricamento');
-        net.getListaProvince(function(result) {
-            Alloy.Collections.province.reset(result);
-            updateUI();
-            Alloy.Globals.loading.hide();
-            console.log("province", result);
-            // init5();
-        });
-    } else {
-        //init5();
-        updateUI();
-    }
-
-
-
-}
-
+/*
 //aggiungi la riga della posizione
 function init4() {
     //aggungo la riga posizione in testa
@@ -90,7 +69,9 @@ function init4() {
     $.puntiAci_Table.insertRowBefore(0, row);
 
 }
+*/
 
+/*
 //devo inserire le province a mano
 function init5() {
     _.each(Alloy.Collections.province.models, function(m) {
@@ -98,7 +79,9 @@ function init5() {
         appendRow(m);
     });
 }
+*/
 
+/*
 //evidenzia la riga selezionata
 function init6() {
 
@@ -112,6 +95,7 @@ function init6() {
     }
 
 }
+*/
 
 function appendRow(r) {
     var style = $.createStyle({
@@ -218,14 +202,3 @@ function doClick(e) {
 }
 
 
-
-
-//$.puntiAci_Table.addEventListener('touchstart', select);
-
-//$.puntiAci_Table.addEventListener('touchend', undoHighlight);
-//$.puntiAci_Table.addEventListener('click', select);
-
-
-
-
-_.defer(init3);

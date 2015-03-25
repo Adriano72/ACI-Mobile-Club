@@ -1,19 +1,7 @@
 <Alloy>
 	
-	<Window id="win" class="container" onOpen="loadData"  >
-		<TitleControl platform="ios">
-			<!-- <View id="titleControl" class="titleControl"></View> -->
-			<Label class="titleLabel PTSansRegular">Cambia provincia</Label>
-		</TitleControl>
-		<RightNavButton platform="ios">
-		</RightNavButton>
-		<Menu id="menu"  platform="android">
-	
-
-		</Menu>
+	<Window id="win" class="container"  >
 		
-
-
 
 		<TableView id="puntiAci_Table" class="table" dataCollection="province" onClick="select"   dataTransform="dataTransform" dataFunction="updateUI"  >
 			
