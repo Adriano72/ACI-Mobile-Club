@@ -38,6 +38,11 @@ AciGeo.comparator = function(m) {
     var j = m.toJSON();
     if (j.address && j.address.distance) {
         return j.address.distance;
+    } else if (j.customName) {
+
+        var orderBy = utility.padRight(j.customName, '0', 40) + j.name;
+        console.log('orderBy', orderBy);
+        return orderBy;
     } else {
         return j.name;
     }
