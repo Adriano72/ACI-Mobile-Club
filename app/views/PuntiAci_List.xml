@@ -16,7 +16,7 @@
 		
 		<TableView id="puntiAci_Table" class="table" onSingletap="openDetail" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" visible="false" >
 			<SearchBar id="searchBar"/>
-			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
+			<TableViewRow id="riga" class="row" modelId="{id}" title="{title}">
 				<View class="rowContainer">
 
 					<View class="topRowContainer">
