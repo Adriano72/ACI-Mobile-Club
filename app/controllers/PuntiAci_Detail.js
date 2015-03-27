@@ -56,6 +56,13 @@ function loadData() {
     modelGot.servizi = utility.formattaServizi(modelGot.services);
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
 
+    if (modelGot.images) {
+        var cover = modelGot.images.exterior || modelGot.images.interior;
+        if (cover) {
+            modelGot.cover = Alloy.Globals.PuntiAciBannerBaseURL + cover;
+            console.log('cover', modelGot.cover);
+        }
+    }
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
     modelGot.telefonoVisible = Boolean(modelGot.telefono);
@@ -63,6 +70,9 @@ function loadData() {
     modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
     modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
     modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
+
+    modelGot.coverVisible = !_.isEmpty(modelGot.cover);
+    modelGot.coverHeight = modelGot.coverVisible ? 60 : 0;
 
     $.detailModel.set(modelGot);
 }

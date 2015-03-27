@@ -18,9 +18,9 @@
 				<Label class="h1" id="headerText" text="{$.detailModel.title}"/>
 			</View>
 			<View class="separator"/>
-			<!--<View class="logoContainer">
-				<ImageView class="logo" image="{$.detailModel.logo}"/>
-			</View> -->
+			<View class="coverWrapper" visible="{$.detailModel.coverVisible}"  >
+				<ImageView class="cover" image="{$.detailModel.cover}" height="{$.detailModel.coverHeight}" />
+			</View>
 			<View id="contattiView">
 				<View id="contattiViewInner">
 					<Label class="h4" id="indirizzo" text="{$.detailModel.formattedAddress}"/>

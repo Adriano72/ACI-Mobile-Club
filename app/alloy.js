@@ -33,6 +33,7 @@ Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4
 //Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
 Alloy.Globals.baseURL = Alloy.CFG.AciGeo_BaseUrl;
 Alloy.Globals.bannerBaseURL = Alloy.CFG.AciGeo_BannerBaseUrl;
+Alloy.Globals.PuntiAciBannerBaseURL = Alloy.CFG.AciGeo_PuntiAciBannerBaseUrl;
 
 console.log('platformWidth ', Ti.Platform.displayCaps.platformWidth);
 console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFactor);
