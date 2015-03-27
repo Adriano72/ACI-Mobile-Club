@@ -47,10 +47,11 @@ function loadData() {
 
     Ti.API.info("DATI: " + JSON.stringify(modelGot));
 
-    
+
     modelGot.telefono = modelGot.contacts.tel[0];
     modelGot.fax = modelGot.contacts.fax[0];
     modelGot.web = modelGot.contacts.web[0];
+    modelGot.email = modelGot.contacts.email[0];
 
     var addr = formatContacts([modelGot.address.formatted, modelGot.tel, modelGot.fax, modelGot.web]);
     modelGot.formattedAddress = addr;
@@ -60,6 +61,15 @@ function loadData() {
     modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc).trim();
     modelGot.logo = encodeURI(Alloy.Globals.bannerBaseURL + (modelGot.agreement_id.images.logo || modelGot.agreement_id.images.banner));
 
+
+    //porcate layout
+    modelGot.orariVisible = Boolean(modelGot.orari);
+    modelGot.telefonoVisible = Boolean(modelGot.telefono);
+    modelGot.emailVisible = Boolean(modelGot.email);
+    modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
+    modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
+    modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
+
     console.log('modelGot.logo', modelGot.logo);
     console.log('modelGot.agreement_id.images.logo', modelGot.agreement_id.images.logo);
 
@@ -68,11 +78,11 @@ function loadData() {
 
 }
 
-function formatContacts(cnts){
-    var r =[];
+function formatContacts(cnts) {
+    var r = [];
     for (var i = 0; i < cnts.length; i++) {
         var c = cnts[i];
-        if(c) r.push(c);
+        if (c) r.push(c);
     };
     return r.join('\n');
 }
