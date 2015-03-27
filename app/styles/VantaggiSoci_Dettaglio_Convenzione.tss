@@ -87,6 +87,10 @@
 	image: "/images/ic_action_phone_blu.png"
 }
 
+"#emailIcon": {
+	image: "/images/ic_action_mail_blu.png"
+}
+
 ".hasDetail[platform=android]": {
 	image: "/x_freccia_grigio.png",
 	right: 10,

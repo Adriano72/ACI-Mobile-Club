@@ -52,11 +52,16 @@
 				<Label class="text testoDettagli" id="txt_dettaglioCome" text="{$.dormireMangiare.come}"/>
 			</View>
 
-			<View class="separator-inner"/>
-			
-			<View id="rowChiama" class="rowSingleContainer" onSingletap="doPhoneCall">
+			<View class="separator-inner"  visible="{$.dormireMangiare.telefonoVisible}"/>
+			<View id="rowChiama" class="rowSingleContainer" telNumber="{$.dormireMangiare.telefono}" onSingletap="doPhoneCall"  visible="{$.dormireMangiare.telefonoVisible}" height="{$.dormireMangiare.telefonoHeight}">
 				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
 				<Label class="simpleRowText h3" id="chiamaText" text="Chiama"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View class="separator-inner" visible="{$.dormireMangiare.emailVisible}"/>
+			<View id="rowEmail" class="rowSingleContainer" indirizzoEmail="{$.dormireMangiare.email}" onSingletap="doSendEmail"  visible="{$.dormireMangiare.emailVisible}" height="{$.dormireMangiare.emailHeight}">
+				<ImageView class="simpleRowLeftIcon" id="emailIcon"/>
+				<Label class="simpleRowText h3" id="emailText" text="Invia e-mail"/>
 				<ImageView class="hasDetail"/>
 			</View>
 			<View class="separator"/>
