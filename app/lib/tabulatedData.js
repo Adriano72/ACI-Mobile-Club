@@ -30,11 +30,6 @@ exports.puntiAciMain = function() {
             text: "Demolitori",
             id_code: "dem"
 
-        }, {
-            img: "/images/ic_action_cerca_per_servizio_blu.png",
-            text: "Ricerca per servizio",
-            id_code: "ric"
-
         }
 
     ];

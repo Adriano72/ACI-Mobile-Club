@@ -7,9 +7,21 @@ var commons = require('commons');
 var collection = utility.getAciGeoCollection(args.id_code);
 //attributi della UI in base al tipo di convenzione
 console.log('PuntiAci_List args', args);
-var itemData = _.findWhere(require('tabulatedData').puntiAciMain(), {
-    id_code: args.id_code
-});
+
+var itemData;
+if (args.id_code == 'ric') {
+    itemData = {
+        img: "/images/ic_action_cerca_per_servizio_blu.png",
+        text: "Ricerca per servizio",
+        id_code: "ric"
+    };
+} else {
+    itemData = _.findWhere(require('tabulatedData').puntiAciMain(), {
+        id_code: args.id_code
+    });
+}
+
+
 
 
 //Handler per l'apertura del navigatore
