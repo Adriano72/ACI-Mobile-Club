@@ -160,6 +160,12 @@ function openDetail(e) {
     console.log('mongoId', e.rowData.mongoId);
     console.log('c', c[t]);
     // var selected =  Alloy.Collections.serviziGICpos.getByCid(e.rowData.modelId);
+
+    var itemData = _.findWhere(require('tabulatedData').puntiAciMain(), {
+        id_code: t
+    });
+
+
     var selected = Alloy.createModel('serviziGICpos', _.findWhere(data, {
         _id: e.rowData.mongoId
     }));
@@ -169,8 +175,10 @@ function openDetail(e) {
     console.log("ctrl", ctrl);
     // console.log("selected", selected.toJSON());
 
-    var w = Alloy.createController(ctrl, {
-        data: selected
+    var w = Alloy.createController('PuntiAci_Detail', {
+        data: selected,
+        titolo: itemData.text,
+        headerImg: itemData.img
     }).getView();
     Alloy.Globals.navMenu.openWindow(w);
 }

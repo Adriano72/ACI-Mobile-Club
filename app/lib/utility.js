@@ -35,11 +35,11 @@ exports.formattaOrari = function(obj) {
         var isEmpty = _.isUndefined(daySchedule[0]) || _.isEmpty(daySchedule[0].from) || _.isEmpty(daySchedule[0].to);
 
         if (!isEmpty) {
-            
-			 Ti.API.info("DAY SCHEDULE: " + JSON.stringify(daySchedule));
-			 Ti.API.info("DAY SCHEDULE FROM: " + daySchedule[0].from);
-			 Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);
-			 
+
+            Ti.API.info("DAY SCHEDULE: " + JSON.stringify(daySchedule));
+            Ti.API.info("DAY SCHEDULE FROM: " + daySchedule[0].from);
+            Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);
+
 
             switch (day) {
 
@@ -393,6 +393,9 @@ exports.padRight = function(str, filler, count) {
 exports.getAciGeoCollection = function(id_code) {
     var coll;
     console.log('getAciGeoCollection id_code', id_code);
+
+    if (id_code == 'ric') return Alloy.Collections.serviziGICpos;
+
     _.keys(Alloy.Collections).every(function(k) {
         var c = Alloy.Collections[k];
         console.log('id_code', id_code);

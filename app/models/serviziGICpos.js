@@ -1,33 +1,24 @@
+var baseCollection = require('BaseCollection_RicercaServizio');
+
 exports.definition = {
-	config: {
+    config: {
+        type_code: 'ric',
+        adapter: {
+            type: "properties",
+            collection_name: "serviziGICpos"
+        }
+    },
+    extendModel: function(Model) {
+        _.extend(Model.prototype, {
+            // extended functions and properties go here
+        });
 
-		adapter: {
-			type: "properties",
-			collection_name: "serviziGICpos"
-		}
-	},
-	extendModel: function(Model) {
-		_.extend(Model.prototype, {
-			// extended functions and properties go here
-		});
+        return Model;
+    },
+    extendCollection: function(Collection) {
 
-		return Model;
-	},
-	extendCollection: function(Collection) {
-		_.extend(Collection.prototype, {
-			// extended functions and properties go here
-			
+        _.extend(Collection.prototype, baseCollection, {});
 
-			comparator: function(m){
-				var j = m.toJSON();
-				if(j.address && j.address.distance){
-					return j.address.distance;
-				} else {
-					return j.name;
-				}
-            }
-		});
-
-		return Collection;
-	}
+        return Collection;
+    }
 };

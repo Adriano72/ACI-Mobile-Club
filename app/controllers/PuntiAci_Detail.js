@@ -53,10 +53,11 @@ function loadData() {
 
 
     modelGot.formattedAddress = addr;
-    modelGot.servizi = utility.formattaServizi(modelGot.services);
+    var services = (modelGot.services || []).concat(modelGot.customServices || []);
+    modelGot.servizi = utility.formattaServizi(services);
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
 
-    if (modelGot.images) {
+    if (modelGot.images && !_.isEmpty(modelGot.images)) {
         var cover = modelGot.images.exterior || modelGot.images.interior;
         if (cover) {
             modelGot.cover = Alloy.Globals.PuntiAciBannerBaseURL + cover;
@@ -72,7 +73,7 @@ function loadData() {
     modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
 
     modelGot.coverVisible = !_.isEmpty(modelGot.cover);
-    modelGot.coverHeight = modelGot.coverVisible ? 60 : 0;
+    modelGot.coverHeight = modelGot.coverVisible ? 80 : 0;
 
     $.detailModel.set(modelGot);
 }

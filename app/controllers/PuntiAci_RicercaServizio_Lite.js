@@ -29,7 +29,8 @@ function listaGIC(e) {
             alloy_id: e.rowData.modelId
         })[0].toJSON();
         console.log("selected", selected);
-        var list = Alloy.createController('PuntiAci_RicercaServizio_List', {
+        var list = Alloy.createController('PuntiAci_List', {
+            id_code: 'ric',
             data: selected
         }).getView();
         Alloy.Globals.navMenu.openWindow(list);

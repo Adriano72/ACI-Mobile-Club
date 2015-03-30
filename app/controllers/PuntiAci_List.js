@@ -40,18 +40,27 @@ loadData();
  * @return {[type]} [description]
  */
 function loadData() {
+
+    function onData(err, cached) {
+        var isEmpty = Boolean(collection.length);
+        $.puntiAci_Table.visible = isEmpty;
+        $.emptyView.getView().visible = !isEmpty;
+
+        Alloy.Collections.tempCollection.reset(collection.models);
+        updateUI();
+        Alloy.Globals.loading.hide();
+    };
+
     //aggiorna i dati solo se non sono più validi
     Alloy.Globals.loading.show('Stiamo cercando');
     try {
-        collection.fetchIfChanged(function(err, cached) {
-            var isEmpty = Boolean(collection.length);
-            $.puntiAci_Table.visible = isEmpty;
-            $.emptyView.getView().visible = !isEmpty;
-
-            Alloy.Collections.tempCollection.reset(collection.models);
-            updateUI();
-            Alloy.Globals.loading.hide();
-        });
+        if (args.id_code == 'ric') {
+            var gic = args.data.gic;
+            var fuoriGIC = args.data.fuoriGIC;
+            collection.fetchIfChanged(gic, fuoriGIC, onData);
+        } else {
+            collection.fetchIfChanged(onData);
+        }
     } catch (e) {
         Alloy.Globals.loading.hide();
         alert('Si è verificato un errore di connessione');
