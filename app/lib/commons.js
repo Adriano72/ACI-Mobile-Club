@@ -61,8 +61,7 @@ exports.initWindow = function(win, title, icon, menuItems) {
         abx.window = win;
     };
 
-
-    win.addEventListener('open', function(e) {
+    function setHeader() {
         console.log('initWin 2');
 
         if (OS_ANDROID) {
@@ -142,7 +141,14 @@ exports.initWindow = function(win, title, icon, menuItems) {
             }
         }
 
-    });
+    }
+
+    if (OS_ANDROID) {
+        win.addEventListener('open', setHeader);
+    } else {
+        setHeader();
+    }
+
 
 };
 
