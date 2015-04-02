@@ -66,15 +66,18 @@ function doopen(evt) {
     } else {
         //$.windowtitle.text = winTitle;
     }
-
+ /*
     Alloy.Globals.loading.show('Stiamo calcolando la posizione');
-    require('locationServices').getUserLocation(function(err, pos) {
+   
+    
+     require('locationServices').getUserLocation(function(err, pos) {
         Alloy.Globals.loading.hide();
         if(err){
             //gestire l'errore
         }
         loadData();
     });
+*/
 
 }
 
