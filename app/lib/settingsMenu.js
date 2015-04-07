@@ -49,15 +49,23 @@ exports.openSideMenu = function(p_auth) {
 
 
     var menuHeader = Ti.UI.createLabel({
-        text: " IMPOSTAZIONI",
+        text: "  IMPOSTAZIONI",
         font: {
             fontFamily: 'PTSans-Regular',
             fontSize: '10dp'
         },
-        height: 40,
+        height: 20,
         width: Ti.UI.FILL,
         backgroundColor: "#295F95",
         color: '#fff'
+
+    });
+
+
+    menuHeader.addEventListener('click', function(){
+        var win = Ti.UI.currentWindow;
+
+        win.add(Alloy.createController('sysReport').getView());
 
     });
 
