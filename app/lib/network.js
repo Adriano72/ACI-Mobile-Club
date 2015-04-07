@@ -433,7 +433,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
     var qs = {
         query: {
             //metto in or tutti i tipi di punti aci
-           // "_type": "del",
+            // "_type": "del",
             "$or": _.map(['del', 'aacc', 'r2g', 'pra', 'urp', 'tasse'], function(x) {
                 return {
                     "_type": x
@@ -572,7 +572,7 @@ exports.registerApp = function(_callback) {
 
     xhr.onerror = function(e) {
         Alloy.Globals.loading.hide();
-        console.log("ERRORE RISPOSTA SERVER: ", e, url );
+        console.log("ERRORE RISPOSTA SERVER: ", e, url);
     };
 
 
@@ -611,6 +611,12 @@ function getAciGeoHeaders() {
         'x-acigeo-appver': Ti.App.version,
         'x-acigeo-devos': OS_IOS ? 'ios' : 'android'
     };
+
+    var user = require('user').getCurrentUser();
+    if (user) {
+        h['x-acigeo-tessera'] = user['userInfo.tessera'];
+    }
+
     console.log('headers', h);
     return h;
 }
