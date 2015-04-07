@@ -1,0 +1,20 @@
+".container" : {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+  layout: "vertical"
+}
+
+"#btCancel":{
+	width: "49%",
+	left: 0,
+	backgroundColor: "transparent",
+}
+
+"#btSend":{
+	width: "49%",
+	right: 0,
+	backgroundColor: "transparent",
+}
+
+"#buttonWrapper":{
+	height: "10%",
+}

@@ -1,0 +1,25 @@
+<Alloy>
+	<View class="container">
+
+			<Label class="h1">SYSTEM REPORT</Label>
+			<Label class="h4">Comunica le informazioni di sistema agli sviluppatori. Utile per segnalare malfunzionalenti.</Label>
+
+			<View class="separator-inner"/>
+			<Label class="h3" >Messaggio (opzionale)</Label>
+			<TextArea id="message"></TextArea>
+
+			<View class="separator-inner"/>
+			<Label class="h3" >Info di sistema</Label>
+			<TextArea id="sysinfo"></TextArea>
+
+
+		<View id="buttonWrapper">
+			<Button id="btCancel" onClick="cancel" >CHIUDI</Button>
+			<View class="v-separator"></View>
+			<Button id="btSend" onClick="send">INVIA</Button>
+		</View>
+
+	
+
+	</View>
+</Alloy>
