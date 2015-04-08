@@ -1,8 +1,17 @@
 <Alloy>
-	<View class="container">
+	<Window id="win" class="container">
+
+		<ScrollView id="contentWrapper">
+			
+
 
 			<Label class="h1">SYSTEM REPORT</Label>
 			<Label class="h4">Comunica le informazioni di sistema agli sviluppatori. Utile per segnalare malfunzionalenti.</Label>
+
+			<View class="separator-inner"/>
+			<Label class="h3" >Nome del segnalatore</Label>
+			<TextField id="name"></TextField>
+
 
 			<View class="separator-inner"/>
 			<Label class="h3" >Messaggio (opzionale)</Label>
@@ -10,9 +19,12 @@
 
 			<View class="separator-inner"/>
 			<Label class="h3" >Info di sistema</Label>
-			<TextArea id="sysinfo"></TextArea>
+			<Label id="sysinfo"></Label>
 
+	
+		</ScrollView>
 
+		<View class="separator"></View>
 		<View id="buttonWrapper">
 			<Button id="btCancel" onClick="cancel" >CHIUDI</Button>
 			<View class="v-separator"></View>
@@ -21,5 +33,5 @@
 
 	
 
-	</View>
+	</Window>
 </Alloy>

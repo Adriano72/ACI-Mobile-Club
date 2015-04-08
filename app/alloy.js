@@ -119,3 +119,8 @@ Alloy.Globals.fontSize = {
 
 //inizializza i servizi di location
 _.defer(require('locationServices').init);
+
+
+if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
+   require('sysReportCommon').enableShake();
+}

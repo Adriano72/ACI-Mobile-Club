@@ -1,4 +1,5 @@
 ".container" : {
+	top: 20,
 	backgroundColor: Alloy.Globals.palette.bianco_sporco,
   layout: "vertical"
 }
@@ -15,6 +16,41 @@
 	backgroundColor: "transparent",
 }
 
+"#contentWrapper":{
+	layout: "vertical",
+	//backgroundColor: "red",
+	width: "90%",
+	height: "90%"
+}
+
+
+
 "#buttonWrapper":{
 	height: "10%",
+}
+
+".separator-inner":{
+	bottom: 4
+}
+
+"TextArea":{
+	backgroundColor: Alloy.Globals.palette.bianco,
+	top: 4,
+	width: Ti.UI.FILL,
+	height: 100,
+
+}
+
+
+"TextField":{
+	backgroundColor: Alloy.Globals.palette.bianco,
+	top: 4,
+	width: Ti.UI.FILL
+
+}
+
+"#sysinfo":{
+	top: 4,
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
 }

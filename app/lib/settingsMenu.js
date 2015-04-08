@@ -61,13 +61,12 @@ exports.openSideMenu = function(p_auth) {
 
     });
 
+    if (Alloy.CFG.SysReport_Enabled) {
+        menuHeader.addEventListener('click', function() {
+            require('sysReport').open();
 
-    menuHeader.addEventListener('click', function(){
-        var win = Ti.UI.currentWindow;
-
-        win.add(Alloy.createController('sysReport').getView());
-
-    });
+        });
+    }
 
 
     var loginLabel = createLabel((user.isLogged == true) ? "Logout" : "Login", function() {
