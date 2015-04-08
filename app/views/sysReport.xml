@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container">
+	<Window id="win" class="container noactionbar">
 
 		<ScrollView id="contentWrapper">
 			

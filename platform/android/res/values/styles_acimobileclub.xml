@@ -77,4 +77,9 @@
         <item name="dropDownListViewStyle">@style/DropDownListView.Acimobileclub</item>
     </style>
 
+    <style name="Theme.NoActionBar" parent="@style/Theme.Acimobileclub">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>

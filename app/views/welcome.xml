@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container">
+	<Window id="win" class="container noactionbar">
 		<WebView url="/welcome.html" ></WebView>
 		<View class="separator"></View>
 		<View id="buttonWrapper">

@@ -18,6 +18,10 @@
     exitOnClose: false
 }
 
+".noactionbar[platform=android]":{
+    theme : "Theme.NoActionBar"
+}
+
 
 "Label":{
     font: {

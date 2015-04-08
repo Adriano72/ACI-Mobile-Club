@@ -80,7 +80,7 @@ exports.initWindow = function(win, title, icon, menuItems) {
                 if (activity) {
 
                     //imposto l'icona della ActionBar
-                    activity.actionBar.setIcon(icon);
+                    activity.actionBar.setLogo(icon);
 
                     //ora creo gli elementi del menu
                     activity.invalidateOptionsMenu();
