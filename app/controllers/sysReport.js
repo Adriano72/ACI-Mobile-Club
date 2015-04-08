@@ -6,106 +6,19 @@ var args = arguments[0] || {};
 var id_segnalazione = require('utility').uuid.v4();
 
 
-/**
- * Proprietà di app
- * @type {Array}
- */
-var app = ['accessibilityEnabled',
-    'deployType',
-    'disableNetworkActivityIndicator',
-    'forceSplashAsSnapshot',
-    'guid',
-    'id',
-    'idleTimerDisabled',
-    'installId',
-    'keyboardVisible',
-    'name',
-    'proximityDetection',
-    'proximityState',
-    'sessionId',
-    'version'
-];
-
-/**
- * Proprietà di piattaforma
- * @type {Array}
- */
-var platform = ['BATTERY_STATE_CHARGING',
-    'BATTERY_STATE_FULL',
-    'BATTERY_STATE_UNKNOWN ',
-    'BATTERY_STATE_UNPLUGGED',
-    'address',
-    'architecture',
-    'availableMemory',
-    'batteryLevel',
-    'batteryMonitoring',
-    'batteryState',
-    'displayCaps',
-    'id',
-    'locale',
-    'macaddress',
-    'manufacturer',
-    'model',
-    'name',
-    'netmask',
-    'osname',
-    'ostype',
-    'processorCount',
-    'runtime',
-    'username',
-    'version'
-];
-
-var displayCaps = ['density',
-    'dpi',
-    'logicalDensityFactor',
-    'platformHeight',
-    'platformWidth',
-    'xdpi',
-    'ydpi'
-];
-
 
 function loadData() {
-    var info = [];
-
-    //sezione info generali
-    info.push('### GENERALE');
-    info.push('Segnalazione: ' + id_segnalazione);
-    info.push('Date: ' + new Date());
-
-
-    //sezione app
-    info.push('### APP');
-    _(app).each(function(e) {
-        var v = Ti.App[e];
-
-        info.push(e + ': ' + v);
-
-
-    });
-
-
-    //sezione piattaforma
-    info.push('### DEVICE');
-    _(platform).each(function(e) {
-        var v = Ti.Platform[e];
-        if (e == 'displayCaps') {
-            var v1 = [];
-            _(displayCaps).each(function(d) {
-
-                v1.push('\n  ' + d + ': ' + v[d]);
-            });
-            v = v1.join('');
-        }
-        info.push(e + ': ' + v);
-
-
-    });
 
 
 
-    $.sysinfo.text = info.join('\n');
+    var info = require('environment').snapshot();
+    info['generale'] = {
+        segnalazione: id_segnalazione,
+        data: new Date()
+    }
+
+
+    $.sysinfo.text = formatInfo(info);
 
 
     //precarico il segnalatore
@@ -120,6 +33,8 @@ loadData();
 function cancel() {
     $.win.close();
 }
+
+
 
 function send() {
     var segnalatore = $.name.value;
@@ -157,6 +72,11 @@ function send() {
     }
 
 
+}
+
+
+function formatInfo(i) {
+    return JSON.stringify(i, null, '  ');
 }
 
 

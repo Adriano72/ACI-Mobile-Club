@@ -644,3 +644,5 @@ function buildRequestHandler(callback) {
     };
 
 }
+
+exports.getAciGeoHeaders = getAciGeoHeaders;

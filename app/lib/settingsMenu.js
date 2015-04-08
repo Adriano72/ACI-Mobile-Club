@@ -63,7 +63,7 @@ exports.openSideMenu = function(p_auth) {
 
     if (Alloy.CFG.SysReport_Enabled) {
         menuHeader.addEventListener('click', function() {
-            require('sysReport').open();
+            require('sysReportCommon').open();
 
         });
     }
