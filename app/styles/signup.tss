@@ -1,0 +1,113 @@
+
+"Label":{
+	color: Alloy.Globals.palette.bianco_sporco
+}
+
+
+
+
+".container":{
+	backgroundImage: "/sfondoLogin.jpg",
+}
+
+
+"#main":{
+	layout: "vertical",
+	width: "90%"
+}
+
+"#formWizard":{
+	height: "80%"
+}
+"#formWizard[platform=ios]":{
+	pagingControlColor: "transparent"
+
+}
+
+
+
+"#buttonGroup":{
+	height: "20%"
+}
+
+".step":{
+	height: Ti.UI.SIZE,
+}
+
+".fieldGroup":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical",
+
+}
+
+".fieldWrapper" : {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	width: Ti.UI.FILL,
+	height: 40,
+	top: 5
+}
+
+".field":{
+	
+	backgroundColor: "transparent",
+	width: "90%",
+	//left: "5%",
+	height: 30,
+	font:{fontSize: Alloy.Globals.fontSize.XXL},
+	returnKeyType: Ti.UI.RETURNKEY_NEXT
+}
+
+".buttonWrapper":{
+	width: "45%",
+	height: 40
+}
+
+".secondaryButtonWrapper":{
+	left: "2%"
+}
+
+".primaryButtonWrapper":{
+	right: "2%",
+	borderWidth: 1,
+	borderColor: Alloy.Globals.palette.bianco_sporco,
+	borderRadius: 20
+}
+
+".fieldPrefix":{
+	color: Alloy.Globals.palette.blu,
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro,
+	height: Ti.UI.FILL,
+	width: "15%",
+	left: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+        fontSize: Alloy.Globals.fontSize.XXL
+    },
+
+
+}
+
+".fieldPostfix":{
+	color: Alloy.Globals.palette.blu,
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro,
+	height: Ti.UI.FILL,
+	width: "15%",
+	right: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+        fontSize: Alloy.Globals.fontSize.XXL
+    },
+}
+
+".withPostfix":{
+	width: "75%", //90-15
+	left: "5%"
+}
+".withPrefix":{
+	width: "75%", //90-15
+	right: "5%"
+
+}
+
+

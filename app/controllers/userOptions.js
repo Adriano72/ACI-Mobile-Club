@@ -5,32 +5,32 @@ var user = require('user');
 
 //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
 if (OS_ANDROID) {
-	var abx = require('com.alcoapps.actionbarextras');
+    var abx = require('com.alcoapps.actionbarextras');
 };
 
 function loadData() {
-	//Alloy.Collections.automobileClub.fetch();
-	if (OS_ANDROID) {
-		
-		init1();
-		//actionBarHelper.setIcon('/drawericonw@2x.png');
+    //Alloy.Collections.automobileClub.fetch();
+    if (OS_ANDROID) {
 
-	} else {
-		//$.windowtitle.text = winTitle;
-	}
+        init1();
+        //actionBarHelper.setIcon('/drawericonw@2x.png');
+
+    } else {
+        //$.windowtitle.text = winTitle;
+    }
 
 }
 
 function init1() {
-	abx.displayHomeAsUp = true;
-	abx.title = "Scegli un'opzione";
-	abx.titleFont = "ACI Type Regular.otf";
-	abx.titleColor = Alloy.Globals.palette.blu;
-	_.defer(init2);
+    abx.displayHomeAsUp = true;
+    abx.title = "Scegli un'opzione";
+    abx.titleFont = "ACI Type Regular.otf";
+    abx.titleColor = Alloy.Globals.palette.blu;
+    _.defer(init2);
 }
 
 function init2() {
-	$.win.activity.invalidateOptionsMenu();
+    $.win.activity.invalidateOptionsMenu();
 }
 
 
@@ -53,12 +53,23 @@ function accedi() {
             Alloy.Globals.navMenu.closeWindow($.win);
         }
     })
-  
+
 }
 
 
 function registrati() {
-    Ti.Platform.openURL(Alloy.CFG.Register_Url);
+
+    if (Alloy.CFG.Register_OpenWebsite) {
+        Ti.Platform.openURL(Alloy.CFG.Register_Url);
+
+    } else {
+        open('signup');
+
+        _.defer(function() {
+            Alloy.Globals.navMenu.closeWindow($.win);
+        });
+    }
+
 }
 
 function associati() {

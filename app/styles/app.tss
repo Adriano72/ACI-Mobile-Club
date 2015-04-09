@@ -39,7 +39,8 @@
     font: {
         fontFamily: Alloy.Globals.font.PTSans_Narrow,
         fontSize: Alloy.Globals.fontSize.L
-    }
+    },
+    color: Alloy.Globals.palette.blu
 }
 
 "TextArea":{
