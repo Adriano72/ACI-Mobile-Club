@@ -1,0 +1,15 @@
+<Alloy>
+	<View class="container">
+		<ScrollableView id="formWizard" onScroll="onScroll" scrollingEnabled="false" showPagingControl="true">
+			
+		</ScrollableView>
+		<View id="buttonGroup">
+			<View class="buttonWrapper secondaryButtonWrapper" onClick="secondaryAction">
+				<Label id="secondaryButton">indietro</Label>
+			</View>
+			<View class="buttonWrapper primaryButtonWrapper" onClick="primaryAction">
+				<Label id="primaryButton">Continua</Label>
+			</View>
+		</View>
+	</View>
+</Alloy>

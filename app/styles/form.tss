@@ -1,0 +1,52 @@
+
+"Label":{
+	color: Alloy.Globals.palette.bianco_sporco
+}
+
+".container":{
+	layout: "vertical"
+}
+
+
+"#formWizard":{
+	height: "80%"
+}
+"#formWizard[platform=ios]":{
+	pagingControlColor: "transparent"
+
+}
+
+
+".fieldGroup":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical"
+
+}
+
+
+"#buttonGroup":{
+	height: "20%"
+}
+
+".step":{
+	height: Ti.UI.SIZE
+}
+
+
+
+".buttonWrapper":{
+	width: "45%",
+	height: 40
+}
+
+".secondaryButtonWrapper":{
+	left: "2%"
+}
+
+".primaryButtonWrapper":{
+	right: "2%",
+	borderWidth: 1,
+	borderColor: Alloy.Globals.palette.bianco_sporco,
+	borderRadius: 20
+}

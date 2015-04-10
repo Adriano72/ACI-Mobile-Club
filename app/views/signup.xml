@@ -1,66 +1,7 @@
 <Alloy>
-	<Window id="win" class="container">
-
+	<Window class="container" id="win">
 		<ScrollView id="main">
-
-			<ScrollableView id="formWizard" scrollingEnabled="false" showPagingControl="true" onScroll="onScroll">
-	            <View id="step1" class="step" >
-	               <View class="fieldGroup">
-	               		<View class="fieldWrapper">
-	               			<TextField id="tessera" hintText="numero tessera ACI" class="field" />
-	               		</View>
-	               		<View class="fieldWrapper">
-	               			<TextField id="nome" hintText="nome" class="field" />
-	               		</View>
-	               		<View class="fieldWrapper">
-	               			<TextField id="cognome" hintText="cognome" class="field" />
-	               		</View>
-
-	               </View>
-	            </View>
-
-	            <View id="step2" class="step" >
-	               <View class="fieldGroup">
-	               		<View class="fieldWrapper">
-	               			<TextField id="email" hintText="email" class="field" />
-	               		</View>
-	               		<View class="fieldWrapper">
-	               			<Label class="fieldPrefix">(+39)</Label> 
-	               			<TextField id="cellulare" hintText="numero di cellulare" class="field withPrefix" />
-	               		</View>
-	               		
-
-	               </View>
-	            </View>
-
-	            <View id="step3" class="step" >
-	               <View class="fieldGroup">
-	               		<View class="fieldWrapper">
-	               			<TextField id="username" hintText="username" class="field withPostfix" />
-	               			<Label class="fieldPostfix">?</Label>
-	               		</View>
-
-
-	               		<View class="fieldWrapper">
-	               			<TextField id="password" hintText="password" class="field withPostfix" />
-	               			<Label class="fieldPostfix">?</Label>
-	               		</View>
-	               		
-
-	               </View>
-	            </View>
-	            
-	        </ScrollableView>
-
-	        <View id="buttonGroup">
-	        	<View class="buttonWrapper secondaryButtonWrapper" onClick="secondaryAction">
-	        		<Label id="secondaryButton">indietro</Label>
-	        	</View>
-
-	        	<View class="buttonWrapper primaryButtonWrapper"  onClick="primaryAction">
-	        		<Label id="primaryButton">Continua</Label>
-	        	</View>
-	        </View>
+			<Require id="formWizard" src="form"/>
 		</ScrollView>
 	</Window>
 </Alloy>
