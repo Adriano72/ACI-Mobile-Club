@@ -3,17 +3,17 @@
 
 		<ScrollView id="main">
 
-			<ScrollableView id="formWizard" showPagingControl="true" onScroll="onScroll">
+			<ScrollableView id="formWizard" scrollingEnabled="false" showPagingControl="true" onScroll="onScroll">
 	            <View id="step1" class="step" >
 	               <View class="fieldGroup">
 	               		<View class="fieldWrapper">
 	               			<TextField id="tessera" hintText="numero tessera ACI" class="field" />
 	               		</View>
 	               		<View class="fieldWrapper">
-	               			<TextField id="cognome" hintText="cognome" class="field" />
+	               			<TextField id="nome" hintText="nome" class="field" />
 	               		</View>
 	               		<View class="fieldWrapper">
-	               			<TextField id="nome" hintText="nome" class="field" />
+	               			<TextField id="cognome" hintText="cognome" class="field" />
 	               		</View>
 
 	               </View>
@@ -26,7 +26,7 @@
 	               		</View>
 	               		<View class="fieldWrapper">
 	               			<Label class="fieldPrefix">(+39)</Label> 
-	               			<TextField id="cellulare" hintText="telefono" class="field withPrefix" />
+	               			<TextField id="cellulare" hintText="numero di cellulare" class="field withPrefix" />
 	               		</View>
 	               		
 
