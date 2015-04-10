@@ -122,10 +122,8 @@ exports.snapshot = function() {
     /**
      * ACIGEO
      */
-    var acigeo = _({
-        endpoint: Alloy.Globals.AciGeo_BaseUrl,
-
-    }).extend(require('network').getAciGeoHeaders());
+    var acigeo = require('network').getAciGeoHeaders();
+    acigeo.endpoint = Alloy.CFG.AciGeo_BaseUrl;
 
 
     return {

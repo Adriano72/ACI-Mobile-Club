@@ -17,7 +17,7 @@ var THROTTLE_TIME = 5000;
  */
 function onFirstRun() {
     //chiamo il servizio per registrare l'app
-    require('network').registerApp(function(){
+    require('network').registerApp(function() {
         console.log('app registered');
     });
 
@@ -66,7 +66,7 @@ function doopen(evt) {
     } else {
         //$.windowtitle.text = winTitle;
     }
- /*
+    /*
     Alloy.Globals.loading.show('Stiamo calcolando la posizione');
    
     
@@ -127,6 +127,25 @@ function triggerScroll() {
     if (OS_ANDROID) {
         Ti.App.fireEvent('initialScrollHack');
     };
+}
+
+if (!Alloy.CFG.SysReport_Enabled) {
+    var count = 0;
+    var enableSysReport = function() {
+        if (count++ == 10) {
+            Alloy.CFG.SysReport_Enabled = true;
+            alert('modalità debug abilitata');
+
+if ( Alloy.CFG.SysReport_UseShake) {
+   require('sysReportCommon').enableShake();
+}
+            Banner.removeEventListener('click', enableSysReport);
+        } else {
+            console.log('count', count);
+        }
+    };
+
+    Banner.addEventListener('click', enableSysReport);
 }
 
 $.index.add(Banner);
