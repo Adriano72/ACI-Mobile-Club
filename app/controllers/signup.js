@@ -30,11 +30,11 @@ var formSchema = {
             required: true,
             keyboardType: Ti.UI.KEYBOARD_EMAIL,
             format: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
-        }, {    
+        }, {
             fieldId: 'mobile',
             hintText: 'Numero di cellulare',
             prefix: '(+39)',
-           // keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
+            // keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
             required: true,
             format: /^[0-9]{9,10}$/
         }],
@@ -44,7 +44,7 @@ var formSchema = {
             required: true,
             range: [5, 32],
             format: [/^[A-Za-z0-9\.]+$/, 'solo lettere, cifre e punti'],
-            validate: function(value, cb) {
+            /*  validate: function(value, cb) {
                 Alloy.Globals.loading.show('Controllo dati');
                 console.log('username validate' + value);
                 require('network').userCheckUsername(value, function(res) {
@@ -63,7 +63,7 @@ var formSchema = {
                         cb && cb(false, [res.data]);
                     }
                 });
-            }
+            }*/
         }, {
             fieldId: 'password',
             hintText: 'Password',

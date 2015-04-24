@@ -627,7 +627,8 @@ exports.userSignUp = function(data, _callback) {
 
 
 
-    var url = 'http://sso-web.svi.local/index.php?do=registrationRest&application_key=mobile&id=register';
+    //var url = 'http://sso-web.svi.local/index.php?do=registrationRest&application_key=mobile&id=register';
+    var url = 'http://col-login.aci.it/index.php?do=registrationRest&application_key=mobile&id=register';
     //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
 
 
@@ -674,7 +675,8 @@ exports.userCheckUsername = function(username, _callback) {
 
 
 
-    var url = 'http://sso-web.svi.local/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
+   // var url = 'http://sso-web.svi.local/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
+    var url = 'http://col-login.aci.it/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
     //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
 
 
