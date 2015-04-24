@@ -10,7 +10,7 @@
         "AciGlobal_RequestLimitMinutes": "10",
         "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
         "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew",
-        "Register_OpenWebsite": true,
+        "Register_OpenWebsite": false,
         "AciGeo_CacheDurationHours": "24",
         "AciGeo_CacheDistanceRangeMeters": "1000",
         "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",

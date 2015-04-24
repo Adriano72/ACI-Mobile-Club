@@ -1,8 +1,17 @@
 <Alloy>
 	<View class="container">
-		<ScrollableView id="formWizard" onScroll="onScroll" scrollingEnabled="false" showPagingControl="true">
-			
-		</ScrollableView>
+		<View id="formWrapper">
+			<View id="formWrapperInner">
+				<View id="errorWrapper" visible="false">
+					<View id="minheight"></View>
+					<ImageView id="errorIcon"></ImageView>
+					<Label id="error" class="h2" ></Label>
+				</View>
+				<ScrollableView id="formWizard" onScroll="onScroll" scrollingEnabled="false" showPagingControl="true">
+				
+				</ScrollableView>
+			</View>
+		</View>
 		<View id="buttonGroup">
 			<View class="buttonWrapper secondaryButtonWrapper" onClick="secondaryAction">
 				<Label id="secondaryButton">indietro</Label>

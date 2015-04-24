@@ -1,0 +1,15 @@
+<Alloy>
+	<Window class="container" id="win">
+		
+		<View id="textWrapper">
+			<Label class="h2">Grazie per aver completato l'iscrizione. Controlla la mail.</Label>
+		</View>
+
+
+		<View id="buttonGroup">
+			<View class="buttonWrapper primaryButtonWrapper" onClick="primaryAction">
+				<Label id="primaryButton">Chiudi</Label>
+			</View>
+		</View>
+	</Window>
+</Alloy>

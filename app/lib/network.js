@@ -597,6 +597,98 @@ exports.registerApp = function(_callback) {
 };
 
 
+exports.userSignUp = function(data, _callback) {
+    data.step = 1;
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+
+        var json = JSON.parse(this.responseText);
+
+        Ti.API.info("RISPOSTA: " + this.responseText);
+        Ti.API.info("RISPOSTA: " + this.responseData);
+
+     
+        _callback(json);
+
+        Alloy.Globals.loading.hide();
+
+
+    };
+
+    xhr.onerror = function(e) {
+        Alloy.Globals.loading.hide();
+        console.log("ERRORE RISPOSTA SERVER: ", e, url);
+        alert("Errore nella comunicazione col server.");
+    };
+
+
+
+
+
+    var url = 'http://sso-web.svi.local/index.php?do=registrationRest&application_key=mobile&id=register';
+    //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+    console.log('data', data);
+    xhr.open('POST', url);
+
+    xhr.setRequestHeader('enctype', 'multipart/form-data');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    /*    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    }); */
+
+
+    xhr.send(data);
+};
+
+
+exports.userCheckUsername = function(username, _callback) {
+
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+
+        var json = JSON.parse(this.responseText);
+
+        Ti.API.info("RISPOSTA: " + this.responseText);
+        Ti.API.info("RISPOSTA: " + this.responseData);
+
+        _callback(json);
+
+
+    };
+
+    xhr.onerror = function(e) {
+        alert("Errore nella comunicazione col server.");
+        console.log("ERRORE RISPOSTA SERVER: ", e, url);
+                _callback(e);
+
+    };
+
+
+
+
+
+    var url = 'http://sso-web.svi.local/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
+    //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+    xhr.open('GET', url);
+
+
+
+
+    xhr.send();
+};
+
+
+
 /**
  * Crea e ritorna una lista di header http comuni da inserire nelle richieste
  * @return {Array} lista chiave-valore di header da inviare

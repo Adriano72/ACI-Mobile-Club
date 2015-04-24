@@ -7,6 +7,9 @@
 	borderWidth: 1 ,
 	borderColor: "transparent"
 }
+"#fieldWrapper[platform=android]":{
+	height: 50
+}
 
 "#field":{
 	
@@ -15,10 +18,14 @@
 	//left: "5%",
 	height: 30,
 	font:{fontSize: Alloy.Globals.fontSize.XXL},
-	returnKeyType: Ti.UI.RETURNKEY_NEXT
+	returnKeyType: Ti.UI.RETURNKEY_NEXT,
+	autocapitalization: Titanium.UI.TEXT_AUTOCAPITALIZATION_NONE
 }
 
 
+"#field[platform=android]":{
+	height: 40
+}
 
 "#fieldPrefix":{
 	color: Alloy.Globals.palette.blu,

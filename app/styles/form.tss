@@ -8,18 +8,60 @@
 }
 
 
-"#formWizard":{
+"#formWrapper":{
 	height: "80%"
 }
+
+"#formWrapperInner":{
+	height:Ti.UI.SIZE,
+	layout: "vertical",
+	//backgroundColor: "green"
+}
+
+"#formWizard":{
+//	backgroundColor: "yellow",	
+	//height: Ti.UI.SIZE
+}
 "#formWizard[platform=ios]":{
-	pagingControlColor: "transparent"
+	pagingControlColor: "transparent",
+	height: "70%"
 
 }
 
+"#formWizard[platform=android]":{
+	height: "50%"
+}
+
+"#minheight":{
+	height: 28
+}
+
+"#errorWrapper":{
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	height: Ti.UI.SIZE,
+	borderWidth: 1 ,
+	borderColor: Alloy.Globals.palette.rosso
+}
+
+"#errorIcon":{
+	width: 20,
+	left: 5,
+	
+	image: '/images/exclamation-triangle.png'
+}
+
+"#error":{
+	left: 30,
+	color:  Alloy.Globals.palette.rosso,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	height: Ti.UI.SIZE,
+}
 
 ".fieldGroup":{
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
+	//	backgroundColor: "cyan",
+
 	layout: "vertical"
 
 }
@@ -30,7 +72,9 @@
 }
 
 ".step":{
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
+//	backgroundColor: "orange"
+
 }
 
 
