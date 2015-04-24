@@ -90,7 +90,7 @@ function dataTransform(model) {
     attrs.tel = attrs.contacts.tel[0];
     attrs.image = getPinImage(attrs._type);
     attrs.title = attrs.name;
-    attrs.subtitle = "Tocca per ulteriori informazioni";
+    attrs.subtitle = OS_IOS ? "Tocca 'i' per ulteriori informazioni" : "Tocca per ulteriori informazioni";
     attrs.leftButton = "/images/annotation-info.png";
     attrs.email = attrs.contacts.email[0];
     //attrs.immagine = encodeURI("http://www.aci.it/fileadmin/syc/logo/"+attrs.agreement_id.logo);
@@ -105,7 +105,7 @@ function linkToPOI(e) {
     //get the Myid from annotation
     var clicksource = e.clicksource;
 
-    if (clicksource == 'annotation' || clicksource == 'leftButton' || clicksource == 'leftPane' || clicksource == 'infoWindow' || clicksource == 'subtitle') { //leftButton event
+    if ( clicksource == 'leftButton' || clicksource == 'leftPane' || clicksource == 'infoWindow' || clicksource == 'subtitle') { //leftButton event
 
 
         var id_code = e.annotation._type;
