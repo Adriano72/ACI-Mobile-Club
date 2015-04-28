@@ -38,8 +38,13 @@ commons.initWindow($.win, itemData.text, itemData.img, [{
     onClick: _(commons.openMapWindow).partial(collection, itemData.text, itemData.img, itemData.pin)
 }]);
 
+$.emptyView.getView().visible = false;
 //carica i dati
-loadData();
+if (OS_ANDROID) {
+    _.defer(loadData);
+} else {
+    loadData();
+}
 
 
 
