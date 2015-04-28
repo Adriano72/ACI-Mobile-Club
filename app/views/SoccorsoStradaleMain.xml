@@ -5,5 +5,12 @@
 		<!--<View class="bottomBannerContainer">
 			<ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/>
 		</View>-->
+
+		<View class="bottomBannerContainer">
+			<!-- <ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/> -->
+			<View class="bottomBanner">
+				<Require src="bannerCarousel" id="banner" />
+			</View>
+		</View>
 	</Window>
 </Alloy>

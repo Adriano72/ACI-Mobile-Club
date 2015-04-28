@@ -41,16 +41,15 @@
 
 ".bottomBannerContainer": {
 	bottom: 0,
-	height: "30%"
+	height: "20%"
 }
 
 ".bottomBanner": {
 	//image: "/banner_sotto.png",
-	width: "90%"
+	width: "90%",
+	height: Ti.UI.SIZE,
+	bottom: 0
 }
-
-
-
 
 
 
