@@ -554,19 +554,20 @@ exports.registerApp = function(_callback) {
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
-
-        var json = JSON.parse(this.responseText);
+        console.log('registerApp', this.responseText);
+        /* var json = JSON.parse(this.responseText);
 
         Ti.API.info("RISPOSTA: " + json.message);
 
         if (json.status == 200) {
             // Ti.API.debug("RISPOSTA: " + gic + " " + JSON.stringify(json));
-            _callback(json.result);
+            _callback(this.responseText);
 
         } else {
             Alloy.Globals.loading.hide();
             alert("Errore nella comunicazione col server.");
-        };
+        }; */
+        _callback && _callback(this.responseText);
 
     };
 
@@ -609,7 +610,7 @@ exports.userSignUp = function(data, _callback) {
         Ti.API.info("RISPOSTA: " + this.responseText);
         Ti.API.info("RISPOSTA: " + this.responseData);
 
-     
+
         _callback(json);
 
         Alloy.Globals.loading.hide();
@@ -667,7 +668,7 @@ exports.userCheckUsername = function(username, _callback) {
     xhr.onerror = function(e) {
         alert("Errore nella comunicazione col server.");
         console.log("ERRORE RISPOSTA SERVER: ", e, url);
-                _callback(e);
+        _callback(e);
 
     };
 
@@ -675,7 +676,7 @@ exports.userCheckUsername = function(username, _callback) {
 
 
 
-   // var url = 'http://sso-web.svi.local/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
+    // var url = 'http://sso-web.svi.local/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
     var url = 'http://col-login.aci.it/index.php?do=usernameUtility&application_key=acinew&type=check&user=' + username;
     //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
 
