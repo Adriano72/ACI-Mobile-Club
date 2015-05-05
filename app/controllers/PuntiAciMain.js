@@ -33,7 +33,7 @@ if (OS_ANDROID) {
     rows2.push(Alloy.createController('TableViewRow_Single', {
 
         immagine: "/images/ic_action_cerca_per_servizio_blu.png",
-        testo: "Ricerca per serivizio",
+        testo: "Ricerca per servizio",
         id_code: "RIC"
 
     }).getView());
