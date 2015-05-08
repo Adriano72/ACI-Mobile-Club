@@ -58,11 +58,29 @@ function loadData() {
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
 
     if (modelGot.images && !_.isEmpty(modelGot.images)) {
-        var cover = modelGot.images.exterior || modelGot.images.interior;
-        if (cover) {
-            modelGot.cover = Alloy.Globals.PuntiAciBannerBaseURL + cover;
-            console.log('cover', modelGot.cover);
+        var interior = modelGot.images.exterior;
+        var exterior = modelGot.images.exterior;
+
+        modelGot.covers = [];
+        if (exterior) {
+            modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + exterior);
         }
+        if (interior) {
+            modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + interior);
+        }
+
+        console.log('**cover ', modelGot.covers);
+
+        _(modelGot.covers).each(function(e) {
+            console.log(e);
+            var img = Ti.UI.createImageView({
+                image: e,
+                width: Ti.UI.FILL,
+                height: 80
+            });
+            $.cover.addView(img);
+        });
+
     }
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
@@ -72,8 +90,11 @@ function loadData() {
     modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
     modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
 
-    modelGot.coverVisible = !_.isEmpty(modelGot.cover);
+    modelGot.coverVisible = !_.isEmpty(modelGot.covers);
     modelGot.coverHeight = modelGot.coverVisible ? 80 : 0;
+
+    $.cover.height = modelGot.coverVisible ? 80 : 0;
+    $.cover.showPagingControl = modelGot.covers.length > 1;
 
     $.detailModel.set(modelGot);
 }

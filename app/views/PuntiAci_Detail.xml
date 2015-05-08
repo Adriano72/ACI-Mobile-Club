@@ -19,7 +19,8 @@
 			</View>
 			<View class="separator"/>
 			<View class="coverWrapper" visible="{$.detailModel.coverVisible}"  >
-				<ImageView class="cover" image="{$.detailModel.cover}" height="{$.detailModel.coverHeight}" />
+				<!-- <ImageView id="cover" class="cover"  /> -->
+				<ScrollableView id="cover"  ></ScrollableView>
 			</View>
 			<View id="contattiView">
 				<View id="contattiViewInner">
