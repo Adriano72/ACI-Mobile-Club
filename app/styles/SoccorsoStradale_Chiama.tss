@@ -2,6 +2,9 @@
  * NAVIGAZIONE E CONTAINER
  */
 
+".container":{
+	height: Ti.UI.SIZE
+}
 
 // container for iOS
 ".container[platform=ios]": {
@@ -31,7 +34,7 @@
 
 "#main":{
 	backgroundColor:  Alloy.Globals.palette.bianco_sporco,
-	height: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL,
 	layout: "vertical"
 }
@@ -83,6 +86,7 @@
 
  ".roundButton" : {
 	top: 20,
+	bottom: 20,
 	height: 34,
 	borderRadius: 18,
 	borderWidth: 1,

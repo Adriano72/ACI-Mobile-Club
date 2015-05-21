@@ -1,14 +1,9 @@
 <Alloy>
-	<Window id="win" class="container" >
+	<View id="win" class="container" >
 		
-		<ScrollView id="main"  onClick="cavasClick">
+		<View id="main"  onClick="cavasClick">
 
-			<View class="bar top">
-				<ImageView class="barIcon gpsIcon"></ImageView>
-				<Label class="barLabel" >Invia la tua posizione per essere richiamato</Label>
-			</View> 
-
-
+	
 
 	        <View  class="rowContainer">
 
@@ -75,6 +70,6 @@
 
 
 
-		</ScrollView>
-	</Window>
+		</View>
+	</View>
 </Alloy>

@@ -1,16 +1,41 @@
 <Alloy>
 	<Window id="win" class="container" >
 		
-		<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>
-		<!--<View class="bottomBannerContainer">
-			<ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/>
-		</View>-->
+		<!--<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>-->
 
+		<View id="main">
+
+			<View id="rowRichiesta" class="rowSingleContainer" onClick="toggleDettaglioRichiesta">
+				<ImageView class="simpleRowLeftIcon" id="richiestaIcon"/>
+				<Label class="simpleRowText h3" id="richiestaText" text="Invia la tua posizione per essere richiamato"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<ScrollView id="dettaglioRichiesta"  class="textBox" visible="true" >
+					<Require id="richiestaController" src="SoccorsoStradale_Richiesta"></Require>
+			</ScrollView>
+			
+
+			<View class="separator-inner"/>
+
+			
+
+        	<View id="rowChiama" class="rowSingleContainer" onClick="toggleDettaglioChiama">
+				<ImageView class="simpleRowLeftIcon" id="chiamaIcon"/>
+				<Label class="simpleRowText h3" id="chiamaText" text="Chiama l'803.116"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioChiama"  class="textBox" visible="true">
+					<Require  id="chiamaController" src="SoccorsoStradale_Chiama"></Require>
+			</View>
+			
+		
+		</View>
 		<View class="bottomBannerContainer">
-			<!-- <ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/> -->
+				<!-- <ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/> -->
 			<View class="bottomBanner">
-				<Require src="bannerCarousel" id="banner" />
+					<Require src="bannerCarousel" id="banner" />
 			</View>
 		</View>
+		
 	</Window>
 </Alloy>

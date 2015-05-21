@@ -37,11 +37,7 @@ var isGuest, userData;
 
 var args = arguments[0] || {};
 
-var headerText = "Assistenza";
-var headerImg = "/images/ic_action_home_assistenza_blu.png";
 
-//inizializzazioni comuni della Window
-commons.initWindow($.win, headerText, headerImg);
 
 
 //carica i dati
@@ -113,9 +109,9 @@ function loadData() {
     }
 
     function setScrollOnFocus() {
-        $.telefono.addEventListener('focus', function() {
+      /*  $.telefono.addEventListener('focus', function() {
             $.main.scrollToBottom();
-        });
+        }); */
     }
 
 

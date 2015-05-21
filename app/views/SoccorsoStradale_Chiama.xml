@@ -1,11 +1,8 @@
 <Alloy>
-	<Window id="win" class="container" >
+	<View id="win" class="container" >
 		
-		<ScrollView id="main">
-			<View class="bar top">
-				<ImageView class="barIcon phoneIcon"></ImageView>
-				<Label class="barLabel" >Chiama l'803.116</Label>
-			</View> 
+		<View id="main">
+			
 
 			<Label class="formLabelDark">Telefona direttamente alla centrale operativa.</Label>
 
@@ -17,6 +14,6 @@
 
 
 
-		</ScrollView>
-	</Window>
+		</View>
+	</View>
 </Alloy>

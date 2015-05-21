@@ -10,7 +10,7 @@ var headerImg = "/images/ic_action_home_assistenza_blu.png";
 //inizializzazioni comuni della Window
 commons.initWindow($.win, headerText, headerImg);
 
-
+/*
 var rowData = [{
     //richiesta
     immagine: "/images/ic_action_aiuto_gps_rosso.png",
@@ -34,6 +34,8 @@ _.each(rowData, function(value) {
     riga.rowText.color = Alloy.Globals.palette.rosso;
     rows.push(riga.getView());
 });
+
+*/
 
 function selectionDetail(e) {
     console.log('selection', e);
@@ -63,6 +65,75 @@ function selectionDetail(e) {
     }
 };
 
+
+
+function toggleDettaglioChiama(e) {
+
+    e.cancelBubble = true;
+    console.log('$.dettaglioChiama.visible == true', $.dettaglioChiama.visible);
+
+    if ($.dettaglioChiama.visible) {
+
+        $.dettaglioChiama.visible = false;
+        $.chiamaIcon.image = "/images/ic_action_aiuto_phone_rosso.png"
+        $.chiamaText.color = Alloy.Globals.palette.rosso;
+        $.rowChiama.backgroundColor = "#fff";
+        $.dettaglioChiama.height = 0;
+
+    } else {
+
+        $.dettaglioChiama.height = Ti.UI.SIZE;
+        $.chiamaIcon.image = "/images/ic_action_aiuto_phone_bianco.png"
+        $.chiamaText.color = "#fff";
+        $.rowChiama.backgroundColor = Alloy.Globals.palette.rosso;
+        $.dettaglioChiama.visible = true;
+
+    }
+
+    
+
+};
+
+function toggleDettaglioRichiesta(e) {
+
+    e.cancelBubble = true;
+    console.log('$.dettaglioRichiesta.visible == true', $.dettaglioRichiesta.visible);
+    if ($.dettaglioRichiesta.visible) {
+
+        $.dettaglioRichiesta.visible = false;
+        $.richiestaIcon.image = "/images/ic_action_aiuto_gps_rosso.png";
+        $.richiestaText.color = Alloy.Globals.palette.rosso;
+        $.rowRichiesta.backgroundColor = Alloy.Globals.palette.bianco;
+        $.dettaglioRichiesta.height = 0;
+
+    } else {
+
+        $.dettaglioRichiesta.height = Ti.UI.FILL;
+        $.richiestaIcon.image = "/images/ic_action_aiuto_gps_bianco.png";
+        $.richiestaText.color = Alloy.Globals.palette.bianco;
+        $.rowRichiesta.backgroundColor = Alloy.Globals.palette.rosso;
+        $.dettaglioRichiesta.visible = true;
+
+    }
+
+    
+
+};
+
+function fill() {
+    var tot = Alloy.Globals.deviceHeight * 0.8;
+    tot -= $.rowRichiesta.rect.height;
+    tot -= $.dettaglioRichiesta.rect.height;
+    tot -= $.rowChiama.rect.height;
+    tot -= $.dettaglioChiama.rect.height;
+    console.log('fill', $.main.rect.height, tot);
+    $.filler.height = tot;
+}
+
+$.richiestaController.getView().height = Ti.UI.SIZE;
+$.chiamaController.getView().height = Ti.UI.SIZE;
+toggleDettaglioRichiesta({});
+toggleDettaglioChiama({});
 /*
 function displayConvenzioneBanner() {
 
@@ -77,4 +148,4 @@ function displayConvenzioneBanner() {
 */
 
 
-$.puntiAciMain_Table.setData(rows);
+//$.puntiAciMain_Table.setData(rows);

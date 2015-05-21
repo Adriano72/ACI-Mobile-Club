@@ -183,18 +183,18 @@
 ".separator": {
     width: Ti.UI.FILL,
     height: 1,
-    backgroundColor: Alloy.Globals.palette.grigio
+    backgroundColor: Alloy.Globals.palette.grigio_chiaro
 }
 ".separator-inner": {
     width: "96%",
     height: 1,
-    backgroundColor: Alloy.Globals.palette.grigio
+    backgroundColor: Alloy.Globals.palette.grigio_chiaro
 }
 
 ".v-separator": {
     height: Ti.UI.FILL,
     width: 1,
-    backgroundColor: Alloy.Globals.palette.grigio
+    backgroundColor: Alloy.Globals.palette.grigio_chiaro
 }
 
 

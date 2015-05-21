@@ -2,6 +2,9 @@
  * NAVIGAZIONE E CONTAINER
  */
 
+".container":{
+	height: Ti.UI.SIZE
+}
 
 // container for iOS
 ".container[platform=ios]": {
@@ -29,12 +32,11 @@
 
 "#main":{
 	backgroundColor:  Alloy.Globals.palette.bianco_sporco,
-	height: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
 }
 
 ".rowContainer": {
-	top: 40,
 	layout: "vertical",
 	height: Ti.UI.FILL,
 
@@ -116,14 +118,16 @@
 }
 
 "#mapview":{
-	height: 175
+	top: 0,
+	height: 100
 }
 
 "#mapview[platform=android]":{
 	enableZoomControls: false	
 }
 "#mapWrapper":{
-	height: 175
+	top: 0,
+	height: 100
 }
 
 "#rowRichiestaInviata":{
