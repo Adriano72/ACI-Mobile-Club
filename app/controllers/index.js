@@ -136,9 +136,9 @@ if (!Alloy.CFG.SysReport_Enabled) {
             Alloy.CFG.SysReport_Enabled = true;
             alert('modalità debug abilitata');
 
-if ( Alloy.CFG.SysReport_UseShake) {
-   require('sysReportCommon').enableShake();
-}
+            if (Alloy.CFG.SysReport_UseShake) {
+                require('sysReportCommon').enableShake();
+            }
             Banner.removeEventListener('click', enableSysReport);
         } else {
             console.log('count', count);
@@ -173,7 +173,7 @@ var openTessera = _(function(e) {
     e.cancelBubble = true;
 
 
-    if (user.isLogged) {
+    if (user.isLogged && user.hasTessera) {
 
         var winTessera = Alloy.createController('showTessera', Ti.App.Properties.getObject("datiUtente")).getView();
         Alloy.Globals.navMenu.openWindow(winTessera);
@@ -185,6 +185,7 @@ var openTessera = _(function(e) {
 
     }
 
+   
 }).throttle(THROTTLE_TIME);
 
 

@@ -39,6 +39,19 @@ Object.defineProperty(exports, 'isLogged', {
 
 
 /**
+ * Property
+ * Ci dice se l'utente è loggato o meno
+ * @return {Boolean}
+ */
+Object.defineProperty(exports, 'hasTessera', {
+    get: function() {
+        var data = exports.getCurrentUser();
+        return Boolean(data['userInfo.tessera']);
+    }
+});
+
+
+/**
  * Ritorna i dati dell'utente attuale, se presente
  * @return {object} hash set con i dati utente
  */

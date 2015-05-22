@@ -35,13 +35,16 @@ function init2() {
 
 
 
-if (user.isLogged) {
+if (user.isLogged ) {
+    console.log('********* 2');
 
-    open('showTessera', user.getCurrentUser());
-    _.defer(function() {
-        Alloy.Globals.navMenu.closeWindow($.win);
-    });
+    $.loginWrapper.height = 0;
+    $.signupWrapper.height = 0;
+} else {
+    console.log('********* 3');
+
 }
+
 
 
 

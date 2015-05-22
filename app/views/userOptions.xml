@@ -7,20 +7,20 @@
 
 		
 		<View id="wrapper">
-			<View class="rounded" onClick="accedi">
+			<View id="loginWrapper" class="rounded" onClick="accedi">
 				<View class="rowContainer">
 					<Label class="l1">Sei già registrato?</Label>
 					<Label class="l2" >Accedi</Label>
 				</View>
 			</View>
 
-			<View class="rounded" onClick="registrati">
+			<View id="signupWrapper" class="rounded" onClick="registrati">
 				<View class="rowContainer" >
 					<Label class="l1">Sei socio ACI?</Label>
 					<Label class="l2" >Registrati</Label>
 				</View>
 			</View>
-			<View class="rounded" onClick="associati">
+			<View id="cardsWrapper" class="rounded" onClick="associati">
 				<View class="rowContainer">
 					<Label class="l1">Non sei ancora socio?</Label>
 					<Label class="l2" >Associati</Label>

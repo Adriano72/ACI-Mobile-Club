@@ -41,13 +41,13 @@ $.ricordami.getView().addEventListener('change', function(e) {
 
 function doSignup() {
     console.log("Alloy.CFG.Register_Url", Alloy.CFG.Register_Url);
-    Ti.Platform.openURL(Alloy.CFG.Register_Url); 
+    Ti.Platform.openURL(Alloy.CFG.Register_Url);
 }
 
 
 function doResetPwd() {
     console.log("Alloy.CFG.ResetPwd_Url", Alloy.CFG.ResetPwd_Url);
-    Ti.Platform.openURL(Alloy.CFG.ResetPwd_Url); 
+    Ti.Platform.openURL(Alloy.CFG.ResetPwd_Url);
 }
 
 function doLogin() {
@@ -86,8 +86,17 @@ function doLogin() {
 
                 Alloy.Globals.loading.hide();
                 Ti.API.info("USER DATA: " + JSON.stringify(user_data));
-                var winTessera = Alloy.createController('showTessera', user_data.data).getView();
-                Alloy.Globals.navMenu.openWindow(winTessera);
+
+                var w;
+
+                if (user_data.data['userInfo.tessera']) {
+                    w = Alloy.createController('showTessera', user_data.data).getView();
+                } else {
+                     w = Alloy.createController('userOptions').getView();
+
+                }
+
+                Alloy.Globals.navMenu.openWindow(w);
 
                 //questo hack serve per far si che, se premo back da winTessera, torno direttamente alla home page
                 _.defer(function() {
