@@ -84,10 +84,12 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="android">com.alcoapps.actionbarextras</module>
-        <module platform="iphone">ti.map</module>
-        <module platform="android">ti.map</module>
-    </modules>
+    <module platform="android">com.alcoapps.actionbarextras</module>
+    <module platform="iphone">ti.map</module>
+    <module platform="android">ti.map</module>
+    <module platform="android" version="2.0.2">ti.styledlabel</module>
+    <module platform="iphone" version="1.6.1">ti.styledlabel</module>
+  </modules>
     <deployment-targets>
         <target device="android">true</target>
         <target device="blackberry">false</target>

@@ -90,15 +90,35 @@ function loadData() {
 function dataTransform(model) {
     var attrs = model.toJSON();
 
+    function hasService(services, s) {
+        return Boolean(_(services).filter(function(e) {
+            return e.toLowerCase().indexOf(s) >= 0;
+        }).length);
+    }
+
+
+
+
+    console.log('type', attrs._type);
     if (attrs._type == 'del') {
         var name = attrs.name;
         attrs.title = attrs.customName;
         attrs.subtitle = attrs.name;
         attrs.subtitleHeight = Ti.UI.SIZE;
+
+        var srv = attrs.services.concat(attrs.customServices);
+
+        console.log('srv', srv);
+        attrs.hasSara = hasService(srv, 'sara');
+        attrs.hasR2G = hasService(srv, 'r2g');
+
     } else {
         attrs.subtitleHeight = 0;
 
         attrs.title = attrs.name;
+
+        attrs.hasSara = false;
+        attrs.hasR2G = false;
     }
 
     attrs.distance = utility.formatDistance(attrs.address.distance);
@@ -111,7 +131,7 @@ function dataTransform(model) {
     attrs.tel = attrs.contacts.tel[0];
     attrs.email = attrs.contacts.email[0];
     attrs.id = model.cid;
-    console.log('dt  ', attrs._type);
+    //console.log('dt  ', attrs);
 
 
     return attrs;

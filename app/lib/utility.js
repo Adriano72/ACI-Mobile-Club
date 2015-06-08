@@ -84,6 +84,7 @@ exports.getTesseraImage = function(codice, horizontal) {
     var transcode = {
 
         'DIP': 'tessera_sistema.jpg',
+        'SOC': 'tessera_sistema.jpg',
         'FAM': 'tessera_sistema.jpg',
         'SOC': 'tessera_sistema.jpg',
         'SMA': 'tessera_sistema.jpg',
@@ -98,6 +99,7 @@ exports.getTesseraImage = function(codice, horizontal) {
         'ONG': 'tessera_one.jpg',
         'CLO': 'tessera_club.jpg',
         'CLU': 'tessera_club.jpg',
+        'CLN': 'tessera_club.jpg',
         'VIN': 'tessera_vintage.jpg',
         'CON': 'tessera_driver.jpg',
         'DRV': 'tessera_driver.jpg',
@@ -115,6 +117,51 @@ exports.getTesseraImage = function(codice, horizontal) {
 
         imm = imm.replace('.jpg', '_h.jpg');
     }
+
+    Ti.API.info("TESSERA: " + imm);
+
+
+
+    return "/" + imm;
+
+};
+
+exports.getTesseraRetroImage = function(codice) {
+
+    Ti.API.info("CODICE: " + codice);
+
+    var transcode = {
+
+        'DIP': 'tessera_sistema_retro.jpg',
+        'SOC': 'tessera_sistema_retro.jpg',
+        'FAM': 'tessera_sistema_retro.jpg',
+        'SOC': 'tessera_sistema_retro.jpg',
+        'SMA': 'tessera_sistema_retro.jpg',
+        'SOG': 'tessera_sistema_retro.jpg',
+        'GDI': 'tessera_gold_retro.jpg',
+        'GFA': 'tessera_gold_retro.jpg',
+        'GSO': 'tessera_gold_retro.jpg',
+        'GMA': 'tessera_gold_retro.jpg',
+        'GIO': 'tessera_okkei_retro.jpg',
+        'GIA': 'tessera_okkei_retro.jpg',
+        'UNO': 'tessera_one_retro.jpg',
+        'ONG': 'tessera_one_retro.jpg',
+        'CLO': 'tessera_club_retro.jpg',
+        'CLU': 'tessera_club_retro.jpg',
+        'CLN': 'tessera_club_retro.jpg',
+        'VIN': 'tessera_vintage_retro.jpg',
+        'CON': 'tessera_driver_retro.jpg',
+        'DRV': 'tessera_driver_retro.jpg',
+        'STA': 'tessera_storico1_retro.jpg',
+        'STF': 'tessera_storico2_retro.jpg'
+
+    };
+
+    var imm = _.find(transcode, function(value, key) {
+        return key == codice;
+    });
+
+  
 
     Ti.API.info("TESSERA: " + imm);
 
@@ -157,6 +204,7 @@ exports.getTesseraAssitenza = function(codice) {
 
         //sistema
         'DIP': [a1, a2],
+        'SOC': [a1, a2],
         'FAM': [a1, a2],
         'SOC': [a1, a2],
         'SMA': [a1, a2],
@@ -175,6 +223,7 @@ exports.getTesseraAssitenza = function(codice) {
         //club
         'CLO': [a1, a2, a3],
         'CLU': [a1, a2, a3],
+        'CLN': [a1, a2, a3],
         //vintage
         'VIN': [a1, a2],
         //driver

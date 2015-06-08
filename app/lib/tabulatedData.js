@@ -30,6 +30,16 @@ exports.puntiAciMain = function() {
             text: "Demolitori",
             id_code: "dem"
 
+        }, {
+            img: "/images/ic_action_autoscuole_blu.png",
+            text: "Autoscuole",
+            id_code: "r2g"
+
+        }, {
+            img: "/images/ic_action_acipoint_blu.png",
+            text: "ACI Point",
+            id_code: "acipoint"
+
         }
 
     ];

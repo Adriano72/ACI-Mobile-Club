@@ -1,11 +1,5 @@
 <Alloy>
-	
-	<Window id="win" class="container" onOpen="loadData">
-		<TitleControl platform="ios">
-			<Label id="titleControl" class="titleControl">le tessere ACI</Label>
-		</TitleControl>
-
-		
+	<View>
 		<TableView id="TessereTable" class="table" dataCollection="tessere" dataTransform="dataTransform" dataFunction="updateUI" onSingletap="openDetail" >
 
 			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
@@ -22,5 +16,5 @@
 				</View>
 			</TableViewRow>
 		</TableView>
-	</Window>
+	</View>
 </Alloy>

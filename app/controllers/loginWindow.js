@@ -2,34 +2,12 @@ var args = arguments[0] || {};
 
 var net = require('network');
 var user = require('user');
+var commons = require('commons');
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
 
-function doopen(evt) {
-    if (OS_ANDROID) {
+commons.initWindow($.win, "La tua tessera", "/images/ic_action_home_tessera_blu.png");
 
-        init1();
 
-    } else {
-        //$.windowtitle.text = winTitle;
-    }
-
-    //updateScreen();
-}
-
-function init1() {
-    abx.displayHomeAsUp = true;
-    abx.title = "La tua tessera";
-    abx.titleFont = "ACI Type Regular.otf";
-    abx.titleColor = Alloy.Globals.palette.blu;
-    _.defer(init2);
-}
-
-function init2() {
-    $.win.activity.invalidateOptionsMenu();
-}
 
 
 $.ricordami.getView().addEventListener('change', function(e) {

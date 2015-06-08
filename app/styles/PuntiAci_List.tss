@@ -66,10 +66,25 @@
 
 }
 ".middleRowContainer": {
+	
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	left: 0
+}
+".leftRowContainer": {
 	layout: "vertical",
 	
 	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL
+	width: "80%",
+	left: 0
+}
+
+".rightRowContainer": {
+	layout: "vertical",
+	
+	height: Ti.UI.SIZE,
+	width: "19%",
+	right: 0
 }
 
 "#nome": {

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="doopen">
+	<Window id="win" class="container" >
 		<TitleControl platform="ios">
 			<View class="titleControl"></View>
 		</TitleControl>

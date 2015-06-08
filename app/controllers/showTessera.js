@@ -1,13 +1,15 @@
 var args = arguments[0] || {};
-var utility  = require("utility");
+var utility = require("utility");
+var commons = require("commons");
 
 Ti.API.info("ARGS: " + JSON.stringify(args));
 
-if (OS_ANDROID) {
-    var abx = require('com.alcoapps.actionbarextras');
-};
 
-var immagineTessera
+//inizializzazioni comuni della Window
+commons.initWindow($.win, "La mia tessera", "/ico_tessera_01.png");
+
+
+var immagineTessera, immagineTesseraRetro;
 
 //controllo la scadenza
 var scadenza = new Date(args["userInfo.dataScadenza"]);
@@ -16,40 +18,27 @@ console.log('dataScadenza', args["userInfo.dataScadenza"]);
 
 var code = args["userInfo.categoriaTessera"];
 
-if(scadenza >= new Date()){
-	immagineTessera  = utility.getTesseraImage(code);
+if (scadenza >= new Date()) {
+    immagineTessera = utility.getTesseraImage(code);
+    immagineTesseraRetro = utility.getTesseraRetroImage(code);
 } else {
-	immagineTessera  = utility.getTesseraScadutaImage(code);
-
+    immagineTessera = utility.getTesseraScadutaImage(code);
+    immagineTesseraRetro = utility.getTesseraRetroImage(code);
 }
 
-function doopen(evt) {
-    if (OS_ANDROID) {
 
-        $.win.activity.actionBar.hide();
 
-    } else {
-        //$.windowtitle.text = winTitle;
-    }
-
-    //updateScreen();
-}
-
-$.tessera.backgroundImage = immagineTessera;
+//$.tessera.backgroundImage = immagineTessera;
+//$.tessera_back.backgroundImage = immagineTesseraRetro;
+$.tessera.image = immagineTessera;
+$.tessera_back.image = immagineTesseraRetro;
+var qr = 'http://10.64.4.138:10001/geo/v2/qrcode/acicardno/' + args["userInfo.numeroTessera"] + '.png?options={"size":8,"margin":1}';
+console.log('qr', qr);
+$.barcode.image = qr;
 
 Ti.API.info("TESSERA: " + immagineTessera);
+Ti.API.info("TESSERA RETRO: " + immagineTesseraRetro);
 
-function init1() {
-    abx.displayHomeAsUp = true;
-    abx.title = "La tua tessera";
-    abx.titleFont = "ACI Type Regular.otf";
-    abx.titleColor = Alloy.Globals.palette.blu;
-    _.defer(init2);
-}
-
-function init2() {
-    $.win.activity.invalidateOptionsMenu();
-}
 
 $.titolare.text = args["userInfo.name"] + " " + args["userInfo.surname"];
 $.numTessera.text = args["userInfo.numeroTessera"];
@@ -66,7 +55,10 @@ var reversed = pieces.join('/');
 $.validita.text = "FINO AL " + reversed;
 
 
+
 $.rotatedContainer.transform = Ti.UI.create2DMatrix().rotate(-90);
+
+
 
 if (OS_ANDROID) {
     $.rotatedContainer.setBottom("20%");
@@ -81,6 +73,7 @@ if (OS_ANDROID) {
 
     $.rotatedContainer.setLeft("25%");
 }
+
 
 var flag = false;
 
@@ -105,11 +98,11 @@ function checkSize(e) {
 
 }
 
-function showSYC() {
+var showSYC = _.throttle(function() {
     var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
     Alloy.Globals.navMenu.openWindow(winVantaggiSoci);
+}, 1000);
 
-};
 
 //$.tessera.transform = Ti.UI.create2DMatrix().rotate(-90);
 
@@ -139,4 +132,10 @@ function DPUnitsToPixles(theDPs) {
         }
         return theDPs;
     }
+}
+
+_.defer(fit);
+
+function fit() {
+    $.rotatedContainer.setWidth($.tessera.rect.width);
 }

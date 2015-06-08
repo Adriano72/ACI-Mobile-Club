@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id="win" class="container" >
+
+		<Require id="list" src="Tessere_List" ></Require>
+
+	</Window>
+</Alloy>

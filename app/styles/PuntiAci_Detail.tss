@@ -119,8 +119,9 @@
 }
 
 ".coverWrapper":{
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
 	//height: 60
+	width: "100%"
 }
 
 "#cover":{

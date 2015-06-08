@@ -77,7 +77,7 @@ function registrati() {
 
 function associati() {
 
-    open('Tessere_List');
+    open('Tessere_Main');
 
 }
 

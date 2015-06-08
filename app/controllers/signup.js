@@ -24,21 +24,21 @@ var formSchema = {
             required: true
         }],
 
-        [{
-            fieldId: 'email',
-            hintText: 'E-mail',
-            required: true,
-            keyboardType: Ti.UI.KEYBOARD_EMAIL,
-            format: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
-        }, {
+        /*[ {
             fieldId: 'mobile',
             hintText: 'Numero di cellulare',
             prefix: '(+39)',
             // keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
             required: true,
             format: /^[0-9]{9,10}$/
-        }],
+        } ],*/
         [{
+            fieldId: 'email',
+            hintText: 'E-mail',
+            required: true,
+            keyboardType: Ti.UI.KEYBOARD_EMAIL,
+            format: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+        },{
             fieldId: 'username',
             hintText: 'Username',
             required: true,

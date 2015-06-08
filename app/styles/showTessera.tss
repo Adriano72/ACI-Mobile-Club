@@ -1,45 +1,4 @@
-// container for iOS
-".container[platform=ios]": {
-	backgroundColor: "#fff",
-	backButtonTitle: "",
-	barColor: Alloy.Globals.palette.bianco_sporco,
-	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT]
-	
-}
 
-// container for Android
-".container[platform=android]": {
-	backgroundColor: "#fff",
-	top:20,
-	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
-	exitOnClose: false
-}
-
-".titleControl[platform=ios]": {
-	backgroundImage: "logoLaTuaTessera.png",
-	width: 120,
-	height: 20
-}
-
-".rightNavImg[platform=ios]": {
-	image: "ico_rotella_celeste.png",
-	height: 15
-}
-
-
-"MenuItem": {
-	showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
-
-"#menu": {
-	icon: "ico_tessera_01.png"
-}
-
-"#mn_settings": {
-	icon: "/ico_rotella_celeste.png"
-}
 
 ".tesseraContainer": {
 	//backgroundColor: "red",
@@ -141,6 +100,16 @@
 
 ".bottomItems": {
 	top: 0
+}
+
+".card": {
+	width: Ti.UI.FILL
+}
+
+"#barcode": {
+	width: "25%",
+	top: "10%",
+	right: "15%"
 }
 
 

@@ -56,29 +56,43 @@ function loadData() {
     var services = (modelGot.services || []).concat(modelGot.customServices || []);
     modelGot.servizi = utility.formattaServizi(services);
     modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
+    modelGot.covers = [];
+
+    var coverHeight = 220;
 
     if (modelGot.images && !_.isEmpty(modelGot.images)) {
-        var interior = modelGot.images.exterior;
+        var interior = '/del.jpg'; //modelGot.images.interior;
         var exterior = modelGot.images.exterior;
 
-        modelGot.covers = [];
+
         if (exterior) {
             modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + exterior);
         }
         if (interior) {
-            modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + interior);
+            modelGot.covers.push(interior);
+            // modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + interior);
         }
 
         console.log('**cover ', modelGot.covers);
 
         _(modelGot.covers).each(function(e) {
             console.log(e);
-            var img = Ti.UI.createImageView({
+              var img = Ti.UI.createImageView({
                 image: e,
+                //backgroundColor: "red",
+                //height: Ti.UI.SIZE,
+                width: Ti.UI.FILL
+                // height: coverHeight
+            }); 
+           
+            var v = Ti.UI.createView({
+              //  backgroundColor: "pink",
+                //height: Ti.UI.SIZE,
                 width: Ti.UI.FILL,
-                height: 80
+                height: coverHeight
             });
-            $.cover.addView(img);
+            v.add(img);
+            $.cover.addView(v);
         });
 
     }
@@ -91,9 +105,9 @@ function loadData() {
     modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
 
     modelGot.coverVisible = !_.isEmpty(modelGot.covers);
-    modelGot.coverHeight = modelGot.coverVisible ? 80 : 0;
+    modelGot.coverHeight = modelGot.coverVisible ? coverHeight : 0;
 
-    $.cover.height = modelGot.coverVisible ? 80 : 0;
+    $.cover.height = modelGot.coverVisible ? coverHeight : 0;
     $.cover.showPagingControl = modelGot.covers.length > 1;
 
     $.detailModel.set(modelGot);

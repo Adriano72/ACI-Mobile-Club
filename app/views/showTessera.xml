@@ -1,21 +1,10 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="doopen">
-		<TitleControl platform="ios">
-			<View class="titleControl"></View>
-		</TitleControl>
-		<RightNavButton platform="ios">
-			<!--<ImageView class="rightNavImg"/>-->
-		</RightNavButton>
-		<Menu id="menu" platform="android">
-
-			<!-- Cannot specify node text.  Use attributes only. -->
-			<!--<MenuItem id="mn_menu" title="Menu" onClick="showHideMenu"/>-->
-			<!--<MenuItem id="mn_settings" title="Impostazioni"/>-->
-
-		</Menu>
-		<View class="tesseraContainer">
+	<Window id="win" class="container" >
+		
+		<ScrollableView class="tesseraContainer">
 			<!--<ImageView id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC"/>-->
-			<View id="tessera" class="imgTessera" onClick="showSYC">
+			<View class="imgTessera" onClick="showSYC">
+				<ImageView id="tessera" class="card" ></ImageView>
 				<View id="rotatedContainer" class="datiContainer">
 
 					<Label id="LabelTitolare" class="labelTessera">TITOLARE</Label>
@@ -35,6 +24,17 @@
 					</View>
 				</View>
 			</View>
-		</View>
+
+			<View  class="imgTessera" onClick="showSYC">
+				<ImageView  id="tessera_back"  class="card" zIndex="10" ></ImageView>
+				<ImageView  id="barcode" defaultImage="/none.png" zIndex="100" ></ImageView>
+			</View>
+
+			<View  class="imgTessera" >
+		<Require id="list" src="Tessere_List" ></Require>
+		
+			</View>
+
+		</ScrollableView>
 	</Window>
 </Alloy>

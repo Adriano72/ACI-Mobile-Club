@@ -61,6 +61,8 @@ Alloy.Collections.instance("pra");
 Alloy.Collections.instance("urp");
 Alloy.Collections.instance("tasse");
 Alloy.Collections.instance("demolitori");
+Alloy.Collections.instance("autoscuole");
+Alloy.Collections.instance("acipoint");
 
 //Alloy.Collections.instance("puntiMappa");
 

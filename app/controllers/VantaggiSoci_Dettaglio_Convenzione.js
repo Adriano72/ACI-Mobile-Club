@@ -53,12 +53,17 @@ function loadData() {
     modelGot.web = modelGot.contacts.web[0];
     modelGot.email = modelGot.contacts.email[0];
 
+    var meta = '<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.8">';
+
     var addr = formatContacts([modelGot.address.formatted, modelGot.tel, modelGot.fax, modelGot.web]);
     modelGot.formattedAddress = addr;
-    modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc).trim();
-    modelGot.come = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc).trim();
+    //modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc).trim();
+    modelGot.descrizione = meta + modelGot.agreement_id.serviceTypeDesc.trim();
+    //  modelGot.come = encoder.Encoder.htmlDecode(modelGot.agreement_id.discountDesc).trim();
+    modelGot.come = meta + modelGot.agreement_id.discountDesc.trim();
     console.log("come", modelGot.come);
-    modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc).trim();
+    //  modelGot.vantaggio = encoder.Encoder.htmlDecode(modelGot.agreement_id.offerDesc).trim();
+    modelGot.vantaggio = meta + modelGot.agreement_id.offerDesc.trim();
     modelGot.logo = encodeURI(Alloy.Globals.bannerBaseURL + (modelGot.agreement_id.images.logo || modelGot.agreement_id.images.banner));
 
 

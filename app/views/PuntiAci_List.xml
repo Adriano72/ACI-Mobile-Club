@@ -27,12 +27,23 @@
 
 					 <View class="middleRowContainer">
 						
-						<Label class="simpleRowText h4" text="{subtitle}" height="{subtitleHeight}"/>
-						<Label class="simpleRowText h4" text="{indirizzo}"/>
-						<Label class="simpleRowText h4" text="{indirizzo2}"/>
 
+						<View class="leftRowContainer">
+
+							<Label class="simpleRowText h4" text="{subtitle}" height="{subtitleHeight}"/>
+							<Label class="simpleRowText h4" text="{indirizzo}"/>
+							<Label class="simpleRowText h4" text="{indirizzo2}"/>
+
+						</View>
+
+						<View class="rightRowContainer">
+							<ImageView image="/images/sara.png" visible="{hasSara}" />
+							<ImageView image="/images/ready.png" visible="{hasR2G}" />
+						</View>
 					 	
 					</View>
+
+					
 
 					<View class="bottomRowContainer">
 						<Label class="indicazioniStradali link" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation">Indicazioni stradali ›</Label>

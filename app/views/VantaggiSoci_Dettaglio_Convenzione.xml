@@ -27,7 +27,7 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioDescrizione" class="textBox" visible="false">
-				<Label class="text testoDettagli" id="txt_dettaglioDescrizione" text="{$.dormireMangiare.descrizione}"/>
+				<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioDescrizione" html="{$.dormireMangiare.descrizione}"/>
 			</View>
 
 			<View class="separator-inner"/>
@@ -38,7 +38,7 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioVantaggio"  class="textBox" visible="false">
-				<Label class="text testoDettagli" id="txt_dettaglioOrari" text="{$.dormireMangiare.vantaggio}"/>
+				<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioOrari" html="{$.dormireMangiare.vantaggio}"/>
 			</View>
 
 			<View class="separator-inner"/>
@@ -49,7 +49,7 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioComeVantaggio"  class="textBox" visible="false">
-				<Label class="text testoDettagli" id="txt_dettaglioCome" text="{$.dormireMangiare.come}"/>
+				<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioCome" html="{$.dormireMangiare.come}"/>
 			</View>
 
 			<View class="separator-inner"  visible="{$.dormireMangiare.telefonoVisible}"/>
