@@ -38,9 +38,9 @@ function listaGIC(e) {
 }
 
 function hideResults() {
-
+   // return;
     if (OS_IOS) {
-        $.puntiAci_Table.visible = false;
+       // $.puntiAci_Table.visible = false;
         $.puntiAci_Table.height = 0;
     } else {
         //su android, se nascondo la tabella si nasconde anche la searchbar
@@ -52,10 +52,11 @@ function hideResults() {
 }
 
 function showResults() {
+ //   return;
     if ($.searchBar.value) {
         if (OS_IOS) {
+           // $.puntiAci_Table.visible = true;
             $.puntiAci_Table.height = Ti.UI.FILL;
-            $.puntiAci_Table.visible = true;
         } else {
             //su android, se nascondo la tabella si nasconde anche la searchbar
             $.puntiAci_Table.height = Ti.UI.FILL;

@@ -18,6 +18,10 @@
     exitOnClose: false
 }
 
+"ImageView":{
+    defaultImage: '/images/none.png'
+}
+
 ".noactionbar[platform=android]":{
     theme : "Theme.NoActionBar"
 }

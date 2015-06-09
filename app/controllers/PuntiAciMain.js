@@ -81,5 +81,6 @@ function displayConvenzioneBanner() {
 }
 
 $.win.addEventListener('close', function() {
+     $.destroy();
     $.banner.stop();
 });
