@@ -2,6 +2,8 @@ var args = arguments[0] || {};
 var utility = require('utility');
 var commons = require('commons');
 
+var images = {};
+
 
 //selezioni la collection corretta dalla quale prendere i dati
 var collection = utility.getAciGeoCollection(args.id_code);
@@ -72,13 +74,13 @@ function loadData() {
         });
     } catch (e) {
         Alloy.Globals.loading.hide();
+        console.log('errore load data', e);
         alert('Si è verificato un errore di connessione');
 
     }
     $.searchBar.blur();
 }
 
-var images = {};
 
 function dataTransform(model) {
     var attrs = model.toJSON();
@@ -103,9 +105,12 @@ function dataTransform(model) {
 
     if (attrs.agreement_id.images) {
         //   attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
-        console.log('modelId', attrs.id);
-        console.log('image', encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo));
-        images[attrs.id] = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+        var id = attrs.id;
+        var img = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+        console.log('modelId', id);
+        console.log('image', img);
+        console.log('images', images);
+        images[id] = img;
 
     }
     return attrs;
