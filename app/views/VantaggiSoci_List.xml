@@ -19,7 +19,7 @@
 			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
 				<View class="blockContainer">
 					<View class="iconContainer">
-						<ImageView class="logoConvenzione" image="{immagine}"/>
+						<ImageView id="logoImg" class="logoConvenzione" image="{immagine}"/>
 					</View>
 					<View class="centerContainer">
 						<Label class="simpleRowText h2" id="nome" text="{name}"/>

@@ -43,13 +43,31 @@ function loadData() {
     try {
         collection.fetchIfChanged(function(err, cached) {
 
-       
+
             var isEmpty = Boolean(collection.length);
             $.puntiAci_Table.visible = isEmpty;
             $.emptyView.getView().visible = !isEmpty;
-            
+
             Alloy.Collections.tempCollection.reset(collection.models);
             updateUI();
+
+            // setTimeout(function(e) {
+            console.log('controllo uodateUI', $.puntiAci_Table.data);
+            var sect = $.puntiAci_Table.data[0];
+            console.log('images', images);
+            if (sect) {
+                console.log('righe', sect.rows);
+                _(sect.rows).each(function(row) {
+                    console.log('row id', row.modelId);
+                    console.log('row image', images[row.modelId]);
+                    var logoImg = row.getChildren()[0].getChildren()[0].getChildren()[0];
+                    console.log('row logoImg', logoImg);
+                    logoImg.image = images[row.modelId];
+                });
+            }
+
+            //  }, 3000) 
+
             Alloy.Globals.loading.hide();
         });
     } catch (e) {
@@ -59,6 +77,8 @@ function loadData() {
     }
     $.searchBar.blur();
 }
+
+var images = {};
 
 function dataTransform(model) {
     var attrs = model.toJSON();
@@ -79,10 +99,15 @@ function dataTransform(model) {
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
     attrs.email = attrs.contacts.email[0];
-    if (attrs.agreement_id.images) {
-        attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
-    }
     attrs.id = model.cid;
+
+    if (attrs.agreement_id.images) {
+        //   attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+        console.log('modelId', attrs.id);
+        console.log('image', encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo));
+        images[attrs.id] = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+
+    }
     return attrs;
 };
 
