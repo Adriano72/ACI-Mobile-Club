@@ -165,7 +165,6 @@ function toggleDettaglioComeVantaggio(e) {
 
 
 
-$.win.addEventListener('
-    close ', function() {
+$.win.addEventListener('close ', function() {
     $.destroy();
 });
