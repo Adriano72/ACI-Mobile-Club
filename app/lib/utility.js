@@ -93,6 +93,7 @@ exports.getTesseraImage = function(codice, horizontal) {
         'GFA': 'tessera_gold.jpg',
         'GSO': 'tessera_gold.jpg',
         'GMA': 'tessera_gold.jpg',
+        'GFA': 'tessera_gold.jpg',
         'GIO': 'tessera_okkei.jpg',
         'GIA': 'tessera_okkei.jpg',
         'UNO': 'tessera_one.jpg',
@@ -142,6 +143,7 @@ exports.getTesseraRetroImage = function(codice) {
         'GFA': 'tessera_gold_retro.jpg',
         'GSO': 'tessera_gold_retro.jpg',
         'GMA': 'tessera_gold_retro.jpg',
+        'GFA': 'tessera_gold_retro.jpg',
         'GIO': 'tessera_okkei_retro.jpg',
         'GIA': 'tessera_okkei_retro.jpg',
         'UNO': 'tessera_one_retro.jpg',
@@ -214,6 +216,7 @@ exports.getTesseraAssitenza = function(codice) {
         'GFA': [a1, a2, a3],
         'GSO': [a1, a2, a3],
         'GMA': [a1, a2, a3],
+        'GFA': [a1, a2, a3],
         //okkei
         'GIO': [a1],
         'GIA': [a1],
