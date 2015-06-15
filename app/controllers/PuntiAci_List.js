@@ -102,7 +102,7 @@ function dataTransform(model) {
     console.log('type', attrs._type);
     if (attrs._type == 'del') {
         var name = attrs.name;
-        attrs.title = attrs.customName;
+        attrs.title = attrs.customName + ' ' + attrs.code;
         attrs.subtitle = attrs.name;
         attrs.subtitleHeight = Ti.UI.SIZE;
 

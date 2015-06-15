@@ -36,13 +36,14 @@ function loadData() {
     } else {
         modelGot = args.data.attributes;
     }
+    console.log(modelGot);
     modelGot.email = modelGot.contacts.email[0];
     modelGot.telefono = modelGot.contacts.tel[0];
     modelGot.fax = modelGot.contacts.fax[0];
     modelGot.web = modelGot.contacts.web[0];
 
     if (modelGot._type == 'del') {
-        modelGot.title = modelGot.customName;
+        modelGot.title = modelGot.customName + ' ' + modelGot.code;
         var addr = formatContacts([modelGot.name, modelGot.address.formatted]);
 
     } else {
@@ -60,33 +61,43 @@ function loadData() {
 
     var coverHeight = 220;
 
-    if (modelGot.images && !_.isEmpty(modelGot.images)) {
-        var interior = '/del.jpg'; //modelGot.images.interior;
-        var exterior = modelGot.images.exterior;
+    var sourceImages = modelGot.images || {
+        interior: null,
+        exterior: null
+    };
+
+    if (modelGot._type == 'del') {
+        var interior = sourceImages.interior;
+        var exterior = sourceImages.exterior;
 
 
         if (exterior) {
             modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + exterior);
+        } else {
+            modelGot.covers.push('/AutomobileClub.png');
         }
         if (interior) {
             modelGot.covers.push(interior);
             // modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + interior);
+        } else {
+            modelGot.covers.push('/AutomobileClub.png');
         }
 
         console.log('**cover ', modelGot.covers);
 
         _(modelGot.covers).each(function(e) {
             console.log(e);
-              var img = Ti.UI.createImageView({
+            var img = Ti.UI.createImageView({
                 image: e,
                 //backgroundColor: "red",
                 //height: Ti.UI.SIZE,
-                width: Ti.UI.FILL
+                width: Ti.UI.FILL,
+                defaultImage: '/AutomobileClub.png'
                 // height: coverHeight
-            }); 
-           
+            });
+
             var v = Ti.UI.createView({
-              //  backgroundColor: "pink",
+                //  backgroundColor: "pink",
                 //height: Ti.UI.SIZE,
                 width: Ti.UI.FILL,
                 height: coverHeight

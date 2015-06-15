@@ -104,7 +104,7 @@
 	top: 5,
 	width: "90%",
 	height: Ti.UI.SIZE,
-	bottom: 5,
+	bottom: 5,	
 	color: Alloy.Globals.palette.grigio_scuro
 }
 
@@ -129,7 +129,8 @@
 	width: Ti.UI.FILL
 }
 "#cover[platform=ios]":{
-	pagingControlColor: "transparent",
+	//pagingControlColor: Alloy.Globals.palette.blu
+	pagingControlColor: Alloy.Globals.palette.grigio_chiaro
 	
 }
 
