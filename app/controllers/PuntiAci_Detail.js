@@ -3,6 +3,7 @@ var utility = require('utility');
 var commons = require('commons');
 
 
+var coverInterval, currentCover;
 
 //Handler per la telefonata
 var doPhoneCall = commons.doPhoneCall;
@@ -77,7 +78,7 @@ function loadData() {
             modelGot.covers.push('/AutomobileClub.png');
         }
         if (interior) {
-            modelGot.covers.push(interior);
+            modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL +interior);
             // modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + interior);
         } else {
             modelGot.covers.push('/AutomobileClub.png');
@@ -92,7 +93,7 @@ function loadData() {
                 //backgroundColor: "red",
                 //height: Ti.UI.SIZE,
                 width: Ti.UI.FILL,
-                defaultImage: '/AutomobileClub.png'
+                defaultImage: '/none.png'
                 // height: coverHeight
             });
 
@@ -105,6 +106,13 @@ function loadData() {
             v.add(img);
             $.cover.addView(v);
         });
+
+        currentCover = 0;
+        coverScroll = setInterval(function(){
+            currentCover = (currentCover + 1) % $.cover.views.length;
+            console.log('scroll', currentCover);
+            $.cover.scrollToView(currentCover);
+        }, 3000);
 
     }
     //porcate layout
@@ -180,5 +188,6 @@ function toggleDettaglioOrari(e) {
 
 
 $.win.addEventListener('close', function() {
+    clearInterval(coverInterval);
     $.destroy();
 });
