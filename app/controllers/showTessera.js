@@ -32,9 +32,6 @@ if (scadenza >= new Date()) {
 //$.tessera_back.backgroundImage = immagineTesseraRetro;
 $.tessera.image = immagineTessera;
 $.tessera_back.image = immagineTesseraRetro;
-var qr = 'http://10.64.4.138:10001/geo/v2/qrcode/acicardno/' + args["userInfo.numeroTessera"] + '.png?options={"size":8,"margin":1}';
-console.log('qr', qr);
-$.barcode.image = qr;
 
 Ti.API.info("TESSERA: " + immagineTessera);
 Ti.API.info("TESSERA RETRO: " + immagineTesseraRetro);
@@ -73,6 +70,11 @@ if (OS_ANDROID) {
 
     $.rotatedContainer.setLeft("25%");
 }
+
+
+var qr = Alloy.Globals.baseURL + '/qrcode/acicardno/' + args["userInfo.numeroTessera"] + '.png?options={"size":8,"margin":1}';
+console.log('qr', qr);
+$.barcode.image = qr;
 
 
 var flag = false;
