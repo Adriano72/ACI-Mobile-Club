@@ -105,17 +105,19 @@
 	width: "90%",
 	height: Ti.UI.SIZE,
 	bottom: 5,	
-	color: Alloy.Globals.palette.grigio_scuro
+	color: Alloy.Globals.palette.nero
 }
 
 ".textBox":{
 	height: 0,
 	backgroundColor:  Alloy.Globals.palette.grigio_chiaro
+
 }
 
 
 "#indirizzo":{
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: Alloy.Globals.palette.nero
 }
 
 ".coverWrapper":{
