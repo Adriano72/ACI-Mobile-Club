@@ -27,7 +27,10 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioDescrizione" class="textBox" visible="false">
-				<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioDescrizione" html="{$.dormireMangiare.descrizione}"/>
+				<View class="text testoDettagli" id="txt_dettaglioDescrizione">
+					<Widget src="nl.fokkezb.html2as.widget"  html="{$.dormireMangiare.descrizione}"></Widget>
+				</View>
+			<!--	<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioDescrizione" html="{$.dormireMangiare.descrizione}"/> -->
 			</View>
 
 			<View class="separator-inner"/>
@@ -38,7 +41,10 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioVantaggio"  class="textBox" visible="false">
-				<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioOrari" html="{$.dormireMangiare.vantaggio}"/>
+				<View class="text testoDettagli" id="txt_dettaglioDescrizione">
+					<Widget src="nl.fokkezb.html2as.widget"  html="{$.dormireMangiare.vantaggio}"></Widget>
+				</View>
+				<!--<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioOrari" html="{$.dormireMangiare.vantaggio}"/>-->
 			</View>
 
 			<View class="separator-inner"/>
@@ -49,7 +55,10 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioComeVantaggio"  class="textBox" visible="false">
-				<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioCome" html="{$.dormireMangiare.come}"/>
+				<View class="text testoDettagli" id="txt_dettaglioDescrizione">
+					<Widget src="nl.fokkezb.html2as.widget"  html="{$.dormireMangiare.come}"></Widget>
+				</View>
+				<!--<Label ns="require('ti.styledlabel')" class="text testoDettagli" id="txt_dettaglioCome" html="{$.dormireMangiare.come}"/>-->
 			</View>
 
 			<View class="separator-inner"  visible="{$.dormireMangiare.telefonoVisible}"/>

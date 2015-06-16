@@ -1,50 +1,51 @@
 {
-    "global": {
-        "AciGlobal_NumeroVerde": "803116",
-        "AciGlobal_ServiceEndpoint": "http://www.aci.it/geo/v2/aciglobal",
-        "AciGlobal_ServerLogin": "acimobileclub",
-        "AciGlobal_ServerPassword": "Iniziale$01",
-        "AciGlobal_CodiceApplicazione": "ACI03",
-        "AciGlobal_ServiceLogin": "ACI_Mob_App",
-        "AciGlobal_ServicePassword": "aci12eA5s",
-        "AciGlobal_RequestLimitMinutes": "10",
-        "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
-        "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew",
-        "Register_OpenWebsite": true,
-        "AciGeo_CacheDurationHours": "24",
-        "AciGeo_CacheDistanceRangeMeters": "1000",
-        "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
-        "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
-        "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads/del/",
-        "BannerRotationTime": "20000",
-        "__AciGeo_BaseUrl": "http://10.64.4.138:10001/geo/v2",
-        "__AciGeo_BannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads/syc/",
-        "DevMode": false,
-        "SysReport_Enabled": false,
-        "SysReport_Email": "mobile@informatica.aci.it",
-        "SysReport_UseShake": true,
-        "__SSO_Endpoint" : "http://sso-web.svi.local",
-        "SSO_Endpoint" : "http://login.aci.it"
-    },
-    "env:development": {
-        "DevMode": true
-    },
-    "env:test": {
-        "DevMode": false
-    },
-    "env:production": {
-        "SysReport_Enabled": false
-    },
-    "os:android": {},
-    "os:blackberry": {},
-    "os:ios": {},
-    "os:mobileweb": {},
-    "dependencies": {
-        "checkbox": "*",
-        "nl.fokkezb.loading": "*",
-        "SelettoreTipoAiuto": "1.0",
-        "com.imobicloud.tabbed_bar": "1.0",
-        "nl.fokkezb.toast": "1.1.0",
-        "com.mcongrove.toast": "1.1"
-    }
+  "global": {
+    "AciGlobal_NumeroVerde": "803116",
+    "AciGlobal_ServiceEndpoint": "http://www.aci.it/geo/v2/aciglobal",
+    "AciGlobal_ServerLogin": "acimobileclub",
+    "AciGlobal_ServerPassword": "Iniziale$01",
+    "AciGlobal_CodiceApplicazione": "ACI03",
+    "AciGlobal_ServiceLogin": "ACI_Mob_App",
+    "AciGlobal_ServicePassword": "aci12eA5s",
+    "AciGlobal_RequestLimitMinutes": "10",
+    "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
+    "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew",
+    "Register_OpenWebsite": true,
+    "AciGeo_CacheDurationHours": "24",
+    "AciGeo_CacheDistanceRangeMeters": "1000",
+    "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
+    "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads/del/",
+    "BannerRotationTime": "20000",
+    "__AciGeo_BaseUrl": "http://10.64.4.138:10001/geo/v2",
+    "__AciGeo_BannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads/syc/",
+    "DevMode": false,
+    "SysReport_Enabled": false,
+    "SysReport_Email": "mobile@informatica.aci.it",
+    "SysReport_UseShake": true,
+    "__SSO_Endpoint": "http://sso-web.svi.local",
+    "SSO_Endpoint": "http://login.aci.it"
+  },
+  "env:development": {
+    "DevMode": true
+  },
+  "env:test": {
+    "DevMode": false
+  },
+  "env:production": {
+    "SysReport_Enabled": false
+  },
+  "os:android": {},
+  "os:blackberry": {},
+  "os:ios": {},
+  "os:mobileweb": {},
+  "dependencies": {
+    "checkbox": "*",
+    "nl.fokkezb.loading": "*",
+    "SelettoreTipoAiuto": "1.0",
+    "com.imobicloud.tabbed_bar": "1.0",
+    "nl.fokkezb.toast": "1.1.0",
+    "com.mcongrove.toast": "1.1",
+    "nl.fokkezb.html2as.widget": "1.0"
+  }
 }

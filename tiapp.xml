@@ -84,13 +84,12 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="android">com.alcoapps.actionbarextras</module>
-        <module platform="iphone">ti.map</module>
-        <module platform="android">ti.map</module>
-        <module platform="android" version="2.0.2">ti.styledlabel</module>
-        <module platform="iphone" version="1.6.1">ti.styledlabel</module>
-        <module platform="commonjs">ti.cloud</module>
-    </modules>
+    <module platform="android">com.alcoapps.actionbarextras</module>
+    <module platform="iphone">ti.map</module>
+    <module platform="android">ti.map</module>
+    <module platform="commonjs">ti.cloud</module>
+    <module platform="commonjs" version="1.2.1">nl.fokkezb.html2as</module>
+  </modules>
     <deployment-targets>
         <target device="android">true</target>
         <target device="ipad">false</target>
