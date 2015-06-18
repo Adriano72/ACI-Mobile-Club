@@ -2,10 +2,10 @@ var baseCollection = require('BaseCollection_PuntiAci');
 
 exports.definition = {
     config: {
-        type_code: 'acipoint',
+        type_code: 'acpoint',
         adapter: {
             type: "properties",
-            collection_name: "apipoint"
+            collection_name: "acipoint"
         }
     },
     extendModel: function(Model) {
