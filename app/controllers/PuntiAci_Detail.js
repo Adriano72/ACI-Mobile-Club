@@ -68,20 +68,32 @@ function loadData() {
     };
 
     if (modelGot._type == 'del') {
-        var interior = sourceImages.interior;
-        var exterior = sourceImages.exterior;
+
+        var cvs = [];
+        if (sourceImages.interior) {
+            cvs.push(Alloy.Globals.PuntiAciBannerBaseURL + sourceImages.interior);
+        }
+
+        if (sourceImages.exterior) {
+            cvs.push(Alloy.Globals.PuntiAciBannerBaseURL + sourceImages.exterior);
+        }
+
+        if (cvs.length == 0) {
+            cvs.push('/AutomobileClub.png');
+        }
 
 
-        _([exterior, interior]).each(function(e) {
+
+        _(cvs).each(function(e) {
             if (e) {
                 e = e.replace(/\s/gi, '%20');
-                modelGot.covers.push(Alloy.Globals.PuntiAciBannerBaseURL + e);
+                modelGot.covers.push(e);
             } else {
                 modelGot.covers.push('/AutomobileClub.png');
             }
         });
 
-       
+
 
         console.log('**cover ', modelGot.covers);
 
@@ -106,12 +118,15 @@ function loadData() {
             $.cover.addView(v);
         });
 
+
         currentCover = 0;
-        coverScroll = setInterval(function() {
-            currentCover = (currentCover + 1) % $.cover.views.length;
-            console.log('scroll', currentCover);
-            $.cover.scrollToView(currentCover);
-        }, 3000);
+        if (cvs.length > 1) {
+            coverScroll = setInterval(function() {
+                currentCover = (currentCover + 1) % $.cover.views.length;
+                console.log('scroll', currentCover);
+                $.cover.scrollToView(currentCover);
+            }, 3000);
+        }
 
     }
     //porcate layout

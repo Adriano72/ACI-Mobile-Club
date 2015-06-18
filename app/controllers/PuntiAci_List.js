@@ -102,8 +102,9 @@ function dataTransform(model) {
     console.log('type', attrs._type);
     if (attrs._type == 'del') {
         var name = attrs.name;
-        attrs.title = attrs.customName + ' ' + attrs.code;
-        attrs.subtitle = attrs.name;
+        attrs.title = attrs.customName;
+        attrs.searchKey = [ attrs.customName, attrs.code, attrs.name].join(' ');  
+        attrs.subtitle = attrs.code + ' · ' + attrs.name;
         attrs.subtitleHeight = Ti.UI.SIZE;
 
         var srv = attrs.services.concat(attrs.customServices);
@@ -116,6 +117,8 @@ function dataTransform(model) {
         attrs.subtitleHeight = 0;
 
         attrs.title = attrs.name;
+        attrs.searchKey = attrs.title;
+
 
         attrs.hasSara = false;
         attrs.hasR2G = false;

@@ -41,32 +41,42 @@ exports.formattaOrari = function(obj) {
             Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);
 
 
+            var h = [];
+            _(daySchedule).each(function(e) {
+                h.push([e.from, e.to].join('/'));
+            });
+
+
+
+            var giorni;
+
             switch (day) {
 
                 case "mon":
-                    orari.push("Lunedì: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Lunedì";
                     break;
                 case "tue":
-                    orari.push("Martedì: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Martedì";
                     break;
                 case "wed":
-                    orari.push("Mercoledì: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Mercoledì";
                     break;
                 case "thu":
-                    orari.push("Giovedì: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Giovedì";
                     break;
                 case "fri":
-                    orari.push("Venerdì: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Venerdì";
                     break;
                 case "sat":
-                    orari.push("Sabato: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Sabato";
                     break;
                 case "sun":
-                    orari.push("Domenica: dalle " + daySchedule[0].from + " alle: " + daySchedule[0].to + "\n");
+                    giorno = "Domenica";
                     break;
                 default:
 
             };
+            orari.push(giorno + ": " + h.join(', ') + "\n");
 
         };
 
@@ -163,7 +173,7 @@ exports.getTesseraRetroImage = function(codice) {
         return key == codice;
     });
 
-  
+
 
     Ti.API.info("TESSERA: " + imm);
 
