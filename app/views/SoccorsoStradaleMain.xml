@@ -30,12 +30,12 @@
 			
 		
 		</View>
-		<View class="bottomBannerContainer">
-				<!-- <ImageView id="randomBanner" class="bottomBanner" onSingletap="displayConvenzioneBanner"/> -->
+		<!--View class="bottomBannerContainer">
+				
 			<View class="bottomBanner">
 					<Require src="bannerCarousel" id="banner" />
 			</View>
-		</View>
+		</View -->
 		
 	</Window>
 </Alloy>
