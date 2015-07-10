@@ -38,7 +38,7 @@ exports.puntiAciMain = function() {
         }, {
             img: "/images/ic_action_acipoint_blu.png",
             text: "ACI Point",
-            id_code: "acipoint"
+            id_code: "acpoint"
 
         }
 

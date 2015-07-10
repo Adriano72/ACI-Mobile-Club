@@ -136,6 +136,10 @@ function DPUnitsToPixles(theDPs) {
     }
 }
 
+require('PagingControl'); 
+var sViewPagingControl = new PagingControl($.SC); 
+$.pagingContainer.add(sViewPagingControl); 
+
 _.defer(fit);
 
 function fit() {

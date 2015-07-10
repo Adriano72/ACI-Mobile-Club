@@ -130,14 +130,19 @@
 "#cover":{
 	
 	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 	showPagingControl: false
 }
-"#cover[platform=ios]":{
-	//pagingControlColor: Alloy.Globals.palette.blu
-	//pagingControlColor: Alloy.Globals.palette.grigio_scuro
-	pagingControlColor: "transparent"
+
+"#pagingContainer":{
 	
+	bottom: 0,
+	height: 15,
+	backgroundColor: "transparent"
+	//backgroundColor: Alloy.Globals.palette.bianco,
+	//opacity: 0.5
 }
+
 
 
 

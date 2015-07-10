@@ -21,6 +21,7 @@
 			<View class="coverWrapper" visible="{$.detailModel.coverVisible}"  >
 				<!-- <ImageView id="cover" class="cover"  /> -->
 				<ScrollableView id="cover"  ></ScrollableView>
+				<View id="pagingContainer"></View>
 			</View>
 			<View id="contattiView">
 				<View id="contattiViewInner">

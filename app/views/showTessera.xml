@@ -1,7 +1,7 @@
 <Alloy>
 	<Window id="win" class="container" >
 		
-		<ScrollableView class="tesseraContainer">
+		<ScrollableView id="SC" class="tesseraContainer">
 			<!--<ImageView id="tessera" class="imgTessera" onPostlayout="checkSize" onClick="showSYC"/>-->
 			<View class="imgTessera" onClick="showSYC">
 				<ImageView id="tessera" class="card" ></ImageView>
@@ -36,5 +36,6 @@
 			</View>
 
 		</ScrollableView>
+		<View id="pagingContainer"></View>
 	</Window>
 </Alloy>

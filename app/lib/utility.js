@@ -43,7 +43,9 @@ exports.formattaOrari = function(obj) {
 
             var h = [];
             _(daySchedule).each(function(e) {
-                h.push([e.from, e.to].join('/'));
+                if (e.from || e.to) {
+                    h.push([e.from, e.to].join('/'));
+                }
             });
 
 

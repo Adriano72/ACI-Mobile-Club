@@ -1,15 +1,27 @@
+".container":{
+	
 
+}
 
 ".tesseraContainer": {
 	//backgroundColor: "red",
-	height: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
 	top: 10,
-	bottom: 10,
-	width: "90%"
+	bottom: 15,
+	//width: "90%",
+	showPagingControl: false,
+	pagingControlColor: Alloy.Globals.palette.grigio_scuro
 }
 
+"#pagingContainer":{
+	bottom: 0,
+	height: 15
+}
+
+".tesseraContainer[platform=android]": {}
+
 ".imgTessera": {
-	
+	bottom: 5
 	//image: "/tessera_sistema.jpg"
 	//backgroundImage: "/tessera_sistema.jpg"
 }

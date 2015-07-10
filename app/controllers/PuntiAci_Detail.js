@@ -62,6 +62,7 @@ function loadData() {
 
     var coverHeight = 220;
 
+
     var sourceImages = modelGot.images || {
         interior: null,
         exterior: null
@@ -101,8 +102,7 @@ function loadData() {
             console.log(e);
             var img = Ti.UI.createImageView({
                 image: e,
-                //backgroundColor: "red",
-                //height: Ti.UI.SIZE,
+             
                 width: Ti.UI.FILL,
                 defaultImage: '/none.png'
                 // height: coverHeight
@@ -141,7 +141,8 @@ function loadData() {
     modelGot.coverHeight = modelGot.coverVisible ? coverHeight : 0;
 
     $.cover.height = modelGot.coverVisible ? coverHeight : 0;
-    $.cover.showPagingControl = modelGot.covers.length > 1;
+    // $.cover.showPagingControl = modelGot.covers.length > 1;
+    $.pagingContainer.visible = modelGot.covers.length > 1;
 
     $.detailModel.set(modelGot);
 }
@@ -199,6 +200,20 @@ function toggleDettaglioOrari(e) {
     }
 
 };
+
+//custom paging control
+require('PagingControl');
+var sViewPagingControl = new PagingControl($.cover);
+var opac = Titanium.UI.createView({
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE,
+        backgroundColor: Alloy.Globals.palette.bianco,
+        opacity: 0.5
+    });
+$.pagingContainer.add(opac);
+$.pagingContainer.add(sViewPagingControl);
+
+
 
 
 $.win.addEventListener('close', function() {
