@@ -202,7 +202,7 @@ function toggleDettaglioOrari(e) {
 };
 
 //custom paging control
-require('PagingControl');
+var PagingControl = require('PagingControl');
 var sViewPagingControl = new PagingControl($.cover);
 var opac = Titanium.UI.createView({
         height: Ti.UI.SIZE,

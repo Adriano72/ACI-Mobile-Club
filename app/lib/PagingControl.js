@@ -6,7 +6,7 @@
 var pageColor = Alloy.Globals.palette.nero;
 var pageColorSelected = Alloy.Globals.palette.bianco;
 var xxx = 0;
-PagingControl = function(scrollableView) {
+var PagingControl = function(scrollableView) {
     var container = Titanium.UI.createView({
         height: Ti.UI.SIZE,
         width: Ti.UI.SIZE
@@ -37,15 +37,15 @@ PagingControl = function(scrollableView) {
     }
 
     // Mark the initial selected page
-    pages[scrollableView.getCurrentPage()].setOpacity(1);
+   // pages[scrollableView.getCurrentPage()].setOpacity(1);
 
     // Callbacks
     onScroll = _.throttle(function(event) {
 
         // Bump the opacity of the new current page
-        console.log('e ' + xxx++, event);
+      //  console.log('e ' + xxx++, event);
 
-        if (!_.isNull(event.currentPage) && !_.isUndefined(event.currentPage)) {
+        if (event && !_.isNull(event.currentPage) && !_.isUndefined(event.currentPage)) {
 
             pages[event.currentPage].setBackgroundColor(pageColorSelected);
             // Go through each and reset it's opacity
