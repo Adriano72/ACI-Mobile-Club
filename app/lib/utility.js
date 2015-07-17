@@ -1,4 +1,5 @@
 var uuid = require('utility-uuid');
+var tessere = require('utility-tessere');
 
 /**
  * Esporta l'intero modulo uuid
@@ -14,31 +15,31 @@ exports.formattaServizi = function(obj) {
         return '·' + e;
     }).join('  ');
 
-}
+};
 
 
 exports.formattaOrari = function(obj) {
 
-    console.log('formattaOrari', obj);
+    //console.log('formattaOrari', obj);
 
     var orari = [];
 
-    var dayArray = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    var dayArray = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
     _.each(dayArray, function(day) {
-        Ti.API.info("DAY: " + JSON.stringify(day));
+        //Ti.API.info("DAY: " + JSON.stringify(day));
         var daySchedule = _.find(obj, function(value, key) {
             return key == day;
         });
-        //Ti.API.info("DAY SCHEDULE: " + JSON.stringify(obj));
+        ////Ti.API.info("DAY SCHEDULE: " + JSON.stringify(obj));
 
         var isEmpty = _.isUndefined(daySchedule[0]) || _.isEmpty(daySchedule[0].from) || _.isEmpty(daySchedule[0].to);
 
         if (!isEmpty) {
 
-            Ti.API.info("DAY SCHEDULE: " + JSON.stringify(daySchedule));
-            Ti.API.info("DAY SCHEDULE FROM: " + daySchedule[0].from);
-            Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);
+            //Ti.API.info("DAY SCHEDULE: " + JSON.stringify(daySchedule));
+            //Ti.API.info("DAY SCHEDULE FROM: " + daySchedule[0].from);
+            //Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);
 
 
             var h = [];
@@ -50,48 +51,86 @@ exports.formattaOrari = function(obj) {
 
 
 
-            var giorni;
+            var giorno;
 
             switch (day) {
 
-                case "mon":
-                    giorno = "Lunedì";
+                case 'mon':
+                    giorno = 'Lunedì';
                     break;
-                case "tue":
-                    giorno = "Martedì";
+                case 'tue':
+                    giorno = 'Martedì';
                     break;
-                case "wed":
-                    giorno = "Mercoledì";
+                case 'wed':
+                    giorno = 'Mercoledì';
                     break;
-                case "thu":
-                    giorno = "Giovedì";
+                case 'thu':
+                    giorno = 'Giovedì';
                     break;
-                case "fri":
-                    giorno = "Venerdì";
+                case 'fri':
+                    giorno = 'Venerdì';
                     break;
-                case "sat":
-                    giorno = "Sabato";
+                case 'sat':
+                    giorno = 'Sabato';
                     break;
-                case "sun":
-                    giorno = "Domenica";
+                case 'sun':
+                    giorno = 'Domenica';
                     break;
                 default:
 
-            };
-            orari.push(giorno + ": " + h.join(', ') + "\n");
+            }
+            orari.push(giorno + ': ' + h.join(', ') + '\n');
 
-        };
+        }
 
     });
 
-    //Ti.API.info("ORARI: " + orari.toString());
-    return orari.join("");
+    ////Ti.API.info("ORARI: " + orari.toString());
+    return orari.join('');
 
 };
 
+/**
+ * Ritorna l'immagine frontale per questa tessera
+ * @param  {[type]} codice     [description]
+ * @param  {[type]} horizontal [description]
+ * @return {[type]}            [description]
+ */
 exports.getTesseraImage = function(codice, horizontal) {
+    return tessere.getImageSet(codice)[horizontal ? 'frontH' : 'frontV'];
+};
 
-    Ti.API.info("CODICE: " + codice);
+/**
+ * Ritorna l'immagine posteriore per questa tessera
+ * @param  {[type]} codice [description]
+ * @return {[type]}        [description]
+ */
+exports.getTesseraRetroImage = function(codice) {
+    return tessere.getImageSet(codice).retroV;
+};
+
+/**
+ * ritorna l'immagine da usare per la tessera scaduta
+ * @param  {[type]} codice [description]
+ * @return {[type]}        [description]
+ */
+exports.getTesseraScadutaImage = function(codice) {
+    return tessere.getImageSet(codice).expiredV;
+};
+
+/**
+ * elenco dei serivzi disponibili per la tessera
+ * persona, casa, auto
+ * @param  {[type]} codice [description]
+ * @return {[type]}        [description]
+ */
+exports.getTesseraAssitenza = function(codice) {
+    return tessere.getTesseraAssitenza(codice);
+};
+
+/*exports.getTesseraImage = function(codice, horizontal) {
+
+    //Ti.API.info("CODICE: " + codice);
 
     var transcode = {
 
@@ -131,17 +170,18 @@ exports.getTesseraImage = function(codice, horizontal) {
         imm = imm.replace('.jpg', '_h.jpg');
     }
 
-    Ti.API.info("TESSERA: " + imm);
+    //Ti.API.info("TESSERA: " + imm);
 
 
 
     return "/" + imm;
 
-};
+}; */
 
+/*
 exports.getTesseraRetroImage = function(codice) {
 
-    Ti.API.info("CODICE: " + codice);
+    //Ti.API.info("CODICE: " + codice);
 
     var transcode = {
 
@@ -177,15 +217,16 @@ exports.getTesseraRetroImage = function(codice) {
 
 
 
-    Ti.API.info("TESSERA: " + imm);
+    //Ti.API.info("TESSERA: " + imm);
 
 
 
     return "/" + imm;
 
 };
+*/
 
-
+/*
 exports.getTesseraScadutaImage = function(codice) {
 
 
@@ -199,6 +240,7 @@ exports.getTesseraScadutaImage = function(codice) {
     return imm;
 
 };
+*/
 
 /**
  * elenco dei serivzi disponibili per la tessera
@@ -206,9 +248,11 @@ exports.getTesseraScadutaImage = function(codice) {
  * @param  {[type]} codice [description]
  * @return {[type]}        [description]
  */
+
+/*
 exports.getTesseraAssitenza = function(codice) {
 
-    Ti.API.info("CODICE: " + codice);
+    //Ti.API.info("CODICE: " + codice);
 
     var a1 = 'auto';
     var a2 = 'persone';
@@ -253,12 +297,13 @@ exports.getTesseraAssitenza = function(codice) {
     return transcode[codice];
 
 };
+*/
 
 exports.formatDistance = function(d) {
-    console.log("formatDistance ", d);
+    //console.log("formatDistance ", d);
     if (_.isUndefined(d) || !_.isNumber(d)) {
         return '';
-    };
+    }
 
     //approssimo i km alla prima cifra decimale
     var km = Math.round(d * 10) / 10;
@@ -267,7 +312,7 @@ exports.formatDistance = function(d) {
         return km + ' km';
     } else {
         return (km * 1000) + ' m';
-    };
+    }
 
 };
 
@@ -311,10 +356,14 @@ exports.showVertical = function(view) {
  * @return {[type]}   [description]
  */
 exports.capitalize = function(s) {
-    if (!s || s.length == 0) return '';
-    if (s.length == 1) return s.toUpperCase();
+    if (!s || s.length == 0) {
+        return '';
+    }
+    if (s.length == 1) {
+        return s.toUpperCase();
+    }
     return s[0].toUpperCase() + s.slice(1).toLowerCase();
-}
+};
 
 /**
  * @method arrayIndexBy
@@ -411,7 +460,7 @@ exports.calculateDistance = function(lat1, lon1, lat2, lon2) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c * 1000; //distanza in metri 
     return d;
-}
+};
 
 
 /**
@@ -428,7 +477,7 @@ exports.padLeft = function(str, filler, count) {
 
     return filler.substring(0, count - str.length) + str;
 
-}
+};
 
 
 
@@ -446,7 +495,7 @@ exports.padRight = function(str, filler, count) {
 
     return str + filler.substring(0, count - str.length);
 
-}
+};
 
 
 /**
@@ -456,21 +505,21 @@ exports.padRight = function(str, filler, count) {
  */
 exports.getAciGeoCollection = function(id_code) {
     var coll;
-    console.log('getAciGeoCollection id_code', id_code);
+    //console.log('getAciGeoCollection id_code', id_code);
 
     if (id_code == 'ric') return Alloy.Collections.serviziGICpos;
 
     _.keys(Alloy.Collections).every(function(k) {
         var c = Alloy.Collections[k];
-        console.log('id_code', id_code);
-        console.log('k', k);
-        console.log('c.config', c.config);
+        //console.log('id_code', id_code);
+        //console.log('k', k);
+        //console.log('c.config', c.config);
         if (c && c.config && c.config.type_code && c.config.type_code.toLowerCase() == id_code.toLowerCase()) {
-            console.log('getAciGeoCollection', id_code, c.config);
+            //console.log('getAciGeoCollection', id_code, c.config);
             coll = c;
             return false;
         }
         return true;
     });
     return coll;
-}
+};
