@@ -10,7 +10,7 @@
 					<Label id="LabelTitolare" class="labelTessera">TITOLARE</Label>
 					<Label id="titolare" class="datiTessera"/>
 					<Label class="spacer"/>
-					<View class = "bottomContainer">
+					<View class="bottomContainer">
 
 						<View class="leftBlock">
 							<Label id="LabelNumTessera" class="labelTessera bottomItems">N° TESSERA</Label>

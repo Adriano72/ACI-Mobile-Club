@@ -7,7 +7,7 @@ var utility = require('utility');
 function dataTransform(model) {
     var attrs = model.toJSON();
     var img = model.getImage();
-    console.log("img", img);
+  //  console.log("img", img);
     attrs.img = img;
     attrs.image = img;
     attrs.buyUrl = model.getBuyUrl();
@@ -16,7 +16,7 @@ function dataTransform(model) {
 
     attrs.id = model.cid;
 
-    console.log('model', attrs);
+  //  console.log('model', attrs);
     return attrs;
 };
 
