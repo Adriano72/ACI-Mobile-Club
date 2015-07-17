@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Modulo che gestisce le funzionalità per la posizione dell'utente
  * Docs: https://wiki.appcelerator.org/display/guides2/Tracking+Position+and+Heading
@@ -69,7 +70,7 @@ exports.init = function() {
 
 exports.getUserLocation = function(_callback) {
 
-    var fake = Alloy.Globals.DevMode;
+    var fake = false; // Alloy.Globals.DevMode;
     console.log('fake', fake);
     if (!fake) {
 
@@ -184,10 +185,10 @@ exports.getAddress = function(lat, lon, _callback) {
 
         if (_callback) {
 
-            if (evt.code == 0) { //success
+            if (evt.code === 0) { //success
                 _callback(null, evt.places);
             } else {
-                _callback(error);
+                _callback(evt);
             }
         }
 
