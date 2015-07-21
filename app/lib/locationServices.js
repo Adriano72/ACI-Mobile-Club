@@ -103,15 +103,27 @@ exports.getUserLocation = function(_callback) {
                     }
                 } else {
 
-                    var position = {
+                    console.log('why???', tries);
+                    /* var position = {
                         latitude: e.coords.latitude,
                         longitude: e.coords.longitude
-                    };
+                    };*/
+                    if (e.coords) {
+                        var position = {
+                            latitude: e.coords.latitude,
+                            longitude: e.coords.longitude
+                        };
+                        console.log('position', position);
 
-                    Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
-                    Alloy.Globals.userPosition = position;
+                        Ti.API.info('COORDINATE UTENTE: ' + JSON.stringify(position));
+                        Alloy.Globals.userPosition = position;
 
-                    _callback(null, position);
+                        (function() {
+                            console.log('callback');
+                            _callback(null, position);
+                        })();
+                    }
+
 
                 }
             };
@@ -120,6 +132,9 @@ exports.getUserLocation = function(_callback) {
                 Titanium.Geolocation.getCurrentPosition(onPosition);
             };
 
+            if (OS_IOS) {
+                Ti.Geolocation.addEventListener('authorization', onPosition);
+            }
 
             getCurrentPosition();
 
@@ -133,7 +148,7 @@ exports.getUserLocation = function(_callback) {
             latitude: 41.8089777,
             longitude: 12.4365196
         };
-        Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
+        Ti.API.info('COORDINATE UTENTE default: ' + JSON.stringify(position));
         Alloy.Globals.userPosition = position;
 
         _callback(null, position);
@@ -171,6 +186,39 @@ exports.getLastLocation = function() {
     return Alloy.Globals.userPosition;
 };
 
+exports.setLastLocation = function(p) {
+    Alloy.Globals.userPosition = p;
+};
+
+/**
+ *
+ * @return {[type]} [description]
+ */
+exports.useLocation = function() {
+
+    console.log('Ti.Geolocation.locationServicesEnabled', Ti.Geolocation.locationServicesEnabled);
+    console.log('!_.isEmpty(Alloy.Globals.userPosition', !_.isEmpty(Alloy.Globals.userPosition));
+    console.log('Alloy.Globals.userPosition', Alloy.Globals.userPosition);
+    console.log('Ti.Geolocation.locationServicesAuthorization', Ti.Geolocation.locationServicesAuthorization);
+    console.log('auth codes', Ti.Geolocation.AUTHORIZATION_AUTHORIZED,
+        Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,
+        Ti.Geolocation.AUTHORIZATION_ALWAYS);
+
+    // return Ti.Geolocation.locationServicesEnabled && !_.isEmpty(Alloy.Globals.userPosition);
+
+    //condizione per cui il device ha i servizi geo abilitati
+    var servizioAttivoSulDevice = Ti.Geolocation.locationServicesEnabled;
+    //se ios, devo verificare che l'app abbia l'autorizzazione ad usare i servizi geo
+    var appAutorizzata = OS_ANDROID || _([
+        Ti.Geolocation.AUTHORIZATION_AUTHORIZED,
+        Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,
+        Ti.Geolocation.AUTHORIZATION_ALWAYS,
+    ]).indexOf(Ti.Geolocation.locationServicesAuthorization) > -1;
+
+    return servizioAttivoSulDevice && appAutorizzata;
+};
+
+
 
 /**
  * Funzione di reverse geocoding
@@ -193,4 +241,22 @@ exports.getAddress = function(lat, lon, _callback) {
         }
 
     });
+};
+
+/**
+ * Funzione che apre le impostazioni del device alla pagina dedicata alla geolocalizzazione
+ * @return {[type]} [description]
+ */
+exports.openLocationSettings = function() {
+    console.log('openLocationSettings');
+    if (OS_ANDROID) {
+        var settingsIntent = Titanium.Android.createIntent({
+            action: 'android.settings.LOCATION_SOURCE_SETTINGS'
+        });
+        Ti.Android.currentActivity.startActivity(settingsIntent);
+    } else {
+        //  Ti.Platform.openURL('prefs://root=LOCATION_SERVICES')
+        Ti.Platform.openURL('prefs:root=LOCATION_SERVICES');
+    }
+
 };

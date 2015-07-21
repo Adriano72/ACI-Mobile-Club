@@ -109,7 +109,7 @@ function loadData() {
     }
 
     function setScrollOnFocus() {
-      /*  $.telefono.addEventListener('focus', function() {
+        /*  $.telefono.addEventListener('focus', function() {
             $.main.scrollToBottom();
         }); */
     }
@@ -124,13 +124,14 @@ function loadData() {
 }
 
 function loadMap() {
-
+    //  alert('ora si!')
     console.log('loadMap');
     var region = $.mapview.getRegion();
     console.log('region', region);
 
-    if (true || region) {
-        var coo = locationServices.getLastLocation();
+    if (region) {
+        locationServices.setLastLocation(region);
+        var coo = region; 
         locationServices.getAddress(coo.latitude, coo.longitude, function(err, places) {
 
 
@@ -152,7 +153,9 @@ function loadMap() {
     } else {
         //nel caso in cui la mappa non sia pronta
 
+        // alert('la mappa non era pronta!');
 
+        setTimeout(loadMap, 3000);
     }
 
     var t;
