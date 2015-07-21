@@ -18,37 +18,26 @@
 -->
 
 <resources>
+    
+    
+
 
     <style name="Theme.Acimobileclub" parent="@style/Theme.AppCompat.Light">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_acimobileclub</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Acimobileclub</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Acimobileclub</item>
-        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Acimobileclub</item>
-        <item name="android:actionDropDownStyle">@style/DropDownNav.Acimobileclub</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Acimobileclub</item>
-        <item name="android:actionModeBackground">@drawable/cab_background_top_acimobileclub</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_acimobileclub</item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Acimobileclub</item>
-        <item name="android:windowContentOverlay">@null</item>
-        
+      <item name="colorPrimary">@color/primary</item>
+      <item name="colorPrimaryDark">@color/primaryDark</item>      
+      <item name="colorAccent">@color/primaryDark</item>
+      <item name="colorControlHighlight">@color/colorHighlight</item>      
+      <item name="colorControlActivated">@color/colorActivated</item>      
+      <item name="android:navigationBarColor">@color/primaryDark</item>
+      <item name="android:statusBarColor">@color/primaryDark</item>
+      <item name="android:textColorPrimary">@color/textPrimary</item>
     </style>
+    <color name="colorActivated">#003772</color>
+    <color name="primary">#f9f9f9</color>
+    <color name="primaryDark">#003772</color>
+    <color name="textPrimary">#003772</color>
+    <color name="accent">#003772</color>
+    <color name="colorHighlight">#003772</color>
 
-    <style name="ActionBar.Solid.Acimobileclub" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="android:background">@drawable/ab_solid_acimobileclub</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_acimobileclub</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_acimobileclub</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Acimobileclub</item>
-    </style>
-
-    <style name="ActionBar.Transparent.Acimobileclub" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:background">@drawable/ab_transparent_acimobileclub</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Acimobileclub</item>
-    </style>
-    
-    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Acimobileclub.Widget" parent="@style/Theme.AppCompat">
-        <item name="android:popupMenuStyle">@style/PopupMenu.Acimobileclub</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Acimobileclub</item>
-    </style>
 
 </resources>
