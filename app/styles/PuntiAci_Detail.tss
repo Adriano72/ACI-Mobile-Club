@@ -81,6 +81,13 @@
 "#chiamaIcon": {
 	image: "/images/ic_action_phone_blu.png"
 }
+"#contattiIcon": {
+	image: "/images/ic_action_contatti_blu.png"
+}
+
+"#noteIcon": {
+	image: "/images/ic_action_descrizione_blu.png"
+}
 
 "#emailIcon": {
 	image: "/images/ic_action_mail_blu.png"

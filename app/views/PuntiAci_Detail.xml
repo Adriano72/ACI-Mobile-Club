@@ -13,7 +13,7 @@
 				<MenuItem id="mn_navigazione" title="Navigatore" onClick="openNavigation"/>
 
 		</Menu> -->
-		<ScrollView class="scrollableContainer">
+		<ScrollView id="scroller" class="scrollableContainer">
 			<View id="headerView">
 				<Label class="h1" id="headerText" text="{$.detailModel.title}"/>
 			</View>
@@ -59,6 +59,26 @@
 				<Label class="simpleRowText h3" id="emailText" text="Invia e-mail"/>
 				<ImageView class="hasDetail"/>
 			</View>
+			<View class="separator-inner" visible="{$.detailModel.noteVisible}"/>
+			<View id="rowNote" class="rowSingleContainer" onSingletap="toggleDettaglioNote" visible="{$.detailModel.noteVisible}" height="{$.detailModel.noteHeight}">
+				<ImageView class="simpleRowLeftIcon" id="noteIcon"/>
+				<Label class="simpleRowText h3" id="noteText" text="Note"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioNote" class="textBox" visible="false">
+				<Widget src="nl.fokkezb.html2as.widget"  html="{$.detailModel.note}"/>
+			</View>
+
+
+			<View class="separator-inner" visible="{$.detailModel.contattiVisible}"/>
+			<View id="rowContatti" class="rowSingleContainer" onSingletap="toggleDettaglioContatti" visible="{$.detailModel.contattiVisible}" height="{$.detailModel.contattiHeight}">
+				<ImageView class="simpleRowLeftIcon" id="contattiIcon"/>
+				<Label class="simpleRowText h3" id="contattiText" text="Contatti"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioContatti" class="textBox" visible="false">
+				<Label class="text testoDettagli"  text="{$.detailModel.contatti}"/>
+			</View> 
 			<View class="separator"/>
 		</ScrollView>
 	</Window>
