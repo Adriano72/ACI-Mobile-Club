@@ -28,7 +28,7 @@
       <item name="colorAccent">@color/primaryDark</item>
       <item name="colorControlHighlight">@color/colorHighlight</item>      
       <item name="colorControlActivated">@color/colorActivated</item>      
-      <item name="android:navigationBarColor">@color/primaryDark</item>
+    <!--  <item name="android:navigationBarColor">@color/primaryDark</item> -->
       <item name="android:statusBarColor">@color/primaryDark</item>
       <item name="android:textColorPrimary">@color/textPrimary</item>
     </style>
