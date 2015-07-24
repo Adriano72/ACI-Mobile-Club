@@ -24,17 +24,19 @@ $.trigger = $.fireEvent = function(name, e) {
 $.setHtml = function setHtml(html) {
 
   $.label.html = html;
-
-  if (OS_IOS) {
+  
+  //lo posso isare anche per android
+  if (true || OS_IOS) {
     html2as(html, function handle(err, as) {
 
       if (err) {
         console.error('[nl.fokkezb.html2as.widget] ' + err);
 
       } else {
+        console.log('***** AS', JSON.stringify(as));
         $.label.attributedString = as;
       }
-    });
+    }, true);
   }
 
 };
