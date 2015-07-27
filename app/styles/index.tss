@@ -84,7 +84,7 @@
 	width: "98%",
 	height: "50%",
 	top: 3,
-	showPagingContro: false
+	showPagingControl: false
 }
 
 
