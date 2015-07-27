@@ -10,3 +10,7 @@ tmp
 Thumbs.db
 shadow
 node_modules
+scripts
+scripts/version-autoincrement.js
+.jshintrc
+package.json

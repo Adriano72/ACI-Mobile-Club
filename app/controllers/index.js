@@ -2,6 +2,8 @@ var ViewScrollr = require("ViewScrollr");
 var settingsMenu = require('settingsMenu');
 var user = require('user');
 var env = require('environment');
+var locationServices = require('locationServices');
+
 
 var cacheDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, "/");
 cacheDir.deleteDirectory(true);
@@ -17,9 +19,12 @@ var THROTTLE_TIME = 5000;
  */
 function onFirstRun() {
     //chiamo il servizio per registrare l'app
-    require('network').registerApp(function() {
-        console.log('app registered');
+    _.defer(function() {
+        require('network').registerApp(function() {
+            console.log('app registered');
+        });
     });
+
 
     var w = Alloy.createController('welcome').getView();
     w.open();
@@ -185,7 +190,7 @@ var openTessera = _(function(e) {
 
     }
 
-   
+
 }).throttle(THROTTLE_TIME);
 
 
@@ -195,8 +200,45 @@ var openTessera = _(function(e) {
  */
 var openAssistenza = _(function(e) {
     e.cancelBubble = true;
-    var winSoccorso = Alloy.createController('SoccorsoStradaleMain').getView();
-    Alloy.Globals.navMenu.openWindow(winSoccorso);
+
+    //la funzionalità di asssitenza la posso usare solo se ho attivi i servizi di geolocalizzazione
+    if (!locationServices.useLocation()) {
+        console.log('openAssistenza 1');
+        var numVerde = require('aciglobal').NumeroVerde;
+        //apro un dialog per scegliere cosa fare
+        var dialog = Titanium.UI.createAlertDialog({
+            title: 'Impossibile usare la posizione attuale',
+            message: 'Controlla le impostazioni di sistema, oppure chiama il numero ' + numVerde,
+            buttonNames: OS_IOS ? ['Chiudi', 'Chiama'] : ['Chiudi', 'Chiama', 'Impostazioni'],
+            cancel: 0
+        });
+
+        dialog.addEventListener('click', function(e) {
+            console.log('dialog e', e);
+            switch (e.index) {
+                case e.source.cancel:
+                    console.log('dialog cancel');
+                    break;
+                case 1: //chiama
+                    Titanium.Platform.openURL('tel:' + numVerde);
+                    break;
+                case 2: //apri settings
+                    locationServices.openLocationSettings();
+            }
+        });
+
+        dialog.show();
+    } else {
+        console.log('openAssistenza 2');
+
+        var winSoccorso = Alloy.createController('SoccorsoStradaleMain').getView();
+        Alloy.Globals.navMenu.openWindow(winSoccorso);
+    }
+
+
+
+
+
 
 }).throttle(THROTTLE_TIME);
 

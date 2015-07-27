@@ -37,7 +37,7 @@ function loadData() {
     } else {
         modelGot = args.data.attributes;
     }
-    console.log(modelGot);
+    //  console.log(modelGot);
     modelGot.email = modelGot.contacts.email[0];
     modelGot.telefono = modelGot.contacts.tel[0];
     modelGot.fax = modelGot.contacts.fax[0];
@@ -68,15 +68,16 @@ function loadData() {
         exterior: null
     };
 
-    if (modelGot._type == 'del') {
+    if (modelGot._type == 'aacc' || modelGot._type == 'del') {
 
         var cvs = [];
         if (sourceImages.interior) {
-            cvs.push(Alloy.Globals.PuntiAciBannerBaseURL + sourceImages.interior);
+            cvs.push([Alloy.Globals.PuntiAciBannerBaseURL, modelGot._type, sourceImages.interior].join('/'));
         }
 
         if (sourceImages.exterior) {
-            cvs.push(Alloy.Globals.PuntiAciBannerBaseURL + sourceImages.exterior);
+            cvs.push([Alloy.Globals.PuntiAciBannerBaseURL, modelGot._type, sourceImages.exterior].join('/'));
+
         }
 
         if (cvs.length == 0) {
@@ -88,6 +89,7 @@ function loadData() {
         _(cvs).each(function(e) {
             if (e) {
                 e = e.replace(/\s/gi, '%20');
+                console.log('cover e', e);
                 modelGot.covers.push(e);
             } else {
                 modelGot.covers.push('/AutomobileClub.png');
@@ -96,13 +98,12 @@ function loadData() {
 
 
 
-        console.log('**cover ', modelGot.covers);
 
         _(modelGot.covers).each(function(e) {
             console.log(e);
             var img = Ti.UI.createImageView({
                 image: e,
-             
+
                 width: Ti.UI.FILL,
                 defaultImage: '/none.png'
                 // height: coverHeight
@@ -129,13 +130,42 @@ function loadData() {
         }
 
     }
+
+
+    //compongo i contatti
+    modelGot.contatti = (function() {
+
+        if (_.isEmpty(modelGot.contacts)) {
+            return '';
+        } else {
+            var c = _(['web', 'telefono', 'fax']).chain()
+                .filter(function(x) {
+                    return !_.isEmpty(modelGot.contacts[x]);
+                })
+                .map(function(x) {
+                    if (modelGot.contacts[x].join('').length == 0) {
+                        return '';
+                    }
+                    return [x, ': ', modelGot.contacts[x].join(',')].join('');
+                })
+                .value();
+            return c.join('\n');
+        }
+
+    })();
+
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
     modelGot.telefonoVisible = Boolean(modelGot.telefono);
     modelGot.emailVisible = Boolean(modelGot.email);
+    modelGot.noteVisible = Boolean(modelGot.note);
+    modelGot.contattiVisible = Boolean(modelGot.contatti);
+
     modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
     modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
     modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
+    modelGot.noteHeight = modelGot.noteVisible ? 40 : 0;
+    modelGot.contattiHeight = modelGot.contattiVisible ? 40 : 0;
 
     modelGot.coverVisible = !_.isEmpty(modelGot.covers);
     modelGot.coverHeight = modelGot.coverVisible ? coverHeight : 0;
@@ -165,7 +195,7 @@ function toggleDettaglioServizi(e) {
         $.dettaglioServizi.visible = false;
         $.serviziIcon.image = "/images/ic_action_servizi_blu.png";
         $.serviziText.color = Alloy.Globals.palette.blu;
-        $.rowServizi.backgroundColor = "#fff";
+        $.rowServizi.backgroundColor = Alloy.Globals.palette.bianco_sporco;
         $.dettaglioServizi.height = 0;
 
     } else {
@@ -187,7 +217,7 @@ function toggleDettaglioOrari(e) {
         $.dettaglioOrari.visible = false;
         $.orariIcon.image = "/images/ic_action_orari_blu.png";
         $.orariText.color = Alloy.Globals.palette.blu;
-        $.rowOrari.backgroundColor = "#fff";
+        $.rowOrari.backgroundColor = Alloy.Globals.palette.bianco_sporco;
         $.dettaglioOrari.height = 0;
 
     } else {
@@ -201,15 +231,61 @@ function toggleDettaglioOrari(e) {
 
 };
 
+function toggleDettaglioNote(e) {
+
+    e.cancelBubble = true;
+
+    if ($.dettaglioNote.visible == true) {
+        $.dettaglioNote.visible = false;
+        $.noteIcon.image = "/images/ic_action_descrizione_blu.png";
+        $.noteText.color = Alloy.Globals.palette.blu;
+        $.rowNote.backgroundColor = Alloy.Globals.palette.bianco_sporco;
+        $.dettaglioNote.height = 0;
+
+    } else {
+        $.dettaglioNote.height = Ti.UI.SIZE;
+        $.noteIcon.image = "/images/ic_action_descrizione_bianco.png";
+        $.noteText.color = "#fff";
+        $.rowNote.backgroundColor = Alloy.Globals.palette.blu;
+        $.dettaglioNote.visible = true;
+        $.scroller.scrollToBottom();
+
+    }
+
+};
+
+function toggleDettaglioContatti(e) {
+
+    e.cancelBubble = true;
+
+    if ($.dettaglioContatti.visible == true) {
+        $.dettaglioContatti.visible = false;
+        $.contattiIcon.image = "/images/ic_action_contatti_blu.png";
+        $.contattiText.color = Alloy.Globals.palette.blu;
+        $.rowContatti.backgroundColor = Alloy.Globals.palette.bianco_sporco;
+        $.dettaglioContatti.height = 0;
+
+    } else {
+        $.dettaglioContatti.height = Ti.UI.SIZE;
+        $.contattiIcon.image = "/images/ic_action_contatti_bianco.png";
+        $.contattiText.color = "#fff";
+        $.rowContatti.backgroundColor = Alloy.Globals.palette.blu;
+        $.dettaglioContatti.visible = true;
+        $.scroller.scrollToBottom();
+
+    }
+
+};
+
 //custom paging control
 var PagingControl = require('PagingControl');
 var sViewPagingControl = new PagingControl($.cover);
 var opac = Titanium.UI.createView({
-        height: Ti.UI.SIZE,
-        width: Ti.UI.SIZE,
-        backgroundColor: Alloy.Globals.palette.bianco,
-        opacity: 0.5
-    });
+    height: Ti.UI.SIZE,
+    width: Ti.UI.SIZE,
+    backgroundColor: Alloy.Globals.palette.bianco,
+    opacity: 0.5
+});
 $.pagingContainer.add(opac);
 $.pagingContainer.add(sViewPagingControl);
 

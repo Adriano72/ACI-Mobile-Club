@@ -1,3 +1,6 @@
+var locationServices = require('locationServices');
+
+
 /**
  * funzione che formatta i parametri di querystring in modo da implementare la logica di ordinamento geografico
  * gestisce il caso provincia o (lat,lon)
@@ -107,7 +110,6 @@ exports.getPuntiAci = function(type_code, _callback) {
 
 exports.getDemolitori = function(type_code, _callback) {
 
-    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
 
     var xhr = Ti.Network.createHTTPClient();
 
@@ -313,84 +315,113 @@ exports.getUserInfo = function(p_ssoid, _callback) {
 
 exports.getBanner = function(_callback) {
 
-    //var lat = 40.830774;
-    //var lon = 16.548602999999957;
-    var lat = Alloy.Globals.userPosition.latitude
-    var lon = Alloy.Globals.userPosition.longitude;
-
-    var xhr = Ti.Network.createHTTPClient();
-
-    var _getRandomBanner = function(count, _callback) {
-        console.log('count', count);
-        var xhr = Ti.Network.createHTTPClient();
-
-        xhr.onload = function() {
-            var json = JSON.parse(this.responseText);
-            Ti.API.info("RISPOSTA: " + json.message);
-            if (json.status == 200) {
-                _callback(json.result);
-            } else {
-                Alloy.Globals.loading.hide();
-                Ti.API.error("Errore nella comunicazione col server.");
-            };
-        };
-
-        xhr.onerror = function() {
-            Alloy.Globals.loading.hide();
-            Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-        };
-
-        var n = 10;
-        var rand = Math.floor(Math.random() * Math.max(0, count - 10));
+    //i banner funzionano solo per posizione, quindi se non posso usare le coordinate non mostro i banner
+    function noPosition() {
+        console.log('network.getBanner -> impossibile ricavare la posizione attuale');
+        _callback([]);
+    }
 
 
+    if (locationServices.useLocation()) {
 
-        var url = Alloy.Globals.baseURL + '/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand;
-
-        Ti.API.info("CHIAMATA HTTP BANNER: " + url);
-
-        xhr.open('GET', url);
-
-        _(getAciGeoHeaders()).each(function(v, k) {
-            xhr.setRequestHeader(k, v);
-        });
-
-        xhr.send();
-    };
-    //Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
-
-    xhr.onload = function() {
-        var json = JSON.parse(this.responseText);
-        Ti.API.info("RISPOSTA: " + json.message);
-        if (json.status == 200) {
-            if (json.result.count > 0) {
-                _getRandomBanner(json.result.count, _callback);
-            } else {
-                _callback([]);
-            }
+        if (Alloy.Globals.userPosition) {
+            loadBanner();
         } else {
-            Alloy.Globals.loading.hide();
-            alert("Errore nella comunicazione col server.");
-        };
+            locationServices.getUserLocation(function(err) {
+                if (err || !Alloy.Globals.userPosition) {
+                    noPosition();
+                } else {
+                    loadBanner();
+                }
+            });
+        }
 
-    };
 
-    xhr.onerror = function() {
-        Alloy.Globals.loading.hide();
-        Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
-    };
+        function loadBanner() {
 
-    Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
 
-    var url = Alloy.Globals.baseURL + '/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}'
+            //var lat = 40.830774;
+            //var lon = 16.548602999999957;
+            var lat = Alloy.Globals.userPosition.latitude
+            var lon = Alloy.Globals.userPosition.longitude;
 
-    xhr.open('GET', url);
+            var xhr = Ti.Network.createHTTPClient();
 
-    _(getAciGeoHeaders()).each(function(v, k) {
-        xhr.setRequestHeader(k, v);
-    });
+            var _getRandomBanner = function(count, _callback) {
+                console.log('count', count);
+                var xhr = Ti.Network.createHTTPClient();
 
-    xhr.send();
+                xhr.onload = function() {
+                    var json = JSON.parse(this.responseText);
+                    Ti.API.info("RISPOSTA: " + json.message);
+                    if (json.status == 200) {
+                        _callback(json.result);
+                    } else {
+                        Alloy.Globals.loading.hide();
+                        Ti.API.error("Errore nella comunicazione col server.");
+                    };
+                };
+
+                xhr.onerror = function() {
+                    Alloy.Globals.loading.hide();
+                    Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+                };
+
+                var n = 10;
+                var rand = Math.floor(Math.random() * Math.max(0, count - 10));
+
+
+
+                var url = Alloy.Globals.baseURL + '/aci/syc?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}&populate=1&limit=' + n + '&skip=' + rand;
+
+                Ti.API.info("CHIAMATA HTTP BANNER: " + url);
+
+                xhr.open('GET', url);
+
+                _(getAciGeoHeaders()).each(function(v, k) {
+                    xhr.setRequestHeader(k, v);
+                });
+
+                xhr.send();
+            };
+            //Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
+
+            xhr.onload = function() {
+                var json = JSON.parse(this.responseText);
+                Ti.API.info("RISPOSTA: " + json.message);
+                if (json.status == 200) {
+                    if (json.result.count > 0) {
+                        _getRandomBanner(json.result.count, _callback);
+                    } else {
+                        _callback([]);
+                    }
+                } else {
+                    Alloy.Globals.loading.hide();
+                    alert("Errore nella comunicazione col server.");
+                };
+
+            };
+
+            xhr.onerror = function() {
+                Alloy.Globals.loading.hide();
+                Ti.API.error("ERRORE RISPOSTA SERVER: " + this.message);
+            };
+
+            Ti.API.info("CHIAMATA HTTP BANNER: " + 'http://www.aci.it/geo/v2/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}');
+
+            var url = Alloy.Globals.baseURL + '/aci/syc/_count?query={"address.location":{"$near":[' + lon + ', ' + lat + '],"$maxDistance":1},"agreement_id.images.banner":{"$gt":""},"status":"ok"}'
+
+            xhr.open('GET', url);
+
+            _(getAciGeoHeaders()).each(function(v, k) {
+                xhr.setRequestHeader(k, v);
+            });
+
+            xhr.send();
+        }
+    } else {
+        noPosition();
+    }
 
 };
 

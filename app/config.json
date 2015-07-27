@@ -15,7 +15,7 @@
     "AciGeo_CacheDistanceRangeMeters": "1000",
     "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
     "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
-    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads/del/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads",
     "BannerRotationTime": "20000",
     "__AciGeo_BaseUrl": "http://10.64.4.138:10001/geo/v2",
     "__AciGeo_BannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads/syc/",
@@ -27,7 +27,7 @@
     "SSO_Endpoint": "http://login.aci.it"
   },
   "env:development": {
-    "DevMode": true
+    "DevMode": false
   },
   "env:test": {
     "DevMode": false
