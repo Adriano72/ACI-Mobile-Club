@@ -57,7 +57,7 @@ function loadData() {
     modelGot.formattedAddress = addr;
     var services = (modelGot.services || []).concat(modelGot.customServices || []);
     modelGot.servizi = utility.formattaServizi(services);
-    modelGot.orari = utility.formattaOrari(modelGot.schedule.timetable);
+    modelGot.orari =  [utility.formattaOrari(modelGot.schedule.timetable)].concat(modelGot.schedule.festivals || []).join('\n');
     modelGot.covers = [];
 
     var coverHeight = 220;
