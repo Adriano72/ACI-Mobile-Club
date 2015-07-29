@@ -57,7 +57,7 @@ function loadData() {
     modelGot.formattedAddress = addr;
     var services = (modelGot.services || []).concat(modelGot.customServices || []);
     modelGot.servizi = utility.formattaServizi(services);
-    modelGot.orari =  [utility.formattaOrari(modelGot.schedule.timetable)].concat(modelGot.schedule.festivals || []).join('\n');
+    modelGot.orari = [utility.formattaOrari(modelGot.schedule.timetable)].concat(modelGot.schedule.festivals || []).join('\n');
     modelGot.covers = [];
 
     var coverHeight = 220;
@@ -138,21 +138,42 @@ function loadData() {
         if (_.isEmpty(modelGot.contacts)) {
             return '';
         } else {
+
             var c = _(['web', 'telefono', 'fax']).chain()
                 .filter(function(x) {
                     return !_.isEmpty(modelGot.contacts[x]);
                 })
-                .map(function(x) {
+                /*   .map(function(x) {
                     if (modelGot.contacts[x].join('').length == 0) {
                         return '';
                     }
-                    return [x, ': ', modelGot.contacts[x].join(',')].join('');
+                    return [x, ': ', '<a href="http://',modelGot.contacts[x].join(','),'">', modelGot.contacts[x].join(','), '</a>'].join('');
+                }) */
+                .map(function(x) {
+                    var target = modelGot.contacts[x][0];
+                    return {
+                        type: {
+                            text: x
+                        },
+                        target: {
+                            text: target,
+                            href: (function formatHREF(type) {
+                                if (type == 'web' && target.indexOf('http') < 0) return 'http://' + target;
+                                else if (type == 'tel' || type == 'fax') return 'tel:' + target;
+                                else target;
+                            })(x)
+                        }
+                    };
                 })
                 .value();
-            return c.join('\n');
+            return c;
         }
 
     })();
+
+    _.defer(function() {
+        $.ls.setItems(modelGot.contatti);
+    });
 
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
@@ -276,6 +297,14 @@ function toggleDettaglioContatti(e) {
     }
 
 };
+
+function openUrl(e) {
+    console.log('openUrl', e);
+    var source = OS_IOS ? e.source : e.section.items[e.itemIndex].target;
+    if (e.bindId == 'target' && source.href) {
+        Ti.Platform.openURL(source.href);
+    }
+}
 
 //custom paging control
 var PagingControl = require('PagingControl');
