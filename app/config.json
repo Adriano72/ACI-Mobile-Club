@@ -1,5 +1,6 @@
 {
   "global": {
+    "theme": "Acimobileclub",
     "AciGlobal_NumeroVerde": "803116",
     "AciGlobal_ServiceEndpoint": "http://www.aci.it/geo/v2/aciglobal",
     "AciGlobal_ServerLogin": "acimobileclub",
