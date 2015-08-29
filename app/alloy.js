@@ -123,7 +123,13 @@ Alloy.Globals.fontSize = {
 //inizializza i servizi di location
 _.defer(require('locationServices').init);
 
+//ricarica i dati utente
+_.defer(require('user').refreshData);
+
 
 if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
    require('sysReportCommon').enableShake();
 }
+
+
+
