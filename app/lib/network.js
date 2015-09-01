@@ -202,7 +202,8 @@ exports.getVantaggiSoci = function(type_code, _callback) {
     var qs = {
         query: {
             "agreement_id.categories.short_name": type_code,
-            "status": "ok"
+            "status": "ok",
+            "agreement_id.status": "ok"
         },
         limit: 15
     }
