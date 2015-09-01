@@ -93,6 +93,7 @@ function loadData() {
                     longitudeDelta: 0.01,
                     zoom: 14
                 });
+
             }
         });
     });
@@ -131,7 +132,13 @@ function loadMap() {
 
     if (region) {
         locationServices.setLastLocation(region);
-        var coo = region; 
+        var coo = region;
+
+
+
+
+        console.log('on region', coo);
+
         locationServices.getAddress(coo.latitude, coo.longitude, function(err, places) {
 
 
