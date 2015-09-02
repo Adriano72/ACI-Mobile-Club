@@ -14,7 +14,7 @@ var MAX_TRIES = 3;
  * Millisecondi tra un tentativo e un altro
  * @type {Number}
  */
-var TRIES_DELAY = 100;
+var TRIES_DELAY = 500;
 
 
 exports.init = function() {

@@ -169,15 +169,12 @@ exports.openNavigation = function(e) {
     var lat = e.lat;
     var lon = e.lon;
 
-    //Alloy.Globals.loading.show('stiamo calcolando la posizione');
-    require('locationServices').getUserLocation(function(err, userLoc) {
-        //Alloy.Globals.loading.hide();
+   
 
-        var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m&saddr=' : 'http://maps.apple.com/maps?t=m&saddr=';
-        console.log("NAVIGATION DATA", lat, lon, userLoc.latitude, userLoc.longitude);
+    var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m' : 'http://maps.apple.com/maps?t=m';
+    console.log("NAVIGATION DATA", lat, lon);
 
-        Ti.Platform.openURL(mapsServiceURL + userLoc.latitude + ',' + userLoc.longitude + '&daddr=' + lat + ',' + lon);
-    });
+    Ti.Platform.openURL(mapsServiceURL + '&daddr=' + lat + ',' + lon);
 
 };
 

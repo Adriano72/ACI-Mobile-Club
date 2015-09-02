@@ -112,13 +112,20 @@ exports.doLogin = function(username, password, rememberMe, cb) {
 };
 
 exports.refreshData = function() {
-    var credentials = Ti.App.Properties.getObject("utenteCredenziali");
-    var lastLogin = Ti.App.Properties.getObject("utenteLastLogin");
+
+    try {
+        var credentials = Ti.App.Properties.getObject("utenteCredenziali");
+        var lastLogin = Ti.App.Properties.getObject("utenteLastLogin");
+
+    } catch (e) {
+        var credentials = undefined;
+        var lastLogin = undefined;
+    }
     var now = new Date();
 
     console.log('credentials', credentials);
 
-    if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials && lastLogin && now.getDate() != lastLogin.getDate()) {
+    if (Ti.Network.networkType != Ti.Network.NETWORK_NONE && credentials && lastLogin && now.getDate() != lastLogin.getDate()) {
         //if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials && lastLogin ){
         //alert('refresh!');
         exports.doLogin.apply(this, credentials);
