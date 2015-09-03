@@ -169,12 +169,15 @@ exports.openNavigation = function(e) {
     var lat = e.lat;
     var lon = e.lon;
 
-   
+    var url;
+    if (OS_ANDROID) {
+        url = 'http://maps.google.com/maps?t=m&daddr=' + lat + ',' + lon;
+    } else {
+        url = 'http://maps.apple.com/maps?t=m&daddr=' + lat + ',' + lon + '&saddr=Current%20Location';
 
-    var mapsServiceURL = (OS_ANDROID) ? 'http://maps.google.com/maps?t=m' : 'http://maps.apple.com/maps?t=m';
-    console.log("NAVIGATION DATA", lat, lon);
+    }
+    Ti.Platform.openURL(url);
 
-    Ti.Platform.openURL(mapsServiceURL + '&daddr=' + lat + ',' + lon);
 
 };
 
