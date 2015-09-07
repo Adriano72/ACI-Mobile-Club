@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container" >
+	<Window id="win" class="container" onOpen="open" onClose="close" >
 		
 		<!--<TableView id="puntiAciMain_Table" class="table" onSingletap="selectionDetail"/>-->
 
