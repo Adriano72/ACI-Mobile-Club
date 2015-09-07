@@ -5,6 +5,12 @@
  */
 
 
+//utile in svilupo
+var default_position = {
+    latitude: 41.8089777,
+    longitude: 12.4365196
+};
+
 /**
  * Numero di tentativi di recuperare la posizione attuale, in caso di fallimento
  * @type {Number}
@@ -16,6 +22,15 @@ var MAX_TRIES = 3;
  */
 var TRIES_DELAY = 500;
 
+
+/**
+ * Il minimo cambiamento di posizione per generare
+ * @type {Number}
+ */
+var MIN_UPDATE_DISTANCE = 10;
+
+
+var lastAddress;
 
 exports.init = function() {
     /* var locationAdded = false;
@@ -70,89 +85,75 @@ exports.init = function() {
 
 exports.getUserLocation = function(_callback) {
 
-    var fake = false; // Alloy.Globals.DevMode;
-    console.log('fake', fake);
-    if (!fake) {
 
-        if (Ti.Geolocation.locationServicesEnabled) {
+    if (Ti.Geolocation.locationServicesEnabled) {
 
-            Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
-            Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
-            Ti.Geolocation.distanceFilter = 10;
-            Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
+        Ti.Geolocation.purpose = 'Fornire informazioni rilevanti alla posizione dell\'utente';
+        Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
 
-            var tries = 0;
 
-            /**
-             * callback di risposta alla richiesta di posizione
-             * @param  {[type]} e [description]
-             */
-            var onPosition = function(e) {
-                if (e.error) {
-                    console.log('getCurrentPosition  error', e);
+        Ti.Geolocation.distanceFilter = MIN_UPDATE_DISTANCE;
 
-                    if (tries < MAX_TRIES) {
-                        //ritento
-                        tries++;
-                        setTimeout(getCurrentPosition, TRIES_DELAY);
-                    } else {
-                        //genero l'errore
-                        Alloy.Globals.loading.hide();
 
-                        _callback(e);
-                    }
+
+        Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
+
+        var tries = 0;
+
+        /**
+         * callback di risposta alla richiesta di posizione
+         * @param  {[type]} e [description]
+         */
+        var onPosition = function(e) {
+            if (e.error) {
+                console.log('getCurrentPosition  error', e);
+
+                if (tries < MAX_TRIES) {
+                    //ritento
+                    tries++;
+                    setTimeout(getCurrentPosition, TRIES_DELAY);
                 } else {
+                    //genero l'errore
+                    Alloy.Globals.loading.hide();
 
-                    console.log('why???', tries);
-                    /* var position = {
+                    _callback(e);
+                }
+            } else {
+
+                console.log('why???', tries);
+                /* var position = {
                         latitude: e.coords.latitude,
                         longitude: e.coords.longitude
                     };*/
-                    if (e.coords) {
-                        var position = {
-                            latitude: e.coords.latitude,
-                            longitude: e.coords.longitude
-                        };
-                        console.log('position', position);
+                if (e.coords) {
+                    console.log('position', e.coords);
+                    // Alloy.Globals.userPosition = position;
 
-                        Ti.API.info('COORDINATE UTENTE: ' + JSON.stringify(position));
-                        Alloy.Globals.userPosition = position;
-
-                        (function() {
-                            console.log('callback');
-                            _callback(null, position);
-                        })();
-                    }
-
-
+                    (function() {
+                        console.log('callback');
+                        _callback(null, e.coords);
+                    })();
                 }
-            };
 
-            var getCurrentPosition = function() {
-                Titanium.Geolocation.getCurrentPosition(onPosition);
-            };
 
-            if (OS_IOS) {
-                Ti.Geolocation.addEventListener('authorization', onPosition);
             }
+        };
 
-            getCurrentPosition();
+        var getCurrentPosition = function() {
+            Titanium.Geolocation.getCurrentPosition(onPosition);
+        };
 
-        } else {
-            Alloy.Globals.loading.hide();
-            alert('Abilitare i servizi di localizzazione per usufruire del servizio');
+        if (OS_IOS) {
+            Ti.Geolocation.addEventListener('authorization', onPosition);
         }
 
-    } else {
-        var position = {
-            latitude: 41.8089777,
-            longitude: 12.4365196
-        };
-        Ti.API.info('COORDINATE UTENTE default: ' + JSON.stringify(position));
-        Alloy.Globals.userPosition = position;
+        getCurrentPosition();
 
-        _callback(null, position);
+    } else {
+        Alloy.Globals.loading.hide();
+        alert('Abilitare i servizi di localizzazione per usufruire del servizio');
     }
+
 
     /*
 	 var position = {
@@ -183,11 +184,16 @@ exports.getUserLocation = function(_callback) {
  * @return {[type]} [description]
  */
 exports.getLastLocation = function() {
-    return Alloy.Globals.userPosition;
+    var g = JSON.parse(Ti.Geolocation.lastGeolocation);
+    g.address = lastAddress;
+    return g;
 };
 
+
+
 exports.setLastLocation = function(p) {
-    Alloy.Globals.userPosition = p;
+    //se uso la cache del modulo geolocation, non ha senso questa funzione
+    // Alloy.Globals.userPosition = p;
 };
 
 /**
@@ -229,18 +235,24 @@ exports.useLocation = function() {
  */
 exports.getAddress = function(lat, lon, _callback) {
     Ti.Geolocation.reverseGeocoder(lat, lon, function(evt) {
-        console.log('getAddress', evt);
 
         if (_callback) {
 
             if (evt.code === 0) { //success
-                _callback(null, evt.places);
+                lastAddress = exports.formatAddress(evt.places[0]);
+                _callback(null, evt.places, lastAddress);
             } else {
                 _callback(evt);
             }
         }
 
     });
+};
+
+exports.formatAddress = function(place) {
+    return ([place.street, place.zipcode, place.city]).filter(function(e) {
+        return e && e.length;
+    }).join(', ');
 };
 
 /**
