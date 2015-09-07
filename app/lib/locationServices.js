@@ -30,7 +30,7 @@ var TRIES_DELAY = 500;
 var MIN_UPDATE_DISTANCE = 10;
 
 
-var lastAddress;
+var lastAddress, lastPosition;
 
 exports.init = function() {
     /* var locationAdded = false;
@@ -126,8 +126,8 @@ exports.getUserLocation = function(_callback) {
                         longitude: e.coords.longitude
                     };*/
                 if (e.coords) {
-                    console.log('position', e.coords);
-                    // Alloy.Globals.userPosition = position;
+                    console.log('position', e);
+                    lastPosition = e.coords;
 
                     (function() {
                         console.log('callback');
@@ -184,8 +184,8 @@ exports.getUserLocation = function(_callback) {
  * @return {[type]} [description]
  */
 exports.getLastLocation = function() {
-    var g = JSON.parse(Ti.Geolocation.lastGeolocation);
-    g.address = lastAddress;
+    var g = JSON.parse(Ti.Geolocation.lastGeolocation) || lastPosition;
+    if (g) g.address = lastAddress;
     return g;
 };
 
@@ -202,13 +202,15 @@ exports.setLastLocation = function(p) {
  */
 exports.useLocation = function() {
 
+    /*  
     console.log('Ti.Geolocation.locationServicesEnabled', Ti.Geolocation.locationServicesEnabled);
     console.log('!_.isEmpty(Alloy.Globals.userPosition', !_.isEmpty(Alloy.Globals.userPosition));
     console.log('Alloy.Globals.userPosition', Alloy.Globals.userPosition);
     console.log('Ti.Geolocation.locationServicesAuthorization', Ti.Geolocation.locationServicesAuthorization);
     console.log('auth codes', Ti.Geolocation.AUTHORIZATION_AUTHORIZED,
         Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,
-        Ti.Geolocation.AUTHORIZATION_ALWAYS);
+        Ti.Geolocation.AUTHORIZATION_ALWAYS); 
+    */
 
     // return Ti.Geolocation.locationServicesEnabled && !_.isEmpty(Alloy.Globals.userPosition);
 
