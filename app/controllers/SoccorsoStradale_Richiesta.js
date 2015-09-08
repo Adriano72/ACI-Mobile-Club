@@ -275,7 +275,7 @@ function updateAddress(lat, lon, accuracy, cb) {
             console.log('getAddress err', err);
         } else {
             console.log('getAddress places', places);
-            $.labelMap.text = place + ' (precisione ' + accuracy + 'm)';
+            $.labelMap.text = place;
 
         }
     });
