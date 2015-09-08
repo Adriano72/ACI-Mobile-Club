@@ -184,8 +184,14 @@ exports.getUserLocation = function(_callback) {
  * @return {[type]} [description]
  */
 exports.getLastLocation = function() {
-    var g = JSON.parse(Ti.Geolocation.lastGeolocation) || lastPosition;
-    if (g) g.address = lastAddress;
+    var l = Ti.Geolocation.lastGeolocation;
+    var g;
+    if (l) {
+        g = JSON.parse(l);
+    } else {
+        g = lastPosition;
+    }
+    if (g && !_.isEmpty(g)) g.address = lastAddress;
     return g;
 };
 
