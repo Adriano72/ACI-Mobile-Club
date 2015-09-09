@@ -1,0 +1,26 @@
+".container":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	backgroundColor: "transparent"
+}
+
+".dot":{
+	top: 3,
+	bottom: 3,
+	left: 3,
+	right: 3,
+	height: 8,
+	width: 8,
+	borderRadius: 4,
+	borderWidth: 1
+}
+
+"#unselectedView":{
+	backgroundColor: "black",
+	borderColor: "white"
+}
+
+"#selectedView":{
+	backgroundColor: "white",
+	borderColor: "black"
+}
