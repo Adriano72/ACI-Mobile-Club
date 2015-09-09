@@ -7,9 +7,12 @@
 				<Label class="h1" id="headerText" text="{$.dormireMangiare.name}"/>
 			</View>
 			<View class="separator"/>
-			<View class="iconContainer">
+			<!--<View class="iconContainer">
 				<ImageView class="logoConvenzione" image="{$.dormireMangiare.logo}"/>
-			</View>
+			</View>-->
+
+			<Widget id="gallery" src="it.aci.informatica.ti.widgets.gallery" interval="20000" ></Widget> 
+
 			<View id="contattiView">
 
 				<View id="contattiViewInner">

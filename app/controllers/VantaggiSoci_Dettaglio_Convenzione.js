@@ -67,6 +67,18 @@ function loadData() {
     modelGot.logo = encodeURI(Alloy.Globals.bannerBaseURL + (modelGot.agreement_id.images.logo || modelGot.agreement_id.images.banner));
 
 
+    if (modelGot.agreement_id.photoGallery && modelGot.agreement_id.photoGallery) {
+        modelGot.images = _(modelGot.agreement_id.photoGallery).map(function(e) {
+            return Alloy.Globals.bannerBaseURL + e.replace(" ", "%20");
+        });
+    } else {
+        modelGot.images = [modelGot.logo];
+    }
+
+    $.gallery.getView().height = Alloy.Globals.deviceWidth * (600 / 1024);
+    $.gallery.getView().width = Alloy.Globals.deviceWidth;
+    $.gallery.setImages(modelGot.images);
+
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
     modelGot.telefonoVisible = Boolean(modelGot.telefono);
