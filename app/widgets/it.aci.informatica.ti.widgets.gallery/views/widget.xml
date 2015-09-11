@@ -1,0 +1,6 @@
+<Alloy>
+	<View class="container">
+		<ScrollableView id="cover" onScrollend="onScrollend"/>
+		<View id="pagingContainer"/>
+	</View>
+</Alloy>
