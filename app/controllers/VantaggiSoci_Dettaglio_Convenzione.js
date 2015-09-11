@@ -185,6 +185,34 @@ function openAciMerchant() {
         hasApp = Ti.Platform.canOpenURL(appUrl);
     } else if (OS_ANDROID) {
         hasApp = false;
+
+        //Add our tools module
+        var tools = require('bencoding.android.tools');
+        var platformTools = tools.createPlatform();
+
+        //Create our PDF intent
+        var intent = Ti.Android.createIntent({
+            action: Ti.Android.ACTION_VIEW,
+            packageName: 'it.aci.informatica.useyourcard.merchant'
+        });
+
+
+
+
+        //Check that the device can open the intent
+        if (platformTools.intentAvailable(intent)) {
+            //Since the device can open the intent run startActivity
+            try {
+                hasApp = true;
+            } catch (e) {
+                hasApp = false;
+
+                Ti.API.debug(e);
+            }
+        } else {
+            hasApp = false;
+        }
+
     }
 
 
