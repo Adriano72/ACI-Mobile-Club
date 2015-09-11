@@ -77,6 +77,12 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View class="separator"/>
+			<View class="rounded" onClick="openAciMerchant">
+				<View class="rowContainer">
+					<Label class="l1">Sei il titolare?</Label>
+					<Label class="l2" >apri ACI Merchant</Label>
+				</View>
+			</View>
 		</ScrollView>
 	</Window>
 </Alloy>

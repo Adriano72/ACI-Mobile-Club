@@ -176,6 +176,57 @@ function toggleDettaglioComeVantaggio(e) {
 };
 
 
+function openAciMerchant() {
+    var hasApp = false;
+    var appUrl = "useyourcardmerchant://"
+    var storeUrl = OS_IOS ? "https://itunes.apple.com/us/app/aci-merchant/id1021977050?l=it&ls=1&mt=8" : "https://play.google.com/store/apps/details?id=it.aci.informatica.useyourcard.merchant";
+
+    if (OS_IOS) {
+        hasApp = Ti.Platform.canOpenURL(appUrl);
+    } else if (OS_ANDROID) {
+        hasApp = false;
+
+        //Add our tools module
+        var tools = require('bencoding.android.tools');
+        var platformTools = tools.createPlatform();
+
+        //Create our PDF intent
+        var intent = Ti.Android.createIntent({
+            action: Ti.Android.ACTION_VIEW,
+            //packageName: 'it.aci.informatica.useyourcard.merchant'
+            data: appUrl
+        });
+
+
+
+
+        //Check that the device can open the intent
+        if (platformTools.intentAvailable(intent)) {
+            //Since the device can open the intent run startActivity
+            try {
+                hasApp = true;
+            } catch (e) {
+                hasApp = false;
+
+                Ti.API.debug(e);
+            }
+        } else {
+            hasApp = false;
+        }
+
+    }
+
+
+    console.log('openAciMerchant', hasApp, appUrl);
+
+    if (hasApp) {
+        Ti.Platform.openURL(appUrl);
+    } else {
+        Ti.Platform.openURL(storeUrl);
+    }
+
+}
+
 
 $.win.addEventListener('close ', function() {
     $.destroy();
