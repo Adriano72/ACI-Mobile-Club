@@ -1,0 +1,16 @@
+".container":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	backgroundColor: "transparent"
+}
+"#pagingContainer":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	layout: "horizontal",
+	bottom: 0
+}
+"#cover":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL
+
+}

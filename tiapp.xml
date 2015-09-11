@@ -89,6 +89,7 @@
     <module platform="android">ti.map</module>
     <module platform="commonjs">ti.cloud</module>
     <module platform="commonjs" version="1.2.1">nl.fokkezb.html2as</module>
+    <module platform="android" version="0.4">bencoding.android.tools</module>
   </modules>
     <deployment-targets>
         <target device="android">true</target>
