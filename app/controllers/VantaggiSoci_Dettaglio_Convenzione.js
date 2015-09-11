@@ -193,7 +193,8 @@ function openAciMerchant() {
         //Create our PDF intent
         var intent = Ti.Android.createIntent({
             action: Ti.Android.ACTION_VIEW,
-            packageName: 'it.aci.informatica.useyourcard.merchant'
+            //packageName: 'it.aci.informatica.useyourcard.merchant'
+            data: appUrl
         });
 
 
