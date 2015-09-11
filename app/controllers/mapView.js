@@ -1,6 +1,7 @@
 var args = arguments[0] || {};
 
 var sideMenu = require('mapSideMenu');
+var locationServices = require('locationServices');
 
 var tmpCollection = Alloy.Collections.tempCollection;
 
@@ -34,10 +35,11 @@ function loadData() {
 function centerMap() {
     console.log('centerOnUser', centerOnUser);
     if (centerOnUser) {
+        var posizione = locationServices.getLastLocation();
         $.map.region = {
-            latitude: Alloy.Globals.userPosition.latitude,
+            latitude: posizione.latitude,
             latitudeDelta: default_delta,
-            longitude: Alloy.Globals.userPosition.longitude,
+            longitude: posizione.longitude,
             longitudeDelta: default_delta
         };
     } else {

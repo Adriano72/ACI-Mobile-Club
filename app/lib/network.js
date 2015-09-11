@@ -26,8 +26,9 @@ function useLocationParams(params) {
             "$near": [Alloy.Globals.userPosition.longitude, Alloy.Globals.userPosition.latitude],
             "$maxDistance": 0.2
         }; */
+        var posizione = locationServices.getLastLocation();
         params.near = {
-            point: [Alloy.Globals.userPosition.longitude, Alloy.Globals.userPosition.latitude],
+            point: [posizione.longitude, posizione.latitude],
             max: 0.2
         };
         params.populate = 1;
@@ -54,9 +55,7 @@ function formatQS(obj) {
 
 exports.getPuntiAci = function(type_code, _callback) {
 
-    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
-
-    var xhr = Ti.Network.createHTTPClient();
+     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
 
@@ -202,7 +201,8 @@ exports.getVantaggiSoci = function(type_code, _callback) {
     var qs = {
         query: {
             "agreement_id.categories.short_name": type_code,
-            "status": "ok"
+            "status": "ok",
+            "agreement_id.status": "ok"
         },
         limit: 15
     }
@@ -321,14 +321,16 @@ exports.getBanner = function(_callback) {
         _callback([]);
     }
 
+    var posizione  = locationServices.getLastLocation();
+
 
     if (locationServices.useLocation()) {
 
-        if (Alloy.Globals.userPosition) {
+        if (posizione) {
             loadBanner();
         } else {
             locationServices.getUserLocation(function(err) {
-                if (err || !Alloy.Globals.userPosition) {
+                if (err ) {
                     noPosition();
                 } else {
                     loadBanner();
@@ -341,9 +343,9 @@ exports.getBanner = function(_callback) {
 
 
             //var lat = 40.830774;
-            //var lon = 16.548602999999957;
-            var lat = Alloy.Globals.userPosition.latitude
-            var lon = Alloy.Globals.userPosition.longitude;
+            //var lon = 16.548602999999957x            
+            var lat = posizione.latitude
+            var lon = posizione.longitude;
 
             var xhr = Ti.Network.createHTTPClient();
 
@@ -436,8 +438,6 @@ exports.getBanner = function(_callback) {
  */
 exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
-    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
-
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
@@ -520,8 +520,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
 
 exports.getListaProvince = function(_callback) {
-    Ti.API.info("**GLOBAL POSITION: " + JSON.stringify(Alloy.Globals.userPosition));
-
+   
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {

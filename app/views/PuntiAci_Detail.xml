@@ -77,7 +77,21 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioContatti" class="textBox" visible="false">
-				<Label class="text testoDettagli"  text="{$.detailModel.contatti}"/>
+				<!--<Widget src="nl.fokkezb.html2as.widget"  html="{$.detailModel.contatti}"/>-->
+				 <ListView id="list" defaultItemTemplate="contact">
+			        
+			        	<Templates>
+			        		<ItemTemplate name="contact">
+			        			<View id="contact_wrapper" layout="horizontal">
+			        				<Label id="contact_type" bindId="type" ></Label>
+			        				<Label id="contact_target" bindId="target" class="link" onClick="openUrl"></Label>
+			        			</View>
+			        			
+			        		</ItemTemplate>
+			        	</Templates>
+			        <ListSection id="ls">   
+			        </ListSection>
+			    </ListView>
 			</View> 
 			<View class="separator"/>
 		</ScrollView>

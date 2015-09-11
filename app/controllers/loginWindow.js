@@ -33,6 +33,7 @@ function doLogin() {
     //fix: faccio il trim
     var username = $.username.value.trim();
     var password = $.password.value.trim();
+    var rememberMe = $.ricordami.getView().value;
 
     console.log("u/p", username, password);
 
@@ -40,29 +41,12 @@ function doLogin() {
 
         Alloy.Globals.loading.show('Caricamento dati...', false);
 
-        net.getSSOID(username, password, function(ssoid) {
+        user.doLogin(username, password, rememberMe, function(err, user_data) {
 
-            net.getUserInfo(ssoid, function(user_data) {
+            Alloy.Globals.loading.hide();
 
-                //Ti.API.info("CHECKBOX VALUE "+$.ricordami.getView().value);
+            if (!err) {
 
-                /* cambio la gestione della login
-				if ($.ricordami.getView().value) {
-					
-					Ti.App.Properties.setBool("utenteAutenticato", true);
-					Ti.App.Properties.setObject("datiUtente", user_data.data);
-					Ti.App.fireEvent("loggedInUser", {loggedUser:true});
-
-				}; 
-				*/
-
-                //il modulo user.js gestisce la persistenza dei dati dell'utente
-                user.onLogin(user_data.data, $.ricordami.getView().value);
-                Ti.App.fireEvent("loggedInUser", {
-                    loggedUser: true
-                });
-
-                Alloy.Globals.loading.hide();
                 Ti.API.info("USER DATA: " + JSON.stringify(user_data));
 
                 var w;
@@ -70,7 +54,7 @@ function doLogin() {
                 if (user_data.data['userInfo.tessera']) {
                     w = Alloy.createController('showTessera', user_data.data).getView();
                 } else {
-                     w = Alloy.createController('userOptions').getView();
+                    w = Alloy.createController('userOptions').getView();
 
                 }
 
@@ -81,9 +65,14 @@ function doLogin() {
                     Alloy.Globals.navMenu.closeWindow($.win);
                 });
 
-            });
+            } else {
+                alert('Errore durante il login');
+            }
 
         });
+
+
+
     } else {
         alert("Inserire nome utente e password!");
     }

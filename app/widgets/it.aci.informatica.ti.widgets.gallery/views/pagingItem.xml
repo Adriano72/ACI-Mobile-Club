@@ -1,0 +1,6 @@
+<Alloy>
+	<View class="container">
+		<View id="selectedView" class="dot"></View>
+		<View id="unselectedView" class="dot"></View>
+	</View>
+</Alloy>

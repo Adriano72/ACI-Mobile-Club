@@ -122,3 +122,41 @@
 	color: Alloy.Globals.palette.nero
 }
 
+".rounded":{
+
+	height: 40,
+	borderWidth: 1,
+	borderRadius: 20,
+	borderColor: Alloy.Globals.palette.blu,
+	top: 20,
+	bottom: 10,
+	width: "80%"
+}
+
+".rowContainer":{
+	layout: "horizontal",
+	horizontalWrap: false,
+	width: Ti.UI.SIZE,
+}
+
+".l1":{
+	color: Alloy.Globals.palette.blu,
+//	width: Ti.UI.SIZE,
+	font: {
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSans_Narrow,
+
+	}
+}
+
+
+".l2":{
+	left: 3,
+	color: Alloy.Globals.palette.blu,
+//	width: Ti.UI.SIZE,
+	font: {
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+	}
+}
+

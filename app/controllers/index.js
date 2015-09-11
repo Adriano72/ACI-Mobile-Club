@@ -228,6 +228,32 @@ var openAssistenza = _(function(e) {
         });
 
         dialog.show();
+    } else if (Ti.Network.networkType == Ti.Network.NETWORK_NONE) {
+        console.log('openAssistenza 1');
+        var numVerde = require('aciglobal').NumeroVerde;
+        //apro un dialog per scegliere cosa fare
+        var dialog = Titanium.UI.createAlertDialog({
+            title: 'Connessione non disponibile',
+            message: 'Controlla le impostazioni di sistema, oppure chiama il numero ' + numVerde,
+            buttonNames: OS_IOS ? ['Chiudi', 'Chiama'] : ['Chiudi', 'Chiama', 'Impostazioni'],
+            cancel: 0
+        });
+
+        dialog.addEventListener('click', function(e) {
+            console.log('dialog e', e);
+            switch (e.index) {
+                case e.source.cancel:
+                    console.log('dialog cancel');
+                    break;
+                case 1: //chiama
+                    Titanium.Platform.openURL('tel:' + numVerde);
+                    break;
+                case 2: //apri settings
+                    locationServices.openLocationSettings();
+            }
+        });
+
+        dialog.show();
     } else {
         console.log('openAssistenza 2');
 

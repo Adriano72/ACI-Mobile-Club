@@ -1,5 +1,6 @@
 {
   "global": {
+    "theme": "Acimobileclub",
     "AciGlobal_NumeroVerde": "803116",
     "AciGlobal_ServiceEndpoint": "http://www.aci.it/geo/v2/aciglobal",
     "AciGlobal_ServerLogin": "acimobileclub",
@@ -46,6 +47,7 @@
     "com.imobicloud.tabbed_bar": "1.0",
     "nl.fokkezb.toast": "1.1.0",
     "com.mcongrove.toast": "1.1",
-    "nl.fokkezb.html2as.widget": "1.0"
+    "nl.fokkezb.html2as.widget": "1.0",
+    "it.aci.informatica.ti.widgets.gallery": "0.1.0"
   }
 }

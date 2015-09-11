@@ -5,86 +5,26 @@ var AciGlobal = require('aciglobal');
 var dialogs = require('alloy/dialogs');
 var user = require('user');
 
-var isGuest, userData;
+var isGuest = !user.isLogged;
+var userData = user.getCurrentUser();
+var currentAddress;
 
 /**
- * FORMATO UTENTE
- * {
-    "userInfo.provincia": "RM",
-    "userInfo.numeroTessera": "AC900932465",
-    "userInfo.dataNascita": "1960-12-02",
-    "userInfo.mobile": "3289769508",
-    "userInfo.codiceFiscale": "CHRMSM60T02H501G",
-    "userInfo.emailTemp": "M.CHIERCHINI@INFORMATICA.ACI.IT",
-    "userInfo.surname": "CHIERCHINI",
-    "userInfo.tipoTessera": "I",
-    "userInfo.user": "MCHIERCH",
-    "userInfo.categoriaTessera": "CLO",
-    "userInfo.newsletteraci": "",
-    "userInfo.email": "M.CHIERCHINI@INFORMATICA.ACI.IT",
-    "userInfo.note": "",
-    "userInfo.dataScadenza": "2015/12/31",
-    "userInfo.sesso": "M",
-    "userInfo.newsletter3rdparty": "",
-    "userInfo.name": "MASSIMO",
-    "userInfo.tessera": "AC900932465",
-    "userInfo.mobileTemp": "3289769508",
-    "userInfo.citta": "ROMA"
-}
-
- * 
+ * Inizializza la mappa
+ * @return {[type]} [description]
  */
-
-var args = arguments[0] || {};
-
+function initMap() {
 
 
-
-//carica i dati
-loadData();
-
-
-
-function loadData() {
-
-
-    //
-    //controllo lo stato della login
-    //
-
-    userData = user.getCurrentUser();
-    isGuest = !user.isLogged; //Boolean(!(user && userData != {}) && !Ti.App.Properties.getBool("utenteAutenticato"));
-
-    console.log('isGuest', isGuest);
-    console.log('user', userData);
-    if (!isGuest) {
-
-        utility.showVertical($.tipoWrapper);
-        $.telefono.value = userData['userInfo.mobile'] || userData['userInfo.mobileTemp'];
-        $.tipoAiuto.value = 'auto';
-
-    } else {
-
-        utility.hideVertical($.tipoWrapper);
-        $.telefono.value = '';
-
-    }
-
-
-    //$.tipoAiuto.addEventListener('change', function(e) {
-    //    console.log('change', e);
-    //});
-
-    //
-    //inizializzazione della mappa con la posizione corrente
-    //
-    $.mapview.addEventListener('complete', function() {
+    $.mapview.addEventListener('complete', function onMapComplete() {
         //la posizione iniziale è quella dell'utente
         locationServices.getUserLocation(function(err, coo) {
             if (err) {
                 console.log('getUserLocation err', err);
             } else {
                 console.log('getUserLocation coo', coo);
+                console.log('getUserLocation last', locationServices.getLastLocation());
+
 
                 $.mapview.setRegion({
                     latitude: coo.latitude,
@@ -93,78 +33,17 @@ function loadData() {
                     longitudeDelta: 0.01,
                     zoom: 14
                 });
+
+                //  updateAddress(coo.latitude, coo.longitude, coo.accuracy);
+
             }
         });
+
+
     });
 
-
-    //serve ad evitare il problema che la tastiera viene visualizzata all'apertura
-    if (OS_ANDROID) {
-        $.telefono.once('focus', function() {
-            $.telefono.blur();
-            setScrollOnFocus();
-        });
-    } else {
-        setScrollOnFocus();
-    }
-
-    function setScrollOnFocus() {
-        /*  $.telefono.addEventListener('focus', function() {
-            $.main.scrollToBottom();
-        }); */
-    }
-
-
-
-    //stato: mostra form
-    utility.hideVertical($.rowRichiestaInviata);
-    utility.showVertical($.rowForm)
-
-    _.defer(loadMap);
 }
 
-function loadMap() {
-    //  alert('ora si!')
-    console.log('loadMap');
-    var region = $.mapview.getRegion();
-    console.log('region', region);
-
-    if (region) {
-        locationServices.setLastLocation(region);
-        var coo = region; 
-        locationServices.getAddress(coo.latitude, coo.longitude, function(err, places) {
-
-
-            //   console.log('err', err);
-            //   console.log('places', places);
-            if (err) {
-                //todo: gestire errore reverse geocodinge
-                console.log('getAddress err', err);
-            } else {
-                console.log('getAddress places', places);
-
-                var place = places[0];
-                var address = [place.street, place.zipcode, place.city].join(', ');
-                //     console.log('address', address);
-                $.labelMap.text = address;
-
-            }
-        });
-    } else {
-        //nel caso in cui la mappa non sia pronta
-
-        // alert('la mappa non era pronta!');
-
-        setTimeout(loadMap, 3000);
-    }
-
-    var t;
-    /*$.mapview.addEventListener('regionchanged', function(e) {
-
-        clearTimeout(t)
-        setTimeout(loadMap, 2)
-    }); */
-}
 
 
 /**
@@ -189,8 +68,6 @@ function submit() {
         }
     });
 }
-
-
 
 
 
@@ -239,6 +116,57 @@ function callAciGlobal() {
 
 }
 
+/**
+ * Gestisce la visualizzazione dei componeneti della form
+ * @return {[type]} [description]
+ */
+function renderForm() {
+
+
+    if (!isGuest) {
+
+        utility.showVertical($.tipoWrapper);
+        $.telefono.value = userData['userInfo.mobile'] || userData['userInfo.mobileTemp'];
+        $.tipoAiuto.value = 'auto';
+
+    } else {
+
+        utility.hideVertical($.tipoWrapper);
+        $.telefono.value = '';
+
+    }
+
+
+
+    //serve ad evitare il problema che la tastiera viene visualizzata all'apertura
+    if (OS_ANDROID) {
+        $.telefono.once('focus', function() {
+            $.telefono.blur();
+            setScrollOnFocus();
+        });
+    } else {
+        setScrollOnFocus();
+    }
+
+    function setScrollOnFocus() {
+        /*  $.telefono.addEventListener('focus', function() {
+            $.main.scrollToBottom();
+        }); */
+    }
+
+
+
+    //stato: mostra form
+    utility.hideVertical($.rowRichiestaInviata);
+    utility.showVertical($.rowForm)
+
+}
+
+
+/**
+ * Gestisce la visualizzazione della schermata di conferma dopo l'invio della segnalazione
+ * @return {[type]} [description]
+ */
 function renderConferma() {
 
 
@@ -258,21 +186,20 @@ function renderConferma() {
     //indirizzo
     var region = $.mapview.getRegion();
     Alloy.Globals.loading.show('Calcolando indirizzo');
-    locationServices.getAddress(region.latitude, region.longitude, function(err, places) {
-        Alloy.Globals.loading.hide();
 
-        //   console.log('err', err);
-        //   console.log('places', places);
+    locationServices.getAddress(lat, lon, function(err, places, place) {
+
+
         if (err) {
             //todo: gestire errore reverse geocodinge
+            console.log('getAddress err', err);
         } else {
-            var place = places[0];
-            var address = [place.street, place.zipcode, place.city].join(', ');
-            //     console.log('address', address);
-            $.richiestaIndirizzo.text = address;
+            console.log('getAddress places', places);
+            $.richiestaIndirizzo.text = place;
 
         }
     });
+
 
     //
     //stato: mostra richiesta inviata
@@ -329,3 +256,61 @@ function cavasClick(e) {
         $.telefono.blur();
     }
 }
+
+
+/**
+ * Aggiorna l'indirizzo tramite reverse geocoding
+ * @param  {[type]} lat      [description]
+ * @param  {[type]} lon      [description]
+ * @param  {[type]} accuracy [description]
+ * @return {[type]}          [description]
+ */
+function updateAddress(lat, lon, accuracy, cb) {
+    console.log('updateAddress', lat, lon, accuracy);
+    locationServices.getAddress(lat, lon, function(err, places, place) {
+
+
+        if (err) {
+            //todo: gestire errore reverse geocodinge
+            console.log('getAddress err', err);
+        } else {
+            console.log('getAddress places', places);
+            $.labelMap.text = place;
+
+        }
+    });
+}
+
+
+/**
+ * PUBLIC API
+ */
+
+/**
+ * Trigger per forzare il cambio di posizione
+ */
+$.updatePosition = function() {
+    var coo = locationServices.getLastLocation();
+    console.log('updatePosition', coo);
+
+    console.log('updatePosition lat', coo.latitude);
+    locationServices.getAddress(coo.latitude, coo.longitude, function(err, places, place) {
+
+        if (err) {
+            console.log('getAddress err', err);
+        } else {
+            console.log('getAddress places', places);
+
+            $.labelMap.text = place + ' (precisione ' + coo.accuracy + 'm)';
+
+        }
+    });
+};
+
+
+(function constructor(args) {
+
+    initMap();
+    renderForm();
+
+})(arguments[0] || {});

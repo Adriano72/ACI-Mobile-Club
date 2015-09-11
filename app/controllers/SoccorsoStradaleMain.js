@@ -1,5 +1,6 @@
 var args = arguments[0] || {};
 var commons = require('commons');
+var locationServices = require('locationServices');
 
 var AciGlobal = require('aciglobal');
 
@@ -90,7 +91,7 @@ function toggleDettaglioChiama(e) {
 
     }
 
-    
+
 
 };
 
@@ -116,7 +117,7 @@ function toggleDettaglioRichiesta(e) {
 
     }
 
-    
+
 
 };
 
@@ -148,4 +149,26 @@ function displayConvenzioneBanner() {
 */
 
 
-//$.puntiAciMain_Table.setData(rows);
+function onLocation(e) {
+    console.log('onLocation', e);
+    $.richiestaController.updatePosition();
+}
+
+/**
+ * hadler dell'evento Window.open
+ * @return {[type]} [description]
+ */
+function open() {
+    locationServices.getUserLocation(function() {
+        Ti.Geolocation.addEventListener('location', onLocation);
+    });
+}
+
+/**
+ * hadler dell'evento Window.close
+ * @return {[type]} [description]
+ */
+function close() {
+    Ti.Geolocation.removeEventListener('location', onLocation);
+    $.destroy();
+}
