@@ -68,67 +68,38 @@ function loadData() {
         exterior: null
     };
 
+
+    //gestione delle cover
     if (modelGot._type == 'aacc' || modelGot._type == 'del') {
 
-        var cvs = [];
-        if (sourceImages.interior) {
-            cvs.push([Alloy.Globals.PuntiAciBannerBaseURL, modelGot._type, sourceImages.interior].join('/'));
+
+        //array delle immagini di copertina
+        var covers = _([sourceImages.interior, sourceImages.exterior]).chain()
+            //elimina le undefined
+            .filter(function(e) {
+                return e;
+            })
+            //formatta le url
+            .map(function(e) {
+                return [Alloy.Globals.PuntiAciBannerBaseURL, modelGot._type, e].join('/').replace(/\s/gi, '%20');
+            })
+            .value();
+
+        //se ci sono le immagini, le assegno
+        // altrimenti metto la cover di default
+        if (covers.length > 0) {
+            modelGot.images = covers;
+        } else {
+            modelGot.images = ['/puntiaci_default_cover.jpg'];
         }
-
-        if (sourceImages.exterior) {
-            cvs.push([Alloy.Globals.PuntiAciBannerBaseURL, modelGot._type, sourceImages.exterior].join('/'));
-
-        }
-
-        if (cvs.length == 0) {
-            cvs.push('/AutomobileClub.png');
-        }
+        console.log('modelGot.images', modelGot.images);
+        $.gallery.getView().height = Alloy.Globals.deviceWidth * (600 / 1024);
+        $.gallery.getView().width = Alloy.Globals.deviceWidth;
+        $.gallery.setImages(modelGot.images);
 
 
-
-        _(cvs).each(function(e) {
-            if (e) {
-                e = e.replace(/\s/gi, '%20');
-                console.log('cover e', e);
-                modelGot.covers.push(e);
-            } else {
-                modelGot.covers.push('/AutomobileClub.png');
-            }
-        });
-
-
-
-
-        _(modelGot.covers).each(function(e) {
-            console.log(e);
-            var img = Ti.UI.createImageView({
-                image: e,
-
-                width: Ti.UI.FILL,
-                defaultImage: '/none.png'
-                // height: coverHeight
-            });
-
-            var v = Ti.UI.createView({
-                //  backgroundColor: "pink",
-                //height: Ti.UI.SIZE,
-                width: Ti.UI.FILL,
-                height: coverHeight
-            });
-            v.add(img);
-            $.cover.addView(v);
-        });
-
-
-        currentCover = 0;
-        if (cvs.length > 1) {
-            coverScroll = setInterval(function() {
-                currentCover = (currentCover + 1) % $.cover.views.length;
-                console.log('scroll', currentCover);
-                $.cover.scrollToView(currentCover);
-            }, 3000);
-        }
-
+    } else {
+        $.gallery.getView().height = 0;
     }
 
 
@@ -188,12 +159,7 @@ function loadData() {
     modelGot.noteHeight = modelGot.noteVisible ? 40 : 0;
     modelGot.contattiHeight = modelGot.contattiVisible ? 40 : 0;
 
-    modelGot.coverVisible = !_.isEmpty(modelGot.covers);
-    modelGot.coverHeight = modelGot.coverVisible ? coverHeight : 0;
 
-    $.cover.height = modelGot.coverVisible ? coverHeight : 0;
-    // $.cover.showPagingControl = modelGot.covers.length > 1;
-    $.pagingContainer.visible = modelGot.covers.length > 1;
 
     $.detailModel.set(modelGot);
 }
@@ -305,20 +271,6 @@ function openUrl(e) {
         Ti.Platform.openURL(source.href);
     }
 }
-
-//custom paging control
-var PagingControl = require('PagingControl');
-var sViewPagingControl = new PagingControl($.cover);
-var opac = Titanium.UI.createView({
-    height: Ti.UI.SIZE,
-    width: Ti.UI.SIZE,
-    backgroundColor: Alloy.Globals.palette.bianco,
-    opacity: 0.5
-});
-$.pagingContainer.add(opac);
-$.pagingContainer.add(sViewPagingControl);
-
-
 
 
 $.win.addEventListener('close', function() {

@@ -18,11 +18,10 @@
 				<Label class="h1" id="headerText" text="{$.detailModel.title}"/>
 			</View>
 			<View class="separator"/>
-			<View class="coverWrapper" visible="{$.detailModel.coverVisible}"  >
-				<!-- <ImageView id="cover" class="cover"  /> -->
-				<ScrollableView id="cover"  ></ScrollableView>
-				<View id="pagingContainer"></View>
-			</View>
+			
+			<Widget id="gallery" src="it.aci.informatica.ti.widgets.gallery" interval="20000" ></Widget> 
+
+
 			<View id="contattiView">
 				<View id="contattiViewInner">
 					<Label class="h4" id="indirizzo" text="{$.detailModel.formattedAddress}"/>
