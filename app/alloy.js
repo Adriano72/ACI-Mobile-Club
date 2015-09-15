@@ -128,8 +128,14 @@ _.defer(require('user').refreshData);
 
 
 if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
-   require('sysReportCommon').enableShake();
+    require('sysReportCommon').enableShake();
 }
 
-
-
+var push = require('push');
+push.retrieveDeviceToken(function(err, res) {
+    if(err){
+        console.error(err);
+    } else {
+        push.subscribeToChannel('news_alerts');
+    }
+});
