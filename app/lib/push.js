@@ -1,152 +1,225 @@
 /**
- * Modulo per la gestione delle push notification
- * generalizza il comportamento tra le piattaforme e tiene traccia dei token
+ * Modulo che racchiude le operazioni sulle push notifications per questa app
  */
 
-var deviceToken;
+//canali a cui sottoscriversi
+var channels = [
 
-var Cloud = require("ti.cloud");
-
-/**
- * Callback da chiamare quando ri riceve una push notification
- * @param  {[type]} e [description]
- */
-function onNotification(e) {
-    console.log('retrieveDeviceToken, onNotification', e);
-
-    if (OS_IOS) {
-        var badge = Math.max(0, Titanium.UI.iPhone.getAppBadge() - 1);
-        Titanium.UI.iPhone.setAppBadge(badge);
-
-        Cloud.PushNotifications.setBadge({
-            device_token: deviceToken,
-            badge_number: badge
-        }, function(r, p) {
-            console.log('setBadge', r, p);
-        });
+    //canale broadcast, default
+    {
+        name: 'broadcast',
+        active: true
     }
-}
+
+];
+
+//dizionario delle notifiche
+var notifications = [
+
+    //notifica che gestisce l'arrivo di una nuova convenzione
+    {
+        type: 'syc_new',
+        cb: function(payload) {
+
+            console.log('mi è arrivata la notifica!', payload);
+
+            var syc = {
+                "_id": "54759c7d2abf83b56a76a644",
+                "__v": 0,
+                "_oid": "30",
+                "_type": "syc",
+                "address": {
+                    "postalCode": "00198",
+                    "formatted": "Via Po, 22, 00198 Roma RM",
+                    "street": "Via Po",
+                    "location": [12.4946687, 41.9138573],
+                    "sublocality": "522053ff0638e1f025005d29",
+                    "locality": {
+                        "__v": 1,
+                        "_csvrow": ["299", "4819", "ITALIA", "7", "LAZIO", "28", "ROMA", "299", "ROMA", "", "", "00100", "12,48305", "41,89296"],
+                        "_id": "522053fb0638e1f025000116",
+                        "_level": 3,
+                        "_oid": 299,
+                        "lft": 12756,
+                        "location": {
+                            "lat": 41.89296,
+                            "lng": 12.48305
+                        },
+                        "longName": "ROMA",
+                        "parentId": "522053fb0638e1f025000026",
+                        "postalCodes": ["00100", "00118", "00119", "00120", "00121", "00122", "00123", "00124", "00125", "00126", "00127", "00128", "00129", "00130", "00131", "00132", "00133", "00134", "00135", "00136", "00137", "00138", "00139", "00140", "00141", "00142", "00143", "00144", "00145", "00146", "00147", "00148", "00149", "00150", "00151", "00152", "00153", "00154", "00155", "00156", "00157", "00158", "00159", "00160", "00161", "00162", "00163", "00164", "00165", "00166", "00167", "00168", "00169", "00170", "00171", "00172", "00173", "00174", "00175", "00176", "00177", "00178", "00179", "00180", "00181", "00182", "00183", "00184", "00185", "00186", "00187", "00188", "00189", "00190", "00191", "00192", "00193", "00194", "00195", "00196", "00197", "00198", "00199"],
+                        "rgt": 12909,
+                        "shortName": null
+                    },
+                    "province": {
+                        "_id": "522053fb0638e1f025000026",
+                        "__v": 0,
+                        "_csvrow": ["28", "4819", "ITALIA", "7", "LAZIO", "28", "ROMA", "", "", "", "", "", "", ""],
+                        "_level": 2,
+                        "_oid": 28,
+                        "lft": 12687,
+                        "location": [12.4866714, 41.8877631],
+                        "longName": "ROMA",
+                        "parentId": "522053fb0638e1f025000011",
+                        "postalCodes": [],
+                        "rgt": 13316,
+                        "shortName": "RM"
+                    },
+                    "region": {
+                        "_id": "522053fb0638e1f025000011",
+                        "__v": 0,
+                        "_csvrow": ["7", "4819", "ITALIA", "7", "LAZIO", "", "", "", "", "", "", "", "", ""],
+                        "_level": 1,
+                        "_oid": 7,
+                        "lft": 12686,
+                        "location": [12.989615, 41.6552418],
+                        "longName": "LAZIO",
+                        "parentId": "522053fb0638e1f02500000a",
+                        "postalCodes": [],
+                        "rgt": 14935,
+                        "shortName": "LAZ"
+                    },
+                    "country": {
+                        "__v": 0,
+                        "_csvrow": ["4819", "4819", "ITALIA", "", "", "", "", "", "", "", "", "", "", ""],
+                        "_id": "522053fb0638e1f02500000a",
+                        "_level": 0,
+                        "_oid": 4819,
+                        "lft": 1,
+                        "location": null,
+                        "longName": "ITALIA",
+                        "parentId": null,
+                        "postalCodes": [],
+                        "rgt": 47772,
+                        "shortName": null
+                    }
+                },
+                "agreement_id": {
+                    "_id": "54759c352abf83b56a76a5f3",
+                    "__v": 2,
+                    "_oid": "4fcdd860fc09610a2700001e",
+                    "_type": "syc",
+                    "attachments": [],
+                    "categories": [{
+                        "short_name": "benessere_e_salute",
+                        "_type": "syc",
+                        "long_name": "Benessere e Salute",
+                        "_id": "54e1c6d2ef4123414860eb96"
+                    }, {
+                        "_id": "53594343415445474f000008",
+                        "_type": "syc",
+                        "_parent_id": {
+                            "short_name": "benessere_e_salute",
+                            "_type": "syc",
+                            "long_name": "Benessere e Salute",
+                            "_id": "54e1c6d2ef4123414860eb96"
+                        },
+                        "_origuid": "8",
+                        "short_name": "centri_termali",
+                        "long_name": "Centri termali"
+                    }],
+                    "discountDesc": "<p>Per ottenere gli sconti &egrave; sufficiente esibire la tessera associativa in corso di validit&agrave; presso le aziende termali aderenti all'iniziativa. <br /><span style=\"text-decoration: underline;\">Per maggiori dettagli sull'effettiva scontistica e sulle condizioni per usufruire degli sconti contattare le singole strutture.</span></p>",
+                    "endDate": 1546210800,
+                    "id_pos": null,
+                    "images": {
+                        "logo": "FEDERTERME.jpg",
+                        "banner": ""
+                    },
+                    "offerDesc": "<p>Dal 10 al 30% di sconto&nbsp;sulle tariffe ufficiali per&nbsp;cure e&nbsp;soggiorni termali presso le strutture e gli alberghi convenzionati.</p>",
+                    "pubDate": null,
+                    "serviceTypeDesc": "<p><strong>Scopri le Terme italiane:&nbsp;luoghi di cura, relax e benessere.<br /></strong><strong>Famose in tutto il mondo grazie all'efficacia dei trattamenti praticati, ai numerosi servizi offerti, ma soprattutto per le bellezze naturali dei paesaggi in cui sono inserite. </strong></p>",
+                    "status": "ok",
+                    "title": "FEDERTERME",
+                    "url": "www.federterme.it",
+                    "photoGallery": []
+                },
+                "contacts": {
+                    "web": [],
+                    "cmail": [],
+                    "email": [],
+                    "fax": [],
+                    "tel": []
+                },
+                "name": "FEDERTERME",
+                "representatives": [],
+                "schedule": {
+                    "festivals": [],
+                    "timetable": {
+                        "sun": [],
+                        "sat": [],
+                        "fri": [],
+                        "thu": [],
+                        "wed": [],
+                        "tue": [],
+                        "mon": []
+                    }
+                },
+                "services": [],
+                "status": "ok"
+            };
+
+
+
+            console.log('syc');
+
+            var itemData = _.findWhere(require('tabulatedData').categorieSyc(), {
+                short_name: "benessere_e_salute"
+            });
+
+
+
+
+            var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+                data: syc,
+                isBanner: true,
+                titolo: itemData.long_name,
+                headerImg: itemData.img
+            }).getView();
+            Alloy.Globals.navMenu.openWindow(dettConvenzione);
+
+        }
+    }
+
+];
+
+
+
 
 
 /**
- * Metodo cross-platorm per abilitare il device a ricevere push notification
+ * Inizializza le push notifications per questa app
  * @return {[type]} [description]
  */
-function retrieveDeviceToken(cb) {
+exports.init = function() {
 
-    var types = OS_IOS ? [
-        Ti.App.iOS.USER_NOTIFICATION_TYPE_ALERT,
-        Ti.App.iOS.USER_NOTIFICATION_TYPE_SOUND,
-        Ti.App.iOS.USER_NOTIFICATION_TYPE_BADGE
-    ] : undefined;
+    var tiACI = require('ti.aci');
 
 
-    function onSuccess(e) {
-        console.log('retrieveDeviceToken, success', e);
-        deviceToken = e.deviceToken;
-        cb && cb(null, e);
-    }
-
-    function onError(e) {
-        console.log('retrieveDeviceToken, error', e);
-        cb && cb(e);
-
-    }
-
-    function requestToken() {
-        console.log('requestToken');
-        if (OS_IOS) {
-
-            Ti.Network.registerForPushNotifications({
-                success: onSuccess,
-                error: onError,
-                types: types,
-                callback: onNotification
-            });
-
-        } else if (OS_ANDROID) {
-
-            var cp = require('ti.cloudpush');
-
-            cp.retrieveDeviceToken({
-                success: onSuccess,
-                error: onError
-            });
-
-            cp.addEventListener('callback', onNotification);
-
+    tiACI.PushNotification.retrieveDeviceToken(function(err, res) {
+        if (err) {
+            console.error(err);
         } else {
-            //non supportiamo altre piattaforme al momento
-            onError('piattaforma non supportata');
-        }
-    }
+
+            //mi iscrivo ai canali
+            _(channels).chain()
+                .where({
+                    active: true
+                })
+                .pluck('name')
+                .each(tiACI.PushNotification.subscribeToChannel)
+                .value();
 
 
-    if (OS_IOS && parseInt(Ti.Platform.version.split(".")[0]) >= 8) {
-        // Wait for user settings to be registered before registering for push notifications
-        Ti.App.iOS.addEventListener('usernotificationsettings', function registerForPush() {
-            console.log('requestToken usernotificationsettings');
-
-            // Remove event listener once registered for push notifications
-            Ti.App.iOS.removeEventListener('usernotificationsettings', registerForPush);
-
-            requestToken();
-        });
-
-        console.log('requestToken registerUserNotificationSettings');
-
-        // Register notification types to use
-        Ti.App.iOS.registerUserNotificationSettings({
-            types: types
-        });
-    } else {
-        requestToken();
-    }
-
-
-}
-
-
-
-
-function subscribeToChannel(channel) {
-    // Subscribes the device to the 'news_alerts' channel
-    // Specify the push type as either 'android' for Android or 'ios' for iOS
-    Cloud.PushNotifications.subscribeToken({
-        device_token: deviceToken,
-        channel: channel,
-        type: Ti.Platform.name == 'android' ? 'android' : 'ios'
-    }, function(e) {
-        if (e.success) {
-            alert('Subscribed');
-        } else {
-            alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
         }
     });
-}
 
-function unsubscribeToChannel(channel) {
-    // Unsubscribes the device from the 'test' channel
-    Cloud.PushNotifications.unsubscribeToken({
-        device_token: deviceToken,
-        channel: channel,
-    }, function(e) {
-        if (e.success) {
-            alert('Unsubscribed');
-        } else {
-            alert('Error:\n' + ((e.error && e.message) || JSON.stringify(e)));
-        }
+
+
+
+    //registro gli eventi di ricezione della notifica
+    _(notifications).each(function(n) {
+        tiACI.PushNotification.addNotificationListener(n.type, n.cb);
     });
+
+
 }
-
-
-/**
- * Public API
- */
-
-/**
- * Metodo cross-platorm per abilitare il device a ricevere push notification
- */
-exports.retrieveDeviceToken = retrieveDeviceToken;
-exports.subscribeToChannel = subscribeToChannel;
-exports.unsubscribeToChannel = unsubscribeToChannel;
