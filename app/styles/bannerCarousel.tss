@@ -1,5 +1,5 @@
 
 "ImageView" : {
   //height: Ti.UI.SIZE,
-  width: "90%"
+  width: "100%"
 }
