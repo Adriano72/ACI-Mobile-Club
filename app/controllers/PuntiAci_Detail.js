@@ -112,7 +112,7 @@ function loadData() {
 
             var c = _(['web', 'telefono', 'fax']).chain()
                 .filter(function(x) {
-                    return !_.isEmpty(modelGot.contacts[x]);
+                    return !_.isEmpty(modelGot.contacts[x] && modelGot.contacts[x][0]);
                 })
                 /*   .map(function(x) {
                     if (modelGot.contacts[x].join('').length == 0) {
@@ -131,7 +131,7 @@ function loadData() {
                             href: (function formatHREF(type) {
                                 if (type == 'web' && target.indexOf('http') < 0) return 'http://' + target;
                                 else if (type == 'tel' || type == 'fax') return 'tel:' + target;
-                                else target;
+                                else return target;
                             })(x)
                         }
                     };
