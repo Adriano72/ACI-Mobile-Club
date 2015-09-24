@@ -124,7 +124,11 @@ Alloy.Globals.fontSize = {
 _.defer(require('locationServices').init);
 
 //ricarica i dati utente
-_.defer(require('user').refreshData);
+_.defer(function() {
+    require('user').refreshData(function() {
+        require('network').registerForPush();
+    });
+});
 
 
 if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {

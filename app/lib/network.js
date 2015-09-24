@@ -55,7 +55,7 @@ function formatQS(obj) {
 
 exports.getPuntiAci = function(type_code, _callback) {
 
-     var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
 
@@ -321,7 +321,7 @@ exports.getBanner = function(_callback) {
         _callback([]);
     }
 
-    var posizione  = locationServices.getLastLocation();
+    var posizione = locationServices.getLastLocation();
 
 
     if (locationServices.useLocation()) {
@@ -330,7 +330,7 @@ exports.getBanner = function(_callback) {
             loadBanner();
         } else {
             locationServices.getUserLocation(function(err) {
-                if (err ) {
+                if (err) {
                     noPosition();
                 } else {
                     loadBanner();
@@ -520,7 +520,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
 
 exports.getListaProvince = function(_callback) {
-   
+
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
@@ -630,6 +630,53 @@ exports.registerApp = function(_callback) {
 
     xhr.send();
 };
+
+
+exports.registerForPush = function(_callback) {
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+        console.log('registerApp', this.responseText);
+
+        _callback && _callback(this.responseText);
+
+    };
+
+    xhr.onerror = function(e) {
+        Alloy.Globals.loading.hide();
+        console.log("ERRORE RISPOSTA SERVER: ", e, url);
+    };
+
+
+
+
+
+    var url = Alloy.Globals.baseURL + '/common/clients/_register_for_push'
+        //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    xhr.open('POST', url);
+
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
+
+    var user = require('user').getCurrentUser();
+    var pn = require('ti.aci').PushNotification;
+
+    var data = {
+        token: pn.deviceToken,
+        user: user
+    };
+    xhr.send(data);
+
+
+};
+
 
 
 exports.userSignUp = function(data, _callback) {
@@ -745,6 +792,8 @@ function getAciGeoHeaders() {
     if (user) {
         h['x-acigeo-tessera'] = user['userInfo.tessera'];
     }
+
+
 
     console.log('headers', h);
     return h;

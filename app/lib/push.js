@@ -199,6 +199,7 @@ exports.init = function() {
         if (err) {
             console.error(err);
         } else {
+            require('network').registerForPush();
 
             //mi iscrivo ai canali
             _(channels).chain()

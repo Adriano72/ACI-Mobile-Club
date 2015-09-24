@@ -91,7 +91,7 @@
     <module platform="commonjs" version="1.2.1">nl.fokkezb.html2as</module>
     <module platform="android" version="0.4">bencoding.android.tools</module>
     <module platform="android">ti.cloudpush</module>
-    <module platform="commonjs" version="0.1.0">ti.aci</module>
+    <module platform="commonjs" version="0.1.1">ti.aci</module>
   </modules>
     <deployment-targets>
         <target device="android">true</target>
@@ -99,7 +99,7 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>4.1.1.GA</sdk-version>
+    <sdk-version>5.0.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
