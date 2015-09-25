@@ -151,7 +151,7 @@ function loadData() {
     modelGot.telefonoVisible = Boolean(modelGot.telefono);
     modelGot.emailVisible = Boolean(modelGot.email);
     modelGot.noteVisible = Boolean(modelGot.note);
-    modelGot.contattiVisible = Boolean(modelGot.contatti);
+    modelGot.contattiVisible = Boolean(modelGot.contatti && modelGot.contatti.length);
 
     modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
     modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
