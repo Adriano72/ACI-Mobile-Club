@@ -70,7 +70,8 @@ function loadData() {
 
 
     //gestione delle cover
-    if (modelGot._type == 'aacc' || modelGot._type == 'del') {
+    var type_for_cover = ['aacc', 'del', 'urp', 'tasse', 'pra'];
+    if (_(type_for_cover).indexOf(modelGot._type) >= 0) {
 
 
         //array delle immagini di copertina
@@ -87,15 +88,21 @@ function loadData() {
 
         //se ci sono le immagini, le assegno
         // altrimenti metto la cover di default
-        if (covers.length > 0) {
+        if (covers && covers.length > 0) {
+
             modelGot.images = covers;
+
         } else {
+
+
             modelGot.images = ['/puntiaci_default_cover.jpg'];
+
         }
         console.log('modelGot.images', modelGot.images);
         $.gallery.getView().height = Alloy.Globals.deviceWidth * (600 / 1024);
         $.gallery.getView().width = Alloy.Globals.deviceWidth;
         $.gallery.setImages(modelGot.images);
+
 
 
     } else {
