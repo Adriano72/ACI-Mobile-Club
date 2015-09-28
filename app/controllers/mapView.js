@@ -127,7 +127,7 @@ function linkToPOI(e) {
 
     }
 
-    Ti.API.info("CLICK: " + JSON.stringify(e));
+  //  Ti.API.info("CLICK: " + JSON.stringify(e));
 };
 
 function openNavigation(e) {
