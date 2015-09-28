@@ -22,7 +22,7 @@
 						<View id="puntiAci" class="menuButton first" onSingletap="openPuntiACI">
 							<View class="menuButtonWrapper">
 								<ImageView id="imgPuntiACI" class="buttonImage"/>
-								<Label id="txtPuntiAci" class="buttonText">PUNTI DI SERVIZIO ACI</Label>
+								<Label id="txtPuntiAci" class="buttonText">PUNTI ACI</Label>
 							</View>
 						</View>
 						<View id="vantaggiSoci" class="menuButton last" onSingletap="openVantaggiSoci">
