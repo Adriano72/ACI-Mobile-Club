@@ -38,10 +38,10 @@ function loadData() {
         modelGot = args.data.attributes;
     }
     //  console.log(modelGot);
-    modelGot.email = modelGot.contacts.email[0];
-    modelGot.telefono = modelGot.contacts.tel[0];
-    modelGot.fax = modelGot.contacts.fax[0];
-    modelGot.web = modelGot.contacts.web[0];
+    modelGot.email = modelGot.contacts && modelGot.contacts.email ? modelGot.contacts.email[0] : '';
+    modelGot.telefono = modelGot.contacts && modelGot.contacts.tel ? modelGot.contacts.tel[0] : '';
+    modelGot.fax = modelGot.contacts && modelGot.contacts.fax ? modelGot.contacts.fax[0] : '';
+    modelGot.web = modelGot.contacts && modelGot.contacts.web ? modelGot.contacts.web[0] : '';
 
     if (modelGot._type == 'del') {
         modelGot.title = modelGot.customName + ' ' + modelGot.code;
@@ -57,7 +57,7 @@ function loadData() {
     modelGot.formattedAddress = addr;
     var services = (modelGot.services || []).concat(modelGot.customServices || []);
     modelGot.servizi = utility.formattaServizi(services);
-    modelGot.orari = [utility.formattaOrari(modelGot.schedule.timetable)].concat(modelGot.schedule.festivals || []).join('\n');
+    modelGot.orari = modelGot.schedule ? [utility.formattaOrari(modelGot.schedule.timetable)].concat(modelGot.schedule.festivals || []).join('\n') : '';
     modelGot.covers = [];
 
     var coverHeight = 220;
