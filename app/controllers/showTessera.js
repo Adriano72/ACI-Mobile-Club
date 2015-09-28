@@ -10,7 +10,9 @@ var showSYC = _.throttle(function() {
 
 
 function fit() {
-    $.rotatedContainer.setWidth($.tessera.rect.width);
+    console.log('fit');
+//    $.rotatedContainer.setWidth($.tessera.rect.width);
+ //   $.rotatedContainer.setHeight($.tessera.rect.height);
 }
 
 
@@ -81,7 +83,7 @@ function rotateContent() {
 
 
     if (OS_ANDROID) {
-        $.rotatedContainer.setBottom('20%');
+        $.rotatedContainer.setBottom('25%');
         $.rotatedContainer.setLeft('40%');
     } else {
 
