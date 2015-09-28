@@ -30,8 +30,8 @@
 				<ImageView  id="barcode" defaultImage="/none.png" zIndex="100" ></ImageView>
 			</View>
 
-			<View  class="imgTessera" >
-		<Require id="list" src="Tessere_List" ></Require>
+			<View  class="imgTessera"  >
+				<Require id="list" src="Tessere_List" ></Require>
 		
 			</View>
 

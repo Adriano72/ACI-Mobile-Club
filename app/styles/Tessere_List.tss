@@ -119,3 +119,7 @@
 "#imgTessera":{
 	left: 10
 }
+
+"#TessereTable":{
+	height: Ti.UI.SIZE
+}
