@@ -125,7 +125,7 @@ exports.refreshData = function() {
 
     console.log('credentials', credentials);
 
-    if (Ti.Network.networkType != Ti.Network.NETWORK_NONE && credentials && lastLogin && now.getDate() != lastLogin.getDate()) {
+    if (Ti.Network.networkType != Ti.Network.NETWORK_NONE && credentials && lastLogin && now.getDate() != new Date(lastLogin).getDate()) {
         //if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials && lastLogin ){
         //alert('refresh!');
         exports.doLogin.apply(this, credentials);
