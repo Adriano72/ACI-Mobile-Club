@@ -183,7 +183,20 @@ var notifications = [
 ];
 
 
+/**
+ * gestore comune a tutte le notifiche
+ * @param  {Function} fn [description]
+ * @return {[type]}      [description]
+ */
+function commonNotificationHandler(cb) {
+    cb && cb();
+    if (OS_IOS) {
+       
+        Titanium.UI.iPhone.setAppBadge(0);
 
+       
+    }
+}
 
 
 /**
@@ -219,7 +232,7 @@ exports.init = function() {
 
     //registro gli eventi di ricezione della notifica
     _(notifications).each(function(n) {
-        tiACI.PushNotification.addNotificationListener(n.type, n.cb);
+        tiACI.PushNotification.addNotificationListener(n.type, _(n.cb).wrap(commonNotificationHandler));
     });
 
 
