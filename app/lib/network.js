@@ -637,7 +637,7 @@ exports.registerForPush = function(_callback) {
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
-        console.log('registerApp', this.responseText);
+        console.log('registerForPush', this.responseText);
 
         _callback && _callback(this.responseText);
 
@@ -667,11 +667,12 @@ exports.registerForPush = function(_callback) {
 
     var user = require('user').getCurrentUser();
     var pn = require('ti.aci').PushNotification;
-
     var data = {
         token: pn.deviceToken,
         user: user
     };
+    console.log('registerForPush data', data);
+
     xhr.send(data);
 
 

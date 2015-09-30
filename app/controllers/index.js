@@ -18,12 +18,7 @@ var THROTTLE_TIME = 5000;
  * @return {[type]} [description]
  */
 function onFirstRun() {
-    //chiamo il servizio per registrare l'app
-    _.defer(function() {
-        require('network').registerApp(function() {
-            console.log('app registered');
-        });
-    });
+    
 
 
     var w = Alloy.createController('welcome').getView();

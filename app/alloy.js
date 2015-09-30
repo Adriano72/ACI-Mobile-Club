@@ -135,5 +135,17 @@ if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
     require('sysReportCommon').enableShake();
 }
 
-//inizializzo le notifiche
-require('push').init();
+//chiamo il servizio per registrare l'app
+
+if (require('environment').isFirstRun) {
+    _.defer(function() {
+        require('network').registerApp(function() {
+            console.log('app registered');
+            //inizializzo le notifiche
+            require('push').init();
+        });
+    });
+} else {
+    //inizializzo le notifiche
+    require('push').init();
+}
