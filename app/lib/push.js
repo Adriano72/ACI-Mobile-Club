@@ -18,7 +18,7 @@ var notifications = [
 
     //notifica che gestisce l'arrivo di una nuova convenzione
     {
-        type: 'syc_new',
+        type: 'new_syc',
         cb: function(payload) {
 
             console.log('mi è arrivata la notifica!', payload);
