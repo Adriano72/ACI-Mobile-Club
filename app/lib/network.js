@@ -666,10 +666,19 @@ exports.registerForPush = function(_callback) {
 
 
     var user = require('user').getCurrentUser();
+
+    var _u ={};
+
+    _(_(user).keys()).map(function(key){
+        var nk = key.replace('userInfo.', '');
+        _u[nk] = user[key];
+    });
+    user = _u;
+
     var pn = require('ti.aci').PushNotification;
     var data = {
         token: pn.deviceToken,
-        user: user
+        userInfo: JSON.stringify(user)
     };
     console.log('registerForPush data', data);
 
