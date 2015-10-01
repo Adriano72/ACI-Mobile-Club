@@ -57,7 +57,10 @@ function loadData() {
     modelGot.formattedAddress = addr;
     var services = (modelGot.services || []).concat(modelGot.customServices || []);
     modelGot.servizi = utility.formattaServizi(services);
-    modelGot.orari = modelGot.schedule ? [utility.formattaOrari(modelGot.schedule.timetable)].concat(modelGot.schedule.festivals || []).join('\n') : '';
+    var timetable = modelGot.schedule && modelGot.schedule.timetable ? [utility.formattaOrari(modelGot.schedule.timetable)].join('\n') : '';
+    var festivals = modelGot.schedule && modelGot.schedule.festivals ? [modelGot.schedule.festivals].join('\n') : '';
+    if (festivals.length) festivals = 'Festività \n' + festivals;
+    modelGot.orari = [timetable, festivals].join('\n');
     modelGot.covers = [];
 
     var coverHeight = 220;
