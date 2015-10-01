@@ -68,6 +68,8 @@ function loadData() {
         exterior: null
     };
 
+    console.log('modelGot.images 1', modelGot.images);
+
 
     //gestione delle cover
     var type_for_cover = ['aacc', 'del', 'urp', 'tasse', 'pra'];
@@ -90,18 +92,18 @@ function loadData() {
         // altrimenti metto la cover di default
         if (covers && covers.length > 0) {
 
-            modelGot.images = covers;
+            modelGot.covers = covers;
 
         } else {
 
 
-            modelGot.images = ['/puntiaci_default_cover.jpg'];
+            modelGot.covers = ['/puntiaci_default_cover.jpg'];
 
         }
-        console.log('modelGot.images', modelGot.images);
+        console.log('modelGot.images 2', modelGot.images, modelGot.covers);
         $.gallery.getView().height = Alloy.Globals.deviceWidth * (600 / 1024);
         $.gallery.getView().width = Alloy.Globals.deviceWidth;
-        $.gallery.setImages(modelGot.images);
+        $.gallery.setImages(modelGot.covers);
 
 
 
