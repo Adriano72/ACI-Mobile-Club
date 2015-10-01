@@ -41,7 +41,7 @@
 	
 "WebView":
 {
-	width: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
 	height: "90%",
 }
 
