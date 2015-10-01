@@ -11,7 +11,7 @@ var TIPO_TESSERA = {
     OKKEI: 'okkei',
     ONE: 'one',
     STORICO1: 'storico1',
-    STORICO2: 'storico',
+    STORICO2: 'storico2',
     VINTAGE: 'vintage',
 };
 
