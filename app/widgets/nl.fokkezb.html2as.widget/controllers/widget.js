@@ -25,8 +25,7 @@ $.setHtml = function setHtml(html) {
 
   $.label.html = html;
   
-  //lo posso isare anche per android
-  if (true || OS_IOS) {
+  if (OS_IOS) {
     html2as(html, function handle(err, as) {
 
       if (err) {
