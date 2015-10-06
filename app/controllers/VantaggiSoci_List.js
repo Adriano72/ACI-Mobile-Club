@@ -53,22 +53,9 @@ function loadData() {
             Alloy.Collections.tempCollection.reset(collection.models);
             updateUI();
 
-            // setTimeout(function(e) {
-            console.log('controllo uodateUI', $.puntiAci_Table.data);
-            var sect = $.puntiAci_Table.data[0];
-            console.log('images', images);
-            if (sect) {
-                console.log('righe', sect.rows);
-                _(sect.rows).each(function(row) {
-                    console.log('row id', row.modelId);
-                    console.log('row image', images[row.modelId]);
-                    var logoImg = row.getChildren()[0].getChildren()[0].getChildren()[0];
-                    console.log('row logoImg', logoImg);
-                    logoImg.image = images[row.modelId];
-                });
-            }
+           
 
-            //  }, 3000) 
+
 
             Alloy.Globals.loading.hide();
         });
@@ -106,7 +93,8 @@ function dataTransform(model) {
     if (attrs.agreement_id.images) {
         //   attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
         var id = attrs.id;
-        var img = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
+        var img = attrs.agreement_id.images.logo ? encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo) : undefined;
+        attrs.immagine = img;
         console.log('modelId', id);
         console.log('image', img);
         console.log('images', images);
