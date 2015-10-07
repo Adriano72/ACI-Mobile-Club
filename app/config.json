@@ -25,7 +25,8 @@
     "SysReport_Email": "mobile@informatica.aci.it",
     "SysReport_UseShake": true,
     "__SSO_Endpoint": "http://sso-web.svi.local",
-    "SSO_Endpoint": "http://login.aci.it"
+    "SSO_Endpoint": "http://login.aci.it",
+    "useLinkToMerchant" : false
   },
   "env:development": {
     "DevMode": false
