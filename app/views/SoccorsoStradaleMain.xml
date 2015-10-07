@@ -27,9 +27,13 @@
 			<View id="dettaglioChiama"  class="textBox" visible="true">
 					<Require  id="chiamaController" src="SoccorsoStradale_Chiama"></Require>
 			</View>
-			
-		
+
+			<View class="separator-inner"/>
+
+			<ImageView id="fotoAssistenza" />
+
 		</View>
+
 		<!--View class="bottomBannerContainer">
 				
 			<View class="bottomBanner">
