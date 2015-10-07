@@ -51,7 +51,7 @@ function createImageItem(image) {
     return Widget.createController('imageItem', {
         image: image,
         height: Ti.UI.SIZE,
-        width: Ti.UI.SIZE
+        width: Ti.UI.FILL
     }).getView();
 
 }
