@@ -1,5 +1,5 @@
 <Alloy>
 	<View class="container">
-		<Label>Nessun elemento trovato</Label>
+		<Label class="h1">Nessun elemento trovato</Label>
 	</View>
 </Alloy>
