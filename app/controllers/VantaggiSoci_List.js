@@ -53,7 +53,31 @@ function loadData() {
             Alloy.Collections.tempCollection.reset(collection.models);
             updateUI();
 
-           
+
+            //il seguente pezzo di codice per me è inutile
+            // se lo metto su android, a volte crasha
+            // se lo tolgo su ios, a volte crasha
+            // ergo lo tengo, ma dipende
+            if (OS_IOS) {
+
+                // setTimeout(function(e) {
+                //   console.log('controllo uodateUI', $.puntiAci_Table.data);
+                var sect = $.puntiAci_Table.data[0];
+                // console.log('images', images);
+                if (sect) {
+                    //   console.log('righe', sect.rows);
+                    _(sect.rows).each(function(row) {
+                        // console.log('row id', row.modelId);
+                        // console.log('row image', images[row.modelId]);
+                        var logoImg = row.getChildren()[0].getChildren()[0].getChildren()[0];
+                        //  console.log('row logoImg', logoImg);
+                        logoImg.image = images[row.modelId];
+                    });
+                }
+            }
+
+            //  }, 3000) 
+
 
 
 
