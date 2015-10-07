@@ -77,7 +77,7 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View class="separator"/>
-			<View class="rounded" onClick="openAciMerchant">
+			<View id="linkToMerchant" class="rounded" onClick="openAciMerchant" visible=Alloy.CFG.useLinkToMerchant>
 				<View class="rowContainer">
 					<Label class="l1">Sei il titolare?</Label>
 					<Label class="l2" >apri ACI Merchant</Label>
