@@ -95,7 +95,7 @@
 	color: "#ffffff",
 	width: "95%",
 	font:{
-		fontSize: 12,
+		fontSize: 16,
 		fontWeight: "bold"
 	}
 }
