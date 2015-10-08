@@ -76,7 +76,7 @@ function loadData() {
 
     //gestione delle cover
     var type_for_cover = ['aacc', 'del', 'urp', 'tasse', 'pra'];
-    if (_(type_for_cover).indexOf(modelGot._type) >= 0) {
+    if (true || _(type_for_cover).indexOf(modelGot._type) >= 0) {
 
 
         //array delle immagini di copertina
