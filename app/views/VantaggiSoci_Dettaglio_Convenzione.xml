@@ -2,7 +2,7 @@
 	<Model src="delegazioni" instance="true" id="dormireMangiare"/>
 	<Window id="win" class="container" model="$.dormireMangiare">
 		
-		<ScrollView class="scrollableContainer">
+		<ScrollView id="scroller" class="scrollableContainer">
 			<View id="headerView">
 				<Label class="h1" id="headerText" text="{$.dormireMangiare.name}"/>
 			</View>
@@ -76,7 +76,20 @@
 				<Label class="simpleRowText h3" id="emailText" text="Invia e-mail"/>
 				<ImageView class="hasDetail"/>
 			</View>
+
+			<View class="separator-inner" visible="{$.dormireMangiare.contattiVisible}"/>
+
+			<View id="rowContatti" class="rowSingleContainer" onSingletap="toggleDettaglioContatti" visible="{$.dormireMangiare.contattiVisible}" height="{$.dormireMangiare.contattiHeight}">
+				<ImageView class="simpleRowLeftIcon" id="contattiIcon"/>
+				<Label class="simpleRowText h3" id="contattiText" text="Contatti"/>
+				<ImageView class="hasDetail"/>
+			</View>
+			<View id="dettaglioContatti" class="textBox" visible="false">
+				<Require src="components/contacts" id="contatti"  />
+			</View>
+
 			<View class="separator"/>
+
 			<View id="linkToMerchant" class="rounded" onClick="openAciMerchant" visible=Alloy.CFG.useLinkToMerchant>
 				<View class="rowContainer">
 					<Label class="l1">Sei il titolare?</Label>

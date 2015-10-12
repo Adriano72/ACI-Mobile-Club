@@ -76,8 +76,9 @@
 				<ImageView class="hasDetail"/>
 			</View>
 			<View id="dettaglioContatti" class="textBox" visible="false">
+				<Require src="components/contacts" id="contatti"  />
 				<!--<Widget src="nl.fokkezb.html2as.widget"  html="{$.detailModel.contatti}"/>-->
-				 <ListView id="list" defaultItemTemplate="contact">
+				 <!--<ListView id="list" defaultItemTemplate="contact">
 			        
 			        	<Templates>
 			        		<ItemTemplate name="contact">
@@ -90,7 +91,7 @@
 			        	</Templates>
 			        <ListSection id="ls">   
 			        </ListSection>
-			    </ListView>
+			    </ListView> -->
 			</View> 
 			<View class="separator"/>
 		</ScrollView>
