@@ -16,7 +16,6 @@ var doSendEmail = commons.doSendEmail;
 commons.initWindow($.win, args.titolo || 'Dettaglio Convenzione', args.headerImg, [{
     icon: OS_IOS ? "/images/ic_action_gps.png" : "/images/ic_action_gps.png",
     onClick: function() {
-        console.log('   open nav', $.detailModel);
         var location = $.dormireMangiare.get('address').location;
         commons.openNavigation({
             lat: location[1],
@@ -55,7 +54,8 @@ function loadData() {
 
     var meta = '<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.8">';
 
-    var addr = formatContacts([modelGot.address.formatted, modelGot.tel, modelGot.fax, modelGot.web]);
+    // var addr = formatContacts([modelGot.address.formatted, modelGot.tel, modelGot.fax, modelGot.web]);
+    var addr = modelGot.address.formatted;
     modelGot.formattedAddress = addr;
     //modelGot.descrizione = encoder.Encoder.htmlDecode(modelGot.agreement_id.serviceTypeDesc).trim();
     if (modelGot.agreement_id && modelGot.agreement_id.serviceTypeDesc) modelGot.descrizione = meta + modelGot.agreement_id.serviceTypeDesc.trim();
@@ -68,7 +68,7 @@ function loadData() {
 
 
     if (modelGot.agreement_id.photoGallery && modelGot.agreement_id.photoGallery.length) {
-     //   console.log('ho la galleria', modelGot.agreement_id.photoGallery);
+        //   console.log('ho la galleria', modelGot.agreement_id.photoGallery);
         modelGot.images = _(modelGot.agreement_id.photoGallery).map(function(e) {
             return Alloy.Globals.bannerBaseURL + e.replace(" ", "%20");
         });
@@ -80,13 +80,23 @@ function loadData() {
     $.gallery.getView().width = Alloy.Globals.deviceWidth;
     $.gallery.setImages(modelGot.images);
 
+    _.defer(function() {
+        $.contatti.setContacts(modelGot.contacts);
+    });
+
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
     modelGot.telefonoVisible = Boolean(modelGot.telefono);
     modelGot.emailVisible = Boolean(modelGot.email);
+    modelGot.contattiVisible = _(['web', 'telefono', 'fax']).some(function(e) {
+        var c = modelGot.contacts[e];
+        return c && c[0];
+    });
+
     modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
     modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
     modelGot.emailHeight = modelGot.emailVisible ? 40 : 0;
+    modelGot.contattiHeight = modelGot.contattiVisible ? 40 : 0;
 
     console.log('modelGot.logo', modelGot.logo);
     console.log('modelGot.agreement_id.images.logo', modelGot.agreement_id.images.logo);
@@ -171,6 +181,29 @@ function toggleDettaglioComeVantaggio(e) {
         $.comeVantaggioText.color = "#fff";
         $.rowComeVantaggio.backgroundColor = Alloy.Globals.palette.blu;
         $.dettaglioComeVantaggio.visible = true;
+
+    }
+
+};
+
+function toggleDettaglioContatti(e) {
+
+    e.cancelBubble = true;
+
+    if ($.dettaglioContatti.visible == true) {
+        $.dettaglioContatti.visible = false;
+        $.contattiIcon.image = "/images/ic_action_contatti_blu.png";
+        $.contattiText.color = Alloy.Globals.palette.blu;
+        $.rowContatti.backgroundColor = Alloy.Globals.palette.bianco_sporco;
+        $.dettaglioContatti.height = 0;
+
+    } else {
+        $.dettaglioContatti.height = Ti.UI.SIZE;
+        $.contattiIcon.image = "/images/ic_action_contatti_bianco.png";
+        $.contattiText.color = "#fff";
+        $.rowContatti.backgroundColor = Alloy.Globals.palette.blu;
+        $.dettaglioContatti.visible = true;
+        $.scroller.scrollToBottom();
 
     }
 

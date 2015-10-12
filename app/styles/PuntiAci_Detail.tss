@@ -150,39 +150,6 @@
 	//opacity: 0.5
 }
 
-"ListView":{
-	height: Ti.UI.SIZE,
-}
-
-"ListView[platform=android]":{
-	separatorHeight: 0
-}
-
-"ListView[platform=ios]":{
-	separatorStyle: Titanium.UI.iPhone.ListViewSeparatorStyle.NONE
-}
-
-"ListSection":{
-	height: Ti.UI.SIZE,
-}
-"ListItem":{
-	height: Ti.UI.SIZE,
-}
-
-"#contact_wrapper":{
-	height: Ti.UI.SIZE,
-}
-"#contact_type":{
-	left: 5,
-	top: 3,
-	bottom: 2
-}
-"#contact_target":{
-	left: 5,
-	top: 3,
-	bottom: 2
-}
-
 
 
 
