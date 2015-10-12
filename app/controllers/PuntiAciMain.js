@@ -1,6 +1,6 @@
 var args = arguments[0] || {};
 
-var headerText = "Punti di servizio ACI";
+var headerText = "Punti ACI";
 var headerImg = "/images/ic_action_puntatore.png";
 
 //inizializzazioni comuni della Window
