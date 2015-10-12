@@ -115,6 +115,11 @@ function loadData() {
     }
 
 
+    _.defer(function() {
+        $.contatti.setContacts(modelGot.contacts);
+    });
+    /*
+
     //compongo i contatti
     modelGot.contatti = (function() {
 
@@ -126,12 +131,7 @@ function loadData() {
                 .filter(function(x) {
                     return !_.isEmpty(modelGot.contacts[x] && modelGot.contacts[x][0]);
                 })
-                /*   .map(function(x) {
-                    if (modelGot.contacts[x].join('').length == 0) {
-                        return '';
-                    }
-                    return [x, ': ', '<a href="http://',modelGot.contacts[x].join(','),'">', modelGot.contacts[x].join(','), '</a>'].join('');
-                }) */
+              
                 .map(function(x) {
                     var target = modelGot.contacts[x][0];
                     return {
@@ -155,15 +155,21 @@ function loadData() {
     })();
 
     _.defer(function() {
-        $.ls.setItems(modelGot.contatti);
+        //        $.contatti.setContacts(modelGot.contatti);
     });
+
+    */
 
     //porcate layout
     modelGot.orariVisible = Boolean(modelGot.orari);
     modelGot.telefonoVisible = Boolean(modelGot.telefono);
     modelGot.emailVisible = Boolean(modelGot.email);
     modelGot.noteVisible = Boolean(modelGot.note);
-    modelGot.contattiVisible = Boolean(modelGot.contatti && modelGot.contatti.length);
+    modelGot.contattiVisible = _(['web', 'telefono', 'fax']).some(function(e) {
+        var c = modelGot.contacts[e];
+        return c && c[0];
+    });
+
 
     modelGot.orariHeight = modelGot.orariVisible ? 40 : 0;
     modelGot.telefonoHeight = modelGot.telefonoVisible ? 40 : 0;
