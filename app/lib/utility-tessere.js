@@ -3,6 +3,9 @@
  */
 
 
+var TIPO_DEFAULT = 'default';
+
+
 var TIPO_TESSERA = {
     SISTEMA: 'sistema',
     DRIVER: 'driver',
@@ -51,8 +54,8 @@ function getTipo(code) {
     if (tipo && tipo.nome) {
         return TIPO_TESSERA[tipo.nome];
     }
-    console.log('tipo undefined');
-    return undefined;
+    console.log('tipo default');
+    return TIPO_DEFAULT;
 }
 
 /**
@@ -67,7 +70,8 @@ function getTipo(code) {
  */
 exports.getImageSet = function(code) {
 
-    var tipo = getTipo(code);
+
+    var tipo = getTipo(code)
     console.log('TIPO TESSeRA', tipo, code);
     return {
         frontV: ['/', 'tessera_', tipo, '.jpg'].join(''),
