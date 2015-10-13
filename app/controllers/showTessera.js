@@ -83,8 +83,9 @@ function rotateContent() {
 
 
     if (OS_ANDROID) {
+        console.log('img', $.tessera.width, $.tessera.rect);
         $.rotatedContainer.setBottom('25%');
-        $.rotatedContainer.setLeft('40%');
+        $.rotatedContainer.setRight("-15%");
     } else {
 
         if (Ti.Platform.displayCaps.platformHeight <= 480) {

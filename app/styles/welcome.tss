@@ -27,12 +27,14 @@
 	width: "49%",
 	left: 0,
 	backgroundColor: "transparent",
+	color: Alloy.Globals.palette.blu
 }
 
 "#btLogin":{
 	width: "49%",
 	right: 0,
 	backgroundColor: "transparent",
+	color: Alloy.Globals.palette.blu
 }
 
 "#buttonWrapper":{
