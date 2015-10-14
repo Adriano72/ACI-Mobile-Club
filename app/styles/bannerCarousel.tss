@@ -1,5 +1,6 @@
 
 "ImageView" : {
   //height: Ti.UI.SIZE,
-  width: "100%"
+  width: Ti.UI.FILL,
+  defaultImage: '/none.png',
 }
