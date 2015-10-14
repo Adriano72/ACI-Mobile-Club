@@ -67,9 +67,10 @@ function loadData() {
     modelGot.logo = encodeURI(Alloy.Globals.bannerBaseURL + (modelGot.agreement_id.images.logo || modelGot.agreement_id.images.banner));
 
 
-    if (modelGot.agreement_id.photoGallery && modelGot.agreement_id.photoGallery.length) {
+    var photoGallery = (modelGot.agreement_id.photoGallery || []).concat(modelGot.photoGallery  || []);
+    if (photoGallery && photoGallery.length) {
         //   console.log('ho la galleria', modelGot.agreement_id.photoGallery);
-        modelGot.images = _(modelGot.agreement_id.photoGallery).map(function(e) {
+        modelGot.images = _(photoGallery).map(function(e) {
             return Alloy.Globals.bannerBaseURL + e.replace(" ", "%20");
         });
     } else {
