@@ -13,8 +13,18 @@ function init() {
     require('network').getBanner(function(p_data) {
         Alloy.Collections.banner.reset(p_data);
         banners = p_data;
-        showRandom();
+        console.log('banners', banners);
+        if (banners && banners.length) {
+            showRandom();
+
+        } else {
+            $.bannerImage.visible = false;
+
+        }
     });
+
+ $.bannerImage.height = Alloy.Globals.deviceWidth * 0.285;
+
 }
 
 $.start = function() {
@@ -26,6 +36,7 @@ $.stop = function() {
 }
 
 function showRandom() {
+    $.bannerImage.visible = true;
     new_index = Math.floor(Math.random() * banners.length);
 
     var banner = banners[new_index];
