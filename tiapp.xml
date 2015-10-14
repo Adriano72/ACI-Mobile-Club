@@ -45,9 +45,9 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest android:installLocation="preferExternal"
-            android:versionCode="33" android:versionName="13.0.8" package="it.aci.informatica.AciMobileClub">
+            android:versionCode="35" android:versionName="13.1.0" package="it.aci.informatica.AciMobileClub">
             <!--<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>-->
-            <!--<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>-->
+            <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="22"/>
             <supports-screens android:anyDensity="true"/>
             <!-- Allows the API to download data from Google Map servers -->
             <uses-permission android:name="android.permission.INTERNET"/>
