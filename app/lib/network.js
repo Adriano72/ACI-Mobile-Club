@@ -667,9 +667,9 @@ exports.registerForPush = function(_callback) {
 
     var user = require('user').getCurrentUser();
 
-    var _u ={};
+    var _u = {};
 
-    _(_(user).keys()).map(function(key){
+    _(_(user).keys()).map(function(key) {
         var nk = key.replace('userInfo.', '');
         _u[nk] = user[key];
     });
@@ -834,3 +834,70 @@ function buildRequestHandler(callback) {
 }
 
 exports.getAciGeoHeaders = getAciGeoHeaders;
+
+
+
+
+//
+// acigeo
+//
+
+var acigeo = require('ti.aci').Services.acigeo;
+
+//imposto gli headers di sistema
+acigeo.setConfig('headers', {
+    // 'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='
+    'x-acigeo-appid': 'UA-57956970-2',
+    'x-acigeo-devid': Ti.Platform.id,
+    'x-acigeo-appver': Ti.App.version,
+    'x-acigeo-devos': function() {
+        OS_IOS ? 'ios' : 'android';
+    }
+});
+
+acigeo.setConfig('base_url', Alloy.Globals.baseURL);
+
+/**
+ * Metodo di accesso alle collezioni syc
+ * @param  {hash}   params   hash di parametri della richiesta - controllare i doc della libreria acigeo
+ * @param  {Function} cb     callback nella forma (err, result)
+ */
+exports.syc = function(params, cb) {
+    acigeo.syc(params, buildRequestHandler(cb));
+}
+
+/**
+ * Wrapper della funzione syc che permette la richiesta degli ultimi punti syc inseriti
+ * @param  {date}   fromDate   data di riferimento (punti da fromDate incluso)
+ * @param  {Function} cb       callback nella forma (err, result)
+ */
+exports.sycLatest = function(fromDate, cb) {
+
+    //hash set di parametri da passare al web service
+    var params = {};
+
+    //aggiungo i parametri geografici
+    (function(p) {
+        var settings = require('settings');
+        //se ho la provincia, filtro per provincia
+        // altrimenti ordino per posizione
+        if (!settings.ricercaPerProssimita) {
+            p.province = settings.provinciaDiRiferimento.id;
+            //  p.limit = 0;
+        } else {
+            var posizione = locationServices.getLastLocation();
+            p.near = [posizione.longitude, posizione.latitude, 0.2];
+            //  p.limit = 15;
+        }
+    })(params);
+
+
+    //aggiungo il filtro per range di date
+    (function(p, date) {
+        p.publishDateRange = [date.getTime(), null];
+    })(params, fromDate);
+
+
+    //chiamo la funzione base
+    acigeo.syc(params, buildRequestHandler(cb));
+};

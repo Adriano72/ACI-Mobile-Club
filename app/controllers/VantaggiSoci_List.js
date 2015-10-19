@@ -40,35 +40,37 @@ if (OS_ANDROID) {
  * @return {[type]} [description]
  */
 function loadData() {
+
+    function onData(data) {
+        var isEmpty = Boolean(data.length);
+        $.puntiAci_Table.visible = isEmpty;
+        $.emptyView.getView().visible = !isEmpty;
+
+        Alloy.Collections.tempCollection.reset(data);
+        updateUI();
+
+        var sect = $.puntiAci_Table.data[0];
+        console.log('images', images);
+        if (sect) {
+            console.log('righe', sect.rows);
+            _(sect.rows).each(function(row) {
+                console.log('row id', row.modelId);
+                console.log('row image', images[row.modelId]);
+                var logoImg = row.getChildren()[0].getChildren()[0].getChildren()[0];
+                console.log('row logoImg', logoImg);
+                logoImg.image = images[row.modelId];
+            });
+        }
+
+    }
+
     //aggiorna i dati solo se non sono più validi
     Alloy.Globals.loading.show('Stiamo cercando');
     try {
         collection.fetchIfChanged(function(err, cached) {
 
+            onData(collection.models);
 
-            var isEmpty = Boolean(collection.length);
-            $.puntiAci_Table.visible = isEmpty;
-            $.emptyView.getView().visible = !isEmpty;
-
-            Alloy.Collections.tempCollection.reset(collection.models);
-            updateUI();
-
-            // setTimeout(function(e) {
-            console.log('controllo uodateUI', $.puntiAci_Table.data);
-            var sect = $.puntiAci_Table.data[0];
-            console.log('images', images);
-            if (sect) {
-                console.log('righe', sect.rows);
-                _(sect.rows).each(function(row) {
-                    console.log('row id', row.modelId);
-                    console.log('row image', images[row.modelId]);
-                    var logoImg = row.getChildren()[0].getChildren()[0].getChildren()[0];
-                    console.log('row logoImg', logoImg);
-                    logoImg.image = images[row.modelId];
-                });
-            }
-
-            //  }, 3000) 
 
             Alloy.Globals.loading.hide();
         });

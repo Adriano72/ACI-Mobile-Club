@@ -521,5 +521,6 @@ exports.getAciGeoCollection = function(id_code) {
         }
         return true;
     });
+    console.log('getAciGeoCollection', id_code, coll);
     return coll;
 };

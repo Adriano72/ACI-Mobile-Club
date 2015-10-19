@@ -178,6 +178,15 @@ var notifications = [
             Alloy.Globals.navMenu.openWindow(dettConvenzione);
 
         }
+    },
+
+    //report settimanale delle convenzioni
+    {
+        type: 'syc_week_report',
+        cb: function(payload) {
+            console.log('mi è arrivata la notifica!', 'syc_week_report', payload);
+
+        }
     }
 
 ];
@@ -189,12 +198,13 @@ var notifications = [
  * @return {[type]}      [description]
  */
 function commonNotificationHandler(cb) {
-    cb && cb();
+    var args = Array.prototype.slice.call(arguments);
+    cb && cb.apply(this, args);
     if (OS_IOS) {
-       
+
         Titanium.UI.iPhone.setAppBadge(0);
 
-       
+
     }
 }
 
@@ -210,7 +220,7 @@ exports.init = function() {
 
     tiACI.PushNotification.retrieveDeviceToken(function(err, res) {
         if (err) {
-            console.error(err);
+            console.error('retrieveDeviceToken', err);
         } else {
             require('network').registerForPush();
 
@@ -232,7 +242,8 @@ exports.init = function() {
 
     //registro gli eventi di ricezione della notifica
     _(notifications).each(function(n) {
-        tiACI.PushNotification.addNotificationListener(n.type, _(n.cb).wrap(commonNotificationHandler));
+        // tiACI.PushNotification.addNotificationListener(n.type, _(n.cb).wrap(commonNotificationHandler));
+        tiACI.PushNotification.addNotificationListener(n.type, commonNotificationHandler(n.cb));
     });
 
 

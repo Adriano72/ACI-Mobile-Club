@@ -80,6 +80,7 @@ Alloy.Collections.instance("culturaSpettacoli"); //da togliere
 Alloy.Collections.instance("noleggiTrasporti"); //da togliere
 Alloy.Collections.instance("sportEventi");
 Alloy.Collections.instance("altriServizi");
+Alloy.Collections.instance("sycLatest");
 
 //Ti.API.info("WINDOW HEIGHT:"+Ti.Platform.displayCaps.platformHeight);
 
@@ -147,5 +148,7 @@ if (require('environment').isFirstRun) {
     });
 } else {
     //inizializzo le notifiche
-    require('push').init();
+    _.defer(function() {
+        require('push').init();
+    });
 }
