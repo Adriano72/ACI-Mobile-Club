@@ -11,9 +11,6 @@
 	height: Ti.UI.FILL
 }
 
-"#puntiAci_Table": {
-	//search: "searchBar"
-}
 
 "#searchBar": {
 	//barColor: "#fff",
@@ -24,21 +21,26 @@
 	top: 0
 }
 
-".row[platform=ios]":{
-	height: 87,
-	color: "transparent",
-	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
+"ItemTemplate":{
+	height: Ti.UI.SIZE
 }
 
-".row[platform=android]":{
-	height: Ti.UI.SIZE,
-	className: "riga"
-}
-
-".blockContainer": {
+".row": {
 	layout: "horizontal",
-	width: Ti.UI.FILL
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
 }
+
+
+".row[platform=ios]": {
+	height: 87,
+}
+
+".row[platform=android]": {
+	height: 95,
+}
+
+
 
 ".iconContainer": {
 	left: 5,
@@ -53,10 +55,12 @@
 
 ".logoConvenzione": {
 	
-	height: 60
+	//height: 60
+	width: "90%"
 }
 
 ".centerContainer": {
+
 	left: 5,
 	width: "50%",
 	layout: "vertical",
@@ -84,20 +88,7 @@
 	height: Ti.UI.SIZE
 }
 
-".bt_chiama": {
-	image: "/x_telefono_celeste.png",
-	right: 50,
-	width: 13,
-	height:20
-	
-}
 
-".bt_email": {
-	image: "/mail_celeste.png",
-	right: 5,
-	width: 30,
-	height:20
-}
 
 ".rightContainer": {
 	left: 5,
@@ -105,10 +96,13 @@
 	top: 5
 }
 
-".preferiti": {
-	image: "/x_menu_stella_celeste.png",
-	height: 20
+
+".rightContainer[platform=android]": {
+	height: Ti.UI.FILL
 }
+
+
+
 
 ".dettagli": {
 	left: 5,
