@@ -1,43 +1,40 @@
 <Alloy>
 	<Window id="win" class="container">
-		<!-- <TitleControl platform="ios">
-			<View id="titleControl" class="titleControl">
-				<ImageView id="titleIcon"></ImageView>
-				<Label id="titleLabel" class="PTSansBold"></Label>
-			</View>
-		</TitleControl>
-		<RightNavButton platform="ios">
-			<ImageView onClick="mostraMappa" class="rightNavImg"/>
-		</RightNavButton>
-		<Menu id="menu" platform="android">
-			<MenuItem id="mn_settings" onClick="mostraMappa"/>
-
-		</Menu> -->
 		
-		<TableView id="puntiAci_Table" class="table" onSingletap="dettaglioConvenzione" dataCollection="tempCollection" dataTransform="dataTransform" dataFunction="updateUI" visible="false" >
+		<ListView id="puntiAci_Table" class="table" defaultItemTemplate="sycItem"  visible="false" onItemclick="onItemClick" >
 			<SearchBar id="searchBar"/>
-			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
-				<View class="blockContainer">
-					<View class="iconContainer">
-						<ImageView id="logoImg" class="logoConvenzione" image="{immagine}"/>
-					</View>
-					<View class="centerContainer">
-						<Label class="simpleRowText h2" id="nome" text="{name}"/>
-						<Label class="simpleRowText h4" text="{indirizzo}"/>
-						<Label class="simpleRowText h4" text="{indirizzo2}"/>
-						<Label class="indicazioniStradali link" lat="{latitude}" lon="{longitude}" id="indicazioni" onSingletap="openNavigation">Indicazioni stradali ›</Label>
+			<Templates>
+				<ItemTemplate name="sycItem" >
+					<View class="row">
 
-					</View>
-					<View class="rightContainer">
-						<Label class="simpleRowText h2" id="distanza" text="{distance}"/>
-						<!-- <Label class="simpleRowText h2" id="sconto"/>
-						<ImageView class="preferiti" id="preferiti"/> -->
-						<Label class="dettagli link">Dettagli ›</Label>
 
+
+						<View class="iconContainer">
+							<ImageView  bindId="thumbnail" class="logoConvenzione"/>
+						</View>
+						<View class="centerContainer">
+							<Label class="simpleRowText h2" bindId="title"/>
+							<Label class="simpleRowText h4" bindId="address"/>
+							<Label class="simpleRowText h4" bindId="address2"/>
+							<Label class="indicazioniStradali link"  bindId="directions"  >Indicazioni stradali ›</Label>
+
+						</View>
+						<View class="rightContainer">
+							<Label class="simpleRowText h2" bindId="distance" />
+							<!-- <Label class="simpleRowText h2" id="sconto"/>
+							<ImageView class="preferiti" id="preferiti"/> -->
+							<Label class="dettagli link">Dettagli ›</Label>
+
+						</View>
 					</View>
-				</View>
-			</TableViewRow>
-		</TableView>
+
+					
+				</ItemTemplate>
+			</Templates>
+			<ListSection dataCollection="tempCollection" dataTransform="dataTransform" >
+				<ListItem searchableText="{searchableText}" itemId="{itemId}" template="sycItem" thumbnail:image="{thumbnail}" title:text="{title}" address:text="{address}" address2:text="{address2}" directions:lat="{latitude}" directions:lon="{longitude}" distance:text="{distance}" />
+			</ListSection>
+		</ListView>
 
 		<Require src="emptyTableView" id="emptyView"></Require>
 

@@ -11,9 +11,6 @@
 	height: Ti.UI.FILL
 }
 
-"#puntiAci_Table": {
-	//search: "searchBar"
-}
 
 "#searchBar": {
 	//barColor: "#fff",
@@ -24,21 +21,23 @@
 	top: 0
 }
 
-".row[platform=ios]":{
-	height: 87,
-	color: "transparent",
-	selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
+"ItemTemplate":{
+	height: Ti.UI.SIZE
 }
 
-".row[platform=android]":{
-	height: Ti.UI.SIZE,
-	className: "riga"
-}
-
-".blockContainer": {
+".row": {
 	layout: "horizontal",
-	width: Ti.UI.FILL
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 }
+
+
+".row[platform=ios]": {
+	height: 87,
+}
+
+
+
 
 ".iconContainer": {
 	left: 5,
@@ -57,6 +56,7 @@
 }
 
 ".centerContainer": {
+
 	left: 5,
 	width: "50%",
 	layout: "vertical",
@@ -84,31 +84,16 @@
 	height: Ti.UI.SIZE
 }
 
-".bt_chiama": {
-	image: "/x_telefono_celeste.png",
-	right: 50,
-	width: 13,
-	height:20
-	
-}
 
-".bt_email": {
-	image: "/mail_celeste.png",
-	right: 5,
-	width: 30,
-	height:20
-}
 
 ".rightContainer": {
 	left: 5,
 	width: "19%",
-	top: 5
+	top: 5,
+	height: 87
 }
 
-".preferiti": {
-	image: "/x_menu_stella_celeste.png",
-	height: 20
-}
+
 
 ".dettagli": {
 	left: 5,
