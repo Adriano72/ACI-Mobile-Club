@@ -76,7 +76,7 @@ function loadData() {
         alert('Si è verificato un errore di connessione');
 
     }
-    $.searchBar.blur();
+
 }
 
 
@@ -144,7 +144,10 @@ function onItemClick(e) {
 
     }
 
+
 }
+
+
 
 
 /**

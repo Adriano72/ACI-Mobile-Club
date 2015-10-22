@@ -28,7 +28,7 @@
 ".row": {
 	layout: "horizontal",
 	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
+	height: Ti.UI.SIZE
 }
 
 
@@ -36,6 +36,9 @@
 	height: 87,
 }
 
+".row[platform=android]": {
+	height: 95,
+}
 
 
 
@@ -52,7 +55,8 @@
 
 ".logoConvenzione": {
 	
-	height: 60
+	//height: 60
+	width: "90%"
 }
 
 ".centerContainer": {
@@ -91,6 +95,12 @@
 	width: "19%",
 	top: 5
 }
+
+
+".rightContainer[platform=android]": {
+	height: Ti.UI.FILL
+}
+
 
 
 
