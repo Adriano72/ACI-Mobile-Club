@@ -89,8 +89,7 @@
 ".rightContainer": {
 	left: 5,
 	width: "19%",
-	top: 5,
-	height: 87
+	top: 5
 }
 
 
