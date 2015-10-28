@@ -14,23 +14,20 @@
     "Register_OpenWebsite": true,
     "AciGeo_CacheDurationHours": "24",
     "AciGeo_CacheDistanceRangeMeters": "1000",
-    "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
-    "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
-    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads",
+   
     "BannerRotationTime": "20000",
     "DevMode": false,
     "SysReport_Enabled": false,
     "SysReport_Email": "mobile@informatica.aci.it",
-    "SysReport_UseShake": true,
-    "SSO_Endpoint": "http://login.aci.it"
+    "SysReport_UseShake": true
   },
   "env:development": {
     "DevMode": false,
     "SSO_Endpoint": "http://login.aci.it",
     "__SSO_Endpoint": "http://sso-web.svi.local",
-    "AciGeo_BaseUrl": "http://10.64.4.138:10001/geo/v2",
-    "AciGeo_BannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads/syc/",
-    "AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads",
+    "AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
+    "AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
     "__AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
     "__AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
     "__AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
@@ -40,14 +37,18 @@
     "SSO_Endpoint": "http://login.aci.it",
     "__SSO_Endpoint": "http://sso-web.svi.local",
     "AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
-    "AciGeo_BannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads/syc/",
-    "AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:10001/geo/v2/uploads",
+    "AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
     "__AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
     "__AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
     "__AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
   },
   "env:production": {
-    "SysReport_Enabled": false
+    "SSO_Endpoint": "http://login.aci.it",
+    "SysReport_Enabled": false,
+    "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
+    "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
   },
   "os:android": {},
   "os:blackberry": {},

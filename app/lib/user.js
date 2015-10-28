@@ -116,7 +116,7 @@ exports.refreshData = function(cb) {
     try {
         var credentials = Ti.App.Properties.getObject("utenteCredenziali");
         var lastLogin = Ti.App.Properties.getObject("utenteLastLogin");
-
+        if (OS_ANDROID) lastLogin = new Date(lastLogin);
     } catch (e) {
         var credentials = undefined;
         var lastLogin = undefined;

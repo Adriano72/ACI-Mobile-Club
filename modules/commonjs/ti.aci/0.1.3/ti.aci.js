@@ -1936,7 +1936,7 @@ function syc(params, cb) {
         return;
     }
 
-    if (params.publishDateRange && (!utils.is('array', params.publishDateRange) || params.near.length)) {
+    if (params.publishDateRange && (!utils.is('array', params.publishDateRange) || !params.publishDateRange.length)) {
         cb('acigeo syc - parametri non validi - "publishDateRange" deve essere un array nella forma [from,to]');
         return;
     }
@@ -1961,7 +1961,7 @@ function syc(params, cb) {
         }
 
         if (a.province) {
-            q.query['address.province._id'] = a.provincieId;
+            q.query['address.province._id'] = a.province;
         } else {
             q.near = {
                 point: {
@@ -1977,12 +1977,12 @@ function syc(params, cb) {
             var from = a.publishDateRange[0];
             var to = a.publishDateRange[1];
             if (from) {
-                q.publishAt = {
+                q.query.publishAt = {
                     '$gte': from
                 }
             }
             if (to) {
-                q.publishAt = {
+                q.query.publishAt = {
                     '$lte': to
                 }
             }

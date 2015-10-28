@@ -855,7 +855,9 @@ acigeo.setConfig('headers', {
     }
 });
 
-acigeo.setConfig('base_url', Alloy.Globals.baseURL);
+acigeo.setConfig('base_url', Alloy.CFG.AciGeo_BaseUrl);
+
+console.log('network acigeo', Alloy.CFG.AciGeo_BaseUrl, acigeo.getConfig('base_url'));
 
 /**
  * Metodo di accesso alle collezioni syc
@@ -883,21 +885,21 @@ exports.sycLatest = function(fromDate, cb) {
         // altrimenti ordino per posizione
         if (!settings.ricercaPerProssimita) {
             p.province = settings.provinciaDiRiferimento.id;
-            //  p.limit = 0;
+            p.near = undefined;
         } else {
             var posizione = locationServices.getLastLocation();
             p.near = [posizione.longitude, posizione.latitude, 0.2];
-            //  p.limit = 15;
+            p.province = undefined;
         }
     })(params);
 
 
     //aggiungo il filtro per range di date
     (function(p, date) {
-        p.publishDateRange = [date.getTime(), null];
+        p.publishDateRange = [Math.floor(date.getTime() / 1000), null];
     })(params, fromDate);
 
-
+    console.log('acigeo sycLatest', params);
     //chiamo la funzione base
-    acigeo.syc(params, buildRequestHandler(cb));
+    exports.syc(params, cb);
 };

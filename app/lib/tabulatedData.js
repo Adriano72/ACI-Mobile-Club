@@ -116,10 +116,9 @@ exports.categorieSyc = function() {
             short_name: "altri_servizi",
             pin : "pin_altriServizi.png"
         }, {
-            img: "/images/ic_action_altri_servizi_blu.png",
+            img: "/images/ico_new.png",
             long_name: "Ultime convenzioni",
-            short_name: "sycLatest",
-            pin : "pin_altriServizi.png"
+            short_name: "sycLatest"
         }
 
     ];
