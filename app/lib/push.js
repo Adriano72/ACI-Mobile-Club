@@ -23,24 +23,20 @@ var notifications = [
             console.log('mi è arrivata la notifica!', 'new_syc', payload);
 
             var dateFrom = new Date(payload.content.time * 1000);
-            var provinceId = payload.content.id_province;
-           
+            var province = payload.content.province;
 
-            console.log(dateFrom, provinceId);
+
+            console.log(dateFrom, province);
 
             //imposto il contesto di ricerca alla provincia
             var settings = require('settings');
             settings.ricercaPerProssimita = false;
-            settings.provinciaDiRiferimento = {
-                id: provinceId,
-                shortName: 'AC',
-                longName: 'ACI Reale'
-            };
+            settings.provinciaDiRiferimento = province;
 
 
             //imposto la data di riferimento alla collezione 
-            Ti.App.Properties.setString('sycLatest_time', dateFrom);
-            Alloy.Collections.sycLatest.setDateFrom(dateFrom);
+            Alloy.Collections.sycLatest.dateFrom = dateFrom;
+            Alloy.Collections.sycLatest.source = 'push';
 
             //apro la pagina con l'elenco dei syc
             var itemData = _(require('tabulatedData').categorieSyc()).findWhere({

@@ -37,8 +37,10 @@ var baseCollection = _.extend({}, require('BaseCollection_VantaggiSoci'), {
 
         })();
 
+        var source = this.source;
+
         //  console.log('sycLatest retrieve_method');
-        require('network').sycLatest(dateFrom, function() {
+        require('network').sycLatest(source, dateFrom, function() {
             var args = Array.prototype.slice.call(arguments);
             console.log('sycLatest retrieve_method cb', args);
             var data = args[1];
@@ -79,15 +81,6 @@ exports.definition = {
 
         _.extend(Collection.prototype, baseCollection, {
 
-
-            /**
-             * Metodo setter per la proprietà fromDate
-             * In pratica serve ad impostare la data di riferimento per le ricerche delle ultime convenzioni
-             * @param {date} fromDate  data di riferimento delle ultime convenzioni
-             */
-            setDateFrom: function(fromDate) {
-                this.dateFrom = fromDate;
-            },
 
 
         });

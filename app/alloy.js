@@ -126,9 +126,13 @@ _.defer(require('locationServices').init);
 
 //ricarica i dati utente
 _.defer(function() {
-    require('user').refreshData(function() {
-        require('network').registerForPush();
+    require('user').refreshData(function () {
+    net.registerApp(function() {
+        console.log('app registered 2');
+        //inizializzo le notifiche
+        require('push').init();
     });
+});
 });
 
 
@@ -137,18 +141,12 @@ if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
 }
 
 //chiamo il servizio per registrare l'app
-
-if (require('environment').isFirstRun) {
-    _.defer(function() {
-        require('network').registerApp(function() {
-            console.log('app registered');
-            //inizializzo le notifiche
-            require('push').init();
-        });
-    });
-} else {
-    //inizializzo le notifiche
-    _.defer(function() {
+_.defer(function () {
+    net.registerApp(function() {
+        console.log('app registered 1');
+        //inizializzo le notifiche
         require('push').init();
     });
-}
+});
+
+

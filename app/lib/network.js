@@ -606,6 +606,8 @@ exports.registerApp = function(_callback) {
     };
 
     xhr.onerror = function(e) {
+        //per ora (20151028) chiamo la callback anche se la registrazione ha dato errore
+        _callback && _callback(this.responseText);
         Alloy.Globals.loading.hide();
         console.log("ERRORE RISPOSTA SERVER: ", e, url);
     };
@@ -873,7 +875,7 @@ exports.syc = function(params, cb) {
  * @param  {date}   fromDate   data di riferimento (punti da fromDate incluso)
  * @param  {Function} cb       callback nella forma (err, result)
  */
-exports.sycLatest = function(fromDate, cb) {
+exports.sycLatest = function(source, fromDate, cb) {
 
     //hash set di parametri da passare al web service
     var params = {};
@@ -898,6 +900,11 @@ exports.sycLatest = function(fromDate, cb) {
     (function(p, date) {
         p.publishDateRange = [Math.floor(date.getTime() / 1000), null];
     })(params, fromDate);
+
+    //aggiungo il parametro source, se presente
+    (function(p, s) {
+        p.source = s;
+    })(params, source);
 
     console.log('acigeo sycLatest', params);
     //chiamo la funzione base
