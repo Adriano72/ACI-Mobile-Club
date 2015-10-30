@@ -3320,10 +3320,7 @@ function syc(params, cb) {
         },
         near: function(v, q) {
             q.near = {
-                point: {
-                    latitude: v[0],
-                    longitude: v[1]
-                },
+                point: [v[0], v[1]],
                 max: v[2]
             };
             q.populate = 1;
