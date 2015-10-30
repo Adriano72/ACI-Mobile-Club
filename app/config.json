@@ -25,23 +25,23 @@
     "DevMode": false,
     "SSO_Endpoint": "http://login.aci.it",
     "__SSO_Endpoint": "http://sso-web.svi.local",
-    "AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
-    "AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
-    "AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
-    "__AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
-    "__AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
-    "__AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
+    "__AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
+    "__AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
+    "__AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
+    "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
+    "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
   },
   "env:test": {
     "DevMode": false,
     "SSO_Endpoint": "http://login.aci.it",
     "__SSO_Endpoint": "http://sso-web.svi.local",
-    "AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
-    "AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
-    "AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
-    "__AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
-    "__AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
-    "__AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
+    "__AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
+    "__AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
+    "__AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
+    "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
+    "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
+    "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
   },
   "env:production": {
     "SSO_Endpoint": "http://login.aci.it",
