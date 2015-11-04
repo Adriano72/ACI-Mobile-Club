@@ -63,21 +63,39 @@ function getPinImage(type) {
     if (args.pin) {
         i += args.pin;
     } else {
-        var d = {
-            'del': 'pin_Delegazioni.png',
-            'aacc': 'pin_AutomobileClub.png',
-            'pra': 'pin_Pra.png',
-            'tasse': 'pin_Tasse.png'
-        };
-        console.log("type", type);
-        i += d[type];
+
+        //per i syc, cerco tra i tabulatedData
+        var item = _(require('tabulatedData').categorieSyc()).findWhere({
+            shortName: type
+        });
+
+        if (item && item.pin) {
+            i += item.pin;
+        } else {
+
+            //per i puntiaci, lo gestisco a mano
+            var d = {
+                'del': 'pin_Delegazioni.png',
+                'aacc': 'pin_AutomobileClub.png',
+                'pra': 'pin_Pra.png',
+                'tasse': 'pin_Tasse.png'
+            };
+            console.log("type", type);
+            i += d[type];
+        }
+
+
     }
     console.log("pin", i);
     return i;
 }
 
+
+
 function dataTransform(model) {
     var attrs = model.toJSON();
+    var isPuntoAci = attrs._type != 'syc';
+
     Ti.API.info("END SIDE COLLECTION: " + JSON.stringify(args.collection));
     attrs.indirizzo = attrs.address.street;
     attrs.indirizzo2 = (function() {
@@ -90,7 +108,7 @@ function dataTransform(model) {
     attrs.latitude = attrs.address.location[1];
     attrs.longitude = attrs.address.location[0];
     attrs.tel = attrs.contacts.tel[0];
-    attrs.image = getPinImage(attrs._type);
+    attrs.image = getPinImage(isPuntoAci ? attrs._type : attrs.agreement_id.categories.short_name);
     attrs.title = attrs.name;
     attrs.subtitle = OS_IOS ? "Tocca 'i' per ulteriori informazioni" : "Tocca per ulteriori informazioni";
     attrs.leftButton = "/images/annotation-info.png";
@@ -107,7 +125,7 @@ function linkToPOI(e) {
     //get the Myid from annotation
     var clicksource = e.clicksource;
 
-    if ( clicksource == 'leftButton' || clicksource == 'leftPane' || clicksource == 'infoWindow' || clicksource == 'subtitle') { //leftButton event
+    if (clicksource == 'leftButton' || clicksource == 'leftPane' || clicksource == 'infoWindow' || clicksource == 'subtitle') { //leftButton event
 
 
         var id_code = e.annotation._type;
