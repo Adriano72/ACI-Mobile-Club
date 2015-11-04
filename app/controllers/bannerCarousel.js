@@ -1,103 +1,57 @@
 var banners = [];
-var timer;
 var index;
 
 
-// $.gallery.getView().height = Alloy.Globals.deviceWidth * (600 / 1024);
-//    $.gallery.getView().width = Alloy.Globals.deviceWidth;
-//    $.gallery.setImages(modelGot.images);
 
-function init() {
-    showRandom();
-
-
-    require('network').getBanner(function(p_data) {
-        Alloy.Collections.banner.reset(p_data);
-        banners = p_data;
-        console.log('banners', banners);
-        if (banners && banners.length) {
-            showRandom();
-
-        } else {
-            $.bannerImage.visible = false;
-
-        }
-    });
-
-    $.bannerImage.height = Alloy.Globals.deviceWidth * 0.285;
-
-}
-
-$.start = function() {
-    timer = setInterval(showRandom, Alloy.CFG.BannerRotationTime);
-}
-
-$.stop = function() {
-    clearInterval(timer);
-}
-
-function showRandom() {
-    $.bannerImage.visible = true;
-    new_index = Math.floor(Math.random() * banners.length);
-
-    var banner = banners[new_index];
-    console.log('new_index', new_index);
-    if (new_index != index && banner) {
-        index = new_index;
-        // console.log('banner', banner);
-        console.log('banners.length', banners.length);
-        console.log('index', index);
-        if (banner) {
-            console.log('banner ', banner);
-            console.log('banner.agreement_id ', banner.agreement_id);
-            console.log('banner.agreement_id.images ', banner.agreement_id.images);
-
-            var img = banner.agreement_id.images.banner;
-            var url = Alloy.Globals.bannerBaseURL + img;
-            console.log('img', url);
-
-            $.bannerImage.image = encodeURI(url);
-        }
-    }
-}
 
 function openDetail() {
 
     var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-        data: banners[new_index],
+        data: banners[index],
         headerImg: "",
         isBanner: true
     }).getView();
     Alloy.Globals.navMenu.openWindow(dettConvenzione);
 }
 
-_.defer(init);
-
 /**
  * ## constructor
  */
 (function constructor(args) {
-    showRandom();
 
     function onData(data) {
-        Alloy.Collections.banner.reset(p_data);
-        banners = p_data;
+        Alloy.Collections.banner.reset(data);
+        banners = data;
+
+        var images = _(banners).map(function(e) {
+            var img = e.agreement_id.images.banner;
+            var url = Alloy.Globals.bannerBaseURL + img;
+
+            return encodeURI(url);
+        });
 
 
-        if (banners && banners.length) {
-            showRandom();
-
+        if (images && images.length) {
+            $.gallery.setImages(images);
         } else {
             $.gallery.getView().visible = false;
-
         }
     }
 
-    require('network').getBanner(function(p_data) {
-
-    });
+    require('network').getBanner(onData);
 
     $.gallery.getView().height = Alloy.Globals.deviceWidth * 0.285;
+    $.gallery.getView().width = Alloy.Globals.deviceWidth;
+
+    function updateIndex(e) {
+        index = e.index;
+    }
+
+    $.gallery.addEventListener('imageChanged', updateIndex);
+    $.gallery.addEventListener('click', function(e) {
+        //$.gallery.removeEventListener('imageChanged',updateIndex);
+        openDetail();
+    });
 })(arguments[0] || {});
 
 

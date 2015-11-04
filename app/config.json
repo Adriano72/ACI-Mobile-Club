@@ -15,7 +15,7 @@
     "AciGeo_CacheDurationHours": "24",
     "AciGeo_CacheDistanceRangeMeters": "1000",
    
-    "BannerRotationTime": "20000",
+    "BannerRotationTime": "5000",
     "DevMode": false,
     "SysReport_Enabled": false,
     "SysReport_Email": "mobile@informatica.aci.it",
