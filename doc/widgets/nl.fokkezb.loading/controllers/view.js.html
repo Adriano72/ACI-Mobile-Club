@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>view.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/nl.fokkezb.loading/controllers/view.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>view.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">useImages</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">cancelable</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="nx">show</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="nx">hide</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">update</span> <span class="o">=</span> <span class="nx">update</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">cancel</span> <span class="o">=</span> <span class="nx">cancel</span><span class="p">;</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="s1">&#39;visible&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">loadingMask</span><span class="p">.</span><span class="nx">visible</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">visible</span> <span class="o">?</span> <span class="nx">show</span><span class="p">()</span> <span class="o">:</span> <span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">loadingMask</span><span class="p">.</span><span class="nx">images</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">useImages</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">loadingInner</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">loadingIndicator</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">loadingIndicator</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">loadingInner</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">loadingImages</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">loadingImages</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">args</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+
+<span class="kd">function</span> <span class="nx">update</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">_message</span> <span class="o">||</span> <span class="nx">L</span><span class="p">(</span><span class="s1">&#39;loadingMessage&#39;</span><span class="p">,</span> <span class="s1">&#39;Loading...&#39;</span><span class="p">);</span>
+    <span class="nx">cancelable</span> <span class="o">=</span> <span class="nx">_cancelable</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">cancel</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">cancelable</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">cancelable</span><span class="p">();</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;cancel&#39;</span><span class="p">);</span>
+
+        <span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">show</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">update</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">);</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">loadingMask</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">useImages</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">loadingImages</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">loadingIndicator</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">hide</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">loadingMask</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

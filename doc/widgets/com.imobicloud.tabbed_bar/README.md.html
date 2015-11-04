@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>README.md</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/com.imobicloud.tabbed_bar/README.md", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#%23%20tabbed%20bar"># Tabbed Bar</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="docs markdown">
+<div class="pilwrap" id="%23%20tabbed%20bar">
+  <h1>
+    <a href="#%23%20tabbed%20bar" name="%23%20tabbed%20bar" class="pilcrow">&#182;</a>
+    # Tabbed Bar
+  </h1>
+</div>
+
+
+<p>Tabbed bar for iOS and Android</p>
+
+<p>xml</p>
+
+
+<div class="highlight"><pre><code><span class="o">&lt;</span><span class="nx">Widget</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;tabbedBar&quot;</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;widget&quot;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;com.imobicloud.tabbed_bar&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+
+
+
+<p>tss</p>
+
+
+<div class="highlight"><pre><code><span class="s2">&quot;.tabbed-bar&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">15</span> <span class="p">}</span>
+<span class="s2">&quot;.tabbed-bar[platform=android]&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="nx">borderWidth</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">borderColor</span><span class="o">:</span> <span class="s1">&#39;#007aff&#39;</span><span class="p">,</span> <span class="nx">borderRadius</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">layout</span><span class="o">:</span> <span class="s1">&#39;horizontal&#39;</span> <span class="p">}</span>
+    <span class="s2">&quot;.tabbed-bar-button&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#007aff&#39;</span><span class="p">,</span> <span class="nx">font</span><span class="o">:</span> <span class="p">{</span> <span class="nx">fontSize</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span> <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;transparent&#39;</span> <span class="p">}</span>
+    <span class="s2">&quot;.tabbed-bar-button-active&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;#007aff&#39;</span><span class="p">,</span> <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#fff&#39;</span> <span class="p">}</span>
+</code></pre></div>
+
+
+
+<p>js </p>
+
+
+<div class="highlight"><pre><code><span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="nx">index</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">labels</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;Deep&#39;</span><span class="p">,</span> <span class="s1">&#39;Normal&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span> <span class="p">],</span>
+    <span class="nx">styles</span><span class="o">:</span> <span class="p">{</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">15</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">getIndex</span><span class="p">();</span>
+</code></pre></div>
+
+</div>
+  </div>
+</body>
+</html>

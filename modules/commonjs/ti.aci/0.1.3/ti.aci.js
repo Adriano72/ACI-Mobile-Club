@@ -2637,6 +2637,7 @@ exports.extendObjectWithConfigurator = function(o) {
 }).call(this,require("--console--"))
 },{"--console--":4,"./utils":18}],12:[function(require,module,exports){
 /**
+ * # EventManager
  * Modulo che estrae la gestione degli eventi
  * Si usa per implementare il meccanismo ad eventi in altri moduli
  */
@@ -2644,6 +2645,7 @@ exports.extendObjectWithConfigurator = function(o) {
 
 
 /**
+ * ## EventManagerScope
  * Definisce lo scope di un gestore di eventi
  */
 function EventManagerScope() {
@@ -2655,8 +2657,8 @@ function EventManagerScope() {
 
     /**
      * Getter per gli handler
-     * @param  {string} type nome dell'evento
-     * @return {array}      array degli handler associati all'evento
+     * @param {string} type nome dell'evento
+     * @return {array} array degli handler associati all'evento
      */
     this.getHandlers = function(type) {
         return handlers[type] || [];
@@ -2664,8 +2666,8 @@ function EventManagerScope() {
 
     /**
      * Setter per gli handler
-     * @param  {string} type nome dell'evento
-     * @return {array}   h   array degli handler associati all'evento
+     * @param {string} type nome dell'evento
+     * @return {array} h array degli handler associati all'evento
      */
     this.setHandlers = function(type, h) {
         handlers[type] = h;
@@ -2674,9 +2676,10 @@ function EventManagerScope() {
 }
 
 /**
+ * ### addEventListener
  * Aggiunge un handler ad un evento
- * @param {string}   type nome dell'evento
- * @param {Function} cb   handler
+ * @param {string} type nome dell'evento
+ * @param {Function} cb handler
  */
 EventManagerScope.prototype.addEventListener = function(type, cb) {
     //aggiungo la callback al dizionario degli handler
@@ -2690,9 +2693,10 @@ EventManagerScope.prototype.addEventListener = function(type, cb) {
 };
 
 /**
+ * ### removeEventListener
  * Rimuove un handler da un evento
- * @param {string}   type nome dell'evento
- * @param {Function} cb   handler
+ * @param {string} type nome dell'evento
+ * @param {Function} cb handler
  */
 EventManagerScope.prototype.removeEventListener = function(type, cb) {
     //rimuovo la callback dal dizionario degli handler
@@ -2707,8 +2711,9 @@ EventManagerScope.prototype.removeEventListener = function(type, cb) {
 };
 
 /**
- * Aggiunge TUTTI gli handler di un evento
- * @param {string}   type nome dell'evento
+ * ### removeAllEventListeners
+ * Rimuove TUTTI gli handler di un evento
+ * @param {string} type nome dell'evento
  */
 EventManagerScope.prototype.removeAllEventListeners = function(type) {
     //rimuovo TUTTE le callback dal dizionario degli handler
@@ -2716,8 +2721,9 @@ EventManagerScope.prototype.removeAllEventListeners = function(type) {
 };
 
 /**
+ * ### fireEvent
  * Scatena un evento
- * @param {string}   type nome dell'evento
+ * @param {string} type nome dell'evento
  * @param {object} args argomenti da passare agli handler
  */
 EventManagerScope.prototype.fireEvent = function(type, args) {
@@ -2733,11 +2739,12 @@ EventManagerScope.prototype.fireEvent = function(type, args) {
 
 
 //
-// PUBLIC API
+// ## PUBLIC API
 // 
 
 
 /**
+ * ### createEventManager
  * Factory method per un nuovo event manager
  * @return {EventManagerScope} oggetto event manager
  */
@@ -2748,17 +2755,23 @@ exports.createEventManager = function() {
 };
 
 /**
+ * ### extendObjectWithEventManager
  * Dato un oggetto, lo estende con le funzionalità della gestione eventi
- * @param  {object} o oggetto da estendere
+ * @param {object} o oggetto da estendere
+ * @param {EventManagerScope} em (opzionale) event manager da cui estendere i metodi. Se non definito, viene creato un nuovo event manager implicito
  * @return {object} lo stesso oggetto, esteso
  */
-exports.extendObjectWithEventManager = function(o) {
-    var em = new EventManagerScope();
+exports.extendObjectWithEventManager = function(o, em) {
+    em = em || new EventManagerScope();
 
-    o.addEventListener = em.addEventListener;
+
+    _(['addEventListener', 'removeEventListener', 'removeAllEventListeners', 'fireEvent']).each(function(e) {
+        o[e] = _(em[e]).bind(em);
+    });
+    /*    o.addEventListener = em.addEventListener;
     o.removeEventListener = em.removeEventListener;
     o.removeAllEventListeners = em.removeAllEventListeners;
-    o.fireEvent = em.fireEvent;
+    o.fireEvent = em.fireEvent; */
 
     return o;
 };
@@ -2777,7 +2790,8 @@ exports.PushNotification = require('./pushnotification');
 exports.EventManager = require('./eventmanager');
 exports.REST = require('./rest');
 exports.Services = require('./services');
-},{"./eventmanager":12,"./pushnotification":14,"./rest":15,"./services":17}],14:[function(require,module,exports){
+exports.Utils = require('./utils');
+},{"./eventmanager":12,"./pushnotification":14,"./rest":15,"./services":17,"./utils":18}],14:[function(require,module,exports){
 (function (console){
 /**
  * Modulo per la gestione delle push notification
@@ -3446,12 +3460,18 @@ exports.puntiAci = puntiAci;
 },{"../configurator":11,"../rest":15,"../utils":18,"underscore":8}],17:[function(require,module,exports){
 exports.acigeo = require('./acigeo');
 },{"./acigeo":16}],18:[function(require,module,exports){
+/**
+ * # Utils
+ * Modulo contente funzioni di utilità utilizzate nella libreria ti.aci e nelle applicazioni
+ */
+
 var _ = require('underscore');
 
 /**
+ * ## is
  * Piccolo stub che controlla se una variabile appartiene o meno ad un tipo
- * @param  {string}  type tipo da controllare
- * @param  {object}  obj  valore da controllare
+ * @param {string} type tipo da controllare
+ * @param {object} obj  valore da controllare
  * @return {Boolean}      true se obj è di tipo type, false altrimenti
  */
 exports.is = function(type, obj) {
@@ -3460,6 +3480,7 @@ exports.is = function(type, obj) {
 
 
 /**
+ * ## setHashValue
  * assegna il valore in input ad un hash. Se la chiave descrive un perscorso sconosciuto, vengono creati gli hash di livello intermedio
  * @param {object} hash  hashset al quale assegnare la chiave
  * @param {string} key   chiave del valore da inserire, ammette notazione puntata gerarchica (es: "la.mia.chiave" corrisponde a hash.la.mia.chiave)
@@ -3487,7 +3508,8 @@ exports.setHashValue = function(hash, key, value, escape) {
 
 
 /**
- * recupera il valore da un hash. Se la chiave descrive un perscorso sconosciuto, ritorna undefined
+ * ## getHashValue
+ * recupera il valore da un hash. Se la chiave descrive un perscorso sconosciuto, ritorna `undefined`
  * @param {object} hash  hashset dal quale leggere la chiave
  * @param {string} key   chiave del valore da leggere, ammette notazione puntata gerarchica (es: "la.mia.chiave" corrisponde a hash.la.mia.chiave)
  * @param {string} escape (opzionale) stringa di escape. se key comincia con questa stringa, non viene considerata la notazione puntata. default: "\\"
@@ -3517,9 +3539,10 @@ exports.getHashValue = function(hash, key, escape) {
 
 
 /**
+ * ## mapHash
  * Dato un hash di parametri, ottiene un nuovo hash. La trasformazione è basata su un hash di regole. Se per una chiave dello hash sorgente non esiste una regola, la chiave viene replicata
- * @param  {object} sourceHash       hash sorgente
- * @param  {object} trasformationMap    hash che contiene le regole di trasformazione. É formato da coppie (chiave,lambda)
+ * @param {object} sourceHash       hash sorgente
+ * @param {object} trasformationMap    hash che contiene le regole di trasformazione. É formato da coppie (chiave,lambda)
  *                                        - chiave: identifica la chiave in sourceMap sulla quale eseguire la trasformazione
  *                                        - lambda: definisce la trasformazione da applicare. Può essere di due tipi:
  *                                                  - function: una funzione con firma (mappedHash, value) dove mappedHash è lo hash che sarà derivato da sourceHash e value è il valore di sourceHash[chiave]. La funzione non ritorna nulla, ma modifica il contenuto di mappedHash
@@ -3558,5 +3581,61 @@ exports.mapHash = function(sourceHash, trasformationMap) {
     return mappedHash;
 
 }
+
+
+/**
+ * ## proxyProperties
+ * Dato un elenco di properietà definisce delle property get/set sull'oggeto proxyObj in modo tale che esse leggano/scrivano di fatto sull'oggetto targetObj.
+ * Utile quando un oggetto vuole esporre delle proprietà di un oggetto contenuto al suo interno
+ * @param {array} properties   elenco di proprietà da mappare. Ogni elemento può essere:
+ *                                - string: nome della proprietà, vengono definiti dei metodi get/set impliciti
+ *                                - hash: un dizionario contenente tre chiavi:
+ *                                    - name: nome della proprietà
+ *                                    - get (opzionale): metodo get da associare. Se non specificato, la proprietà è writeonly
+ *                                    - set (opzionale): metodo set da associare. Se non specificato, la proprietà è readonly
+ * @param {object} proxyObj   oggetto sulle quali sono definite le proprietà
+ * @param {object} targetObj  oggetto del quale si vogliono esporre le funzionalità
+ */
+exports.proxyProperties = function(properties, proxyObj, targetObj) {
+
+    _(properties).each(function(prop) {
+
+        //se la property non è definita, non faccio nulla
+        if (prop) {
+
+            //nome della proprietà
+            var name;
+            //definizione di attributi e metodi della proprietà
+            var def;
+
+            //caso string: uso get/set impliciti
+            if (_.isString(prop)) {
+                name = prop;
+                def = {
+                    get: function() {
+                        return targetObj[prop];
+                    },
+                    set: function(v) {
+                        targetObj[prop] = v;
+                    }
+                };
+            }
+            //caso hash: uso get/set custom
+            else if (prop.name) {
+                name = prop.name;
+                def = {
+                    get: prop.get,
+                    set: prop.set
+                };
+            }
+
+            //bind della property all'oggetto `proxyObj`
+            Object.defineProperty(proxyObj, name, def);
+        }
+    });
+
+
+
+};
 },{"underscore":8}]},{},[13])(13)
 });

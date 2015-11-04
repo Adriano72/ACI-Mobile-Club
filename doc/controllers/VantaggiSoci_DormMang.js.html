@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VantaggiSoci_DormMang.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/VantaggiSoci_DormMang.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>VantaggiSoci_DormMang.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">abx</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;com.alcoapps.actionbarextras&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">openWin</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">init1</span><span class="p">();</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>$.windowtitle.text = winTitle;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>aggiorna i dati solo se non sono più validi</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;Stiamo cercando&#39;</span><span class="p">);</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">dormireMangiare</span><span class="p">.</span><span class="nx">fetchIfChanged</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cached</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">updateUI</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">searchBar</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">init1</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">abx</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">abx</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s2">&quot;Dormire &amp; Mangiare&quot;</span><span class="p">;</span>
+    <span class="nx">abx</span><span class="p">.</span><span class="nx">titleFont</span> <span class="o">=</span> <span class="s2">&quot;ACI Type Regular.otf&quot;</span><span class="p">;</span>
+    <span class="nx">abx</span><span class="p">.</span><span class="nx">titleColor</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">palette</span><span class="p">.</span><span class="nx">blu</span><span class="p">;</span>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">init2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">init2</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">activity</span><span class="p">.</span><span class="nx">invalidateOptionsMenu</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">dataTransform</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">attrs</span> <span class="o">=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">indirizzo</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">street</span><span class="p">;</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">distance</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">formatDistance</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">distance</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">ind2</span> <span class="o">=</span> <span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">postalCode</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">locality</span><span class="p">.</span><span class="nx">longName</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">location</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">location</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">longitude</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">location</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">tel</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">tel</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">email</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">immagine</span> <span class="o">=</span> <span class="nb">encodeURI</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">bannerBaseURL</span> <span class="o">+</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">agreement_id</span><span class="p">.</span><span class="nx">images</span><span class="p">.</span><span class="nx">logo</span><span class="p">);</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">cid</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">attrs</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">dettaglioConvenzione</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">selectedConv</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">dormireMangiare</span><span class="p">.</span><span class="nx">getByCid</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">rowData</span><span class="p">.</span><span class="nx">modelId</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">dettConvenzione</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_Dettaglio_Convenzione&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="o">:</span> <span class="nx">selectedConv</span><span class="p">,</span>
+        <span class="nx">headerImg</span><span class="o">:</span> <span class="s2">&quot;logoDormireMangiare.png&quot;</span>
+    <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">dettConvenzione</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">openNavigation</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">userLoc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">mapsServiceURL</span> <span class="o">=</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;http://maps.google.com/maps?t=m&amp;saddr=&#39;</span> <span class="o">:</span> <span class="s1">&#39;http://maps.apple.com/maps?t=m&amp;saddr=&#39;</span><span class="p">;</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;NAVIGATION DATA: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lat</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lon</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">longitude</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="nx">mapsServiceURL</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">longitude</span> <span class="o">+</span> <span class="s1">&#39;&amp;daddr=&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lat</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lon</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">mostraMappa</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">mapWin</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;mapView&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">collection</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">dormireMangiare</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">(),</span>
+        <span class="nx">pin</span><span class="o">:</span> <span class="s2">&quot;pin_DormireMangiare.png&quot;</span><span class="p">,</span>
+        <span class="nx">titolo</span><span class="o">:</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;Dormire &amp; Mangiare&quot;</span> <span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">titleControl</span><span class="p">.</span><span class="nx">backgroundImage</span><span class="p">,</span>
+        <span class="nx">homeIcon</span><span class="o">:</span> <span class="s2">&quot;ico_dormiremangiare_blu.png&quot;</span>
+
+    <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">mapWin</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">togglePreferiti</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">openDettagli</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

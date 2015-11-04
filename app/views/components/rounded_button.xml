@@ -1,0 +1,13 @@
+<Alloy>
+	<View id="wrapper" onClick="onClick">
+		<View id="content" >
+			<View id="iconWrapper">
+				<ImageView id="icon"  />
+			</View>
+			<View id="textWrapper" >
+				<Label id="primaryText" ></Label>
+				<Label id="secondaryText" ></Label>
+			</View>
+		</View>
+	</View>
+</Alloy>

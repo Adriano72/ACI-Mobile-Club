@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>utility-tessere.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/utility-tessere.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>utility-tessere.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Modulo di utility per la gestione delle tessere</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">TIPO_DEFAULT</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">;</span>
+
+
+<span class="kd">var</span> <span class="nx">TIPO_TESSERA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">SISTEMA</span><span class="o">:</span> <span class="s1">&#39;sistema&#39;</span><span class="p">,</span>
+    <span class="nx">DRIVER</span><span class="o">:</span> <span class="s1">&#39;driver&#39;</span><span class="p">,</span>
+    <span class="nx">CLUB</span><span class="o">:</span> <span class="s1">&#39;club&#39;</span><span class="p">,</span>
+    <span class="nx">GOLD</span><span class="o">:</span> <span class="s1">&#39;gold&#39;</span><span class="p">,</span>
+    <span class="nx">OKKEI</span><span class="o">:</span> <span class="s1">&#39;okkei&#39;</span><span class="p">,</span>
+    <span class="nx">ONE</span><span class="o">:</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span>
+    <span class="nx">STORICO1</span><span class="o">:</span> <span class="s1">&#39;storico1&#39;</span><span class="p">,</span>
+    <span class="nx">STORICO2</span><span class="o">:</span> <span class="s1">&#39;storico2&#39;</span><span class="p">,</span>
+    <span class="nx">VINTAGE</span><span class="o">:</span> <span class="s1">&#39;vintage&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+
+<span class="kd">var</span> <span class="nx">CODICI_TESSERA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">SISTEMA</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;FAM&#39;</span><span class="p">,</span> <span class="s1">&#39;DIP&#39;</span><span class="p">,</span> <span class="s1">&#39;SOC&#39;</span><span class="p">,</span> <span class="s1">&#39;SOG&#39;</span><span class="p">,</span> <span class="s1">&#39;SMA&#39;</span><span class="p">],</span>
+    <span class="nx">DRIVER</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;CON&#39;</span><span class="p">,</span> <span class="s1">&#39;DRV&#39;</span><span class="p">],</span>
+    <span class="nx">CLUB</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;CLN&#39;</span><span class="p">,</span> <span class="s1">&#39;CLG&#39;</span><span class="p">,</span> <span class="s1">&#39;CLO&#39;</span><span class="p">],</span>
+    <span class="nx">OKKEI</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;GIO&#39;</span><span class="p">,</span> <span class="s1">&#39;GIA&#39;</span><span class="p">],</span>
+    <span class="nx">ONE</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;UNO&#39;</span><span class="p">,</span> <span class="s1">&#39;UNG&#39;</span><span class="p">],</span>
+    <span class="nx">GOLD</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;GDI&#39;</span><span class="p">,</span> <span class="s1">&#39;GFA&#39;</span><span class="p">,</span> <span class="s1">&#39;GSO&#39;</span><span class="p">,</span> <span class="s1">&#39;GMA&#39;</span><span class="p">],</span>
+    <span class="nx">STORICO1</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;STA&#39;</span><span class="p">],</span>
+    <span class="nx">STORICO2</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;STF&#39;</span><span class="p">],</span>
+    <span class="nx">VINTAGE</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;VIN&#39;</span><span class="p">],</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">getTipo</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+
+
+
+    <span class="kd">var</span> <span class="nx">tipo</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="nx">CODICI_TESSERA</span><span class="p">).</span><span class="nx">chain</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">nome</span><span class="o">:</span> <span class="nx">k</span><span class="p">,</span>
+                <span class="nx">codici</span><span class="o">:</span> <span class="nx">a</span>
+            <span class="p">};</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">_</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">codici</span><span class="p">).</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">value</span><span class="p">();</span>
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">tipo</span> <span class="o">&amp;&amp;</span> <span class="nx">tipo</span><span class="p">.</span><span class="nx">nome</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">TIPO_TESSERA</span><span class="p">[</span><span class="nx">tipo</span><span class="p">.</span><span class="nx">nome</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;tipo default&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">TIPO_DEFAULT</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>ritorna il set di immagini a disposizione per la tessera specificata dal codice
+il set di immagini include:
+ frontV -> frontale verticale
+ frontH -> frontale orizzontale
+ backV  -> retro verticale
+ exporedV -> frontale verticale della tessera scaduta</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>string code codice di tre lettere che identifica il tipo tessera</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getImageSet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="kd">var</span> <span class="nx">tipo</span> <span class="o">=</span> <span class="nx">getTipo</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;TIPO TESSeRA&#39;</span><span class="p">,</span> <span class="nx">tipo</span><span class="p">,</span> <span class="nx">code</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">frontV</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;tessera_&#39;</span><span class="p">,</span> <span class="nx">tipo</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="nx">frontH</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;tessera_&#39;</span><span class="p">,</span> <span class="nx">tipo</span><span class="p">,</span> <span class="s1">&#39;_h&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="nx">retroV</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;tessera_&#39;</span><span class="p">,</span> <span class="nx">tipo</span><span class="p">,</span> <span class="s1">&#39;_retro&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="nx">expiredV</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;tessera_&#39;</span><span class="p">,</span> <span class="nx">tipo</span><span class="p">,</span> <span class="s1">&#39;_scaduta&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="p">};</span>
+
+<span class="p">};</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>elenco dei serivzi disponibili per la tessera
+persona, casa, auto</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} code [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTesseraAssitenza</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">a2</span> <span class="o">=</span> <span class="s1">&#39;persone&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">a3</span> <span class="o">=</span> <span class="s1">&#39;casa&#39;</span><span class="p">;</span>
+
+
+    <span class="kd">var</span> <span class="nx">tipo</span> <span class="o">=</span> <span class="nx">getTipo</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span>
+
+
+    <span class="kd">var</span> <span class="nx">servizi</span><span class="p">;</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">tipo</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">SISTEMA</span><span class="o">:</span>
+            <span class="nx">servizi</span> <span class="o">=</span> <span class="p">[</span><span class="nx">a1</span><span class="p">,</span> <span class="nx">a2</span><span class="p">];</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">DRIVER</span><span class="o">:</span>
+            <span class="nx">servizi</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">ONE</span><span class="o">:</span>
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">OKKEI</span><span class="o">:</span>
+            <span class="nx">servizi</span> <span class="o">=</span> <span class="p">[</span><span class="nx">a1</span><span class="p">];</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">CLUB</span><span class="o">:</span>
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">GOLD</span><span class="o">:</span>
+            <span class="nx">servizi</span> <span class="o">=</span> <span class="p">[</span><span class="nx">a1</span><span class="p">,</span> <span class="nx">a2</span><span class="p">,</span> <span class="nx">a3</span><span class="p">];</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">STORICO1</span><span class="o">:</span>
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">STORICO2</span><span class="o">:</span>
+        <span class="k">case</span> <span class="nx">TIPO_TESSERA</span><span class="p">.</span><span class="nx">VINTAGE</span><span class="o">:</span>
+            <span class="nx">servizi</span> <span class="o">=</span> <span class="p">[</span><span class="nx">a1</span><span class="p">,</span> <span class="nx">a2</span><span class="p">];</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">default</span><span class="o">:</span>
+            <span class="nx">servizi</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">servizi</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

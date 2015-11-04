@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>alloy.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/alloy.js", defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h2">
+        <a href="#alloy.globals">Alloy.Globals</a>
+      </div>
+      <div class="heading h3">
+        <a href="#islogged">isLogged</a>
+      </div>
+      <div class="heading h3">
+        <a href="#islongdevice">isLongDevice</a>
+      </div>
+      <div class="heading h3">
+        <a href="#palette">palette</a>
+      </div>
+      <div class="heading h3">
+        <a href="#font">font</a>
+      </div>
+      <div class="heading h3">
+        <a href="#fontsize">fontSize</a>
+      </div>
+      <div class="heading h2">
+        <a href="#collections">Collections</a>
+      </div>
+      <div class="heading h3">
+        <a href="#servizigic">serviziGIC</a>
+      </div>
+      <div class="heading h3">
+        <a href="#servizigicpos">serviziGICpos</a>
+      </div>
+      <div class="heading h3">
+        <a href="#province">province</a>
+      </div>
+      <div class="heading h3">
+        <a href="#tessere">tessere</a>
+      </div>
+      <div class="heading h3">
+        <a href="#banner">banner</a>
+      </div>
+      <div class="heading h3">
+        <a href="#automobileclub">automobileClub</a>
+      </div>
+      <div class="heading h3">
+        <a href="#delegazioni">delegazioni</a>
+      </div>
+      <div class="heading h3">
+        <a href="#pra">pra</a>
+      </div>
+      <div class="heading h3">
+        <a href="#urp">urp</a>
+      </div>
+      <div class="heading h3">
+        <a href="#tasse">tasse</a>
+      </div>
+      <div class="heading h3">
+        <a href="#demolitori">demolitori</a>
+      </div>
+      <div class="heading h3">
+        <a href="#autoscuole">autoscuole</a>
+      </div>
+      <div class="heading h3">
+        <a href="#acipoint">acipoint</a>
+      </div>
+      <div class="heading h3">
+        <a href="#dormiremangiare">dormireMangiare</a>
+      </div>
+      <div class="heading h3">
+        <a href="#casa">casa</a>
+      </div>
+      <div class="heading h3">
+        <a href="#auto">auto</a>
+      </div>
+      <div class="heading h3">
+        <a href="#benesseresalute">benessereSalute</a>
+      </div>
+      <div class="heading h3">
+        <a href="#mobilita">mobilita</a>
+      </div>
+      <div class="heading h3">
+        <a href="#tempolibero">tempoLibero</a>
+      </div>
+      <div class="heading h3">
+        <a href="#shopping">shopping</a>
+      </div>
+      <div class="heading h3">
+        <a href="#culturaspettacoli">culturaSpettacoli</a>
+      </div>
+      <div class="heading h3">
+        <a href="#noleggitrasporti">noleggiTrasporti</a>
+      </div>
+      <div class="heading h3">
+        <a href="#sporteventi">sportEventi</a>
+      </div>
+      <div class="heading h3">
+        <a href="#altriservizi">altriServizi</a>
+      </div>
+      <div class="heading h2">
+        <a href="#onapplicationstart">onApplicationStart</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>alloy.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>The contents of this file will be executed before any of
+your view controllers are ever executed, including the index.
+You have access to all functionality on the <code>Alloy</code> namespace.</p>
+
+<p>This is a great place to do any initialization for your app
+or create any global variables/functions that you'd like to
+make available throughout your app. You can easily make things
+accessible globally by attaching them to the <code>Alloy.Globals</code>
+object. For example:</p>
+
+<p>Alloy.Globals.someGlobalFunction = function(){};</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="alloy.globals">
+  <h2>
+    <a href="#alloy.globals" name="alloy.globals" class="pilcrow">&#182;</a>
+    Alloy.Globals
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">rememberMe</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">DevMode</span> <span class="o">=</span> <span class="nb">Boolean</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">DevMode</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Alloy.CFG.DevMode&#39;</span><span class="p">,</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">DevMode</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Alloy.Globals.DevMode&#39;</span><span class="p">,</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">DevMode</span><span class="p">);</span>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">tesserafontSize</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">platformHeight</span> <span class="o">&lt;=</span> <span class="mi">480</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;11dp&#39;</span> <span class="o">:</span> <span class="s1">&#39;15dp&#39;</span><span class="p">;</span>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="s2">&quot;nl.fokkezb.loading&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">logicalDensityFactor</span> <span class="o">=</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">logicalDensityFactor</span><span class="p">;</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">platformWidth</span> <span class="o">/</span> <span class="p">(</span><span class="nx">logicalDensityFactor</span> <span class="o">||</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidthHalf</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">platformHeight</span> <span class="o">/</span> <span class="p">(</span><span class="nx">logicalDensityFactor</span> <span class="o">||</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeightHalf</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">menuButtonsWidth</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidthHalf</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">menuButtonsHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">22</span> <span class="o">:</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">20</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Alloy.Globals.baseURL = "<a href='http://10.64.4.199:9900/api'>http://10.64.4.199:9900/api</a>";</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BaseUrl</span><span class="p">;</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">bannerBaseURL</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BannerBaseUrl</span><span class="p">;</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">PuntiAciBannerBaseURL</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_PuntiAciBannerBaseUrl</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;platformWidth &#39;</span><span class="p">,</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">platformWidth</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;logicalDensityFactor &#39;</span><span class="p">,</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">logicalDensityFactor</span><span class="p">);</span>
+
+<span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;globals 2: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">));</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="islogged">
+  <h3>
+    <a href="#islogged" name="islogged" class="pilcrow">&#182;</a>
+    isLogged
+  </h3>
+</div>
+
+
+<p>questa proprietà globale ci dice se l'utente è loggato o meno</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">,</span> <span class="s2">&quot;isLogged&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">isLogged</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="islongdevice">
+  <h3>
+    <a href="#islongdevice" name="islongdevice" class="pilcrow">&#182;</a>
+    isLongDevice
+  </h3>
+</div>
+
+
+<p>Questa proprietà globale ci dice se il device ha una proporzione larghezza/altezza allungata o meno.
+Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">,</span> <span class="s2">&quot;isLongDevice&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="palette">
+  <h3>
+    <a href="#palette" name="palette" class="pilcrow">&#182;</a>
+    palette
+  </h3>
+</div>
+
+
+<p>palette di colori da utilizzare nell'app</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">palette</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">nero</span><span class="o">:</span> <span class="s2">&quot;#000000&quot;</span><span class="p">,</span>
+    <span class="nx">blu</span><span class="o">:</span> <span class="s2">&quot;#003772&quot;</span><span class="p">,</span>
+    <span class="nx">celeste</span><span class="o">:</span> <span class="s2">&quot;#006cb2&quot;</span><span class="p">,</span>
+    <span class="nx">grigio</span><span class="o">:</span> <span class="s2">&quot;#d1d0d5&quot;</span><span class="p">,</span>
+    <span class="nx">grigio_chiaro</span><span class="o">:</span> <span class="s2">&quot;#f1f0f5&quot;</span><span class="p">,</span>
+    <span class="nx">grigio_scuro</span><span class="o">:</span> <span class="s2">&quot;#888888&quot;</span><span class="p">,</span>
+    <span class="nx">rosso</span><span class="o">:</span> <span class="s2">&quot;#e32b00&quot;</span><span class="p">,</span>
+    <span class="nx">bianco_sporco</span><span class="o">:</span> <span class="s2">&quot;#f9f9f9&quot;</span><span class="p">,</span> <span class="c1">//header e </span>
+    <span class="nx">bianco</span><span class="o">:</span> <span class="s2">&quot;#ffffff&quot;</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="font">
+  <h3>
+    <a href="#font" name="font" class="pilcrow">&#182;</a>
+    font
+  </h3>
+</div>
+
+
+<p>I diversi font definiti nell'app</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">ACIType_Bold</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;ACIType-Bold&#39;</span> <span class="o">:</span> <span class="s1">&#39;ACI Type Bold&#39;</span><span class="p">,</span>
+    <span class="nx">ACIType</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;ACIType&#39;</span> <span class="o">:</span> <span class="s1">&#39;ACI Type Regular&#39;</span><span class="p">,</span>
+    <span class="nx">PTSans_NarrowBold</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;PTSans-NarrowBold&#39;</span> <span class="o">:</span> <span class="s1">&#39;PT_Sans-Narrow-Web-Bold&#39;</span><span class="p">,</span>
+    <span class="nx">PTSans_Narrow</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;PTSans-Narrow&#39;</span> <span class="o">:</span> <span class="s1">&#39;PT_Sans-Narrow-Web-Regular&#39;</span><span class="p">,</span>
+    <span class="nx">PTSans_Bold</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;PTSans-Bold&#39;</span> <span class="o">:</span> <span class="s1">&#39;PT_Sans-Web-Bold&#39;</span><span class="p">,</span>
+    <span class="nx">PTSans</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;PTSans&#39;</span> <span class="o">:</span> <span class="s1">&#39;PT_Sans-Web-Regular&#39;</span>
+
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="fontsize">
+  <h3>
+    <a href="#fontsize" name="fontsize" class="pilcrow">&#182;</a>
+    fontSize
+  </h3>
+</div>
+
+
+<p>Le classi di grandezza dei testi dell'app</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">baseFontSize</span> <span class="o">=</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="mi">12</span> <span class="o">:</span> <span class="mi">14</span><span class="p">;</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">XS</span><span class="o">:</span> <span class="nx">baseFontSize</span><span class="p">,</span>
+    <span class="nx">S</span><span class="o">:</span> <span class="nx">baseFontSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">M</span><span class="o">:</span> <span class="nx">baseFontSize</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nx">L</span><span class="o">:</span> <span class="nx">baseFontSize</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nx">XL</span><span class="o">:</span> <span class="nx">baseFontSize</span> <span class="o">+</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="nx">XXL</span><span class="o">:</span> <span class="nx">baseFontSize</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="nx">XXXL</span><span class="o">:</span> <span class="nx">baseFontSize</span> <span class="o">+</span> <span class="mi">9</span>
+<span class="p">};</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="collections">
+  <h2>
+    <a href="#collections" name="collections" class="pilcrow">&#182;</a>
+    Collections
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="servizigic">
+  <h3>
+    <a href="#servizigic" name="servizigic" class="pilcrow">&#182;</a>
+    serviziGIC
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;serviziGIC&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="servizigicpos">
+  <h3>
+    <a href="#servizigicpos" name="servizigicpos" class="pilcrow">&#182;</a>
+    serviziGICpos
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;serviziGICpos&quot;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="province">
+  <h3>
+    <a href="#province" name="province" class="pilcrow">&#182;</a>
+    province
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;province&quot;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tessere">
+  <h3>
+    <a href="#tessere" name="tessere" class="pilcrow">&#182;</a>
+    tessere
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;tessere&quot;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="banner">
+  <h3>
+    <a href="#banner" name="banner" class="pilcrow">&#182;</a>
+    banner
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;banner&quot;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="automobileclub">
+  <h3>
+    <a href="#automobileclub" name="automobileclub" class="pilcrow">&#182;</a>
+    automobileClub
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;automobileClub&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="delegazioni">
+  <h3>
+    <a href="#delegazioni" name="delegazioni" class="pilcrow">&#182;</a>
+    delegazioni
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;delegazioni&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="pra">
+  <h3>
+    <a href="#pra" name="pra" class="pilcrow">&#182;</a>
+    pra
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;pra&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="urp">
+  <h3>
+    <a href="#urp" name="urp" class="pilcrow">&#182;</a>
+    urp
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;urp&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tasse">
+  <h3>
+    <a href="#tasse" name="tasse" class="pilcrow">&#182;</a>
+    tasse
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;tasse&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="demolitori">
+  <h3>
+    <a href="#demolitori" name="demolitori" class="pilcrow">&#182;</a>
+    demolitori
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;demolitori&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="autoscuole">
+  <h3>
+    <a href="#autoscuole" name="autoscuole" class="pilcrow">&#182;</a>
+    autoscuole
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;autoscuole&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="acipoint">
+  <h3>
+    <a href="#acipoint" name="acipoint" class="pilcrow">&#182;</a>
+    acipoint
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;acipoint&quot;</span><span class="p">);</span>
+
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">tempCollection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="dormiremangiare">
+  <h3>
+    <a href="#dormiremangiare" name="dormiremangiare" class="pilcrow">&#182;</a>
+    dormireMangiare
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;dormireMangiare&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="casa">
+  <h3>
+    <a href="#casa" name="casa" class="pilcrow">&#182;</a>
+    casa
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;casa&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="auto">
+  <h3>
+    <a href="#auto" name="auto" class="pilcrow">&#182;</a>
+    auto
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="benesseresalute">
+  <h3>
+    <a href="#benesseresalute" name="benesseresalute" class="pilcrow">&#182;</a>
+    benessereSalute
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;benessereSalute&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="mobilita">
+  <h3>
+    <a href="#mobilita" name="mobilita" class="pilcrow">&#182;</a>
+    mobilita
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;mobilita&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="tempolibero">
+  <h3>
+    <a href="#tempolibero" name="tempolibero" class="pilcrow">&#182;</a>
+    tempoLibero
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;tempoLibero&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="shopping">
+  <h3>
+    <a href="#shopping" name="shopping" class="pilcrow">&#182;</a>
+    shopping
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;shopping&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="culturaspettacoli">
+  <h3>
+    <a href="#culturaspettacoli" name="culturaspettacoli" class="pilcrow">&#182;</a>
+    culturaSpettacoli
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;culturaSpettacoli&quot;</span><span class="p">);</span> <span class="c1">//da togliere</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="noleggitrasporti">
+  <h3>
+    <a href="#noleggitrasporti" name="noleggitrasporti" class="pilcrow">&#182;</a>
+    noleggiTrasporti
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;noleggiTrasporti&quot;</span><span class="p">);</span> <span class="c1">//da togliere</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="sporteventi">
+  <h3>
+    <a href="#sporteventi" name="sporteventi" class="pilcrow">&#182;</a>
+    sportEventi
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;sportEventi&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="altriservizi">
+  <h3>
+    <a href="#altriservizi" name="altriservizi" class="pilcrow">&#182;</a>
+    altriServizi
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;altriServizi&quot;</span><span class="p">);</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="onapplicationstart">
+  <h2>
+    <a href="#onapplicationstart" name="onapplicationstart" class="pilcrow">&#182;</a>
+    onApplicationStart
+  </h2>
+</div>
+
+
+<p>Routine da eseguire all'application start </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">onApplicationStart</span><span class="p">()</span> <span class="p">{</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-35" id="section-35">&#182;</a>
+</div>
+<p>inizializza i servizi di location</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">init</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
+</div>
+<p>ricarica i dati utente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">refreshData</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+</div>
+<p>abilita/disabilita la fuonzionalità di segnalazione errore</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_Enabled</span> <span class="o">&amp;&amp;</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_UseShake</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sysReportCommon&#39;</span><span class="p">).</span><span class="nx">enableShake</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">})();</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PagingControl.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/PagingControl.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h2">
+        <a href="#in%20scrollableviews%2C%20so%20i%20hacked%20my%20own">in scrollableViews, so I hacked my own</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs"><p>I was unhappy about there was close to no control over the "pageControl" </p>
+
+
+<div class="pilwrap" id="in%20scrollableviews%2C%20so%20i%20hacked%20my%20own">
+  <h2>
+    <a href="#in%20scrollableviews%2C%20so%20i%20hacked%20my%20own" name="in%20scrollableviews%2C%20so%20i%20hacked%20my%20own" class="pilcrow">&#182;</a>
+    in scrollableViews, so I hacked my own
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>Configuration</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">pageColor</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">palette</span><span class="p">.</span><span class="nx">nero</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">pageColorSelected</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">palette</span><span class="p">.</span><span class="nx">bianco</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">xxx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">PagingControl</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scrollableView</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">Titanium</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span>
+    <span class="p">});</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Keep a global reference of the available pages</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">numberOfPages</span> <span class="o">=</span> <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">getViews</span><span class="p">().</span><span class="nx">length</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">pages</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// without this, the current page won&#39;t work on future references of the module</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Go through each of the current pages available in the scrollableView</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">numberOfPages</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var page = Titanium.UI.createView({
+borderRadius: 4,
+width: 8,
+height: 8,
+left: 15 * i,
+backgroundColor: pageColor,
+opacity: 0.5
+});</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">createNavPage</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="nx">pageColorSelected</span> <span class="o">:</span> <span class="nx">pageColor</span><span class="p">,</span> <span class="nx">pageColor</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;circle&quot;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Store a reference to this view</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">pages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Add it to the container</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">container</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Mark the initial selected page
+pages[scrollableView.getCurrentPage()].setOpacity(1);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>Callbacks</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">onScroll</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">throttle</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Bump the opacity of the new current page
+ console.log('e ' + xxx++, event);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">event</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">))</span> <span class="p">{</span>
+
+            <span class="nx">pages</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">].</span><span class="nx">setBackgroundColor</span><span class="p">(</span><span class="nx">pageColorSelected</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>Go through each and reset it's opacity</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">numberOfPages</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">i</span> <span class="o">!=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentPage</span> <span class="o">&amp;&amp;</span> <span class="nx">pages</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">setBackgroundColor</span><span class="p">(</span><span class="nx">pageColor</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Attach the scroll event to this scrollableView, so we know when to update things</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;scroll&quot;</span><span class="p">,</span> <span class="nx">onScroll</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">container</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">createNavPage</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">color</span><span class="p">,</span> <span class="nx">borderColor</span><span class="p">,</span> <span class="nx">showBorder</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+
+        <span class="nx">borderRadius</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="nx">left</span><span class="o">:</span> <span class="mi">15</span> <span class="o">*</span> <span class="nx">index</span><span class="p">,</span>
+        <span class="nx">opacity</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">color</span><span class="p">,</span>
+
+        <span class="nx">borderWidth</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">borderColor</span><span class="o">:</span> <span class="nx">showBorder</span> <span class="o">?</span> <span class="nx">borderColor</span> <span class="o">:</span> <span class="nx">color</span><span class="p">,</span>
+        <span class="nx">borderRadius</span><span class="o">:</span> <span class="p">(</span><span class="nx">style</span> <span class="o">===</span> <span class="s2">&quot;circle&quot;</span><span class="p">)</span> <span class="o">?</span> <span class="mi">4</span> <span class="o">:</span> <span class="mi">0</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">PagingControl</span><span class="p">;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

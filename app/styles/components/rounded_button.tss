@@ -1,0 +1,56 @@
+"#wrapper":{
+	height: 40,
+	borderWidth: 1,
+	borderRadius: 20,
+	top: 6,
+	bottom: 10,
+	width: Ti.UI.FILL
+}
+
+"#content":{
+	width: "70%",
+	height: "80%"
+}
+
+"#textWrapper":{
+	width: Ti.UI.SIZE,
+	layout: "horizontal",
+	height: Ti.UI.FILL
+}
+"#textWrapper[if=$.args.icon]":{
+	left: "29.9%"
+}
+
+"#iconWrapper":{
+	width: 0,
+	left: 0,
+	height: Ti.UI.FILL
+}
+
+"#iconWrapper[if=$.args.icon]":{
+	width: "29.9%"
+}
+
+"#primaryText":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+        fontSize: Alloy.Globals.fontSize.XXL
+    },
+    height: Ti.UI.FILL,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+}
+
+"#secondaryText":{
+	left: 5,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+        fontSize: Alloy.Globals.fontSize.XL
+    },
+    height: Ti.UI.FILL,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+
+}
+
+"#icon":{
+	height: Ti.UI.FILL
+}

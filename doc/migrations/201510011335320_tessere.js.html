@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>201510011335320_tessere.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/migrations/201510011335320_tessere.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>201510011335320_tessere.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">preload_data</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Storico Fondatore&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;L&#39;adesione è soggetta alla presentazione del proprio curriculum e all&#39;accettazione della richiesta da parte del Club. La prima adesione come socio “Fondatore” costa 500 euro di quota annuale più 500 euro di iscrizione una tantum.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;LA FORMULA ASSOCIATIVA PARTICOLARMENTE ESCLUSIVA DEL CLUB ACI STORICO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s2">&quot;buyUrl&quot;</span><span class="o">:</span> <span class="s2">&quot;https://servizi.aci.it/web_FA_xpay/DispatchAuthenticationServlet?action=associazione&amp;userId=sitoAci&amp;codiceProdotto=ISTF&amp;codiceIniziativa=99165&amp;codiceProdotto=ISTF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;STF&quot;</span>
+<span class="p">}];</span>
+
+
+<span class="nx">migration</span><span class="p">.</span><span class="nx">up</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">migrator</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">preload_data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">migrator</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="nx">preload_data</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">migration</span><span class="p">.</span><span class="nx">down</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">migrator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">preload_data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">migrator</span><span class="p">.</span><span class="nx">deleteRow</span><span class="p">(</span><span class="nx">preload_data</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

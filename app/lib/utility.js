@@ -474,9 +474,7 @@ exports.padLeft = function(str, filler, count) {
     while (filler.length < count) {
         filler += filler;
     }
-
-    return filler.substring(0, count - str.length) + str;
-
+    return filler.substring(0, count - (str + '').length) + str;
 };
 
 
@@ -492,8 +490,7 @@ exports.padRight = function(str, filler, count) {
     while (filler.length < count) {
         filler += filler;
     }
-
-    return str + filler.substring(0, count - str.length);
+    return str + filler.substring(0, count - (str + '').length);
 
 };
 
@@ -522,4 +519,33 @@ exports.getAciGeoCollection = function(id_code) {
         return true;
     });
     return coll;
+};
+
+
+/**
+ * ### fitHeight
+ * Aggiusta l'altezza di un controllo all'interno di un container. 
+ * Il caso d'uso è quello in cui il container ha layout vertical, e tutti i figli hanno altezza definita TRANNE il controllo da adattare. 
+ * Tale controllo avrà l'altezza corretta per riempire lo spazio disponibile
+ * @param {Ti.UI.View} container vista container
+ * @param {Ti.UI.View} toFit vista di cui adattare l'altezza. Deve essere figlio del container
+ 
+ */
+exports.fitHeight = function(container, toFit) {
+    var h = 0;
+    _(container.getChildren()).each(function(c) {
+        if (c != toFit) {
+            h += c.rect.height;
+            //  h += c.rect.top || 0;
+            //  h += c.rect.bottom || 0;
+            console.log('fit', h);
+
+        }
+    });
+    if (OS_ANDROID) {
+        h += 30;
+    }
+    console.log('fitHeight', h, container.rect.height);
+    toFit.height = Math.abs(container.rect.height - h);
+
 };

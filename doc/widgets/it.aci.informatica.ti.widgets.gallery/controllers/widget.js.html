@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>widget.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/it.aci.informatica.ti.widgets.gallery/controllers/widget.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>widget.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Handle events</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">eventHandlers</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">eventHandler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+    <span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">eventHandler</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">removeEventListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">eventHandler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]).</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">eventHandler</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">fireEvent</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">handlers</span> <span class="o">=</span> <span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">_</span><span class="p">(</span><span class="nx">handlers</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">handler</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+
+    <span class="p">});</span>
+
+<span class="p">}</span>
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>functions</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Builder method per la singola vista di immagine</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} args [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>Ti.UI.ImageView      l'immagine creata</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">createImageItem</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>return Ti.UI.createImageView({
+image: image,
+height: Ti.UI.SIZE,
+width: Ti.UI.SIZE
+});</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">return</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;imageItem&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">image</span><span class="o">:</span> <span class="nx">image</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span>
+    <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Builder method per il singolo elemento del paginatore</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>object args array di parametri da passare al costruttore. si aspetta selecte=(true/false) e index</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>Alloy.Controller     controller dell'elemento paginatore</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">createPagingItem</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Widget</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;pagingItem&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Seleziona la i-esima immagine. Gestisce le immagine come array circolary</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>number index indice dell'immagine da visualizzare</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">select</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">cover</span><span class="p">.</span><span class="nx">views</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="o">%</span> <span class="nx">n</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;gallery select &#39;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>sposto lo scroller</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">cover</span><span class="p">.</span><span class="nx">scrollToView</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Avvia lo slider automatico</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">startSlider</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">t</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="nx">currentIndex</span><span class="p">);</span>
+            <span class="nx">select</span><span class="p">(</span><span class="nx">currentIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="nx">startSlider</span><span class="p">();</span>
+        <span class="p">},</span> <span class="nx">interval</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Ferma lo slider automatico</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">stopSlider</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Resetta e ferma lo slider automatico</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">resetSlider</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">select</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="nx">stopSlider</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">onScrollend</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>aggiorno il paginatore</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">(</span><span class="nx">paginator</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="nx">next</span><span class="p">)</span> <span class="nx">p</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+        <span class="k">else</span> <span class="nx">p</span><span class="p">.</span><span class="nx">unselect</span><span class="p">();</span>
+    <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>scatzeno l'evento</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;imageChanged&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">index</span><span class="o">:</span> <span class="nx">next</span><span class="p">,</span>
+        <span class="nx">previousIndex</span><span class="o">:</span> <span class="nx">currentIndex</span>
+    <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>aggiorno il puntatore all'immagine selezionata</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">setImages</span><span class="p">(</span><span class="nx">images</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;gallery setImages &#39;</span><span class="p">,</span> <span class="nx">images</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">cover</span><span class="p">.</span><span class="nx">removeAllChildren</span><span class="p">();</span>
+
+    <span class="nx">_</span><span class="p">(</span><span class="nx">images</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">cover</span><span class="p">.</span><span class="nx">addView</span><span class="p">(</span><span class="nx">createImageItem</span><span class="p">(</span><span class="nx">e</span><span class="p">));</span>
+    <span class="p">});</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">images</span> <span class="o">&amp;&amp;</span> <span class="nx">images</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>creo il paginatore</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">_</span><span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">length</span><span class="p">).</span><span class="nx">times</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">createPagingItem</span><span class="p">({</span>
+                <span class="nx">index</span><span class="o">:</span> <span class="nx">n</span><span class="p">,</span>
+                <span class="nx">selected</span><span class="o">:</span> <span class="nx">n</span> <span class="o">==</span> <span class="nx">currentIndex</span>
+            <span class="p">});</span>
+            <span class="nx">paginator</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">pagingContainer</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">getView</span><span class="p">());</span>
+        <span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>se è definito un intervallo, imposto lo scorrimento automatico</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">interval</span> <span class="o">&amp;&amp;</span> <span class="nx">interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">startSlider</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">pagingContainer</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">cover</span><span class="p">.</span><span class="nx">scrollingEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">pagingContainer</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">cover</span><span class="p">.</span><span class="nx">scrollingEnabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="nx">stopSlider</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>indice dell'immagine corrente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>puntatore al timeout, nel caso di</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>intervallo per lo slider</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">interval</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">paginator</span> <span class="o">=</span> <span class="p">[];</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Constructor function
+Autoexecuting function which encapsulates every initialization</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>object args arguments passed to the controller</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;gallery args&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+
+    <span class="nx">interval</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">interval</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>carico le immagini</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">setImages</span><span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">images</span><span class="p">);</span>
+
+
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>PUBLIC API</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">startSlider</span> <span class="o">=</span> <span class="nx">startSlider</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">stopSlider</span> <span class="o">=</span> <span class="nx">stopSlider</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">resetSlider</span> <span class="o">=</span> <span class="nx">resetSlider</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">select</span> <span class="o">=</span> <span class="nx">select</span><span class="p">;</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">setImages</span> <span class="o">=</span> <span class="nx">setImages</span><span class="p">;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

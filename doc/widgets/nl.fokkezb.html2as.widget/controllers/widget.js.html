@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>widget.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/nl.fokkezb.html2as.widget/controllers/widget.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>widget.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">html2as</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nl.fokkezb.html2as&#39;</span><span class="p">);</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">applyProperties</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">html</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">html</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">on</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">off</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">removeEventListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">trigger</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">fireEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">setHtml</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">setHtml</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">html</span> <span class="o">=</span> <span class="nx">html</span><span class="p">;</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">html2as</span><span class="p">(</span><span class="nx">html</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">handle</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">as</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;[nl.fokkezb.html2as.widget] &#39;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;***** AS&#39;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">as</span><span class="p">));</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">attributedString</span> <span class="o">=</span> <span class="nx">as</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">getHtml</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">getHtml</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">html</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">get</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">getHtml</span><span class="p">,</span>
+  <span class="nx">set</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">setHtml</span>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

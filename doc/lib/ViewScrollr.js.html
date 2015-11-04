@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ViewScrollr.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/ViewScrollr.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>ViewScrollr.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>ViewScrollr v1.0 - A Custom Scrollable View Module</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">navHeight</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="nx">opacity</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="nx">captionHeight</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="nx">captionFontSize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="nx">black</span> <span class="o">=</span> <span class="s2">&quot;#000&quot;</span><span class="p">,</span>
+    <span class="nx">white</span> <span class="o">=</span> <span class="s2">&quot;#fff&quot;</span><span class="p">,</span>
+    <span class="nx">scrollDelay</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">,</span>
+    <span class="nx">NAV_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">BLOCK</span><span class="o">:</span> <span class="s2">&quot;block&quot;</span><span class="p">,</span>
+        <span class="nx">CIRCLE</span><span class="o">:</span> <span class="s2">&quot;circle&quot;</span>
+    <span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary">
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">method</div>
+    <div class="dox_tag_detail">
+      <span>create
+Creates a custom scrollable view component.</span>
+    </div>
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">options</span>
+      <span class="dox_type">Object</span>
+      <span>Optional settings for view object (see <a href='http://m54.co/ViewScrollrDocs'>http://m54.co/ViewScrollrDocs</a>)</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.View
+
+</span>
+      <span>{Ti.UI.View}</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+            <span class="nx">width</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">width</span> <span class="o">||</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+            <span class="nx">height</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">height</span> <span class="o">||</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+            <span class="nx">top</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
+            <span class="nx">right</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
+            <span class="nx">bottom</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
+            <span class="nx">left</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span>
+            <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">||</span> <span class="nx">black</span>
+        <span class="p">}),</span>
+        <span class="nx">navigation</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+            <span class="nx">height</span><span class="o">:</span> <span class="nx">navHeight</span><span class="p">,</span>
+            <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span><span class="p">,</span>
+            <span class="nx">textAlign</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">TEXT_ALIGNMENT_CENTER</span><span class="p">,</span>
+            <span class="nx">layout</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span>
+        <span class="p">}),</span>
+        <span class="nx">scrollableView</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createScrollableView</span><span class="p">({</span>
+            <span class="nx">showPagingControl</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+            <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+            <span class="nx">disableBounce</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">disableBounce</span> <span class="o">||</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">||</span> <span class="nx">black</span>
+        <span class="p">}),</span>
+        <span class="nx">autoScroll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">isScrolling</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">currentPage</span> <span class="o">&lt;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">panels</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">scrollToView</span><span class="p">(</span><span class="nx">currentPage</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">scrollToView</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">setAutoScroll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Ti.API.info("SET AUTO SCROLL");</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">autoScrollTimeout</span> <span class="o">&amp;&amp;</span> <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">autoScrollTimeout</span><span class="p">);</span>
+            <span class="nx">autoScrollTimeout</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">autoScroll</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">delay</span> <span class="o">||</span> <span class="nx">scrollDelay</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">navigationPageControls</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="nx">currentPage</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">isScrolling</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">autoScrollTimeout</span><span class="p">,</span> <span class="nx">aView</span><span class="p">,</span> <span class="nx">aPanel</span><span class="p">,</span> <span class="nx">aCaption</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">panels</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">opacity</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">||</span> <span class="nx">opacity</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">panels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">aPanel</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">panels</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">aPanel</span><span class="p">.</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">aView</span> <span class="o">=</span> <span class="nx">aPanel</span><span class="p">.</span><span class="nx">maxZoomScale</span> <span class="o">?</span>
+                    <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createScrollView</span><span class="p">({</span>
+                        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+                        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+                        <span class="nx">maxZoomScale</span><span class="o">:</span> <span class="nx">aPanel</span><span class="p">.</span><span class="nx">maxZoomScale</span>
+                    <span class="p">})</span> <span class="o">:</span>
+                    <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+                        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+                        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span>
+                    <span class="p">});</span>
+
+                <span class="nx">aView</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span>
+                    <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createImageView</span><span class="p">({</span>
+                        <span class="nx">image</span><span class="o">:</span> <span class="nx">aPanel</span><span class="p">.</span><span class="nx">image</span><span class="p">,</span>
+                        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span>
+                    <span class="p">})</span>
+                <span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">aPanel</span><span class="p">.</span><span class="nx">view</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">aView</span> <span class="o">=</span> <span class="nx">aPanel</span><span class="p">.</span><span class="nx">view</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">aPanel</span><span class="p">.</span><span class="nx">caption</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">aCaption</span> <span class="o">=</span> <span class="nx">createCaptionView</span><span class="p">(</span>
+                    <span class="nx">aPanel</span><span class="p">.</span><span class="nx">caption</span><span class="p">,</span>
+                    <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">||</span> <span class="nx">black</span>
+                <span class="p">);</span>
+                <span class="nx">aCaption</span><span class="p">[</span><span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">onTop</span> <span class="o">?</span> <span class="s2">&quot;top&quot;</span> <span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span> <span class="o">?</span> <span class="nx">navHeight</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="nx">aView</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">aCaption</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">addView</span><span class="p">(</span><span class="nx">aView</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">navigationPageControls</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+                    <span class="nx">createNavPage</span><span class="p">(</span>
+                        <span class="p">(</span><span class="nx">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">selectedColor</span> <span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">color</span><span class="p">,</span>
+                        <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">borderColor</span> <span class="o">||</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">selectedColor</span><span class="p">,</span>
+                        <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">showBorder</span><span class="p">,</span>
+                        <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">style</span> <span class="o">||</span> <span class="nx">NAV_STYLE</span><span class="p">.</span><span class="nx">CIRCLE</span>
+                    <span class="p">)</span>
+                <span class="p">);</span>
+                <span class="nx">navigation</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">navigationPageControls</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+        <span class="s2">&quot;scrollEnd&quot;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">isScrolling</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">auto</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isScrolling</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">setAutoScroll</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;initialScrollHack&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Ti.API.info("<strong><em>* SCROLL HACK TRIGGERED!! *</em>*</strong>");</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s2">&quot;scrollEnd&quot;</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">scrollableView</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+        <span class="s2">&quot;scroll&quot;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Ti.API.info("<strong><em>* SCROLL *</em>*</strong>");</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">currentPage</span> <span class="o">!=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentPage</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">curr</span> <span class="o">=</span> <span class="nx">navigationPageControls</span><span class="p">[</span><span class="nx">currentPage</span><span class="p">];</span>
+                <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">navigationPageControls</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">curr</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">curr</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">next</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">selectedColor</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">currentPage</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">;</span>
+            <span class="nx">isScrolling</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">Gesture</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span>
+        <span class="s2">&quot;orientationchange&quot;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">isScrolling</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">auto</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">setAutoScroll</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">);</span>
+
+    <span class="nx">container</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">scrollableView</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">aView</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+            <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+            <span class="nx">opacity</span><span class="o">:</span> <span class="nx">opacity</span><span class="p">,</span>
+            <span class="nx">height</span><span class="o">:</span> <span class="nx">navHeight</span><span class="p">,</span>
+            <span class="nx">bottom</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">||</span> <span class="nx">black</span>
+        <span class="p">});</span>
+        <span class="nx">aView</span><span class="p">[</span><span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">onTop</span> <span class="o">?</span> <span class="s2">&quot;top&quot;</span> <span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">navigation</span><span class="p">[</span><span class="nx">options</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">onTop</span> <span class="o">?</span> <span class="s2">&quot;top&quot;</span> <span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">container</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">aView</span><span class="p">);</span>
+        <span class="nx">container</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">navigation</span><span class="p">);</span>
+        <span class="nx">aView</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">setTimeout</span><span class="p">(</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Ti.API.info("OPTIONS AUTO: "+options.auto+" NOT IS SCROLLING: "+!isScrolling);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">auto</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isScrolling</span><span class="p">)</span> <span class="nx">setAutoScroll</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="mi">500</span>
+    <span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">container</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">NAV_STYLE</span> <span class="o">=</span> <span class="nx">NAV_STYLE</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Private Utility Funcitons</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">createCaptionView</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">bgColor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">captionHeight</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span>
+    <span class="p">});</span>
+
+    <span class="nx">view</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+        <span class="nx">opacity</span><span class="o">:</span> <span class="nx">opacity</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">bgColor</span>
+    <span class="p">}));</span>
+
+    <span class="nx">view</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createLabel</span><span class="p">({</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="nx">text</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="nx">white</span><span class="p">,</span>
+        <span class="nx">font</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">fontSize</span><span class="o">:</span> <span class="nx">captionFontSize</span>
+        <span class="p">},</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+        <span class="nx">textAlign</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">TEXT_ALIGNMENT_CENTER</span>
+    <span class="p">}));</span>
+
+    <span class="k">return</span> <span class="nx">view</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createNavPage</span><span class="p">(</span><span class="nx">color</span><span class="p">,</span> <span class="nx">borderColor</span><span class="p">,</span> <span class="nx">showBorder</span><span class="p">,</span> <span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">color</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="nx">top</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="nx">right</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="nx">borderWidth</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">borderColor</span><span class="o">:</span> <span class="nx">showBorder</span> <span class="o">?</span> <span class="nx">borderColor</span> <span class="o">:</span> <span class="nx">color</span><span class="p">,</span>
+        <span class="nx">borderRadius</span><span class="o">:</span> <span class="p">(</span><span class="nx">style</span> <span class="o">===</span> <span class="nx">NAV_STYLE</span><span class="p">.</span><span class="nx">CIRCLE</span><span class="p">)</span> <span class="o">?</span> <span class="mi">4</span> <span class="o">:</span> <span class="mi">0</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

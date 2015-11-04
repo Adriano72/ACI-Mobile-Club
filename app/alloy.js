@@ -10,7 +10,13 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
-var net = require("network");
+
+//questo deve stare qui, altrimento non funziona... non capisco ma mi adeguo
+var net = require('network');
+
+//
+// ## Alloy.Globals
+//
 
 Alloy.Globals.rememberMe = false;
 
@@ -30,7 +36,7 @@ Alloy.Globals.deviceHeightHalf = Alloy.Globals.deviceHeight / 2;
 
 Alloy.Globals.menuButtonsWidth = Alloy.Globals.deviceWidthHalf - 5;
 Alloy.Globals.menuButtonsHeight = (OS_ANDROID) ? (Alloy.Globals.deviceHeight / 4) - 22 : (Alloy.Globals.deviceHeight / 4) - 20;
-//Alloy.Globals.baseURL = "http://10.64.4.199:9900/api";
+
 Alloy.Globals.baseURL = Alloy.CFG.AciGeo_BaseUrl;
 Alloy.Globals.bannerBaseURL = Alloy.CFG.AciGeo_BannerBaseUrl;
 Alloy.Globals.PuntiAciBannerBaseURL = Alloy.CFG.AciGeo_PuntiAciBannerBaseUrl;
@@ -38,53 +44,32 @@ Alloy.Globals.PuntiAciBannerBaseURL = Alloy.CFG.AciGeo_PuntiAciBannerBaseUrl;
 console.log('platformWidth ', Ti.Platform.displayCaps.platformWidth);
 console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFactor);
 
-Ti.API.info('globals 2: ' + JSON.stringify(Alloy.Globals));
 
 
-//SERVIZI GIC
-Alloy.Collections.instance("serviziGIC");
-Alloy.Collections.instance("serviziGICpos");
 
-//province
-Alloy.Collections.instance("province");
-
-//tessere
-Alloy.Collections.instance("tessere");
-
-//banner
-Alloy.Collections.instance("banner");
-
-// PUNTI ACI
-Alloy.Collections.instance("automobileClub");
-Alloy.Collections.instance("delegazioni");
-Alloy.Collections.instance("pra");
-Alloy.Collections.instance("urp");
-Alloy.Collections.instance("tasse");
-Alloy.Collections.instance("demolitori");
-Alloy.Collections.instance("autoscuole");
-Alloy.Collections.instance("acipoint");
-
-//Alloy.Collections.instance("puntiMappa");
-
-Alloy.Collections.tempCollection = new Backbone.Collection();
-
-//SYC
-Alloy.Collections.instance("dormireMangiare");
-Alloy.Collections.instance("casa");
-Alloy.Collections.instance("auto");
-Alloy.Collections.instance("benessereSalute");
-Alloy.Collections.instance("mobilita");
-Alloy.Collections.instance("tempoLibero");
-Alloy.Collections.instance("shopping");
-Alloy.Collections.instance("culturaSpettacoli"); //da togliere
-Alloy.Collections.instance("noleggiTrasporti"); //da togliere
-Alloy.Collections.instance("sportEventi");
-Alloy.Collections.instance("altriServizi");
-Alloy.Collections.instance("sycLatest");
-
-//Ti.API.info("WINDOW HEIGHT:"+Ti.Platform.displayCaps.platformHeight);
+//### isLogged
+//questa proprietà globale ci dice se l'utente è loggato o meno
+Object.defineProperty(Alloy.Globals, "isLogged", {
+    get: function() {
+        return require('user').isLogged;
+    }
+});
 
 
+
+//### isLongDevice
+//Questa proprietà globale ci dice se il device ha una proporzione larghezza/altezza allungata o meno.
+//Per esempio, iphone5 è considerato lungo, mentre iphone4 no
+Object.defineProperty(Alloy.Globals, "isLongDevice", {
+    get: function() {
+        var v = (Alloy.Globals.deviceHeight / Alloy.Globals.deviceWidth) > 1.5;
+        console.log('isLongDevice', v);
+        return v;
+    }
+});
+
+
+// ### palette
 //palette di colori da utilizzare nell'app
 Alloy.Globals.palette = {
     nero: "#000000",
@@ -95,10 +80,12 @@ Alloy.Globals.palette = {
     grigio_scuro: "#888888",
     rosso: "#e32b00",
     bianco_sporco: "#f9f9f9", //header e 
-    bianco: "#ffffff"
+    bianco: "#ffffff",
+    verde: "#008100"
 };
 
-//font
+// ### font
+// I diversi font definiti nell'app
 Alloy.Globals.font = {
     ACIType_Bold: OS_IOS ? 'ACIType-Bold' : 'ACI Type Bold',
     ACIType: OS_IOS ? 'ACIType' : 'ACI Type Regular',
@@ -109,7 +96,9 @@ Alloy.Globals.font = {
 
 };
 
-var baseFontSize = OS_IOS ? 10 : 12;
+// ### fontSize
+// Le classi di grandezza dei testi dell'app
+var baseFontSize = OS_IOS ? 12 : 14;
 Alloy.Globals.fontSize = {
     XS: baseFontSize,
     S: baseFontSize + 2,
@@ -121,32 +110,79 @@ Alloy.Globals.fontSize = {
 };
 
 
-//inizializza i servizi di location
-_.defer(require('locationServices').init);
 
-//ricarica i dati utente
-_.defer(function() {
-    require('user').refreshData(function () {
-    net.registerApp(function() {
-        console.log('app registered 2');
-        //inizializzo le notifiche
-        require('push').init();
-    });
-});
-});
+//
+// ## Collections
+//
+
+// ### serviziGIC
+Alloy.Collections.instance("serviziGIC");
+// ### serviziGICpos
+Alloy.Collections.instance("serviziGICpos");
+// ### province
+Alloy.Collections.instance("province");
+// ### tessere
+Alloy.Collections.instance("tessere");
+// ### banner
+Alloy.Collections.instance("banner");
+// ###  automobileClub
+Alloy.Collections.instance("automobileClub");
+// ###  delegazioni
+Alloy.Collections.instance("delegazioni");
+// ###  pra
+Alloy.Collections.instance("pra");
+// ###  urp
+Alloy.Collections.instance("urp");
+// ###  tasse
+Alloy.Collections.instance("tasse");
+// ###  demolitori
+Alloy.Collections.instance("demolitori");
+// ###  autoscuole
+Alloy.Collections.instance("autoscuole");
+// ###  acipoint
+Alloy.Collections.instance("acipoint");
+// ###  dormireMangiare
+Alloy.Collections.instance("dormireMangiare");
+// ###  casa
+Alloy.Collections.instance("casa");
+// ###  auto
+Alloy.Collections.instance("auto");
+// ###  benessereSalute
+Alloy.Collections.instance("benessereSalute");
+// ###  mobilita
+Alloy.Collections.instance("mobilita");
+// ###  tempoLibero
+Alloy.Collections.instance("tempoLibero");
+// ###  shopping
+Alloy.Collections.instance("shopping");
+// ###  culturaSpettacoli
+Alloy.Collections.instance("culturaSpettacoli"); //da togliere
+// ###  noleggiTrasporti
+Alloy.Collections.instance("noleggiTrasporti"); //da togliere
+// ###  sportEventi
+Alloy.Collections.instance("sportEventi");
+// ###  altriServizi
+Alloy.Collections.instance("altriServizi");
+
+Alloy.Collections.tempCollection = new Backbone.Collection();
 
 
-if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
-    require('sysReportCommon').enableShake();
-}
 
-//chiamo il servizio per registrare l'app
-_.defer(function () {
-    net.registerApp(function() {
-        console.log('app registered 1');
-        //inizializzo le notifiche
-        require('push').init();
-    });
-});
+/**
+ * ## ApplicationStart
+ * Routine da eseguire all'application start
+ */
+(function ApplicationStart() {
 
 
+    //inizializza i servizi di location
+    _.defer(require('locationServices').init);
+
+    //ricarica i dati utente
+    _.defer(require('user').refreshData);
+
+    //abilita/disabilita la fuonzionalità di segnalazione errore
+    if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
+        require('sysReportCommon').enableShake();
+    }
+})();

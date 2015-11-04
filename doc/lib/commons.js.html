@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>commons.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/commons.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>commons.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Questo modulo raccoglie tutte le funzionalità di inizializzazione della UI che si possono condividere tra differenti controller</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Esegue le inizializzazioni comuni a tutte le Window, specialmente la parte della barra di intestazione
+Da eseguire all'inzio del controller della Window</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Ti.UI.Window} win       Window da inizializzare</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} title     titolo da assegnare alla window</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} icon      icona della Window</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Array} menuItems  Array di oggetti che descrivono i menuItem da aggiungere. Gli elementi sono tuple contenenti
+                           {
+                             title: eventuale testo dell'etichetta dell'elemento
+                             icon: icona dell'elemento
+                             onClick: handler dell'evento click
+                           }
+                           Su iOS si prende in considerazione solo il primo elemento (come RightNavButton)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">initWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">win</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">icon</span><span class="p">,</span> <span class="nx">menuItems</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>valori comuni
+li mettiamo in Alloy.Globals?</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">font</span> <span class="o">=</span> <span class="nx">OS_ANDROID</span> <span class="o">?</span> <span class="s2">&quot;ACI Type Regular&quot;</span> <span class="o">:</span> <span class="s2">&quot;ACIType&quot;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">palette</span><span class="p">.</span><span class="nx">blu</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Subroutine che crea un elemento del menu
+se Android crea un MenuItem
+se iOS crea una ImageView</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Object} item  hashset con le opzioni dell'elemento</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.Android.MenuItem</span>
+      <span class="dox_type">Ti.UI.ImageView</span>
+      <span>elemento del menu, a seconda della piattaforma</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">function</span> <span class="nx">createMenuItem</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">menuItem</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;initWin 3&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">menuItem</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">title</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+                <span class="nx">showAsAction</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">SHOW_AS_ACTION_ALWAYS</span><span class="p">,</span>
+                <span class="nx">icon</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">icon</span>
+            <span class="p">};</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">menuItem</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createImageView</span><span class="p">({</span>
+                <span class="nx">image</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">icon</span>
+            <span class="p">});</span>
+
+
+            <span class="nx">menuItem</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">.</span><span class="nx">onClick</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">menuItem</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;initWin 1&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>se android, utilizzo le estensioni della actionbar</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">abx</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;com.alcoapps.actionbarextras&#39;</span><span class="p">);</span>
+        <span class="nx">abx</span><span class="p">.</span><span class="nb">window</span> <span class="o">=</span> <span class="nx">win</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="kd">function</span> <span class="nx">setHeader</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;initWin 2&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>imposto il titolo, il colore e il font </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">abx</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="nx">abx</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">text</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span>
+                <span class="nx">font</span><span class="o">:</span> <span class="nx">font</span> <span class="o">+</span> <span class="s1">&#39;.otf&#39;</span><span class="p">,</span>
+                <span class="nx">color</span><span class="o">:</span> <span class="nx">color</span>
+            <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>l'inizializzazione dell'activity devo posiciparla, per dargli il tempo di inizializzarsi</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">_</span><span class="p">(</span><span class="kd">function</span> <span class="nx">initActivity</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">activity</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nx">activity</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">activity</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>imposto l'icona della ActionBar</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">activity</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">setLogo</span><span class="p">(</span><span class="nx">icon</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>ora creo gli elementi del menu</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">activity</span><span class="p">.</span><span class="nx">invalidateOptionsMenu</span><span class="p">();</span>
+                    <span class="nx">activity</span><span class="p">.</span><span class="nx">onCreateOptionsMenu</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;onCreateOptionsMenu &#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+
+                        <span class="nx">_</span><span class="p">(</span><span class="nx">menuItems</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">e</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">createMenuItem</span><span class="p">(</span><span class="nx">i</span><span class="p">)).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">.</span><span class="nx">onClick</span><span class="p">);</span>
+                        <span class="p">});</span>
+
+                    <span class="p">};</span>
+
+                <span class="p">}</span>
+            <span class="p">}).</span><span class="nx">defer</span><span class="p">();</span>
+
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>carica il controllo del titolo
+questa è una view senza controller</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="c1">// http://docs.appcelerator.com/titanium/3.0/#!/guide/Views_without_Controllers</span>
+            <span class="kd">var</span> <span class="nx">titleControl</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;titleControl&#39;</span><span class="p">);</span>
+            <span class="nx">titleControl</span><span class="p">.</span><span class="nx">updateViews</span><span class="p">({</span>
+
+                <span class="s2">&quot;#icon&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="nx">image</span><span class="o">:</span> <span class="nx">icon</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;#text&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="nx">text</span><span class="o">:</span> <span class="nx">title</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>titleControl = Ti.UI.createLabel({
+text: 'titolo'
+});   </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var v = Ti.UI.createView({
+height: 30,
+backgroundColor: "red"
+});</p>
+  </div>
+  <div class="body"><p>v.add(titleControl.getView());   </p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+            <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">titleControl</span><span class="p">.</span><span class="nx">getView</span><span class="p">();</span>
+            <span class="nx">v</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span><span class="p">;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;titleC&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+
+            <span class="nx">win</span><span class="p">.</span><span class="nx">setTitleControl</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>aggiunge il rightnavbutton</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">menuItems</span> <span class="o">&amp;&amp;</span> <span class="nx">menuItems</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">menuItems</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+                <span class="kd">var</span> <span class="nx">rightNavButton</span> <span class="o">=</span> <span class="nx">createMenuItem</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+                <span class="nx">win</span><span class="p">.</span><span class="nx">setRightNavButton</span><span class="p">(</span><span class="nx">rightNavButton</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="nx">setHeader</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">setHeader</span><span class="p">();</span>
+    <span class="p">}</span>
+
+
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Apre il navigatore della piattaforma
+Funziona in due modalità: passando (lat,lon) oppure come handler del click su un elemento
+ in questo caso si aspetta un elemento e.source contenetente lat e lon</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{} e [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openNavigation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">lat</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">lat</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">lon</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">lon</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">url</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;http://maps.google.com/maps?t=m&amp;daddr=&#39;</span> <span class="o">+</span> <span class="nx">lat</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">lon</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;http://maps.apple.com/maps?t=m&amp;daddr=&#39;</span> <span class="o">+</span> <span class="nx">lat</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">lon</span> <span class="o">+</span> <span class="s1">&#39;&amp;saddr=Current%20Location&#39;</span><span class="p">;</span>
+
+    <span class="p">}</span>
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+
+
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Apre la finestra della mappa</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Vackbone.Collection|Array} collection la collezione backbone di riferimento, oppure un array di poi</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} title      titolo della window</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} icon       icona della window</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} pin        (opzionale) immagine del pin delle annotations. se non specificato, la mappa prova a determinare il giusto pin in base ai dati del poi</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openMapWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">icon</span><span class="p">,</span> <span class="nx">pin</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openMapWindow&#39;</span><span class="p">);</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">mapWin</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;mapView&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">collection</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">collection</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">)</span> <span class="o">?</span> <span class="nx">collection</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()</span> <span class="o">:</span> <span class="nx">collection</span><span class="p">,</span>
+            <span class="nx">titolo</span><span class="o">:</span> <span class="nx">title</span><span class="p">,</span>
+            <span class="nx">homeIcon</span><span class="o">:</span> <span class="nx">icon</span><span class="p">,</span>
+            <span class="nx">pin</span><span class="o">:</span> <span class="nx">pin</span>
+
+        <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">mapWin</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;errore appertura mappa&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Predispone il telefono per chiamare il numero telefonico</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} e  dati dell'evento click</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">doPhoneCall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">telNumber</span><span class="p">))</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">trimmedPhone</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">telNumber</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TEL: &quot;</span> <span class="o">+</span> <span class="nx">trimmedPhone</span><span class="p">);</span>
+
+        <span class="kd">function</span> <span class="nx">call</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">Titanium</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s1">&#39;tel:&#39;</span> <span class="o">+</span> <span class="nx">trimmedPhone</span><span class="p">);</span>
+        <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>su ios mettiamo un dialog di conferma perchè la chiamta parte diretta
+su android non serve perchè il sistema chiede comunque conferma</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;alloy/dialogs&#39;</span><span class="p">).</span><span class="nx">confirm</span><span class="p">({</span>
+                <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Conferma chiamata&quot;</span><span class="p">,</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Vuoi chiamare &quot;</span> <span class="o">+</span> <span class="nx">trimmedPhone</span> <span class="o">+</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span>
+                <span class="nx">yes</span><span class="o">:</span> <span class="s2">&quot;Sì&quot;</span><span class="p">,</span>
+                <span class="nx">no</span><span class="o">:</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span>
+                <span class="nx">callback</span><span class="o">:</span> <span class="nx">call</span>
+            <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">call</span><span class="p">();</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Numero di telefono non disponibile&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Manda una mail con l'app di sistema</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} e [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">doSendEmail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">indirizzoEmail</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;EMAIL: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">indirizzoEmail</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">recipients</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="nx">recipients</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">indirizzoEmail</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">emailDialog</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createEmailDialog</span><span class="p">();</span>
+        <span class="nx">emailDialog</span><span class="p">.</span><span class="nx">toRecipients</span> <span class="o">=</span> <span class="nx">recipients</span><span class="p">;</span>
+        <span class="nx">emailDialog</span><span class="p">.</span><span class="nx">open</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Indirizzo email non disponibile&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

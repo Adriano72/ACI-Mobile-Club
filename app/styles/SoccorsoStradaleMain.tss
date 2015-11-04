@@ -1,5 +1,6 @@
 ".container":{
-	layout: "vertical"
+	layout: "vertical",
+	backgroundColor: Alloy.Globals.palette.bianco_sporco
 }
 
 "#main":{
@@ -10,107 +11,49 @@
 }
 
 
-".toolbar":{
-	top: 0,
-	borderTop: "true",
-	borderBottom: "true"
-}
 
-"#headerLogo": {
-	height: 23
-}
-
-".table[platform=ios]":{
-	top: 0,
-	height: Ti.UI.SIZE
-	//separatorStyle:Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
-}
-
-".table[platform=android]":{
-	top: 0
-}
-
-".bottomBannerContainer": {
-	bottom: 0,
-	height: "20%"
-}
-
-".bottomBanner": {
-	//image: "/banner_sotto.png",
-	width: "90%",
-	height: Ti.UI.SIZE,
-	bottom: 0
-}
-
-
-
-
-".rowSingleContainer": {
-	height: 40,
-	top:0
-}
-
-
-
-
-".simpleRowLeftIcon": {
-	touchEnabled: false,
-	left: 10,
-	width: 22,
-	touchEnabled: false
-}
-
-".simpleRowText": {
-	touchEnabled: false,
-	left: 40,
-	color:Alloy.Globals.palette.blu,
-	touchEnabled: false
-}
-
-"#richiestaIcon": {
-	image: "/images/ic_action_descrizione_blu.png"
-}
-
-
-
-"#chiamaIcon": {
-	image: "/images/ic_action_phone_blu.png"
-}
-
-
-
-".hasDetail[platform=android]": {
-	image: "/x_freccia_grigio.png",
-	right: 10,
-	touchEnabled: false
-}
-
-
-".hasDetail[platform=ios]": {
-	image: "/x_freccia_grigio.png",
-	right: 10,
-	height: 15,
-	touchEnabled: false
-}
-
-".testoDettagli": {
-	top: 5,
-	width: "90%",
-	height: Ti.UI.SIZE,
-	bottom: 5,
-	color: Alloy.Globals.palette.grigio_scuro
-}
-
-".textBox":{
-	height: 0,
-	backgroundColor:  Alloy.Globals.palette.grigio_chiaro
-}
 
 "#fotoAssistenza":{
 	image: '/images/foto_assistenza.jpg',
 	height: Ti.UI.SIZE
 }
 
-/*
+".buttonWrapper":{
+	height: "24.9%"
 
-*/
+}
+
+".coverWrapper":{
+	height: Ti.UI.SIZE
+}
+
+".legend":{
+	top: "5%",
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+        fontSize: Alloy.Globals.fontSize.L
+    },
+    color: Alloy.Globals.palette.grigio_scuro,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	height: "49.9%",
+ 	width: "96%"
+}
+
+".button":{
+	top: "55%",
+	color :  Alloy.Globals.palette.rosso,
+	backgroundColor: "transparent",
+	width: "90%"
+}
+
+"#sendButton":{
+	primaryText: "Invia posizione",
+	icon: "/images/ic_action_aiuto_gps_rosso.png"
+}
+
+"#callButton":{
+	primaryText: "Chiama l'803.106",
+	icon: "/images/ic_action_aiuto_phone_rosso.png"
+}
+
+
