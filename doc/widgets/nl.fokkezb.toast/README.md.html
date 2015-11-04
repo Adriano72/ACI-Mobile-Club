@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>README.md</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/nl.fokkezb.toast/README.md", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#alloy%20toast%20widget%20">Alloy Toast Widget </a>
+      </div>
+      <div class="heading h2">
+        <a href="#screencasts">Screencasts</a>
+      </div>
+      <div class="heading h2">
+        <a href="#get%20it%20">Get it </a>
+      </div>
+      <div class="heading h2">
+        <a href="#use%20it">Use it</a>
+      </div>
+      <div class="heading h3">
+        <a href="#global%20instance">Global instance</a>
+      </div>
+      <div class="heading h4">
+        <a href="#alloy.js">alloy.js</a>
+      </div>
+      <div class="heading h5">
+        <a href="#index.js">index.js</a>
+      </div>
+      <div class="heading h3">
+        <a href="#local%20instances">Local instances</a>
+      </div>
+      <div class="heading h4">
+        <a href="#index.js">index.js</a>
+      </div>
+      <div class="heading h3">
+        <a href="#modal%20windows">Modal windows</a>
+      </div>
+      <div class="heading h2">
+        <a href="#style%20it">Style it</a>
+      </div>
+      <div class="heading h3">
+        <a href="#themes">Themes</a>
+      </div>
+      <div class="heading h2">
+        <a href="#todo">Todo</a>
+      </div>
+      <div class="heading h2">
+        <a href="#alternatives">Alternatives</a>
+      </div>
+      <div class="heading h2">
+        <a href="#license">License</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="docs markdown">
+<div class="pilwrap" id="alloy%20toast%20widget%20">
+  <h1>
+    <a href="#alloy%20toast%20widget%20" name="alloy%20toast%20widget%20" class="pilcrow">&#182;</a>
+    Alloy Toast Widget <a href="http://appcelerator.com/alloy/"><img src="http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png" alt="Appcelerator Alloy" title="" /></a>
+  </h1>
+</div>
+
+
+<p>Another <a href="http://appcelerator.com/alloy">Alloy</a> <a href="http://docs.appcelerator.com/titanium/latest/#!/guide/Alloy_Widgets">Widget</a> for a cross-platform in-app Android toast-like notification system. On Android it wraps <code>Ti.UI.Notification</code> while on iOS (and others) it's a <code>Ti.UI.Window</code> containing a label.</p>
+
+
+<div class="pilwrap" id="screencasts">
+  <h2>
+    <a href="#screencasts" name="screencasts" class="pilcrow">&#182;</a>
+    Screencasts
+  </h2>
+</div>
+
+
+<p><img src="https://github.com/FokkeZB/nl.fokkezb.toast/blob/master/screencasts/ios.gif?raw=true" alt="iOS" title="" /> <img src="https://github.com/FokkeZB/nl.fokkezb.toast/blob/master/screencasts/android.gif?raw=true" alt="Android" title="" /></p>
+
+
+<div class="pilwrap" id="get%20it%20">
+  <h2>
+    <a href="#get%20it%20" name="get%20it%20" class="pilcrow">&#182;</a>
+    Get it <a href="http://gitt.io/component/nl.fokkezb.toast"><img src="http://gitt.io/badge.png" alt="gitTio" title="" /></a>
+  </h2>
+</div>
+
+
+<p>Install via <a href="http://gitt.io/component/nl.fokkezb.toast">gitTio</a>:</p>
+
+
+<div class="highlight"><pre><code><span class="nx">$</span> <span class="nx">gittio</span> <span class="nx">install</span> <span class="nx">nl</span><span class="p">.</span><span class="nx">fokkezb</span><span class="p">.</span><span class="nx">toast</span>
+</code></pre></div>
+
+
+
+<p>Or download a <a href="https://github.com/FokkeZB/nl.fokkezb.toast/releases">release</a>, extract it to your app's <code>app/widgets/nl.fokkezb.toast</code> folder and add the dependency to your <code>config.json</code>:</p>
+
+
+<div class="highlight"><pre><code><span class="p">{</span>
+    <span class="p">..</span>
+    <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;nl.fokkezb.toast&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
+        <span class="p">..</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+<div class="pilwrap" id="use%20it">
+  <h2>
+    <a href="#use%20it" name="use%20it" class="pilcrow">&#182;</a>
+    Use it
+  </h2>
+</div>
+
+
+
+<div class="pilwrap" id="global%20instance">
+  <h3>
+    <a href="#global%20instance" name="global%20instance" class="pilcrow">&#182;</a>
+    Global instance
+  </h3>
+</div>
+
+
+
+<div class="pilwrap" id="alloy.js">
+  <h4>
+    <a href="#alloy.js" name="alloy.js" class="pilcrow">&#182;</a>
+    alloy.js
+  </h4>
+</div>
+
+
+
+<div class="highlight"><pre><code><span class="kd">var</span> <span class="nx">toast</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="s1">&#39;nl.fokkezb.toast&#39;</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="c1">// defaults</span>
+<span class="p">});</span>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">toast</span> <span class="o">=</span> <span class="nx">toast</span><span class="p">.</span><span class="nx">show</span><span class="p">;</span>   <span class="c1">// same as toast.info</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">;</span>  <span class="c1">// applies the &#39;error&#39; theme</span>
+</code></pre></div>
+
+
+
+
+<div class="pilwrap" id="index.js">
+  <h5>
+    <a href="#index.js" name="index.js" class="pilcrow">&#182;</a>
+    index.js
+  </h5>
+</div>
+
+
+
+<div class="highlight"><pre><code><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">toast</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+
+
+<div class="pilwrap" id="local%20instances">
+  <h3>
+    <a href="#local%20instances" name="local%20instances" class="pilcrow">&#182;</a>
+    Local instances
+  </h3>
+</div>
+
+
+
+<div class="pilwrap" id="index.js_1">
+  <h4>
+    <a href="#index.js_1" name="index.js_1" class="pilcrow">&#182;</a>
+    index.js
+  </h4>
+</div>
+
+
+
+<div class="highlight"><pre><code><span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="s1">&#39;toast&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="p">{</span>
+
+    <span class="nx">theme</span><span class="o">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>     <span class="c1">// adds .nlFokkezbToast_[view|label]_error class</span>
+    <span class="nx">persistent</span><span class="o">:</span> <span class="kc">true</span>    <span class="c1">// stay open until clicked on</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+
+<div class="pilwrap" id="modal%20windows">
+  <h3>
+    <a href="#modal%20windows" name="modal%20windows" class="pilcrow">&#182;</a>
+    Modal windows
+  </h3>
+</div>
+
+
+<p>If a modal window is open, the toast will not be visible. When a modal window is open, pass a reference to the window via the <code>view</code> property to have the toast added to the window instead of creating its own:</p>
+
+
+<div class="highlight"><pre><code><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;bye world&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">view</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">win</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+<p><strong>NOTE:</strong> The view you refer needs to have a composite layout (the default).</p>
+
+
+<div class="pilwrap" id="style%20it">
+  <h2>
+    <a href="#style%20it" name="style%20it" class="pilcrow">&#182;</a>
+    Style it
+  </h2>
+</div>
+
+
+<p>Use the <a href="styles/widget.tss">classes</a> in your <code>themes/yourTheme/widgets/nl.fokkezb.toast/styles/widget.tss</code> (Alloy 1.4.0+) or <code>styles/app.tss</code> to style the views and also set the entry and exit properties to animate on iOS.</p>
+
+
+<div class="pilwrap" id="themes">
+  <h3>
+    <a href="#themes" name="themes" class="pilcrow">&#182;</a>
+    Themes
+  </h3>
+</div>
+
+
+<p>The <code>theme</code> property will simple prefixed with <code>nlFokkezbToast_view</code> and <code>nlFokkezbToast_label</code> after which these classes will be added to the view and label. Override the classes to change their styles.</p>
+
+
+<div class="pilwrap" id="todo">
+  <h2>
+    <a href="#todo" name="todo" class="pilcrow">&#182;</a>
+    Todo
+  </h2>
+</div>
+
+
+<p>Feel free to send PRs for these or other features:</p>
+
+<ul>
+<li>Support queueing instead of overlaying multiple messages.</li>
+<li>Support stacking instead of overlaying multiple messages.</li>
+</ul>
+
+
+<div class="pilwrap" id="alternatives">
+  <h2>
+    <a href="#alternatives" name="alternatives" class="pilcrow">&#182;</a>
+    Alternatives
+  </h2>
+</div>
+
+
+<p>Other widgets and why they didn't work for me:</p>
+
+<p>|Widget|Didn't work for me because|
+|------|-----------------|
+|<a href="http://gitt.io/component/net.beyondlink.toast">net.beyondlink.toast</a>|Nice features, but themes not styleable|
+|<a href="http://gitt.io/component/com.mcongrove.toast">com.mcongrove.toast</a>|Position and animation not stylable|</p>
+
+
+<div class="pilwrap" id="license">
+  <h2>
+    <a href="#license" name="license" class="pilcrow">&#182;</a>
+    License
+  </h2>
+</div>
+
+
+
+<div class="highlight"><pre><code><span class="nx">The</span> <span class="nx">MIT</span> <span class="nx">License</span> <span class="p">(</span><span class="nx">MIT</span><span class="p">)</span>
+
+<span class="nx">Copyright</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="mi">2014</span> <span class="nx">Fokke</span> <span class="nx">Zandbergen</span>
+
+<span class="nx">Permission</span> <span class="nx">is</span> <span class="nx">hereby</span> <span class="nx">granted</span><span class="p">,</span> <span class="nx">free</span> <span class="nx">of</span> <span class="nx">charge</span><span class="p">,</span> <span class="nx">to</span> <span class="nx">any</span> <span class="nx">person</span> <span class="nx">obtaining</span> <span class="nx">a</span> <span class="nx">copy</span>
+<span class="nx">of</span> <span class="k">this</span> <span class="nx">software</span> <span class="nx">and</span> <span class="nx">associated</span> <span class="nx">documentation</span> <span class="nx">files</span> <span class="p">(</span><span class="nx">the</span> <span class="s2">&quot;Software&quot;</span><span class="p">),</span> <span class="nx">to</span> <span class="nx">deal</span>
+<span class="k">in</span> <span class="nx">the</span> <span class="nx">Software</span> <span class="nx">without</span> <span class="nx">restriction</span><span class="p">,</span> <span class="nx">including</span> <span class="nx">without</span> <span class="nx">limitation</span> <span class="nx">the</span> <span class="nx">rights</span>
+<span class="nx">to</span> <span class="nx">use</span><span class="p">,</span> <span class="nx">copy</span><span class="p">,</span> <span class="nx">modify</span><span class="p">,</span> <span class="nx">merge</span><span class="p">,</span> <span class="nx">publish</span><span class="p">,</span> <span class="nx">distribute</span><span class="p">,</span> <span class="nx">sublicense</span><span class="p">,</span> <span class="nx">and</span><span class="o">/</span><span class="nx">or</span> <span class="nx">sell</span>
+<span class="nx">copies</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">Software</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">to</span> <span class="nx">permit</span> <span class="nx">persons</span> <span class="nx">to</span> <span class="nx">whom</span> <span class="nx">the</span> <span class="nx">Software</span> <span class="nx">is</span>
+<span class="nx">furnished</span> <span class="nx">to</span> <span class="k">do</span> <span class="nx">so</span><span class="p">,</span> <span class="nx">subject</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">conditions</span><span class="o">:</span>
+
+<span class="nx">The</span> <span class="nx">above</span> <span class="nx">copyright</span> <span class="nx">notice</span> <span class="nx">and</span> <span class="k">this</span> <span class="nx">permission</span> <span class="nx">notice</span> <span class="nx">shall</span> <span class="nx">be</span> <span class="nx">included</span> <span class="k">in</span> <span class="nx">all</span>
+<span class="nx">copies</span> <span class="nx">or</span> <span class="nx">substantial</span> <span class="nx">portions</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">Software</span><span class="p">.</span>
+
+<span class="nx">THE</span> <span class="nx">SOFTWARE</span> <span class="nx">IS</span> <span class="nx">PROVIDED</span> <span class="s2">&quot;AS IS&quot;</span><span class="p">,</span> <span class="nx">WITHOUT</span> <span class="nx">WARRANTY</span> <span class="nx">OF</span> <span class="nx">ANY</span> <span class="nx">KIND</span><span class="p">,</span> <span class="nx">EXPRESS</span> <span class="nx">OR</span>
+<span class="nx">IMPLIED</span><span class="p">,</span> <span class="nx">INCLUDING</span> <span class="nx">BUT</span> <span class="nx">NOT</span> <span class="nx">LIMITED</span> <span class="nx">TO</span> <span class="nx">THE</span> <span class="nx">WARRANTIES</span> <span class="nx">OF</span> <span class="nx">MERCHANTABILITY</span><span class="p">,</span>
+<span class="nx">FITNESS</span> <span class="nx">FOR</span> <span class="nx">A</span> <span class="nx">PARTICULAR</span> <span class="nx">PURPOSE</span> <span class="nx">AND</span> <span class="nx">NONINFRINGEMENT</span><span class="p">.</span> <span class="nx">IN</span> <span class="nx">NO</span> <span class="nx">EVENT</span> <span class="nx">SHALL</span> <span class="nx">THE</span>
+<span class="nx">AUTHORS</span> <span class="nx">OR</span> <span class="nx">COPYRIGHT</span> <span class="nx">HOLDERS</span> <span class="nx">BE</span> <span class="nx">LIABLE</span> <span class="nx">FOR</span> <span class="nx">ANY</span> <span class="nx">CLAIM</span><span class="p">,</span> <span class="nx">DAMAGES</span> <span class="nx">OR</span> <span class="nx">OTHER</span>
+<span class="nx">LIABILITY</span><span class="p">,</span> <span class="nx">WHETHER</span> <span class="nx">IN</span> <span class="nx">AN</span> <span class="nx">ACTION</span> <span class="nx">OF</span> <span class="nx">CONTRACT</span><span class="p">,</span> <span class="nx">TORT</span> <span class="nx">OR</span> <span class="nx">OTHERWISE</span><span class="p">,</span> <span class="nx">ARISING</span> <span class="nx">FROM</span><span class="p">,</span>
+<span class="nx">OUT</span> <span class="nx">OF</span> <span class="nx">OR</span> <span class="nx">IN</span> <span class="nx">CONNECTION</span> <span class="nx">WITH</span> <span class="nx">THE</span> <span class="nx">SOFTWARE</span> <span class="nx">OR</span> <span class="nx">THE</span> <span class="nx">USE</span> <span class="nx">OR</span> <span class="nx">OTHER</span> <span class="nx">DEALINGS</span> <span class="nx">IN</span> <span class="nx">THE</span>
+<span class="nx">SOFTWARE</span><span class="p">.</span>
+</code></pre></div>
+
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>index.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/index.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>index.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">ViewScrollr</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;ViewScrollr&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">settingsMenu</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;settingsMenu&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">env</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;environment&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">locationServices</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">);</span>
+
+
+<span class="kd">var</span> <span class="nx">cacheDir</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">getFile</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">applicationCacheDirectory</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">);</span>
+<span class="nx">cacheDir</span><span class="p">.</span><span class="nx">deleteDirectory</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>specifica il tempo da assegnare alla funzione _.throttle sugli eventi click dei pulsanti in index.xml
+<a href='http://underscorejs.org/#throttle'>http://underscorejs.org/#throttle</a> </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">THROTTLE_TIME</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>da eseguire solo al primo avvio dell'app</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">onFirstRun</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>chiamo il servizio per registrare l'app</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">).</span><span class="nx">registerApp</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;app registered&#39;</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">w</span><span class="p">.</span><span class="nx">open</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+<span class="kd">var</span> <span class="nx">zapImageCache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">appDataDir</span><span class="p">,</span>
+        <span class="nx">cacheDir</span><span class="p">,</span>
+        <span class="nx">dir</span><span class="p">,</span>
+        <span class="nx">externalRoot</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">isExternalStoragePresent</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">appDataDir</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">getFile</span><span class="p">(</span><span class="s1">&#39;appdata://&#39;</span><span class="p">).</span><span class="nx">nativePath</span><span class="p">;</span>
+        <span class="nx">externalRoot</span> <span class="o">=</span> <span class="nx">appDataDir</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">appDataDir</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">));</span>
+        <span class="nx">cacheDir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="nx">externalRoot</span> <span class="o">+</span> <span class="s2">&quot;/Android/data/&quot;</span> <span class="o">+</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s2">&quot;/cache/_tmp/remote-cache&quot;</span><span class="p">;</span>
+        <span class="nx">dir</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">getFile</span><span class="p">(</span><span class="nx">cacheDir</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">dir</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">getFile</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Filesystem</span><span class="p">.</span><span class="nx">applicationCacheDirectory</span><span class="p">,</span> <span class="s1">&#39;_tmp&#39;</span><span class="p">,</span> <span class="s1">&#39;remote-cache&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">dir</span><span class="p">.</span><span class="nx">exists</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">dir</span><span class="p">.</span><span class="nx">deleteDirectory</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">dir</span><span class="p">.</span><span class="nx">createDirectory</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>zapImageCache();</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">abx</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;com.alcoapps.actionbarextras&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>var menuTop = (OS_ANDROID)?PixelsToDPUnits((Titanium.Platform.displayCaps.platformHeight/2))-40:(Titanium.Platform.displayCaps.platformHeight/2)-15;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">menuTop</span> <span class="o">=</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeightHalf</span> <span class="o">-</span> <span class="mi">40</span> <span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeightHalf</span> <span class="o">-</span> <span class="mi">30</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">menuView</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">menuTop</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">doopen</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>Alloy.Globals.loading.show('Sincronizzazione', false);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">navWin</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">abx</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s2">&quot;ACI Mobile Club&quot;</span><span class="p">;</span>
+        <span class="nx">abx</span><span class="p">.</span><span class="nx">titleFont</span> <span class="o">=</span> <span class="s2">&quot;ACI Type Regular.otf&quot;</span><span class="p">;</span>
+        <span class="nx">abx</span><span class="p">.</span><span class="nx">titleColor</span> <span class="o">=</span> <span class="s2">&quot;#4A678C&quot;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>actionBarHelper.setIcon('/<a href='mailto:drawericonw@2x.png'>drawericonw@2x.png</a>');</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>$.windowtitle.text = winTitle;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">}</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Alloy.Globals.loading.show('Stiamo calcolando la posizione');</p>
+  </div>
+  <div class="body"><p>require('locationServices').getUserLocation(function(err, pos) {
+Alloy.Globals.loading.hide();
+if(err){
+//gestire l'errore
+}
+loadData();
+});</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">view1</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createImageView</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="s2">&quot;http://www.aci.it/fileadmin/syc/acimobileclub/banner1.jpg&quot;</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">view2</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createImageView</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="s2">&quot;http://www.aci.it/fileadmin/syc/acimobileclub/banner2.jpg&quot;</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">view3</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createImageView</span><span class="p">({</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="s2">&quot;http://www.aci.it/fileadmin/syc/acimobileclub/banner3.jpg&quot;</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">Banner</span> <span class="o">=</span> <span class="nx">ViewScrollr</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="s2">&quot;98%&quot;</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;48.5%&quot;</span> <span class="o">:</span> <span class="s2">&quot;50%&quot;</span><span class="p">,</span>
+    <span class="nx">top</span><span class="o">:</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">auto</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">delay</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+    <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s2">&quot;#FFF&quot;</span><span class="p">,</span>
+    <span class="nx">navigation</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">selectedColor</span><span class="o">:</span> <span class="s2">&quot;#fff&quot;</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;#000&quot;</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s2">&quot;#fff&quot;</span>
+    <span class="p">},</span>
+    <span class="nx">panels</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">view</span><span class="o">:</span> <span class="nx">view1</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="nx">view</span><span class="o">:</span> <span class="nx">view2</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="nx">view</span><span class="o">:</span> <span class="nx">view3</span>
+    <span class="p">}]</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">scrollHack</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="nx">triggerScroll</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">triggerScroll</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>Ti.API.info("<strong><em>* FIRE EVENT *</em>*</strong>");</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;initialScrollHack&#39;</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_Enabled</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">enableSysReport</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">count</span><span class="o">++</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_Enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;modalità debug abilitata&#39;</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_UseShake</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sysReportCommon&#39;</span><span class="p">).</span><span class="nx">enableShake</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="nx">Banner</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">enableSysReport</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="nx">count</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">Banner</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">enableSysReport</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">Banner</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">closeSideMenu</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">settingsMenu</span><span class="p">.</span><span class="nx">hideMenu</span><span class="p">(</span><span class="nx">rightSettingsMenu</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">rightSettingsMenu</span> <span class="o">=</span> <span class="nx">settingsMenu</span><span class="p">.</span><span class="nx">openSideMenu</span><span class="p">();</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">rightSettingsMenu</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">toggleSideMenu</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">settingsMenu</span><span class="p">.</span><span class="nx">toggleMenu</span><span class="p">(</span><span class="nx">rightSettingsMenu</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Apre la schermata di visualizzazione della tessera
+Se non loggato, porta ad un menu in cui si può scegliere se loggarsi, registrarsi o comprare una tessera</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Object} e argomenti dell'evento click sul pulsante</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openTessera</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isLogged</span> <span class="o">&amp;&amp;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">hasTessera</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">winTessera</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;showTessera&#39;</span><span class="p">,</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="s2">&quot;datiUtente&quot;</span><span class="p">)).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winTessera</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">winOpts</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;userOptions&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winOpts</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+
+<span class="p">}).</span><span class="nx">throttle</span><span class="p">(</span><span class="nx">THROTTLE_TIME</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Apre la schermata di Assistenza</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Object} e argomenti dell'evento click sul pulsante</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openAssistenza</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>la funzionalità di asssitenza la posso usare solo se ho attivi i servizi di geolocalizzazione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">locationServices</span><span class="p">.</span><span class="nx">useLocation</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openAssistenza 1&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">numVerde</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;aciglobal&#39;</span><span class="p">).</span><span class="nx">NumeroVerde</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>apro un dialog per scegliere cosa fare</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nx">Titanium</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createAlertDialog</span><span class="p">({</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Impossibile usare la posizione attuale&#39;</span><span class="p">,</span>
+            <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Controlla le impostazioni di sistema, oppure chiama il numero &#39;</span> <span class="o">+</span> <span class="nx">numVerde</span><span class="p">,</span>
+            <span class="nx">buttonNames</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="p">[</span><span class="s1">&#39;Chiudi&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiama&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Chiudi&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiama&#39;</span><span class="p">,</span> <span class="s1">&#39;Impostazioni&#39;</span><span class="p">],</span>
+            <span class="nx">cancel</span><span class="o">:</span> <span class="mi">0</span>
+        <span class="p">});</span>
+
+        <span class="nx">dialog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog e&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">cancel</span><span class="o">:</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog cancel&#39;</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="c1">//chiama</span>
+                    <span class="nx">Titanium</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s1">&#39;tel:&#39;</span> <span class="o">+</span> <span class="nx">numVerde</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="c1">//apri settings</span>
+                    <span class="nx">locationServices</span><span class="p">.</span><span class="nx">openLocationSettings</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="nx">dialog</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">networkType</span> <span class="o">==</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">NETWORK_NONE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openAssistenza 1&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">numVerde</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;aciglobal&#39;</span><span class="p">).</span><span class="nx">NumeroVerde</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>apro un dialog per scegliere cosa fare</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nx">Titanium</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createAlertDialog</span><span class="p">({</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Connessione non disponibile&#39;</span><span class="p">,</span>
+            <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Controlla le impostazioni di sistema, oppure chiama il numero &#39;</span> <span class="o">+</span> <span class="nx">numVerde</span><span class="p">,</span>
+            <span class="nx">buttonNames</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="p">[</span><span class="s1">&#39;Chiudi&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiama&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Chiudi&#39;</span><span class="p">,</span> <span class="s1">&#39;Chiama&#39;</span><span class="p">,</span> <span class="s1">&#39;Impostazioni&#39;</span><span class="p">],</span>
+            <span class="nx">cancel</span><span class="o">:</span> <span class="mi">0</span>
+        <span class="p">});</span>
+
+        <span class="nx">dialog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog e&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">cancel</span><span class="o">:</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog cancel&#39;</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="c1">//chiama</span>
+                    <span class="nx">Titanium</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s1">&#39;tel:&#39;</span> <span class="o">+</span> <span class="nx">numVerde</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="c1">//apri settings</span>
+                    <span class="nx">locationServices</span><span class="p">.</span><span class="nx">openLocationSettings</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="nx">dialog</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openAssistenza 2&#39;</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">winSoccorso</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;SoccorsoStradaleMain&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winSoccorso</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+
+
+
+
+<span class="p">}).</span><span class="nx">throttle</span><span class="p">(</span><span class="nx">THROTTLE_TIME</span><span class="p">);</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Apre la schermata dei punti aci</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Object} e argomenti dell'evento click sul pulsante</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openPuntiACI</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">winPAci</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;PuntiAciMain&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winPAci</span><span class="p">);</span>
+
+<span class="p">}).</span><span class="nx">throttle</span><span class="p">(</span><span class="nx">THROTTLE_TIME</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Apre la schermata delle convenzioni</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Object} e argomenti dell'evento click sul pulsante</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openVantaggiSoci</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">winVantaggiSoci</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSociMain&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winVantaggiSoci</span><span class="p">);</span>
+
+<span class="p">}).</span><span class="nx">throttle</span><span class="p">(</span><span class="nx">THROTTLE_TIME</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Funzione eseguita al caricamento della window</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Object} e argomenti dell'evento click sul pulsante</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">loadData</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>eseguo un primo caricamento dei banner, in modo da avere sempre qualcosa da mostrare</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">banner</span><span class="p">.</span><span class="nx">fetchRandom</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;banner caricati&quot;</span><span class="p">);</span>
+    <span class="p">});</span>
+
+
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">navWin</span><span class="p">.</span><span class="nx">open</span><span class="p">();</span>
+
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">env</span><span class="p">.</span><span class="nx">isFirstRun</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">onFirstRun</span><span class="p">();</span>
+    <span class="nx">env</span><span class="p">.</span><span class="nx">isFirstRun</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

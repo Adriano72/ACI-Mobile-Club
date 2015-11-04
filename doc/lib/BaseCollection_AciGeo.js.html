@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BaseCollection_AciGeo.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/BaseCollection_AciGeo.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>BaseCollection_AciGeo.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Questo modulo è una raccolta di metodi base da applicare alle collezioni AciGeo
+E' un modulo astratto - va implementato nelle varie declinazioni
+I moduli implementanti devo definire la funzione retrieve_method
+Nei metodi esportati, 'this' si riferisce all'istanza della collezione
+Nella collezione ci si aspetta che sia dichiarato il parametro 'type_code' nelle configurazioni</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>durata massima di una collection</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">EXPIRY_DURATION</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_CacheDurationHours</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>distanza massima di valità della collection. 
+ Se sto cercando per posizione e mi sono allontanato dal punto precedente di più di MAX_DISTANCE
+ la collection non è valida</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">MAX_DISTANCE</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_CacheDistanceRangeMeters</span><span class="p">;</span>
+
+
+<span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">locationServices</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>collezione di metodi base da esportare</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">AciGeo</span> <span class="o">=</span> <span class="p">{};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>metodo network che gestisce l'aggiornamento dei punti</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">AciGeo</span><span class="p">.</span><span class="nx">retrieve_method</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type_code</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="s2">&quot;retrieve_method not implemented&quot;</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Sovrascrive il metodo per l'ordinamento</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Backbone.Model} m modello da ordinare</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Object</span>
+      <span class="dox_type">String</span>
+      <span class="dox_type">Number</span>
+      <span>valore rispetto al quale ordinare</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">AciGeo</span><span class="p">.</span><span class="nx">comparator</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">j</span><span class="p">.</span><span class="nx">address</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">distance</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">j</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">distance</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">j</span><span class="p">.</span><span class="nx">customName</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">orderBy</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">padRight</span><span class="p">(</span><span class="nx">j</span><span class="p">.</span><span class="nx">customName</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span> <span class="o">+</span> <span class="nx">j</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;orderBy&#39;</span><span class="p">,</span> <span class="nx">orderBy</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">orderBy</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">j</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Operazione da fare quando viene aggiornata la collezione</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Collection} coll collezione da aggiornare</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">AciGeo</span><span class="p">.</span><span class="nx">onFetch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;on fetch&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastUpdate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastParams</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span> <span class="o">?</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">()</span> <span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span><span class="p">.</span><span class="nx">shortName</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Esegue il fetch dei dati dal server in maniera condizione
+prima verifica che la collezione non sia aggiornata</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} cb callback del chiamante nella forma (err, cached) dove 'err' contiene un eventuale errore e 'cached' è un booleano che dice se il contenuto proviene da cache o no</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">AciGeo</span><span class="p">.</span><span class="nx">fetchIfChanged</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/*    console.log(&#39;arguments&#39;, Array.prototype.slice.call(arguments)); */</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>console.log('this', this);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this keys&#39;</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this isOutdated&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">isOutdated</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this reset&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isOutdated</span><span class="p">())</span> <span class="p">{</span>
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fetchCached 1&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">coll</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">retrieve_method</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">type_code</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fetchCached 3&#39;</span><span class="p">);</span>
+                <span class="nx">coll</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+                <span class="nx">coll</span><span class="p">.</span><span class="nx">onFetch</span><span class="p">();</span>
+                <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="p">});</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;errore retrieve_method&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+            <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+        <span class="p">}</span>
+
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fetchCached 2&#39;</span><span class="p">);</span>
+        <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">},</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Controlla se la collezione è valida o meno</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Boolean</span>
+      <span>dice se la collezione è valida o meno</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">AciGeo</span><span class="p">.</span><span class="nx">isOutdated</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">lastUpdate</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastUpdate</span><span class="p">;</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this.lastUpdate&#39;</span><span class="p">,</span> <span class="nx">lastUpdate</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>se lastUpdate non è definito, allora è il primo update</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">lastUpdate</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isOutdated lastUpdate null&#39;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>controllo che sia troppo vecchia</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">EXPIRY_DURATION</span> <span class="o">&amp;&amp;</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">dateDiff</span><span class="p">(</span><span class="nx">lastUpdate</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="s1">&#39;h&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">EXPIRY_DURATION</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isOutdated expired&#39;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">//secondo: controllo che il contesto sia cambiato</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>la modalità corrente scelta dall'utente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">currentMode</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;currentMode&#39;</span><span class="p">,</span> <span class="nx">currentMode</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>la modalità dell'ultima ricerca, la capisco implicitamente dal tipo di parametri
+ se object->sono coordinate, se string->è la provincia</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">lastMode</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">lastParams</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">currentMode</span> <span class="o">!=</span> <span class="nx">lastMode</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>è il caso in cui ho cambiato criterio di ricerca, sicuramente la ricerca è da invalidare</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isOutdated cambio modalità&#39;</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">currentMode</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>posizione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>è il caso in cui l'ultima ricerca era stata fatta per posizione, allora devo considerare la distanza rispetto al punto attuale</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">();</span>
+                <span class="kd">var</span> <span class="nx">last</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastParams</span><span class="p">;</span>
+
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isOutdated posizione&#39;</span><span class="p">,</span> <span class="nx">pos</span><span class="p">,</span> <span class="nx">last</span><span class="p">);</span>
+
+
+                <span class="k">return</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">calculateDistance</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">pos</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="nx">last</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">last</span><span class="p">.</span><span class="nx">longitude</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">MAX_DISTANCE</span><span class="p">;</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>provincia</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+                <span class="kd">var</span> <span class="nx">prov</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span><span class="p">.</span><span class="nx">shortName</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">last</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastParams</span><span class="p">;</span>
+
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isOutdated provincia&#39;</span><span class="p">,</span> <span class="nx">prov</span><span class="p">,</span> <span class="nx">last</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">prov</span> <span class="o">!=</span> <span class="nx">last</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AciGeo</span><span class="p">;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

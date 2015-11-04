@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>widget.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/com.imobicloud.tabbed_bar/controllers/widget.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>widget.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>params = {
+index: 0,
+labels: [ 'one', 'two', 'three' ],
+styles: {}
+}</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">styles</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">styles</span><span class="p">);</span>
+        <span class="k">delete</span> <span class="nx">params</span><span class="p">.</span><span class="nx">styles</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">removeAllChildren</span><span class="p">();</span>
+
+
+
+        <span class="kd">var</span> <span class="nx">labels</span> <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">labels</span><span class="p">,</span>
+            <span class="nx">index</span> <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">index</span><span class="p">;</span>
+        <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">itemW</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">/</span> <span class="nx">labels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>alert(itemW);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;tabbedBar.width&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">width</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;tabbedBar.rect&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">rect</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;labels.length&#39;</span><span class="p">,</span> <span class="nx">labels</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;itemW&#39;</span><span class="p">,</span> <span class="nx">itemW</span><span class="p">);</span>
+
+
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">ii</span> <span class="o">=</span> <span class="nx">labels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ii</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">classes</span> <span class="o">=</span> <span class="s1">&#39;tabbed-bar-button&#39;</span><span class="p">;</span>
+                <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="nx">index</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">classes</span> <span class="o">+=</span> <span class="s1">&#39; tabbed-bar-button-active&#39;</span><span class="p">);</span>
+                <span class="p">(</span><span class="nx">labels</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">===</span> <span class="nx">i</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">classes</span> <span class="o">+=</span> <span class="s1">&#39; right&#39;</span><span class="p">);</span>
+                <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">classes</span> <span class="o">+=</span> <span class="s1">&#39; left&#39;</span><span class="p">);</span>
+
+                <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">createStyle</span><span class="p">({</span>
+                    <span class="nx">classes</span><span class="o">:</span> <span class="nx">classes</span><span class="p">,</span>
+                    <span class="nx">apiName</span><span class="o">:</span> <span class="s1">&#39;Button&#39;</span>
+                <span class="p">});</span>
+
+                <span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createButton</span><span class="p">({</span>
+                    <span class="nx">buttonIndex</span><span class="o">:</span> <span class="nx">i</span><span class="p">,</span>
+                    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;  &#39;</span> <span class="o">+</span> <span class="nx">labels</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;  &#39;</span>
+                <span class="p">});</span>
+
+
+                <span class="nx">button</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+
+                <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">classes</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+
+                    <span class="nx">$</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">button</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+                <span class="p">});</span>
+
+
+
+
+                <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">button</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>button.width = button.rect.width - 1;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>_.defer(function(b) {
+return function() {
+console.log('b.width',  b.width);
+console.log('b.rect',  b.rect);
+b.width = b.rect.width - 1;
+}
+}(button));  </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+            <span class="p">};</span>
+
+        <span class="p">});</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">lastIndex</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">onChange</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">index</span><span class="o">:</span> <span class="nx">i</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+
+
+<span class="kd">var</span> <span class="nx">tabbedBarClicked</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">tabbedBarClicked</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;tabbedBarClicked&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+        <span class="nx">onChange</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
+
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">tabbedBarClicked</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">,</span>
+            <span class="nx">index</span> <span class="o">=</span> <span class="nx">button</span><span class="p">.</span><span class="nx">buttonIndex</span><span class="p">,</span>
+            <span class="nx">lastIndex</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>console.log("tabbedBarClicked e", e);
+  console.log("tabbedBarClicked ", index, lastIndex);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">index</span> <span class="o">!=</span> <span class="nx">lastIndex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">button</span><span class="p">,</span> <span class="s1">&#39;tabbed-bar-button-active&#39;</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">prev</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">lastIndex</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;prev&quot;</span><span class="p">,</span> <span class="nx">prev</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="s1">&#39;tabbed-bar-button-active&#39;</span><span class="p">);</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">lastIndex</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+            <span class="nx">onChange</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getIndex</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">index</span> <span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Object.defineProperty(exports, 'index', {
+get: function() {
+if (OS_IOS) {
+return $.tabbedBar.index;
+} else {
+return $.tabbedBar.lastIndex;
+}
+},
+set: function(v) {
+console.log("set settings:ricercaPerProssimita", v);</p>
+  </div>
+  <div class="body"><p>Ti.App.Properties.setBool("settings:ricercaPerProssimita", v);
+}
+});</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>GESTIONE CUSTOM DEGLI EVENTI PER IL WIDGET</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Scaffold degli eventi</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Object
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">eventHandlers</span> <span class="o">=</span> <span class="p">{};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Bridge per gli eventi interni al widget
+<a href='http://www.slideshare.net/MartinHudson1/ticonfeu'>http://www.slideshare.net/MartinHudson1/ticonfeu</a></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">eventName</span>
+      <span class="dox_type">string</span>
+      <span>evento da collegaro</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">eventHandler</span>
+      <span class="dox_type">Function</span>
+      <span>handler dell'evento</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">eventHandler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">eventHandler</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Custom fire event function</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} name    [description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} context [description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} params  [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">fireEvent</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">eventHandlers</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;call: &#39;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="k">return</span> <span class="nx">h</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">h</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

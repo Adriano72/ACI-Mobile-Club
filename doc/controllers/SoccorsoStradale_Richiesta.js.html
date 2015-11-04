@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SoccorsoStradale_Richiesta.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/SoccorsoStradale_Richiesta.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>SoccorsoStradale_Richiesta.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">locationServices</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">commons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">AciGlobal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;aciglobal&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">dialogs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;alloy/dialogs&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>var isGuest = !user.isLogged;
+var userData = user.getCurrentUser();
+var currentAddress;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>/**
+ * Inizializza la mappa
+ * @return {[type]} [description]
+ */
+function initMap() {</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">$</span><span class="p">.</span><span class="nx">mapview</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">onMapComplete</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//la posizione iniziale è quella dell&#39;utente</span>
+    <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">coo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getUserLocation err&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getUserLocation coo&#39;</span><span class="p">,</span> <span class="nx">coo</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getUserLocation last&#39;</span><span class="p">,</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">());</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>            <span class="nx">$</span><span class="p">.</span><span class="nx">mapview</span><span class="p">.</span><span class="nx">setRegion</span><span class="p">({</span>
+                <span class="nx">latitude</span><span class="o">:</span> <span class="nx">coo</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>
+                <span class="nx">longitude</span><span class="o">:</span> <span class="nx">coo</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span>
+                <span class="nx">latitudeDelta</span><span class="o">:</span> <span class="mf">0.01</span><span class="p">,</span>
+                <span class="nx">longitudeDelta</span><span class="o">:</span> <span class="mf">0.01</span><span class="p">,</span>
+                <span class="nx">zoom</span><span class="o">:</span> <span class="mi">14</span>
+            <span class="p">});</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>            <span class="c1">//  updateAddress(coo.latitude, coo.longitude, coo.accuracy);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>        <span class="p">}</span>
+    <span class="p">});</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="p">});</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>/**
+ * handler per il submit della form
+ * @return {[type]} [description]
+ */
+function submit() {
+    validate(function(err) {
+        if (err) {
+            alert(err.join('\n'));</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">dialogs</span><span class="p">.</span><span class="nx">confirm</span><span class="p">({</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Conferma richiesta&quot;</span><span class="p">,</span>
+            <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Confermi l&#39;invio della richiesta?&quot;</span><span class="p">,</span>
+            <span class="nx">yes</span><span class="o">:</span> <span class="s2">&quot;Sì&quot;</span><span class="p">,</span>
+            <span class="nx">no</span><span class="o">:</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span>
+            <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">AciGlobal</span><span class="p">.</span><span class="nx">limitRequests</span><span class="p">(</span><span class="s1">&#39;La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero &#39;</span> <span class="o">+</span> <span class="nx">AciGlobal</span><span class="p">.</span><span class="nx">NumeroVerde</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="nx">callAciGlobal</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>/**
+ * esegue la chiamata ai servizi AciGlobal
+ * @return {[type]} [description]
+ */
+function callAciGlobal() {
+    console.log('call aci global');</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;Richiesta in corso&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">telefono</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+    <span class="nx">latitude</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">mapview</span><span class="p">.</span><span class="nx">getRegion</span><span class="p">().</span><span class="nx">latitude</span><span class="p">,</span>
+    <span class="nx">longitude</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">mapview</span><span class="p">.</span><span class="nx">getRegion</span><span class="p">().</span><span class="nx">longitude</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">// console.log(&#39;isGuest &#39;, isGuest);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isGuest</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">params</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">nome</span><span class="o">:</span> <span class="nx">userData</span><span class="p">[</span><span class="s1">&#39;userInfo.name&#39;</span><span class="p">],</span>
+        <span class="nx">cognome</span><span class="o">:</span> <span class="nx">userData</span><span class="p">[</span><span class="s1">&#39;userInfo.surname&#39;</span><span class="p">],</span>
+        <span class="nx">tesseraACI</span><span class="o">:</span> <span class="nx">userData</span><span class="p">[</span><span class="s1">&#39;userInfo.numeroTessera&#39;</span><span class="p">],</span>
+        <span class="nx">note</span><span class="o">:</span> <span class="s1">&#39;tipo: &#39;</span> <span class="o">+</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tipoAiuto</span><span class="p">.</span><span class="nx">value</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;params &quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">AciGlobal</span><span class="p">.</span><span class="nx">sendRichiestaAssistenza</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;callAciGlobal&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;si è verificato un errore nella trasmissione della richiesta&#39;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;callAciGlobal&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="nx">renderConferma</span><span class="p">();</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="p">});</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>/**
+ * Gestisce la visualizzazione dei componeneti della form
+ * @return {[type]} [description]
+ */
+function renderForm() {</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isGuest</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="nx">utility</span><span class="p">.</span><span class="nx">showVertical</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">tipoWrapper</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">userData</span><span class="p">[</span><span class="s1">&#39;userInfo.mobile&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="nx">userData</span><span class="p">[</span><span class="s1">&#39;userInfo.mobileTemp&#39;</span><span class="p">];</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">tipoAiuto</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="nx">utility</span><span class="p">.</span><span class="nx">hideVertical</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">tipoWrapper</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-28" id="section-28">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//serve ad evitare il problema che la tastiera viene visualizzata all&#39;apertura</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+        <span class="nx">setScrollOnFocus</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">setScrollOnFocus</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="kd">function</span> <span class="nx">setScrollOnFocus</span><span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/*  $.telefono.addEventListener(&#39;focus&#39;, function() {</span>
+<span class="cm">        $.main.scrollToBottom();</span>
+<span class="cm">    }); */</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//stato: mostra form</span>
+<span class="nx">utility</span><span class="p">.</span><span class="nx">hideVertical</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">rowRichiestaInviata</span><span class="p">);</span>
+<span class="nx">utility</span><span class="p">.</span><span class="nx">showVertical</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">rowForm</span><span class="p">)</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-32" id="section-32">&#182;</a>
+</div>
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-33" id="section-33">&#182;</a>
+</div>
+<p>*
+ * Gestisce la visualizzazione della schermata di conferma dopo l'invio della segnalazione
+ * @return {[type]} [description]</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-34" id="section-34">&#182;</a>
+</div>
+<p>function renderConferma() {</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-35" id="section-35">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//</span>
+<span class="c1">//immette i valori nella schermata</span>
+<span class="c1">//</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//orario</span>
+<span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="c1">//  $.richiestaOrario.text = [now.getHours(), now.getMinutes()].join(&#39;:&#39;);</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">richiestaOrario</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">formatOrario</span><span class="p">(</span><span class="nx">now</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//telefono</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">richiestaTelefono</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//indirizzo</span>
+<span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">mapview</span><span class="p">.</span><span class="nx">getRegion</span><span class="p">();</span>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;Calcolando indirizzo&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">locationServices</span><span class="p">.</span><span class="nx">getAddress</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span> <span class="nx">lon</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">places</span><span class="p">,</span> <span class="nx">place</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//todo: gestire errore reverse geocodinge</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getAddress err&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getAddress places&#39;</span><span class="p">,</span> <span class="nx">places</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">richiestaIndirizzo</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">place</span><span class="p">;</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-42" id="section-42">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//</span>
+<span class="c1">//stato: mostra richiesta inviata</span>
+<span class="c1">//</span>
+<span class="nx">utility</span><span class="p">.</span><span class="nx">hideVertical</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">rowForm</span><span class="p">)</span>
+<span class="nx">utility</span><span class="p">.</span><span class="nx">showVertical</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">rowRichiestaInviata</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
+</div>
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-44" id="section-44">&#182;</a>
+</div>
+<p>function formatOrario(d) {
+    return [utility.padLeft(d.getHours(), '0', 2), utility.padLeft(d.getMinutes(), '0', 2)].join(':');
+}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-45" id="section-45">&#182;</a>
+</div>
+<p>/**
+ * funzione di validazione dei dati prima dell'invio
+ * @return {[type]} [description]
+ */
+function validate(cb) {</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-46" id="section-46">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="p">[];</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-47" id="section-47">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="kd">var</span> <span class="nx">telefono</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">tipo</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tipoAiuto</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="kd">function</span> <span class="nx">validateTelefono</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="sr">/^((00|\+)39)*([0-9]{10})$/</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-49" id="section-49">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">telefono</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="nx">isGuest</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">tipo</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">err</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Tutti i campi sono obbligatori&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-50" id="section-50">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-51" id="section-51">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="k">if</span> <span class="p">(</span><span class="nx">telefono</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">validateTelefono</span><span class="p">(</span><span class="nx">telefono</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">err</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;Formato telefono non valido, utilizzare solo cifre.&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-52" id="section-52">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-53" id="section-53">&#182;</a>
+</div>
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-54" id="section-54">&#182;</a>
+</div>
+<p>/**
+ * Aggiorna l'indirizzo tramite reverse geocoding
+ * @param  {[type]} lat      [description]
+ * @param  {[type]} lon      [description]
+ * @param  {[type]} accuracy [description]
+ * @return {[type]}          [description]
+ */
+function updateAddress(lat, lon, accuracy, cb) {
+    // console.log('updateAddress', lat, lon, accuracy);
+    locationServices.getAddress(lat, lon, function(err, places, place) {</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-55" id="section-55">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//todo: gestire errore reverse geocodinge</span>
+        <span class="c1">// console.log(&#39;getAddress err&#39;, err);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">//   console.log(&#39;getAddress places&#39;, places);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">labelMap</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">place</span><span class="p">;</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-56" id="section-56">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+<p>}</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-57" id="section-57">&#182;</a>
+</div>
+<p>/**
+ * PUBLIC API
+ */</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-58" id="section-58">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Trigger per forzare il cambio di posizione</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">updatePosition</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">coo</span> <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-59" id="section-59">&#182;</a>
+</div>
+<p>console.log('updatePosition', coo);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-60" id="section-60">&#182;</a>
+</div>
+<p>console.log('updatePosition lat', coo.latitude);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getAddress</span><span class="p">(</span><span class="nx">coo</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">coo</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">places</span><span class="p">,</span> <span class="nx">place</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getAddress err&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getAddress places&#39;</span><span class="p">,</span> <span class="nx">places</span><span class="p">);</span>
+
+            <span class="nx">$</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">place</span> <span class="o">+</span> <span class="s1">&#39; (precisione &#39;</span> <span class="o">+</span> <span class="nx">coo</span><span class="p">.</span><span class="nx">accuracy</span> <span class="o">+</span> <span class="s1">&#39;m)&#39;</span><span class="p">;</span>
+
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">canvasClick</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span> <span class="o">!==</span> <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">telefono</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">onLocation</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-61" id="section-61">&#182;</a>
+</div>
+<p>console.log('onLocation', e);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">updatePosition</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-62" id="section-62">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>hadler dell'evento Window.open</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">open</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;location&#39;</span><span class="p">,</span> <span class="nx">onLocation</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-63" id="section-63">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>hadler dell'evento Window.close</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">close</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;location&#39;</span><span class="p">,</span> <span class="nx">onLocation</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-64" id="section-64">&#182;</a>
+</div>
+<p>(function constructor(args) {</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-65" id="section-65">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="c1">//inizializzazioni comuni della Window</span>
+<span class="kd">var</span> <span class="nx">headerText</span> <span class="o">=</span> <span class="s2">&quot;Assistenza&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">headerImg</span> <span class="o">=</span> <span class="s2">&quot;/images/ic_action_home_assistenza_blu.png&quot;</span><span class="p">;</span>
+<span class="nx">commons</span><span class="p">.</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="nx">headerText</span><span class="p">,</span> <span class="nx">headerImg</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-66" id="section-66">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">initMap</span><span class="p">();</span>
+<span class="nx">renderForm</span><span class="p">();</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-67" id="section-67">&#182;</a>
+</div>
+<p>})(arguments[0] || {});</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

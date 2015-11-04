@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>bannerCarousel.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/bannerCarousel.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>bannerCarousel.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">banners</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">timer</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">index</span><span class="p">;</span>
+
+
+
+
+<span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">showRandom</span><span class="p">();</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">).</span><span class="nx">getBanner</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p_data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">banner</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">p_data</span><span class="p">);</span>
+        <span class="nx">banners</span> <span class="o">=</span> <span class="nx">p_data</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;banners&#39;</span><span class="p">,</span> <span class="nx">banners</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">banners</span> <span class="o">&amp;&amp;</span> <span class="nx">banners</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">showRandom</span><span class="p">();</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">bannerImage</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+ <span class="nx">$</span><span class="p">.</span><span class="nx">bannerImage</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span> <span class="o">*</span> <span class="mf">0.285</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">showRandom</span><span class="p">,</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">BannerRotationTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">stop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">showRandom</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">bannerImage</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">new_index</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">banners</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">banner</span> <span class="o">=</span> <span class="nx">banners</span><span class="p">[</span><span class="nx">new_index</span><span class="p">];</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;new_index&#39;</span><span class="p">,</span> <span class="nx">new_index</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">new_index</span> <span class="o">!=</span> <span class="nx">index</span> <span class="o">&amp;&amp;</span> <span class="nx">banner</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">index</span> <span class="o">=</span> <span class="nx">new_index</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>console.log('banner', banner);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;banners.length&#39;</span><span class="p">,</span> <span class="nx">banners</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">banner</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;banner &#39;</span><span class="p">,</span> <span class="nx">banner</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;banner.agreement_id &#39;</span><span class="p">,</span> <span class="nx">banner</span><span class="p">.</span><span class="nx">agreement_id</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;banner.agreement_id.images &#39;</span><span class="p">,</span> <span class="nx">banner</span><span class="p">.</span><span class="nx">agreement_id</span><span class="p">.</span><span class="nx">images</span><span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nx">banner</span><span class="p">.</span><span class="nx">agreement_id</span><span class="p">.</span><span class="nx">images</span><span class="p">.</span><span class="nx">banner</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">bannerBaseURL</span> <span class="o">+</span> <span class="nx">img</span><span class="p">;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+
+            <span class="nx">$</span><span class="p">.</span><span class="nx">bannerImage</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nb">encodeURI</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">openDetail</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">dettConvenzione</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_Dettaglio_Convenzione&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="o">:</span> <span class="nx">banners</span><span class="p">[</span><span class="nx">new_index</span><span class="p">],</span>
+        <span class="nx">headerImg</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nx">isBanner</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">dettConvenzione</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">init</span><span class="p">);</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

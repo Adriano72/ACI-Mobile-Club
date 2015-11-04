@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>contacts.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/components/contacts.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>contacts.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">contacts</span><span class="p">;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">applyProperties</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">setContacts</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">setContacts</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;contacts &#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+
+    <span class="nx">contacts</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;contacts 1&#39;</span><span class="p">,</span> <span class="nx">contacts</span><span class="p">);</span>
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">contacts</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">_</span><span class="p">([</span><span class="s1">&#39;web&#39;</span><span class="p">,</span> <span class="s1">&#39;telefono&#39;</span><span class="p">,</span> <span class="s1">&#39;fax&#39;</span><span class="p">]).</span><span class="nx">chain</span><span class="p">()</span>
+            <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">contacts</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">contacts</span><span class="p">[</span><span class="nx">x</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span>
+                <span class="nx">_</span><span class="p">(</span><span class="nx">contacts</span><span class="p">[</span><span class="nx">type</span><span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+                        <span class="nx">type</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="nx">text</span><span class="o">:</span> <span class="nx">type</span>
+                        <span class="p">},</span>
+                        <span class="nx">target</span><span class="o">:</span> <span class="p">{</span>
+                            <span class="nx">text</span><span class="o">:</span> <span class="nx">target</span><span class="p">,</span>
+                            <span class="nx">href</span><span class="o">:</span> <span class="p">(</span><span class="kd">function</span> <span class="nx">formatHREF</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;web&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">target</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;http://&#39;</span> <span class="o">+</span> <span class="nx">target</span><span class="p">;</span>
+                                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;tel&#39;</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;fax&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;tel:&#39;</span> <span class="o">+</span> <span class="nx">target</span><span class="p">;</span>
+                                <span class="k">else</span> <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+                            <span class="p">})(</span><span class="nx">type</span><span class="p">)</span>
+                        <span class="p">}</span>
+                    <span class="p">});</span>
+                <span class="p">});</span>
+                <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">memo</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;reduce&#39;</span><span class="p">,</span> <span class="nx">memo</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">memo</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+            <span class="p">},</span> <span class="p">[])</span>
+            <span class="p">.</span><span class="nx">sortBy</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">value</span><span class="p">();</span>
+
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;contacts 2&#39;</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+        <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ls</span><span class="p">.</span><span class="nx">setItems</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+
+        <span class="p">});</span>
+
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>$.list.visible = !!contacts.length;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">getContacts</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">getContacts</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">contacts</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="s1">&#39;contacts&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">getContacts</span><span class="p">,</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">setContacts</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">openUrl</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openUrl&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span> <span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">section</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">itemIndex</span><span class="p">].</span><span class="nx">target</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">bindId</span> <span class="o">==</span> <span class="s1">&#39;target&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">source</span><span class="p">.</span><span class="nx">href</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="nx">source</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

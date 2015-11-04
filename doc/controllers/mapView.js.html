@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>mapView.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/mapView.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>mapView.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+
+<span class="kd">var</span> <span class="nx">sideMenu</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mapSideMenu&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">locationServices</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">tmpCollection</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">tempCollection</span><span class="p">;</span>
+
+<span class="nx">tmpCollection</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">collection</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>se true, centra la mappa in base alla posizione dell'utente
+se false, centra la mappa in base ai punti </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">centerOnUser</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">centerOnUser</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">default_delta</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;mapview&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">headerText</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">titolo</span><span class="p">;</span> <span class="c1">//&quot;Assistenza&quot;;</span>
+<span class="kd">var</span> <span class="nx">headerImg</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">homeIcon</span><span class="p">;</span> <span class="c1">//&quot;/images/ic_action_home_assistenza_blu.png&quot;;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>inizializzazioni comuni della Window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">).</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="nx">headerText</span><span class="p">,</span> <span class="nx">headerImg</span><span class="p">);</span>
+
+
+
+
+<span class="kd">function</span> <span class="nx">loadData</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">centerMap</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>updateUI();</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">centerMap</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;centerOnUser&#39;</span><span class="p">,</span> <span class="nx">centerOnUser</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">centerOnUser</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">posizione</span> <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">.</span><span class="nx">region</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">latitude</span><span class="o">:</span> <span class="nx">posizione</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>
+            <span class="nx">latitudeDelta</span><span class="o">:</span> <span class="nx">default_delta</span><span class="p">,</span>
+            <span class="nx">longitude</span><span class="o">:</span> <span class="nx">posizione</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span>
+            <span class="nx">longitudeDelta</span><span class="o">:</span> <span class="nx">default_delta</span>
+        <span class="p">};</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="nx">setMarkersWithCenter</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>seleziona il pin corretto
+e args.pin è definito, usa quello
+altrimenti lo ricava man mano dal tipo del poi</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">getPinImage</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="s1">&#39;/images/&#39;</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>if (OS_IOS) {
+i += 'images/'
+};   </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">pin</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">i</span> <span class="o">+=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">pin</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;del&#39;</span><span class="o">:</span> <span class="s1">&#39;pin_Delegazioni.png&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;aacc&#39;</span><span class="o">:</span> <span class="s1">&#39;pin_AutomobileClub.png&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;pra&#39;</span><span class="o">:</span> <span class="s1">&#39;pin_Pra.png&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;tasse&#39;</span><span class="o">:</span> <span class="s1">&#39;pin_Tasse.png&#39;</span>
+        <span class="p">};</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="nx">type</span><span class="p">);</span>
+        <span class="nx">i</span> <span class="o">+=</span> <span class="nx">d</span><span class="p">[</span><span class="nx">type</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;pin&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">dataTransform</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">attrs</span> <span class="o">=</span> <span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">();</span>
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;END SIDE COLLECTION: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">collection</span><span class="p">));</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">indirizzo</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">street</span><span class="p">;</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">indirizzo2</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="nx">i</span><span class="p">.</span><span class="nx">push</span><span class="p">((</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">postalCode</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">));</span>
+        <span class="nx">i</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">locality</span> <span class="o">&amp;&amp;</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">locality</span><span class="p">.</span><span class="nx">longName</span> <span class="o">?</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">locality</span><span class="p">.</span><span class="nx">longName</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">i</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+    <span class="p">})();</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">location</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">longitude</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">location</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">tel</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">tel</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">getPinImage</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">_type</span><span class="p">);</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">subtitle</span> <span class="o">=</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s2">&quot;Tocca &#39;i&#39; per ulteriori informazioni&quot;</span> <span class="o">:</span> <span class="s2">&quot;Tocca per ulteriori informazioni&quot;</span><span class="p">;</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">leftButton</span> <span class="o">=</span> <span class="s2">&quot;/images/annotation-info.png&quot;</span><span class="p">;</span>
+    <span class="nx">attrs</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">attrs</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">email</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>attrs.immagine = encodeURI("<a href='http://www.aci.it/fileadmin/syc/logo/'>http://www.aci.it/fileadmin/syc/logo/</a>"+attrs.agreement_id.logo);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="k">return</span> <span class="nx">attrs</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">linkToPOI</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">clicksource</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clicksource</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">annotation</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>get the Myid from annotation</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">clicksource</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clicksource</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">clicksource</span> <span class="o">==</span> <span class="s1">&#39;leftButton&#39;</span> <span class="o">||</span> <span class="nx">clicksource</span> <span class="o">==</span> <span class="s1">&#39;leftPane&#39;</span> <span class="o">||</span> <span class="nx">clicksource</span> <span class="o">==</span> <span class="s1">&#39;infoWindow&#39;</span> <span class="o">||</span> <span class="nx">clicksource</span> <span class="o">==</span> <span class="s1">&#39;subtitle&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//leftButton event</span>
+
+
+        <span class="kd">var</span> <span class="nx">id_code</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">annotation</span><span class="p">.</span><span class="nx">_type</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">isPuntoAci</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">annotation</span><span class="p">.</span><span class="nx">agreement_id</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">isPuntoAci</span> <span class="o">?</span> <span class="s1">&#39;PuntiAci_Detail&#39;</span> <span class="o">:</span> <span class="s1">&#39;VantaggiSoci_Dettaglio_Convenzione&#39;</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">det</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="nx">ctrl</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">attributes</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">annotation</span>
+            <span class="p">},</span>
+            <span class="nx">titolo</span><span class="o">:</span> <span class="nx">headerText</span><span class="p">,</span>
+            <span class="nx">headerImg</span><span class="o">:</span> <span class="nx">headerImg</span>
+        <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">det</span><span class="p">);</span>
+
+
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>Ti.API.info("CLICK: " + JSON.stringify(e));</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">openNavigation</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">userLoc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">mapsServiceURL</span> <span class="o">=</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;http://maps.google.com/maps?t=m&amp;saddr=&#39;</span> <span class="o">:</span> <span class="s1">&#39;http://maps.apple.com/maps?t=m&amp;saddr=&#39;</span><span class="p">;</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;NAVIGATION DATA: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lat</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lon</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">longitude</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="nx">mapsServiceURL</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">latitude</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">userLoc</span><span class="p">.</span><span class="nx">longitude</span> <span class="o">+</span> <span class="s1">&#39;&amp;daddr=&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lat</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">lon</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">rightSettingsMenu</span> <span class="o">=</span> <span class="nx">sideMenu</span><span class="p">.</span><span class="nx">openMapSideMenu</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>Ti.API.info("BEFORE CALLBACK - COLLECTION LENGTH: " + Alloy.Collections.puntiMappa.length);
+tmpCollection.reset();
+tmpCollection.trigger('change');
+$.map.removeAllAnnotations();
+_.each($.map.annotations, function(value) {
+$.map.removeAnnotation(value);
+});</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>Ti.API.info("ANNOTATIONS LENGTH: " + $.map.annotations.length);
+Alloy.Collections.puntiMappa.reset(Alloy.Collections.automobileClub.toJSON());
+Ti.API.info("ANNOTATIONS LENGTH: " + $.map.annotations.length);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>updateUI();
+Ti.API.info("AFTER CALLBACK - COLLECTION LENGTH: " + Alloy.Collections.puntiMappa.length);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">rightSettingsMenu</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">toggleSideMenu</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">sideMenu</span><span class="p">.</span><span class="nx">toggleMenu</span><span class="p">(</span><span class="nx">rightSettingsMenu</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>tempCollection.trigger("change");</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Imposta il centro della mappa rispetto ai punti
+<a href='https://gist.github.com/synapse/9953552'>https://gist.github.com/synapse/9953552</a></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">mapView</span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">latiarray</span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">longiarray</span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">setMarkersWithCenter</span><span class="p">(</span><span class="nx">mapView</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">annotations</span> <span class="o">=</span> <span class="nx">mapView</span><span class="p">.</span><span class="nx">getAnnotations</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">latiarray</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">annotations</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">latitude</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">longiarray</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">annotations</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">longitude</span><span class="p">;</span>
+    <span class="p">});</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">latiarray</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="nx">longiarray</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">latiarray</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">mapView</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">({</span>
+            <span class="nx">animate</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">latitude</span><span class="o">:</span> <span class="nx">latiarray</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="nx">longitude</span><span class="o">:</span> <span class="nx">longiarray</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="nx">latitudeDelta</span><span class="o">:</span> <span class="nx">default_delta</span><span class="p">,</span>
+            <span class="nx">longitudeDelta</span><span class="o">:</span> <span class="nx">default_delta</span><span class="p">,</span>
+        <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">total_locations</span> <span class="o">=</span> <span class="nx">latiarray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">minLongi</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">minLati</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">maxLongi</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nx">maxLati</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">totalLongi</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="nx">totalLati</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">total_locations</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">minLati</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">minLati</span> <span class="o">&gt;</span> <span class="nx">latiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">minLati</span> <span class="o">=</span> <span class="nx">latiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">minLongi</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">minLongi</span> <span class="o">&gt;</span> <span class="nx">longiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">minLongi</span> <span class="o">=</span> <span class="nx">longiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">maxLati</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">maxLati</span> <span class="o">&lt;</span> <span class="nx">latiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">maxLati</span> <span class="o">=</span> <span class="nx">latiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">maxLongi</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">maxLongi</span> <span class="o">&lt;</span> <span class="nx">longiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">maxLongi</span> <span class="o">=</span> <span class="nx">longiarray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;minLati&quot;</span><span class="p">,</span> <span class="nx">minLati</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;minLongi&quot;</span><span class="p">,</span> <span class="nx">minLongi</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;maxLati&quot;</span><span class="p">,</span> <span class="nx">maxLati</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;maxLongi&quot;</span><span class="p">,</span> <span class="nx">maxLongi</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">ltDiff</span> <span class="o">=</span> <span class="nx">maxLati</span> <span class="o">-</span> <span class="nx">minLati</span><span class="p">;</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;ltDiff&quot;</span><span class="p">,</span> <span class="nx">ltDiff</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">lgDiff</span> <span class="o">=</span> <span class="nx">maxLongi</span> <span class="o">-</span> <span class="nx">minLongi</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">lgDiff</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">lgDiff</span> <span class="o">=</span> <span class="mi">180</span>
+        <span class="p">}</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s2">&quot;lgDiff&quot;</span><span class="p">,</span> <span class="nx">lgDiff</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">delta</span> <span class="o">=</span> <span class="nx">ltDiff</span> <span class="o">&gt;</span> <span class="nx">lgDiff</span> <span class="o">?</span> <span class="nx">ltDiff</span> <span class="o">:</span> <span class="nx">lgDiff</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">total_locations</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">delta</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">latitude</span> <span class="o">=</span> <span class="p">((</span><span class="nx">maxLati</span> <span class="o">+</span> <span class="nx">minLati</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">longitude</span> <span class="o">=</span> <span class="p">((</span><span class="nx">maxLongi</span> <span class="o">+</span> <span class="nx">minLongi</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="nx">latitude</span><span class="p">,</span> <span class="nx">longitude</span><span class="p">);</span>
+
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">&#39;Center map&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">animate</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">latitude</span><span class="o">:</span> <span class="nx">latitude</span><span class="p">,</span>
+                <span class="nx">longitude</span><span class="o">:</span> <span class="nx">longitude</span><span class="p">,</span>
+                <span class="nx">latitudeDelta</span><span class="o">:</span> <span class="nx">delta</span><span class="p">,</span>
+                <span class="nx">longitudeDelta</span><span class="o">:</span> <span class="nx">delta</span><span class="p">,</span>
+            <span class="p">});</span>
+
+            <span class="nx">mapView</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">({</span>
+                <span class="nx">animate</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">latitude</span><span class="o">:</span> <span class="nx">latitude</span><span class="p">,</span>
+                <span class="nx">longitude</span><span class="o">:</span> <span class="nx">longitude</span><span class="p">,</span>
+                <span class="nx">latitudeDelta</span><span class="o">:</span> <span class="nx">delta</span><span class="p">,</span>
+                <span class="nx">longitudeDelta</span><span class="o">:</span> <span class="nx">delta</span><span class="p">,</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

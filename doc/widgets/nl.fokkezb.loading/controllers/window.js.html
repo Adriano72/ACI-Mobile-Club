@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>window.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/nl.fokkezb.loading/controllers/window.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>window.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">update</span> <span class="o">=</span> <span class="nx">update</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="nx">show</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="nx">hide</span><span class="p">;</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="s1">&#39;visible&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">isOpen</span> <span class="o">&amp;&amp;</span> <span class="nx">hasFocus</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">visible</span> <span class="o">?</span> <span class="nx">show</span><span class="p">()</span> <span class="o">:</span> <span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">cancelable</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>Bug: <a href='https://jira.appcelerator.org/browse/TC-2857'>https://jira.appcelerator.org/browse/TC-2857</a></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">isOpen</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">hasFocus</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;androidback&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">onAndroidback</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">cancelable</span><span class="p">))</span> <span class="p">{</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span> <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;androidback&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">intent</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">createIntent</span><span class="p">({</span>
+                        <span class="nx">action</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">ACTION_MAIN</span>
+                    <span class="p">});</span>
+                    <span class="nx">intent</span><span class="p">.</span><span class="nx">addCategory</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">CATEGORY_HOME</span><span class="p">);</span>
+                    <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">currentActivity</span><span class="p">.</span><span class="nx">startActivity</span><span class="p">(</span><span class="nx">intent</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span><span class="p">;</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">onOpen</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Bug: <a href='https://jira.appcelerator.org/browse/TC-2857'>https://jira.appcelerator.org/browse/TC-2857</a></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">isOpen</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="nx">args</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+
+<span class="kd">function</span> <span class="nx">update</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">);</span>
+
+    <span class="nx">cancelable</span> <span class="o">=</span> <span class="nx">_cancelable</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">show</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="nx">_message</span><span class="p">,</span> <span class="nx">_cancelable</span><span class="p">);</span>
+    
+    <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">open</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">hide</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">close</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">close</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+
+        <span class="nx">cancelable</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">OS_ANDROID</span> <span class="o">||</span> <span class="nx">isOpen</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">close</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Bug: <a href='https://jira.appcelerator.org/browse/TC-2857'>https://jira.appcelerator.org/browse/TC-2857</a></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="nx">atInterval</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">isOpen</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">close</span><span class="p">();</span>
+                <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">onFocus</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">hasFocus</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">onBlur</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">hasFocus</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

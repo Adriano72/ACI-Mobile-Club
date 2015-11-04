@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>environment.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/environment.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>environment.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Modulo per salvare le variabili di stato dell'app
+(come Alloy.Globals, ma ottimizzato)</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>variabile globale che identifica la sessione (intesa come avvio dell'app)</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">[type]
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">sessionUUID</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">uuid</span><span class="p">.</span><span class="nx">v4</span><span class="p">();</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Property globale che ci dice se è la prima esecuzione dell'app dopo l'installazione</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="s1">&#39;isFirstRun&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getBool</span><span class="p">(</span><span class="s1">&#39;app-first-run&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isFirstRun&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">||</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="nx">v</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setBool</span><span class="p">(</span><span class="s1">&#39;app-first-run&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Ritorna lo snapshot del sistema in questo istante
+Utile per i log</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">snapshot</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>PLATFORM</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">platform</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">_</span><span class="p">([</span><span class="s1">&#39;BATTERY_STATE_CHARGING&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;BATTERY_STATE_FULL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;BATTERY_STATE_UNKNOWN &#39;</span><span class="p">,</span>
+        <span class="s1">&#39;BATTERY_STATE_UNPLUGGED&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;address&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;architecture&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;availableMemory&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;batteryLevel&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;batteryMonitoring&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;batteryState&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;displayCaps&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;locale&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;macaddress&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;manufacturer&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;model&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;netmask&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;osname&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ostype&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;processorCount&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;runtime&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;version&#39;</span>
+    <span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">[</span><span class="nx">e</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="o">==</span> <span class="s1">&#39;displayCaps&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">dc</span> <span class="o">=</span> <span class="p">{};</span>
+            <span class="nx">_</span><span class="p">([</span><span class="s1">&#39;density&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;dpi&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;logicalDensityFactor&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;platformHeight&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;platformWidth&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;xdpi&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;ydpi&#39;</span>
+            <span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">dc</span><span class="p">[</span><span class="nx">d</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">[</span><span class="nx">d</span><span class="p">];</span>
+            <span class="p">});</span>
+            <span class="nx">v</span> <span class="o">=</span> <span class="nx">dc</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">platform</span><span class="p">[</span><span class="nx">e</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+
+    <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>APP</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">_</span><span class="p">([</span><span class="s1">&#39;accessibilityEnabled&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;deployType&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;disableNetworkActivityIndicator&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;forceSplashAsSnapshot&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;guid&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;idleTimerDisabled&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;installId&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;keyboardVisible&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;proximityDetection&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;proximityState&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sessionId&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;version&#39;</span>
+    <span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">[</span><span class="nx">e</span><span class="p">];</span>
+
+        <span class="nx">app</span><span class="p">[</span><span class="nx">e</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+
+    <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>USER</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">userInfo</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">getCurrentUser</span><span class="p">(),</span>
+        <span class="nx">geo</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">getLastLocation</span><span class="p">()</span>
+    <span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>ACIGEO</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">acigeo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">).</span><span class="nx">getAciGeoHeaders</span><span class="p">();</span>
+    <span class="nx">acigeo</span><span class="p">.</span><span class="nx">endpoint</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BaseUrl</span><span class="p">;</span>
+
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">platform</span><span class="o">:</span> <span class="nx">platform</span><span class="p">,</span>
+        <span class="nx">app</span><span class="o">:</span> <span class="nx">app</span><span class="p">,</span>
+        <span class="nx">user</span><span class="o">:</span> <span class="nx">user</span><span class="p">,</span>
+        <span class="nx">acigeo</span><span class="o">:</span> <span class="nx">acigeo</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

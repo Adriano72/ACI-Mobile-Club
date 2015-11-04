@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>locationServices.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/locationServices.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>locationServices.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Modulo che gestisce le funzionalità per la posizione dell'utente
+Docs: <a href='https://wiki.appcelerator.org/display/guides2/Tracking+Position+and+Heading'>https://wiki.appcelerator.org/display/guides2/Tracking+Position+and+Heading</a></p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>utile in svilupo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">default_position</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">latitude</span><span class="o">:</span> <span class="mf">41.8089777</span><span class="p">,</span>
+    <span class="nx">longitude</span><span class="o">:</span> <span class="mf">12.4365196</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Numero di tentativi di recuperare la posizione attuale, in caso di fallimento</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Number
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">MAX_TRIES</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Millisecondi tra un tentativo e un altro</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Number
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">TRIES_DELAY</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Il minimo cambiamento di posizione per generare</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Number
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">MIN_UPDATE_DISTANCE</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+
+<span class="kd">var</span> <span class="nx">lastAddress</span><span class="p">,</span> <span class="nx">lastPosition</span><span class="p">;</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var locationAdded = false;
+var handleLocation = function(e) {
+if (!e.error) {
+console.log(e.coords);
+}
+};
+var addHandler = function() {
+console.log('add handler');</p>
+  </div>
+  <div class="body"><p>if (!locationAdded) {
+Ti.Geolocation.addEventListener('location', handleLocation);
+locationAdded = true;
+}
+};
+var removeHandler = function() {
+alert('remove');
+console.log('remove handler');
+if (locationAdded) {
+Ti.Geolocation.removeEventListener('location', handleLocation);
+locationAdded = false;
+}
+};</p>
+
+<p>Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
+Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
+if (Ti.Geolocation.locationServicesEnabled) {
+addHandler();</p>
+
+<p>if (OS_ANDROID) {
+var activity = Ti.Android.currentActivity;
+activity.addEventListener('destroy', removeHandler);
+activity.addEventListener('pause', removeHandler);
+activity.addEventListener('resume', addHandler);
+}
+} else {
+alert('Please enable location services');
+}   </p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="nx">exports</span><span class="p">.</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>position salvata</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;position salvata&#39;</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="p">};</span>
+
+
+
+
+
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getUserLocation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">locationServicesEnabled</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">purpose</span> <span class="o">=</span> <span class="s1">&#39;Fornire informazioni rilevanti alla posizione dell\&#39;utente&#39;</span><span class="p">;</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">accuracy</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">ACCURACY_BEST</span><span class="p">;</span>
+
+
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">distanceFilter</span> <span class="o">=</span> <span class="nx">MIN_UPDATE_DISTANCE</span><span class="p">;</span>
+
+
+
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">preferredProvider</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">PROVIDER_GPS</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">tries</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>callback di risposta alla richiesta di posizione</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} e [description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">onPosition</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;getCurrentPosition  error&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">tries</span> <span class="o">&lt;</span> <span class="nx">MAX_TRIES</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>ritento</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">tries</span><span class="o">++</span><span class="p">;</span>
+                    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">getCurrentPosition</span><span class="p">,</span> <span class="nx">TRIES_DELAY</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>genero l'errore</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+                    <span class="nx">_callback</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;why???&#39;</span><span class="p">,</span> <span class="nx">tries</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var position = {
+latitude: e.coords.latitude,
+longitude: e.coords.longitude
+};  </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">coords</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                    <span class="nx">lastPosition</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">coords</span><span class="p">;</span>
+
+                    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;callback&#39;</span><span class="p">);</span>
+                        <span class="nx">_callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">coords</span><span class="p">);</span>
+                    <span class="p">})();</span>
+                <span class="p">}</span>
+
+
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+        <span class="kd">var</span> <span class="nx">getCurrentPosition</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">Titanium</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">getCurrentPosition</span><span class="p">(</span><span class="nx">onPosition</span><span class="p">);</span>
+        <span class="p">};</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;authorization&#39;</span><span class="p">,</span> <span class="nx">onPosition</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">getCurrentPosition</span><span class="p">();</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Abilitare i servizi di localizzazione per usufruire del servizio&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var position = {
+latitude : 41.8089777,
+longitude : 12.4365196
+};</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var position = {
+latitude : 41.8,
+longitude : 16.51
+};</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Ti.API.info("COORDINATE UTENTE: " + JSON.stringify(position));
+Alloy.Globals.userPosition = position;</p>
+  </div>
+  <div class="body"><p>_callback(position);</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>ritorna l'ultima posizione conosciuta dell'utente</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getLastLocation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">lastGeolocation</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">g</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">g</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">l</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">g</span> <span class="o">=</span> <span class="nx">lastPosition</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">g</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">g</span><span class="p">))</span> <span class="nx">g</span><span class="p">.</span><span class="nx">address</span> <span class="o">=</span> <span class="nx">lastAddress</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">g</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">setLastLocation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>se uso la cache del modulo geolocation, non ha senso questa funzione
+Alloy.Globals.userPosition = p;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary">
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">useLocation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>console.log('Ti.Geolocation.locationServicesEnabled', Ti.Geolocation.locationServicesEnabled);
+console.log('!<em>.isEmpty(Alloy.Globals.userPosition', !</em>.isEmpty(Alloy.Globals.userPosition));
+console.log('Alloy.Globals.userPosition', Alloy.Globals.userPosition);
+console.log('Ti.Geolocation.locationServicesAuthorization', Ti.Geolocation.locationServicesAuthorization);
+console.log('auth codes', Ti.Geolocation.AUTHORIZATION_AUTHORIZED,
+Ti.Geolocation.AUTHORIZATION_WHEN_IN_USE,
+Ti.Geolocation.AUTHORIZATION_ALWAYS); </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>return Ti.Geolocation.locationServicesEnabled &amp;&amp; !_.isEmpty(Alloy.Globals.userPosition);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>condizione per cui il device ha i servizi geo abilitati</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">servizioAttivoSulDevice</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">locationServicesEnabled</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>se ios, devo verificare che l'app abbia l'autorizzazione ad usare i servizi geo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">appAutorizzata</span> <span class="o">=</span> <span class="nx">OS_ANDROID</span> <span class="o">||</span> <span class="nx">_</span><span class="p">([</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">AUTHORIZATION_AUTHORIZED</span><span class="p">,</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">AUTHORIZATION_WHEN_IN_USE</span><span class="p">,</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">AUTHORIZATION_ALWAYS</span><span class="p">,</span>
+    <span class="p">]).</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">locationServicesAuthorization</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">servizioAttivoSulDevice</span> <span class="o">&amp;&amp;</span> <span class="nx">appAutorizzata</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Funzione di reverse geocoding</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{number} lat       latitudine</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{number} lon       longitudine</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} _callback callback nella form (err, places), dove places è l'array delle località trovate</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getAddress</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span> <span class="nx">lon</span><span class="p">,</span> <span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">Geolocation</span><span class="p">.</span><span class="nx">reverseGeocoder</span><span class="p">(</span><span class="nx">lat</span><span class="p">,</span> <span class="nx">lon</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">code</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//success</span>
+                <span class="nx">lastAddress</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">formatAddress</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">places</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+                <span class="nx">_callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">places</span><span class="p">,</span> <span class="nx">lastAddress</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">_callback</span><span class="p">(</span><span class="nx">evt</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">formatAddress</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">place</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">([</span><span class="nx">place</span><span class="p">.</span><span class="nx">street</span><span class="p">,</span> <span class="nx">place</span><span class="p">.</span><span class="nx">zipcode</span><span class="p">,</span> <span class="nx">place</span><span class="p">.</span><span class="nx">city</span><span class="p">]).</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">e</span> <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Funzione che apre le impostazioni del device alla pagina dedicata alla geolocalizzazione</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openLocationSettings</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openLocationSettings&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">settingsIntent</span> <span class="o">=</span> <span class="nx">Titanium</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">createIntent</span><span class="p">({</span>
+            <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;android.settings.LOCATION_SOURCE_SETTINGS&#39;</span>
+        <span class="p">});</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">currentActivity</span><span class="p">.</span><span class="nx">startActivity</span><span class="p">(</span><span class="nx">settingsIntent</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+<p>Ti.Platform.openURL('prefs://root=LOCATION_SERVICES')</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s1">&#39;prefs:root=LOCATION_SERVICES&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
