@@ -1,15 +1,16 @@
-var args = arguments[0] || {};
-var network = require('network');
-
 var banners = [];
 var timer;
 var index;
 
 
-
+// $.gallery.getView().height = Alloy.Globals.deviceWidth * (600 / 1024);
+//    $.gallery.getView().width = Alloy.Globals.deviceWidth;
+//    $.gallery.setImages(modelGot.images);
 
 function init() {
     showRandom();
+
+
     require('network').getBanner(function(p_data) {
         Alloy.Collections.banner.reset(p_data);
         banners = p_data;
@@ -23,7 +24,7 @@ function init() {
         }
     });
 
- $.bannerImage.height = Alloy.Globals.deviceWidth * 0.285;
+    $.bannerImage.height = Alloy.Globals.deviceWidth * 0.285;
 
 }
 
@@ -71,3 +72,47 @@ function openDetail() {
 }
 
 _.defer(init);
+
+/**
+ * ## constructor
+ */
+(function constructor(args) {
+    showRandom();
+
+    function onData(data) {
+        Alloy.Collections.banner.reset(p_data);
+        banners = p_data;
+
+
+        if (banners && banners.length) {
+            showRandom();
+
+        } else {
+            $.gallery.getView().visible = false;
+
+        }
+    }
+
+    require('network').getBanner(function(p_data) {
+
+    });
+
+    $.gallery.getView().height = Alloy.Globals.deviceWidth * 0.285;
+})(arguments[0] || {});
+
+
+//
+// ## Public API
+// 
+
+/**
+ * ### start
+ * Aziona lo scorrimento automatico
+ */
+$.start = $.gallery.startSlider;
+
+/**
+ * ### stop
+ * Blocca lo scorrimento automatico
+ */
+$.stop = $.gallery.stopSlider;
