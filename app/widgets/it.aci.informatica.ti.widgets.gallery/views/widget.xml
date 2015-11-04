@@ -1,5 +1,5 @@
 <Alloy>
-	<View class="container">
+	<View class="container" onClick="onClick">
 		<ScrollableView id="cover" onScrollend="onScrollend"/>
 		<View id="pagingContainer"/>
 	</View>
