@@ -1,35 +1,48 @@
-var args = arguments[0] || {};
 var utility = require('utility');
 var commons = require('commons');
 
-var images = {};
+var metaData, collection;
 
 
-//selezioni la collection corretta dalla quale prendere i dati
-var collection = utility.getAciGeoCollection(args.id_code);
-//attributi della UI in base al tipo di convenzione
-var itemData = _.findWhere(require('tabulatedData').categorieSyc(), {
-    short_name: args.id_code
-});
+/**
+ * Istruzioni da eseguire alla creazione del controller
+ * @param  {object} args attributi passati al controller
+ */
+(function constructor(args) {
 
 
-//Handler per l'apertura del navigatore
-var openNavigation = commons.openNavigation;
+    //seleziono la collection corretta dalla quale prendere i dati
+    collection = utility.getAciGeoCollection(args.id_code);
+
+    //attributi della UI in base al tipo di convenzione
+    metaData = _.findWhere(require('tabulatedData').categorieSyc(), {
+        short_name: args.id_code
+    });
+
+    //inizializzazioni comuni della Window
+    commons.initWindow($.win, metaData.long_name, metaData.img, [{
+        icon: "/images/ic_action_pin.png",
+        onClick: _(commons.openMapWindow).partial(collection, metaData.long_name, metaData.img, metaData.pin)
+    }]);
 
 
-//inizializzazioni comuni della Window
-commons.initWindow($.win, itemData.long_name, itemData.img, [{
-    icon: "/images/ic_action_pin.png",
-    onClick: _(commons.openMapWindow).partial(collection, itemData.long_name, itemData.img, itemData.pin)
-}]);
+    //carica i dati
+    if (OS_ANDROID) {
+        _.defer(loadData);
+    } else {
+        loadData();
+    }
 
-$.emptyView.getView().visible = false;
-//carica i dati
-if (OS_ANDROID) {
-    _.defer(loadData);
-} else {
-    loadData();
-}
+    //
+    $.emptyView.getView().visible = false;
+
+
+    //imposto il distruttore per evitare memory leaks
+    $.win.addEventListener('close', function() {
+        $.destroy();
+    });
+
+})(arguments[0] || {});
 
 
 
@@ -40,95 +53,99 @@ if (OS_ANDROID) {
  * @return {[type]} [description]
  */
 function loadData() {
-
-    function onData(data) {
-        var isEmpty = Boolean(data.length);
-        $.puntiAci_Table.visible = isEmpty;
-        $.emptyView.getView().visible = !isEmpty;
-
-        Alloy.Collections.tempCollection.reset(data);
-        updateUI();
-
-        var sect = $.puntiAci_Table.data[0];
-        console.log('images', images);
-        if (sect) {
-            console.log('righe', sect.rows);
-            _(sect.rows).each(function(row) {
-                console.log('row id', row.modelId);
-                console.log('row image', images[row.modelId]);
-                var logoImg = row.getChildren()[0].getChildren()[0].getChildren()[0];
-                console.log('row logoImg', logoImg);
-                logoImg.image = images[row.modelId];
-            });
-        }
-
-    }
-
     //aggiorna i dati solo se non sono più validi
     Alloy.Globals.loading.show('Stiamo cercando');
     try {
         collection.fetchIfChanged(function(err, cached) {
 
-            onData(collection.models);
+
+            var isEmpty = Boolean(collection.length);
+            $.puntiAci_Table.visible = isEmpty;
+            $.emptyView.getView().visible = !isEmpty;
+
+            Alloy.Collections.tempCollection.reset(collection.models);
+            // updateUI();
 
 
             Alloy.Globals.loading.hide();
         });
+
     } catch (e) {
         Alloy.Globals.loading.hide();
         console.log('errore load data', e);
         alert('Si è verificato un errore di connessione');
 
     }
-    $.searchBar.blur();
+
 }
 
 
+
+/**
+ * Manipolazione dei dati da passare alla lista
+ * @param  {[type]} model [description]
+ * @return {[type]}       [description]
+ */
 function dataTransform(model) {
     var attrs = model.toJSON();
-    //Ti.API.info("END SIDE COLLECTION: "+JSON.stringify(Alloy.Collections.automobileClub));
-    attrs.indirizzo = attrs.address.street;
-    attrs.distance = utility.formatDistance(attrs.address.distance);
+    return {
+        itemId: model.cid,
+        searchableText: attrs.name,
+        title: attrs.name,
+        thumbnail: attrs.agreement_id.images.logo ? encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo) : undefined,
+        distance: utility.formatDistance(attrs.address.distance),
+        address: attrs.address.street,
+        address2: (function() {
+            return _(
+                    [attrs.address.postalCode, (attrs.address.locality && attrs.address.locality.longName ? attrs.address.locality.longName : undefined)])
+                .filter(function(e) {
+                    return !!e;
+                }).join('');
 
-    attrs.indirizzo2 = (function() {
-        var i = [];
-        i.push((attrs.address.postalCode || ''));
-        i.push(attrs.address.locality && attrs.address.locality.longName ? attrs.address.locality.longName : '');
-        return i.join(' ');
-
-    })();
-
-    attrs.latitude = attrs.address.location[1];
-    attrs.latitude = attrs.address.location[1];
-    attrs.longitude = attrs.address.location[0];
-    attrs.tel = attrs.contacts.tel[0];
-    attrs.email = attrs.contacts.email[0];
-    attrs.id = model.cid;
-
-    if (attrs.agreement_id.images) {
-        //   attrs.immagine = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
-        var id = attrs.id;
-        var img = encodeURI(Alloy.Globals.bannerBaseURL + attrs.agreement_id.images.logo);
-        console.log('modelId', id);
-        console.log('image', img);
-        console.log('images', images);
-        images[id] = img;
-
-    }
-    return attrs;
+        })(),
+        latitude: attrs.address.location[1],
+        longitude: attrs.address.location[0]
+    };
 };
 
-function dettaglioConvenzione(e) {
-    if (e.rowData) {
-        var selectedConv = Alloy.Collections.tempCollection.getByCid(e.rowData.modelId);
 
-        var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-            data: selectedConv,
-            titolo: itemData.long_name,
-            headerImg: itemData.img
-        }).getView();
-        Alloy.Globals.navMenu.openWindow(dettConvenzione);
+/**
+ * Handler del click di selezione degli elementi della lista
+ * @param  {[type]} e [description]
+ * @return {[type]}   [description]
+ */
+function onItemClick(e) {
+    var item = e.section.getItemAt(e.itemIndex);
+
+    //snippet per cancellare la selezione, altrimenti l'elemento rimarrebbe selezionato quando si torna su questa lista
+    function deselectThis() {
+        if (OS_IOS) {
+            $.puntiAci_Table.deselectItem(e.sectionIndex, e.itemIndex);
+        }
     }
+
+
+    //seleziono l'azione da fare in base al controllo che ho cliccato
+    switch (e.bindId) {
+
+        //ho cliccato sul link di navigazione
+        case 'directions':
+            commons.openNavigation({
+                lat: item.directions.lat,
+                lon: item.directions.lon
+            });
+            _(deselectThis).defer();
+
+            break;
+
+            //ho cliccato su qualsiasi altro punto    
+        default:
+            openDetail(item.properties.itemId);
+            _(deselectThis).defer();
+
+    }
+
+
 }
 
 
