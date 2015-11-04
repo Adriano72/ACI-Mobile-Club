@@ -163,6 +163,8 @@ Alloy.Collections.instance("noleggiTrasporti"); //da togliere
 Alloy.Collections.instance("sportEventi");
 // ###  altriServizi
 Alloy.Collections.instance("altriServizi");
+// ###  sycLatest
+Alloy.Collections.instance("sycLatest");
 
 Alloy.Collections.tempCollection = new Backbone.Collection();
 
