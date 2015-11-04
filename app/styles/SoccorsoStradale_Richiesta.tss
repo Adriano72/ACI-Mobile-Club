@@ -1,40 +1,42 @@
 /**
- * 
+ * # SoccorsoStradale_Richiesta
  */
 
-//
-// ##Globale
-// 
-
-
-// ### .container
+// ### container
 ".container":{
 	backgroundColor:  Alloy.Globals.palette.grigio_chiaro
 }
 
-//
-// ## Main Area
-//
+// ### main
 "#main":{
 	height: Ti.UI.FILL,
 	top: 0
 }
 
 
-//### .wrapper
+// ### wrapper
 ".wrapper":{
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
 }
 
 
-//### mapWrapper
+//
+// ## Mappa
+//
+
+// ### mapWrapper
 "#mapWrapper":{
 	height: 120,
 	top:0
 }
 "#mapWrapper[if=Alloy.Globals.isLongDevice]":{
-	height: 150,
+	height: 180,
+}
+
+// ### mapview
+"#mapview":{
+	userLocation: true
 }
 
 
@@ -68,7 +70,7 @@
 
 
 //
-// Pannello Form
+// ## Pannello Form
 //
 
 "#formWrapper":{
@@ -78,7 +80,7 @@
 }
 
 "#formWrapper[if=Alloy.Globals.isLongDevice]":{
-	top: 150
+	top: 180
 }
 
 "#tipoWrapper":{
@@ -148,7 +150,8 @@
 }
 
 
-
+// ### telefono
+// TextField telefono
 "#telefono":{
 	width: "90%",
 	height: 30,
@@ -160,7 +163,6 @@
 	backgroundColor:  Alloy.Globals.palette.bianco
 
 }
-
 "#telefono[if=Alloy.Globals.isLongDevice]":{
 	height: 40
 }
@@ -183,28 +185,34 @@
 
 
 //
-// Pannello risposta
+// ## Pannello risposta
+// Questi tutti gli stili dei componenti del *Pannello di Risposta* (quello che appare al posto della form dopo che si è completata la richiesta).
 //
 
+
+// ### responseWrapper
+// elemento root del *Pannello di Risposta*.
+// il `top` è condizionale sulla proporzione dello schermo (device lungo o no), segue specularmente l'altezza della sezione *Mappa*
 "#responseWrapper":{
 	height: Ti.UI.FILL,
 	top: 120,
 	visible: false,
 	backgroundColor: Alloy.Globals.palette.bianco_sporco
 }
-
 "#responseWrapper[if=Alloy.Globals.isLongDevice]":{
-	top: 150
+	top: 180
 }
 
-
+// ### tickWrapper
+// sezione contenente il tick (✓). L'altezza è determinata dal contenuto
 "#tickWrapper":{
 	top: 0,
 	height: Ti.UI.SIZE,
 	backgroundColor: Alloy.Globals.palette.bianco
 }
 
-
+// ### tick
+// elemento (✓). Altezza e larghezza sono condizionali in base alla proporzione dello schermo (device lungo o no).
 "#tick":{
 	top: 10,
 	bottom: 10,
@@ -221,8 +229,6 @@
  	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
  	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }
-
-
 "#tick[if=Alloy.Globals.isLongDevice]":{
 	top: 15,
 	bottom: 15,
@@ -235,7 +241,8 @@
 }
 
 // ### resumeWrapper
-// il top viene calcolato tramite la label *tick*, *height+top+bottom*
+// Pannello che contiene le informazioni riassuntive della richiesta. 
+// Il top viene calcolato tramite la label `tick`, *height+top+bottom*
 "#resumeWrapper":{
 	top: 60,
 	height: Ti.UI.SIZE,
@@ -244,47 +251,53 @@
 "#resumeWrapper[if=Alloy.Globals.isLongDevice]":{
 	top: 100
 }
+
+// ### responseLabelWrapper
 ".responseLabelWrapper":{
 	height: Ti.UI.SIZE,
 	width:  Ti.UI.SIZE,
 	layout: "horizontal",
 }
 
-".responseLabel":{
-	font: {
-        fontFamily: Alloy.Globals.font.PTSans_Narrow,
-        fontSize:  Alloy.Globals.fontSize.L
-    },
-    right: 5
-}
-
-".responseLabel[if=Alloy.Globals.isLongDevice]":{
-	font: {
-        fontSize:  Alloy.Globals.fontSize.M
-    }
-}
-
-"#responseLabel1":{
+// ### responseLabelWrapper1
+// Prima delle tre etichette. Il margine superiore dipende dallo schermo 
+"#responseLabelWrapper1":{
 	top: 15
 }
-"#responseLabel1[if=Alloy.Globals.isLongDevice]":{
+"#responseLabelWrapper1[if=Alloy.Globals.isLongDevice]":{
 	top: 30
 }
-"#responseLabel2":{
+
+// ### responseLabelWrapper2
+"#responseLabelWrapper2":{
 	top: 3
 }
 
-"#responseLabel3":{
-	top: 10,
+
+// ### responseLabelWrapper3
+// Terza delle tre etichette. Il margine superiore dipende dallo schermo 
+"#responseLabelWrapper3":{
+	top: 12,
 	layout: "vertical"
 }
-
 "#responseLabel3[if=Alloy.Globals.isLongDevice]":{
-	top: 20
+	top: 25
 }
 
-
-
+// ### responseLabel
+// etichette del *Pannello della risposta*
+".responseLabel":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize:  Alloy.Globals.fontSize.XL
+    },
+    right: 5
+}
+".responseLabel[if=Alloy.Globals.isLongDevice]":{
+	font: {
+        fontSize:  Alloy.Globals.fontSize.L
+    }
+}
 
 
 

@@ -13,16 +13,22 @@
 }
 
 "#textWrapper":{
-	width: "70%",
-	left: "29.9%",
+	width: Ti.UI.SIZE,
 	layout: "horizontal",
 	height: Ti.UI.FILL
 }
+"#textWrapper[if=$.args.icon]":{
+	left: "29.9%"
+}
 
 "#iconWrapper":{
-	width: "29.9%",
+	width: 0,
 	left: 0,
 	height: Ti.UI.FILL
+}
+
+"#iconWrapper[if=$.args.icon]":{
+	width: "29.9%"
 }
 
 "#primaryText":{

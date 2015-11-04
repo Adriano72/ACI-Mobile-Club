@@ -474,9 +474,7 @@ exports.padLeft = function(str, filler, count) {
     while (filler.length < count) {
         filler += filler;
     }
-
-    return filler.substring(0, count - str.length) + str;
-
+    return filler.substring(0, count - (str + '').length) + str;
 };
 
 
@@ -492,8 +490,7 @@ exports.padRight = function(str, filler, count) {
     while (filler.length < count) {
         filler += filler;
     }
-
-    return str + filler.substring(0, count - str.length);
+    return str + filler.substring(0, count - (str + '').length);
 
 };
 
@@ -549,6 +546,6 @@ exports.fitHeight = function(container, toFit) {
         h += 30;
     }
     console.log('fitHeight', h, container.rect.height);
-    toFit.height = Math.abs( container.rect.height - h);
+    toFit.height = Math.abs(container.rect.height - h);
 
 };

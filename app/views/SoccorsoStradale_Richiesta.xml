@@ -16,7 +16,7 @@
 				</View>
 				<View class="wrapper" id="telefonoWrapper">
 					<Label class="label black" id="labelTelefono">Inserisci o modifica il tuo numero:</Label>
-					<TextField id="telefono"/>
+					<TextField id="telefono"  class="label black" />
 				</View>
 				<Require id="btInvia" src="components/rounded_button"/>
 			</View>
@@ -31,15 +31,15 @@
 
 				<!-- Scheda riassuntiva -->
 				<View id="resumeWrapper">
-					<View class="responseLabelWrapper" id="responseLabel1">
+					<View class="responseLabelWrapper" id="responseLabelWrapper1">
 						<Label class="responseLabel label black">Richiesta di assistenza inviata alle </Label>
 						<Label class="responseLabel label green" id="responseTime"/>
 					</View>
-					<View class="responseLabelWrapper" id="responseLabel2">
+					<View class="responseLabelWrapper" id="responseLabelWrapper2">
 						<Label class="responseLabel label black">da </Label>
 						<Label class="responseLabel label green" id="responseAddress"/>
 					</View>
-					<View class="responseLabelWrapper" id="responseLabel3">
+					<View class="responseLabelWrapper" id="responseLabelWrapper3">
 						<Label class="responseLabel label black center">Sarai richiamato al numero </Label>
 						<Label class="responseLabel label green center" id="responsePhone"/>
 					</View>
@@ -50,7 +50,8 @@
 					<Require id="banner" src="bannerCarousel"/>
 				</View>
 			</View>
-		</ScrollView>
-		
+			
+
+		</ScrollView>	
 	</Window>
 </Alloy>

@@ -51,7 +51,7 @@ function initMap() {
  */
 function submit() {
 
-    var fake = true;
+    var fake = ENV_DEV;
 
     var cb = fake ? renderConferma : function() {
         AciGlobal.limitRequests('La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero ' + AciGlobal.NumeroVerde + '.', callAciGlobal);
@@ -199,6 +199,7 @@ function renderConferma() {
 
 
 function formatOrario(d) {
+    console.log('formatOrario', d);
     return [utility.padLeft(d.getHours(), '0', 2), utility.padLeft(d.getMinutes(), '0', 2)].join(':');
 }
 
