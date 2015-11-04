@@ -1,0 +1,50 @@
+"#wrapper":{
+	height: 40,
+	borderWidth: 1,
+	borderRadius: 20,
+	top: 6,
+	bottom: 10,
+	width: Ti.UI.FILL
+}
+
+"#content":{
+	width: "70%",
+	height: "80%"
+}
+
+"#textWrapper":{
+	width: "70%",
+	left: "29.9%",
+	layout: "horizontal",
+	height: Ti.UI.FILL
+}
+
+"#iconWrapper":{
+	width: "29.9%",
+	left: 0,
+	height: Ti.UI.FILL
+}
+
+"#primaryText":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+        fontSize: Alloy.Globals.fontSize.XXL
+    },
+    height: Ti.UI.FILL,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+}
+
+"#secondaryText":{
+	left: 5,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+        fontSize: Alloy.Globals.fontSize.XL
+    },
+    height: Ti.UI.FILL,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+
+}
+
+"#icon":{
+	height: Ti.UI.FILL
+}

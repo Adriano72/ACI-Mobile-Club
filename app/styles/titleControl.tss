@@ -13,8 +13,12 @@
 
 
 "#text":{
+	left: 5,
 	font:{
-		fontFamily: Alloy.Globals.font.ACIType
+		fontFamily: Alloy.Globals.font.ACIType,
+		fontSize: Alloy.Globals.fontSize.M
 	},
-	color: Alloy.Globals.palette.blu
+	color: Alloy.Globals.palette.blu,
+	height: 21,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }

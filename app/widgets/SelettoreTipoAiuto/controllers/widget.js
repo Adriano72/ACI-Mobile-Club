@@ -228,3 +228,12 @@ function fireEvent(name, params) {
 
 //run init
 init();
+
+
+//eseguo il proxy delle seguenti proprietà sull'elemento $.wrapper
+_(['width', 'height', 'borderWidth', 'borderColor', 'top', 'left', 'bottom', 'right', 'backgroundColor']).each(function(prop) {
+    console.log(prop, args);
+    if (args.hasOwnProperty(prop)) {
+        $.wrapper[prop] = args[prop];
+    }
+});

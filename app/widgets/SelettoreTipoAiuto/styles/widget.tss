@@ -6,7 +6,9 @@
 "Label" : {
 	left: 5,
 	font:{
-		fontSize: 12
+		fontSize: 14,
+
+        fontFamily: Alloy.Globals.font.PTSans_Narrow
 	}
 }
 

@@ -1,19 +1,8 @@
 <Alloy>
-	<View id="win" class="container" >
-		
+	<View class="container" id="win">
 		<View id="main">
-			
-
 			<Label class="formLabelDark">Telefona direttamente alla centrale operativa.</Label>
-
-		        
-		   	<Button id="btChiama" class="roundButton" onClick="callPhone">Chiama l'803.116</Button>
-		   
-
-	        
-
-
-
+			<Button class="roundButton" id="btChiama" onClick="callPhone">Chiama l'803.116</Button>
 		</View>
 	</View>
 </Alloy>

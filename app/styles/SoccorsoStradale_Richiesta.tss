@@ -1,259 +1,301 @@
 /**
- * NAVIGAZIONE E CONTAINER
+ * 
  */
 
+//
+// ##Globale
+// 
+
+
+// ### .container
 ".container":{
-	height: Ti.UI.SIZE
+	backgroundColor:  Alloy.Globals.palette.grigio_chiaro
 }
 
-// container for iOS
-".container[platform=ios]": {
-	backgroundColor: Alloy.Globals.palette.bianco_sporco,
-	backButtonTitle: "",
-	barColor: Alloy.Globals.palette.bianco_sporco,
-	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT]
-	
-}
-
-
-// container for Android
-".container[platform=android]": {
-	backgroundColor: "#fff",
-	top:20,
-	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
-	exitOnClose: false
-}
-
-/**
- * LAYOUT DI PAGINA
- */
-
+//
+// ## Main Area
+//
 "#main":{
-	backgroundColor:  Alloy.Globals.palette.bianco_sporco,
+	height: Ti.UI.FILL,
+	top: 0
+}
+
+
+//### .wrapper
+".wrapper":{
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
 }
 
-".rowContainer": {
-	layout: "vertical",
-	height: Ti.UI.FILL,
 
+//### mapWrapper
+"#mapWrapper":{
+	height: 120,
+	top:0
+}
+"#mapWrapper[if=Alloy.Globals.isLongDevice]":{
+	height: 150,
 }
 
-".rowWrapper": {
-	//height: 80,
-	height: Ti.UI.SIZE,
+
+".label":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.M
+    }
+}
+
+".label[if=Alloy.Globals.isLongDevice]":{
+	font: {
+        fontSize: Alloy.Globals.fontSize.L
+    }
+}
+".black":{
+	color: Alloy.Globals.palette.nero
+}
+".gray":{
+	color: Alloy.Globals.palette.grigio_scuro
+}
+".green":{
+	color: Alloy.Globals.palette.verde
+}
+
+".center":{
 	width: Ti.UI.FILL,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER
+}
+
+
+
+//
+// Pannello Form
+//
+
+"#formWrapper":{
+	height: Ti.UI.SIZE,
+	top: 120,
 	layout: "vertical"
 }
 
-".labelWrapper": {
-	//height: 80,
-	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL,
-	layout: "horizontal"
+"#formWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 150
 }
 
-".bar" :{
-	width: Ti.UI.FILL,
-	height: 40,
-	backgroundColor:  Alloy.Globals.palette.rosso
+"#tipoWrapper":{
+	height: 0
+
 }
 
-".top":{
-	top:0
+"#tipoWrapper[if=Alloy.Globals.isLogged]":{
+	height: 80,
+	layout: "vertical",
+	backgroundColor:  Alloy.Globals.palette.bianco
 }
-
-".bottom":{
-	bottom:0
-}
-
-".box":{
-	top: 5,
-	width: "95%",
-	backgroundColor: "#ffffff"
-}
-
-".first_child":{
-	top: 5
-}
-
-
-
-
-
-/**
- * STILE DEGLI ELEMENTI
- */
-
-"#socioWrapper":{
-	layout: 'composite'
-}
-
-"#telefono":{
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
-	top: 5,
-	bottom: 5,
-	left: 5,
-	right: 5,
-	font:{
-		fontSize: 12
-	},
-	hintText: "+ (numero di telefono a cui sarai richiamato)",
-	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
-	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
-	color:  Alloy.Globals.palette.grigio_scuro
-}
-
-
-"#socio":{
-	right: 5
-}
-
-"Switch[platform=android]":{
-	//style: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX
-}
-
-"#mapview":{
-	top: 0,
-	//height: 100
-	height: 150,
-	userLocation: true
-}
-
-"#mapview[platform=android]":{
-	enableZoomControls: false	
-}
-"#mapWrapper":{
-	top: 0,
-	//height: 100
-	height: 150
-}
-
-"#rowRichiestaInviata":{
-	top: 10,
-	width: "95%"
-}
-
-
-
-
-"#tipoAiutoWrapper" :{
-	top: 10,
-	bottom: 10,
-	height: Ti.UI.SIZE
-}
-
-
 
 "#tipoAiuto" :{
-	highlightColor: "#d91305",
+	highlightColor: Alloy.Globals.palette.rosso,
 	color: "#595959"
 }
 
-
-".barLabel":{
-	color: "#ffffff",
-	font:{
-		fontSize: 12
-	}
+"#labelTipo" :{
+	top: 7,
+	bottom: 7,
+	height: Ti.UI.SIZE,
+ 	width: Ti.UI.FILL,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.M
+    },
+    color: Alloy.Globals.palette.nero,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }
 
-".formLabelRed":{
-
-	//top: 5,
-	color:  Alloy.Globals.palette.rosso,
-	left: 5,
-	font:{
-		fontSize: 12,
-		fontWeight: "bold"
-	}
-
-}
-
-".formLabelDark":{
-
-	//top: 5,
-	color:  Alloy.Globals.palette.grigio_scuro,
-	//left: 5,
-	font:{
-		fontSize: 12,
-		fontWeight: "bold"
-	}
-
-}
-
-".formLabel":{
-	//top: 5,
-	color: "#999",
-	//left: 5,
-	font:{
-		fontSize: 12
-	}
+"#tipoAiuto":{
+	width: "90%"
 }
 
 
-".roundButton" : {
-	top: 20,
-	height: 34,
-	borderRadius: 18,
-	borderWidth: 1,
-	borderColor:  Alloy.Globals.palette.rosso,
-	backgroundColor:  Alloy.Globals.palette.rosso,
-	color: "#ffffff",
-	width: "95%",
-	font:{
-		fontSize: 12,
-		fontWeight: "bold"
-	}
+"#address":{
+	height: 50,
+ 	width: Ti.UI.FILL,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.L
+    },
+    color: Alloy.Globals.palette.blu,
+    backgroundColor: Alloy.Globals.palette.bianco_sporco,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }
 
-".barIcon":{
-	left: 5
+"#address[if=Alloy.Globals.isLongDevice]":{
+	height: 65,
 }
 
-".gpsIcon":{
-	image : "/images/ic_action_aiuto_gps_bianco.png"
+"#telefonoWrapper":{
+	top: 15,
+	layout: "vertical"
+}
+
+"#telefonoWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 25
+}
+
+"#labelTelefono":{
+ 	width: "90%",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
 }
 
 
-".phoneIcon":{
-	image : "/images/ic_action_aiuto_phone_bianco.png"
+
+"#telefono":{
+	width: "90%",
+	height: 30,
+	top: 5,
+	hintText: "+ (numero di telefono a cui sarai richiamato)",
+	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
+	backgroundColor:  Alloy.Globals.palette.bianco
+
 }
 
-"#pin":{
-	image: "/pin_selezione.png",
-	width: 25
+"#telefono[if=Alloy.Globals.isLongDevice]":{
+	height: 40
 }
+
+
 
 "#btInvia":{
-	color: "#ffffff",
-	font: {
-		fontSize: 16,
-		fontWeight: "bold"
-	}
-}
-"#labelTelefono":{
-	left: "3%"
-}
-
-"#labelMap":{
-	//top: 5, 
-	bottom: 5
+	top: 20,
+	primaryText: "Invia posizione",
+	color :  Alloy.Globals.palette.bianco_sporco,
+	backgroundColor: Alloy.Globals.palette.rosso,
+	borderColor: Alloy.Globals.palette.rosso,
+	width: "90%"
 }
 
 
-".overlay":{
+"#btInvia[if=Alloy.Globals.isLongDevice]":{
+	top: 30
+}
+
+
+//
+// Pannello risposta
+//
+
+"#responseWrapper":{
 	height: Ti.UI.FILL,
-	width: Ti.UI.FILL,
-	backgroundColor: 'transparent',
-	zIndex: 999
+	top: 120,
+	visible: false,
+	backgroundColor: Alloy.Globals.palette.bianco_sporco
+}
+
+"#responseWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 150
+}
+
+
+"#tickWrapper":{
+	top: 0,
+	height: Ti.UI.SIZE,
+	backgroundColor: Alloy.Globals.palette.bianco
+}
+
+
+"#tick":{
+	top: 10,
+	bottom: 10,
+	height: 40,
+	width: 40,
+	borderRadius: 20,
+	borderWidth: 2,
+	borderColor: Alloy.Globals.palette.verde,
+	color: Alloy.Globals.palette.verde,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: 30
+    },
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+}
+
+
+"#tick[if=Alloy.Globals.isLongDevice]":{
+	top: 15,
+	bottom: 15,
+	height: 70,
+	width: 70,
+	borderRadius: 35,
+	font: {
+        fontSize: 50
+    },
+}
+
+// ### resumeWrapper
+// il top viene calcolato tramite la label *tick*, *height+top+bottom*
+"#resumeWrapper":{
+	top: 60,
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+}
+"#resumeWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 100
+}
+".responseLabelWrapper":{
+	height: Ti.UI.SIZE,
+	width:  Ti.UI.SIZE,
+	layout: "horizontal",
+}
+
+".responseLabel":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize:  Alloy.Globals.fontSize.L
+    },
+    right: 5
+}
+
+".responseLabel[if=Alloy.Globals.isLongDevice]":{
+	font: {
+        fontSize:  Alloy.Globals.fontSize.M
+    }
+}
+
+"#responseLabel1":{
+	top: 15
+}
+"#responseLabel1[if=Alloy.Globals.isLongDevice]":{
+	top: 30
+}
+"#responseLabel2":{
+	top: 3
+}
+
+"#responseLabel3":{
+	top: 10,
+	layout: "vertical"
+}
+
+"#responseLabel3[if=Alloy.Globals.isLongDevice]":{
+	top: 20
 }
 
 
 
+
+
+
+//
+// ## Banner
+//
+
+// ### bannerContainer
+"#bannerContainer":{
+	height: Ti.UI.SIZE,
+	bottom: 0
+}
 
 
