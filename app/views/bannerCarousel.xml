@@ -1,3 +1,3 @@
 <Alloy>
-	<Widget id="gallery" src="it.aci.informatica.ti.widgets.gallery" interval="3000" ></Widget> 
+	<Widget id="gallery" src="it.aci.informatica.ti.widgets.gallery" interval=Alloy.CFG.BannerRotationTime ></Widget> 
 </Alloy>

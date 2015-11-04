@@ -1,17 +1,19 @@
 var banners = [];
-var index;
+var index = -1;
 
 
 
 
 function openDetail() {
-
-    var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-        data: banners[index],
-        headerImg: "",
-        isBanner: true
-    }).getView();
-    Alloy.Globals.navMenu.openWindow(dettConvenzione);
+    var banner = banners[index];
+    if (banner) {
+        var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+            data: banners[index],
+            headerImg: "",
+            isBanner: true
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(dettConvenzione);
+    }
 }
 
 /**
