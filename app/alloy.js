@@ -80,6 +80,7 @@ Alloy.Collections.instance("culturaSpettacoli"); //da togliere
 Alloy.Collections.instance("noleggiTrasporti"); //da togliere
 Alloy.Collections.instance("sportEventi");
 Alloy.Collections.instance("altriServizi");
+Alloy.Collections.instance("sycLatest");
 
 //Ti.API.info("WINDOW HEIGHT:"+Ti.Platform.displayCaps.platformHeight);
 
@@ -124,12 +125,28 @@ Alloy.Globals.fontSize = {
 _.defer(require('locationServices').init);
 
 //ricarica i dati utente
-_.defer(require('user').refreshData);
+_.defer(function() {
+    require('user').refreshData(function () {
+    net.registerApp(function() {
+        console.log('app registered 2');
+        //inizializzo le notifiche
+        require('push').init();
+    });
+});
+});
 
 
 if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
-   require('sysReportCommon').enableShake();
+    require('sysReportCommon').enableShake();
 }
 
+//chiamo il servizio per registrare l'app
+_.defer(function () {
+    net.registerApp(function() {
+        console.log('app registered 1');
+        //inizializzo le notifiche
+        require('push').init();
+    });
+});
 
 
