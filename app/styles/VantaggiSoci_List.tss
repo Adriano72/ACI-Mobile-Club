@@ -37,7 +37,7 @@
 }
 
 ".row[platform=android]": {
-	height: 95,
+	height: 105,
 }
 
 
