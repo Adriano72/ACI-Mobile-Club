@@ -180,11 +180,30 @@ Alloy.Collections.tempCollection = new Backbone.Collection();
     //inizializza i servizi di location
     _.defer(require('locationServices').init);
 
-    //ricarica i dati utente
-    _.defer(require('user').refreshData);
 
     //abilita/disabilita la fuonzionalità di segnalazione errore
     if (Alloy.CFG.SysReport_Enabled && Alloy.CFG.SysReport_UseShake) {
         require('sysReportCommon').enableShake();
     }
+
+    //ricarica i dati utente
+    _.defer(function() {
+        require('user').refreshData(function() {
+            net.registerApp(function() {
+                console.log('app registered 2');
+                //inizializzo le notifiche
+                require('push').init();
+            });
+        });
+    });
+
+
+    //chiamo il servizio per registrare l'app
+    _.defer(function() {
+        net.registerApp(function() {
+            console.log('app registered 1');
+            //inizializzo le notifiche
+            require('push').init();
+        });
+    });
 })();
