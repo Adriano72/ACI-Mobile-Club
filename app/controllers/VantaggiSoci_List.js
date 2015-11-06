@@ -149,6 +149,24 @@ function onItemClick(e) {
 }
 
 
+/**
+ * ### openDetail
+ * Apre la schermata di dettaglio di una convenzione
+ * @param {string} modelId id del modello, corrisponde al cid delle collezioni
+ */
+function openDetail(modelId) {
+    if (modelId) {
+        var selectedConv = Alloy.Collections.tempCollection.getByCid(modelId);
+
+        var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+            data: selectedConv,
+            titolo: metaData.long_name,
+            headerImg: metaData.img
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(dettConvenzione);
+    }
+}
+
 
 $.win.addEventListener('close', function() {
     $.destroy();

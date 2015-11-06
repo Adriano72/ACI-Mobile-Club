@@ -33,7 +33,7 @@
 
 
 ".row[platform=ios]": {
-	height: 87,
+	height: 95,
 }
 
 ".row[platform=android]": {
@@ -62,14 +62,14 @@
 ".centerContainer": {
 
 	left: 5,
-	width: "50%",
+	width: "49%",
 	layout: "vertical",
 	top: 5
 }
 
 ".simpleRowText": {
 	height: Ti.UI.SIZE,
-	width: 160,
+	width: Ti.UI.FILL,
 	left: 5,
 	top: 0
 }
@@ -92,7 +92,7 @@
 
 ".rightContainer": {
 	left: 5,
-	width: "19%",
+	width: "20%",
 	top: 5
 }
 
