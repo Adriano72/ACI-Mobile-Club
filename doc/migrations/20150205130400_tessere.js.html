@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>20150205130400_tessere.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/migrations/20150205130400_tessere.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>20150205130400_tessere.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">preload_data</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Gold&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Gold ti offre il top dell&#39;assistenza: soccorso stradale gratuito in Italia e all&#39;estero nei paesi U.E., in Svizzera, Norvegia, Serbia, Montenegro, Marocco, Tunisia; illimitato sull&#39;auto associata e 2 volte su altre auto; assistenza nelle emergenze domestiche e in viaggio.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;LA PIÙ RICCA DI SERVIZI, LA PIÙ COMPLETA.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">99</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;GSO&quot;</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Sistema&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Sistema ti offre tutti i servizi di assistenza tecnica: soccorso stradale gratuito in Italia e nella U.E.; auto sostituiva in caso di immobilizzo o furto del \&quot;veicolo associato\&quot;, servizio \&quot;Medico Pronto\&quot; in viaggio ed altre agevolazioni.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;LA PIÙ DIFFUSA, QUELLA \&quot;STORICA\&quot;.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">79</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;DIP&quot;</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Okkei&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI OKKEI ti offre la sicurezza dei servizi di assistenza tecnica e tante opportunità per il tuo tempo libero. Due soccorsi stradali gratuiti in Italia, qualsiasi mezzo tu stia guidando; spese di viaggio o pernottamento se il veicolo non è riparabile in giornata; tutti gli sconti e i servizi per i soci ACI.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;IDEATA PER I PIÙ GIOVANI.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">49</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;GIO&quot;</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI One&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI One è la tessera che ti offre il soccorso stradale nella tua regione. Ti offre un soccorso stradale gratuito, qualsiasi mezzo tu stia guidando; tutti gli sconti e i servizi riservati ai soci ACI.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;RISERVATA A CHI UTILIZZA L&#39;AUTO O LA MOTO PER I PICCOLI SPOSTAMENTI.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">45</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;UNO&quot;</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Club&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Club è per chi non ha bisogno dell&#39;assistenza ACI ma vuole beneficiare di tutti i privilegi del Club: tariffe di soccorso stradale scontate; sconto di 20,00 euro sull&#39;acquisto di ACI Gold o Sistema; sconti riservati ai soci ACI.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;LA PIÙ ECONOMICA PER ENTRARE NEL CLUB.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;CLU&quot;</span>
+<span class="p">}];</span>
+
+
+
+
+<span class="nx">migration</span><span class="p">.</span><span class="nx">up</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">migrator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">migrator</span><span class="p">.</span><span class="nx">createTable</span><span class="p">({</span>
+        <span class="s2">&quot;columns&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="s2">&quot;REAL&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;TEXT&quot;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">preload_data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">migrator</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="nx">preload_data</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">migration</span><span class="p">.</span><span class="nx">down</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">migrator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">migrator</span><span class="p">.</span><span class="nx">dropTable</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

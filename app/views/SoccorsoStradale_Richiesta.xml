@@ -1,75 +1,57 @@
 <Alloy>
-	<View id="win" class="container" >
-		
-		<View id="main"  onClick="cavasClick">
+	<Window class="container" id="win" onClose="close" onOpen="open">
+		<ScrollView id="main" onClick="canvasClick">
 
-	
+			<!-- Mappa -->
+			<View class="wrapper" id="mapWrapper">
+				<Module id="mapview" method="createView" module="ti.map"/>
+			</View>
 
-	        <View  class="rowContainer">
+			<!-- Pannello Form -->
+			<View class="wrapper" id="formWrapper">
+				<Label id="address"/>
+				<View class="wrapper" id="tipoWrapper">
+					<Label class="label gray" id="labelTipo">Seleziona il servizio:</Label>
+					<Widget id="tipoAiuto" src="SelettoreTipoAiuto"/>
+				</View>
+				<View class="wrapper" id="telefonoWrapper">
+					<Label class="label black" id="labelTelefono">Inserisci o modifica il tuo numero:</Label>
+					<TextField id="telefono"  class="label black" />
+				</View>
+				<Require id="btInvia" src="components/rounded_button"/>
+			</View>
 
-	        	<View id="rowMap" class="rowWrapper" >
-		        	<View id="mapWrapper">
-		        		<Module id="mapview" module="ti.map" method="createView"></Module>
-						<!--<ImageView id="pin"></ImageView> 
-						<View class="overlay">
-						</View>-->
-		        	</View>
-			    </View>
+			<!-- Pannello risposta -->
+			<View id="responseWrapper">
 
-	        	<View id="rowForm" class="rowWrapper">
-	        		
-	        		<Label  id="labelMap" class="formLabelDark" text="Dove ti trovi"></Label>
+				<!-- Tick -->
+				<View id="tickWrapper">
+					<Label id="tick">✓</Label>
+				</View>
 
-		        	<View id="tipoWrapper" class="rowWrapper box"  >
-		        		<Label class="formLabel first_child">Seleziona il servizio:</Label>
+				<!-- Scheda riassuntiva -->
+				<View id="resumeWrapper">
+					<View class="responseLabelWrapper" id="responseLabelWrapper1">
+						<Label class="responseLabel label black">Richiesta di assistenza inviata alle </Label>
+						<Label class="responseLabel label green" id="responseTime"/>
+					</View>
+					<View class="responseLabelWrapper" id="responseLabelWrapper2">
+						<Label class="responseLabel label black">da </Label>
+						<Label class="responseLabel label green" id="responseAddress"/>
+					</View>
+					<View class="responseLabelWrapper" id="responseLabelWrapper3">
+						<Label class="responseLabel label black center">Sarai richiamato al numero </Label>
+						<Label class="responseLabel label green center" id="responsePhone"/>
+					</View>
+				</View>
 
-		        		<View id="tipoAiutoWrapper">
-		        			<Widget id="tipoAiuto" src="SelettoreTipoAiuto"></Widget>
-		        		</View>
-		        		
-		        	</View>
+				<!-- Banner -->
+				<View id="bannerContainer">
+					<Require id="banner" src="bannerCarousel"/>
+				</View>
+			</View>
+			
 
-		        	<!-- <View id="socioWrapper" class="rowWrapper box" >
-		        		<Label class="formLabel">Socio ACI</Label>
-		        		<Switch id="socio"></Switch>
-		        	</View> -->
-
-		        	<View id="telefonoWrapper" class="rowWrapper box" >
-		        		
-		        		<TextField id="telefono"></TextField>
-		        	</View>
-
-	        		<Label id="labelTelefono" class="formLabelDark">Inserisci o modifica</Label>
-
-
-		        	<View id="buttonWrapper" class="rowWrapper " >
-		        		<Button id="btInvia" class="roundButton first_child" onClick="submit	">invia richiesta</Button>
-		        	</View>
-	        	</View>
-	        	
-
-	        	<View id="rowRichiestaInviata" class="rowWrapper" visible="false">
-		        	<View class="labelWrapper">
-		        		<Label class="formLabel">Richiesta di assistenza inviata alle</Label>
-		        		<Label id="richiestaOrario" class="formLabelRed"></Label>
-		        	</View>
-		        	<View class="labelWrapper">
-		        		<Label class="formLabel">da</Label>
-		        		<Label id="richiestaIndirizzo" class="formLabelRed"></Label>
-		        	</View>	        
-		        	<View class="labelWrapper">
-		        		<Label class="formLabel">Sarai richiamato al numero</Label>
-		        		<Label id="richiestaTelefono" class="formLabelRed"></Label>
-		        	</View>
-		        </View>
-
-
-	        </View>
-
-	        
-
-
-
-		</View>
-	</View>
+		</ScrollView>	
+	</Window>
 </Alloy>

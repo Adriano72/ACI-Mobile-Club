@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>201502231045765_tessere.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/migrations/201502231045765_tessere.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>201502231045765_tessere.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>File di migrazione per l'aggiunta della tessera ACI Storico Aderente</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI Storico Aderente&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;abstract&quot;</span><span class="o">:</span> <span class="s2">&quot;La tessera socio \&quot;Aderente\&quot; assicura tutti i servizi della tessera Vintage: assistenza a 10 veicoli, 3 soccorsi stradali gratuiti in Italia e all’estero, fino a 50 km di traino, abbonamento a \&quot;Ruoteclassiche\&quot; e altri benefici. La prima adesione al Club ACI Storico come socio \&quot;Aderente\&quot; costa 109 euro di quota annuale più 100 euro di iscrizione una tantum. Se sei già socio Vintage, la quota di iscrizione è gratuita e il rinnovo costa 109 euro.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;slogan&quot;</span><span class="o">:</span> <span class="s2">&quot;DEDICATA AGLI AMANTI DELLE AUTO E MOTO D&#39;EPOCA.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">209</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;STA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;buyUrl&quot;</span> <span class="o">:</span> <span class="s2">&quot;https://servizi.aci.it/web_FA_xpay/DispatchAuthenticationServlet?action=associazione&amp;userId=sitoAci&amp;codiceProdotto=ISTA&amp;codiceIniziativa=99165&quot;</span>
+<span class="p">}];</span>
+
+
+<span class="nx">migration</span><span class="p">.</span><span class="nx">up</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">migrator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">migrator</span><span class="p">.</span><span class="nx">insertRow</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">migration</span><span class="p">.</span><span class="nx">down</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">migrator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">migrator</span><span class="p">.</span><span class="nx">deleteRow</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

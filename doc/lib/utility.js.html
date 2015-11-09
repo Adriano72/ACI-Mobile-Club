@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>utility.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/utility.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>utility.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">uuid</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility-uuid&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tessere</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility-tessere&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Esporta l'intero modulo uuid</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">[type]
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">uuid</span> <span class="o">=</span> <span class="nx">uuid</span><span class="p">;</span>
+
+
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">formattaServizi</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">return</span> <span class="nx">_</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;·&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">;</span>
+    <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">);</span>
+
+<span class="p">};</span>
+
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">formattaOrari</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>console.log('formattaOrari', obj);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="kd">var</span> <span class="nx">orari</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="kd">var</span> <span class="nx">dayArray</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mon&#39;</span><span class="p">,</span> <span class="s1">&#39;tue&#39;</span><span class="p">,</span> <span class="s1">&#39;wed&#39;</span><span class="p">,</span> <span class="s1">&#39;thu&#39;</span><span class="p">,</span> <span class="s1">&#39;fri&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;sun&#39;</span><span class="p">];</span>
+
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">dayArray</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>Ti.API.info("DAY: " + JSON.stringify(day));</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">daySchedule</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">key</span> <span class="o">==</span> <span class="nx">day</span><span class="p">;</span>
+        <span class="p">});</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>//Ti.API.info("DAY SCHEDULE: " + JSON.stringify(obj));</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+        <span class="kd">var</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">daySchedule</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">||</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">daySchedule</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">from</span><span class="p">)</span> <span class="o">||</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">daySchedule</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">to</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Ti.API.info("DAY SCHEDULE: " + JSON.stringify(daySchedule));
+Ti.API.info("DAY SCHEDULE FROM: " + daySchedule[0].from);
+Ti.API.info("DAY SCHEDULE TO: " + daySchedule[0].to);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+            <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="nx">_</span><span class="p">(</span><span class="nx">daySchedule</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">from</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">to</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">h</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">e</span><span class="p">.</span><span class="nx">from</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">to</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">));</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+
+
+            <span class="kd">var</span> <span class="nx">giorno</span><span class="p">;</span>
+
+            <span class="k">switch</span> <span class="p">(</span><span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="k">case</span> <span class="s1">&#39;mon&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Lunedì&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">&#39;tue&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Martedì&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">&#39;wed&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Mercoledì&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">&#39;thu&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Giovedì&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">&#39;fri&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Venerdì&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">&#39;sat&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Sabato&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">&#39;sun&#39;</span><span class="o">:</span>
+                    <span class="nx">giorno</span> <span class="o">=</span> <span class="s1">&#39;Domenica&#39;</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">default</span><span class="o">:</span>
+
+            <span class="p">}</span>
+            <span class="nx">orari</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">giorno</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">h</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;\n&#39;</span><span class="p">);</span>
+
+        <span class="p">}</span>
+
+    <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>//Ti.API.info("ORARI: " + orari.toString());</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">return</span> <span class="nx">orari</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Ritorna l'immagine frontale per questa tessera</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} codice     [description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} horizontal [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTesseraImage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">codice</span><span class="p">,</span> <span class="nx">horizontal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">tessere</span><span class="p">.</span><span class="nx">getImageSet</span><span class="p">(</span><span class="nx">codice</span><span class="p">)[</span><span class="nx">horizontal</span> <span class="o">?</span> <span class="s1">&#39;frontH&#39;</span> <span class="o">:</span> <span class="s1">&#39;frontV&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Ritorna l'immagine posteriore per questa tessera</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} codice [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTesseraRetroImage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">codice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">tessere</span><span class="p">.</span><span class="nx">getImageSet</span><span class="p">(</span><span class="nx">codice</span><span class="p">).</span><span class="nx">retroV</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>ritorna l'immagine da usare per la tessera scaduta</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} codice [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTesseraScadutaImage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">codice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">tessere</span><span class="p">.</span><span class="nx">getImageSet</span><span class="p">(</span><span class="nx">codice</span><span class="p">).</span><span class="nx">expiredV</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>elenco dei serivzi disponibili per la tessera
+persona, casa, auto</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} codice [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getTesseraAssitenza</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">codice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">tessere</span><span class="p">.</span><span class="nx">getTesseraAssitenza</span><span class="p">(</span><span class="nx">codice</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>exports.getTesseraImage = function(codice, horizontal) {</p>
+  </div>
+  <div class="body"><p>//Ti.API.info("CODICE: " + codice);</p>
+
+<p>var transcode = {</p>
+
+<p>'DIP': 'tessera_sistema.jpg',
+'SOC': 'tessera_sistema.jpg',
+'FAM': 'tessera_sistema.jpg',
+'SOC': 'tessera_sistema.jpg',
+'SMA': 'tessera_sistema.jpg',
+'SOG': 'tessera_sistema.jpg',
+'GDI': 'tessera_gold.jpg',
+'GFA': 'tessera_gold.jpg',
+'GSO': 'tessera_gold.jpg',
+'GMA': 'tessera_gold.jpg',
+'GFA': 'tessera_gold.jpg',
+'GIO': 'tessera_okkei.jpg',
+'GIA': 'tessera_okkei.jpg',
+'UNO': 'tessera_one.jpg',
+'ONG': 'tessera_one.jpg',
+'CLO': 'tessera_club.jpg',
+'CLU': 'tessera_club.jpg',
+'CLN': 'tessera_club.jpg',
+'VIN': 'tessera_vintage.jpg',
+'CON': 'tessera_driver.jpg',
+'DRV': 'tessera_driver.jpg',
+'STA': 'tessera_storico1.jpg',
+'STF': 'tessera_storico2.jpg'</p>
+
+<p>};</p>
+
+<p>var imm = _.find(transcode, function(value, key) {
+return key == codice;
+});</p>
+
+<p>//così gestisco con una sola funzione i doppi orientamenti
+if (horizontal) {</p>
+
+<p>imm = imm.replace('.jpg', '_h.jpg');
+}</p>
+
+<p>//Ti.API.info("TESSERA: " + imm);</p>
+
+<p>return "/" + imm;</p>
+
+<p>};   </p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>exports.getTesseraRetroImage = function(codice) {</p>
+  </div>
+  <div class="body"><p>//Ti.API.info("CODICE: " + codice);</p>
+
+<p>var transcode = {</p>
+
+<p>'DIP': 'tessera_sistema_retro.jpg',
+'SOC': 'tessera_sistema_retro.jpg',
+'FAM': 'tessera_sistema_retro.jpg',
+'SOC': 'tessera_sistema_retro.jpg',
+'SMA': 'tessera_sistema_retro.jpg',
+'SOG': 'tessera_sistema_retro.jpg',
+'GDI': 'tessera_gold_retro.jpg',
+'GFA': 'tessera_gold_retro.jpg',
+'GSO': 'tessera_gold_retro.jpg',
+'GMA': 'tessera_gold_retro.jpg',
+'GFA': 'tessera_gold_retro.jpg',
+'GIO': 'tessera_okkei_retro.jpg',
+'GIA': 'tessera_okkei_retro.jpg',
+'UNO': 'tessera_one_retro.jpg',
+'ONG': 'tessera_one_retro.jpg',
+'CLO': 'tessera_club_retro.jpg',
+'CLU': 'tessera_club_retro.jpg',
+'CLN': 'tessera_club_retro.jpg',
+'VIN': 'tessera_vintage_retro.jpg',
+'CON': 'tessera_driver_retro.jpg',
+'DRV': 'tessera_driver_retro.jpg',
+'STA': 'tessera_storico1_retro.jpg',
+'STF': 'tessera_storico2_retro.jpg'</p>
+
+<p>};</p>
+
+<p>var imm = _.find(transcode, function(value, key) {
+return key == codice;
+});</p>
+
+<p>//Ti.API.info("TESSERA: " + imm);</p>
+
+<p>return "/" + imm;</p>
+
+<p>};</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>exports.getTesseraScadutaImage = function(codice) {</p>
+  </div>
+  <div class="body"><p>var imm = exports.getTesseraImage(codice, false);
+//così gestisco con una sola funzione i doppi orientamenti</p>
+
+<p>imm = imm.replace('.jpg', '_scaduta.jpg');</p>
+
+<p>return imm;</p>
+
+<p>};</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>elenco dei serivzi disponibili per la tessera
+persona, casa, auto</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} codice [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>exports.getTesseraAssitenza = function(codice) {</p>
+  </div>
+  <div class="body"><p>//Ti.API.info("CODICE: " + codice);</p>
+
+<p>var a1 = 'auto';
+var a2 = 'persone';
+var a3 = 'casa';</p>
+
+<p>var transcode = {</p>
+
+<p>//sistema
+'DIP': [a1, a2],
+'SOC': [a1, a2],
+'FAM': [a1, a2],
+'SOC': [a1, a2],
+'SMA': [a1, a2],
+'SOG': [a1, a2],
+//gold
+'GDI': [a1, a2, a3],
+'GFA': [a1, a2, a3],
+'GSO': [a1, a2, a3],
+'GMA': [a1, a2, a3],
+'GFA': [a1, a2, a3],
+//okkei
+'GIO': [a1],
+'GIA': [a1],
+//one
+'UNO': [a1],
+'ONG': [a1],
+//club
+'CLO': [a1, a2, a3],
+'CLU': [a1, a2, a3],
+'CLN': [a1, a2, a3],
+//vintage
+'VIN': [a1, a2],
+//driver
+'CON': [],
+'DRV': [],
+//storico
+'STA': [a1, a2],
+'STF': [a1, a2]</p>
+
+<p>};</p>
+
+<p>return transcode[codice];</p>
+
+<p>};</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">formatDistance</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>console.log("formatDistance ", d);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>approssimo i km alla prima cifra decimale</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">km</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">km</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">km</span> <span class="o">+</span> <span class="s1">&#39; km&#39;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">km</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; m&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Snippet per nascondere una vista contenuta in un layout=vertical
+evita il problema per cui le viste mantengono il loro spazio
+(simula il flow dinamico dei controlli)</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Ti.View} view la vista da nascondere</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">hideVertical</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">view</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>salva i precedenti valori della vista</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">view</span><span class="p">.</span><span class="nx">__originalValues</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">top</span><span class="o">:</span> <span class="nx">view</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
+        <span class="nx">bottom</span><span class="o">:</span> <span class="nx">view</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">view</span><span class="p">.</span><span class="nx">height</span>
+    <span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>imposta i valori che corrispondo allo stato invisibile</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">view</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">view</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">view</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">view</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Snippet per mostrare una vista contenuta in un layout=vertical
+Ripristina quanto nascosto con hideVertical()</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Ti.View} view la vista da nascondere</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">showVertical</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">view</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>ripristina i valori precedenti all'hide</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">view</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">view</span><span class="p">,</span> <span class="nx">view</span><span class="p">.</span><span class="nx">__originalValues</span> <span class="o">||</span> <span class="p">{});</span>
+
+    <span class="nx">view</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-24" id="section-24">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Formatta una stringa con la prima lettera maiuscola</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} s [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">capitalize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">s</span> <span class="o">||</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-25" id="section-25">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary">
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">method</div>
+    <div class="dox_tag_detail">
+      <span>arrayIndexBy
+In un array di oggetti, ritorna l'indice dell'elemento che soddisfa el condizioni</span>
+    </div>
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{array} arr  array in cui cercare</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{object|function} query può essere o una serie di chiave/valore da testare, o una funzione di ricerca</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">number</span>
+      <span>indice del primo elemento trovato, -1 se nessun elemento trovato</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">arrayIndexBy</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-26" id="section-26">&#182;</a>
+</div>
+<p>routine di controllo per cercare l'elemento.
+ se query=function, viene sovrascritta
+ altrimenti ho una funzione default che fa il controllo con le chiavi dell'oggetto query</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="o">?</span> <span class="nx">query</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">query</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">check</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-27" id="section-27">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Calcola la differenza tra due date</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Date} d1 prima data</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Date} d2 seconda data</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} u  unità di misura in cui ci aspettiamo la differenza, valori accettati sono: ms, s, m, h, d. Default: ms</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Number</span>
+      <span>differenza tra le due date. Se d1>d2 -> diff&lt;0, altrimenti diff>0</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">dateDiff</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d1</span><span class="p">,</span> <span class="nx">d2</span><span class="p">,</span> <span class="nx">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">timeDiff</span> <span class="o">=</span> <span class="nx">d2</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-28" id="section-28">&#182;</a>
+</div>
+<p>default</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">u</span><span class="p">)</span> <span class="nx">u</span> <span class="o">=</span> <span class="s1">&#39;ms&#39;</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">case</span> <span class="s1">&#39;d&#39;</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s1">&#39;days&#39;</span><span class="o">:</span>
+            <span class="nx">timeDiff</span> <span class="o">/=</span> <span class="mi">24</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">&#39;h&#39;</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s1">&#39;hours&#39;</span><span class="o">:</span>
+            <span class="nx">timeDiff</span> <span class="o">/=</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">&#39;m&#39;</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s1">&#39;minutes&#39;</span><span class="o">:</span>
+            <span class="nx">timeDiff</span> <span class="o">/=</span> <span class="mi">60</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">&#39;s&#39;</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s1">&#39;seconds&#39;</span><span class="o">:</span>
+            <span class="nx">timeDiff</span> <span class="o">/=</span> <span class="mi">1000</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">&#39;ms&#39;</span><span class="o">:</span>
+        <span class="k">case</span> <span class="s1">&#39;milliseconds&#39;</span><span class="o">:</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-29" id="section-29">&#182;</a>
+</div>
+<p>do nothing</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">throw</span> <span class="p">(</span><span class="s2">&quot;invalid date diff format: &quot;</span> <span class="o">+</span> <span class="nx">m</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="nx">timeDiff</span><span class="p">;</span>
+
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-30" id="section-30">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>calcola la distanza tra due set di coordinate, in metri
+<a href='http://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude-points'>http://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude-points</a></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Number} lat1 latitudine punto 1</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Number} lon1 longitudine punto 1</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Number} lat2 latitudine punto 2</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Number} lon2 longitudine punto 2</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Number</span>
+      <span>distanza tra i punti, in metri</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">calculateDistance</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">lat1</span><span class="p">,</span> <span class="nx">lon1</span><span class="p">,</span> <span class="nx">lat2</span><span class="p">,</span> <span class="nx">lon2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">deg2rad</span><span class="p">(</span><span class="nx">deg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">deg</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">R</span> <span class="o">=</span> <span class="mi">6371</span><span class="p">;</span> <span class="c1">// Radius of the earth in km</span>
+    <span class="kd">var</span> <span class="nx">dLat</span> <span class="o">=</span> <span class="nx">deg2rad</span><span class="p">(</span><span class="nx">lat2</span> <span class="o">-</span> <span class="nx">lat1</span><span class="p">);</span> <span class="c1">// deg2rad below</span>
+    <span class="kd">var</span> <span class="nx">dLon</span> <span class="o">=</span> <span class="nx">deg2rad</span><span class="p">(</span><span class="nx">lon2</span> <span class="o">-</span> <span class="nx">lon1</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span>
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">dLat</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">dLat</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">deg2rad</span><span class="p">(</span><span class="nx">lat1</span><span class="p">))</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">deg2rad</span><span class="p">(</span><span class="nx">lat2</span><span class="p">))</span> <span class="o">*</span>
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">dLon</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">dLon</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan2</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">a</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">a</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">R</span> <span class="o">*</span> <span class="nx">c</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">//distanza in metri </span>
+    <span class="k">return</span> <span class="nx">d</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-31" id="section-31">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Rimpie una stringa con tanti caratteri a sinistra fino a raggiungere una lunghezza predefinita</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} str    stringa sorgente</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} filler carattere con cui riempire a sinistra</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Number} count  lunghezza totale della stringa</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">String</span>
+      <span>stringa formattata</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">padLeft</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">filler</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">filler</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">filler</span> <span class="o">+=</span> <span class="nx">filler</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">filler</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">-</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">+</span> <span class="nx">str</span><span class="p">;</span>
+
+<span class="p">};</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-32" id="section-32">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Rimpie una stringa con tanti caratteri a destra fino a raggiungere una lunghezza predefinita</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} str    stringa sorgente</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{String} filler carattere con cui riempire a destra</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Number} count  lunghezza totale della stringa</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">String</span>
+      <span>stringa formattata</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">padRight</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">filler</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">filler</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">filler</span> <span class="o">+=</span> <span class="nx">filler</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">str</span> <span class="o">+</span> <span class="nx">filler</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">-</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-33" id="section-33">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Seleziona la collection che si riferisce ad un determinato codice AciGeo</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} id_code [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getAciGeoCollection</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id_code</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">coll</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-34" id="section-34">&#182;</a>
+</div>
+<p>console.log('getAciGeoCollection id_code', id_code);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">id_code</span> <span class="o">==</span> <span class="s1">&#39;ric&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">serviziGICpos</span><span class="p">;</span>
+
+    <span class="nx">_</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">).</span><span class="nx">every</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-35" id="section-35">&#182;</a>
+</div>
+<p>console.log('id_code', id_code);
+console.log('k', k);
+console.log('c.config', c.config);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">c</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">config</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">type_code</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">type_code</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">id_code</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
+</div>
+<p>console.log('getAciGeoCollection', id_code, c.config);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">coll</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">coll</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

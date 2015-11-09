@@ -11,7 +11,6 @@ var currentAddress;
 
 /**
  * Inizializza la mappa
- * @return {[type]} [description]
  */
 function initMap() {
 
@@ -51,6 +50,13 @@ function initMap() {
  * @return {[type]} [description]
  */
 function submit() {
+
+    var fake = ENV_DEV;
+
+    var cb = fake ? renderConferma : function() {
+        AciGlobal.limitRequests('La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero ' + AciGlobal.NumeroVerde + '.', callAciGlobal);
+    };
+
     validate(function(err) {
         if (err) {
             alert(err.join('\n'));
@@ -61,9 +67,7 @@ function submit() {
                 message: "Confermi l'invio della richiesta?",
                 yes: "Sì",
                 no: "No",
-                callback: function() {
-                    AciGlobal.limitRequests('La tua richiesta è già stata inviata per qualunque altro problema contatta la centrale operativa al numero ' + AciGlobal.NumeroVerde + '.', callAciGlobal);
-                }
+                callback: cb
             });
         }
     });
@@ -125,13 +129,13 @@ function renderForm() {
 
     if (!isGuest) {
 
-        utility.showVertical($.tipoWrapper);
+        //utility.showVertical($.tipoWrapper);
         $.telefono.value = userData['userInfo.mobile'] || userData['userInfo.mobileTemp'];
         $.tipoAiuto.value = 'auto';
 
     } else {
 
-        utility.hideVertical($.tipoWrapper);
+        // utility.hideVertical($.tipoWrapper);
         $.telefono.value = '';
 
     }
@@ -157,16 +161,17 @@ function renderForm() {
 
 
     //stato: mostra form
-    utility.hideVertical($.rowRichiestaInviata);
-    utility.showVertical($.rowForm)
+    utility.hideVertical($.responseWrapper);
+    utility.showVertical($.formWrapper)
 
 }
 
 
-/**
+/*
  * Gestisce la visualizzazione della schermata di conferma dopo l'invio della segnalazione
  * @return {[type]} [description]
  */
+
 function renderConferma() {
 
 
@@ -178,40 +183,23 @@ function renderConferma() {
     //orario
     var now = new Date();
     //  $.richiestaOrario.text = [now.getHours(), now.getMinutes()].join(':');
-    $.richiestaOrario.text = formatOrario(now);
-
-    //telefono
-    $.richiestaTelefono.text = $.telefono.value;
-
-    //indirizzo
-    var region = $.mapview.getRegion();
-    Alloy.Globals.loading.show('Calcolando indirizzo');
-
-    locationServices.getAddress(lat, lon, function(err, places, place) {
-
-
-        if (err) {
-            //todo: gestire errore reverse geocodinge
-            console.log('getAddress err', err);
-        } else {
-            console.log('getAddress places', places);
-            $.richiestaIndirizzo.text = place;
-
-        }
-    });
+    $.responseTime.text = formatOrario(now);
+    $.responsePhone.text = $.telefono.value;
+    $.responseAddress.text = currentAddress;
 
 
     //
     //stato: mostra richiesta inviata
     //
-    utility.hideVertical($.rowForm)
-    utility.showVertical($.rowRichiestaInviata);
+    utility.hideVertical($.formWrapper)
+    utility.showVertical($.responseWrapper);
 
 
 }
 
 
 function formatOrario(d) {
+    console.log('formatOrario', d);
     return [utility.padLeft(d.getHours(), '0', 2), utility.padLeft(d.getMinutes(), '0', 2)].join(':');
 }
 
@@ -250,67 +238,82 @@ function validate(cb) {
 
 }
 
-function cavasClick(e) {
-    console.log(e);
-    if (e.source !== $.telefono) {
-        $.telefono.blur();
-    }
-}
-
-
-/**
- * Aggiorna l'indirizzo tramite reverse geocoding
- * @param  {[type]} lat      [description]
- * @param  {[type]} lon      [description]
- * @param  {[type]} accuracy [description]
- * @return {[type]}          [description]
- */
-function updateAddress(lat, lon, accuracy, cb) {
-    console.log('updateAddress', lat, lon, accuracy);
-    locationServices.getAddress(lat, lon, function(err, places, place) {
-
-
-        if (err) {
-            //todo: gestire errore reverse geocodinge
-            console.log('getAddress err', err);
-        } else {
-            console.log('getAddress places', places);
-            $.labelMap.text = place;
-
-        }
-    });
-}
-
-
-/**
- * PUBLIC API
- */
 
 /**
  * Trigger per forzare il cambio di posizione
  */
-$.updatePosition = function() {
+function updatePosition() {
     var coo = locationServices.getLastLocation();
-    console.log('updatePosition', coo);
+    // console.log('updatePosition', coo);
 
-    console.log('updatePosition lat', coo.latitude);
+    //   console.log('updatePosition lat', coo.latitude);
     locationServices.getAddress(coo.latitude, coo.longitude, function(err, places, place) {
 
         if (err) {
             console.log('getAddress err', err);
         } else {
             console.log('getAddress places', places);
-
-            $.labelMap.text = place + ' (precisione ' + coo.accuracy + 'm)';
+            currentAddress = place;
+            $.address.text = place + ' (precisione ' + coo.accuracy + 'm)';
 
         }
     });
 };
 
 
+function canvasClick(e) {
+    console.log(e);
+    if (e.source !== $.telefono) {
+        $.telefono.blur();
+    }
+}
+
+function onLocation(e) {
+    //   console.log('onLocation', e);
+    updatePosition();
+}
+
+/**
+ * ### open
+ * hadler dell'evento Window.open
+ * @return {[type]} [description]
+ */
+function open() {
+    locationServices.getUserLocation(function() {
+        Ti.Geolocation.addEventListener('location', onLocation);
+    });
+}
+
+/**
+ * ### close
+ * hadler dell'evento Window.close
+ * @return {[type]} [description]
+ */
+function close() {
+    Ti.Geolocation.removeEventListener('location', onLocation);
+    $.destroy();
+}
+
+
+/**
+ * ### Constructor
+ */
 (function constructor(args) {
 
+    //inizializzazioni comuni della Window
+    var headerText = "Assistenza";
+    var headerImg = "/images/ic_action_home_assistenza_blu.png";
+    commons.initWindow($.win, headerText, headerImg);
+
+    //inizializzazione mappa
     initMap();
+
+    //renderizzazioni di avvio
     renderForm();
+
+   
+
+    //associo a mano l'evento click sul pulsante di submit
+    $.btInvia.addEventListener('click', submit);
 
 })(arguments[0] || {});

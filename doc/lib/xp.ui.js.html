@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>xp.ui.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/xp.ui.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>xp.ui.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">NavigationWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="nx">NavigationWindow</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">open</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">params</span> <span class="o">=</span> <span class="nx">params</span> <span class="o">||</span> <span class="p">{};</span>
+        <span class="nx">params</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nb">window</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="nx">NavigationWindow</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">close</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">closeWindow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nb">window</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="nx">NavigationWindow</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">openWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">swipeBack</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">swipeBack</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">swipeBack</span> <span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">swipeBack</span><span class="p">;</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">displayHomeAsUp</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">animated</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">options</span><span class="p">.</span><span class="nx">activityEnterAnimation</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">anim</span><span class="p">.</span><span class="nx">slide_in_left</span><span class="p">;</span>
+            <span class="nx">options</span><span class="p">.</span><span class="nx">activityExitAnimation</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">anim</span><span class="p">.</span><span class="nx">slide_out_right</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">swipeBack</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;swipe&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">direction</span> <span class="o">===</span> <span class="s1">&#39;right&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">that</span><span class="p">.</span><span class="nx">closeWindow</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">!==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">navBarHidden</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">activity</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">getActivity</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">activity</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">actionBar</span> <span class="o">=</span> <span class="nx">activity</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">actionBar</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">actionBar</span><span class="p">.</span><span class="nx">displayHomeAsUp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                        <span class="nx">actionBar</span><span class="p">.</span><span class="nx">onHomeIconItemSelected</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                            <span class="nx">that</span><span class="p">.</span><span class="nx">closeWindow</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+                        <span class="p">};</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="nx">NavigationWindow</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">closeWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">animated</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">options</span><span class="p">.</span><span class="nx">activityEnterAnimation</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">anim</span><span class="p">.</span><span class="nx">slide_in_left</span><span class="p">;</span>
+            <span class="nx">options</span><span class="p">.</span><span class="nx">activityExitAnimation</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Android</span><span class="p">.</span><span class="nx">R</span><span class="p">.</span><span class="nx">anim</span><span class="p">.</span><span class="nx">slide_out_right</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createNavigationWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">navWin</span> <span class="o">=</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">iOS</span><span class="p">.</span><span class="nx">createNavigationWindow</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">NavigationWindow</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">args</span> <span class="o">&amp;&amp;</span> <span class="nx">args</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">[</span><span class="nx">args</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">navWin</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">navWin</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createWindow</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createWindow</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">createTextArea</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">$textArea</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createTextArea</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">hintText</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$textArea</span><span class="p">.</span><span class="nx">originalColor</span> <span class="o">=</span> <span class="nx">$textArea</span><span class="p">.</span><span class="nx">color</span> <span class="o">||</span> <span class="s1">&#39;#000&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$textArea</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">$textArea</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">({</span>
+        <span class="nx">value</span><span class="o">:</span> <span class="nx">$textArea</span><span class="p">.</span><span class="nx">hintText</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#ccc&#39;</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="nx">$textArea</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">value</span><span class="o">==</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">hintText</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">({</span>
+          <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">originalColor</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">$textArea</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;blur&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">({</span>
+          <span class="nx">value</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">hintText</span><span class="p">,</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#ccc&#39;</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">$textArea</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

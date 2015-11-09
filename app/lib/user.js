@@ -111,12 +111,12 @@ exports.doLogin = function(username, password, rememberMe, cb) {
     });
 };
 
-exports.refreshData = function() {
+exports.refreshData = function(cb) {
 
     try {
         var credentials = Ti.App.Properties.getObject("utenteCredenziali");
         var lastLogin = Ti.App.Properties.getObject("utenteLastLogin");
-
+        if (OS_ANDROID) lastLogin = new Date(lastLogin);
     } catch (e) {
         var credentials = undefined;
         var lastLogin = undefined;
@@ -128,7 +128,7 @@ exports.refreshData = function() {
     if (Ti.Network.networkType != Ti.Network.NETWORK_NONE && credentials && lastLogin && now.getDate() != new Date(lastLogin).getDate()) {
         //if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials && lastLogin ){
         //alert('refresh!');
-        exports.doLogin.apply(this, credentials);
+        exports.doLogin.apply(this, credentials, true, cb);
     }
 
 };

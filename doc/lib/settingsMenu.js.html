@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>settingsMenu.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/settingsMenu.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>settingsMenu.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">openSideMenu</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p_auth</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">sideMenu</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="s2">&quot;60%&quot;</span><span class="p">,</span>
+        <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">SIZE</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s2">&quot;#EEEEEE&quot;</span><span class="p">,</span>
+        <span class="nx">visible</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">layout</span><span class="o">:</span> <span class="s2">&quot;vertical&quot;</span><span class="p">,</span>
+        <span class="nx">left</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidthHalf</span>
+    <span class="p">});</span>
+
+
+
+    <span class="kd">var</span> <span class="nx">separator</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">({</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">palette</span><span class="p">.</span><span class="nx">grigio_chiaro</span>
+    <span class="p">});</span>
+
+
+
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+
+    <span class="kd">function</span> <span class="nx">createLabel</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">onclick</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createLabel</span><span class="p">({</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="nx">text</span><span class="p">,</span>
+            <span class="nx">height</span><span class="o">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+            <span class="nx">font</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">fontFamily</span><span class="o">:</span> <span class="s1">&#39;PTSans-Regular&#39;</span><span class="p">,</span>
+                <span class="nx">fontSize</span><span class="o">:</span> <span class="s1">&#39;12dp&#39;</span>
+            <span class="p">},</span>
+            <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">left</span><span class="o">:</span> <span class="mi">5</span>
+        <span class="p">});</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">onclick</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">onclick</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">l</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">onclick</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">l</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">appendLabel</span><span class="p">(</span><span class="nx">lb</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">sideMenu</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">lb</span><span class="p">);</span>
+        <span class="nx">sideMenu</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">separator</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">var</span> <span class="nx">menuHeader</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createLabel</span><span class="p">({</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;  IMPOSTAZIONI&quot;</span><span class="p">,</span>
+        <span class="nx">font</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">fontFamily</span><span class="o">:</span> <span class="s1">&#39;PTSans-Regular&#39;</span><span class="p">,</span>
+            <span class="nx">fontSize</span><span class="o">:</span> <span class="s1">&#39;10dp&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">FILL</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s2">&quot;#295F95&quot;</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#fff&#39;</span>
+
+    <span class="p">});</span>
+
+
+    <span class="nx">menuHeader</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_Enabled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sysReportCommon&#39;</span><span class="p">).</span><span class="nx">open</span><span class="p">();</span>
+        <span class="p">}</span>
+
+    <span class="p">});</span>
+
+
+    <span class="kd">var</span> <span class="nx">loginLabel</span> <span class="o">=</span> <span class="nx">createLabel</span><span class="p">((</span><span class="nx">user</span><span class="p">.</span><span class="nx">isLogged</span> <span class="o">==</span> <span class="kc">true</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;Logout&quot;</span> <span class="o">:</span> <span class="s2">&quot;Login&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">isLogged</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;alloy/dialogs&#39;</span><span class="p">).</span><span class="nx">confirm</span><span class="p">({</span>
+                <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Logout&quot;</span><span class="p">,</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Sei sicuro di voler uscire dalla tua area riservata?&quot;</span><span class="p">,</span>
+                <span class="nx">yes</span><span class="o">:</span> <span class="s2">&quot;Sì&quot;</span><span class="p">,</span>
+                <span class="nx">no</span><span class="o">:</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span>
+                <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                    <span class="nx">user</span><span class="p">.</span><span class="nx">onLogout</span><span class="p">();</span>
+
+                    <span class="nx">loginLabel</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">&quot;Login&quot;</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">winLogin</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;loginWindow&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+            <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winLogin</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">function</span> <span class="nx">notImplemented</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;funzionalità non ancora implementata&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">var</span> <span class="nx">searchLabel</span> <span class="o">=</span> <span class="nx">createLabel</span><span class="p">(</span><span class="s1">&#39;Cambia provincia&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;SelettoreProvincia_List&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">privacyLabel</span> <span class="o">=</span> <span class="nx">createLabel</span><span class="p">(</span><span class="s1">&#39;Informativa sulla privacy&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;privacy&#39;</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="kd">var</span> <span class="nx">condizioniLabel</span> <span class="o">=</span> <span class="nx">createLabel</span><span class="p">(</span><span class="s1">&#39;Condizioni d\&#39;uso&#39;</span><span class="p">,</span> <span class="nx">notImplemented</span><span class="p">)</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>var tessereLabel = createLabel('Tessere', function() {
+open('Tessere_List');
+});   </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="nx">menuHeader</span><span class="p">,</span> <span class="nx">loginLabel</span><span class="p">,</span> <span class="nx">searchLabel</span><span class="p">,</span> <span class="nx">privacyLabel</span><span class="p">],</span> <span class="nx">appendLabel</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>searchLabel.addEventListener("click", function() {
+var win = Alloy.createController('Impostazioni_Posizione').getView();
+Alloy.Globals.navMenu.openWindow(win);
+});   </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+    <span class="kd">function</span> <span class="nx">open</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="nx">name</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">w</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;loggedInUser&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;GLOBAL EVENT: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">loggedUser</span><span class="p">));</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">loggedUser</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">loginLabel</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">&quot;Logout&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">loginLabel</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">&quot;Login&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">});</span>
+
+
+    <span class="k">return</span> <span class="nx">sideMenu</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">toggleMenu</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p_obj</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">p_obj</span><span class="p">.</span><span class="nx">visible</span> <span class="o">==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">p_obj</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">p_obj</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">hideMenu</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p_obj</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">p_obj</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

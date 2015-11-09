@@ -34,6 +34,10 @@ function selectionDetail(e) {
 
         Ti.API.info("CLICKED DATA: " + e.row.id_code);
 
+        if(e.row.id_code == 'sycLatest'){
+        	Alloy.Collections.sycLatest.source = 'list';
+        	Alloy.Collections.sycLatest.dateFrom = undefined;
+        }
 
         var winAC = Alloy.createController('VantaggiSoci_List', {
 

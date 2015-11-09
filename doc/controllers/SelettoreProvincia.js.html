@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SelettoreProvincia.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/SelettoreProvincia.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h2">
+        <a href="#input%20%7C%20uselocation%20%7C%7C%20scenario">Input | useLocation || Scenario</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>SelettoreProvincia.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+
+
+<span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">locationServices</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">index</span><span class="p">;</span>
+
+
+<span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;init&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>questo è lo status del selettore secondo quanto mantenuto nei dati locali</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">index</span> <span class="o">=</span> <span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="nx">init1</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">init1</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>scateno la selezione corretta della modalità</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">select</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>inizializzo il controllo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">initSelector</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span> <span class="o">!=</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">select</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">select</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
+
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+<span class="p">})</span>
+
+
+<span class="kd">function</span> <span class="nx">initSelector</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span> <span class="o">?</span> <span class="s1">&#39;Provincia (&#39;</span> <span class="o">+</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span><span class="p">.</span><span class="nx">shortName</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> <span class="o">:</span> <span class="s1">&#39;Provincia&#39;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>imposta il controllo tab</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">tabbedBar</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+        <span class="nx">index</span><span class="o">:</span> <span class="nx">index</span><span class="p">,</span>
+        <span class="nx">labels</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Prossimità&#39;</span><span class="p">,</span> <span class="nx">l</span><span class="p">]</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+
+
+<span class="kd">function</span> <span class="nx">select</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">selections</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">prossimita</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>posizione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>$.status.text = "Il servizio restituirà i punti più vicini alla posizione dell'utente";
+$.cambiaProvincia.visible = false;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>Per ora (19/2/15) gestiamo il refresh della posizione tramite questo evento
+in futuro andrà tolta</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>do nothing</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;******PROV*****&#39;</span><span class="p">);</span>
+            <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>CANCELLO LA PROVINCIA</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>questo è il metodo più veloce 
+init1();</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="p">},</span>
+        <span class="nx">provincia</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;provincia&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>provincia</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">provincia</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">provincia</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">provincia</span><span class="p">))</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>$.status.text = "Il servizio restituirà i risultati relativi alla provincia di " + utility.capitalize(provincia.longName);
+     $.cambiaProvincia.visible = true;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">_</span><span class="p">(</span><span class="nx">selezionaProvincia</span><span class="p">).</span><span class="nx">defer</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary"><p>Devo gestire la selezione della corretta modalità in base a due parametri:
+Input -> la selezione dell'utente - 0=prossimità, 1=provincia
+useLocation -> booleano, indica se è disponibile il servizio di geolocalizzazione
+Lo gestisco attraverso la seguente tabella di verità:</p>
+  </div>
+  <div class="body">
+<div class="pilwrap" id="input%20%7C%20uselocation%20%7C%7C%20scenario">
+  <h2>
+    <a href="#input%20%7C%20uselocation%20%7C%7C%20scenario" name="input%20%7C%20uselocation%20%7C%7C%20scenario" class="pilcrow">&#182;</a>
+    Input | useLocation || Scenario
+  </h2>
+</div>
+
+
+<p>0   |     0       ||    C (devo forzare la selezione provincia)
+0   |     1       ||    A (normale selezione per prossimità)
+1   |     0       ||    B (normale selezione provincia) 
+1   |     1       ||    B (normale selezione provincia)</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">useLocation</span> <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">useLocation</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">Scenario</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>qui riconduco le condizioni ai casi reali</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">switch</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">Input</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">useLocation</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+            <span class="nx">Scenario</span> <span class="o">=</span> <span class="s1">&#39;C&#39;</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nx">Input</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">useLocation</span> <span class="o">==</span> <span class="mi">1</span><span class="o">:</span>
+            <span class="nx">Scenario</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nx">Input</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">useLocation</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+            <span class="nx">Scenario</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nx">Input</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">useLocation</span> <span class="o">==</span> <span class="mi">1</span><span class="o">:</span>
+            <span class="nx">Scenario</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>impossibile</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>qui prendo le decisioni sul da farsi</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;scenario &#39;</span><span class="p">,</span> <span class="nx">Scenario</span><span class="p">);</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">Scenario</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+            <span class="nx">selections</span><span class="p">.</span><span class="nx">prossimita</span><span class="p">();</span>
+            <span class="nx">index</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+            <span class="nx">index</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="nx">selections</span><span class="p">.</span><span class="nx">provincia</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="s1">&#39;C&#39;</span><span class="o">:</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>Ripristino </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+            <span class="nx">_</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>apro un dialog per scegliere cosa fare</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="kd">var</span> <span class="nx">dialog</span> <span class="o">=</span> <span class="nx">Titanium</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createAlertDialog</span><span class="p">({</span>
+                    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Impossibile usare la posizione attuale&#39;</span><span class="p">,</span>
+                    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Selezionare una provincia di riferimento, oppure controlla le impostazioni di sistema&#39;</span><span class="p">,</span>
+                    <span class="nx">buttonNames</span><span class="o">:</span> <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="p">[</span><span class="s1">&#39;Scegli provincia&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Scegli provincia&#39;</span><span class="p">,</span> <span class="s1">&#39;Impostazioni&#39;</span><span class="p">],</span>
+                    <span class="nx">cancel</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="p">});</span>
+
+                <span class="nx">dialog</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog e&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                    <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">case</span> <span class="nx">e</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">cancel</span><span class="o">:</span>
+                            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dialog cancel&#39;</span><span class="p">);</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="c1">//seleziona provincia</span>
+                            <span class="nx">selezionaProvincia</span><span class="p">();</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="c1">//apri settings</span>
+                            <span class="nx">locationServices</span><span class="p">.</span><span class="nx">openLocationSettings</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">});</span>
+
+                <span class="nx">dialog</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+
+            <span class="p">}).</span><span class="nx">defer</span><span class="p">();</span>
+
+            
+            <span class="nx">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">initSelector</span><span class="p">();</span>
+
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+
+    
+
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">selezionaProvincia</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">win</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;SelettoreProvincia_List&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">init</span><span class="p">();</span>
+    <span class="p">});</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">win</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">init</span><span class="p">();</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

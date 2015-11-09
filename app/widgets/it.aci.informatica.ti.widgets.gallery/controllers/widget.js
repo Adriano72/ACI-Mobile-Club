@@ -129,6 +129,9 @@ function onScrollend(e) {
     currentIndex = next;
 }
 
+function onClick(e){
+    fireEvent('click', e);
+}
 
 function setImages(images) {
     console.log('gallery setImages ', images);

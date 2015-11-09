@@ -1,259 +1,314 @@
 /**
- * NAVIGAZIONE E CONTAINER
+ * # SoccorsoStradale_Richiesta
  */
 
+// ### container
 ".container":{
-	height: Ti.UI.SIZE
+	backgroundColor:  Alloy.Globals.palette.grigio_chiaro
 }
 
-// container for iOS
-".container[platform=ios]": {
-	backgroundColor: Alloy.Globals.palette.bianco_sporco,
-	backButtonTitle: "",
-	barColor: Alloy.Globals.palette.bianco_sporco,
-	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT]
-	
-}
-
-
-// container for Android
-".container[platform=android]": {
-	backgroundColor: "#fff",
-	top:20,
-	tintColor: "red",
-	orientationModes: [Ti.UI.PORTRAIT],
-	exitOnClose: false
-}
-
-/**
- * LAYOUT DI PAGINA
- */
-
+// ### main
 "#main":{
-	backgroundColor:  Alloy.Globals.palette.bianco_sporco,
+	height: Ti.UI.FILL,
+	top: 0
+}
+
+
+// ### wrapper
+".wrapper":{
 	height: Ti.UI.SIZE,
 	width: Ti.UI.FILL
 }
 
-".rowContainer": {
-	layout: "vertical",
-	height: Ti.UI.FILL,
 
-}
+//
+// ## Mappa
+//
 
-".rowWrapper": {
-	//height: 80,
-	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL,
-	layout: "vertical"
-}
-
-".labelWrapper": {
-	//height: 80,
-	height: Ti.UI.SIZE,
-	width: Ti.UI.FILL,
-	layout: "horizontal"
-}
-
-".bar" :{
-	width: Ti.UI.FILL,
-	height: 40,
-	backgroundColor:  Alloy.Globals.palette.rosso
-}
-
-".top":{
+// ### mapWrapper
+"#mapWrapper":{
+	height: 120,
 	top:0
 }
-
-".bottom":{
-	bottom:0
+"#mapWrapper[if=Alloy.Globals.isLongDevice]":{
+	height: 180,
 }
 
-".box":{
-	top: 5,
-	width: "95%",
-	backgroundColor: "#ffffff"
-}
-
-".first_child":{
-	top: 5
-}
-
-
-
-
-
-/**
- * STILE DEGLI ELEMENTI
- */
-
-"#socioWrapper":{
-	layout: 'composite'
-}
-
-"#telefono":{
-	width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
-	top: 5,
-	bottom: 5,
-	left: 5,
-	right: 5,
-	font:{
-		fontSize: 12
-	},
-	hintText: "+ (numero di telefono a cui sarai richiamato)",
-	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
-	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
-	color:  Alloy.Globals.palette.grigio_scuro
-}
-
-
-"#socio":{
-	right: 5
-}
-
-"Switch[platform=android]":{
-	//style: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX
-}
-
+// ### mapview
 "#mapview":{
-	top: 0,
-	//height: 100
-	height: 150,
 	userLocation: true
 }
 
-"#mapview[platform=android]":{
-	enableZoomControls: false	
-}
-"#mapWrapper":{
-	top: 0,
-	//height: 100
-	height: 150
-}
 
-"#rowRichiestaInviata":{
-	top: 10,
-	width: "95%"
+".label":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.M
+    }
 }
 
+".label[if=Alloy.Globals.isLongDevice]":{
+	font: {
+        fontSize: Alloy.Globals.fontSize.L
+    }
+}
+".black":{
+	color: Alloy.Globals.palette.nero
+}
+".gray":{
+	color: Alloy.Globals.palette.grigio_scuro
+}
+".green":{
+	color: Alloy.Globals.palette.verde
+}
 
-
-
-"#tipoAiutoWrapper" :{
-	top: 10,
-	bottom: 10,
-	height: Ti.UI.SIZE
+".center":{
+	width: Ti.UI.FILL,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER
 }
 
 
+
+//
+// ## Pannello Form
+//
+
+"#formWrapper":{
+	height: Ti.UI.SIZE,
+	top: 120,
+	layout: "vertical"
+}
+
+"#formWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 180
+}
+
+"#tipoWrapper":{
+	height: 0
+
+}
+
+"#tipoWrapper[if=Alloy.Globals.isLogged]":{
+	height: 80,
+	layout: "vertical",
+	backgroundColor:  Alloy.Globals.palette.bianco
+}
 
 "#tipoAiuto" :{
-	highlightColor: "#d91305",
+	highlightColor: Alloy.Globals.palette.rosso,
 	color: "#595959"
 }
 
-
-".barLabel":{
-	color: "#ffffff",
-	font:{
-		fontSize: 12
-	}
+"#labelTipo" :{
+	top: 7,
+	bottom: 7,
+	height: Ti.UI.SIZE,
+ 	width: Ti.UI.FILL,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.M
+    },
+    color: Alloy.Globals.palette.nero,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }
 
-".formLabelRed":{
-
-	//top: 5,
-	color:  Alloy.Globals.palette.rosso,
-	left: 5,
-	font:{
-		fontSize: 12,
-		fontWeight: "bold"
-	}
-
-}
-
-".formLabelDark":{
-
-	//top: 5,
-	color:  Alloy.Globals.palette.grigio_scuro,
-	//left: 5,
-	font:{
-		fontSize: 12,
-		fontWeight: "bold"
-	}
-
-}
-
-".formLabel":{
-	//top: 5,
-	color: "#999",
-	//left: 5,
-	font:{
-		fontSize: 12
-	}
+"#tipoAiuto":{
+	width: "90%"
 }
 
 
-".roundButton" : {
-	top: 20,
-	height: 34,
-	borderRadius: 18,
-	borderWidth: 1,
-	borderColor:  Alloy.Globals.palette.rosso,
-	backgroundColor:  Alloy.Globals.palette.rosso,
-	color: "#ffffff",
-	width: "95%",
-	font:{
-		fontSize: 12,
-		fontWeight: "bold"
-	}
+"#address":{
+	height: 50,
+ 	width: Ti.UI.FILL,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: Alloy.Globals.fontSize.L
+    },
+    color: Alloy.Globals.palette.blu,
+    backgroundColor: Alloy.Globals.palette.bianco_sporco,
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }
 
-".barIcon":{
-	left: 5
+"#address[if=Alloy.Globals.isLongDevice]":{
+	height: 65,
 }
 
-".gpsIcon":{
-	image : "/images/ic_action_aiuto_gps_bianco.png"
+"#telefonoWrapper":{
+	top: 15,
+	layout: "vertical"
+}
+
+"#telefonoWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 25
+}
+
+"#labelTelefono":{
+ 	width: "90%",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT
 }
 
 
-".phoneIcon":{
-	image : "/images/ic_action_aiuto_phone_bianco.png"
+// ### telefono
+// TextField telefono
+"#telefono":{
+	width: "90%",
+	height: 30,
+	top: 5,
+	hintText: "+ (numero di telefono a cui sarai richiamato)",
+	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+	clearButtonMode: Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
+	backgroundColor:  Alloy.Globals.palette.bianco
+
+}
+"#telefono[if=Alloy.Globals.isLongDevice]":{
+	height: 40
 }
 
-"#pin":{
-	image: "/pin_selezione.png",
-	width: 25
-}
+
 
 "#btInvia":{
-	color: "#ffffff",
-	font: {
-		fontSize: 16,
-		fontWeight: "bold"
-	}
-}
-"#labelTelefono":{
-	left: "3%"
-}
-
-"#labelMap":{
-	//top: 5, 
-	bottom: 5
+	top: 20,
+	primaryText: "Invia posizione",
+	color :  Alloy.Globals.palette.bianco_sporco,
+	backgroundColor: Alloy.Globals.palette.rosso,
+	borderColor: Alloy.Globals.palette.rosso,
+	width: "90%"
 }
 
 
-".overlay":{
+"#btInvia[if=Alloy.Globals.isLongDevice]":{
+	top: 30
+}
+
+
+//
+// ## Pannello risposta
+// Questi tutti gli stili dei componenti del *Pannello di Risposta* (quello che appare al posto della form dopo che si è completata la richiesta).
+//
+
+
+// ### responseWrapper
+// elemento root del *Pannello di Risposta*.
+// il `top` è condizionale sulla proporzione dello schermo (device lungo o no), segue specularmente l'altezza della sezione *Mappa*
+"#responseWrapper":{
 	height: Ti.UI.FILL,
-	width: Ti.UI.FILL,
-	backgroundColor: 'transparent',
-	zIndex: 999
+	top: 120,
+	visible: false,
+	backgroundColor: Alloy.Globals.palette.bianco_sporco
+}
+"#responseWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 180
+}
+
+// ### tickWrapper
+// sezione contenente il tick (✓). L'altezza è determinata dal contenuto
+"#tickWrapper":{
+	top: 0,
+	height: Ti.UI.SIZE,
+	backgroundColor: Alloy.Globals.palette.bianco
+}
+
+// ### tick
+// elemento (✓). Altezza e larghezza sono condizionali in base alla proporzione dello schermo (device lungo o no).
+"#tick":{
+	top: 10,
+	bottom: 10,
+	height: 40,
+	width: 40,
+	borderRadius: 20,
+	borderWidth: 2,
+	borderColor: Alloy.Globals.palette.verde,
+	color: Alloy.Globals.palette.verde,
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize: 30
+    },
+ 	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+ 	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
+}
+"#tick[if=Alloy.Globals.isLongDevice]":{
+	top: 15,
+	bottom: 15,
+	height: 70,
+	width: 70,
+	borderRadius: 35,
+	font: {
+        fontSize: 50
+    },
+}
+
+// ### resumeWrapper
+// Pannello che contiene le informazioni riassuntive della richiesta. 
+// Il top viene calcolato tramite la label `tick`, *height+top+bottom*
+"#resumeWrapper":{
+	top: 60,
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+}
+"#resumeWrapper[if=Alloy.Globals.isLongDevice]":{
+	top: 100
+}
+
+// ### responseLabelWrapper
+".responseLabelWrapper":{
+	height: Ti.UI.SIZE,
+	width:  Ti.UI.SIZE,
+	layout: "horizontal",
+}
+
+// ### responseLabelWrapper1
+// Prima delle tre etichette. Il margine superiore dipende dallo schermo 
+"#responseLabelWrapper1":{
+	top: 15
+}
+"#responseLabelWrapper1[if=Alloy.Globals.isLongDevice]":{
+	top: 30
+}
+
+// ### responseLabelWrapper2
+"#responseLabelWrapper2":{
+	top: 3
+}
+
+
+// ### responseLabelWrapper3
+// Terza delle tre etichette. Il margine superiore dipende dallo schermo 
+"#responseLabelWrapper3":{
+	top: 12,
+	layout: "vertical"
+}
+"#responseLabel3[if=Alloy.Globals.isLongDevice]":{
+	top: 25
+}
+
+// ### responseLabel
+// etichette del *Pannello della risposta*
+".responseLabel":{
+	font: {
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
+        fontSize:  Alloy.Globals.fontSize.XL
+    },
+    right: 5
+}
+".responseLabel[if=Alloy.Globals.isLongDevice]":{
+	font: {
+        fontSize:  Alloy.Globals.fontSize.L
+    }
 }
 
 
 
+//
+// ## Banner
+//
+
+// ### bannerContainer
+"#bannerContainer":{
+	height: Ti.UI.SIZE,
+	bottom: 0
+}
 
 

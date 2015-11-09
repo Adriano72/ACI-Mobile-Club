@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tabulatedData.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/tabulatedData.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>tabulatedData.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">puntiAciMain</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">itemsObj</span> <span class="o">=</span> <span class="p">[{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_aci.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Automobile Club&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;aacc&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_delegazioni.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Delegazioni&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;del&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_uffici_pra.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Uffici PRA&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;pra&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_urp.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Uffici Relazione con il Pubblico&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;urp&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_assistenza_tasse.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Assistenza tasse automobilistiche&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;tasse&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_demolitori.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Demolitori&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;dem&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_autoscuole_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Autoscuole&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;r2g&quot;</span>
+
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_acipoint_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;ACI Point&quot;</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="s2">&quot;acpoint&quot;</span>
+
+        <span class="p">}</span>
+
+    <span class="p">];</span>
+
+   
+    <span class="k">return</span> <span class="nx">itemsObj</span><span class="p">;</span>
+
+
+<span class="p">};</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Nome completo  Etichetta
+Dormire &amp; Mangiare  dormire_mangiare
+Tempo Libero  tempo_libero_benessere
+Mobilità  noleggi_trasporti
+Sport &amp; Eventi  sport_eventi
+Altri Servizi  altri_servizi
+Benessere e Salute  benessere_e_salute
+Tutto per l'auto  tutto_per_lauto
+Shopping  shopping
+Casa  casa
+Cultura  cultura</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">categorieSyc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">itemsObj</span> <span class="o">=</span> <span class="p">[{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_dormire_mangiare_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Dormire &amp; Mangiare&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;dormire_mangiare&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_DormireMangiare.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_benessere_salute_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Benessere &amp; Salute&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;benessere_e_salute&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_Benessere.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_casa_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Casa&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;casa&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_Casa.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_cultura_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Cultura&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;cultura&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_Cultura.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_mobilita_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Mobilità&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;noleggi_trasporti&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_Mobilita.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_shopping_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Shopping&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;shopping&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_Shopping.png&quot;</span>
+        <span class="p">},</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>{
+img: "ico_sport_01.png",
+long_name: "Sport &amp; Eventi",
+short_name: "sport_eventi"
+},  </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_tempo_libero_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Tempo Libero&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;tempo_libero_benessere&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_TempoLibero.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_tutto_per_auto_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Tutto per l&#39;auto&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;tutto_per_lauto&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_Tuttoxauto.png&quot;</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="o">:</span> <span class="s2">&quot;/images/ic_action_altri_servizi_blu.png&quot;</span><span class="p">,</span>
+            <span class="nx">long_name</span><span class="o">:</span> <span class="s2">&quot;Altri Servizi&quot;</span><span class="p">,</span>
+            <span class="nx">short_name</span><span class="o">:</span> <span class="s2">&quot;altri_servizi&quot;</span><span class="p">,</span>
+            <span class="nx">pin</span> <span class="o">:</span> <span class="s2">&quot;pin_altriServizi.png&quot;</span>
+        <span class="p">}</span>
+
+    <span class="p">];</span>
+
+    <span class="k">return</span> <span class="nx">itemsObj</span><span class="p">;</span>
+
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

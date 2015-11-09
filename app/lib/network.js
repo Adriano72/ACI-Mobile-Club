@@ -55,7 +55,7 @@ function formatQS(obj) {
 
 exports.getPuntiAci = function(type_code, _callback) {
 
-     var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
 
@@ -321,7 +321,7 @@ exports.getBanner = function(_callback) {
         _callback([]);
     }
 
-    var posizione  = locationServices.getLastLocation();
+    var posizione = locationServices.getLastLocation();
 
 
     if (locationServices.useLocation()) {
@@ -330,7 +330,7 @@ exports.getBanner = function(_callback) {
             loadBanner();
         } else {
             locationServices.getUserLocation(function(err) {
-                if (err ) {
+                if (err) {
                     noPosition();
                 } else {
                     loadBanner();
@@ -520,7 +520,7 @@ exports.getPuntiAciPerServizioGIC = function(gic, fuoriGIC, _callback) {
 
 
 exports.getListaProvince = function(_callback) {
-   
+
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function() {
@@ -606,6 +606,8 @@ exports.registerApp = function(_callback) {
     };
 
     xhr.onerror = function(e) {
+        //per ora (20151028) chiamo la callback anche se la registrazione ha dato errore
+        _callback && _callback(this.responseText);
         Alloy.Globals.loading.hide();
         console.log("ERRORE RISPOSTA SERVER: ", e, url);
     };
@@ -630,6 +632,63 @@ exports.registerApp = function(_callback) {
 
     xhr.send();
 };
+
+
+exports.registerForPush = function(_callback) {
+
+    var xhr = Ti.Network.createHTTPClient();
+
+    xhr.onload = function() {
+        console.log('registerForPush', this.responseText);
+
+        _callback && _callback(this.responseText);
+
+    };
+
+    xhr.onerror = function(e) {
+        Alloy.Globals.loading.hide();
+        console.log("ERRORE RISPOSTA SERVER: ", e, url);
+    };
+
+
+
+
+
+    var url = Alloy.Globals.baseURL + '/common/clients/_register_for_push'
+        //var url = 'http://10.64.4.138:10000/api' + '/aci/pos?' + formatQS(qs);
+
+
+    Ti.API.info("CHIAMATA HTTP: " + url);
+
+    xhr.open('POST', url);
+
+    _(getAciGeoHeaders()).each(function(v, k) {
+        xhr.setRequestHeader(k, v);
+    });
+
+
+    var user = require('user').getCurrentUser();
+
+    var _u = {};
+
+    _(_(user).keys()).map(function(key) {
+        var nk = key.replace('userInfo.', '');
+        _u[nk] = user[key];
+    });
+    user = _u;
+
+    var pn = require('ti.aci').PushNotification;
+    var data = {
+        token: pn.deviceToken,
+        userInfo: JSON.stringify(user)
+    };
+    console.log('registerForPush data', data);
+
+    xhr.send(data);
+
+
+};
+
 
 
 exports.userSignUp = function(data, _callback) {
@@ -746,6 +805,8 @@ function getAciGeoHeaders() {
         h['x-acigeo-tessera'] = user['userInfo.tessera'];
     }
 
+
+
     console.log('headers', h);
     return h;
 }
@@ -775,3 +836,77 @@ function buildRequestHandler(callback) {
 }
 
 exports.getAciGeoHeaders = getAciGeoHeaders;
+
+
+
+
+//
+// acigeo
+//
+
+var acigeo = require('ti.aci').Services.acigeo;
+
+//imposto gli headers di sistema
+acigeo.setConfig('headers', {
+    // 'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='
+    'x-acigeo-appid': 'UA-57956970-2',
+    'x-acigeo-devid': Ti.Platform.id,
+    'x-acigeo-appver': Ti.App.version,
+    'x-acigeo-devos': function() {
+        OS_IOS ? 'ios' : 'android';
+    }
+});
+
+acigeo.setConfig('base_url', Alloy.CFG.AciGeo_BaseUrl);
+
+console.log('network acigeo', Alloy.CFG.AciGeo_BaseUrl, acigeo.getConfig('base_url'));
+
+/**
+ * Metodo di accesso alle collezioni syc
+ * @param  {hash}   params   hash di parametri della richiesta - controllare i doc della libreria acigeo
+ * @param  {Function} cb     callback nella forma (err, result)
+ */
+exports.syc = function(params, cb) {
+    acigeo.syc(params, buildRequestHandler(cb));
+}
+
+/**
+ * Wrapper della funzione syc che permette la richiesta degli ultimi punti syc inseriti
+ * @param  {date}   fromDate   data di riferimento (punti da fromDate incluso)
+ * @param  {Function} cb       callback nella forma (err, result)
+ */
+exports.sycLatest = function(source, fromDate, cb) {
+
+    //hash set di parametri da passare al web service
+    var params = {};
+
+    //aggiungo i parametri geografici
+    (function(p) {
+        var settings = require('settings');
+        //se ho la provincia, filtro per provincia
+        // altrimenti ordino per posizione
+        if (!settings.ricercaPerProssimita) {
+            p.province = settings.provinciaDiRiferimento.id;
+            p.near = undefined;
+        } else {
+            var posizione = locationServices.getLastLocation();
+            p.near = [posizione.longitude, posizione.latitude, 0.2];
+            p.province = undefined;
+        }
+    })(params);
+
+
+    //aggiungo il filtro per range di date
+    (function(p, date) {
+        p.publishDateRange = [Math.floor(date.getTime() / 1000), null];
+    })(params, fromDate);
+
+    //aggiungo il parametro source, se presente
+    (function(p, s) {
+        p.source = s;
+    })(params, source);
+
+    console.log('acigeo sycLatest', params);
+    //chiamo la funzione base
+    exports.syc(params, cb);
+};

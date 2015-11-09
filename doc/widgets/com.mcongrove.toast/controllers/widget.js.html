@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>widget.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/com.mcongrove.toast/controllers/widget.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>widget.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>The toast notification widget</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">class</div>
+    <div class="dox_tag_detail">
+      <span>Widgets.com.chariti.toast</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary">
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">member</div>
+    <div class="dox_tag_detail">
+      <span>Widgets.com.chariti.toast</span>
+    </div>
+    <div class="dox_tag_title">property</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Object</span>
+      <span>CONFIG</span>
+    </div>
+    <div class="dox_tag_title">property</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">String</span>
+      <span>CONFIG.text The text to display in the toast</span>
+    </div>
+    <div class="dox_tag_title">property</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Number</span>
+      <span>CONFIG.duration The length of time (ms) to display the toast</span>
+    </div>
+    <div class="dox_tag_title">property</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">Function</span>
+      <span>CONFIG.view The view to attach the toast to</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">CONFIG</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">textLabel</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+  
+    <span class="nx">open</span><span class="p">();</span>
+    
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">close</span><span class="p">();</span>
+    <span class="p">},</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">duration</span> <span class="o">?</span> <span class="p">(</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">duration</span> <span class="o">+</span> <span class="mi">250</span><span class="p">)</span> <span class="o">:</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">toast</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createNotification</span><span class="p">({</span>
+      <span class="nx">message</span><span class="o">:</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">text</span><span class="p">,</span>
+      <span class="nx">duration</span><span class="o">:</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">duration</span> <span class="o">&lt;</span> <span class="mi">2000</span> <span class="o">?</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">NOTIFICATION_DURATION_SHORT</span> <span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">NOTIFICATION_DURATION_LONG</span>
+    <span class="p">});</span>
+    
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Opens the toast notification</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">private
+</div>
+
+
+<div class="highlight"><pre><code><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;dox_tag_detail&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">/div&gt;</span>
+</code></pre></div>
+
+
+
+<p></div>
+</div></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">open</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">Wrapper</span><span class="p">);</span>
+  
+  <span class="nx">$</span><span class="p">.</span><span class="nx">Modal</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span>
+    <span class="nx">top</span><span class="o">:</span> <span class="s2">&quot;20dp&quot;</span><span class="p">,</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="mi">250</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Closes the toast notification</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">private
+</div>
+
+
+<div class="highlight"><pre><code><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;dox_tag_detail&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">/div&gt;</span>
+</code></pre></div>
+
+
+
+<p></div>
+</div></p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">close</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">Modal</span><span class="p">.</span><span class="nx">animate</span><span class="p">({</span>
+    <span class="nx">top</span><span class="o">:</span> <span class="s2">&quot;70dp&quot;</span><span class="p">,</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="mi">250</span>
+  <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">close</span> <span class="o">!==</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">Wrapper</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

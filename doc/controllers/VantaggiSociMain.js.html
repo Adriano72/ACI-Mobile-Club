@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VantaggiSociMain.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/VantaggiSociMain.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>VantaggiSociMain.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+
+
+<span class="kd">var</span> <span class="nx">headerText</span> <span class="o">=</span> <span class="s2">&quot;Vantaggi per i soci&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">headerImg</span> <span class="o">=</span> <span class="s2">&quot;/images/ic_action_home_vantaggi_soci_blu.png&quot;</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>inizializzazioni comuni della Window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">).</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="nx">headerText</span><span class="p">,</span> <span class="nx">headerImg</span><span class="p">);</span>
+
+
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">banner</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">rowData</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tabulatedData&#39;</span><span class="p">).</span><span class="nx">categorieSyc</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">rows</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nx">_</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">rowData</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>Ti.API.info("DATA: " + value.img);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">riga</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;TableViewRow_Single&#39;</span><span class="p">,</span> <span class="p">{</span>
+
+        <span class="nx">immagine</span><span class="o">:</span> <span class="nx">value</span><span class="p">.</span><span class="nx">img</span><span class="p">,</span>
+        <span class="nx">testo</span><span class="o">:</span> <span class="nx">value</span><span class="p">.</span><span class="nx">long_name</span><span class="p">,</span>
+        <span class="nx">id_code</span><span class="o">:</span> <span class="nx">value</span><span class="p">.</span><span class="nx">short_name</span>
+
+    <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">rows</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">riga</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">selectionDetail</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">))</span> <span class="p">{</span>
+
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;CLICKED DATA: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">id_code</span><span class="p">);</span>
+
+
+        <span class="kd">var</span> <span class="nx">winAC</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_List&#39;</span><span class="p">,</span> <span class="p">{</span>
+
+            <span class="nx">icon</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">img</span><span class="p">,</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">testo</span><span class="p">,</span>
+            <span class="nx">id_code</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">id_code</span>
+
+        <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winAC</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>switch(e.row.id_code) {</p>
+  </div>
+  <div class="body"><p>case "dormire_mangiare":
+var winAC = Alloy.createController('VantaggiSoci_DormMang').getView();
+Alloy.Globals.navMenu.openWindow(winAC);
+break;
+case "tempo_libero_benessere":
+var winAC = Alloy.createController('VantaggiSoci_TempoLibero').getView();
+Alloy.Globals.navMenu.openWindow(winAC);
+break;
+case "cultura_spettacoli":
+var winAC = Alloy.createController('VantaggiSoci_CulturaSpettacoli').getView();
+Alloy.Globals.navMenu.openWindow(winAC);
+break;
+case "noleggi_trasporti":
+var winAC = Alloy.createController('VantaggiSoci_NoleggiTrasporti').getView();
+Alloy.Globals.navMenu.openWindow(winAC);
+break;
+case "sport_eventi":
+var winAC = Alloy.createController('VantaggiSoci_SportEventi').getView();
+Alloy.Globals.navMenu.openWindow(winAC);
+break;
+case "altri_servizi":
+var winAC = Alloy.createController('VantaggiSoci_AltriServizi').getView();
+Alloy.Globals.navMenu.openWindow(winAC);
+break;</p>
+
+<p>default:</p>
+
+<p>}</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">displayConvenzioneBanner</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">dettConvenzione</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_Dettaglio_Convenzione&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">convenzioneBanner</span><span class="p">,</span>
+        <span class="nx">headerImg</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nx">isBanner</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">dettConvenzione</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">banner</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+<span class="p">});</span>
+
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">puntiAciMain_Table</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

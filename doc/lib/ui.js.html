@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ui.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/ui.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>ui.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Elementi UI custom - estende gli elementi di Ti.UI</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">createLabel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">lb</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createLabel</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">loading</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">orig</span><span class="p">;</span>
+
+    <span class="nx">lb</span><span class="p">.</span><span class="nx">startLoading</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">;</span>
+        <span class="nx">orig</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+
+        <span class="kd">function</span> <span class="nx">step</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">i</span> <span class="o">=</span> <span class="p">(</span><span class="o">++</span><span class="nx">i</span> <span class="o">%</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+            <span class="nx">lb</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="nx">orig</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;   &#39;</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">i</span><span class="p">));</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;lb.text&#39;</span><span class="p">,</span> <span class="nx">lb</span><span class="p">.</span><span class="nx">text</span><span class="p">);</span>
+            <span class="nx">loading</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">step</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+        <span class="p">}</span>
+
+
+        <span class="nx">step</span><span class="p">();</span>
+
+
+    <span class="p">}</span>
+
+    <span class="nx">lb</span><span class="p">.</span><span class="nx">stopLoading</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">loading</span><span class="p">);</span>
+        <span class="nx">lb</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">orig</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">lb</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>aciglobal.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/aciglobal.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>aciglobal.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Modulo che raccoglie le funzionalità relative al servizio AciGlobal
+Richiede le seguenti configurazioni in config.json:
+"AciGlobal_NumeroVerde"
+"AciGlobal_CodiceApplicazione"
+"AciGlobal_ServiceLogin"
+"AciGlobal_ServicePassword"
+"AciGlobal_RequestLimitMinutes"</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">rest</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;rest&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">endpoint</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_ServiceEndpoint</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">VALIDFROM_KEY</span> <span class="o">=</span> <span class="s1">&#39;AciGlobal:RequestFromDate&#39;</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Esegue una chiamata al servizio AciGlobal per richiedere assistenza</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{object}   params   hashset di parametri forniti dal chiamante</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} callback funzione callback nella forma (err, result)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">sendRichiestaAssistenza</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>sub-routine che formatta la richiesta secondo le specifiche AciGLobal</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{object} params parametri forniti dal chiamante</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>oggetto JSON formattato secondo le specifiche AciGlobal</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">function</span> <span class="nx">formatRequestParams</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_ServiceLogin</span><span class="p">,</span> <span class="c1">// username applicativa, sarà da sostituire</span>
+                    <span class="s2">&quot;password&quot;</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_ServicePassword</span> <span class="c1">// password applicativa, sarà da sostituire</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;assistenza&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;nome&quot;</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">nome</span> <span class="o">||</span> <span class="s2">&quot;ACI&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;cognome&quot;</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">cognome</span> <span class="o">||</span> <span class="s2">&quot;MOBILE CLUB&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;numTelefono&quot;</span><span class="o">:</span> <span class="nx">formatNumTelefono</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">telefono</span><span class="p">),</span> <span class="c1">// senza prefisso internazionale!!!</span>
+                    <span class="s2">&quot;codUnivocoTelefono&quot;</span><span class="o">:</span> <span class="nx">getCodUnivocoTelefono</span><span class="p">(),</span> <span class="c1">// vedi sotto</span>
+                    <span class="s2">&quot;targa&quot;</span><span class="o">:</span> <span class="s2">&quot;AA111AA&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;telaio&quot;</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">tesseraACI</span> <span class="o">||</span> <span class="s2">&quot;ZAFA1234651356565&quot;</span><span class="p">,</span> <span class="c1">// la tessera ACI o un altro identificativo per l&#39;utente (es. Codice fiscale)</span>
+                    <span class="s2">&quot;marca&quot;</span><span class="o">:</span> <span class="s2">&quot;ACI&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;modello&quot;</span><span class="o">:</span> <span class="s2">&quot;MOBILE CLUB&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;codApplicazione&quot;</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_CodiceApplicazione</span><span class="p">,</span>
+                    <span class="s2">&quot;consGPS&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="c1">// consenso al trattamento dei dati GPS, se &quot;1&quot; i dati GPS non potranno essere utilizzati</span>
+                    <span class="s2">&quot;latitudine&quot;</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">latitude</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+                    <span class="s2">&quot;longitudine&quot;</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">longitude</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
+                    <span class="s2">&quot;tipoRichiestaAssistenza&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="c1">// 1 ==&gt; Guasto / 2 ==&gt; Incidente</span>
+                    <span class="s2">&quot;note&quot;</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">note</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>sub-routine che ritorna l'univoco del device secondo le specifiche AciGlobal</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">string</span>
+      <span>codice univoco del telefono</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">function</span> <span class="nx">getCodUnivocoTelefono</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">code</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_IOS</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">code</span> <span class="o">=</span> <span class="s1">&#39;I@&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">code</span> <span class="o">=</span> <span class="s1">&#39;A@&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>caso che non si verifica</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">code</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>sub-routine che formatta i numeri telefonici secondo le specifiche AciGlobal</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{string} telefono telefono originale</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">string</span>
+      <span>telefono formattato</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">function</span> <span class="nx">formatNumTelefono</span><span class="p">(</span><span class="nx">telefono</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">telefono</span> <span class="o">=</span> <span class="nx">telefono</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>completo di prefisso e senza spazi, barre o altri separatori</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>rimuovo eventuali spazi e separatori</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">telefono</span> <span class="o">=</span> <span class="nx">telefono</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\s.\-\/\\]*/gi</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>rimuovo eventuale prefisso internazionale
+solo quello italiano però</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">telefono</span> <span class="o">=</span> <span class="nx">telefono</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^(00|\+)39/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">telefono</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">endpoint</span> <span class="o">+</span> <span class="s1">&#39;/assistance/_req&#39;</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;request: &#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;params: &#39;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>url = endpoint + '/assistance/_req?data=%7B%22user%22%3A%7B%22username%22%3A%22ACI_Mob_App%22%2C%22password%22%3A%22aci123456%22%7D%2C%22assistenza%22%3A%7B%22nome%22%3A%22MASSIMO%22%2C%22cognome%22%3A%22CHIERCHINI%22%2C%22numTelefono%22%3A%223289769508%22%2C%22codUnivocoTelefono%22%3A%22I%4004D64981-21AC-48BE-B155-08A6A551BCF5%22%2C%22targa%22%3A%22AA111AA%22%2C%22telaio%22%3A%22AC900932465%22%2C%22marca%22%3A%22ACI%22%2C%22modello%22%3A%22MOBILE%20CLUB%22%2C%22codApplicazione%22%3A%22ACI03%22%2C%22consGPS%22%3A%221%22%2C%22latitudine%22%3A%2241,808979%22%2C%22longitudine%22%3A%2212,436520%22%2C%22tipoRichiestaAssistenza%22%3A%221%22%7D%7D';</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="nx">rest</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">formatRequestParams</span><span class="p">(</span><span class="nx">params</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;err&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+            <span class="nx">callback</span> <span class="o">&amp;&amp;</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">errorCode</span> <span class="o">==</span> <span class="s2">&quot;000&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;RISPOSTA: &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>IMPOSTO IL LIMITE PER EFFETTUARE UNA NUOVA CHIAMATA </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setObject</span><span class="p">(</span><span class="nx">VALIDFROM_KEY</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_RequestLimitMinutes</span> <span class="o">*</span> <span class="mi">60000</span><span class="p">));</span>
+
+            <span class="nx">callback</span> <span class="o">&amp;&amp;</span> <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>Alloy.Glfobals.loading.hide();</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Errore nella comunicazione col server.&quot;</span><span class="p">);</span>
+            <span class="nx">callback</span> <span class="o">&amp;&amp;</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="o">:</span> <span class="s1">&#39;Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ==&#39;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>'Authorization': rest.formatBasicAuthentication(Alloy.CFG.AciGlobal_ServerLogin, Alloy.CFG.AciGlobal_ServerPassword)
+'Authorization': 'Basic ' + Titanium.Utils.base64encode('acimobileclub' + ':' + 'Iniziale$01')</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">});</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>get(callback);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Numero verde del servizio AciGlobal</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">string
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">NumeroVerde</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_NumeroVerde</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Periodo di tempo da far passare tra una richiesta e l'altra, in minuti</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Type</div>
+    <div class="dox_tag_detail">
+      <span class="dox_type">number
+</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">RequestLimitMinutes</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGlobal_RequestLimitMinutes</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Gestisce il limite temporale per inviare richieste ad AciGlobal</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]} msg [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">limitRequests</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>alert(Alloy.CFG.AciGlobal_RequestLimitMinutes);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">VALIDFROM_KEY</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">validFrom</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>validFrom = new Date(validFrom);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;validFrom&#39;</span><span class="p">,</span> <span class="nx">validFrom</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="p">,</span> <span class="nx">now</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;new Date(validFrom) &lt;= now&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">validFrom</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nx">now</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;validFrom &lt;= now&#39;</span><span class="p">,</span> <span class="nx">validFrom</span> <span class="o">&lt;=</span> <span class="nx">now</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;!validFrom &#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">validFrom</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;validFrom &lt;= now &#39;</span><span class="p">,</span> <span class="nx">validFrom</span> <span class="o">&lt;=</span> <span class="nx">now</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validFrom</span> <span class="o">||</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">validFrom</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nx">now</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

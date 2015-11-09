@@ -1,0 +1,10 @@
+version: 0.1.2
+description: Libreria di funzionalità comuni per la app Titanium di ACI Informatica
+author: Emanuele De Cupis
+license: ISC
+copyright: Copyright © 2015 Emanuele De Cupis
+name: ti.aci
+moduleid: ti.aci
+guid: a907fe96-3897-e6c3-105f-97d0e440d074
+platform: commonjs
+minsdk: 3.2.0.GA

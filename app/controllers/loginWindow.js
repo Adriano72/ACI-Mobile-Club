@@ -42,7 +42,7 @@ function doLogin() {
         Alloy.Globals.loading.show('Caricamento dati...', false);
 
         user.doLogin(username, password, rememberMe, function(err, user_data) {
-
+            require('network').registerForPush();
             Alloy.Globals.loading.hide();
 
             if (!err) {

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SoccorsoStradaleMain.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/SoccorsoStradaleMain.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>SoccorsoStradaleMain.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre> <span class="kd">var</span> <span class="nx">commons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">);</span>
+ <span class="kd">var</span> <span class="nx">locationServices</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">);</span>
+
+ <span class="kd">var</span> <span class="nx">AciGlobal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;aciglobal&#39;</span><span class="p">);</span>
+
+
+ <span class="kd">function</span> <span class="nx">open</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;ciao&#39;</span><span class="p">);</span>
+ <span class="p">}</span>
+
+
+ <span class="kd">function</span> <span class="nx">selectionDetail</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;selection&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">))</span> <span class="p">{</span>
+
+         <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;CLICKED DATA: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">id_code</span><span class="p">);</span>
+         <span class="kd">var</span> <span class="nx">win_controller</span><span class="p">;</span>
+
+         <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">id_code</span><span class="p">)</span> <span class="p">{</span>
+
+             <span class="k">case</span> <span class="s2">&quot;richiedi&quot;</span><span class="o">:</span>
+                 <span class="nx">win_controller</span> <span class="o">=</span> <span class="s2">&quot;SoccorsoStradale_Richiesta&quot;</span><span class="p">;</span>
+                 <span class="k">break</span><span class="p">;</span>
+             <span class="k">case</span> <span class="s2">&quot;chiama&quot;</span><span class="o">:</span>
+                 <span class="nx">win_controller</span> <span class="o">=</span> <span class="s2">&quot;SoccorsoStradale_Chiama&quot;</span><span class="p">;</span>
+                 <span class="k">break</span><span class="p">;</span>
+
+
+             <span class="k">default</span><span class="o">:</span>
+
+         <span class="p">}</span>
+
+         <span class="k">if</span> <span class="p">(</span><span class="nx">win_controller</span><span class="p">)</span> <span class="p">{</span>
+             <span class="kd">var</span> <span class="nx">winAC</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="nx">win_controller</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+             <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winAC</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="p">};</span>
+
+
+
+ <span class="kd">function</span> <span class="nx">fill</span><span class="p">()</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">tot</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">;</span>
+     <span class="nx">tot</span> <span class="o">-=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">rowRichiesta</span><span class="p">.</span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+     <span class="nx">tot</span> <span class="o">-=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">dettaglioRichiesta</span><span class="p">.</span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+     <span class="nx">tot</span> <span class="o">-=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">rowChiama</span><span class="p">.</span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+     <span class="nx">tot</span> <span class="o">-=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">dettaglioChiama</span><span class="p">.</span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span> <span class="nx">tot</span><span class="p">);</span>
+     <span class="nx">$</span><span class="p">.</span><span class="nx">filler</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">tot</span><span class="p">;</span>
+ <span class="p">}</span>
+
+
+
+
+
+
+
+ <span class="kd">function</span> <span class="nx">callPhone</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">Titanium</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="s1">&#39;tel:&#39;</span> <span class="o">+</span> <span class="nx">AciGlobal</span><span class="p">.</span><span class="nx">NumeroVerde</span><span class="p">);</span>
+ <span class="p">}</span>
+
+ <span class="kd">function</span> <span class="nx">openSend</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">winAC</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;SoccorsoStradale_Richiesta&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+     <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winAC</span><span class="p">);</span>
+ <span class="p">}</span>
+
+
+ <span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>inizializzazioni comuni della Window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+     <span class="kd">var</span> <span class="nx">headerText</span> <span class="o">=</span> <span class="s2">&quot;Assistenza&quot;</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">headerImg</span> <span class="o">=</span> <span class="s2">&quot;/images/ic_action_home_assistenza_blu.png&quot;</span><span class="p">;</span>
+     <span class="nx">commons</span><span class="p">.</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="nx">headerText</span><span class="p">,</span> <span class="nx">headerImg</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>gestisco gli eventi a mano</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+     <span class="nx">$</span><span class="p">.</span><span class="nx">callButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">callPhone</span><span class="p">);</span>
+     <span class="nx">$</span><span class="p">.</span><span class="nx">sendButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">openSend</span><span class="p">);</span>
+
+
+ <span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

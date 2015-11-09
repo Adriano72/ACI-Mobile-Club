@@ -80,6 +80,7 @@ function loadData() {
 }
 
 
+
 /**
  * Manipolazione dei dati da passare alla lista
  * @param  {[type]} model [description]
@@ -148,17 +149,25 @@ function onItemClick(e) {
 }
 
 
-
-
 /**
- * Apre la finestra di dettaglio di un syc a partire dal suo id
- * @param  {string} itemId  id del syc
+ * ### openDetail
+ * Apre la schermata di dettaglio di una convenzione
+ * @param {string} modelId id del modello, corrisponde al cid delle collezioni
  */
-function openDetail(itemId) {
-    var model = Alloy.Collections.tempCollection.getByCid(itemId);
-    Alloy.Globals.navMenu.openWindow(Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
-        data: model,
-        titolo: metaData.long_name,
-        headerImg: metaData.img
-    }).getView());
+function openDetail(modelId) {
+    if (modelId) {
+        var selectedConv = Alloy.Collections.tempCollection.getByCid(modelId);
+
+        var dettConvenzione = Alloy.createController('VantaggiSoci_Dettaglio_Convenzione', {
+            data: selectedConv,
+            titolo: metaData.long_name,
+            headerImg: metaData.img
+        }).getView();
+        Alloy.Globals.navMenu.openWindow(dettConvenzione);
+    }
 }
+
+
+$.win.addEventListener('close', function() {
+    $.destroy();
+});

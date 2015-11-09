@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>checkbox_spec.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/checkbox/spec/checkbox_spec.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>checkbox_spec.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>Create a test suite</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Checkbox Tests&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">Alloy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;alloy&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="s2">&quot;checkbox&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">getView</span><span class="p">();</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;can generate a usable checkbox widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;can init the checkbox value with string attributes&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    
+      <span class="kd">var</span> <span class="nx">tester</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="s2">&quot;checkbox&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s1">&#39;true&#39;</span><span class="p">});</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">tester</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+      
+      <span class="nx">tester</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="s2">&quot;checkbox&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s1">&#39;false&#39;</span><span class="p">});</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">tester</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      
+    <span class="p">});</span>
+    
+    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;can set and get the checkbox value&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      
+      <span class="nx">widget</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+      <span class="nx">widget</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+    <span class="p">});</span>
+    
+    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;can change value when clicked&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      
+      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">widget</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+      <span class="nx">waitsFor</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+      <span class="p">},</span> <span class="s2">&quot;widget didn&#39;t change value&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+      <span class="nx">waitsFor</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="o">!</span><span class="nx">widget</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+      <span class="p">},</span> <span class="s2">&quot;widget didn&#39;t change value&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+    <span class="p">});</span>
+
+    
+    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;sends correct event when clicked&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="kd">var</span> <span class="nx">eventValue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="nx">view</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="nx">eventValue</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+      <span class="p">});</span>
+
+      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">widget</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+      <span class="nx">waitsFor</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">eventValue</span><span class="p">;</span>
+      <span class="p">},</span> <span class="s2">&quot;widget didn&#39;t send event or wrong value&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">eventValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+      <span class="nx">waitsFor</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="o">!</span><span class="nx">eventValue</span><span class="p">;</span>
+      <span class="p">},</span> <span class="s2">&quot;widget didn&#39;t send event or wrong value&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+
+      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">eventValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">});</span>
+      
+    <span class="p">});</span>
+
+  <span class="p">});</span>
+  
+<span class="p">});</span> 
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

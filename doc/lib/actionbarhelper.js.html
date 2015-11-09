@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>actionbarhelper.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/actionbarhelper.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>actionbarhelper.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>ActionBar Helper Class for Appcelerator Titanium
+Author: Ricardo Alcocer</p>
+  </div>
+  <div class="body"><p>Licensed under the MIT License (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+
+<p><a href='http://alco.mit-license.org/'>http://alco.mit-license.org/</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">actionBarHelper</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">win</span><span class="p">){</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>make it useable in classic titanium</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">isAndroid</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">osname</span> <span class="o">===</span> <span class="s1">&#39;android&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isAndroid</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;This is an Android-only library.&#39;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">works</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">win</span><span class="o">=</span><span class="nx">win</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">activity</span><span class="o">=</span><span class="nx">win</span><span class="p">.</span><span class="nx">getActivity</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">activity</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">works</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setTitle</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">title</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setUpAction</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">action</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span> <span class="o">&amp;&amp;</span> <span class="s1">&#39;function&#39;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nx">action</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">displayHomeAsUp</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>  
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">onHomeIconItemSelected</span><span class="o">=</span><span class="nx">action</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">displayHomeAsUp</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">onHomeIconItemSelected</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">displayHomeAsUp</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">setDisplayHomeAsUp</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setBackgroundImage</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">image</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">setBackgroundImage</span><span class="p">(</span><span class="nx">image</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setIcon</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">icon</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">icon</span><span class="o">=</span><span class="nx">icon</span><span class="p">;</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">logo</span><span class="o">=</span><span class="nx">icon</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hide</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">show</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">actionBar</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">actionBarHelper</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">reloadMenu</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">works</span><span class="p">){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">activity</span><span class="p">.</span><span class="nx">invalidateOptionsMenu</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error: this does not work&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">actionBarHelper</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

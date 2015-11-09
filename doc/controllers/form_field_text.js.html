@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>form_field_text.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/form_field_text.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>form_field_text.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>INIZIALIZZAZIONI</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">hintText</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">hintText</span> <span class="o">||</span> <span class="nx">args</span><span class="p">.</span><span class="nx">fieldId</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">keyboardType</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">keyboardType</span> <span class="o">||</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">KEYBOARD_DEFAULT</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">passwordMask</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">passwordMask</span> <span class="o">||</span> <span class="kc">false</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">fieldPrefix</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">prefix</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">createStyle</span><span class="p">({</span>
+        <span class="nx">classes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;withPrefix&#39;</span><span class="p">],</span>
+        <span class="nx">apiName</span><span class="o">:</span> <span class="s1">&#39;TextField&#39;</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fieldPrefix</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="nb">Boolean</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">fieldPrefix</span><span class="p">.</span><span class="nx">text</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">postfix</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">fieldPostfix</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">postfix</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">createStyle</span><span class="p">({</span>
+        <span class="nx">classes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;withPostfix&#39;</span><span class="p">],</span>
+        <span class="nx">apiName</span><span class="o">:</span> <span class="s1">&#39;TextField&#39;</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fieldPostfix</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="nb">Boolean</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">fieldPostfix</span><span class="p">.</span><span class="nx">text</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>if (OS_IOS &amp;&amp; ($.field.keyboardType == Ti.UI.KEYBOARD_PHONE_PAD || $.field.keyboardType == Ti.UI.KEYBOARD_NUMBER_PAD)) {
+numberpadWithReturnHack();
+}</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>INTERFACCIA PUBBLICA</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="kd">var</span> <span class="nx">inputController</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">fieldWrapper</span><span class="p">;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">focus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">blur</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="s1">&#39;isValid&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">isValid</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">isValid</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>qui gestisco la visualizzazione del bordo rosso</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>resetta il controller</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">fieldWrapper</span><span class="p">.</span><span class="nx">borderColor</span> <span class="o">=</span> <span class="s2">&quot;transparent&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">fieldWrapper</span><span class="p">.</span><span class="nx">borderColor</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>EVENTI</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>bridge degli eventi del textfield</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">_</span><span class="p">([</span><span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="s1">&#39;blur&#39;</span><span class="p">,</span> <span class="s1">&#39;focus&#39;</span><span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">field</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary">
+  </div>
+  <div class="body"><p>//hack per avere il return sul tastierino numerico
+function numberpadWithReturnHack() {
+var done = Ti.UI.createButton({
+systemButton: Ti.UI.iPhone.SystemButton.DONE
+});</p>
+
+<p>done.addEventListener('click', function(e) {
+this.activeFld.blur();
+this.activeFld.trigger('return');
+});</p>
+
+<p>var flexSpace = Ti.UI.createButton({
+systemButton: Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+});</p>
+
+<p>$.field.keyboardToolbar = [flexSpace, done];
+$.field.keyboardToolbarColor = '#333';
+$.field.keyboardToolbarHeight = 40;</p>
+
+<p>$.field.addEventListener('focus', function(e) {
+$.field.keyboardToolbar = [flexSpace, done];
+done.activeFld = $.field;
+});</p>
+
+<p>}</p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
