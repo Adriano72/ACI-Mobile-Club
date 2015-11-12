@@ -1,126 +1,96 @@
-// container for iOS
-".container[platform=ios]": {
-	backgroundColor:"#fff",
-	//top:"20",	
-	barColor: Alloy.Globals.palette.bianco_sporco,	
-	statusBarStyle:Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT,
-	orientationModes: [Ti.UI.PORTRAIT]
-}
-
-// container for Android
-".container[platform=android]": {
-	backgroundColor:"#fff",
-	orientationModes: [Ti.UI.PORTRAIT],
-	exitOnClose: true
-}
 
 "#navWin": {
-	backgroundColor:"#fff",
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
 	swipeBack: false,
 	top: 20
 }
 
-".titleControl[platform=ios]": {
-	backgroundImage: "logoAci2.png",
-	width: 120,
-	height: 28
+
+"#wrapper":{
+	layout: "vertical",
+	height: Ti.UI.SIZE,
+	contentWidth: Alloy.Globals.size.W,
+	contentHeight: Ti.UI.SIZE
 }
 
-".rightNavImg[platform=ios]": {
-	image: "ico_rotella_celeste.png",
-	height: 15
-}
 
-"MenuItem": {
-    showAsAction: Ti.Android.SHOW_AS_ACTION_ALWAYS
-}
-
-"#menu": {
-    icon: "/images/logo_aci.png"
-}
-
-"#mn_settings": {
-	icon: "/images/ic_action_impostazioni.png"
-}
-
-".toolbar":{
+"#gallery":{
 	top:0,
-	borderTop:"true",
-	borderBottom:"true"
+	//height: "50%"
+	height: Alloy.Globals.size.W62,
+	//height: Ti.UI.SIZE
 }
-
-".toolbarIconLeft": {
-	//width: 40,
-	height: 10
-}
-
-".toolbarIconRight": {
-	//width: 40,
-	height: 18
-}
-
-"#headerLogo": {
-	height: 23,
-}
-
-"#winTitle": {
-	left:0,
-	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	font: {
-        fontSize: 19
-   },
-   color: '#295F95'
-}
-
-"#scrollableView[platform=ios]": {
-	width: "98%",
-	height: "40%",
-	overlayEnabled: true,
-	top: 0,
-	pagingControlAlpha: 0.6
-}
-
-"#scrollableView[platform=android]": {
-	width: "98%",
-	height: "50%",
-	top: 3,
-	showPagingControl: false
-}
-
 
 
 "#menuView": {
-	width: "100%",
-	height: "100%",
-	//top: 305,
-	backgroundColor:"#FFF"
-	
-}
-
-".buttonsContainer": {
-	height: Ti.UI.SIZE,
-	top: 0,
-	width: "98%",
-	layout: "vertical"
-}
-
-".rowWrapper": {
-	height: Ti.UI.SIZE,
+	//top: 300,
 	width: Ti.UI.FILL,
-	top: 2
+	height: Ti.UI.SIZE,
+	layout: "horizontal",
+	horizontalWrap: true,
+	borderWidth: 5,
+	borderColor: Alloy.Globals.palette.bianco_sporco
+}
+
+".tile":{
+	backgroundColor: "blue",
+	color: Alloy.Globals.palette.bianco_sporco,
+	height: Alloy.Globals.size.W40,
+	width: Alloy.Globals.size.W50,
+	borderWidth: 2,
+	borderColor: Alloy.Globals.palette.bianco_sporco,
+	icon: "/images/ic_action_home_punti_di_servizio_aci.png",
+	iconHeight: Alloy.Globals.size.W15,
+	font:{
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+		fontSize: Alloy.Globals.fontSize.L
+	}
+}
+
+".tile[if=Alloy.Globals.isLongDevice]":{
+	iconHeight: Alloy.Globals.size.W15,
+	height: Alloy.Globals.size.W40,
+	font:{
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+		fontSize: Alloy.Globals.fontSize.XL
+	}
 }
 
 
 
-".first": {
-	left: 0
+
+"#tileMyCar":{
+	icon: "/images/ic_action_home_punti_di_servizio_aci.png",
+	text: 'MY CAR'
 }
 
-".last": {
-	right: 0
+"#tileInfoTarga":{
+	icon: "/images/ic_action_home_punti_di_servizio_aci.png",
+	text: 'INFO TARGA'
 }
 
-"#puntiAci": {
+"#tilePuntiAci":{
+	icon: "/images/ic_action_home_punti_di_servizio_aci.png",
+	text: 'PUNTI ACI'
+}
+
+"#tileSyc":{
+	icon: "/images/ic_action_home_vantaggi_soci.png",
+	text: 'VANTAGGI PER I SOCI'
+}
+
+"#tileAssistenza":{
+	icon: "/images/ic_action_home_assistenza.png",
+	text: 'LA TUA TESSERA'
+}
+
+"#tileTessera":{
+	icon: "/images/ic_action_home_tessera.png",
+	text: 'ASSISTENZA'
+}
+
+
+".gradient3": {
 	backgroundGradient: {
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
@@ -129,7 +99,7 @@
     }
 }
 
-"#vantaggiSoci": {
+".gradient1": {
 	backgroundGradient: {
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
@@ -138,7 +108,7 @@
     }
 }
 
-"#mobilita": {
+".gradient4": {
 	backgroundGradient: {
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
@@ -147,7 +117,7 @@
     }
 }
 
-"#tessera": {
+".gradient2": {
 	backgroundGradient: {
         type: 'linear',
         startPoint: { x: '50%', y: '0%' },
@@ -156,59 +126,7 @@
     }
 }
 
-"#diventaSocio": {
-	backgroundGradient: {
-        type: 'linear',
-        startPoint: { x: '50%', y: '0%' },
-        endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#295F95', offset: 0.0}, { color: '#23477D', offset: 1.0 }],
-    }
-}
 
-"#guidare": {
-	backgroundGradient: {
-        type: 'linear',
-        startPoint: { x: '50%', y: '0%' },
-        endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#0099CD', offset: 0.0}, { color: '#007AB4', offset: 1.0 }],
-    }
-}
-
-"#sport": {
-	backgroundGradient: {
-        type: 'linear',
-        startPoint: { x: '50%', y: '0%' },
-        endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#2B3F68', offset: 0.0}, { color: '#181D3D', offset: 1.0 }],
-    }
-}
-
-"#serviziOnline": {
-	backgroundGradient: {
-        type: 'linear',
-        startPoint: { x: '50%', y: '0%' },
-        endPoint: { x: '50%', y: '100%' },
-        colors: [ { color: '#007BB1', offset: 0.0}, { color: '#00609F', offset: 1.0 }],
-    }
-}
-
-"#imgPuntiACI": {
-	image: "/images/ic_action_home_punti_di_servizio_aci.png",
-	height: 50
-}
-
-"#imgVantaggiSoci": {
-	image: "/images/ic_action_home_vantaggi_soci.png",
-	height: 50
-}
-"#imgMobilita": {
-	image: "/images/ic_action_home_assistenza.png",
-	height: 50
-}
-"#imgTessera": {
-	image: "/images/ic_action_home_tessera.png",
-	height: 50
-}
 
 ".sideMenu": {
 	width:0,
@@ -228,19 +146,3 @@
 	width: Ti.UI.SIZE,
 	layout: 'vertical'
 }
-
-".buttonText":{
-	top: 5,
-	font:{
-		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
-		fontSize: Alloy.Globals.fontSize.L
-	},
-	color: Alloy.Globals.palette.bianco
-}
-
-
-".buttonImage": {
-}
-
-
-

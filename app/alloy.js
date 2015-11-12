@@ -47,6 +47,8 @@ console.log('logicalDensityFactor ', Ti.Platform.displayCaps.logicalDensityFacto
 
 
 
+
+
 //### isLogged
 //questa proprietà globale ci dice se l'utente è loggato o meno
 Object.defineProperty(Alloy.Globals, "isLogged", {
@@ -67,6 +69,32 @@ Object.defineProperty(Alloy.Globals, "isLongDevice", {
         return v;
     }
 });
+
+
+// ### size
+// Dizionario di misure derivate dalle dimensioni del device. 
+// Sono una serie di chiavi nella forma `W50` dove la prima lettera (`W` o `H`) specifica se la misura è proporzionale alla larghezza o all'altezza, 
+//  mentre le due cifre sono la percentuale (approssimata alle cifre intere)
+Alloy.Globals.size = _([0.1, 0.15, 0.2, 0.25, 0.333, 0.4, 0.5, 0.623, 0.666, 0.75]).chain()
+    .map(function(e) {
+        function key(t, e) {
+            return t.toUpperCase() + Math.floor(e * 100);
+        }
+        var o = {};
+        o[key('W', e)] = Alloy.Globals.deviceWidth * e;
+        o[key('H', e)] = Alloy.Globals.deviceHeight * e;
+        return o;
+    })
+    .reduce(function(memo, e) {
+        console.log('reduce', memo, e);
+        return _.extend(memo, e);
+    }, {
+        H: Alloy.Globals.deviceHeight,
+        W: Alloy.Globals.deviceWidth
+    })
+    .value();
+
+console.log('size', Alloy.Globals.size);
 
 
 // ### palette

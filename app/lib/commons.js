@@ -44,7 +44,8 @@ exports.initWindow = function(win, title, icon, menuItems) {
             };
         } else {
             menuItem = Ti.UI.createImageView({
-                image: params.icon
+                image: params.icon,
+                height: 25
             });
 
 

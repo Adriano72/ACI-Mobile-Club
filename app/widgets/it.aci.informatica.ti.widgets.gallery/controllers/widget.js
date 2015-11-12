@@ -129,7 +129,7 @@ function onScrollend(e) {
     currentIndex = next;
 }
 
-function onClick(e){
+function onClick(e) {
     fireEvent('click', e);
 }
 
@@ -192,8 +192,19 @@ var paginator = [];
     interval = args.interval;
 
 
+    //eseguo il proxy delle seguenti proprietà sull'elemento $.wrapper
+    _(['width', 'height', 'borderWidth', 'borderColor', 'top', 'left', 'bottom', 'right']).each(function(prop) {
+        console.log(prop, args);
+        if (args.hasOwnProperty(prop)) {
+            $.wrapper[prop] = args[prop];
+        }
+    });
+
+
     //carico le immagini
     setImages(args.images);
+
+
 
 
 

@@ -3,10 +3,13 @@ var settingsMenu = require('settingsMenu');
 var user = require('user');
 var env = require('environment');
 var locationServices = require('locationServices');
+var navigation = require('navigation');
 
 
-var cacheDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, "/");
-cacheDir.deleteDirectory(true);
+//imposto il riferimento alla `NavigationWindow` nel modulo `navigation`
+Alloy.Globals.navMenu = $.navWin;
+navigation.Nav = $.navWin;
+
 
 //specifica il tempo da assegnare alla funzione _.throttle sugli eventi click dei pulsanti in index.xml
 //http://underscorejs.org/#throttle 
@@ -18,147 +21,28 @@ var THROTTLE_TIME = 5000;
  * @return {[type]} [description]
  */
 function onFirstRun() {
-    
-
 
     var w = Alloy.createController('welcome').getView();
     w.open();
 }
 
 
-var zapImageCache = function() {
-    var appDataDir,
-        cacheDir,
-        dir,
-        externalRoot;
-    if (Ti.Filesystem.isExternalStoragePresent()) {
-        appDataDir = Ti.Filesystem.getFile('appdata://').nativePath;
-        externalRoot = appDataDir.substring(0, appDataDir.lastIndexOf('/'));
-        cacheDir = "" + externalRoot + "/Android/data/" + Ti.App.id + "/cache/_tmp/remote-cache";
-        dir = Ti.Filesystem.getFile(cacheDir);
-    } else {
-        dir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, '_tmp', 'remote-cache');
-    }
-    if (dir.exists()) {
-        dir.deleteDirectory(true);
-    }
-    return dir.createDirectory();
-};
 
-if (OS_ANDROID) {
-    //zapImageCache();
-    var abx = require('com.alcoapps.actionbarextras');
-}
-//var menuTop = (OS_ANDROID)?PixelsToDPUnits((Titanium.Platform.displayCaps.platformHeight/2))-40:(Titanium.Platform.displayCaps.platformHeight/2)-15;
-var menuTop = (OS_ANDROID) ? Alloy.Globals.deviceHeightHalf - 40 : Alloy.Globals.deviceHeightHalf - 30;
-$.menuView.top = menuTop;
-
-function doopen(evt) {
-    // Alloy.Globals.loading.show('Sincronizzazione', false);
-    Alloy.Globals.navMenu = $.navWin;
-    if (OS_ANDROID) {
-        abx.title = "ACI Mobile Club";
-        abx.titleFont = "ACI Type Regular.otf";
-        abx.titleColor = "#4A678C";
-
-        //actionBarHelper.setIcon('/drawericonw@2x.png');
-
-    } else {
-        //$.windowtitle.text = winTitle;
-    }
-    /*
-    Alloy.Globals.loading.show('Stiamo calcolando la posizione');
-   
-    
-     require('locationServices').getUserLocation(function(err, pos) {
-        Alloy.Globals.loading.hide();
-        if(err){
-            //gestire l'errore
-        }
-        loadData();
-    });
-*/
-
-}
-
-var view1 = Ti.UI.createImageView({
-    image: "http://www.aci.it/fileadmin/syc/acimobileclub/banner1.jpg",
-    width: Ti.UI.FILL,
-    height: Ti.UI.FILL
-});
-
-var view2 = Ti.UI.createImageView({
-    image: "http://www.aci.it/fileadmin/syc/acimobileclub/banner2.jpg",
-    width: Ti.UI.FILL,
-    height: Ti.UI.FILL
-});
-
-var view3 = Ti.UI.createImageView({
-    image: "http://www.aci.it/fileadmin/syc/acimobileclub/banner3.jpg",
-    width: Ti.UI.FILL,
-    height: Ti.UI.FILL
-});
-
-var Banner = ViewScrollr.create({
-    width: "98%",
-    height: (OS_ANDROID) ? "48.5%" : "50%",
-    top: (OS_ANDROID) ? 3 : 2,
-    auto: true,
-    delay: 3000,
-    backgroundColor: "#FFF",
-    navigation: {
-        selectedColor: "#fff",
-        color: "#000",
-        backgroundColor: "#fff"
-    },
-    panels: [{
-        view: view1
-    }, {
-        view: view2
-    }, {
-        view: view3
-    }]
-});
-
-var scrollHack = _.once(triggerScroll);
-
-function triggerScroll() {
-    //Ti.API.info("**** FIRE EVENT *****");
-    if (OS_ANDROID) {
-        Ti.App.fireEvent('initialScrollHack');
-    };
-}
-
-if (!Alloy.CFG.SysReport_Enabled) {
-    var count = 0;
-    var enableSysReport = function() {
-        if (count++ == 10) {
-            Alloy.CFG.SysReport_Enabled = true;
-            alert('modalità debug abilitata');
-
-            if (Alloy.CFG.SysReport_UseShake) {
-                require('sysReportCommon').enableShake();
-            }
-            Banner.removeEventListener('click', enableSysReport);
-        } else {
-            console.log('count', count);
-        }
-    };
-
-    Banner.addEventListener('click', enableSysReport);
-}
-
-$.index.add(Banner);
 
 function closeSideMenu() {
-    settingsMenu.hideMenu(rightSettingsMenu);
+    if (rightSettingsMenu) {
+        settingsMenu.hideMenu(rightSettingsMenu);
+    }
 }
 
-var rightSettingsMenu = settingsMenu.openSideMenu();
 
-$.index.add(rightSettingsMenu);
+var rightSettingsMenu;
 
 function toggleSideMenu() {
+    if (!rightSettingsMenu) {
+        rightSettingsMenu = settingsMenu.openSideMenu();
+        $.index.add(rightSettingsMenu);
+    }
 
     settingsMenu.toggleMenu(rightSettingsMenu);
 }
@@ -305,11 +189,53 @@ function loadData() {
 
 }
 
-$.navWin.open();
 
 
-if (env.isFirstRun) {
 
-    onFirstRun();
-    env.isFirstRun = false;
-}
+
+
+(function constructor() {
+
+    //setup window
+    require('commons').initWindow($.index, 'ACI Mobile Club', '/logo_aci.png', [{
+        icon: "/images/ic_action_impostazioni.png",
+        onClick: toggleSideMenu
+    }]);
+
+
+    //setup window
+    //require('commons').initWindow($.index, 'ACI Mobile Club', '/logo_aci.png');
+
+    //clear cache
+    var cacheDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationCacheDirectory, "/");
+    cacheDir.deleteDirectory(true);
+
+    //banner 
+    var images = _(3).times(function(e) {
+        return 'http://www.aci.it/fileadmin/syc/acimobileclub/banner' + (e + 1) + '.jpg';
+    });
+    // $.gallery.getView().height = Alloy.Globals.size.W30;
+    //    $.gallery.getView().height = 300;
+    //    $.gallery.getView().width = Alloy.Globals.W;
+    //    $.gallery.getView().top = 0;
+
+    $.gallery.setImages(images);
+
+
+
+    if (env.isFirstRun) {
+        onFirstRun();
+        env.isFirstRun = false;
+    }
+
+    loadData();
+
+    //bind degli eventi dei tile
+    $.tileInfoTarga.addEventListener('click', navigation.openInfoTargaMain);
+    
+    $.tileMyCar.addEventListener('click', navigation.openMyCarMain);
+
+
+    $.navWin.open();
+
+})();
