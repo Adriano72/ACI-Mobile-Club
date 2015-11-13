@@ -10,12 +10,12 @@
 
 		    <View class="buttonWrapper">
 		    	<Label class="legend">Invia la tua posizione per essere richiamato</Label>
-				<Require src="components/rounded_button" class="button" id="sendButton" />
+				<Require src="components/rounded_button" class="button" id="sendButton" onClick="openSend"/>
 		    </View>
 
 		    <View class="buttonWrapper">
 		    	<Label class="legend">Oppure chiama direttamente la centrale</Label>
-				<Require src="components/rounded_button" class="button" id="callButton" />
+				<Require src="components/rounded_button" class="button" id="callButton" onClick="callPhone"/>
 		    </View>
 
 

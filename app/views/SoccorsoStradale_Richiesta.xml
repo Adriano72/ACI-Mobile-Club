@@ -18,7 +18,7 @@
 					<Label class="label black" id="labelTelefono">Inserisci o modifica il tuo numero:</Label>
 					<TextField id="telefono"  class="label black" />
 				</View>
-				<Require id="btInvia" src="components/rounded_button"/>
+				<Require id="btInvia" src="components/rounded_button" onClick="submit"/>
 			</View>
 
 			<!-- Pannello risposta -->

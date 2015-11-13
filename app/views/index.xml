@@ -4,12 +4,12 @@
 			<ScrollView id="wrapper">
 				<Widget id="gallery" interval="7000" src="it.aci.informatica.ti.widgets.gallery"/>
 				<View id="menuView">
-					<Require id="tileInfoTarga" src="components/tile"  class="tile gradient2"/>
-					<Require id="tileMyCar" src="components/tile"  class="tile gradient2"/>
-					<Require id="tilePuntiAci" src="components/tile" class="tile gradient3"/>
-					<Require id="tileSyc" src="components/tile"  class="tile gradient3"/>
-					<Require id="tileAssistenza" src="components/tile"  class="tile gradient4"/>
-					<Require id="tileTessera" src="components/tile"  class="tile gradient4"/>
+					<Require id="tileInfoTarga" src="components/tile"  class="tile gradient2" onClick="require('navigation').openInfoTargaMain"/>
+					<Require id="tileMyCar" src="components/tile"  class="tile gradient2" onClick="require('navigation').openMyCarMain"/>
+					<Require id="tilePuntiAci" src="components/tile" class="tile gradient3" onClick="openPuntiACI"/>
+					<Require id="tileSyc" src="components/tile"  class="tile gradient3" onClick="openSyc"/>
+					<Require id="tileAssistenza" src="components/tile"  class="tile gradient4" onClick="openAssistenza"/>
+					<Require id="tileTessera" src="components/tile"  class="tile gradient4" onClick="openTessera"/>
 					<!--
 
 					<View class="buttonsContainer"><View class="rowWrapper"><View class="menuButton first" id="puntiAci" onSingletap="openPuntiACI"><View class="menuButtonWrapper"><ImageView class="buttonImage" id="imgPuntiACI"/><Label class="buttonText" id="txtPuntiAci">PUNTI ACI</Label></View></View><View class="menuButton last" id="vantaggiSoci" onSingletap="openVantaggiSoci"><View class="menuButtonWrapper"><ImageView class="buttonImage" id="imgVantaggiSoci"/><Label class="buttonText" id="txtVantaggiSoci">VANTAGGI PER I SOCI</Label></View></View></View><View class="rowWrapper"><View class="menuButton first" id="mobilita" onSingletap="openAssistenza"><View class="menuButtonWrapper"><ImageView class="buttonImage" id="imgMobilita"/><Label class="buttonText" id="txtMobilita">ASSISTENZA</Label></View></View><View class="menuButton last" id="tessera" onSingletap="openTessera"><View class="menuButtonWrapper"><ImageView class="buttonImage" id="imgTessera"/><Label class="buttonText" id="txtTessera">LA TUA TESSERA</Label></View></View></View></View>-->

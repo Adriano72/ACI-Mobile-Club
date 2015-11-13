@@ -166,7 +166,7 @@ var openPuntiACI = _(function(e) {
  * Apre la schermata delle convenzioni
  * @param  {Object} e argomenti dell'evento click sul pulsante
  */
-var openVantaggiSoci = _(function(e) {
+var openSyc = _(function(e) {
     e.cancelBubble = true;
 
     var winVantaggiSoci = Alloy.createController('VantaggiSociMain').getView();
@@ -231,9 +231,9 @@ function loadData() {
     loadData();
 
     //bind degli eventi dei tile
-    $.tileInfoTarga.addEventListener('click', navigation.openInfoTargaMain);
+ //   $.tileInfoTarga.addEventListener('click', navigation.openInfoTargaMain);
     
-    $.tileMyCar.addEventListener('click', navigation.openMyCarMain);
+//    $.tileMyCar.addEventListener('click', navigation.openMyCarMain);
 
 
     $.navWin.open();

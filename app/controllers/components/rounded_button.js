@@ -1,5 +1,6 @@
-var tiACI = require('ti.aci');
-var eventManager = tiACI.EventManager.createEventManager();
+//
+// ## PUBLIC API
+//
 
 
 $.applyProperties = function applyProperties(props) {
@@ -7,17 +8,24 @@ $.applyProperties = function applyProperties(props) {
     $.wrapper.applyProperties(props);
 };
 
-function onClick(e) {
-    $.fireEvent('click', e);
+/*
+$.addEventListener = $.on;
+$.removeEventListener = $.off;
+*/
+// ### onClick
+// Semplice proxy che gestice il click sull'elemento wrapper e lo espone come evento pubblico
+var onClick = function(e) {
+    $.trigger('click', e);
 };
 
 
+/**
+ * ### constructor
+ * @param {object} args parametri di costruzione del controller
+ */
+(function constructor(args) {
 
-(function(args) {
-
-    //aggiungo il gestore di eventi
-    tiACI.EventManager.extendObjectWithEventManager($, eventManager);
-
+    //se il bordo non è specificato, assumo che sia lo stesso colore del testo
     args.borderColor = args.borderColor || args.color;
 
 

@@ -72,9 +72,7 @@
      var headerImg = "/images/ic_action_home_assistenza_blu.png";
      commons.initWindow($.win, headerText, headerImg);
 
-     //gestisco gli eventi a mano
-     $.callButton.addEventListener('click', callPhone);
-     $.sendButton.addEventListener('click', openSend);
+
 
 
  })(arguments[0] || {});

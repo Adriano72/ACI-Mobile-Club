@@ -313,7 +313,6 @@ function close() {
 
    
 
-    //associo a mano l'evento click sul pulsante di submit
-    $.btInvia.addEventListener('click', submit);
+   
 
 })(arguments[0] || {});

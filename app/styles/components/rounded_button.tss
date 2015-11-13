@@ -34,16 +34,16 @@
 "#primaryText":{
 	font: {
         fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
-        fontSize: Alloy.Globals.fontSize.XXL
+        fontSize: Alloy.Globals.fontSize.XL
     },
     height: Ti.UI.FILL,
  	verticalAlign:   Titanium.UI.TEXT_VERTICAL_ALIGNMENT_CENTER
 }
 
 "#secondaryText":{
-	left: 5,
+	right: 5,
 	font: {
-        fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+        fontFamily: Alloy.Globals.font.PTSans_Narrow,
         fontSize: Alloy.Globals.fontSize.XL
     },
     height: Ti.UI.FILL,

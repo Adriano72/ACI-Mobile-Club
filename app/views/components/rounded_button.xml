@@ -5,8 +5,8 @@
 				<ImageView id="icon"  />
 			</View>
 			<View id="textWrapper" >
-				<Label id="primaryText" ></Label>
 				<Label id="secondaryText" ></Label>
+				<Label id="primaryText" ></Label>
 			</View>
 		</View>
 	</View>
