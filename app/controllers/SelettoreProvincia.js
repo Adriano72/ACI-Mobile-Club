@@ -143,12 +143,12 @@ function select(i) {
         case 'C':
             //Ripristino 
 
-            _(function() {
+            _(function openDialog() {
 
                 //apro un dialog per scegliere cosa fare
                 var dialog = Titanium.UI.createAlertDialog({
                     title: 'Impossibile usare la posizione attuale',
-                    message: 'Selezionare una provincia di riferimento, oppure controlla le impostazioni di sistema',
+                    message: 'Selezionare una provincia di riferimento, oppure controlla le impostazioni di sistema per abilitare la localizzazione',
                     buttonNames: OS_IOS ? ['Scegli provincia'] : ['Scegli provincia', 'Impostazioni'],
                     cancel: -1
                 });
@@ -164,6 +164,9 @@ function select(i) {
                             break;
                         case 1: //apri settings
                             locationServices.openLocationSettings();
+                        default:
+                            OS_ANDROID && select(i);
+
                     }
                 });
 
@@ -171,7 +174,7 @@ function select(i) {
 
             }).defer();
 
-            
+
             index = 1;
             initSelector();
 
@@ -180,7 +183,7 @@ function select(i) {
 
 
 
-    
+
 
 }
 
