@@ -18,6 +18,15 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h2">
+        <a href="#public%20api">PUBLIC API</a>
+      </div>
+      <div class="heading h3">
+        <a href="#onclick">onClick</a>
+      </div>
+      <div class="heading h3">
+        <a href="#constructor">constructor</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -26,33 +35,78 @@
   <tbody>
       <tr>
         <td class="docs">
-          <h1>rounded_button.js</h1>
-        </td>
-        <td class="code highlight"></td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+<div class="pilwrap" id="public%20api">
+  <h2>
+    <a href="#public%20api" name="public%20api" class="pilcrow">&#182;</a>
+    PUBLIC API
+  </h2>
 </div>
 
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">tiACI</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ti.aci&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">eventManager</span> <span class="o">=</span> <span class="nx">tiACI</span><span class="p">.</span><span class="nx">EventManager</span><span class="p">.</span><span class="nx">createEventManager</span><span class="p">();</span>
-
-
-<span class="nx">$</span><span class="p">.</span><span class="nx">applyProperties</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">applyProperties</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;applyProperties&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="p">);</span>
     <span class="nx">$</span><span class="p">.</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">onClick</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary"><p>$.addEventListener = $.on;
+$.removeEventListener = $.off;</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+
+
+<div class="pilwrap" id="onclick">
+  <h3>
+    <a href="#onclick" name="onclick" class="pilcrow">&#182;</a>
+    onClick
+  </h3>
+</div>
+
+
+<p>Semplice proxy che gestice il click sull'elemento wrapper e lo espone come evento pubblico</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">onClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
 <span class="p">};</span>
 
 
 
-<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="constructor_NaN">
+  <h3>
+    <a href="#constructor_NaN" name="constructor_NaN" class="pilcrow">&#182;</a>
+    constructor
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">args</span>
+      <span class="dox_type">object</span>
+      <span>parametri di costruzione del controller</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 
 </pre></div>
@@ -61,13 +115,11 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
 </div>
-<p>aggiungo il gestore di eventi</p>
+<p>se il bordo non è specificato, assumo che sia lo stesso colore del testo</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-    <span class="nx">tiACI</span><span class="p">.</span><span class="nx">EventManager</span><span class="p">.</span><span class="nx">extendObjectWithEventManager</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">eventManager</span><span class="p">);</span>
-
     <span class="nx">args</span><span class="p">.</span><span class="nx">borderColor</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">borderColor</span> <span class="o">||</span> <span class="nx">args</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
 
 
@@ -78,7 +130,7 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
 </div>
 <p>eseguo il proxy delle seguenti proprietà sull'elemento $.wrapper</p>
         </td>
@@ -98,7 +150,7 @@
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
 </div>
 <p>assegno i valori</p>
         </td>

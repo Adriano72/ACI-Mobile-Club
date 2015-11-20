@@ -103,7 +103,7 @@
         <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;Caricamento dati...&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 
         <span class="nx">user</span><span class="p">.</span><span class="nx">doLogin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user_data</span><span class="p">)</span> <span class="p">{</span>
-
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">).</span><span class="nx">registerForPush</span><span class="p">();</span>
             <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>

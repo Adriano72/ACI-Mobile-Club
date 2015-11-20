@@ -11,7 +11,7 @@
         "AciGlobal_RequestLimitMinutes": "10",
         "ResetPwd_Url": "https://login.aci.it/index.php?do=genNotAuth&id=sendResetCode&application_key=acinew",
         "Register_Url": "https://login.aci.it/index.php?do=checkWsdl&application_key=acinew",
-        "Register_OpenWebsite": true,
+        "Register_OpenWebsite": false,
         "AciGeo_CacheDurationHours": "24",
         "AciGeo_CacheDistanceRangeMeters": "1000",
         "BannerRotationTime": "5000",
@@ -22,8 +22,9 @@
     },
     "env:development": {
         "DevMode": false,
-        "SSO_Endpoint": "http://login.aci.it",
         "__SSO_Endpoint": "http://sso-web.svi.local",
+        "SSO_Endpoint": "https://login.aci.it",
+        "__SSO_Endpoint": "https://col-login.aci.it",
         "__AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
         "__AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
         "__AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
@@ -62,6 +63,8 @@
         "com.mcongrove.toast": "1.1",
         "nl.fokkezb.html2as.widget": "1.0",
         "it.aci.informatica.ti.widgets.gallery": "0.1.0",
-        "it.aci.informatica.ti.widgets.checkbox": "1.0"
+        "it.aci.informatica.ti.widgets.checkbox": "1.0",
+        "it.aci.informatica.ti.widgets.form_textfield": "1.0",
+        "it.aci.informatica.ti.widgets.form": "1.0"
     }
 }

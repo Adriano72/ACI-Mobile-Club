@@ -168,7 +168,7 @@ altrimenti ordino per posizione</p>
 
 <span class="nx">exports</span><span class="p">.</span><span class="nx">getPuntiAci</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type_code</span><span class="p">,</span> <span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
 
-     <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">createHTTPClient</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">createHTTPClient</span><span class="p">();</span>
 
     <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
@@ -621,7 +621,7 @@ altrimenti ordino per posizione</p>
         <span class="nx">_callback</span><span class="p">([]);</span>
     <span class="p">}</span>
 
-    <span class="kd">var</span> <span class="nx">posizione</span>  <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">posizione</span> <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">();</span>
 
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">locationServices</span><span class="p">.</span><span class="nx">useLocation</span><span class="p">())</span> <span class="p">{</span>
@@ -630,7 +630,7 @@ altrimenti ordino per posizione</p>
             <span class="nx">loadBanner</span><span class="p">();</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getUserLocation</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
                     <span class="nx">noPosition</span><span class="p">();</span>
                 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                     <span class="nx">loadBanner</span><span class="p">();</span>
@@ -950,7 +950,7 @@ console.log('fuoriGIC', fuoriGIC + '' == 'false');   </p>
 
 
 <span class="nx">exports</span><span class="p">.</span><span class="nx">getListaProvince</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
-   
+
     <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">createHTTPClient</span><span class="p">();</span>
 
     <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -1083,6 +1083,19 @@ alert("Errore nella comunicazione col server.");
     <span class="p">};</span>
 
     <span class="nx">xhr</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+</div>
+<p>per ora (20151028) chiamo la callback anche se la registrazione ha dato errore</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">_callback</span> <span class="o">&amp;&amp;</span> <span class="nx">_callback</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
         <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ERRORE RISPOSTA SERVER: &quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
     <span class="p">};</span>
@@ -1099,7 +1112,7 @@ alert("Errore nella comunicazione col server.");
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
 </div>
 <p>var url = '<a href='http://10.64.4.138:10000/api'>http://10.64.4.138:10000/api</a>' + '/aci/pos?' + formatQS(qs);</p>
         </td>
@@ -1118,6 +1131,74 @@ alert("Errore nella comunicazione col server.");
 
     <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
 <span class="p">};</span>
+
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">registerForPush</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">createHTTPClient</span><span class="p">();</span>
+
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;registerForPush&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+
+        <span class="nx">_callback</span> <span class="o">&amp;&amp;</span> <span class="nx">_callback</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+
+    <span class="p">};</span>
+
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ERRORE RISPOSTA SERVER: &quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+    <span class="p">};</span>
+
+
+
+
+
+    <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">+</span> <span class="s1">&#39;/common/clients/_register_for_push&#39;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+</div>
+<p>var url = '<a href='http://10.64.4.138:10000/api'>http://10.64.4.138:10000/api</a>' + '/aci/pos?' + formatQS(qs);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;CHIAMATA HTTP: &quot;</span> <span class="o">+</span> <span class="nx">url</span><span class="p">);</span>
+
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+
+    <span class="nx">_</span><span class="p">(</span><span class="nx">getAciGeoHeaders</span><span class="p">()).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">getCurrentUser</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">_u</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="nx">_</span><span class="p">(</span><span class="nx">_</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">keys</span><span class="p">()).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">nk</span> <span class="o">=</span> <span class="nx">key</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;userInfo.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="nx">_u</span><span class="p">[</span><span class="nx">nk</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="p">});</span>
+    <span class="nx">user</span> <span class="o">=</span> <span class="nx">_u</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">pn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ti.aci&#39;</span><span class="p">).</span><span class="nx">PushNotification</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">token</span><span class="o">:</span> <span class="nx">pn</span><span class="p">.</span><span class="nx">deviceToken</span><span class="p">,</span>
+        <span class="nx">userInfo</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span>
+    <span class="p">};</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;registerForPush data&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+
+    <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+
+
+<span class="p">};</span>
+
 
 
 <span class="nx">exports</span><span class="p">.</span><span class="nx">userSignUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">_callback</span><span class="p">)</span> <span class="p">{</span>
@@ -1157,7 +1238,7 @@ alert("Errore nella comunicazione col server.");
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
+  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
 </div>
 <p>var url = '<a href='http://sso-web.svi.local/index.php?do=registrationRest&amp;application_key=mobile&amp;id=register'>http://sso-web.svi.local/index.php?do=registrationRest&amp;application_key=mobile&amp;id=register</a>';</p>
         </td>
@@ -1170,7 +1251,7 @@ alert("Errore nella comunicazione col server.");
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
 </div>
 <p>var url = '<a href='http://10.64.4.138:10000/api'>http://10.64.4.138:10000/api</a>' + '/aci/pos?' + formatQS(qs);</p>
         </td>
@@ -1190,7 +1271,7 @@ alert("Errore nella comunicazione col server.");
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
+  <a class="pilcrow" href="#section-42" id="section-42">&#182;</a>
 </div>
 <div class="dox">
   <div class="summary"><p>_(getAciGeoHeaders()).each(function(v, k) {
@@ -1243,7 +1324,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
+  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
 </div>
 <p>var url = '<a href='http://sso-web.svi.local/index.php?do=usernameUtility&amp;application_key=acinew&amp;type=check&amp;user='>http://sso-web.svi.local/index.php?do=usernameUtility&amp;application_key=acinew&amp;type=check&amp;user=</a>' + username;</p>
         </td>
@@ -1256,7 +1337,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-42" id="section-42">&#182;</a>
+  <a class="pilcrow" href="#section-44" id="section-44">&#182;</a>
 </div>
 <p>var url = '<a href='http://10.64.4.138:10000/api'>http://10.64.4.138:10000/api</a>' + '/aci/pos?' + formatQS(qs);</p>
         </td>
@@ -1281,7 +1362,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
+  <a class="pilcrow" href="#section-45" id="section-45">&#182;</a>
 </div>
 <div class="dox">
   <div class="summary"><p>Crea e ritorna una lista di header http comuni da inserire nelle richieste</p>
@@ -1309,7 +1390,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-44" id="section-44">&#182;</a>
+  <a class="pilcrow" href="#section-46" id="section-46">&#182;</a>
 </div>
 <p>'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='</p>
         </td>
@@ -1326,6 +1407,8 @@ xhr.setRequestHeader(k, v);
         <span class="nx">h</span><span class="p">[</span><span class="s1">&#39;x-acigeo-tessera&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">user</span><span class="p">[</span><span class="s1">&#39;userInfo.tessera&#39;</span><span class="p">];</span>
     <span class="p">}</span>
 
+
+
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>
     <span class="k">return</span> <span class="nx">h</span><span class="p">;</span>
 <span class="p">}</span>
@@ -1337,7 +1420,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-45" id="section-45">&#182;</a>
+  <a class="pilcrow" href="#section-47" id="section-47">&#182;</a>
 </div>
 <div class="dox">
   <div class="summary"><p>Crea un gestore comune delle risposte del server</p>
@@ -1376,7 +1459,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-46" id="section-46">&#182;</a>
+  <a class="pilcrow" href="#section-48" id="section-48">&#182;</a>
 </div>
 <p>azioni da eseguire in caso di errore</p>
         </td>
@@ -1390,7 +1473,7 @@ xhr.setRequestHeader(k, v);
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-47" id="section-47">&#182;</a>
+  <a class="pilcrow" href="#section-49" id="section-49">&#182;</a>
 </div>
 <p>azioni comuni da eseguire in caso di successo</p>
         </td>
@@ -1405,6 +1488,223 @@ xhr.setRequestHeader(k, v);
 <span class="p">}</span>
 
 <span class="nx">exports</span><span class="p">.</span><span class="nx">getAciGeoHeaders</span> <span class="o">=</span> <span class="nx">getAciGeoHeaders</span><span class="p">;</span>
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-50" id="section-50">&#182;</a>
+</div>
+<p>acigeo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+<span class="kd">var</span> <span class="nx">acigeo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ti.aci&#39;</span><span class="p">).</span><span class="nx">Services</span><span class="p">.</span><span class="nx">acigeo</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-51" id="section-51">&#182;</a>
+</div>
+<p>imposto gli headers di sistema</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">acigeo</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">(</span><span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-52" id="section-52">&#182;</a>
+</div>
+<p>'Authorization': 'Basic YWNpbW9iaWxlY2x1YjpJbml6aWFsZSQwMQ=='</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="s1">&#39;x-acigeo-appid&#39;</span><span class="o">:</span> <span class="s1">&#39;UA-57956970-2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;x-acigeo-devid&#39;</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+    <span class="s1">&#39;x-acigeo-appver&#39;</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">version</span><span class="p">,</span>
+    <span class="s1">&#39;x-acigeo-devos&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">OS_IOS</span> <span class="o">?</span> <span class="s1">&#39;ios&#39;</span> <span class="o">:</span> <span class="s1">&#39;android&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">acigeo</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">(</span><span class="s1">&#39;base_url&#39;</span><span class="p">,</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BaseUrl</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;network acigeo&#39;</span><span class="p">,</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BaseUrl</span><span class="p">,</span> <span class="nx">acigeo</span><span class="p">.</span><span class="nx">getConfig</span><span class="p">(</span><span class="s1">&#39;base_url&#39;</span><span class="p">));</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-53" id="section-53">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Metodo di accesso alle collezioni syc</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{hash}   params   hash di parametri della richiesta - controllare i doc della libreria acigeo</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} cb     callback nella forma (err, result)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">syc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">acigeo</span><span class="p">.</span><span class="nx">syc</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">buildRequestHandler</span><span class="p">(</span><span class="nx">cb</span><span class="p">));</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-54" id="section-54">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Wrapper della funzione syc che permette la richiesta degli ultimi punti syc inseriti</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{date}   fromDate   data di riferimento (punti da fromDate incluso)</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} cb       callback nella forma (err, result)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">sycLatest</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="nx">fromDate</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-55" id="section-55">&#182;</a>
+</div>
+<p>hash set di parametri da passare al web service</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-56" id="section-56">&#182;</a>
+</div>
+<p>aggiungo i parametri geografici</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;settings&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-57" id="section-57">&#182;</a>
+</div>
+<p>se ho la provincia, filtro per provincia
+altrimenti ordino per posizione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">settings</span><span class="p">.</span><span class="nx">ricercaPerProssimita</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">province</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">provinciaDiRiferimento</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">near</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">posizione</span> <span class="o">=</span> <span class="nx">locationServices</span><span class="p">.</span><span class="nx">getLastLocation</span><span class="p">();</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">near</span> <span class="o">=</span> <span class="p">[</span><span class="nx">posizione</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="nx">posizione</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">];</span>
+            <span class="nx">p</span><span class="p">.</span><span class="nx">province</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">})(</span><span class="nx">params</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-58" id="section-58">&#182;</a>
+</div>
+<p>aggiungo il filtro per range di date</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">publishDateRange</span> <span class="o">=</span> <span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">),</span> <span class="kc">null</span><span class="p">];</span>
+    <span class="p">})(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">fromDate</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-59" id="section-59">&#182;</a>
+</div>
+<p>aggiungo il parametro source, se presente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">p</span><span class="p">.</span><span class="nx">source</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+    <span class="p">})(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">source</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;acigeo sycLatest&#39;</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-60" id="section-60">&#182;</a>
+</div>
+<p>chiamo la funzione base</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">exports</span><span class="p">.</span><span class="nx">syc</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">cb</span><span class="p">);</span>
+<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

@@ -215,15 +215,16 @@ Alloy.Collections.tempCollection = new Backbone.Collection();
     }
 
     //ricarica i dati utente
-    _.defer(function() {
-        require('user').refreshData(function() {
-            net.registerApp(function() {
-                console.log('app registered 2');
-                //inizializzo le notifiche
-                require('push').init();
+    var user = require('user');
+    if (user.rememberMe) {
+        _.defer(function() {
+            user.refreshData(function() {
+                net.registerApp(function() {
+                    require('push').init();
+                });
             });
         });
-    });
+    }
 
 
     //chiamo il servizio per registrare l'app

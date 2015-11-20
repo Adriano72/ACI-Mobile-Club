@@ -95,6 +95,10 @@
 
         <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;CLICKED DATA: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">id_code</span><span class="p">);</span>
 
+        <span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">id_code</span> <span class="o">==</span> <span class="s1">&#39;sycLatest&#39;</span><span class="p">){</span>
+          <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">sycLatest</span><span class="p">.</span><span class="nx">source</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">;</span>
+          <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">sycLatest</span><span class="p">.</span><span class="nx">dateFrom</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="kd">var</span> <span class="nx">winAC</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_List&#39;</span><span class="p">,</span> <span class="p">{</span>
 

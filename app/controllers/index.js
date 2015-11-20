@@ -51,26 +51,9 @@ function toggleSideMenu() {
 /**
  * Apre la schermata di visualizzazione della tessera
  * Se non loggato, porta ad un menu in cui si può scegliere se loggarsi, registrarsi o comprare una tessera
- * @param  {Object} e argomenti dell'evento click sul pulsante
+ * @param {Object} e argomenti dell'evento click sul pulsante
  */
-var openTessera = _(function(e) {
-    e.cancelBubble = true;
-
-
-    if (user.isLogged && user.hasTessera) {
-
-        var winTessera = Alloy.createController('showTessera', Ti.App.Properties.getObject("datiUtente")).getView();
-        Alloy.Globals.navMenu.openWindow(winTessera);
-
-    } else {
-
-        var winOpts = Alloy.createController('userOptions').getView();
-        Alloy.Globals.navMenu.openWindow(winOpts);
-
-    }
-
-
-}).throttle(THROTTLE_TIME);
+var openTessera = _(navigation.openTessera).throttle(THROTTLE_TIME);
 
 
 /**

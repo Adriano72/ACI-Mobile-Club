@@ -18,6 +18,9 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h3">
+        <a href="#opendetail">openDetail</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -249,6 +252,7 @@
 
 
 
+
 </pre></div>
         </td>
       </tr>
@@ -411,39 +415,52 @@
 
 
 
-
-
 </pre></div>
         </td>
       </tr>
       <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opendetail">
+  <h3>
+    <a href="#opendetail" name="opendetail" class="pilcrow">&#182;</a>
+    openDetail
+  </h3>
 </div>
-<div class="dox">
-  <div class="summary"><p>Apre la finestra di dettaglio di un syc a partire dal suo id</p>
+
+
+<p>Apre la schermata di dettaglio di una convenzione</p>
   </div>
   <div class="body">
   </div>
   <div class="details">
     <div class="dox_tag_title">Params</div>
     <div class="dox_tag_detail">
-      <span class="dox_tag_name"></span>
-      <span>{string} itemId  id del syc</span>
+      <span class="dox_tag_name">modelId</span>
+      <span class="dox_type">string</span>
+      <span>id del modello, corrisponde al cid delle collezioni</span>
     </div>
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="kd">function</span> <span class="nx">openDetail</span><span class="p">(</span><span class="nx">itemId</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">tempCollection</span><span class="p">.</span><span class="nx">getByCid</span><span class="p">(</span><span class="nx">itemId</span><span class="p">);</span>
-    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_Dettaglio_Convenzione&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="nx">data</span><span class="o">:</span> <span class="nx">model</span><span class="p">,</span>
-        <span class="nx">titolo</span><span class="o">:</span> <span class="nx">metaData</span><span class="p">.</span><span class="nx">long_name</span><span class="p">,</span>
-        <span class="nx">headerImg</span><span class="o">:</span> <span class="nx">metaData</span><span class="p">.</span><span class="nx">img</span>
-    <span class="p">}).</span><span class="nx">getView</span><span class="p">());</span>
+<span class="kd">function</span> <span class="nx">openDetail</span><span class="p">(</span><span class="nx">modelId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">modelId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">selectedConv</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">tempCollection</span><span class="p">.</span><span class="nx">getByCid</span><span class="p">(</span><span class="nx">modelId</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">dettConvenzione</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSoci_Dettaglio_Convenzione&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">selectedConv</span><span class="p">,</span>
+            <span class="nx">titolo</span><span class="o">:</span> <span class="nx">metaData</span><span class="p">.</span><span class="nx">long_name</span><span class="p">,</span>
+            <span class="nx">headerImg</span><span class="o">:</span> <span class="nx">metaData</span><span class="p">.</span><span class="nx">img</span>
+        <span class="p">}).</span><span class="nx">getView</span><span class="p">();</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">dettConvenzione</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
+
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+<span class="p">});</span>
 </pre></div>
         </td>
       </tr>

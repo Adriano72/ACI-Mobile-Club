@@ -352,6 +352,9 @@ width: Ti.UI.SIZE
     <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="kd">function</span> <span class="nx">onClick</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fireEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+<span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">setImages</span><span class="p">(</span><span class="nx">images</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;gallery setImages &#39;</span><span class="p">,</span> <span class="nx">images</span><span class="p">);</span>
@@ -507,10 +510,32 @@ Autoexecuting function which encapsulates every initialization</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
 </div>
+<p>eseguo il proxy delle seguenti proprietà sull'elemento $.wrapper</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">([</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;borderWidth&#39;</span><span class="p">,</span> <span class="s1">&#39;borderColor&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prop</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">prop</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">wrapper</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
 <p>carico le immagini</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="nx">setImages</span><span class="p">(</span><span class="nx">args</span><span class="p">.</span><span class="nx">images</span><span class="p">);</span>
+
+
 
 
 
@@ -524,7 +549,7 @@ Autoexecuting function which encapsulates every initialization</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
 </div>
 <div class="dox">
   <div class="summary"><p>PUBLIC API</p>

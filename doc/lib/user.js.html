@@ -18,6 +18,39 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
+      <div class="heading h2">
+        <a href="#public%20api">PUBLIC API</a>
+      </div>
+      <div class="heading h3">
+        <a href="#onlogin">onLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#onlogin">onLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#islogged">isLogged</a>
+      </div>
+      <div class="heading h3">
+        <a href="#rememberme">rememberMe</a>
+      </div>
+      <div class="heading h3">
+        <a href="#authtoken">authToken</a>
+      </div>
+      <div class="heading h3">
+        <a href="#getcurrentuser">getCurrentUser</a>
+      </div>
+      <div class="heading h3">
+        <a href="#dologin">doLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#dologout">doLogout</a>
+      </div>
+      <div class="heading h3">
+        <a href="#dosignup">doSignup</a>
+      </div>
+      <div class="heading h3">
+        <a href="#refreshdata">refreshData</a>
+      </div>
     </div>
   </div>
   <div id="sidebar-toggle"></div>
@@ -42,7 +75,11 @@
   </div>
 </div>
         </td>
-        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">tiACI</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ti.aci&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
         </td>
       </tr>
       <tr>
@@ -50,8 +87,51 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
-<div class="dox">
-  <div class="summary"><p>Azioni da intraprendere quando un utente si logga</p>
+<p>inizializzo il modulo SSO passando l'endpoint SSO dell'ambiente corretto</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">({</span>
+    <span class="s1">&#39;base_url&#39;</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SSO_Endpoint</span>
+<span class="p">});</span>
+
+
+
+<span class="kd">var</span> <span class="nx">authToken</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="public%20api">
+  <h2>
+    <a href="#public%20api" name="public%20api" class="pilcrow">&#182;</a>
+    PUBLIC API
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="onlogin">
+  <h3>
+    <a href="#onlogin" name="onlogin" class="pilcrow">&#182;</a>
+    onLogin
+  </h3>
+</div>
+
+
+<p>Azioni da intraprendere quando un utente si logga</p>
   </div>
   <div class="body">
   </div>
@@ -74,9 +154,6 @@
     <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setBool</span><span class="p">(</span><span class="s2">&quot;utenteRemeberMe&quot;</span><span class="p">,</span> <span class="nx">remember</span><span class="p">);</span>
     <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setBool</span><span class="p">(</span><span class="s2">&quot;utenteAutenticato&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
     <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setObject</span><span class="p">(</span><span class="s2">&quot;datiUtente&quot;</span><span class="p">,</span> <span class="nx">userData</span><span class="p">);</span>
-
-    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">isLogged</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-
 <span class="p">};</span>
 
 
@@ -84,12 +161,17 @@
         </td>
       </tr>
       <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="onlogin">
+  <h3>
+    <a href="#onlogin" name="onlogin" class="pilcrow">&#182;</a>
+    onLogin
+  </h3>
 </div>
-<div class="dox">
-  <div class="summary"><p>Azioni da intraprendere quando un utente esce
+
+
+<p>Azioni da intraprendere quando un utente esce
 [onLogout description]</p>
   </div>
   <div class="body">
@@ -104,7 +186,6 @@
     <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setObject</span><span class="p">(</span><span class="s2">&quot;datiUtente&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
     <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setObject</span><span class="p">(</span><span class="s2">&quot;utenteCredenziali&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
 
-    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">isLogged</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">};</span>
 
 
@@ -112,13 +193,17 @@
         </td>
       </tr>
       <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="islogged">
+  <h3>
+    <a href="#islogged" name="islogged" class="pilcrow">&#182;</a>
+    isLogged
+  </h3>
 </div>
-<div class="dox">
-  <div class="summary"><p>Property
-Ci dice se l'utente è loggato o meno</p>
+
+
+<p>Ci dice se l'utente è loggato o meno</p>
   </div>
   <div class="body">
   </div>
@@ -136,7 +221,82 @@ Ci dice se l'utente è loggato o meno</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="s1">&#39;isLogged&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getBool</span><span class="p">(</span><span class="s2">&quot;utenteAutenticato&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">isLogged</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="rememberme">
+  <h3>
+    <a href="#rememberme" name="rememberme" class="pilcrow">&#182;</a>
+    rememberMe
+  </h3>
+</div>
+
+
+<p>Property readonly che dice se l'utente ha selezionato l'opzione <em>remember me</em></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Boolean
+</span>
+      <span>{Boolean}</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="s1">&#39;rememberMe&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getBool</span><span class="p">(</span><span class="s2">&quot;utenteRemeberMe&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;rememberMe&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="authtoken">
+  <h3>
+    <a href="#authtoken" name="authtoken" class="pilcrow">&#182;</a>
+    authToken
+  </h3>
+</div>
+
+
+<p>Propery readonly che espone il token di autorizzazione</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">string</span>
+      <span>auth token, se presente</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="s1">&#39;authToken&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">authToken</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">});</span>
 
@@ -148,7 +308,7 @@ Ci dice se l'utente è loggato o meno</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
 </div>
 <div class="dox">
   <div class="summary"><p>Property
@@ -181,12 +341,17 @@ Ci dice se l'utente è loggato o meno</p>
         </td>
       </tr>
       <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="getcurrentuser">
+  <h3>
+    <a href="#getcurrentuser" name="getcurrentuser" class="pilcrow">&#182;</a>
+    getCurrentUser
+  </h3>
 </div>
-<div class="dox">
-  <div class="summary"><p>Ritorna i dati dell'utente attuale, se presente</p>
+
+
+<p>Ritorna i dati dell'utente attuale, se presente</p>
   </div>
   <div class="body">
   </div>
@@ -202,17 +367,215 @@ Ci dice se l'utente è loggato o meno</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">getCurrentUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">getCurrentUser</span><span class="p">();</span>
+<span class="p">};</span>
 
-    <span class="kd">var</span> <span class="nx">u</span><span class="p">;</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">exports</span><span class="p">.</span><span class="nx">isLogged</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="nx">u</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="s2">&quot;datiUtente&quot;</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;user.getCurrentUser&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="dologin">
+  <h3>
+    <a href="#dologin" name="dologin" class="pilcrow">&#182;</a>
+    doLogin
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">username</span>
+      <span class="dox_type">string</span>
+      <span>[description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">password</span>
+      <span class="dox_type">string</span>
+      <span>[description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">rememberMe</span>
+      <span class="dox_type">Boolean</span>
+      <span>[description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">Function</span>
+      <span>callback in formato (err, userData)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">doLogin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">userData</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;user doLogin err&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+            <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;user doLogin success&#39;</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">userData</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>porcata: mi salvo le credenziali per replicare il login in automatico</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setObject</span><span class="p">(</span><span class="s2">&quot;utenteCredenziali&quot;</span><span class="p">,</span> <span class="p">[</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">]);</span>
+
+
+            <span class="nx">exports</span><span class="p">.</span><span class="nx">onLogin</span><span class="p">(</span><span class="nx">userData</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">);</span>
+
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s2">&quot;loggedInUser&quot;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">loggedUser</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="p">});</span>
+
+
+            <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">userData</span><span class="p">);</span>
         <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="dologout">
+  <h3>
+    <a href="#dologout" name="dologout" class="pilcrow">&#182;</a>
+    doLogout
+  </h3>
+</div>
+
+
+<p>Esegue il logout dal servizio SSO</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">doLogout</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">logout</span><span class="p">(</span><span class="nx">exports</span><span class="p">.</span><span class="nx">onLogout</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="dosignup">
+  <h3>
+    <a href="#dosignup" name="dosignup" class="pilcrow">&#182;</a>
+    doSignup
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">regData</span>
+      <span class="dox_type">object</span>
+      <span>dati di registrazione dell'utente, provenienti dalla form</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">Function</span>
+      <span>callback di registrazione, nella forma (err, result)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">doSignup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">regData</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">tiACI</span><span class="p">.</span><span class="nx">Services</span><span class="p">.</span><span class="nx">SSO</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">regData</span><span class="p">,</span> <span class="nx">cb</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="refreshdata">
+  <h3>
+    <a href="#refreshdata" name="refreshdata" class="pilcrow">&#182;</a>
+    refreshData
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">cb</span>
+      <span class="dox_type">Function</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">refreshData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="s2">&quot;utenteCredenziali&quot;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">lastLogin</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="s2">&quot;utenteLastLogin&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="nx">lastLogin</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">lastLogin</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">lastLogin</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">u</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;credentials&#39;</span><span class="p">,</span> <span class="nx">credentials</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;lastLogin&#39;</span><span class="p">,</span> <span class="nx">lastLogin</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">networkType</span> <span class="o">!=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">NETWORK_NONE</span> <span class="o">&amp;&amp;</span> <span class="nx">credentials</span> <span class="o">&amp;&amp;</span> <span class="nx">lastLogin</span> <span class="o">&amp;&amp;</span> <span class="nx">now</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">!=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">lastLogin</span><span class="p">).</span><span class="nx">getDate</span><span class="p">())</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials &amp;&amp; lastLogin ){
+alert('refresh!');</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;refresh&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
 <span class="p">};</span>
 
 
@@ -224,7 +587,7 @@ Ci dice se l'utente è loggato o meno</p>
       <tr>
         <td class="docs">
 <div class="pilwrap">
-  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
 </div>
 <p>qui gestisco il logout
 essendo i moduli dei singleton in titanium, al primo accesso 
@@ -235,89 +598,6 @@ se remember=false -> logout</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;lib/user.js LOGOUT UTENTE ALL&#39;AVVIO&quot;</span><span class="p">);</span>
     <span class="nx">exports</span><span class="p">.</span><span class="nx">onLogout</span><span class="p">();</span>
 <span class="p">}</span>
-
-
-
-<span class="nx">exports</span><span class="p">.</span><span class="nx">doLogin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">net</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">);</span>
-
-    <span class="nx">net</span><span class="p">.</span><span class="nx">getSSOID</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ssoid</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="nx">net</span><span class="p">.</span><span class="nx">getUserInfo</span><span class="p">(</span><span class="nx">ssoid</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user_data</span><span class="p">)</span> <span class="p">{</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
-</div>
-<p>porcata: mi salvo le credenziali per replicare il login in automatico</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-            <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">setObject</span><span class="p">(</span><span class="s2">&quot;utenteCredenziali&quot;</span><span class="p">,</span> <span class="p">[</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">]);</span>
-
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
-</div>
-<p>il modulo user.js gestisce la persistenza dei dati dell'utente</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-            <span class="nx">exports</span><span class="p">.</span><span class="nx">onLogin</span><span class="p">(</span><span class="nx">user_data</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">);</span>
-            <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">fireEvent</span><span class="p">(</span><span class="s2">&quot;loggedInUser&quot;</span><span class="p">,</span> <span class="p">{</span>
-                <span class="nx">loggedUser</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="p">});</span>
-
-
-            <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user_data</span><span class="p">);</span>
-
-
-        <span class="p">});</span>
-
-    <span class="p">});</span>
-<span class="p">};</span>
-
-<span class="nx">exports</span><span class="p">.</span><span class="nx">refreshData</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="s2">&quot;utenteCredenziali&quot;</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">lastLogin</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Properties</span><span class="p">.</span><span class="nx">getObject</span><span class="p">(</span><span class="s2">&quot;utenteLastLogin&quot;</span><span class="p">);</span>
-
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">lastLogin</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;credentials&#39;</span><span class="p">,</span> <span class="nx">credentials</span><span class="p">);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">networkType</span> <span class="o">!=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">NETWORK_NONE</span> <span class="o">&amp;&amp;</span> <span class="nx">credentials</span> <span class="o">&amp;&amp;</span> <span class="nx">lastLogin</span> <span class="o">&amp;&amp;</span> <span class="nx">now</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">!=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">lastLogin</span><span class="p">).</span><span class="nx">getDate</span><span class="p">())</span> <span class="p">{</span>
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
-</div>
-<p>if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials &amp;&amp; lastLogin ){
-alert('refresh!');</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-        <span class="nx">exports</span><span class="p">.</span><span class="nx">doLogin</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">credentials</span><span class="p">);</span>
-    <span class="p">}</span>
-
-<span class="p">};</span>
 </pre></div>
         </td>
       </tr>

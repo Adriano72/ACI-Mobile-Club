@@ -80,7 +80,7 @@ exports.openSideMenu = function(p_auth) {
                 no: "No",
                 callback: function(e) {
                     console.log('dialog', e);
-                    user.onLogout();
+                    user.doLogout();
 
                     loginLabel.text = "Login";
                 }

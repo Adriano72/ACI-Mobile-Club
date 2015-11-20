@@ -28,6 +28,9 @@
         <a href="#islongdevice">isLongDevice</a>
       </div>
       <div class="heading h3">
+        <a href="#size">size</a>
+      </div>
+      <div class="heading h3">
         <a href="#palette">palette</a>
       </div>
       <div class="heading h3">
@@ -111,8 +114,11 @@
       <div class="heading h3">
         <a href="#altriservizi">altriServizi</a>
       </div>
+      <div class="heading h3">
+        <a href="#syclatest">sycLatest</a>
+      </div>
       <div class="heading h2">
-        <a href="#onapplicationstart">onApplicationStart</a>
+        <a href="#applicationstart">ApplicationStart</a>
       </div>
     </div>
   </div>
@@ -148,6 +154,20 @@ object. For example:</p>
       </tr>
       <tr>
         <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>questo deve stare qui, altrimento non funziona... non capisco ma mi adeguo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">net</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
 <div class="pilwrap" id="alloy.globals">
   <h2>
     <a href="#alloy.globals" name="alloy.globals" class="pilcrow">&#182;</a>
@@ -177,17 +197,6 @@ object. For example:</p>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">menuButtonsWidth</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidthHalf</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">menuButtonsHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">22</span> <span class="o">:</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mi">20</span><span class="p">;</span>
 
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
-</div>
-<p>Alloy.Globals.baseURL = "<a href='http://10.64.4.199:9900/api'>http://10.64.4.199:9900/api</a>";</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BaseUrl</span><span class="p">;</span>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">bannerBaseURL</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_BannerBaseUrl</span><span class="p">;</span>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">PuntiAciBannerBaseURL</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">AciGeo_PuntiAciBannerBaseUrl</span><span class="p">;</span>
@@ -195,7 +204,9 @@ object. For example:</p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;platformWidth &#39;</span><span class="p">,</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">platformWidth</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;logicalDensityFactor &#39;</span><span class="p">,</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">logicalDensityFactor</span><span class="p">);</span>
 
-<span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;globals 2: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">));</span>
+
+
+
 
 
 
@@ -222,6 +233,8 @@ object. For example:</p>
 <span class="p">});</span>
 
 
+
+
 </pre></div>
         </td>
       </tr>
@@ -241,9 +254,52 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">,</span> <span class="s2">&quot;isLongDevice&quot;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">/</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.5</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isLongDevice&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="size">
+  <h3>
+    <a href="#size" name="size" class="pilcrow">&#182;</a>
+    size
+  </h3>
+</div>
+
+
+<p>Dizionario di misure derivate dalle dimensioni del device. 
+Sono una serie di chiavi nella forma <code>W50</code> dove la prima lettera (<code>W</code> o <code>H</code>) specifica se la misura è proporzionale alla larghezza o all'altezza, 
+ mentre le due cifre sono la percentuale (approssimata alle cifre intere)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">size</span> <span class="o">=</span> <span class="nx">_</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.333</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.623</span><span class="p">,</span> <span class="mf">0.666</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]).</span><span class="nx">chain</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">function</span> <span class="nx">key</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">e</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="nx">o</span><span class="p">[</span><span class="nx">key</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span> <span class="o">*</span> <span class="nx">e</span><span class="p">;</span>
+        <span class="nx">o</span><span class="p">[</span><span class="nx">key</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span> <span class="o">*</span> <span class="nx">e</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">memo</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;reduce&#39;</span><span class="p">,</span> <span class="nx">memo</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">memo</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="nx">H</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceHeight</span><span class="p">,</span>
+        <span class="nx">W</span><span class="o">:</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">deviceWidth</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">value</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">size</span><span class="p">);</span>
 
 
 
@@ -272,7 +328,8 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
     <span class="nx">grigio_scuro</span><span class="o">:</span> <span class="s2">&quot;#888888&quot;</span><span class="p">,</span>
     <span class="nx">rosso</span><span class="o">:</span> <span class="s2">&quot;#e32b00&quot;</span><span class="p">,</span>
     <span class="nx">bianco_sporco</span><span class="o">:</span> <span class="s2">&quot;#f9f9f9&quot;</span><span class="p">,</span> <span class="c1">//header e </span>
-    <span class="nx">bianco</span><span class="o">:</span> <span class="s2">&quot;#ffffff&quot;</span>
+    <span class="nx">bianco</span><span class="o">:</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+    <span class="nx">verde</span><span class="o">:</span> <span class="s2">&quot;#008100&quot;</span>
 <span class="p">};</span>
 
 
@@ -381,7 +438,6 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;serviziGICpos&quot;</span><span class="p">);</span>
 
-
 </pre></div>
         </td>
       </tr>
@@ -397,7 +453,6 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;province&quot;</span><span class="p">);</span>
-
 
 </pre></div>
         </td>
@@ -415,7 +470,6 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;tessere&quot;</span><span class="p">);</span>
 
-
 </pre></div>
         </td>
       </tr>
@@ -431,7 +485,6 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;banner&quot;</span><span class="p">);</span>
-
 
 </pre></div>
         </td>
@@ -560,10 +613,6 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;acipoint&quot;</span><span class="p">);</span>
-
-
-<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">tempCollection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">();</span>
-
 
 </pre></div>
         </td>
@@ -741,6 +790,24 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
         <td class="code highlight"><div class="highlight"><pre>
 <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;altriServizi&quot;</span><span class="p">);</span>
 
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="syclatest">
+  <h3>
+    <a href="#syclatest" name="syclatest" class="pilcrow">&#182;</a>
+    sycLatest
+  </h3>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">instance</span><span class="p">(</span><span class="s2">&quot;sycLatest&quot;</span><span class="p">);</span>
+
+<span class="nx">Alloy</span><span class="p">.</span><span class="nx">Collections</span><span class="p">.</span><span class="nx">tempCollection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">();</span>
+
 
 
 
@@ -750,51 +817,23 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
       <tr>
         <td class="docs"><div class="dox">
   <div class="summary">
-<div class="pilwrap" id="onapplicationstart">
+<div class="pilwrap" id="applicationstart">
   <h2>
-    <a href="#onapplicationstart" name="onapplicationstart" class="pilcrow">&#182;</a>
-    onApplicationStart
+    <a href="#applicationstart" name="applicationstart" class="pilcrow">&#182;</a>
+    ApplicationStart
   </h2>
 </div>
 
 
-<p>Routine da eseguire all'application start </p>
+<p>Routine da eseguire all'application start</p>
   </div>
   <div class="body">
   </div>
 </div>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-<span class="p">(</span><span class="kd">function</span> <span class="nx">onApplicationStart</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">ApplicationStart</span><span class="p">()</span> <span class="p">{</span>
 
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-35" id="section-35">&#182;</a>
-</div>
-<p>inizializza i servizi di location</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">init</span><span class="p">);</span>
-
-
-</pre></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="docs">
-<div class="pilwrap">
-  <a class="pilcrow" href="#section-36" id="section-36">&#182;</a>
-</div>
-<p>ricarica i dati utente</p>
-        </td>
-        <td class="code highlight"><div class="highlight"><pre>
-    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">refreshData</span><span class="p">);</span>
 
 
 </pre></div>
@@ -805,12 +844,82 @@ Per esempio, iphone5 è considerato lungo, mentre iphone4 no</p>
 <div class="pilwrap">
   <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
 </div>
+<p>inizializza i servizi di location</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;locationServices&#39;</span><span class="p">).</span><span class="nx">init</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
+</div>
 <p>abilita/disabilita la fuonzionalità di segnalazione errore</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
     <span class="k">if</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_Enabled</span> <span class="o">&amp;&amp;</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">SysReport_UseShake</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sysReportCommon&#39;</span><span class="p">).</span><span class="nx">enableShake</span><span class="p">();</span>
     <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+</div>
+<p>ricarica i dati utente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">rememberMe</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">user</span><span class="p">.</span><span class="nx">refreshData</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">net</span><span class="p">.</span><span class="nx">registerApp</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">).</span><span class="nx">init</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-40" id="section-40">&#182;</a>
+</div>
+<p>chiamo il servizio per registrare l'app</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">net</span><span class="p">.</span><span class="nx">registerApp</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;app registered 1&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-41" id="section-41">&#182;</a>
+</div>
+<p>inizializzo le notifiche</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">).</span><span class="nx">init</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
 <span class="p">})();</span>
 </pre></div>
         </td>
