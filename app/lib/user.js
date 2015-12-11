@@ -7,7 +7,9 @@ var tiACI = require('ti.aci');
 
 //inizializzo il modulo SSO passando l'endpoint SSO dell'ambiente corretto
 tiACI.Services.SSO.setConfig({
-    'base_url': Alloy.CFG.SSO_Endpoint
+    'base_url': Alloy.CFG.SSO_baseurl,
+    'profilo': Alloy.CFG.SSO_profilo,
+    'keypass': Alloy.CFG.SSO_keypass,
 });
 
 
@@ -28,9 +30,12 @@ var authToken;
  */
 exports.onLogin = function(userData, remember) {
     Ti.App.Properties.setObject("utenteLastLogin", new Date());
-    Ti.App.Properties.setBool("utenteRemeberMe", remember);
+    //Ti.App.Properties.setBool("utenteRemeberMe", remember);
+    exports.rememberMe = remember;
     Ti.App.Properties.setBool("utenteAutenticato", true);
     Ti.App.Properties.setObject("datiUtente", userData);
+
+    console.log('utente', userData);
 };
 
 /**
@@ -40,7 +45,8 @@ exports.onLogin = function(userData, remember) {
  */
 exports.onLogout = function() {
     Ti.App.Properties.setObject("utenteLastLogin", undefined);
-    Ti.App.Properties.setBool("utenteRemeberMe", false);
+    // Ti.App.Properties.setBool("utenteRemeberMe", false);
+    exports.rememberMe = false;
     Ti.App.Properties.setBool("utenteAutenticato", false);
     Ti.App.Properties.setObject("datiUtente", undefined);
     Ti.App.Properties.setObject("utenteCredenziali", undefined);
@@ -59,15 +65,47 @@ Object.defineProperty(exports, 'isLogged', {
 });
 
 /**
+ * ### hasCF
+ * Ci dice se l'utente ha o meno un codice fiscale confermato
+ * @return {Boolean}
+ */
+Object.defineProperty(exports, 'hasCF', {
+    get: function() {
+        var u = tiACI.Services.SSO.getCurrentUser();
+        console.log('user hasCF', u);
+        return u && u['userInfo.codiceFiscale'];
+    }
+});
+
+/*
+ * ### hasCellulare
+ * Ci dice se l'utente ha o meno un cellulare confermato
+ * @return {Boolean}
+ */
+Object.defineProperty(exports, 'hasCellulare', {
+    get: function() {
+        var u = tiACI.Services.SSO.getCurrentUser();
+        console.log('user hasCellulare', u);
+        return u && u['userInfo.mobile'] && u['userInfo.mobile'] == u['userInfo.mobileTemp'];
+    }
+});
+
+/**
  * ### rememberMe
  * Property readonly che dice se l'utente ha selezionato l'opzione _remember me_
  * @return {Boolean}
  */
 Object.defineProperty(exports, 'rememberMe', {
     get: function() {
-        var v = Ti.App.Properties.getBool("utenteRemeberMe", false);
-        console.log('rememberMe', v);
-        return v;
+        var v = Ti.App.Properties.getBool("utenteRemeberMe");
+        console.log('get rememberMe', v);
+        return !!v;
+    },
+    set: function(v) {
+        console.log('set rememberMe', v);
+
+        Ti.App.Properties.setBool("utenteRemeberMe", v);
+
     }
 });
 
@@ -116,7 +154,7 @@ exports.getCurrentUser = function() {
  * @param {Function} cb         callback in formato (err, userData)
  */
 exports.doLogin = function(username, password, rememberMe, cb) {
-
+    console.log('user doLogin', username, password, rememberMe);
     tiACI.Services.SSO.login(username, password, function(err, userData) {
         if (err) {
             console.log('user doLogin err', err);
@@ -177,9 +215,16 @@ exports.refreshData = function(cb) {
     console.log('credentials', credentials);
     console.log('lastLogin', lastLogin);
 
-    if (Ti.Network.networkType != Ti.Network.NETWORK_NONE && credentials && lastLogin && now.getDate() != new Date(lastLogin).getDate()) {
+    //console.log('refresh?', Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials, lastLogin, now.getDate() != new Date(lastLogin).getDate());
+    //console.log('refresh? 2', now.getDate(), new Date(lastLogin).getDate());
+
+    var isConnected = Ti.Network.networkType != Ti.Network.NETWORK_NONE
+    var hasCredentials = !!credentials;
+    var hasLoggedOnce = !!lastLogin;
+    var isSameDay = now.getDate() != new Date(lastLogin).getDate();
+    if (isConnected && hasCredentials && hasLoggedOnce) {
         //if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials && lastLogin ){
-        //alert('refresh!');
+        exports.doLogin(credentials[0], credentials[1], credentials[2]);
         console.log('refresh');
     }
 
@@ -190,7 +235,7 @@ exports.refreshData = function(cb) {
 //qui gestisco il logout
 // essendo i moduli dei singleton in titanium, al primo accesso 
 // se remember=false -> logout
-if (!Ti.App.Properties.getBool("utenteRemeberMe")) {
+if (!exports.rememberMe) {
     console.log("lib/user.js LOGOUT UTENTE ALL'AVVIO");
     exports.onLogout();
 }
