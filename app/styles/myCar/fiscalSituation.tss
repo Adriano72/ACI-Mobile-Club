@@ -1,0 +1,55 @@
+"#veicleImg":{
+	height: "50dp"
+}
+
+".boldLabel":{
+	color: "#555555",
+	font: {
+		fontSize: "18dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	}
+}
+".container":{
+	backgroundColor: "#efeff4"
+}
+
+"#veicleLabel":{
+	ellipsize: true,
+	wordWrap: false
+}
+
+".desclabel":{
+	color: "#555555",
+	font: {
+		fontSize: "17dp"
+	}
+}
+".viewButton":{
+	layout: "horizontal",
+	width: Titanium.UI.SIZE,
+	height: "34dp",
+	borderRadius: "30dp",
+	borderWidth: "2dp",
+	backgroundColor: "#006db3"
+}
+".imageButton":{
+	height: "20dp",
+	width:Titanium.UI.SIZE,
+	left: "7dp",
+	top: "6dp"
+}
+".labelButton":{
+	color: "#FFFFFF",
+	right: "10dp",
+	left: "7dp",
+	top: "5dp",
+	font: {
+		fontSize: "16dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	}
+}
+"#statusLabel":{
+	font:{
+		fontSize: "12dp"
+	}
+}

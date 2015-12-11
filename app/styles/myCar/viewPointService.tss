@@ -1,0 +1,49 @@
+"Label":{
+	textAlign : Titanium.UI.TEXT_ALIGNMENT_LEFT,
+	left : 0
+}
+"#telephoneView":{
+	height: "10dp"
+}
+
+"#faxImg":{
+	height: "10dp"
+}
+
+".desclabel":{
+	color: "#888888",
+	font: {
+		fontSize: "16dp"
+	}
+}
+".nomePoint":{
+	font: {
+		fontSize: "19dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	},
+	color: "#003772"
+}
+".telfaxPoint":{
+	font: {
+		fontSize: "16dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	},
+	color: "#006db3",
+	left : "2dp"
+}
+".emailPoint":{
+	font: {
+		fontSize: "16dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	},
+	color: "#003772"
+}
+".border":{
+	height : "1dp",
+	backgroundColor : "#d3d3d3",
+	width : Titanium.UI.FILL
+}
+".iconContact":{
+	height : "17dp",
+	left : 0
+}

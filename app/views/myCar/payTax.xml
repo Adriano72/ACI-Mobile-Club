@@ -1,0 +1,39 @@
+<Alloy>
+	<Window id="win" class="container" layout="vertical" >
+
+
+		<!-- View Targa -->
+		<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" left="20dp" backgroundColor="#efeff4">
+			<ImageView id="veicleImg"></ImageView>
+			<View layout="vertical" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="20dp">
+				<View layout="horizontal" width="Titanium.UI.SIZE"  height="Titanium.UI.SIZE" left="0">
+					<Label class="desclabel">L('targa_label')</Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"></Label>
+				</View>
+				<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
+					<Label class="desclabel">L('modello_label')</Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"></Label>
+				</View>
+			</View>
+		</View>
+		<!-- Fine View Targa -->
+		
+		<View layout="vertical" backgroundColor="#FFFFFF" height="Titanium.UI.SIZE" width="Titanium.UI.FILL" top="20dp">
+			<View layout="horizontal" height="Titanium.UI.SIZE" width="Titanium.UI.SIZE" top="20dp">
+				<Label class="desclabel" id="labelStopPeriod"></Label>
+				<Label class="desclabel" left="5dp" right="5dp">-</Label>
+				<Label class="desclabel" id="labelStartPeriod"></Label>
+			</View>
+			<View layout="horizontal" height="Titanium.UI.SIZE" width="Titanium.UI.SIZE" top="15dp">
+				<Label class="desclabel">L("importo_label")</Label>
+				<Label class="labelBoldBlue" id="labelImporto" left="5dp"></Label>
+			</View>
+			<View layout="horizontal" height="Titanium.UI.SIZE" width="Titanium.UI.SIZE">
+				<Label class="desclabel">L("regione_label")</Label>
+				<Label class="boldLabel" id="labelRegione" left="5dp"></Label>
+			</View>
+			<Label class="loginButton" width="Titanium.UI.FILL" top="20dp" bottom="35dp" left="15dp" right="15dp" onClick="onPayTax">L('paga_button')</Label>
+		</View>
+	</Window>
+</Alloy>
+

@@ -1,0 +1,21 @@
+<Alloy>
+	<Window class="container" layout="vertical" onOpen="onActivityOpen">
+		<!-- Inizio Header -->
+		<View class="containderHeader" 	backgroundColor = "#efeff4">
+			<View class="countainerSupHeader">
+				<View class="containerLeftSupHeader">
+					<ImageView class="actionLeftHeader" image="/images/ic_indietro.png" onClick="onArrowClick"></ImageView>
+				</View>
+				<View class="containerRigthSupHeader">
+					<ImageView class="iconAppHeader"></ImageView>
+					<Label class="appNameHeader"></Label>
+				</View>
+			</View>
+			<Label class="titleHeader">L('punti_aci_label')</Label>
+		</View>
+		<!-- Fine Header -->
+		<ScrollView width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
+			<View id="aciPointScrool" layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE"></View>
+		</ScrollView>
+	</Window>
+</Alloy>

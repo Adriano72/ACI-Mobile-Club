@@ -1,0 +1,34 @@
+".container":{
+	backgroundColor: "#efeff4"
+}
+".containderHeader":{
+	backgroundColor: "#FFFFFF"
+}
+".desclabel":{
+	color: "#555555",
+	font: {
+		fontSize: "17dp"
+	}
+}
+".boldLabel":{
+	color: "#555555",
+	font: {
+		fontSize: "17dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	}
+}
+"#veicleImg":{
+	height: "50dp"
+}
+".loginButton":{
+	borderRadius: "30dp",
+	borderWidth: "1dp",
+	color: "#006db3",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	height: "40dp",
+	borderColor: "#006db3",
+	font: {
+		fontSize: "18dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	}
+}

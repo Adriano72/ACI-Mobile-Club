@@ -1,0 +1,37 @@
+<Alloy>
+	<Window class="container" onOpen="loadPreference" layout="vertical" backgroundImage="images/sfondo_blu.jpg">
+		<!-- Inizio Header -->
+		<View class="containderHeader">
+			<View class="countainerSupHeader">
+				<View class="containerLeftSupHeader">
+					<ImageView class="actionLeftHeader" image="/images/ic_home.png"></ImageView>
+				</View>
+				<View class="containerRigthSupHeader">
+					<ImageView class="iconAppHeader"></ImageView>
+					<Label class="appNameHeader"></Label>
+				</View>
+			</View>
+			<Label class="titleHeader">L("home_title")</Label>
+		</View>
+		<!-- Fine Header -->
+		<View id="indexView" layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" left="15dp" right="15dp" top="20dp">
+			<View layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
+				<Label class="lightLabel" textAlign="Titanium.UI.TEXT_ALIGNMENT_CENTER">L("intro_home_text")</Label>
+			</View>
+			<View layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp">
+				<TextField id="textUser" class="loginTextField" hintText="Username" ></TextField>
+				<View width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
+					<Label height="1dp" width="Titanium.UI.FILL" backgroundColor="#d3d3d3"></Label>
+				</View>
+				<TextField id="textPass" class="loginTextField"  hintText="Password" passwordMask="true"></TextField>
+				<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" bottom="20dp" top="10dp">
+					<Switch id="switchRemenber"></Switch>
+					<Label class="lightLabel" id="sitchText" >L("remember_label")</Label>
+				</View>
+				<Label class="loginButton" width="Titanium.UI.FILL" onClick="validateAccess">L('access_label')</Label>
+				<Label class="loginButton" width="Titanium.UI.FILL" top="15dp">L('register_label')</Label>
+				<Label class="lightLabel" textAlign="center" top="20dp">L("forget_pass_text")</Label>
+			</View>
+		</View>
+	</Window>
+</Alloy>

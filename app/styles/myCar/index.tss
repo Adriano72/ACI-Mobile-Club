@@ -1,0 +1,39 @@
+".lightLabel": {
+	color: "#FFFFFF"
+}
+".loginButton":{
+	borderRadius: "30dp",
+	borderWidth: "1dp",
+	color: "#FFFFFF",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	height: "40dp",
+	borderColor: "#d3d3d3",
+	font: {
+		fontSize: "18dp",
+		fontFamily: "PT-Sans-Narrow-Bold"
+	}
+}
+".loginButton[platform=ios]":{
+	borderRadius: "20dp",
+}
+".loginTextField":{
+	hintTextColor: "#888888",
+	color: '#333333',
+	backgroundColor :"#FFFFFF",
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	font: {
+		fontSize: "18dp",
+		fontFamily: "PT-Sans-Narrow"
+	}
+}
+".loginTextField[platform=ios]":{
+	height : "43dp"
+}
+"#switchRemenber[platform=android]":{
+	style: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX
+}
+
+"#sitchText[platform=ios]":{
+	left : "4dp"
+}

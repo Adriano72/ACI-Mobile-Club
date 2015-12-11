@@ -1,0 +1,26 @@
+".container":{
+	backgroundColor: "#efeff4"
+}
+
+".boldLabel":{
+	color: "#003772",
+	font: {
+		fontSize: "18dp",
+		fontFamily: Alloy.Globals.font.PTSans_Narrow
+	},
+	left: '3dp'
+}
+".desclabel":{
+	color: "#555555",
+	font: {
+		fontSize: "17dp"
+	},
+	left: '3dp'
+}
+"#veicleImg":{
+	height: "50dp"
+}
+".imgInfo":{
+	image: "/images/mycar_ic_info.png",
+	height: "15dp"
+}

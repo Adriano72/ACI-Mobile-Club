@@ -1,0 +1,65 @@
+<Alloy>
+	<Window id="win" class="container" onOpen="onActivitiLoaded" layout="vertical">
+
+		
+		<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" left="20dp" backgroundColor="#efeff4">
+			<ImageView id="veicleImg"></ImageView>
+			<View layout="vertical" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="20dp">
+				<View layout="horizontal" width="Titanium.UI.SIZE"  height="Titanium.UI.SIZE" left="0">
+					<Label class="desclabel">L('targa_label')</Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"></Label>
+				</View>
+				<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
+					<Label class="desclabel">L('modello_label')</Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"></Label>
+				</View>
+			</View>
+		</View>
+		<!-- Fine View Targa -->
+		<View id="detailContainer" layout="vertical" top="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL" backgroundColor="#FFFFFF">
+			<View layout="horizontal" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+				<Label class="boldLabel" id="auto"></Label>
+				<Label class="desclabel">L('ad_label')</Label>
+				<Label class="boldLabel" id="uso"></Label>
+				<Label class="desclabel">L('immatricolato_label')</Label>
+				<Label class="boldLabel" id="immatricolato"></Label>
+				<Label class="desclabel">L('alimentazione_label')</Label>
+				<Label class="boldLabel" id="alimentazione"></Label>
+				<Label class="desclabel">L('con_label')</Label>
+				<Label class="boldLabel" id="cavalli"></Label>
+				<Label class="desclabel">L('cavalli_label')</Label>
+				<Label class="desclabel">L('cilindrata_label')</Label>
+				<Label class="boldLabel" id="cilindrata"></Label>
+				<Label class="desclabel">L('misura_cilindrata_label')</Label>
+				<Label class="desclabel">.</Label>
+			</View>
+			<Label backgroundColor="#d3d3d3" height="1dp" width="Titanium.UI.FILL" left="4dp" right="4dp"></Label>
+			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+				<View height="Titanium.UI.SIZE" width="90%">
+					<Label class="desclabel" id="rubatoLabel"></Label>
+				</View>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"></ImageView>
+				</View>
+			</View>
+			<Label backgroundColor="#d3d3d3" height="1dp" width="Titanium.UI.FILL" left="4dp" right="4dp"></Label>
+			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+				<View height="Titanium.UI.SIZE" width="90%">
+					<Label class="desclabel" id="ultratrentenneLabel"></Label>
+				</View>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"></ImageView>
+				</View>
+			</View>
+			<Label backgroundColor="#d3d3d3" height="1dp" width="Titanium.UI.FILL" left="4dp" right="4dp"></Label>
+			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+				<View height="Titanium.UI.SIZE" width="90%">
+					<Label class="desclabel" id="neopatentatiLabel"></Label>
+				</View>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"></ImageView>
+				</View>
+			</View>
+		</View>
+	</Window>
+</Alloy>

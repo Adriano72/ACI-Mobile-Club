@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Alloy>
+	<View layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
+		<Label class="border"/>
+		<View layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" left="10dp" bottom="10dp" right="10dp">
+			<Label class="nomePoint" id="poiTitle" top="10dp"></Label>
+			<Label class="desclabel" id="poiAddress" top="5dp"></Label>
+			<View id="contattiView" layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
+				<View left="0" id="telephoneView" height="Titanium.UI.SIZE" layout="horizontal" width="50%">
+					<ImageView class="iconContact" image="/images/ic_telephon.png" ></ImageView>
+					<Label class="telfaxPoint" id="telephone"></Label>
+				</View>
+				<View id="faxView" height="Titanium.UI.SIZE" layout="horizontal" width="50%" left="0">
+					<ImageView class="iconContact" image="/images/ic_fax.png"></ImageView>
+					<Label class="telfaxPoint" id="fax"></Label>
+				</View>
+			</View>
+			<View id="emailView" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" layout="horizontal">
+				<ImageView class="iconContact" image="/images/ic_email_blue.png"></ImageView>
+				<Label class="emailPoint" id="email" left="4dp"></Label>
+			</View>
+		</View>
+	</View>
+</Alloy>

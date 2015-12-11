@@ -1,0 +1,49 @@
+<Alloy>
+	<Window id="win" class="container" layout="vertical" onOpen="onActivityOpen" >
+
+
+		
+		<View layout="vertical" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+			<ListView id="listContainer" defaultItemTemplate="templateCar" separatorColor="#d3d3d3">
+				<Templates>
+					<ItemTemplate name="templateCar">
+					
+						<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" bottom="25dp" left="20dp" right="20dp">							
+							<View layout="vertical" width="Titanium.UI.SIZE" >
+								<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" bottom="10dp">
+									<ImageView bindId="icVehicle" id="veicleImg"></ImageView>
+									<View layout="vertical"  width="Titanium.UI.SIZE" left="20dp">
+										<View layout="horizontal" width="Titanium.UI.SIZE" left="0">
+											<Label class="licenseLabel" bindId="carLicensePlate" id="labelLicensePlate" width="Titanium.UI.SIZE" ></Label>
+											<Label class="licenseLabel" left="5dp" right="5dp">-</Label>
+											<Label class="licenseLabel" bindId="carModel" id="labelModel" width="Titanium.UI.SIZE"></Label>
+										</View>
+										<View layout="horizontal" width="Titanium.UI.SIZE" left="0">
+											<Label class="datalabel" bindId="ruolo" width="Titanium.UI.SIZE"></Label>
+											<Label class="datalabel" bindId="date" id="labelData" width="Titanium.UI.SIZE" left="4dp" ></Label>
+										</View>
+									</View>
+								</View>
+								<View layout="horizontal">
+									<View class="viewButton" onClick="showCarDetail">
+										<ImageView class="imageButton" image="/images/mycar_ic_dati.png"></ImageView>
+										<Label class="labelButton">L('dati_button')</Label>
+									</View>
+									<View class="viewButton" left="7dp" onClick="showFiscalSituation">
+										<Label class="labelButton">L('situazione_button')</Label>
+									</View>
+									<View class="viewButton" left="7dp">
+										<Label class="labelButton" onClick="showPraDigitale">L('pra_button')</Label>
+									</View>
+								</View>
+							</View>
+						</View> 
+					</ItemTemplate>
+				</Templates>
+				<ListSection id="carSection">
+					<ListItem template="templateCar"></ListItem>
+				</ListSection>
+			</ListView>
+		</View>
+	</Window>
+</Alloy>

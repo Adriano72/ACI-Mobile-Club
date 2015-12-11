@@ -1,0 +1,50 @@
+<Alloy>
+	<Window id="win" class="container" onOpen="onActivityOpen" layout="vertical">
+
+		
+
+		<!-- View Targa -->
+		<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" left="20dp" backgroundColor="#efeff4">
+			<ImageView id="veicleImg"></ImageView>
+			<View layout="vertical" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="20dp">
+				<View layout="horizontal" width="Titanium.UI.SIZE"  height="Titanium.UI.SIZE" left="0">
+					<Label class="desclabel">L('targa_label')</Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"></Label>
+				</View>
+				<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
+					<Label class="desclabel">L('modello_label')</Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"></Label>
+				</View>
+			</View>
+		</View>
+		<!-- Fine View Targa -->
+		
+		<ListView id="listFiscal" top="20dp" defaultItemTemplate="fiscalTemplate" separatorColor="#d3d3d3" backgroundColor="#FFFFFF">
+			<Templates>
+				<ItemTemplate name="fiscalTemplate">
+					<View layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" left="20dp" right="20dp" bottom="25dp" top="20dp">
+						<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
+							<View layout="vertical" width="80%" height="Titanium.UI.SIZE">
+								<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
+									<Label class="desclabel" bindId="startFiscalPeriod" id="labelStartFiscalPeriod"></Label>
+									<Label class="desclabel" left="2dp" right="2dp">-</Label>
+									<Label class="desclabel" bindId="endFiscalPeriod" id="labelEndFiscalPeriod"></Label>
+								</View>
+								<Label bindId="totalAmount" class="labelBoldBlue" left="0" top="5dp"></Label>
+							</View>
+							<View layout="vertical" width="20%" height="Titanium.UI.SIZE" >
+								<ImageView bindId="iconStatus" id="imageStatus" height="23dp"></ImageView>
+								<Label id="statusLabel" bindId="status" top="5dp"></Label>
+							</View>
+						</View>
+						<View class="viewButton" bindId="action" left="0" top="10dp" onClick="buttonAction">
+							<ImageView class="imageButton" bindId="imgActionButton"></ImageView>
+							<Label class="labelButton" bindId="nameActionButton"></Label>
+						</View>
+					</View>
+				</ItemTemplate>
+			</Templates>
+			<ListSection id="fiscalSection"></ListSection>
+		</ListView>
+	</Window>
+</Alloy>
