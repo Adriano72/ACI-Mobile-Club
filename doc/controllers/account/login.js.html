@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>login.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/account/login.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#login">Login</a>
+      </div>
+      <div class="heading h3">
+        <a href="#onlogin">onLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#dosignup">doSignup</a>
+      </div>
+      <div class="heading h3">
+        <a href="#doresetpwd">doResetPwd</a>
+      </div>
+      <div class="heading h3">
+        <a href="#dologin">doLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#constructor">constructor</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="login">
+  <h1>
+    <a href="#login" name="login" class="pilcrow">&#182;</a>
+    Login
+  </h1>
+</div>
+
+
+<p>Schermata per la login utente</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">net</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">commons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">navigation</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;navigation&#39;</span><span class="p">);</span>
+
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="onlogin">
+  <h3>
+    <a href="#onlogin" name="onlogin" class="pilcrow">&#182;</a>
+    onLogin
+  </h3>
+</div>
+
+
+<p>Callback da eseguire al completamento della login. Viene passata come argomento nel costruttore</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">onLogin</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="dosignup">
+  <h3>
+    <a href="#dosignup" name="dosignup" class="pilcrow">&#182;</a>
+    doSignup
+  </h3>
+</div>
+
+
+<p>Passa alla schermata di registrazione</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">doSignup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">navigation</span><span class="p">.</span><span class="nx">openSignup</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="doresetpwd">
+  <h3>
+    <a href="#doresetpwd" name="doresetpwd" class="pilcrow">&#182;</a>
+    doResetPwd
+  </h3>
+</div>
+
+
+<p>Apre la pagina di reset della password</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">doResetPwd</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">navigation</span><span class="p">.</span><span class="nx">openResetPassword</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="dologin">
+  <h3>
+    <a href="#dologin" name="dologin" class="pilcrow">&#182;</a>
+    doLogin
+  </h3>
+</div>
+
+
+<p>Effettua la login.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">doLogin</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>recupero dei valori dalla form</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">username</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">password</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">rememberMe</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ricordami</span><span class="p">.</span><span class="nx">getView</span><span class="p">().</span><span class="nx">value</span><span class="p">;</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>validazione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">username</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Inserire nome utente e password!&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>login</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">else</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>mostra il loader    </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;Caricamento dati...&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>chiamo il servizio di autenticazione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">user</span><span class="p">.</span><span class="nx">doLogin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">rememberMe</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user_data</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>aggiorno la registrazione di questo device sul servizio acigeo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">).</span><span class="nx">registerForPush</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>nasconde il loader</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>gestisco eventuali errori</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;account doLogin error&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+
+                <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">data</span> <span class="o">&amp;&amp;</span> <span class="nx">err</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">err</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;Si è verificato un errore&#39;</span><span class="p">;</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+
+            <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>eseguo le operazioni di conferma della login</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="k">else</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>operazioni conclusive
+uso il defer, così in caso di errore non viene considerato un errore della chiamata http (con il defer creo un nuovo stack)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-16" id="section-16">&#182;</a>
+</div>
+<p>chiudo la schermata di login, uso il defer per dar tempo ad eventuali altre schermate di visualizzarsi</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">closeWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">);</span>
+                    <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>chiamo la callback di avvenuta login, se presente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                    <span class="nx">onLogin</span> <span class="o">&amp;&amp;</span> <span class="nx">onLogin</span><span class="p">();</span>
+
+
+                <span class="p">})</span>
+
+
+
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="constructor_NaN">
+  <h3>
+    <a href="#constructor_NaN" name="constructor_NaN" class="pilcrow">&#182;</a>
+    constructor
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">args
+</span>
+      <span class="dox_type">object</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;login args&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>setup window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">commons</span><span class="p">.</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="s2">&quot;La tua tessera&quot;</span><span class="p">,</span> <span class="s2">&quot;/images/ic_action_home_tessera_blu.png&quot;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">onLogin</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">onLogin</span><span class="p">;</span>
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

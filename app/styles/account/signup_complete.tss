@@ -1,0 +1,47 @@
+"Label":{
+	color: Alloy.Globals.palette.bianco_sporco
+}
+
+".h2":{
+	color: Alloy.Globals.palette.bianco_sporco
+}
+
+".container":{
+	backgroundImage: "/sfondoLogin.jpg",
+	layout: "vertical"
+}
+
+
+"#textWrapper":{
+	width: "90%",
+	height: "80%"
+}
+
+
+"#buttonGroup":{
+	height: "20%"
+}
+
+".step":{
+	height: Ti.UI.SIZE,
+//	backgroundColor: "orange"
+
+}
+
+
+
+".buttonWrapper":{
+	width: "45%",
+	height: 40
+}
+
+".secondaryButtonWrapper":{
+	left: "2%"
+}
+
+".primaryButtonWrapper":{
+	right: "2%",
+	borderWidth: 1,
+	borderColor: Alloy.Globals.palette.bianco_sporco,
+	borderRadius: 20
+}

@@ -1,0 +1,31 @@
+".container":{
+	backgroundImage: "/sfondoLogin.jpg",
+}
+
+"#wrapper":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical",
+}
+
+".button":{
+	bottom: 15,
+	color :  Alloy.Globals.palette.bianco_sporco,
+	backgroundColor: 'transparent',
+	width: "90%"
+}
+
+"#btLogin":{
+	secondaryText: "Sei già registrato?",
+	primaryText: "Accedi"
+}
+
+"#btSignup":{
+	secondaryText: "Sei socio ACI?",
+	primaryText: "Registrati"
+}
+
+"#btTessere":{
+	secondaryText: "Non sei ancora socio?",
+	primaryText: "Associati"
+}

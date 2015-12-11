@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>gateway.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/account/gateway.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#gateway">Gateway</a>
+      </div>
+      <div class="heading h3">
+        <a href="#onlogin">onLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openlogin">openLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#opensignup">openSignup</a>
+      </div>
+      <div class="heading h3">
+        <a href="#opentessere">openTessere</a>
+      </div>
+      <div class="heading h3">
+        <a href="#constructor">constructor</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="gateway">
+  <h1>
+    <a href="#gateway" name="gateway" class="pilcrow">&#182;</a>
+    Gateway
+  </h1>
+</div>
+
+
+<p>Schermata che permette all'utente non lioggato di scegliere se registrarsi, loggarsi o scorrere il catalogo tessere</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">navigation</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;navigation&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="onlogin">
+  <h3>
+    <a href="#onlogin" name="onlogin" class="pilcrow">&#182;</a>
+    onLogin
+  </h3>
+</div>
+
+
+<p>Callback da eseguire in caso di login, utile per redirect</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">onLogin</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openlogin">
+  <h3>
+    <a href="#openlogin" name="openlogin" class="pilcrow">&#182;</a>
+    openLogin
+  </h3>
+</div>
+
+
+<p>Handler del click sul pulsante btLogin</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openLogin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">navigation</span><span class="p">.</span><span class="nx">openLogin</span><span class="p">(</span><span class="nx">onLogin</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opensignup">
+  <h3>
+    <a href="#opensignup" name="opensignup" class="pilcrow">&#182;</a>
+    openSignup
+  </h3>
+</div>
+
+
+<p>Handler del click sul pulsante btSignup</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openSignup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">navigation</span><span class="p">.</span><span class="nx">openSignup</span><span class="p">();</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opentessere">
+  <h3>
+    <a href="#opentessere" name="opentessere" class="pilcrow">&#182;</a>
+    openTessere
+  </h3>
+</div>
+
+
+<p>Handler del click sul pulsante btTessere</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">openTessere</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">navigation</span><span class="p">.</span><span class="nx">openTessereMain</span><span class="p">();</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="constructor_NaN">
+  <h3>
+    <a href="#constructor_NaN" name="constructor_NaN" class="pilcrow">&#182;</a>
+    constructor
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">args</span>
+      <span class="dox_type">object</span>
+      <span>parametri di costruzione del controller</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>setup window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">).</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="s1">&#39;Scegli un\&#39;opzione&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>inizializzo la callback da utilizzare in caso di login. 
+la pagina gateway deve essere <em>trasparente</em>, nel senso che è intermedia alla pagina di login nel caso si scelga l'opzione di autenticarsi</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">onLogin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>args.onLogin è l'azione passata al gateway</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">args</span><span class="p">.</span><span class="nx">onLogin</span> <span class="o">&amp;&amp;</span> <span class="nx">args</span><span class="p">.</span><span class="nx">onLogin</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>chiudo la finestra corrente</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+    <span class="p">};</span>
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

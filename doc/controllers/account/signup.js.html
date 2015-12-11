@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>signup.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/account/signup.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>signup.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">commons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>inizializzazioni comuni della Window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">commons</span><span class="p">.</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="s1">&#39;Registrazione&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="p">[]);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>descrittori di campi e validazione</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">formSchema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">fields</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">[{</span>
+            <span class="nx">fieldId</span><span class="o">:</span> <span class="s1">&#39;aciCard&#39;</span><span class="p">,</span>
+            <span class="nx">hintText</span><span class="o">:</span> <span class="s1">&#39;Numero tessera ACI&#39;</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">format</span><span class="o">:</span> <span class="sr">/^([A-Za-z]{2}[0-9]{9})|([0-9]{10}[A-Za-z]{1})$/</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">fieldId</span><span class="o">:</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+            <span class="nx">hintText</span><span class="o">:</span> <span class="s1">&#39;Nome&#39;</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">fieldId</span><span class="o">:</span> <span class="s1">&#39;surname&#39;</span><span class="p">,</span>
+            <span class="nx">hintText</span><span class="o">:</span> <span class="s1">&#39;Cognome&#39;</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">}],</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>[ {
+fieldId: 'mobile',
+hintText: 'Numero di cellulare',
+prefix: '(+39)',
+// keyboardType: Ti.UI.KEYBOARD_PHONE_PAD,
+required: true,
+format: /^[0-9]{9,10}$/
+} ],  </p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="p">[{</span>
+            <span class="nx">fieldId</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+            <span class="nx">hintText</span><span class="o">:</span> <span class="s1">&#39;E-mail&#39;</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">keyboardType</span><span class="o">:</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">KEYBOARD_EMAIL</span><span class="p">,</span>
+            <span class="nx">format</span><span class="o">:</span> <span class="sr">/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">fieldId</span><span class="o">:</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+            <span class="nx">hintText</span><span class="o">:</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">range</span><span class="o">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span>
+            <span class="nx">format</span><span class="o">:</span> <span class="p">[</span><span class="sr">/^[A-Za-z0-9\.]+$/</span><span class="p">,</span> <span class="s1">&#39;solo lettere, cifre e punti&#39;</span><span class="p">],</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>validate: function(value, cb) {
+Alloy.Globals.loading.show('Controllo dati');
+console.log('username validate' + value);
+require('network').userCheckUsername(value, function(res) {
+Alloy.Globals.loading.hide();
+console.log('username validate res', res);
+if (res &amp;&amp; res.result == "success") {</p>
+  </div>
+  <div class="body"><p>if (res.data.userexist) {
+cb &amp;&amp; cb(false, ['username già in uso']);
+} else {
+cb &amp;&amp; cb(true);
+}</p>
+
+<p>} else {
+console.log('username validate else', res);
+cb &amp;&amp; cb(false, [res.data]);
+}
+});
+}  </p>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="nx">fieldId</span><span class="o">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+            <span class="nx">hintText</span><span class="o">:</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+            <span class="nx">passwordMask</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">range</span><span class="o">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span>
+            <span class="nx">format</span><span class="o">:</span> <span class="p">[</span><span class="sr">/^[A-Za-z0-9%,@#$()*+-:=\.]+$/</span><span class="p">,</span> <span class="s1">&#39;contiene caratteri non consentiti&#39;</span><span class="p">]</span>
+        <span class="p">}]</span>
+
+
+    <span class="p">],</span>
+    <span class="nx">onSubmit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;Salvataggio dati&#39;</span><span class="p">);</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">).</span><span class="nx">doSignup</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;doSignup &#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+            <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">loading</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;navigation&#39;</span><span class="p">).</span><span class="nx">openSignupComplete</span><span class="p">();</span>
+
+            <span class="nx">_</span><span class="p">.</span><span class="nx">defer</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">formWizard</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">formSchema</span><span class="p">);</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
