@@ -1,0 +1,7 @@
+<Alloy>
+	<View id="fieldWrapper">
+		<Label id="fieldPrefix"></Label>
+		<TextField id="field"/>
+		<Label id="fieldPostfix"></Label>
+	</View>
+</Alloy>

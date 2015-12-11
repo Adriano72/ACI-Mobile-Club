@@ -1,0 +1,65 @@
+
+"#fieldWrapper" : {
+	backgroundColor: Alloy.Globals.palette.bianco_sporco,
+	width: Ti.UI.FILL,
+	height: 40,
+	top: 5,
+	borderWidth: 1 ,
+	borderColor: "transparent"
+}
+"#fieldWrapper[platform=android]":{
+	height: 50
+}
+
+"#field":{
+	
+	backgroundColor: "transparent",
+	width: "90%",
+	//left: "5%",
+	height: 30,
+	font:{fontSize: Alloy.Globals.fontSize.XXL},
+	returnKeyType: Ti.UI.RETURNKEY_NEXT,
+	autocapitalization: Titanium.UI.TEXT_AUTOCAPITALIZATION_NONE
+}
+
+
+"#field[platform=android]":{
+	height: 40
+}
+
+"#fieldPrefix":{
+	color: Alloy.Globals.palette.blu,
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro,
+	height: Ti.UI.FILL,
+	width: "15%",
+	left: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+        fontSize: Alloy.Globals.fontSize.XXL
+    },
+
+
+}
+
+"#fieldPostfix":{
+	color: Alloy.Globals.palette.blu,
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro,
+	height: Ti.UI.FILL,
+	width: "15%",
+	right: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	font: {
+        fontSize: Alloy.Globals.fontSize.XXL
+    },
+}
+
+".withPostfix":{
+	width: "75%", //90-15
+	left: "5%"
+}
+".withPrefix":{
+	width: "75%", //90-15
+	right: "5%"
+}
+
+

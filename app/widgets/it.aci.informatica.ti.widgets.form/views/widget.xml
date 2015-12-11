@@ -1,0 +1,17 @@
+<Alloy>
+	<View class="container">
+		<View id="formWrapper">
+			<View id="formWrapperInner">
+				<View id="errorWrapper" visible="false">
+					<View id="minheight"></View>
+					<ImageView id="errorIcon"></ImageView>
+					<Label id="error" class="h2" ></Label>
+				</View>
+				<View id="formWizard" >
+				
+				</View>
+			</View>
+		</View>
+		
+	</View>
+</Alloy>

@@ -9,7 +9,10 @@
 "#wrapper":{
 	layout: "vertical",
 	height: Ti.UI.SIZE,
-	contentWidth: Alloy.Globals.size.W,
+	contentWidth: Alloy.Globals.size.W
+}
+
+"#wrapper[platform=ios]":{
 	contentHeight: Ti.UI.SIZE
 }
 

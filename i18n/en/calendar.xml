@@ -1,0 +1,14 @@
+<resources>
+	<string name="January">Gennaio</string>
+	<string name="February">Febbraio</string>
+	<string name="March">Marzo</string>
+	<string name="April">Aprile</string>
+	<string name="May">Maggio</string>
+	<string name="June">Giugno</string>
+	<string name="July">Luglio</string>
+	<string name="August">Agosto</string>
+	<string name="September">Settembre</string>
+	<string name="October">Ottobre</string>
+	<string name="November">Novembre</string>
+	<string name="December">Dicembre</string>
+</resources>

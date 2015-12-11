@@ -1,0 +1,20 @@
+<Alloy>
+	<View>
+		<TableView id="TessereTable" class="table" dataCollection="tessere" dataTransform="dataTransform" dataFunction="updateUI" onSingletap="openDetail" >
+
+			<TableViewRow id="riga" class="row" modelId="{id}" title="{name}">
+				<View class="rowContainer">
+					<View class="leftRowContainer">
+						<ImageView id="imgTessera" image="{img}"></ImageView>
+					</View>
+					<View class="rightRowContainer">
+						<Label class="simpleRowText h2" id="name" text="{name}"/>
+
+						<Label class="simpleRowText h4 " id="slogan" text="{slogan}"/>
+						
+					</View>
+				</View>
+			</TableViewRow>
+		</TableView>
+	</View>
+</Alloy>

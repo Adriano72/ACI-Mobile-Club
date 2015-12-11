@@ -1,0 +1,16 @@
+<resources>
+	<string name="abruzzo_region">Abruzzo</string>
+	<string name="basilicata_region">Basilicata</string>
+	<string name="campania_region">Campania</string>
+	<string name="emiliaromagna_region">Emilia Romagnia</string>
+	<string name="lazio_region">Lazio</string>
+	<string name="liguria_region">Liguria</string>
+	<string name="molise_region">Molise</string>
+	<string name="lombardia_region">Lombardia</string>
+	<string name="puglia_region">Puglia</string>
+	<string name="toscana_region">Toscana</string>
+	<string name="umbria_region">Umbria</string>
+	<string name="bolzano_province">Prov. Autonoma di Bolzano</string>
+	<string name="trento_province">Prov. Autonoma di Trento</string>
+	<string name="valledaosta_region">Valle d'Aosta</string>
+</resources>

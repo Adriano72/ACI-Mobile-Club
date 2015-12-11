@@ -1,0 +1,18 @@
+"#wrapper":{
+
+}
+
+"#content":{
+	backgroundColor: 'transparent',
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	layout: "vertical"
+}
+
+"#icon":{
+
+}
+
+"#title":{
+	top:5
+}

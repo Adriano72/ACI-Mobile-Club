@@ -1,0 +1,22 @@
+"#checkbox": {
+	title: '',
+	
+	top: 3,
+	left: 3,
+    width: 25,
+    height: 25,
+
+    borderRadius: 3,
+    borderColor: Alloy.Globals.palette.bianco_sporco,
+    borderWidth: 1,
+
+    backgroundColor: 'transparent',
+    color: Alloy.Globals.palette.bianco_sporco,
+
+    font:{
+    	fontSize: Alloy.Globals.fontSize.L, 
+    	fontWeight: 'bold'
+    },
+    
+    style: Ti.UI.iPhone.SystemButtonStyle.PLAIN
+}

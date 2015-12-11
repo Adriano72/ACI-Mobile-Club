@@ -1,0 +1,32 @@
+<Alloy>
+	<Window class="container" id="win">
+		<View id="wrapper">
+			<!-- Header -->
+			<Require  id="header"  src="components/headerBar" text="Login"/>
+			
+			<!-- Form -->
+			<ScrollView id="formWrapper">
+				<Label class="l3">Accedi alle informazioni della tua tessera!</Label>
+
+				<!-- Input -->
+				<TextField class="inputField" hintText=" Nome utente" id="username"/>
+				<TextField class="inputField" hintText=" Password" id="password" passwordMask="true"/>
+				<View id="ricordamiContainer">
+					<Widget id="ricordami" src="it.aci.informatica.ti.widgets.checkbox" value="false"/>
+					<Label id="ricordamiLabel" class="l3">Ricordami</Label>
+				</View>
+				<!-- Buttons -->
+				<Require class="button" id="btLogin" onClick="doLogin" src="components/rounded_button"/>
+				<Require class="button" id="btSignup" onClick="doSignup" src="components/rounded_button"/>
+				<Label class="l1" id="btResetPwd" onClick="doResetPwd"/>
+				<!-- <View class="buttonContainer" id="loginWrapper" onClick="doLogin">
+					<Label id="loginButton"/>
+				</View>
+				<Label class="buttonContainer signupButton" id="signupWrapper" onClick="doSignup"/>
+				<View id="resetWrapper">
+					<Label class="l1" onClick="doResetPwd">Hai dimenticato la tua Password?</Label>
+				</View> -->
+			</ScrollView>
+		</View>
+	</Window>
+</Alloy>

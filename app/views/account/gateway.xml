@@ -1,0 +1,9 @@
+<Alloy>
+	<Window id="win" class="container">
+		<View id="wrapper">
+			<Require id="btLogin" src="components/rounded_button" class="button" onClick="openLogin"/>
+			<Require id="btSignup" src="components/rounded_button" class="button" onClick="openSignup"/>
+			<Require id="btTessere" src="components/rounded_button" class="button" onClick="openTessere"/>
+		</View>
+	</Window>
+</Alloy>

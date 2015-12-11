@@ -1,0 +1,91 @@
+<resources>
+
+	<string name="app_title">MyCar</string>
+
+	<!-- Home -->
+	<string name="home_title">Login</string>
+	<string name="intro_home_text">Accedi per consultare informazioni tecniche, amministrative e fiscali sui tuoi veicoli.</string>
+	<string name="login_user_label">Username</string>
+	<string name="login_pass_label">Password</string>
+	<string name="remember_label">Ricordami</string>
+	<string name="forget_pass_text">Hai dimenticato la tua password?</string>
+	<string name="access_label">Accedi</string>
+	<string name="register_label">Registrati</string>
+
+	<!-- Alert -->
+	<string name="login_alert">Controlla nome utente e password e riprova</string>
+	<string name="rete_alert">Controlla le impostazioni di rete e riprova</string>
+	<string name="veicle_alert">Impossibile ottenere la lista dei veicoli</string>
+	<string name="detail_alert">Impossibile ottenere informazioni per questo veicolo</string>
+	<string name="paytax_alert">Impossibile ottenere le informazioni di pagamento</string>
+	<string name="servicegps_alert">Attenzione, i servizi di posizione devono essere abilitati</string>
+	<string name="loaction_alert">Impossibile stabilire la tua posizione.</string>
+	<string name="fiscalsituation_alert">Impossibile ottenere la situazione fiscale per questo veicolo</string>
+	<string name="pradigitale_alert">I servizi per il Pra digitale saranno disponibili dalla prossima versione.</string>
+
+	<!-- Loading -->
+	<string name="login_loading">Login in corso</string>
+	<string name="veicle_loading">Caricamento lista veicoli</string>
+	<string name="detail_loading">Caricamento dettagli veicolo</string>
+	<string name="paytax_loading">Caricamento dettagli di pagamento</string>
+	<string name="getlocation_loading">Rilevamento della posizione</string>
+	<string name="poi_loading">Caricamento dei punti di servizio ACI</string>
+	<string name="fiscasituation_loading">Caricamento della situazione fiscale</string>
+
+	<!-- ListCars -->
+	<string name="intro_listcars_text">Veicoli legati al tuo codice fiscale</string>
+	<string name="intestatario_label">Intestatario dal</string>
+	<string name="situazione_label">Situazione Fiscale</string>
+	<string name="situazione_button">Situazione fiscale</string>
+	<string name="pra_button">CdP Digitale</string>
+	<string name="dati_button">Dati</string>
+	<string name="intestatario_label">Intestatario dal</string>
+	<string name="locatario_label">Locatario dal</string>
+	<string name="usufruttuario_label">Usufruttuario dal</string>
+	
+	<!-- CarDetail-->
+	<string name="intro_cardetail_text">Dati veicolo</string>
+	<string name="auto_label">Auto</string>
+	<string name="motociclo_label">Motociclo</string>
+	<string name="rimorchio_label">Rimorchio</string>
+	<string name="autocarro_label">Autocarro</string>
+	<string name="ad_label">ad uso</string>
+	<string name="immatricolato_label">immatricolato il </string>
+	<string name="alimentazione_label">alimentato a</string>
+	<string name="con_label">con</string>
+	<string name="cavalli_label">CV fiscali</string>
+	<string name="cilindrata_label">di Cilindrata</string>
+	<string name ="misura_cilindrata_label">cc</string>
+	<string name="normativa_label">Rispetta la normativa CEE antinquinamento</string>
+	<string name="rubato_si_label">Risulta rubato</string>
+	<string name="rubato_no_label">Non risulta rubato</string>
+	<string name="ultratrentenne_si_label">Beneficia delle esenzioni riservate ai veicoli ultratrentennali</string>
+	<string name="ultratrentenne_no_label">Non beneficia delle esenzioni riservate ai veicoli ultratrentennali</string>
+	<string name="neopatentati_si_label">Può essere guidato da neo-patentati</string>
+	<string name="neopatentati_no_label">Non può essere guidato da neo_patentati</string>
+
+	<!-- FiscalSituation -->
+	<string name="intro_fiscasituation_text">Situazione fiscale</string>
+	<string name="stato_regolare_label">REGOLARE</string>
+	<string name="stato_irregolare_label">IRREGOLARE</string>
+	<string name="stato_dapagare_label">DA PAGARE</string>
+	<string name="paga_bollo_button">PAGA IL BOLLO</string>
+	<string name="punto_aci_button">CONTATTA UN PUNTO DI SERVIZIO</string>
+
+	<!-- PayTax -->
+	<string name="intro_paytax_text">Paga il Bollo</string>
+	<string name="importo_label">Importo dovuto:</string>
+	<string name="regione_label">Regione/Provincia autonoma:</string>
+	<string name="targa_label">Targa:</string>
+	<string name="modello_label">Marca e modello:</string>
+	<string name="paga_button">Procedi con il pagamento</string>
+
+	<!-- ListPointService -->
+	<string name="telefono_label">Telefono:</string>
+	<string name="indirizzo_label">Indirizzo:</string>
+	<string name="fax_label">Fax:</string>
+	<string name="email_label">Email:</string>
+
+	<!-- PointService-->
+	<string name="punti_aci_label">Punti ACI</string>
+</resources>

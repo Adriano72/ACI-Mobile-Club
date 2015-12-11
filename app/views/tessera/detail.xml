@@ -1,0 +1,31 @@
+<Alloy>
+	<Model src="tessere" instance="true" id="tessera"/>
+	<Window id="win" class="container" model="$.tessera" onOpen="doopen">
+		<TitleControl platform="ios">
+			<Label id="titleControl"  class="titleControl"></Label>
+		</TitleControl>
+		
+		<ScrollView class="scrollableContainer">
+
+			<View id="cover" class="row">
+				<ImageView id="coverImage" image="{$.tessera.img}"></ImageView>
+			</View>
+			<View id="h1" class="row">
+				<Label id="titleLabel" text="{$.tessera.name}"></Label>
+			</View>
+			<View id="h2" class="row">
+				<Label id="subtitleLabel" text="{$.tessera.slogan}"></Label>
+			</View>
+			<View id="body" class="row">
+				<TextArea id="bodyText" value="{$.tessera.abstract}"></TextArea>
+				<Button id="btDetail" onClick="onDetail">maggiori informazioni</Button>
+			</View>
+			<View id="footer" class="row">
+				<View id="buyWrapper" class="roundContainer" onClick="onBuy">
+					<Label id="price" text="acquista a €{$.tessera.price}"></Label>
+				</View>
+			</View>
+
+		</ScrollView>
+	</Window>
+</Alloy>

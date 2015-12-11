@@ -1,0 +1,13 @@
+
+"#title" : {
+  height: 40,
+  width: Ti.UI.FILL,
+  backgroundColor: Alloy.Globals.palette.bianco_sporco,
+  color: Alloy.Globals.palette.blu,
+  textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+  verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+  font: {
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+		fontSize: Alloy.Globals.fontSize.XL
+	}
+}
