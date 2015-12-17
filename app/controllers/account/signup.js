@@ -44,6 +44,9 @@ function submit(data, cb) {
             _.defer(function() {
                 $.win.close();
             });
+        } else {
+            console.error('errore salvataggio', err);
+            alert('Si è verificato un errore nella registrazione');
         }
     });
 }
