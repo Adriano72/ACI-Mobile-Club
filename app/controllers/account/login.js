@@ -73,7 +73,16 @@ function doLogin() {
             if (err) {
                 console.log('account doLogin error', err);
 
-                var msg = err.data && err.data.length ? err.data[0] : 'Si è verificato un errore';
+                var msg = (function(err){
+                    if(Array.isArray(err.data)){
+                        return err.data[0];
+                    } else if(_.isString(err.data)) {
+                        return err.data;
+                    } else {
+                        return 'Si è verificato un errore';
+                    }
+                })(err); 
+                
                 alert(msg);
 
             }
