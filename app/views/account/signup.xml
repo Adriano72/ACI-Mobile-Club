@@ -1,11 +1,11 @@
 <Alloy>
 	<Window class="container bg-blue" id="win">
-		<ScrollView id="main">
+		<View id="main">
 			<Widget id="formWizard" src="it.aci.informatica.ti.widgets.formwizard" onScrollend="stepChange" />
 			<View id="buttonsWrapper">
 				<Require class="button" id="btSecondary" onClick="prev" src="components/rounded_button"/>
 				<Require class="button" id="btPrimary" onClick="next" src="components/rounded_button"/>
 			</View>
-		</ScrollView>
+		</View>
 	</Window>
 </Alloy>
