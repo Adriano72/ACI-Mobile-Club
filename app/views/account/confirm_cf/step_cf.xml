@@ -1,0 +1,10 @@
+<Alloy>
+	<View class="container">
+		<View id="contentWrapper">
+			<Widget id="message" class="lb" src="nl.fokkezb.html2as.widget" />
+			<View id="formWrapper">
+				<Widget id="form" src="it.aci.informatica.ti.widgets.form" />
+			</View>
+		</View>
+	</View>
+</Alloy>

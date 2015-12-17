@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="win" class="container">
+	<Window id="win" class="container bg-blue">
 		<View id="wrapper">
 			<Require id="btLogin" src="components/rounded_button" class="button" onClick="openLogin"/>
 			<Require id="btSignup" src="components/rounded_button" class="button" onClick="openSignup"/>

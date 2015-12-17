@@ -1,0 +1,11 @@
+<Alloy>
+	<View id="wrapper" class="container">
+		
+		
+		<View id="content">
+			<!-- Leave this space clear for controls to be added by the app at convenience -->
+		</View>
+		
+
+	</View>
+</Alloy>

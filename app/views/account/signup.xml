@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="win">
+	<Window class="container bg-blue" id="win">
 		<ScrollView id="main">
 			<Widget id="formWizard" src="it.aci.informatica.ti.widgets.formwizard" onScrollend="stepChange" />
 			<View id="buttonsWrapper">

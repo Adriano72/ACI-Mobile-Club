@@ -22,20 +22,12 @@
   },
   "env:development": {
     "DevMode": false,
-
-    "SSO_baseurl": "http://sso-web.svi.local",
+    "SSO_baseurl": "http://10.64.4.202",
     "SSO_profilo": "mobile",
     "SSO_keypass": "cf1cEw35P1T47s0fmTT30vwsB17RuG7V",
-
-    "__SSO_baseurl": "http://col-login.aci.it",
-    "__SSO_profilo": "mobile",
-    "__SSO_keypass": "0my6o9t6",
-
     "__SSO_baseurl": "http://login.aci.it",
     "__SSO_profilo": "mobile",
     "__SSO_keypass": "0my6o9t6",
-
-
     "__AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
     "__AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
     "__AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
@@ -45,20 +37,12 @@
   },
   "env:test": {
     "DevMode": false,
-
-    "SSO_baseurl": "http://sso-web.svi.local",
+    "SSO_baseurl": "http://10.64.4.202",
     "SSO_profilo": "mobile",
     "SSO_keypass": "cf1cEw35P1T47s0fmTT30vwsB17RuG7V",
-
-    "__SSO_baseurl": "http://col-login.aci.it",
-    "__SSO_profilo": "mobile",
-    "__SSO_keypass": "0my6o9t6",
-
     "__SSO_baseurl": "http://login.aci.it",
     "__SSO_profilo": "mobile",
     "__SSO_keypass": "0my6o9t6",
-
-
     "__AciGeo_BaseUrl": "http://10.64.4.138:11001/geo/v2",
     "__AciGeo_BannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads/syc/",
     "__AciGeo_PuntiAciBannerBaseUrl": "http://10.64.4.138:11001/geo/v2/uploads",
@@ -67,11 +51,9 @@
     "AciGeo_PuntiAciBannerBaseUrl": "http://www.aci.it/geo/v2/uploads"
   },
   "env:production": {
-
     "SSO_baseurl": "http://login.aci.it",
     "SSO_profilo": "mobile",
     "SSO_keypass": "0my6o9t6",
-
     "SysReport_Enabled": false,
     "AciGeo_BaseUrl": "http://www.aci.it/geo/v2",
     "AciGeo_BannerBaseUrl": "http://www.aci.it/geo/v2/uploads/syc/",
@@ -94,6 +76,7 @@
     "it.aci.informatica.ti.widgets.form_textfield": "1.0",
     "it.aci.informatica.ti.widgets.form": "1.0",
     "it.aci.informatica.ti.widgets.formwizard": "0.1.0",
-    "it.aci.informatica.ti.widgets.wizard": "0.1.0"
+    "it.aci.informatica.ti.widgets.wizard": "0.1.0",
+    "it.aci.informatica.ti.widgets.form_iconselector": "0.1.0"
   }
 }

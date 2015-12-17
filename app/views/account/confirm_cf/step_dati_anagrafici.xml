@@ -1,0 +1,27 @@
+<Alloy>
+	<!-- <Collection src="tempCollection" />-->
+	<View class="container">
+		<View class="row">
+			<Label class="lb_title" id="nomeTitle">Nome</Label>
+			<Label class="lb_value" id="nomeValue"/>
+		</View>
+		<View class="row">
+			<Label class="lb_title" id="cognomeTitle">Cognome</Label>
+			<Label class="lb_value" id="cognomeValue"/>
+		</View>
+		<View class="row">
+			<Label class="lb_title" id="datanascitaTitle">Data nascita</Label>
+			<Label class="lb_value" id="datanascitaValue"/>
+		<!--	<Button class="bt_options" onClick="optionsDataNascita">Non è la tua data di nascita?</Button> -->
+		</View>
+		<View class="row">
+			<Label class="lb_title" id="luogoTitle">Luogo di nascita</Label>
+			<Label class="lb_value" id="luogoValue"/>
+		</View>
+		<View class="row">
+			<Label class="lb_title" id="sessoTitle">Sesso</Label>
+			<Label class="lb_value" id="sessoValue"/>
+		</View>
+
+	</View>
+</Alloy>

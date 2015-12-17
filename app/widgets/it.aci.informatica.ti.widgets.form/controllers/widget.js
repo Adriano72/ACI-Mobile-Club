@@ -3,8 +3,7 @@
  * Widget che genera una form a partire da uno schema dati.
  */
 
-//widget di default per il singolo campo. è una reference per questo widget
-var DEFAULT_FIELD_CTRL = 'it.aci.informatica.ti.widgets.form_textfield';
+
 
 var formSchema;
 var currentFocus;
@@ -49,6 +48,9 @@ function createFieldGroupView() {
 }
 
 
+$.applyProperties = function(props) {
+    $.wrapper.applyProperties(props);
+};
 
 /**
  * ### createFieldController
@@ -57,13 +59,25 @@ function createFieldGroupView() {
  * @return {widget}
  */
 function createFieldController(field) {
-    //il campo può specificare un controller (un widget) da renderizzare. il controllo di default è il widget di testo (reference obbligatoria)
-    var widget = field.widget || DEFAULT_FIELD_CTRL;
+    
+    //specifica il tipo di controllo da renderizzare
+    var type = field.type || 'text';
 
-    //parametri da passare al costruttore del campo
-    var params = _(field).pick('hintText', 'prefix', 'postfix', 'keyboardType', 'passwordMask', 'value');
+   
+    var ctrl;
+    switch(type){
+        case 'text':
+            var params = _(field).pick('hintText', 'prefix', 'postfix', 'keyboardType', 'passwordMask', 'value');
+            ctrl = Alloy.createWidget('it.aci.informatica.ti.widgets.form_textfield', params);
+        break;
+        case 'iconselector':
+            var params = _(field).pick('items', 'selected');
+            ctrl = Alloy.createWidget('it.aci.informatica.ti.widgets.form_iconselector', params);
+        break;
+    }
 
-    var ctrl = Alloy.createWidget(widget, params);
+ 
+      
 
     //gestisco la visualizzazione degli errori al focus e al blur
     ctrl.on('focus', function() {
@@ -74,6 +88,7 @@ function createFieldController(field) {
         currentFocus = null;
         hideError();
     });
+
 
     return ctrl;
 }
@@ -100,7 +115,7 @@ function createFieldController(field) {
 function validateField(field, cb) {
 
     //valore del campo
-    var value = field.controller.value.trim();
+    var value =(field.controller.value || '').trim();
 
     //array degli errori riscrontrati
     var errors = [];

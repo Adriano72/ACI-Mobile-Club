@@ -1,0 +1,10 @@
+
+".lb":{
+	font:{
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSansNarrow
+	},
+	width: "90%",
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: Alloy.Globals.palette.bianco_sporco
+}

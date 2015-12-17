@@ -1,0 +1,34 @@
+"#wrapper":{
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	backgroundColor: "transparent"
+}
+
+"#icon_wrapper":{
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	backgroundColor: "transparent"
+}
+
+
+"#icon":{
+	top: 10,
+	bottom: 10,
+	right: 10,
+	left: 10,
+	
+	backgroundColor: "transparent"
+}
+
+".selected":{
+	borderWidth: 1,
+	borderColor: "black",
+	borderRadius: "50%"	
+}
+
+".unselected":{
+	borderWidth: 0,
+	borderColor: "black",
+	borderRadius: "50%"	
+}
+

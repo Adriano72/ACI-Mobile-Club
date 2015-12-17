@@ -31,7 +31,7 @@ function prev() {
  */
 function submit(data, cb) {
     Alloy.Globals.loading.show('Salvataggio dati');
-    require('user').doSignup(data, function(err, result) {
+    require('ti.aci').Services.SSO.signup(data, function(err, result) {
 
         console.log('doSignup ', err, result);
 

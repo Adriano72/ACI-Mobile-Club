@@ -42,6 +42,7 @@
 	<string name="intestatario_label">Intestatario dal</string>
 	<string name="locatario_label">Locatario dal</string>
 	<string name="usufruttuario_label">Usufruttuario dal</string>
+	<string name="disclaimer_listCar">Se riscontri difformità tra le informazioni in tuo possesso e quelle visualizzate ti preghiamo di contattare uno dei Punti di Servizio ACI (per l’elenco clicca qui)</string>
 	
 	<!-- CarDetail-->
 	<string name="intro_cardetail_text">Dati veicolo</string>
@@ -59,10 +60,18 @@
 	<string name="normativa_label">Rispetta la normativa CEE antinquinamento</string>
 	<string name="rubato_si_label">Risulta rubato</string>
 	<string name="rubato_no_label">Non risulta rubato</string>
+	<string name="rubato_nd_label">Controllo veicolo rubato non disponibile</string>
 	<string name="ultratrentenne_si_label">Beneficia delle esenzioni riservate ai veicoli ultratrentennali</string>
 	<string name="ultratrentenne_no_label">Non beneficia delle esenzioni riservate ai veicoli ultratrentennali</string>
+	<string name="ultratrentenne_nd_label">Calcolo veicoli ultratrentennali non disponibile</string>
 	<string name="neopatentati_si_label">Può essere guidato da neo-patentati</string>
-	<string name="neopatentati_no_label">Non può essere guidato da neo_patentati</string>
+	<string name="neopatentati_no_label">Non può essere guidato da neo-patentati</string>
+	<string name="neopatentati_nd_label">Calcolo neo-patentati non disponibile</string>
+	<string name="disclaimer_Immatricolazione">La data si riferisce all’immatricolazione in Italia che di massima corrisponde alla data di produzione. Se però il veicolo è stato importato in Italia da altro paese la data di produzione (antecedente) e quella di immatricolazione (successiva) possono essere molto distanti</string>
+	<string name="disclaimer_Rubato_si">Il veicolo è presente nell’elenco dei veicoli rubati del Ministero dell’Interno</string>
+	<string name="disclaimer_Rubato_no">Il veicolo non è presente nell’elenco dei veicoli rubati del Ministero dell’Interno</string>
+	<string name="disclaimer_Ultratrentennale">Le esenzioni valgono soltanto per i veicoli non adibiti ad uso professionale o utilizzati nell'esercizio di attività di impresa, arti o professioni</string>
+	<string name="disclaimer_NeoPatentati">I neopatentati, in base all’articolo 117 C.d.S., non possono guidare auto con rapporto potenza peso superiore ai 55 kw/tonnellata (75 CV/tonnellata); inoltre l’auto non può superare i 70 kW (95 CV) di potenza massima a prescindere dalla sua massa</string>
 
 	<!-- FiscalSituation -->
 	<string name="intro_fiscasituation_text">Situazione fiscale</string>

@@ -1,0 +1,8 @@
+"#wrapper":{
+	width: Ti.UI.SIZE
+}
+
+"#content":{
+	width: Ti.UI.SIZE,
+	layout: "horizontal"
+}

@@ -1,0 +1,45 @@
+
+".container" : {
+  layout: "vertical",
+  height: Ti.UI.SIZE
+}	
+
+".row":{
+	top: 2,
+	bottom: 3,
+	height: Ti.UI.SIZE
+}
+
+".lb_value":{
+	width: Ti.UI.SIZE,
+	right: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+	height: 40,
+	font: {
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold,
+		fontSize: Alloy.Globals.fontSize.XXL
+	},
+	color: Alloy.Globals.palette.bianco
+}
+
+".lb_title":{
+	width: Ti.UI.SIZE,
+	left: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+	height: 40,
+	font: {
+		fontFamily: Alloy.Globals.font.PTSans_Narrow,
+		fontSize: Alloy.Globals.fontSize.XL
+	},
+	color: Alloy.Globals.palette.bianco
+}
+
+".bt_options":{
+	width: Ti.UI.FILL,
+	top: 45,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+	verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
+	height: 40
+}

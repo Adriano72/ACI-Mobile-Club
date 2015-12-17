@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="win">
+	<Window class="container bg-blue" id="win">
 		<View id="wrapper">
 			<!-- Header -->
 			<Require  id="header"  src="components/headerBar" text="Login"/>

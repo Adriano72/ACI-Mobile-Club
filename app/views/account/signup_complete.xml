@@ -1,5 +1,5 @@
 <Alloy>
-	<Window class="container" id="win">
+	<Window class="container bg-blue" id="win">
 		
 		<View id="textWrapper">
 			<Label class="h2">Grazie per aver completato l'iscrizione. Controlla la mail.</Label>

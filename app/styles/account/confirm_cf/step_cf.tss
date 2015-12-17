@@ -1,0 +1,21 @@
+"#contentWrapper":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical"
+}
+
+".lb":{
+	top: 10,
+	font:{
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSansNarrow
+	},
+	width: "90%",
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: Alloy.Globals.palette.bianco_sporco
+}
+
+"#form":{
+	backgroundColor: "red",
+	height: Ti.UI.SIZE
+}

@@ -224,7 +224,7 @@ exports.refreshData = function(cb) {
     var isSameDay = now.getDate() != new Date(lastLogin).getDate();
     if (isConnected && hasCredentials && hasLoggedOnce) {
         //if (Ti.Network.networkType != Ti.Network.NETWORK_NONE, credentials && lastLogin ){
-        exports.doLogin(credentials[0], credentials[1], credentials[2]);
+        exports.doLogin(credentials[0], credentials[1], credentials[2], cb);
         console.log('refresh');
     }
 

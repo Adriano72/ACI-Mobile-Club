@@ -21,46 +21,95 @@ function onActivitiLoaded() {
     var token = tiACI.Services.SSO.authToken;
     tiACI.Services.praTasse.detailsVehicle(targa, serieTarga, token, {
 
-        success: function(details) {
-            console.log('myCar/carDetail success', details);
-            details = details.datiVeicolo;
+       success : function(response) {
+            Ti.API.info(JSON.stringify(response));
+            details = response.datiVeicolo;
             $.auto.text = tipo === "AUTOVEICOLO" ? L('auto_label') : tipo === "MOTOVEICOLO" ? L('motociclo_label') : L('autocarro_label');
             $.uso.text = details.uso;
-            $.immatricolato.text = details.formattedPrimaImmatricolazione;
+            $.immatricolato.text = details.dataPrimaImmatricolazione;
             $.alimentazione.text = details.alimentazione;
             $.cavalli.text = details.cavalliFiscali;
             $.cilindrata.text = details.cilindrata;
 
             // ---------------------- inserire i controlli appena sono disponibili i paramentri dal servizio ------------------------------------
-            $.rubatoLabel.text = L("rubato_si_label");
-            $.ultratrentenneLabel.text = L("ultratrentenne_si_label");
-            $.neopatentatiLabel.text = L("neopatentati_si_label");
+            if(!response.hasOwnProperty('denunciaFurto')) {
+                $.rubatoLabel.text = L("rubato_nd_label");
+                discaimerRubato = L("rubato_nd_label");
+            } else if(response.denunciaFurto) {
+                $.rubatoLabel.text = L("rubato_si_label");
+                discaimerRubato = L("disclaimer_Rubato_si");
+            }
+            else {
+                $.rubatoLabel.text = L("rubato_no_label");
+                discaimerRubato = L("disclaimer_Rubato_no");
+            }
+            if(!response.hasOwnProperty('ultratrentennale')) {
+                $.ultratrentenneLabel.text = L("ultratrentenne_nd_label");
+            } else if(response.ultratrentennale) {
+                $.ultratrentenneLabel.text = L("ultratrentenne_si_label");
+            }
+            else {
+                $.ultratrentenneLabel.text = L("ultratrentenne_no_label");
+            }
+            if(!response.hasOwnProperty('neopatentati')) {
+                $.neopatentatiLabel.text = L("neopatentati_nd_label");
+            } else if(response.neopatentati) {
+                $.neopatentatiLabel.text = L("neopatentati_si_label");
+            }
+            else {
+                $.neopatentatiLabel.text = L("neopatentati_no_label");
+            }
             Alloy.Globals.loading.hide();
         },
-        error: function(e) {
-            console.log('myCar/carDetail error', details);
-
+        error : function(e) {
             $.detailContainer.hide();
             Alloy.Globals.loading.hide();
             var dialog = Titanium.UI.createAlertDialog({
-                message: L("detail_alert"),
-                buttonNames: ["OK"]
+                message:L("detail_alert"),
+                buttonNames : ["OK"]
             });
-            dialog.addEventListener('click', function() {
+            dialog.addEventListener('click',function(){
                 onArrowClick();
             });
-            dialog.addEventListener('androidback', function() {
+            dialog.addEventListener('androidback',function(){
                 onArrowClick();
             });
             dialog.show();
         }
+        
     });
 
 }
 
-function onArrowClick() {
-    $.carDetail.close();
+
+function showDisclaimer(message) {
+    var dialog = Titanium.UI.createAlertDialog({
+        message: message,
+        buttonNames : ["Chiudi"]
+    });
+    dialog.show();  
 }
+
+function showDislaimerImmatricolazione() {
+    showDisclaimer(L('disclaimer_Immatricolazione'));
+}
+
+function showDislaimerRubato() {
+    showDisclaimer(discaimerRubato);
+}
+
+function showDislaimerUltratrentennale() {
+    showDisclaimer(L('disclaimer_Ultratrentennale'));
+}
+
+function showDislaimerNeoPatentati() {
+    showDisclaimer(L('disclaimer_NeoPatentati'));
+}
+
+function onArrowClick() {
+    $.win.close();
+}
+
 
 
 commons.initWindow($.win, L("intro_cardetail_text"), null, []);

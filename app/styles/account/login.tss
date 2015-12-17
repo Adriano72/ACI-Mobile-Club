@@ -1,6 +1,3 @@
-".container":{
-	backgroundImage: "sfondoLogin.jpg"
-}
 
 "#wrapper":{
 	height: Ti.UI.FILL,

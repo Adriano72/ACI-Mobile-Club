@@ -1,0 +1,8 @@
+<Alloy>
+	<View id="wrapper" onClick="toggle">
+		<View id="icon_wrapper">
+			<ImageView id="icon"  />
+		</View>
+	</View>
+
+</Alloy>

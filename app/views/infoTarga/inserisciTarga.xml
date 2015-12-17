@@ -1,0 +1,24 @@
+<Alloy>
+	<Window class="container bg-blue" id="win">
+		<ScrollView id="main">
+			<!-- <Widget id="form" src="it.aci.informatica.ti.widgets.form"  />
+			-->
+
+			<Widget id="title" class="lb" src="nl.fokkezb.html2as.widget" />
+			
+			
+			<Widget id="targa" src="it.aci.informatica.ti.widgets.form_textfield" hintText="Targa"  />
+
+			<Label id="labelTipo" class="lb" >Seleziona il tipo di veicolo</Label>
+
+			<Widget id="tipo" src="it.aci.informatica.ti.widgets.form_iconselector" >
+				<View image="/images/ic_vehicle_auto_bianca.png" value="AUTOVEICOLO" ></View>
+				<View image="/images/ic_vehicle_moto_bianca.png" value="MOTOVEICOLO" ></View>
+			</Widget>
+
+			<View id="buttonsWrapper">
+				<Require class="button" id="btSubmit" onClick="submit" src="components/rounded_button" />
+			</View> 
+		</ScrollView>
+	</Window>
+</Alloy>

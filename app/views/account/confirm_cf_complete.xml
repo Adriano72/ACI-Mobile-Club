@@ -1,4 +1,11 @@
 <Alloy>
-	<Window id="win" class="container">
+	<Window id="win" class="container bg-blue">
+		<View id="wrapper">
+			<Widget id="message" class="lb" src="nl.fokkezb.html2as.widget" />
+			<View id="buttonWrapper">
+				<Require id="btCheck" src="components/rounded_button" class="button" onClick="check" primaryText="Verifica"/>
+				<Require id="btChangeMobile" src="components/rounded_button" class="button" onClick="changeMobile" primaryText="cambia il celluare" />
+			</View>
+		</View>
 	</Window>
 </Alloy>

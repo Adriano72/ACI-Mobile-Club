@@ -2543,6 +2543,12 @@ function normalizeCallback(cb) {
 // ## Public API
 //
 
+exports.tipoVeicolo = {
+	"AUTOVEICOLO": 1,
+	"MOTOVEICOLO": 4,
+	"AUTOCARRO": 2
+};
+
 
 /**
  * ### situazioneFiscale
@@ -3211,6 +3217,27 @@ exports.changeCodiceFiscale = exports.authorizedService(function(cf, data, cb) {
     }, {
         fiscalCode: cf
     }, data);
+
+    rest.get(url, params, normalizeResponse(cb));
+});
+
+
+/**
+ * ### consolidateMobile
+ * Conferma l'autenticità del cellulare tramite il codice di verifica (quello che arriva per SMS).
+ * @param {string} code codice di verifica
+ * @param {Function} cb callback nella forma (err, res)
+ */
+exports.consolidateMobile = exports.authorizedService(function(code, cb) {
+    //endpoint della chiamata
+    var url = endpoint(path('consolidateMobileRest'));
+
+    //parametri da passare al servizio
+    var params = {
+        'sso-id': authToken,
+        'randomCode': code,
+        'username': user['userInfo.username']
+    };
 
     rest.get(url, params, normalizeResponse(cb));
 });

@@ -1,0 +1,18 @@
+".selected":{
+	borderWidth: 1,
+	borderColor: Alloy.Globals.palette.bianco_sporco,
+	borderRadius: "50%"	
+}
+
+".unselected":{
+	borderWidth: 0
+}
+
+"#icon":{
+	top: 15,
+	bottom: 15,
+	left: 15,
+	right: 15,
+	height: 70,
+	width: 70
+}

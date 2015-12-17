@@ -194,14 +194,10 @@ function loadData() {
     cacheDir.deleteDirectory(true);
 
     //banner 
-    var images = _(3).times(function(e) {
-        return 'http://www.aci.it/fileadmin/syc/acimobileclub/banner' + (e + 1) + '.jpg';
+    var images = _([4,5,6]).map(function(e) {
+        return 'http://www.aci.it/fileadmin/syc/acimobileclub/banner' + (e ) + '.jpg';
     });
-    // $.gallery.getView().height = Alloy.Globals.size.W30;
-    //    $.gallery.getView().height = 300;
-    //    $.gallery.getView().width = Alloy.Globals.W;
-    //    $.gallery.getView().top = 0;
-
+    
     $.gallery.setImages(images);
 
 

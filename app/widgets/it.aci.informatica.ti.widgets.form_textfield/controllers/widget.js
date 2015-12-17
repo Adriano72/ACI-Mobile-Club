@@ -54,6 +54,9 @@ _(['return', 'blur', 'focus']).each(function(name) {
 });
 
 
+$.applyProperties = function(props) {
+    $.fieldWrapper.applyProperties(props);
+};
 
 (function constructor(args) {
 
@@ -85,6 +88,9 @@ _(['return', 'blur', 'focus']).each(function(name) {
     }
     $.fieldPostfix.visible = Boolean($.fieldPostfix.text);
     $.value = args.value;
+
+
+    $.applyProperties(args);
 
 
 

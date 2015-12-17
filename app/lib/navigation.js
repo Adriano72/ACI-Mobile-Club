@@ -132,7 +132,7 @@ exports.openSignupComplete = function() {
  * @return {Ti.UI.Window} istanza della Window creata e aperta
  */
 exports.openConfirmCF = function(onConfirm) {
-    open('account/confirm_cf', {
+    open('account/confirm_cf/index', {
         onConfirm: onConfirm
     });
 };
@@ -216,7 +216,7 @@ exports.openTessera = requireLogin(_(open).partial('tessera/my'));
  * ### openInfoTargaMain
  * @return {Ti.UI.Window} istanza della Window creata e aperta
  */
-exports.openInfoTargaMain = requireLogin(requireCF(_(open).partial('infoTarga/main')));
+exports.openInfoTargaMain = requireLogin(requireCF(_(open).partial('infoTarga/inserisciTarga')));
 
 
 

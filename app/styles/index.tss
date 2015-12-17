@@ -20,7 +20,7 @@
 "#gallery":{
 	top:0,
 	//height: "50%"
-	height: Alloy.Globals.size.W62,
+	height: Alloy.Globals.size.W50,
 	//height: Ti.UI.SIZE
 }
 
@@ -63,12 +63,12 @@
 
 
 "#tileMyCar":{
-	icon: "/images/ic_action_home_punti_di_servizio_aci.png",
+	icon: "/images/ic_action_home_mycar.png",
 	text: 'MY CAR'
 }
 
 "#tileInfoTarga":{
-	icon: "/images/ic_action_home_punti_di_servizio_aci.png",
+	icon: "/images/ic_action_home_infotarga.png",
 	text: 'INFO TARGA'
 }
 

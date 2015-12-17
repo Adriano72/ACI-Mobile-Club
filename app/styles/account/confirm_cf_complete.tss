@@ -1,5 +1,27 @@
+"#wrapper":{
+	layout: "vertical",
+	height: Ti.UI.SIZE
+}
 
+"#buttonWrapper":{
+	top: 20,
+	layout: "vertical",
+	height: Ti.UI.SIZE
+}
 
-".container":{
-	backgroundImage: "/sfondoLogin.jpg"
+".lb":{
+	font:{
+		fontSize: Alloy.Globals.fontSize.L,
+		fontFamily: Alloy.Globals.font.PTSansNarrow
+	},
+	width: "90%",
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: Alloy.Globals.palette.bianco_sporco
+}
+
+".button":{
+	bottom: 15,
+	color :  Alloy.Globals.palette.bianco_sporco,
+	backgroundColor: 'transparent',
+	width: "90%"
 }
