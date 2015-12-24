@@ -28,6 +28,8 @@
 	width: "70%"
 }
 
+
+
 "#btSubmit":{
 	top: 40,
 	color :  Alloy.Globals.palette.bianco_sporco,

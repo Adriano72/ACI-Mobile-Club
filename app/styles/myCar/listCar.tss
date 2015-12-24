@@ -8,11 +8,23 @@
 ".viewButton":{
 	layout: "horizontal",
 	width: Titanium.UI.SIZE,
-	height: "34dp",
-	borderRadius: "30dp",
-	borderWidth: "2dp",
 	backgroundColor: "#006db3"
 }
+
+".viewButton[platform=android]":{
+	height: "34dp",
+	borderRadius: "30dp",
+	borderWidth: "2dp"
+}
+
+".viewButton[platform:ios]":{
+	right: 7,
+	height: 34,
+	borderRadius: 17,
+	borderWidth: 2,
+	borderColor: "#006db3"
+}
+
 ".imageButton":{
 	height: "20dp",
 	width:Titanium.UI.SIZE,
@@ -27,7 +39,8 @@
 	font: {
 		fontSize: "16dp",
 		fontFamily: Alloy.Globals.font.PTSans_Narrow
-	}
+	},
+	width: Ti.UI.SIZE
 }
 "#veicleImg":{
 	height: "50dp"
@@ -48,3 +61,100 @@
 ".containderHeader":{
 	backgroundColor: "#efeff4"
 }
+
+".imgInfo":{
+	image: "/images/mycar_ic_info.png",
+	height: "15dp"
+}
+
+".desclabel":{
+	color: "#555555",
+	font: {
+		fontSize: "17dp"
+	},
+	left: '3dp'
+}
+
+/** ios  */
+
+"#wrapper":{
+	width: Ti.UI.FILL,
+}
+
+"#listContainer[platform=ios]":{
+	allowsSelection: false,
+	backgroundColor: Alloy.Globals.palette.grigio_chiaro
+}
+
+"ItemTemplate":{
+	height: Ti.UI.SIZE,
+	bottom: 20,
+	backgroundColor: Alloy.Globals.palette.bianco_sporco
+
+}
+
+"#footerWrapper":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	layout: "vertical",
+}
+
+"#itemWrapper":{
+	layout: "vertical",
+	height: Ti.UI.SIZE,
+	width: "95%",
+	//backgroundColor: "red",
+}
+
+"#vehicleWrapper":{
+	
+	layout: "horizontal",
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	//backgroundColor: "yellow"
+}
+
+"#buttonWrapper":{
+	top: 10,
+	layout: "horizontal",
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE ,
+	//backgroundColor: "green"
+
+}
+
+"#vehicleImg":{
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+}
+
+
+"#dataWrapper":{
+	left: 5	,
+	layout: "vertical",
+	//backgroundColor: "pink",
+	height: Ti.UI.SIZE,
+}
+
+".textLine":{
+	layout: "horizontal",
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE
+}
+
+".datalabel[platform:ios]":{
+	width: Ti.UI.SIZE,
+	right: 4
+}
+".licenseLabel[platform:ios]":{
+	width: Ti.UI.SIZE,
+	right: 5
+}
+"#disclaimer_listCar[platform=ios]":{
+	width: "95%"
+}
+
+
+
+
+

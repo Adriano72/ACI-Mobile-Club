@@ -1,0 +1,11 @@
+<Alloy>
+	<!-- container dell'elemento  -->
+	<View id="itemWrapper">
+		<!-- container per il contenuto di questo elemento -->
+		<View id="contentWrapper"/>
+		<!-- container per l'icona (i) -->
+		<View id="infoWrapper">
+			<ImageView id="imgInfo"/>
+		</View>
+	</View>
+</Alloy>

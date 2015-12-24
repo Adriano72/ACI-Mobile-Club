@@ -1,0 +1,27 @@
+"#itemWrapper":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	//height: 200
+	backgroundColor: "yellow"
+}
+
+"#contentWrapper":{
+	width: "89%",
+	left:0,
+	height: Ti.UI.SIZE,
+	backgroundColor: "green"
+
+}
+
+"#infoWrapper":{
+	width: "10%",
+	right: 0,
+	height: Ti.UI.SIZE,
+	backgroundColor: "pink"
+
+}
+
+"#imgInfo":{
+	image: "/images/mycar_ic_info.png",
+	height: 15
+}

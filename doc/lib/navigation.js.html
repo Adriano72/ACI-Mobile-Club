@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>navigation.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/lib/navigation.js", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h1">
+        <a href="#navigation">Navigation</a>
+      </div>
+      <div class="heading h3">
+        <a href="#open">open</a>
+      </div>
+      <div class="heading h3">
+        <a href="#requirelogin">requireLogin</a>
+      </div>
+      <div class="heading h2">
+        <a href="#public%20api">PUBLIC API</a>
+      </div>
+      <div class="heading h3">
+        <a href="#nav">Nav</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openaccountgateway">openAccountGateway</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openlogin">openLogin</a>
+      </div>
+      <div class="heading h3">
+        <a href="#opensignup">openSignup</a>
+      </div>
+      <div class="heading h3">
+        <a href="#opensignupcomplete">openSignupComplete</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openresetpassword">openResetPassword</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openpuntiacimain">openPuntiAciMain</a>
+      </div>
+      <div class="heading h3">
+        <a href="#opensycmain">openSycMain</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openassistenzastradalemain">openAssistenzaStradaleMain</a>
+      </div>
+      <div class="heading h3">
+        <a href="#opentessera">openTessera</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openinfotargamain">openInfoTargaMain</a>
+      </div>
+      <div class="heading h3">
+        <a href="#openmycarmain">openMyCarMain</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="navigation">
+  <h1>
+    <a href="#navigation" name="navigation" class="pilcrow">&#182;</a>
+    Navigation
+  </h1>
+</div>
+
+
+<p>Funzioni per la navigazione tra le schermate dell'app</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="open">
+  <h3>
+    <a href="#open" name="open" class="pilcrow">&#182;</a>
+    open
+  </h3>
+</div>
+
+
+<p>Funzione generica per aprire una finestra</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">ctrl</span>
+      <span class="dox_type">string</span>
+      <span>nome del controller</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">args</span>
+      <span class="dox_type">hash</span>
+      <span>(opzionale) argomenti da passare al controller in creazione</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">open</span><span class="p">(</span><span class="nx">ctrl</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;navigation open &#39;</span><span class="p">,</span> <span class="nx">ctrl</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">win</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="nx">ctrl</span><span class="p">,</span> <span class="nx">args</span> <span class="o">||</span> <span class="p">{}).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">,</span> <span class="nx">win</span><span class="p">);</span>
+    <span class="nx">exports</span><span class="p">.</span><span class="nx">Nav</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">win</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">win</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="requirelogin">
+  <h3>
+    <a href="#requirelogin" name="requirelogin" class="pilcrow">&#182;</a>
+    requireLogin
+  </h3>
+</div>
+
+
+<p>Wrapper di una qualsiasi funzione di navigazione. Implementa la logica per cui una funzione viene eseguita solo se l'utente è loggato, altiimenti apre la finestra di login. 
+Questo wrapper funziona tramite closure: se ho una funzione <code>myFunc</code>, posso proteggerla generando una nuova funzione <code>myProtectedFunc = requireLogin(myFunc)</code></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">fn</span>
+      <span class="dox_type">Function</span>
+      <span>funzione da proteggere</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Function</span>
+      <span>wrapper della funzione da proteggere, che implementa il meccanismo di login</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">requireLogin</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">isLogged</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">fn</span> <span class="o">&amp;&amp;</span> <span class="nx">fn</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">openAccountGateway</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="public%20api">
+  <h2>
+    <a href="#public%20api" name="public%20api" class="pilcrow">&#182;</a>
+    PUBLIC API
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="nav">
+  <h3>
+    <a href="#nav" name="nav" class="pilcrow">&#182;</a>
+    Nav
+  </h3>
+</div>
+
+
+<p>Riferimento alla NavigationWindow globale </p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="s2">&quot;Nav&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openaccountgateway">
+  <h3>
+    <a href="#openaccountgateway" name="openaccountgateway" class="pilcrow">&#182;</a>
+    openAccountGateway
+  </h3>
+</div>
+
+
+<p>Apre la schermata <code>AccountGateway</code> in cui l'utente sceglie se loggarsi o registrarsi</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">onLogin</span>
+      <span class="dox_type">Function</span>
+      <span>(opzionale) funzione da eseguire al completamento della login. Solitamente è una funzione di reindirizzamento, verrà eventualmente passata alla schermata di login.</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openAccountGateway</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onLogin</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;openAccountGateway&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;account/gateway&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">onLogin</span><span class="o">:</span> <span class="nx">onLogin</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openlogin">
+  <h3>
+    <a href="#openlogin" name="openlogin" class="pilcrow">&#182;</a>
+    openLogin
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">onLogin</span>
+      <span class="dox_type">Function</span>
+      <span>funzione da eseguire al completamento della login. Solitamente è una funzione di reindirizzamento.</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openLogin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onLogin</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;account/login&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">onLogin</span><span class="o">:</span> <span class="nx">onLogin</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opensignup">
+  <h3>
+    <a href="#opensignup" name="opensignup" class="pilcrow">&#182;</a>
+    openSignup
+  </h3>
+</div>
+
+
+<p>Apre la schermata di registrazione</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openSignup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">Register_OpenWebsite</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">Register_Url</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;account/signup&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opensignupcomplete">
+  <h3>
+    <a href="#opensignupcomplete" name="opensignupcomplete" class="pilcrow">&#182;</a>
+    openSignupComplete
+  </h3>
+</div>
+
+
+<p>Apre la schermata di fince registrazione</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openSignupComplete</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;account/signup_complete&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openresetpassword">
+  <h3>
+    <a href="#openresetpassword" name="openresetpassword" class="pilcrow">&#182;</a>
+    openResetPassword
+  </h3>
+</div>
+
+
+<p>Apre la schermata di reset della password</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openResetPassword</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">openURL</span><span class="p">(</span><span class="nx">Alloy</span><span class="p">.</span><span class="nx">CFG</span><span class="p">.</span><span class="nx">ResetPwd_Url</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openpuntiacimain">
+  <h3>
+    <a href="#openpuntiacimain" name="openpuntiacimain" class="pilcrow">&#182;</a>
+    openPuntiAciMain
+  </h3>
+</div>
+
+
+<p>Apre la schermata principale della sezione <code>Punti Aci</code></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openPuntiAciMain</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="nx">open</span><span class="p">).</span><span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;PuntiAciMain&#39;</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opensycmain">
+  <h3>
+    <a href="#opensycmain" name="opensycmain" class="pilcrow">&#182;</a>
+    openSycMain
+  </h3>
+</div>
+
+
+<p>Apre la schermata principale della sezione <code>Syc</code> (VantaggiSoci)</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openSycMain</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;VantaggiSociMain&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openassistenzastradalemain">
+  <h3>
+    <a href="#openassistenzastradalemain" name="openassistenzastradalemain" class="pilcrow">&#182;</a>
+    openAssistenzaStradaleMain
+  </h3>
+</div>
+
+
+<p>Apre la schermata principale della sezione <code>Assistenza Stradale</code></p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openAssistenzaStradaleMain</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;SoccorsoStradaleMain&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="opentessera">
+  <h3>
+    <a href="#opentessera" name="opentessera" class="pilcrow">&#182;</a>
+    openTessera
+  </h3>
+</div>
+
+
+<p>Apre la schermata con la tessera per l'utente corrente</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openTessera</span> <span class="o">=</span> <span class="nx">requireLogin</span><span class="p">(</span><span class="nx">_</span><span class="p">(</span><span class="nx">open</span><span class="p">).</span><span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;tessera/my&#39;</span><span class="p">));</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openinfotargamain">
+  <h3>
+    <a href="#openinfotargamain" name="openinfotargamain" class="pilcrow">&#182;</a>
+    openInfoTargaMain
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openInfoTargaMain</span> <span class="o">=</span> <span class="nx">requireLogin</span><span class="p">(</span><span class="nx">_</span><span class="p">(</span><span class="nx">open</span><span class="p">).</span><span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;infoTarga/main&#39;</span><span class="p">));</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="openmycarmain">
+  <h3>
+    <a href="#openmycarmain" name="openmycarmain" class="pilcrow">&#182;</a>
+    openMyCarMain
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">Ti.UI.Window</span>
+      <span>istanza della Window creata e aperta</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">openMyCarMain</span> <span class="o">=</span> <span class="nx">requireLogin</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;navigation openMyCarMain&#39;</span><span class="p">);</span>
+    <span class="nx">open</span><span class="p">(</span><span class="s1">&#39;myCar/main&#39;</span><span class="p">,</span> <span class="nx">args</span> <span class="o">||</span> <span class="p">{});</span>
+<span class="p">});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

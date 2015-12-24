@@ -58,6 +58,8 @@ function onPayTax(){
 (function constructor(args){
     commons.initWindow($.win, L("intro_paytax_text"), null, []);
 
+
+console.log('paytax', args);
 	data = args.data;
 	$.labelImporto.text = data.totalAmount.text;
 	$.labelRegione.text = getRegion(args.codiceReigione);

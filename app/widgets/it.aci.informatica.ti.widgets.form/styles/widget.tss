@@ -29,7 +29,7 @@
 }
 
 "#formWizard[platform=android]":{
-	height: "50%"
+	height: 500
 }
 
 "#minheight":{

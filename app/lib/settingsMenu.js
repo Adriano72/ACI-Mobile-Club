@@ -89,8 +89,7 @@ exports.openSideMenu = function(p_auth) {
 
         } else {
 
-            var winLogin = Alloy.createController('loginWindow').getView();
-            Alloy.Globals.navMenu.openWindow(winLogin);
+            require('navigation').openLogin();
         }
     });
 

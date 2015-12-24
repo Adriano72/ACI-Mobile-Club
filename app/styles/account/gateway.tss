@@ -19,7 +19,7 @@
 }
 
 "#btSignup":{
-	secondaryText: "Sei socio ACI?",
+	secondaryText: "Non sei registrato?",
 	primaryText: "Registrati"
 }
 

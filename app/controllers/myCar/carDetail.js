@@ -11,7 +11,7 @@ var targa = arguments[0].targa,
     tipo = arguments[0].tipo;
 
 $.labelLicensePlate.text = targa;
-$.veicleLabel.text = modello;
+$.veicleLabel.text = (modello || "").trim();
 $.veicleImg.image = tipo === "AUTOVEICOLO" ? "/images/mycar_ic_car.png" : tipo === "MOTOVEICOLO" ? "/images/mycar_ic_scooter.png" : "/images/mycar_ic_autocarri.png";
 console.log('tipo', tipo, $.veicleImg.image);
 

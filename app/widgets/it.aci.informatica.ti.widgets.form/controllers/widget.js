@@ -129,7 +129,7 @@ function validateField(field, cb) {
         controller.isValid = valid;
 
         field.errors = errors;
-        console.log('validateField', field.fieldId, valid, errors);
+        //console.log('validateField', field.fieldId, valid, errors);
         cb && cb(valid, errors);
     }
 
@@ -161,10 +161,10 @@ function validateField(field, cb) {
 
     //custom validation
     if (field.validate) {
-        console.log('custom validate');
+        //console.log('custom validate');
         field.validate(value, function(v, m) {
             if (!v && m) {
-                console.log('custom validate r', v, m);
+                //console.log('custom validate r', v, m);
                 errors = errors.concat(m);
             }
 
@@ -188,7 +188,7 @@ function validateField(field, cb) {
  * @param {object} field descrittore del campo per il quale mostrare l'errore
  */
 function showError(field) {
-    console.log('showError', field);
+    //console.log('showError', field);
     if (field.errors && field.errors.length) {
         $.error.text = field.errors[0];
 
@@ -201,7 +201,7 @@ function showError(field) {
  * Nasconde l'errore attualmente visualizzato
  */
 function hideError() {
-    console.log('hideError');
+    //console.log('hideError');
     $.error.text = '';
     $.errorWrapper.visible = false;
 }
@@ -242,14 +242,14 @@ function createForm(fields) {
     var fgView = createFieldGroupView();
 
     _(fields).each(function(field) {
-        console.log(field);
+        //console.log(field);
         var fieldController = createFieldController(field);
         fgView.add(fieldController.getView());
-        console.log('fieldController view', fieldController.getView());
+        //console.log('fieldController view', fieldController.getView());
         field.controller = fieldController;
     });
 
-    //  console.log('formSchema.fields', formSchema.fields);
+    //  //console.log('formSchema.fields', formSchema.fields);
 
     pageView.add(fgView);
 
@@ -289,7 +289,7 @@ $.validate = function(cb) {
 
         //wrapper della callback di risposta, debounce per il numero di campi da validare (aspetta che tutti abbiano tornato un valore)
         var response = _.after(formSchema.fields.length, function() {
-            console.log('validatePage response');
+            //console.log('validatePage response');
             cb && cb(valid);
         });
 
@@ -297,7 +297,7 @@ $.validate = function(cb) {
         _(formSchema.fields).each(function(field) {
             validateField(field, function(v) {
                 valid &= v;
-                console.log('validatePage ', field.fieldId, v, valid);
+                //console.log('validatePage ', field.fieldId, v, valid);
 
                 response();
             });
@@ -323,7 +323,7 @@ $.read = function() {
         })
         .value();
 
-    console.log('read', data);
+    //console.log('read', data);
 
     return data;
 };

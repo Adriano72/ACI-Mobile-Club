@@ -12,8 +12,8 @@
 			<Label id="labelTipo" class="lb" >Seleziona il tipo di veicolo</Label>
 
 			<Widget id="tipo" src="it.aci.informatica.ti.widgets.form_iconselector" >
-				<View image="/images/ic_vehicle_auto_bianca.png" value="AUTOVEICOLO" ></View>
-				<View image="/images/ic_vehicle_moto_bianca.png" value="MOTOVEICOLO" ></View>
+<!-- 				<View image="/images/ic_vehicle_auto_bianca.png" value="AUTOVEICOLO" ></View>
+				<View image="/images/ic_vehicle_moto_bianca.png" value="MOTOVEICOLO" ></View> -->
 			</Widget>
 
 			<View id="buttonsWrapper">

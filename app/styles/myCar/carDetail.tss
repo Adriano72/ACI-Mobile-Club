@@ -3,19 +3,24 @@
 }
 
 ".boldLabel":{
-	color: "#003772",
+	color: Alloy.Globals.palette.blu,
 	font: {
 		fontSize: "18dp",
 		fontFamily: Alloy.Globals.font.PTSans_Narrow
 	},
-	left: '3dp'
+
 }
+
+"#veicleLabel":{
+	ellipsize: true,
+	wordWrap: false
+}
+
 ".desclabel":{
-	color: "#555555",
+	color: Alloy.Globals.palette.grigio_scuro,
 	font: {
 		fontSize: "17dp"
 	},
-	left: '3dp'
 }
 "#veicleImg":{
 	height: "50dp"
@@ -23,4 +28,75 @@
 ".imgInfo":{
 	image: "/images/mycar_ic_info.png",
 	height: "15dp"
+}
+
+
+
+/**
+ * IOS
+ */
+
+
+
+".textLine":{
+	layout: "horizontal",
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
+	horizontalWrap: true
+}
+
+".itemWrapper":{
+	height: Ti.UI.SIZE,
+	backgroundColor: "transparent",
+	top:10,
+	bottom: 10,
+	width: Ti.UI.FILL,
+}
+
+".contentWrapper":{
+	width: "89%",
+	left:0,
+	height: Ti.UI.SIZE
+
+}
+
+".infoWrapper":{
+	width: "10%",
+	right: 0,
+	height: Ti.UI.SIZE
+
+}
+
+
+".desclabel[platform=ios]":{
+	width: Ti.UI.SIZE,
+}
+
+
+".boldLabel[platform=ios]":{
+	width: Ti.UI.SIZE
+}
+
+
+
+"#carHeader[platform=ios]":{
+	top: 10,
+	width: "90%",
+	//backgroundColor: Alloy.Globals.palette.grigio_scuro,
+	height: Ti.UI.SIZE,
+	layout:"horizontal" ,
+}
+
+
+
+"#carInfoWrapper[platform=ios]":{
+	height:Ti.UI.SIZE,
+	layout:"vertical",
+	left:10,
+	width:Ti.UI.FILL
+
+}
+
+"#veicleImg[platform=ios]":{
+	height: 50,
 }

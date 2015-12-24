@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>headerBar.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/components/headerBar.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>headerBar.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="kd">function</span> <span class="nx">proxyProperty</span><span class="p">(</span><span class="nx">ctrl</span><span class="p">,</span> <span class="nx">pList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ctrl</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">_</span><span class="p">(</span><span class="nx">args</span><span class="p">).</span><span class="nx">pick</span><span class="p">(</span><span class="nx">pList</span><span class="p">));</span>
+    <span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>eseguo il proxy delle seguenti proprietà sull'elemento $.title
+idealmente, posso cambiare solo il testo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">proxyProperty</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;borderWidth&#39;</span><span class="p">,</span> <span class="s1">&#39;borderColor&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;backgroundColor&#39;</span><span class="p">,</span> <span class="s1">&#39;backgroundGradient&#39;</span><span class="p">,</span> <span class="s1">&#39;onClick&#39;</span><span class="p">]);</span>
+
+
+
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

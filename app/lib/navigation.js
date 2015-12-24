@@ -209,16 +209,28 @@ exports.openAssistenzaStradaleMain = function() {
  * Apre la schermata con la tessera per l'utente corrente
  * @return {Ti.UI.Window} istanza della Window creata e aperta
  */
-exports.openTessera = requireLogin(_(open).partial('tessera/my'));
+exports.openTessera = requireLogin(_(open).partial('Tessere_Main'));
 
 
 /**
  * ### openInfoTargaMain
  * @return {Ti.UI.Window} istanza della Window creata e aperta
  */
-exports.openInfoTargaMain = requireLogin(requireCF(_(open).partial('infoTarga/inserisciTarga')));
+exports.openInfoTargaMain = _(open).partial('infoTarga/inserisciTarga');
 
 
+/**
+ * ### openInfoTargaWeb
+ * Apre il sito web mobile per il pagamento delle visure
+ * @param {string} tokenSSO   token sso di login
+ * @param {string} targa      targa del veicolo
+ * @param {number} serieTarga tipo di veicolo
+ * @return {[type]}            [description]
+ */
+exports.openInfoTargaWeb = requireLogin(requireCF(function(targa, serieTarga){
+    var tokenSSO = require('ti.aci').Services.SSO.authToken;
+     Ti.Platform.openURL('http://www.aci.it/infotarga/');
+}));
 
 /**
  * ### openMyCarMain

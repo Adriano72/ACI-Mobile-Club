@@ -10,13 +10,16 @@
 		fontSize: "17dp"
 	}
 }
+
 ".boldLabel":{
 	color: "#555555",
 	font: {
-		fontSize: "17dp",
-		fontFamily: "PT-Sans-Narrow-Bold"
+		fontSize: "18dp",
+		fontFamily: Alloy.Globals.font.PTSans_NarrowBold
 	}
 }
+
+
 "#veicleImg":{
 	height: "50dp"
 }
@@ -32,3 +35,85 @@
 		fontFamily: "PT-Sans-Narrow-Bold"
 	}
 }
+
+
+
+/** 
+ * IOS
+ */
+
+
+
+".desclabel[platform=ios]":{
+	width: Ti.UI.SIZE,
+}
+
+
+".boldLabel[platform=ios]":{
+	width: Ti.UI.SIZE
+}
+
+
+
+".viewButton[platform=ios]":{
+	top: 5,
+	left: 0,
+	width: Ti.UI.SIZE,
+	height: 34,
+	borderRadius: 17,
+	borderWidth: 2,
+	borderColor: "#006db3",
+	backgroundColor: "#006db3",
+	layout: "composite" 
+}
+".labelButton[platform=ios]":{
+	width: Ti.UI.SIZE,
+	left: 30
+
+}
+
+
+".textLine":{
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	horizontalWrap: true
+}
+
+".textLine2":{
+	layout: "horizontal",
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	horizontalWrap: true,
+	bottom: 20
+}
+
+"#carHeader[platform=ios]":{
+	top: 10,
+	width: "90%",
+	//backgroundColor: Alloy.Globals.palette.grigio_scuro,
+	height: Ti.UI.SIZE,
+	layout:"horizontal" ,
+}
+
+"#carInfoWrapper[platform=ios]":{
+	height:Ti.UI.SIZE,
+	layout:"vertical",
+	left:20,
+	width:Ti.UI.SIZE
+}
+
+"#veicleImg[platform=ios]":{
+	height: 50
+}
+
+
+
+
+
+".loginButton[platform=ios]":{
+	borderRadius: 20,
+	borderWidth: 1,
+	height: 40
+}
+

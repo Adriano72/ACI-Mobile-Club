@@ -6,7 +6,7 @@ var tiACI = require('ti.aci');
 var commons = require('commons');
 var navigation = require('navigation');
 
-
+var args = arguments[0];
 
 
 
@@ -20,8 +20,8 @@ function onActivityOpen() {
     var serieTarga = 1;
     tiACI.Services.praTasse.situazioneFiscale(targa, serieTarga, authToken, {
         success: function(data) {
-            console.log(data);
-            var itemList = [];
+            console.log('situazioneFiscale success', data);
+        var itemList = [];
             for (var i in data.periodiTributari) {
                 Ti.API.info(JSON.stringify(data.periodiTributari[i]));
                 var item = {
@@ -54,11 +54,11 @@ function onActivityOpen() {
                 itemList.push(item);
             }
             $.fiscalSection.setItems(itemList);
-           Alloy.Globals.loading.hide();
+            Alloy.Globals.loading.hide();
         },
         error: function(e) {
-            console.error(e);
-          Alloy.Globals.loading.hide();
+            console.error('situazioneFiscale error', e);
+            Alloy.Globals.loading.hide();
             Titanium.UI.createNotification({
                 duration: Titanium.UI.NOTIFICATION_DURATION_LONG,
                 message: L("fiscalsituation_alert")
@@ -79,13 +79,13 @@ function buttonAction(e) {
 
     switch(status){
         case "DA PAGARE":
-            var arg = arguments[0];
+            var arg = args;
             navigation.open('myCar/payTax', {
                 targa: $.labelLicensePlate.text,
                 serieTarga: arg.serieTarga,
                 codiceReigione: arg.codiceRegione,
-                modello: arg.modello,
-                tipo: arg.tipo,
+                modello: $.veicleLabel.text,
+                tipo: tipo,
                 data: e.section.items[e.itemIndex]
             });
             break;
@@ -167,11 +167,12 @@ function formatDate(date){
 }
 
 
+var tipo;
 (function constructor(args){
     commons.initWindow($.win, L("intro_cardetail_text"), null, []);
-    
+    tipo = args.tipo;
     $.labelLicensePlate.text = args.targa;
-    $.veicleLabel.text = args.modello;
+    $.veicleLabel.text = (args.modello || "").trim();
     $.veicleImg.image = args.tipo === "AUTOVEICOLO" ? "/images/mycar_ic_car.png" : arg.tipo === "MOTOVEICOLO" ? "/images/mycar_ic_scooter.png" : "/images/mycar_ic_autocarri.png";
 console.log('tipo', args.tipo, $.veicleImg.image);
 })(arguments[0] || {});

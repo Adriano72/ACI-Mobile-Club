@@ -61,7 +61,7 @@ function initForm() {
             //step1
             [{
                 fieldId: 'aciCard',
-                hintText: 'Numero tessera ACI',
+                hintText: 'Numero tessera ACI (opzionale)',
                 required: false,
                 format: /^([A-Za-z]{2}[0-9]{9})|([0-9]{10}[A-Za-z]{1})$/
             }, {

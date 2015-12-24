@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>my.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/controllers/tessera/my.js", defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>my.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">utility</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;utility&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">commons</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;commons&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+
+
+<span class="kd">var</span> <span class="nx">showSYC</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">throttle</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">winVantaggiSoci</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createController</span><span class="p">(</span><span class="s1">&#39;VantaggiSociMain&#39;</span><span class="p">).</span><span class="nx">getView</span><span class="p">();</span>
+    <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">navMenu</span><span class="p">.</span><span class="nx">openWindow</span><span class="p">(</span><span class="nx">winVantaggiSoci</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+
+
+<span class="kd">function</span> <span class="nx">fit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fit&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>$.rotatedContainer.setWidth($.tessera.rect.width);
+  $.rotatedContainer.setHeight($.tessera.rect.height);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">buildPaginator</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">PagingControl</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;PagingControl&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">sViewPagingControl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PagingControl</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">SC</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">pagingContainer</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">sViewPagingControl</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">loadData</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="kd">var</span> <span class="nx">immagineTessera</span><span class="p">,</span> <span class="nx">immagineTesseraRetro</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>controllo la scadenza</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">scadenza</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.dataScadenza&#39;</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dataScadenza&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.dataScadenza&#39;</span><span class="p">]));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dataScadenza&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.dataScadenza&#39;</span><span class="p">]);</span>
+
+    <span class="kd">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.categoriaTessera&#39;</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">scadenza</span> <span class="o">&gt;=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">immagineTessera</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">getTesseraImage</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span>
+        <span class="nx">immagineTesseraRetro</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">getTesseraRetroImage</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">immagineTessera</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">getTesseraScadutaImage</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span>
+        <span class="nx">immagineTesseraRetro</span> <span class="o">=</span> <span class="nx">utility</span><span class="p">.</span><span class="nx">getTesseraRetroImage</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
+</div>
+<p>$.tessera.backgroundImage = immagineTessera;
+$.tessera_back.backgroundImage = immagineTesseraRetro;</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">tessera</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">immagineTessera</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">tessera_back</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">immagineTesseraRetro</span><span class="p">;</span>
+
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;TESSERA: &#39;</span> <span class="o">+</span> <span class="nx">immagineTessera</span><span class="p">);</span>
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;TESSERA RETRO: &#39;</span> <span class="o">+</span> <span class="nx">immagineTesseraRetro</span><span class="p">);</span>
+
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">titolare</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.name&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.surname&#39;</span><span class="p">];</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">numTessera</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.numeroTessera&#39;</span><span class="p">];</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;TITOLARE t&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">titolare</span><span class="p">.</span><span class="nx">text</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;TITOLARE v&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">titolare</span><span class="p">.</span><span class="nx">visible</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">pieces</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.dataScadenza&#39;</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
+</div>
+<p>Ti.API.info('SPLITTED: '+pieces);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">pieces</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">reversed</span> <span class="o">=</span> <span class="nx">pieces</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
+</div>
+<p>Ti.API.info('SPLITTED: '+reversed);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">validita</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;FINO AL &#39;</span> <span class="o">+</span> <span class="nx">reversed</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">loadQR</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">qr</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">Globals</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">+</span> <span class="s1">&#39;/qrcode/acicardno/&#39;</span> <span class="o">+</span> <span class="nx">args</span><span class="p">[</span><span class="s1">&#39;userInfo.numeroTessera&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.png?options={&quot;size&quot;:8,&quot;margin&quot;:1}&#39;</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;qr&#39;</span><span class="p">,</span> <span class="nx">qr</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">barcode</span><span class="p">.</span><span class="nx">image</span> <span class="o">=</span> <span class="nx">qr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">rotateContent</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">rotatedContainer</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">create2DMatrix</span><span class="p">().</span><span class="nx">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">);</span>
+
+
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">OS_ANDROID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tessera</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">tessera</span><span class="p">.</span><span class="nx">rect</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">rotatedContainer</span><span class="p">.</span><span class="nx">setBottom</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">rotatedContainer</span><span class="p">.</span><span class="nx">setRight</span><span class="p">(</span><span class="s2">&quot;-15%&quot;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Ti</span><span class="p">.</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">displayCaps</span><span class="p">.</span><span class="nx">platformHeight</span> <span class="o">&lt;=</span> <span class="mi">480</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">rotatedContainer</span><span class="p">.</span><span class="nx">setBottom</span><span class="p">(</span><span class="s1">&#39;32%&#39;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">rotatedContainer</span><span class="p">.</span><span class="nx">setBottom</span><span class="p">(</span><span class="s1">&#39;29%&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">rotatedContainer</span><span class="p">.</span><span class="nx">setLeft</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+<span class="p">}</span>
+
+
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;ARGS: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">args</span><span class="p">));</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>inizializzazioni comuni della Window</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">commons</span><span class="p">.</span><span class="nx">initWindow</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span> <span class="s1">&#39;La mia tessera&#39;</span><span class="p">,</span> <span class="s1">&#39;/ico_tessera_01.png&#39;</span><span class="p">);</span>
+
+
+    <span class="kd">var</span> <span class="nx">userData</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">getCurrentUser</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>carica i dati nella UI</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">loadData</span><span class="p">(</span><span class="nx">userData</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>ruota la UI, in modo da metere la tessera in verticale</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">rotateContent</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>inizializza il paginatore custom</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">buildPaginator</span><span class="p">();</span>
+
+
+    
+
+    <span class="kd">function</span> <span class="nx">onPostlayout</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;postlayout&#39;</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;postlayout&#39;</span><span class="p">,</span> <span class="nx">onPostlayout</span><span class="p">);</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>carica il QR code</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">loadQR</span><span class="p">(</span><span class="nx">userData</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>aggiusta le dimensioni dei componenti UI</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">fit</span><span class="p">();</span>
+
+    <span class="p">}</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">win</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;postlayout&#39;</span><span class="p">,</span> <span class="nx">onPostlayout</span><span class="p">);</span>
+
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

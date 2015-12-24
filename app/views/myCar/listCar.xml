@@ -1,32 +1,28 @@
 <Alloy>
-	<Window id="win" class="container" layout="vertical" onOpen="onActivityOpen" >
-
-
-		
-		<View layout="vertical" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
-			<ListView id="listContainer" defaultItemTemplate="templateCar" separatorColor="#d3d3d3">
+	<Window class="container" id="win" layout="vertical" onOpen="onActivityOpen">
+		<View height="Titanium.UI.SIZE" layout="vertical" platform="android" width="Titanium.UI.FILL">
+			<ListView defaultItemTemplate="templateCar" id="listContainer" separatorColor="#d3d3d3">
 				<Templates>
 					<ItemTemplate name="templateCar">
-					
-						<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" bottom="25dp" left="20dp" right="20dp">							
-							<View layout="vertical" width="Titanium.UI.SIZE" >
-								<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" bottom="10dp">
-									<ImageView bindId="icVehicle" id="veicleImg"></ImageView>
-									<View layout="vertical"  width="Titanium.UI.SIZE" left="20dp">
-										<View layout="horizontal" width="Titanium.UI.SIZE" left="0">
-											<Label class="licenseLabel" bindId="carLicensePlate" id="labelLicensePlate" width="Titanium.UI.SIZE" ></Label>
+						<View bottom="25dp" height="Titanium.UI.SIZE" layout="horizontal" left="20dp" right="20dp" top="20dp" width="Titanium.UI.FILL">
+							<View layout="vertical" width="Titanium.UI.SIZE">
+								<View bottom="10dp" height="Titanium.UI.SIZE" layout="horizontal" width="Titanium.UI.FILL">
+									<ImageView bindId="icVehicle" id="veicleImg"/>
+									<View layout="vertical" left="20dp" width="Titanium.UI.SIZE">
+										<View layout="horizontal" left="0" width="Titanium.UI.SIZE">
+											<Label bindId="carLicensePlate" class="licenseLabel" id="labelLicensePlate" width="Titanium.UI.SIZE"/>
 											<Label class="licenseLabel" left="5dp" right="5dp">-</Label>
-											<Label class="licenseLabel" bindId="carModel" id="labelModel" width="Titanium.UI.SIZE"></Label>
+											<Label bindId="carModel" class="licenseLabel" id="labelModel" width="Titanium.UI.SIZE"/>
 										</View>
-										<View layout="horizontal" width="Titanium.UI.SIZE" left="0">
-											<Label class="datalabel" bindId="ruolo" width="Titanium.UI.SIZE"></Label>
-											<Label class="datalabel" bindId="date" id="labelData" width="Titanium.UI.SIZE" left="4dp" ></Label>
+										<View layout="horizontal" left="0" width="Titanium.UI.SIZE">
+											<Label bindId="ruolo" class="datalabel" width="Titanium.UI.SIZE"/>
+											<Label bindId="date" class="datalabel" id="labelData" left="4dp" width="Titanium.UI.SIZE"/>
 										</View>
 									</View>
 								</View>
 								<View layout="horizontal">
 									<View class="viewButton" onClick="showCarDetail">
-										<ImageView class="imageButton" image="/images/mycar_ic_dati.png"></ImageView>
+										<ImageView class="imageButton" image="/images/mycar_ic_dati.png"/>
 										<Label class="labelButton">L('dati_button')</Label>
 									</View>
 									<View class="viewButton" left="7dp" onClick="showFiscalSituation">
@@ -37,12 +33,101 @@
 									</View>
 								</View>
 							</View>
-						</View> 
+						</View>
 					</ItemTemplate>
 				</Templates>
 				<ListSection id="carSection">
-					<ListItem template="templateCar"></ListItem>
+					<ListItem template="templateCar"/>
 				</ListSection>
+				<FooterView>
+					<View id="footerWrapper">
+						<!-- disclaimer 1 -->
+						<!-- <Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/> -->
+						<View bottom="10dp" height="Titanium.UI.SIZE"  layout="horizontal" left="20dp" onClick="showDisclaimer1" right="20dp" top="30dp" width="Titanium.UI.FILL">
+							<View height="Titanium.UI.SIZE" width="90%">
+								<Label class="desclabel">L'elenco è diverso da come mi aspettavo.</Label>
+							</View>
+							<View height="Titanium.UI.SIZE" width="10%">
+								<ImageView class="imgInfo" right="0"/>
+							</View>
+						</View>
+						<!-- disclaimer 2 -->
+						<!-- <Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/> -->
+						<View bottom="10dp" height="Titanium.UI.SIZE"  layout="horizontal" left="20dp" onClick="showDisclaimer2" right="20dp" top="10dp" width="Titanium.UI.FILL">
+							<View height="Titanium.UI.SIZE" width="90%">
+								<Label class="desclabel">Le informazioni fiscali che mi riguardano sono complete?</Label>
+							</View>
+							<View height="Titanium.UI.SIZE" width="10%">
+								<ImageView class="imgInfo" right="0"/>
+							</View>
+						</View>
+					</View>
+				</FooterView>
+			</ListView>
+		</View>
+		<View id="wrapper" platform="ios">
+			<ListView defaultItemTemplate="templateCar" id="listContainer" separatorColor="#d3d3d3">
+				<Templates>
+					<ItemTemplate name="templateCar">
+						<View id="itemWrapper">
+							<!-- scheda del veicolo -->
+							<View id="vehicleWrapper">
+								<ImageView bindId="icVehicle" id="vehicleImg"/>
+								<View id="dataWrapper">
+									<View class="textLine">
+										<Label bindId="carLicensePlate" class="licenseLabel" id="labelLicensePlate"/>
+										<Label class="licenseLabel">-</Label>
+										<Label bindId="carModel" class="licenseLabel" id="labelModel"/>
+									</View>
+									<View class="textLine">
+										<Label bindId="ruolo" class="datalabel"/>
+										<Label bindId="date" class="datalabel" id="labelData"/>
+									</View>
+								</View>
+							</View>
+							<!-- pulsanti azione -->
+							<View id="buttonWrapper">
+								<View class="viewButton" onClick="showCarDetail">
+									<ImageView class="imageButton" image="/images/mycar_ic_dati.png"/>
+									<Label class="labelButton">L('dati_button')</Label>
+								</View>
+								<View class="viewButton" onClick="showFiscalSituation">
+									<Label class="labelButton">L('situazione_button')</Label>
+								</View>
+								<View class="viewButton">
+									<Label class="labelButton" onClick="showPraDigitale">L('pra_button')</Label>
+								</View>
+							</View>
+						</View>
+					</ItemTemplate>
+				</Templates>
+				<ListSection id="carSection">
+					<ListItem template="templateCar"/>
+				</ListSection>
+				<FooterView>
+					<View id="footerWrapper">
+						<!-- disclaimer 1 -->
+						<!-- <Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/> -->
+						<View bottom="10dp" height="Titanium.UI.SIZE"  layout="horizontal" left="20dp" onClick="showDisclaimer1" right="20dp" top="30dp" width="Titanium.UI.FILL">
+							<View height="Titanium.UI.SIZE" width="90%">
+								<Label class="desclabel">L'elenco è diverso da come mi aspettavo.</Label>
+							</View>
+							<View height="Titanium.UI.SIZE" width="10%">
+								<ImageView class="imgInfo" right="0"/>
+							</View>
+						</View>
+						<!-- disclaimer 2 -->
+						<!-- <Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/> -->
+						<View bottom="10dp" height="Titanium.UI.SIZE"  layout="horizontal" left="20dp" onClick="showDisclaimer2" right="20dp" top="10dp" width="Titanium.UI.FILL">
+							<View height="Titanium.UI.SIZE" width="90%">
+								<Label class="desclabel">Le informazioni fiscali che mi riguardano sono complete?</Label>
+							</View>
+							<View height="Titanium.UI.SIZE" width="10%">
+								<ImageView class="imgInfo" right="0"/>
+							</View>
+						</View>
+					</View>
+				</FooterView>
 			</ListView>
 		</View>
 	</Window>

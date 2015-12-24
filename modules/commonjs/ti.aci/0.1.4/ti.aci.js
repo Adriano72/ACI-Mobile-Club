@@ -2509,7 +2509,21 @@ config.setConfig({
  * @return {string} [description]
  */
 function endpoint(path) {
-    return config.getConfig('base_url') + path;
+    return noCache(config.getConfig('base_url') + path);
+}
+
+
+/**
+ * ### noCache
+ * Aggiunge alla url un parametro random, per non usare la cache
+ * @param {string} path [description]
+ * @return {string} [description]
+ */
+function noCache(path) {
+    var rnd = new Date().getTime();
+
+    return [path, 'rnd='+rnd].join(path.indexOf('?') >=0 ? '&' : '?');
+
 }
 
 
@@ -2606,7 +2620,7 @@ exports.detailsVehicle = function(targa, serieTarga, token, cb) {
     var headers = {
         'srvpt-session-id': token
     };
-    rest.get(endpoint('/pra/secured/visuraTarga'), params, normalizeCallback(cb), headers);
+    rest.get(endpoint('/pra/visuraTarga'), params, normalizeCallback(cb), headers);
 
 
 };

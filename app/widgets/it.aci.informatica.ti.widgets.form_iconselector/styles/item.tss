@@ -20,15 +20,8 @@
 	backgroundColor: "transparent"
 }
 
-".selected":{
-	borderWidth: 1,
-	borderColor: "black",
-	borderRadius: "50%"	
-}
+".selected":{}
 
-".unselected":{
-	borderWidth: 0,
-	borderColor: "black",
-	borderRadius: "50%"	
+".unselected":{	
 }
 

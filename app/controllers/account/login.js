@@ -82,6 +82,7 @@ function doLogin() {
                         return 'Si è verificato un errore';
                     }
                 })(err); 
+
                 
                 alert(msg);
 

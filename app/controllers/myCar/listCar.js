@@ -10,11 +10,13 @@ var navigation = require('navigation');
 
 var listVehicle;
 
+
 function onActivityOpen() {
 
     //  Alloy.Globals.loading.show(L('veicle_loading'), false);
     Alloy.Globals.loading.show(L('veicle_loading'), false);
     var authToken = tiACI.Services.SSO.authToken;
+    console.log('listCar token', authToken);
     tiACI.Services.praTasse.listVehicle(authToken, {
         success: function(vehicles) {
             console.log('success', vehicles);
@@ -74,7 +76,7 @@ function onActivityOpen() {
 
             Alloy.Globals.loading.hide();
             var dialog = Titanium.UI.createAlertDialog({
-                message: L("vehicle_alert"),
+                message: L("veicle_alert"),
                 buttonNames: ["OK"]
             });
             dialog.addEventListener('click', function() {
@@ -121,5 +123,19 @@ function onArrowClick() {
     $.win.close();
 }
 
+
+function showDisclaimer(message) {
+    var dialog = Titanium.UI.createAlertDialog({
+        message: message,
+        buttonNames : ["Chiudi"]
+    });
+    dialog.show();  
+}
+
+var showDisclaimer1 = _(showDisclaimer).partial("Se riscontri difformità tra le informazioni in tuo possesso e quelle visualizzate ti preghiamo di contattare uno dei Punti di Servizio ACI"
+);
+
+var showDisclaimer2 = _(showDisclaimer).partial("Attenzione: potresti avere delle situazioni fiscali irregolari su veicoli che hai venduto e che quindi non sono qui elencati. Nella prossima versione potrai digitare la targa di questi veicoli per verificare la loro situazione fiscale nel periodo in cui ne sei stato proprietario."
+);
 
 commons.initWindow($.win, L("intro_listcars_text"), null, []);

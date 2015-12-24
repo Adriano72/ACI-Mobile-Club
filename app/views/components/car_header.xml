@@ -1,0 +1,15 @@
+<Alloy>
+	<View backgroundColor="#efeff4" height="Titanium.UI.SIZE" layout="horizontal" left="20dp" top="20dp" width="Titanium.UI.FILL">
+			<ImageView id="veicleImg"/>
+			<View height="Titanium.UI.SIZE" layout="vertical" left="20dp" width="Titanium.UI.SIZE">
+				<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+					<Label class="desclabel">L('targa_label')</Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"/>
+				</View>
+				<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+					<Label class="desclabel">L('modello_label')</Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"/>
+				</View>
+			</View>
+		</View>
+</Alloy>

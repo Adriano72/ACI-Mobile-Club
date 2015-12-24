@@ -1,50 +1,95 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="onActivityOpen" layout="vertical">
-
-		
-
+	<Window class="container" id="win" layout="vertical" onOpen="onActivityOpen">
 		<!-- View Targa -->
-		<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" left="20dp" backgroundColor="#efeff4">
-			<ImageView id="veicleImg"></ImageView>
-			<View layout="vertical" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="20dp">
-				<View layout="horizontal" width="Titanium.UI.SIZE"  height="Titanium.UI.SIZE" left="0">
+		<View platform="ios" id="carHeader">
+			<ImageView id="veicleImg"/>
+			<View id="carInfoWrapper">
+				<View class="textLine">
 					<Label class="desclabel">L('targa_label')</Label>
-					<Label class="boldLabel" id="labelLicensePlate" left="2dp"></Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"/>
 				</View>
-				<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
+				<View class="textLine">
 					<Label class="desclabel">L('modello_label')</Label>
-					<Label class="boldLabel" id="veicleLabel" left="2dp"></Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"/>
+				</View>
+			</View>
+		</View>
+
+		<View platform="android" backgroundColor="#efeff4" height="Titanium.UI.SIZE" layout="horizontal" left="20dp" top="20dp" width="Titanium.UI.FILL">
+			<ImageView id="veicleImg"/>
+			<View height="Titanium.UI.SIZE" layout="vertical" left="20dp" width="Titanium.UI.SIZE">
+				<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+					<Label class="desclabel">L('targa_label')</Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"/>
+				</View>
+				<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+					<Label class="desclabel">L('modello_label')</Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"/>
 				</View>
 			</View>
 		</View>
 		<!-- Fine View Targa -->
-		
-		<ListView id="listFiscal" top="20dp" defaultItemTemplate="fiscalTemplate" separatorColor="#d3d3d3" backgroundColor="#FFFFFF">
+		<ListView backgroundColor="#FFFFFF" defaultItemTemplate="fiscalTemplate" id="listFiscal" separatorColor="#d3d3d3" top="20dp">
 			<Templates>
-				<ItemTemplate name="fiscalTemplate">
-					<View layout="vertical" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" left="20dp" right="20dp" bottom="25dp" top="20dp">
-						<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE">
-							<View layout="vertical" width="80%" height="Titanium.UI.SIZE">
-								<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
-									<Label class="desclabel" bindId="startFiscalPeriod" id="labelStartFiscalPeriod"></Label>
-									<Label class="desclabel" left="2dp" right="2dp">-</Label>
-									<Label class="desclabel" bindId="endFiscalPeriod" id="labelEndFiscalPeriod"></Label>
-								</View>
-								<Label bindId="totalAmount" class="labelBoldBlue" left="0" top="5dp"></Label>
+				<ItemTemplate platform="ios" name="fiscalTemplate">
+					<View id="itemWrapper">
+						
+						<!-- prezzo e durata -->
+						<View id="infoWrapper">
+							
+							 <!-- es: Gennaio 2013 - Dicembre 2013 -->
+							<View class="textLine" >
+								<Label bindId="startFiscalPeriod" class="desclabel" />
+								<Label class="desclabel" left="2" right="2">-</Label>
+								<Label bindId="endFiscalPeriod" class="desclabel" />
 							</View>
-							<View layout="vertical" width="20%" height="Titanium.UI.SIZE" >
-								<ImageView bindId="iconStatus" id="imageStatus" height="23dp"></ImageView>
-								<Label id="statusLabel" bindId="status" top="5dp"></Label>
+							<!-- es: €400.76 -->
+							<Label bindId="totalAmount" class="labelBoldBlue" left="0" top="5dp"/>
+
+						</View>
+
+						<!-- stato del pagamento  -->
+						<View id="statusWrapper">
+							<ImageView bindId="iconStatus" height="23dp" id="imageStatus"/>
+							<Label bindId="status" id="statusLabel" top="5dp"/>
+						</View>
+
+						<!-- pulsanti di azione -->
+						<View id="buttonWrapper">
+							<View class="viewButton" onClick="buttonAction">
+								<ImageView class="imageButton" bindId="imgActionButton"></ImageView>
+								<Label bindId="nameActionButton" class="labelButton"/>
 							</View>
 						</View>
-						<View class="viewButton" bindId="action" left="0" top="10dp" onClick="buttonAction">
-							<ImageView class="imageButton" bindId="imgActionButton"></ImageView>
-							<Label class="labelButton" bindId="nameActionButton"></Label>
+
+					</View>
+
+				</ItemTemplate>
+
+				<ItemTemplate platform="android" name="fiscalTemplate">
+					<View bottom="25dp" height="Titanium.UI.SIZE" layout="vertical" left="20dp" right="20dp" top="20dp" width="Titanium.UI.FILL">
+						<View height="Titanium.UI.SIZE" layout="horizontal" width="Titanium.UI.FILL">
+							<View height="Titanium.UI.SIZE" layout="vertical" width="80%">
+								<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+									<Label bindId="startFiscalPeriod" class="desclabel" id="labelStartFiscalPeriod"/>
+									<Label class="desclabel" left="2dp" right="2dp">-</Label>
+									<Label bindId="endFiscalPeriod" class="desclabel" id="labelEndFiscalPeriod"/>
+								</View>
+								<Label bindId="totalAmount" class="labelBoldBlue" left="0" top="5dp"/>
+							</View>
+							<View height="Titanium.UI.SIZE" layout="vertical" width="20%">
+								<ImageView bindId="iconStatus" height="23dp" id="imageStatus"/>
+								<Label bindId="status" id="statusLabel" top="5dp"/>
+							</View>
+						</View> 
+						<View bindId="action" class="viewButton" left="0" top="10dp" onClick="buttonAction">
+							 <ImageView class="imageButton" bindId="imgActionButton"></ImageView>
+							<Label bindId="nameActionButton" class="labelButton"/>
 						</View>
 					</View>
 				</ItemTemplate>
 			</Templates>
-			<ListSection id="fiscalSection"></ListSection>
+			<ListSection id="fiscalSection"/>
 		</ListView>
 	</Window>
 </Alloy>

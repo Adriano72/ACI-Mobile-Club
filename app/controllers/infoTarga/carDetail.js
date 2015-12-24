@@ -21,6 +21,17 @@ function onActivitiLoaded() {
         success : function(response) {
             Ti.API.info(JSON.stringify(response));
             details = response.datiVeicolo;
+            var tipo = details.tipoVeicolo;
+            console.log('tipo', tipo);
+            $.veicleImg.image = tipo === "AUTOVEICOLO" ? "/images/mycar_ic_car.png" : tipo === "MOTOVEICOLO" ? "/images/mycar_ic_scooter.png" : "/images/mycar_ic_autocarri.png";
+
+
+            $.labelLicensePlate.text = details.targa;
+            $.veicleLabel.text = [details.fabbrica, details.tipo, details.serie].join(' ');
+            $.veicleImg.image = tipo === "AUTOVEICOLO" ? "/images/mycar_ic_car.png" : tipo === "MOTOVEICOLO" ? "/images/mycar_ic_scooter.png" : "/images/mycar_ic_autocarri.png";
+
+
+
             $.auto.text = tipo === "AUTOVEICOLO" ? L('auto_label') : tipo === "MOTOVEICOLO" ? L('motociclo_label') : L('autocarro_label');
             $.uso.text = details.uso;
             $.immatricolato.text = details.dataPrimaImmatricolazione;
@@ -108,5 +119,5 @@ function onArrowClick() {
 }
 
 function viewMore(){
-    Ti.Platform.openURL('http://www.aci.it/infotarga/');
+   require('navigation').openInfoTargaWeb(targa, serieTarga);
 }

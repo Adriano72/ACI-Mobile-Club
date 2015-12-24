@@ -1,5 +1,6 @@
 "#wrapper":{
-	width: Ti.UI.SIZE
+	// width: Ti.UI.SIZE
+	width: 300
 }
 
 "#content":{

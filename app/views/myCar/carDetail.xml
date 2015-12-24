@@ -1,69 +1,160 @@
 <Alloy>
-	<Window id="win" class="container" onOpen="onActivitiLoaded" layout="vertical">
-
-		
-		<View layout="horizontal" width="Titanium.UI.FILL" height="Titanium.UI.SIZE" top="20dp" left="20dp" backgroundColor="#efeff4">
-			<ImageView id="veicleImg"></ImageView>
-			<View layout="vertical" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="20dp">
-				<View layout="horizontal" width="Titanium.UI.SIZE"  height="Titanium.UI.SIZE" left="0">
+	<Window class="container" id="win" layout="vertical" onOpen="onActivitiLoaded">
+		<!-- View Targa -->
+		<View platform="ios" id="carHeader">
+			<ImageView id="veicleImg"/>
+			<View id="carInfoWrapper">
+				<View class="textLine">
 					<Label class="desclabel">L('targa_label')</Label>
-					<Label class="boldLabel" id="labelLicensePlate" left="2dp"></Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"/>
 				</View>
-				<View layout="horizontal" width="Titanium.UI.SIZE" height="Titanium.UI.SIZE" left="0">
+				<View class="textLine">
 					<Label class="desclabel">L('modello_label')</Label>
-					<Label class="boldLabel" id="veicleLabel" left="2dp"></Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"/>
 				</View>
 			</View>
 		</View>
-		
+
+		<View platform="android" backgroundColor="#efeff4" height="Titanium.UI.SIZE" layout="horizontal" left="20dp" top="20dp" width="Titanium.UI.FILL">
+			<ImageView id="veicleImg"/>
+			<View height="Titanium.UI.SIZE" layout="vertical" left="20dp" width="Titanium.UI.SIZE">
+				<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+					<Label class="desclabel">L('targa_label')</Label>
+					<Label class="boldLabel" id="labelLicensePlate" left="2dp"/>
+				</View>
+				<View height="Titanium.UI.SIZE" layout="horizontal" left="0" width="Titanium.UI.SIZE">
+					<Label class="desclabel">L('modello_label')</Label>
+					<Label class="boldLabel" id="veicleLabel" left="2dp"/>
+				</View>
+			</View>
+		</View>
 		<!-- Fine View Targa -->
-		<View id="detailContainer" layout="vertical" top="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL" backgroundColor="#FFFFFF">
-			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
-				<View layout="horizontal" height="Titanium.UI.SIZE" width="90%">
-					<Label class="boldLabel" id="auto"></Label>
+		<!-- IOS -->
+		<View backgroundColor="#FFFFFF" height="Titanium.UI.SIZE" id="detailContainer" layout="vertical" platform="ios" top="20dp" width="Titanium.UI.FILL">
+			<!-- dettagli veicolo -->
+			<!-- container dell'elemento  -->
+			<View class="itemWrapper" onClick="showDislaimerImmatricolazione">
+				<!-- container per il contenuto di questo elemento -->
+				<View class="contentWrapper" layout="vertical">
+					<View class="textLine">
+						<Label class="boldLabel" id="auto" left="3"/>
+						<Label class="desclabel" left="3">L('ad_label')</Label>
+						<Label class="boldLabel" id="uso" left="3"/>
+					</View>
+					<View class="textLine">
+						<Label class="desclabel" left="3">L('immatricolato_label')</Label>
+						<Label class="boldLabel" id="immatricolato" left="3"/>
+					</View>
+					<View class="textLine">
+						<Label class="desclabel" left="3">L('alimentazione_label')</Label>
+						<Label class="boldLabel" id="alimentazione" left="3"/>
+					</View>
+					<View class="textLine">
+						<Label class="desclabel" left="3">L('con_label')</Label>
+						<Label class="boldLabel" id="cavalli" left="3"/>
+						<Label class="desclabel" left="3">L('cavalli_label')</Label>
+					</View>
+					<View class="textLine">
+						<Label class="desclabel" left="3">L('cilindrata_label')</Label>
+						<Label class="boldLabel" id="cilindrata" left="3"/>
+						<Label class="desclabel" left="3">L('misura_cilindrata_label')</Label>
+						<Label class="desclabel" left="3">.</Label>
+					</View>
+				</View>
+				<!-- container per l'icona (i) -->
+				<View class="infoWrapper">
+					<ImageView class="imgInfo"/>
+				</View>
+			</View>
+			<!-- disclaimer rubato -->
+			<View class="separator"/>
+			<!-- container dell'elemento  -->
+			<View class="itemWrapper" onClick="showDislaimerRubato">
+				<!-- container per il contenuto di questo elemento -->
+				<View class="contentWrapper">
+					<Label class="desclabel" id="rubatoLabel" left="3"/>
+				</View>
+				<!-- container per l'icona (i) -->
+				<View class="infoWrapper">
+					<ImageView class="imgInfo"/>
+				</View>
+			</View>
+			<!-- disclaimer 30+ -->
+			<!-- disclaimer rubato -->
+			<View class="separator"/>
+			<!-- container dell'elemento  -->
+			<View class="itemWrapper" onClick="showDislaimerUltratrentennale">
+				<!-- container per il contenuto di questo elemento -->
+				<View class="contentWrapper">
+					<Label class="desclabel" id="ultratrentenneLabel" left="3"/>
+				</View>
+				<!-- container per l'icona (i) -->
+				<View class="infoWrapper">
+					<ImageView class="imgInfo"/>
+				</View>
+			</View>
+			<!-- disclaimer neopatentato -->
+			<View class="separator"/>
+			<!-- container dell'elemento  -->
+			<View class="itemWrapper" onClick="showDislaimerNeoPatentati">
+				<!-- container per il contenuto di questo elemento -->
+				<View class="contentWrapper">
+					<Label class="desclabel" id="neopatentatiLabel" left="3"/>
+				</View>
+				<!-- container per l'icona (i) -->
+				<View class="infoWrapper">
+					<ImageView class="imgInfo"/>
+				</View>
+			</View>
+		</View>
+		<!-- ANDROID -->
+		<View backgroundColor="#FFFFFF" height="Titanium.UI.SIZE" id="detailContainer" layout="vertical" platform="android" top="20dp" width="Titanium.UI.FILL">
+			<View bottom="10dp" height="Titanium.UI.SIZE" id="formalitaView" layout="horizontal" left="20dp" onClick="showDislaimerImmatricolazione" right="20dp" top="10dp" width="Titanium.UI.FILL">
+				<View height="Titanium.UI.SIZE" layout="horizontal" width="90%">
+					<Label class="boldLabel" id="auto"/>
 					<Label class="desclabel">L('ad_label')</Label>
-					<Label class="boldLabel" id="uso"></Label>
+					<Label class="boldLabel" id="uso"/>
 					<Label class="desclabel">L('immatricolato_label')</Label>
-					<Label class="boldLabel" id="immatricolato"></Label>
+					<Label class="boldLabel" id="immatricolato"/>
 					<Label class="desclabel">L('alimentazione_label')</Label>
-					<Label class="boldLabel" id="alimentazione"></Label>
+					<Label class="boldLabel" id="alimentazione"/>
 					<Label class="desclabel">L('con_label')</Label>
-					<Label class="boldLabel" id="cavalli"></Label>
+					<Label class="boldLabel" id="cavalli"/>
 					<Label class="desclabel">L('cavalli_label')</Label>
 					<Label class="desclabel">L('cilindrata_label')</Label>
-					<Label class="boldLabel" id="cilindrata"></Label>
+					<Label class="boldLabel" id="cilindrata"/>
 					<Label class="desclabel">L('misura_cilindrata_label')</Label>
 					<Label class="desclabel">.</Label>
 				</View>
-				<View height="Titanium.UI.SIZE" width="10%" onClick="showDislaimerImmatricolazione">
-					<ImageView class="imgInfo" right="0"></ImageView>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"/>
 				</View>
 			</View>
-			<Label backgroundColor="#d3d3d3" height="1dp" width="Titanium.UI.FILL" left="4dp" right="4dp"></Label>
-			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+			<Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/>
+			<View bottom="10dp" height="Titanium.UI.SIZE" id="formalitaView" layout="horizontal" left="20dp" onClick="showDislaimerRubato" right="20dp" top="10dp" width="Titanium.UI.FILL">
 				<View height="Titanium.UI.SIZE" width="90%">
-					<Label class="desclabel" id="rubatoLabel"></Label>
+					<Label class="desclabel" id="rubatoLabel"/>
 				</View>
-				<View height="Titanium.UI.SIZE" width="10%" onClick="showDislaimerRubato">
-					<ImageView class="imgInfo" right="0"></ImageView>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"/>
 				</View>
 			</View>
-			<Label backgroundColor="#d3d3d3" height="1dp" width="Titanium.UI.FILL" left="4dp" right="4dp"></Label>
-			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+			<Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/>
+			<View bottom="10dp" height="Titanium.UI.SIZE" id="formalitaView" layout="horizontal" left="20dp" onClick="showDislaimerUltratrentennale" right="20dp" top="10dp" width="Titanium.UI.FILL">
 				<View height="Titanium.UI.SIZE" width="90%">
-					<Label class="desclabel" id="ultratrentenneLabel"></Label>
+					<Label class="desclabel" id="ultratrentenneLabel"/>
 				</View>
-				<View height="Titanium.UI.SIZE" width="10%" onClick="showDislaimerUltratrentennale">
-					<ImageView class="imgInfo" right="0"></ImageView>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"/>
 				</View>
 			</View>
-			<Label backgroundColor="#d3d3d3" height="1dp" width="Titanium.UI.FILL" left="4dp" right="4dp"></Label>
-			<View layout="horizontal" id="formalitaView" bottom="10dp" top="10dp" left="20dp" right="20dp" height="Titanium.UI.SIZE" width="Titanium.UI.FILL">
+			<Label backgroundColor="#d3d3d3" height="1dp" left="4dp" right="4dp" width="Titanium.UI.FILL"/>
+			<View bottom="10dp" height="Titanium.UI.SIZE" id="formalitaView" layout="horizontal" left="20dp" onClick="showDislaimerNeoPatentati" right="20dp" top="10dp" width="Titanium.UI.FILL">
 				<View height="Titanium.UI.SIZE" width="90%">
-					<Label class="desclabel" id="neopatentatiLabel"></Label>
+					<Label class="desclabel" id="neopatentatiLabel"/>
 				</View>
-				<View height="Titanium.UI.SIZE" width="10%" onClick="showDislaimerNeoPatentati">
-					<ImageView class="imgInfo" right="0"></ImageView>
+				<View height="Titanium.UI.SIZE" width="10%">
+					<ImageView class="imgInfo" right="0"/>
 				</View>
 			</View>
 		</View>

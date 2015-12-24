@@ -69,7 +69,7 @@ $.addStep = function(fields) {
         view: form.getView(),
         next: function(done, abort) {
             form.validate(function(isValid, errors) {
-                console.log('formwizard form.validate', stepId, isValid, errors, stepIndex, $.wizard.stepsCount());
+                //console.log('formwizard form.validate', stepId, isValid, errors, stepIndex, $.wizard.stepsCount());
                 if (isValid) {
                     var isLast = stepIndex == $.wizard.stepsCount() - 1;
                     if (isLast) {

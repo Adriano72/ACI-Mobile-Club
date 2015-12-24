@@ -53,6 +53,9 @@ function submit(){
 
     $.title.html = "Con <strong>InfoTarga</strong> puoi ottenere informazioni tecniche, amministrative e costi di gestione su di un veicolo digitando al sua targa."
 
+    $.tipo.addItem("/images/ic_vehicle_auto_bianca.png", false, "AUTOVEICOLO");
+    $.tipo.addItem("/images/ic_vehicle_moto_bianca.png", false, "MOTOVEICOLO");
+
     /*
 
 

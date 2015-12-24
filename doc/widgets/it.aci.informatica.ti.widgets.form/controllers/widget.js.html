@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>widget.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../../doc-style.css" />
+  <script src="../../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../../", thisFile = "Users/emanuele/Documents/Workspace/titanium/ACI-Mobile-Club/app/widgets/it.aci.informatica.ti.widgets.form/controllers/widget.js", defaultSidebar = true;
+  </script>
+  <script src="../../../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+      <div class="heading h3">
+        <a href="#createpageview">createPageView</a>
+      </div>
+      <div class="heading h3">
+        <a href="#createfieldgroupview">createFieldGroupView</a>
+      </div>
+      <div class="heading h3">
+        <a href="#createfieldcontroller">createFieldController</a>
+      </div>
+      <div class="heading h2">
+        <a href="#validation">Validation</a>
+      </div>
+      <div class="heading h3">
+        <a href="#validatepage">validatePage</a>
+      </div>
+      <div class="heading h3">
+        <a href="#validatefield">validateField</a>
+      </div>
+      <div class="heading h2">
+        <a href="#runtime%20functions">Runtime functions</a>
+      </div>
+      <div class="heading h3">
+        <a href="#showerror">showError</a>
+      </div>
+      <div class="heading h3">
+        <a href="#hideerror">hideError</a>
+      </div>
+      <div class="heading h3">
+        <a href="#read">read</a>
+      </div>
+      <div class="heading h3">
+        <a href="#render">render</a>
+      </div>
+      <div class="heading h3">
+        <a href="#primaryaction">primaryAction</a>
+      </div>
+      <div class="heading h3">
+        <a href="#secondaryaction">secondaryAction</a>
+      </div>
+      <div class="heading h3">
+        <a href="#nextpage">nextPage</a>
+      </div>
+      <div class="heading h3">
+        <a href="#submit">submit</a>
+      </div>
+      <div class="heading h3">
+        <a href="#onscroll">onScroll</a>
+      </div>
+      <div class="heading h3">
+        <a href="#nextfieldhack">nextFieldHack</a>
+      </div>
+      <div class="heading h3">
+        <a href="#constructor">constructor</a>
+      </div>
+      <div class="heading h2">
+        <a href="#public%20api">PUBLIC API</a>
+      </div>
+      <div class="heading h3">
+        <a href="#init">init</a>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>widget.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<div class="dox">
+  <div class="summary"><p>Form Widget
+Widget che genera una form a partire da uno schema dati.</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre></pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
+</div>
+<p>widget di default per il singolo campo. è una reference per questo widget</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">var</span> <span class="nx">DEFAULT_FIELD_CTRL</span> <span class="o">=</span> <span class="s1">&#39;it.aci.informatica.ti.widgets.form_textfield&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">formSchema</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">currentPage</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">pageNumber</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">currentFocus</span><span class="p">;</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
+</div>
+<p>UI Builders</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="createpageview">
+  <h3>
+    <a href="#createpageview" name="createpageview" class="pilcrow">&#182;</a>
+    createPageView
+  </h3>
+</div>
+
+
+<p>factory method per le pagine del wizard</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">createPageView</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">createStyle</span><span class="p">({</span>
+        <span class="nx">classes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;step&#39;</span><span class="p">],</span>
+        <span class="nx">apiName</span><span class="o">:</span> <span class="s1">&#39;View&#39;</span>
+    <span class="p">});</span>
+    <span class="nx">v</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="createfieldgroupview">
+  <h3>
+    <a href="#createfieldgroupview" name="createfieldgroupview" class="pilcrow">&#182;</a>
+    createFieldGroupView
+  </h3>
+</div>
+
+
+<p>factory method per le pagine del wizard</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">createFieldGroupView</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createView</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">createStyle</span><span class="p">({</span>
+        <span class="nx">classes</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;fieldGroup&#39;</span><span class="p">],</span>
+        <span class="nx">apiName</span><span class="o">:</span> <span class="s1">&#39;View&#39;</span>
+    <span class="p">});</span>
+    <span class="nx">v</span><span class="p">.</span><span class="nx">applyProperties</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="createfieldcontroller">
+  <h3>
+    <a href="#createfieldcontroller" name="createfieldcontroller" class="pilcrow">&#182;</a>
+    createFieldController
+  </h3>
+</div>
+
+
+<p>factory method per il singolo campo</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">field</span>
+      <span class="dox_type">object</span>
+      <span>hash di parametri che definiscono il campo</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">widget
+</span>
+      <span>{widget}</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">createFieldController</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
+</div>
+<p>il campo può specificare un controller (un widget) da renderizzare. il controllo di default è il widget di testo (reference obbligatoria)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">widget</span> <span class="o">||</span> <span class="nx">DEFAULT_FIELD_CTRL</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
+</div>
+<p>parametri da passare al costruttore del campo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">_</span><span class="p">(</span><span class="nx">field</span><span class="p">).</span><span class="nx">pick</span><span class="p">(</span><span class="s1">&#39;hintText&#39;</span><span class="p">,</span> <span class="s1">&#39;prefix&#39;</span><span class="p">,</span> <span class="s1">&#39;postfix&#39;</span><span class="p">,</span> <span class="s1">&#39;keyboardType&#39;</span><span class="p">,</span> <span class="s1">&#39;passwordMask&#39;</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">ctrl</span> <span class="o">=</span> <span class="nx">Alloy</span><span class="p">.</span><span class="nx">createWidget</span><span class="p">(</span><span class="nx">widget</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>gestisco la visualizzazione degli errori al focus e al blur</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">ctrl</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">currentFocus</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">controller</span><span class="p">;</span>
+        <span class="nx">showError</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">ctrl</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;blur&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">currentFocus</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="nx">hideError</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="nx">ctrl</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="validation">
+  <h2>
+    <a href="#validation" name="validation" class="pilcrow">&#182;</a>
+    Validation
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="validatepage">
+  <h3>
+    <a href="#validatepage" name="validatepage" class="pilcrow">&#182;</a>
+    validatePage
+  </h3>
+</div>
+
+
+<p>Valida tutti i controlli dela pagina i-esima</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{[type]}   index [description]</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} cb    [description]</span>
+    </div>
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">validatePage</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>flag di validazione della pagina, false se almeno uno dei campi non è valido</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-13" id="section-13">&#182;</a>
+</div>
+<p>wrapper della callback di risposta, debounce per il numero di campi da validare (aspetta che tutti abbiano tornato un valore)</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">page</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;validatePage response&#39;</span><span class="p">);</span>
+            <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">valid</span><span class="p">);</span>
+        <span class="p">});</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-14" id="section-14">&#182;</a>
+</div>
+<p>per ogni campo, esegue la validazione, aggiorna il flag di pagina e chiama la funzione response</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+        <span class="nx">_</span><span class="p">(</span><span class="nx">page</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">validateField</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">valid</span> <span class="o">&amp;=</span> <span class="nx">v</span><span class="p">;</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;validatePage &#39;</span><span class="p">,</span> <span class="nx">field</span><span class="p">.</span><span class="nx">fieldId</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">valid</span><span class="p">);</span>
+
+                <span class="nx">response</span><span class="p">();</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+
+
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-15" id="section-15">&#182;</a>
+</div>
+<p>boh</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="validatefield">
+  <h3>
+    <a href="#validatefield" name="validatefield" class="pilcrow">&#182;</a>
+    validateField
+  </h3>
+</div>
+
+
+<p>valida il singolo controllo secondo le regole definite nello schema</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">field</span>
+      <span class="dox_type">object</span>
+      <span>descrittore del campo da validare. Rispetto alla validazione, si aspetta i seguenti paramentri:
+                      * required <em>Boolean|String</em> campo obbligatorio o no. Se è una stringa, è il messaggio di errore da visualizzare. Altrimenti, se è booleano, il messaggio di errore sarà "obbligatorio"
+                      * format <em>Regex</em> regex sulla quale validare il campo
+                      * range <em>array</em> coppia (min,max) che definisce il range di lunghezza del campo
+                      * validate <em>Function</em> funzione per la validazione custom del campo. La signature è (value, cb).</span>
+    </div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span>{Function} cb callback di validazione nel formato (valid, errors)</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">validateField</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-17" id="section-17">&#182;</a>
+</div>
+<p>valore del campo</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-18" id="section-18">&#182;</a>
+</div>
+<p>array degli errori riscrontrati</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="p">[];</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-19" id="section-19">&#182;</a>
+</div>
+<p>snippet che formatta la risposta, ovvero la chiamata della callback</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="kd">function</span> <span class="nx">response</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">controller</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">controller</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+
+
+        <span class="nx">controller</span><span class="p">.</span><span class="nx">isValid</span> <span class="o">=</span> <span class="nx">valid</span><span class="p">;</span>
+
+        <span class="nx">field</span><span class="p">.</span><span class="nx">errors</span> <span class="o">=</span> <span class="nx">errors</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;validateField&#39;</span><span class="p">,</span> <span class="nx">field</span><span class="p">.</span><span class="nx">fieldId</span><span class="p">,</span> <span class="nx">valid</span><span class="p">,</span> <span class="nx">errors</span><span class="p">);</span>
+        <span class="nx">cb</span> <span class="o">&amp;&amp;</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">valid</span><span class="p">,</span> <span class="nx">errors</span><span class="p">);</span>
+    <span class="p">}</span>
+
+ 
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-20" id="section-20">&#182;</a>
+</div>
+<p>obbligatorietà</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">required</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">required</span><span class="p">)</span> <span class="o">?</span> <span class="nx">field</span><span class="p">.</span><span class="nx">required</span> <span class="o">:</span> <span class="s1">&#39;obbligatorio&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-21" id="section-21">&#182;</a>
+</div>
+<p>formato</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">format</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">rx</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">format</span><span class="p">)</span> <span class="o">?</span> <span class="nx">field</span><span class="p">.</span><span class="nx">format</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">:</span> <span class="nx">field</span><span class="p">.</span><span class="nx">format</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">format</span><span class="p">)</span> <span class="o">?</span> <span class="nx">field</span><span class="p">.</span><span class="nx">format</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;formato non valido&#39;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">rx</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-22" id="section-22">&#182;</a>
+</div>
+<p>range</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="nx">field</span><span class="p">.</span><span class="nx">range</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">range</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">range</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">a</span> <span class="o">||</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;la lunghezza deve essere compresa tra &#39;</span> <span class="o">+</span> <span class="nx">a</span> <span class="o">+</span> <span class="s1">&#39; e &#39;</span> <span class="o">+</span> <span class="nx">z</span> <span class="o">+</span> <span class="s1">&#39; caratteri&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-23" id="section-23">&#182;</a>
+</div>
+<p>custom validation</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">validate</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;custom validate&#39;</span><span class="p">);</span>
+        <span class="nx">field</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">v</span> <span class="o">&amp;&amp;</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;custom validate r&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
+                <span class="nx">errors</span> <span class="o">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">m</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nx">response</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">();</span>
+    <span class="p">}</span>
+
+
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="runtime%20functions">
+  <h2>
+    <a href="#runtime%20functions" name="runtime%20functions" class="pilcrow">&#182;</a>
+    Runtime functions
+  </h2>
+</div>
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="showerror">
+  <h3>
+    <a href="#showerror" name="showerror" class="pilcrow">&#182;</a>
+    showError
+  </h3>
+</div>
+
+
+<p>Mostra l'errore di un campo selezionato</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">field</span>
+      <span class="dox_type">object</span>
+      <span>descrittore del campo per il quale mostrare l'errore</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">showError</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;showError&#39;</span><span class="p">,</span> <span class="nx">field</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">errors</span> <span class="o">&amp;&amp;</span> <span class="nx">field</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">errorWrapper</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="hideerror">
+  <h3>
+    <a href="#hideerror" name="hideerror" class="pilcrow">&#182;</a>
+    hideError
+  </h3>
+</div>
+
+
+<p>Nasconde l'errore attualmente visualizzato</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">hideError</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hideError&#39;</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">errorWrapper</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="read">
+  <h3>
+    <a href="#read" name="read" class="pilcrow">&#182;</a>
+    read
+  </h3>
+</div>
+
+
+<p>Legge i dati dalla form e li inserisce in un oggetto</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">object</span>
+      <span>hash con i dati in input dalla form</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">read</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">page</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">page</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+            <span class="nx">o</span><span class="p">[</span><span class="nx">field</span><span class="p">.</span><span class="nx">fieldId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="nx">o</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+   
+<span class="p">}</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="render">
+  <h3>
+    <a href="#render" name="render" class="pilcrow">&#182;</a>
+    render
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">secondaryButton</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="nx">currentPage</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">primaryButton</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">currentPage</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">?</span> <span class="s1">&#39;Fine&#39;</span> <span class="o">:</span> <span class="s1">&#39;Continua&#39;</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="primaryaction">
+  <h3>
+    <a href="#primaryaction" name="primaryaction" class="pilcrow">&#182;</a>
+    primaryAction
+  </h3>
+</div>
+
+
+<p>Handler del pusante principale</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">primaryAction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;primaryAction&#39;</span><span class="p">,</span> <span class="nx">currentPage</span><span class="p">,</span> <span class="nx">pageNumber</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">currentPage</span> <span class="o">==</span> <span class="nx">pageNumber</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">submit</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">nextPage</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="secondaryaction">
+  <h3>
+    <a href="#secondaryaction" name="secondaryaction" class="pilcrow">&#182;</a>
+    secondaryAction
+  </h3>
+</div>
+
+
+<p>Handler del pulsante secondario</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">secondaryAction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">currentPage</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">next</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">formWizard</span><span class="p">.</span><span class="nx">scrollToView</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="nextpage">
+  <h3>
+    <a href="#nextpage" name="nextpage" class="pilcrow">&#182;</a>
+    nextPage
+  </h3>
+</div>
+
+
+<p>Muove la form alla pagina successiva. Effettua la validazione di pagina in pagina</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">nextPage</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">next</span> <span class="o">=</span> <span class="nx">currentPage</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="nx">validatePage</span><span class="p">(</span><span class="nx">currentPage</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">valid</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">valid</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">next</span> <span class="o">&lt;</span> <span class="nx">pageNumber</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">.</span><span class="nx">formWizard</span><span class="p">.</span><span class="nx">scrollToView</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
+                <span class="nx">hideError</span><span class="p">();</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-32" id="section-32">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code><span class="nx">_</span><span class="p">(</span><span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">next</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="nx">controller</span><span class="p">.</span><span class="nx">focus</span><span class="p">).</span><span class="nx">defer</span><span class="p">();</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-33" id="section-33">&#182;</a>
+</div>
+<p>finalizza form</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">currentFocus</span> <span class="o">&amp;&amp;</span> <span class="nx">currentFocus</span><span class="p">.</span><span class="nx">blur</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="submit">
+  <h3>
+    <a href="#submit" name="submit" class="pilcrow">&#182;</a>
+    submit
+  </h3>
+</div>
+
+
+<p>Esegue il submit della form. Richiama la funzione <code>onSubmit</code> definita dello schema</p>
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">submit</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">validatePage</span><span class="p">(</span><span class="nx">currentPage</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">valid</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="nx">valid</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">valid</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">read</span><span class="p">();</span>
+            <span class="nx">formSchema</span><span class="p">.</span><span class="nx">onSubmit</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+
+<span class="p">}</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="onscroll">
+  <h3>
+    <a href="#onscroll" name="onscroll" class="pilcrow">&#182;</a>
+    onScroll
+  </h3>
+</div>
+
+
+<p>Handler della scrollable view. Gestisce il cambiamento di pagina a livello di UI</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">e</span>
+      <span class="dox_type">object</span>
+      <span>dati evento proventienti dal componente ScrollableView</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">onScroll</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">currentPage</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentPage</span><span class="p">;</span>
+    <span class="nx">render</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="nextfieldhack">
+  <h3>
+    <a href="#nextfieldhack" name="nextfieldhack" class="pilcrow">&#182;</a>
+    nextFieldHack
+  </h3>
+</div>
+
+
+<p>Hack per la gstione del next da tastiera sui campi, per una compilazione veloce</p>
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Returns</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name"></span>
+      <span class="dox_type">[type]</span>
+      <span>[description]</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="kd">function</span> <span class="nx">nextFieldHack</span><span class="p">()</span> <span class="p">{</span>
+
+
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">pageIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">pageIndex</span> <span class="o">&lt;</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">pageIndex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">pageIndex</span><span class="p">];</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">fieldIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">fieldIndex</span> <span class="o">&lt;</span> <span class="nx">page</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">fieldIndex</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-37" id="section-37">&#182;</a>
+</div>
+<p>console.log('fieldIndex', fieldIndex);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+            <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">page</span><span class="p">[</span><span class="nx">fieldIndex</span><span class="p">];</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-38" id="section-38">&#182;</a>
+</div>
+<p>console.log('field ', field);</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+            <span class="kd">var</span> <span class="nx">onReturn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fieldIndex</span><span class="p">,</span> <span class="nx">pageIndex</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">isLastField</span> <span class="o">=</span> <span class="nx">fieldIndex</span> <span class="o">==</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">pageIndex</span><span class="p">].</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">isLastPage</span> <span class="o">=</span> <span class="nx">pageIndex</span> <span class="o">==</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-39" id="section-39">&#182;</a>
+</div>
+
+<div class="highlight"><pre><code>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;return&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fieldIndex</span><span class="p">,</span> <span class="nx">pageIndex</span><span class="p">,</span> <span class="nx">isLastField</span><span class="p">,</span> <span class="nx">isLastPage</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">isLastField</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isLastPage</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">nextPage</span><span class="p">();</span>
+
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="nx">submit</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">nextField</span> <span class="o">=</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">pageIndex</span><span class="p">][</span><span class="nx">fieldIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+                    <span class="nx">nextField</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">field</span><span class="p">.</span><span class="nx">controller</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;return&#39;</span><span class="p">,</span> <span class="nx">_</span><span class="p">(</span><span class="nx">onReturn</span><span class="p">).</span><span class="nx">partial</span><span class="p">(</span><span class="nx">fieldIndex</span><span class="p">,</span> <span class="nx">pageIndex</span><span class="p">));</span>
+
+
+        <span class="p">};</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="constructor_NaN">
+  <h3>
+    <a href="#constructor_NaN" name="constructor_NaN" class="pilcrow">&#182;</a>
+    constructor
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">args</span>
+      <span class="dox_type">object</span>
+      <span>parametri del widget</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">constructor</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">})(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="p">{});</span>
+
+
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="public%20api">
+  <h2>
+    <a href="#public%20api" name="public%20api" class="pilcrow">&#182;</a>
+    PUBLIC API
+  </h2>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs"><div class="dox">
+  <div class="summary">
+<div class="pilwrap" id="init">
+  <h3>
+    <a href="#init" name="init" class="pilcrow">&#182;</a>
+    init
+  </h3>
+</div>
+
+  </div>
+  <div class="body">
+  </div>
+  <div class="details">
+    <div class="dox_tag_title">Params</div>
+    <div class="dox_tag_detail">
+      <span class="dox_tag_name">schema</span>
+      <span class="dox_type">object</span>
+      <span>hash che definisce la form da renderizzare.
+                       * fields <em>array</em> array dei campi da inserire nella form. In realtà si tratta di un <em>array di array</em>, in quanto i campi sono divisi in pagine. Per la definizione del singolo campo, fare riferimento alla funzione <code>createFieldController</code>. Per la validazione del singolo campo, fare riferimento a <code>validateField</code>.
+                       * onSubmit <em>Function</em> funzione nella forma (data, cb) che viene chiamata al completamento della form. Nell'istanza della form, è qui che si inserisce la funzione di salvataggio dati.</span>
+    </div>
+  </div>
+</div>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+<span class="nx">$</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">schema</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">formSchema</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">;</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-43" id="section-43">&#182;</a>
+</div>
+<p>render</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">pageView</span> <span class="o">=</span> <span class="nx">createPageView</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">fgView</span> <span class="o">=</span> <span class="nx">createFieldGroupView</span><span class="p">();</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">page</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">page</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+            <span class="kd">var</span> <span class="nx">fieldController</span> <span class="o">=</span> <span class="nx">createFieldController</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+            <span class="nx">fgView</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fieldController</span><span class="p">.</span><span class="nx">getView</span><span class="p">());</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;fieldController view&#39;</span><span class="p">,</span> <span class="nx">fieldController</span><span class="p">.</span><span class="nx">getView</span><span class="p">());</span>
+            <span class="nx">schema</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">].</span><span class="nx">controller</span> <span class="o">=</span> <span class="nx">fieldController</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="nx">pageView</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">fgView</span><span class="p">);</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">formWizard</span><span class="p">.</span><span class="nx">addView</span><span class="p">(</span><span class="nx">pageView</span><span class="p">);</span>
+    <span class="p">};</span>
+
+
+    <span class="nx">currentPage</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">pageNumber</span> <span class="o">=</span> <span class="nx">formSchema</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+    <span class="nx">render</span><span class="p">();</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-44" id="section-44">&#182;</a>
+</div>
+<p>questo hack serve a spostarsi automatichamente da un campo all'altro</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+    <span class="nx">_</span><span class="p">(</span><span class="nx">nextFieldHack</span><span class="p">).</span><span class="nx">defer</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>
