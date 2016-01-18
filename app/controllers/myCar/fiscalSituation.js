@@ -16,8 +16,8 @@ function onActivityOpen() {
 
     var authToken = tiACI.Services.SSO.authToken
     //  var targa =  $.labelLicensePlate.text;
-    var targa =   "MS100EM";
-    var serieTarga = 1;
+    var targa = args.targa;//  "MS100EM";
+    var serieTarga = args.serieTarga; //1;
     tiACI.Services.praTasse.situazioneFiscale(targa, serieTarga, authToken, {
         success: function(data) {
             console.log('situazioneFiscale success', data);

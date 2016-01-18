@@ -227,10 +227,13 @@ exports.openInfoTargaMain = _(open).partial('infoTarga/inserisciTarga');
  * @param {number} serieTarga tipo di veicolo
  * @return {[type]}            [description]
  */
-exports.openInfoTargaWeb = requireLogin(requireCF(function(targa, serieTarga){
-    var tokenSSO = require('ti.aci').Services.SSO.authToken;
-     Ti.Platform.openURL('http://www.aci.it/infotarga/');
-}));
+exports.openInfoTargaWeb = function(targa, serieTarga) {
+	requireLogin(requireCF(function(){
+	// TODO: L'indirizzo deve essere messo in configurazione o deve essere preso da ti.aci
+	    var tokenSSO = require('ti.aci').Services.SSO.authToken;
+	     Ti.Platform.openURL('http://10.64.1.212/clientpratasse/infotarga/#/?serieTarga='+serieTarga+'&targa='+targa+'&sessionId='+tokenSSO);
+	}))();
+};
 
 /**
  * ### openMyCarMain

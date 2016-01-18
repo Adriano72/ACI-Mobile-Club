@@ -22,7 +22,7 @@
   },
   "env:development": {
     "DevMode": false,
-    "SSO_baseurl": "http://10.64.4.202",
+    "SSO_baseurl": "http://col-login.aci.it",
     "SSO_profilo": "mobile",
     "SSO_keypass": "cf1cEw35P1T47s0fmTT30vwsB17RuG7V",
     "__SSO_baseurl": "http://login.aci.it",
@@ -37,7 +37,7 @@
   },
   "env:test": {
     "DevMode": false,
-    "SSO_baseurl": "http://10.64.4.202",
+    "SSO_baseurl": "http://col-login.aci.it",
     "SSO_profilo": "mobile",
     "SSO_keypass": "cf1cEw35P1T47s0fmTT30vwsB17RuG7V",
     "__SSO_baseurl": "http://login.aci.it",

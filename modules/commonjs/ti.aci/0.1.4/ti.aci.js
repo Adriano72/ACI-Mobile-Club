@@ -2497,7 +2497,7 @@ var config = configurator.extendObjectWithConfigurator(exports);
 
 //imposto le configurazioni di default
 config.setConfig({
-    'base_url': 'http://10.64.2.234:80/servizipratasse/rest'
+    'base_url': 'http://10.64.1.212:80/servizipratasse/rest'
 });
 
 
